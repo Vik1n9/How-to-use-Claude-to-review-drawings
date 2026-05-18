@@ -216,7 +216,7 @@ hr{border:none;border-top:1px solid var(--border)}
     </div>
   </div>
   <div class="cards">
-    <div class="card hi"><div class="card-icon">📋</div><h4>圖面初步審查</h4><p>提供 DXF 或圖面截圖，AI 說明設備配置是否符合設置標準常見規定</p></div>
+    <div class="card hi"><div class="card-icon">📋</div><h4>圖面初步審查</h4><p>提供 PDF 或圖面截圖讓 AI 理解空間配置；提供 DXF 讓 AI 提取座標做數值計算</p></div>
     <div class="card hi"><div class="card-icon">📏</div><h4>間距與覆蓋計算</h4><p>驗算灑水頭間距、探測器覆蓋半徑，並顯示計算過程方便核對</p></div>
     <div class="card hi"><div class="card-icon">📝</div><h4>缺漏清單自動整理</h4><p>比對圖說常見缺失，產生結構化待補項目清單，可存成 Word 或 Excel</p></div>
     <div class="card"><div class="card-icon">💬</div><h4>法規條文對照查詢</h4><p>用中文問問題，快速找到設置標準相關條文與解釋</p></div>
@@ -499,10 +499,10 @@ hr{border:none;border-top:1px solid var(--border)}
 └── <span class="kw">參考資料\</span>        <span class="cmt">← 法規條文摘要等輔助文件</span></pre>
   </div>
 
-  <div class="callout info mt">
+  <div class="callout warn mt">
     <div class="callout-icon">📐</div>
-    <div><div class="c-title">AutoCAD 圖面建議存成 DXF 格式</div>
-    <p>在 AutoCAD 中選 <strong>「另存新檔」→「DXF」</strong> 匯出。AI 工具讀取效果最佳。PDF 或截圖（JPG/PNG）也可以使用。</p></div>
+    <div><div class="c-title">DXF、PDF、截圖各有用途，建議雙管齊下</div>
+    <p>AI 讀取 DXF 的方式是解析座標數字，<strong>無法「看見」圖面的空間樣貌</strong>。建議同時準備兩種格式：<strong>DXF</strong> 供 AI 提取座標做計算，<strong>PDF 或截圖</strong> 讓 AI 理解整體配置。詳細說明見步驟 08。</p></div>
   </div>
   <div class="callout ok mt">
     <div class="callout-icon">✅</div>
@@ -651,7 +651,77 @@ hr{border:none;border-top:1px solid var(--border)}
 
   <div class="prose"><p>在 <code>claude&gt;</code> 提示符後直接輸入中文即可，不需要任何特殊語法。以下是針對消防製圖工作的常用場景。</p></div>
 
-  <div class="bold mb mt-lg">📌 範例一：讀取資料夾中的圖面</div>
+  <!-- DXF CAPABILITY BLOCK -->
+  <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:1.5rem;margin:1.25rem 0;">
+    <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;">
+      <div style="width:32px;height:32px;background:var(--bg4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">📁</div>
+      <div style="font-size:15px;font-weight:700;color:var(--text);">DXF 檔案的能力說明與建議工作流程</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem;">
+      <!-- CAN DO -->
+      <div style="background:var(--ok-bg);border:1px solid var(--ok-bd);border-radius:10px;padding:1rem 1.1rem;">
+        <div style="font-size:12px;font-family:'JetBrains Mono',monospace;color:#7EDDB9;margin-bottom:.6rem;letter-spacing:.04em;">✓ DXF 可以做到</div>
+        <ul style="list-style:none;font-size:13px;color:#9EEED0;line-height:2;">
+          <li>📍 讀取圖層名稱清單</li>
+          <li>📐 提取座標數值，計算設備間距</li>
+          <li>🔢 統計圖元數量（LINE、CIRCLE、INSERT）</li>
+          <li>🏷 讀取文字標註內容（TEXT / MTEXT）</li>
+          <li>🧩 識別圖塊名稱（設備符號定義）</li>
+        </ul>
+      </div>
+      <!-- CANNOT DO -->
+      <div style="background:rgba(163,45,45,.12);border:1px solid rgba(163,45,45,.3);border-radius:10px;padding:1rem 1.1rem;">
+        <div style="font-size:12px;font-family:'JetBrains Mono',monospace;color:#F0A0A0;margin-bottom:.6rem;letter-spacing:.04em;">✗ DXF 做不到</div>
+        <ul style="list-style:none;font-size:13px;color:#E8B8B8;line-height:2;">
+          <li>👁 視覺化「看見」圖面空間配置</li>
+          <li>🗺 理解整體平面布局與動線</li>
+          <li>🖼 辨識圖面美觀、比例感</li>
+          <li>📊 大型複雜 DXF 可能超出處理量</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- WORKFLOW TABLE -->
+    <div style="font-size:13px;font-weight:500;color:var(--text2);margin-bottom:.6rem;">📋 建議雙管齊下的工作方式</div>
+    <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border2);">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:var(--bg3);">
+            <th style="text-align:left;padding:.55rem .85rem;color:var(--text3);font-weight:500;border-bottom:1px solid var(--border2);">審查需求</th>
+            <th style="text-align:center;padding:.55rem .7rem;color:#7EDDB9;font-weight:500;border-bottom:1px solid var(--border2);">使用格式</th>
+            <th style="text-align:left;padding:.55rem .85rem;color:var(--text3);font-weight:500;border-bottom:1px solid var(--border2);">怎麼做</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:.5rem .85rem;color:var(--text2);">灑水頭間距、座標計算</td>
+            <td style="text-align:center;padding:.5rem;"><span style="background:var(--ok-bg);color:#7EDDB9;border:1px solid var(--ok-bd);border-radius:5px;padding:2px 8px;font-size:11px;font-family:'JetBrains Mono',monospace;">DXF</span></td>
+            <td style="padding:.5rem .85rem;color:var(--text3);">AutoCAD 另存新檔 → DXF</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:.5rem .85rem;color:var(--text2);">圖層名稱、圖塊清單確認</td>
+            <td style="text-align:center;padding:.5rem;"><span style="background:var(--ok-bg);color:#7EDDB9;border:1px solid var(--ok-bd);border-radius:5px;padding:2px 8px;font-size:11px;font-family:'JetBrains Mono',monospace;">DXF</span></td>
+            <td style="padding:.5rem .85rem;color:var(--text3);">AutoCAD 另存新檔 → DXF</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:.5rem .85rem;color:var(--text2);">整體平面配置審查</td>
+            <td style="text-align:center;padding:.5rem;"><span style="background:var(--info-bg);color:#90BFFF;border:1px solid var(--info-bd);border-radius:5px;padding:2px 8px;font-size:11px;font-family:'JetBrains Mono',monospace;">PDF</span></td>
+            <td style="padding:.5rem .85rem;color:var(--text3);">AutoCAD 列印 → 存成 PDF</td>
+          </tr>
+          <tr>
+            <td style="padding:.5rem .85rem;color:var(--text2);">局部配置說明、探測器位置</td>
+            <td style="text-align:center;padding:.5rem;"><span style="background:var(--info-bg);color:#90BFFF;border:1px solid var(--info-bd);border-radius:5px;padding:2px 8px;font-size:11px;font-family:'JetBrains Mono',monospace;">截圖</span></td>
+            <td style="padding:.5rem .85rem;color:var(--text3);"><code>Windows + Shift + S</code> 截圖存 PNG</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:.85rem;padding:.75rem 1rem;background:var(--fire-bg);border:1px solid var(--fire-bd);border-radius:8px;font-size:13px;color:var(--fire-ll);">
+      💡 <strong style="color:#FFCBAA;">實用建議：</strong>同一份圖同時準備 DXF 和 PDF 兩個版本，先用 PDF 讓 AI 理解整體配置，再用 DXF 做精確的數值計算，兩者互補效果最好。
+    </div>
+  </div>
   <div class="mock">
     <div class="mock-bar"><div class="md" style="background:#FF5F57;"></div><div class="md" style="background:#FEBC2E;"></div><div class="md" style="background:#28C840;"></div><span class="mock-lbl">Claude Code 對話</span></div>
     <div class="mock-body">
