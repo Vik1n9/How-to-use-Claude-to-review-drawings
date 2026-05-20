@@ -894,12 +894,218 @@ hr{border:none;border-top:1px solid var(--border)}
 
 </div>
 
+<hr>
+
+<!-- CODEX COMPARISON SECTION -->
+<div class="page" style="padding-bottom:0;">
+<section class="section" id="codex" style="border-top:none;padding-top:2.5rem;">
+  <div class="step-hd">
+    <div class="badge intro" style="font-size:14px;letter-spacing:-.02em;">延伸</div>
+    <div>
+      <div class="step-title">延伸閱讀：OpenAI Codex 與 Claude Code 比較</div>
+      <div class="step-sub">進階使用者參考 · 工具選擇與消防審圖 AI 流程規劃</div>
+    </div>
+  </div>
+
+  <!-- WHAT IS CODEX -->
+  <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:1.4rem 1.6rem;margin-bottom:1.25rem;">
+    <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+      <div style="width:36px;height:36px;background:#10A37F;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">⚙</div>
+      <div>
+        <div style="font-size:15px;font-weight:700;color:var(--text);">OpenAI Codex 是什麼？</div>
+        <div style="font-size:12px;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-top:2px;">openai.com/codex · 2025 年 4 月發布</div>
+      </div>
+    </div>
+    <p style="font-size:14px;color:var(--text2);margin-bottom:.75rem;">Codex 是 OpenAI 開發的 <strong style="color:var(--text);">AI coding agent</strong>，2025 年 4 月以全新形式發布（與 2021 年舊版 Codex API 完全無關）。它以終端機或雲端沙箱為工作環境，能同時並行處理多個任務，特別適合工程化的自動化 pipeline。目前由 GPT-5.3-Codex 模型驅動。</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.6rem;">
+      <div style="background:var(--bg3);border-radius:8px;padding:.75rem;font-size:13px;color:var(--text2);">⚡ CLI 終端機 agent</div>
+      <div style="background:var(--bg3);border-radius:8px;padding:.75rem;font-size:13px;color:var(--text2);">🔀 多任務並行執行</div>
+      <div style="background:var(--bg3);border-radius:8px;padding:.75rem;font-size:13px;color:var(--text2);">🔗 GitHub / CI/CD 整合</div>
+      <div style="background:var(--bg3);border-radius:8px;padding:.75rem;font-size:13px;color:var(--text2);">🌐 雲端沙箱隔離環境</div>
+      <div style="background:var(--bg3);border-radius:8px;padding:.75rem;font-size:13px;color:var(--text2);">📋 PR 自動提案與 review</div>
+      <div style="background:var(--bg3);border-radius:8px;padding:.75rem;font-size:13px;color:var(--text2);">🔁 CI Autofix 自動修復</div>
+    </div>
+  </div>
+
+  <!-- FIRE PROTECTION DXF FLOW -->
+  <div style="font-size:14px;font-weight:500;color:var(--text2);margin:.5rem 0 .6rem;">消防圖面 AI 審查流程（兩種工具相同）</div>
+  <div style="background:#0A0A12;border:1px solid var(--border2);border-radius:10px;padding:1.1rem 1.4rem;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text2);margin-bottom:1.25rem;line-height:2;">
+    <span style="color:var(--fire-l);">DWG / DXF 圖面</span><br>
+    &ensp;&ensp;↓ ezdxf / LibreDWG / ODA File Converter 轉換<br>
+    <span style="color:#90BFFF;">圖層解析 → 設備辨識 → 座標距離分析</span><br>
+    &ensp;&ensp;↓ 法規 Rule Engine 比對<br>
+    <span style="color:#7EDDB9;">AI 推理 → 產生缺失報告</span>
+    <div style="margin-top:.75rem;padding:.6rem .8rem;background:rgba(232,71,10,.08);border:1px solid rgba(232,71,10,.25);border-radius:6px;font-size:12px;color:var(--fire-ll);">⚠ 兩種工具均不能直接讀取 DWG 格式，需透過 parser 轉換成 AI 可理解的格式後再分析</div>
+  </div>
+
+  <!-- COMPARISON TABLE -->
+  <div style="font-size:14px;font-weight:500;color:var(--text2);margin:.5rem 0 .6rem;">Codex vs Claude Code 功能比較</div>
+  <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border2);margin-bottom:1.25rem;">
+    <table style="width:100%;border-collapse:collapse;font-size:13.5px;">
+      <thead>
+        <tr style="background:var(--bg3);">
+          <th style="text-align:left;padding:.65rem 1rem;color:var(--text3);font-weight:500;border-bottom:1px solid var(--border2);">項目</th>
+          <th style="text-align:center;padding:.65rem .85rem;color:#10A37F;font-weight:500;border-bottom:1px solid var(--border2);">Codex</th>
+          <th style="text-align:center;padding:.65rem .85rem;color:var(--fire-l);font-weight:500;border-bottom:1px solid var(--border2);">Claude Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:.6rem 1rem;color:var(--text2);">大型程式專案</td>
+          <td style="text-align:center;padding:.6rem;color:#7EDDB9;">非常強</td>
+          <td style="text-align:center;padding:.6rem;color:#7EDDB9;">非常強</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:.6rem 1rem;color:var(--text2);">CLI 自動化 <span style="font-size:11px;color:var(--text3);">※1</span></td>
+          <td style="text-align:center;padding:.6rem;color:#7EDDB9;">非常強</td>
+          <td style="text-align:center;padding:.6rem;color:var(--ok);">強</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:.6rem 1rem;color:var(--text2);">多 Agent 並行</td>
+          <td style="text-align:center;padding:.6rem;color:#7EDDB9;">非常強</td>
+          <td style="text-align:center;padding:.6rem;color:var(--text2);">普通</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:.6rem 1rem;color:var(--text2);">CI/CD 整合</td>
+          <td style="text-align:center;padding:.6rem;color:#7EDDB9;">非常強</td>
+          <td style="text-align:center;padding:.6rem;color:var(--text2);">普通</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:.6rem 1rem;color:var(--text2);">PR / Review 自動化</td>
+          <td style="text-align:center;padding:.6rem;color:#7EDDB9;">非常強</td>
+          <td style="text-align:center;padding:.6rem;color:var(--text2);">普通</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:.6rem 1rem;color:var(--text2);">長上下文理解</td>
+          <td style="text-align:center;padding:.6rem;color:var(--ok);">強</td>
+          <td style="text-align:center;padding:.6rem;color:#7EDDB9;">非常強</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:.6rem 1rem;color:var(--text2);">圖面推理（PDF / 截圖）<span style="font-size:11px;color:var(--text3);">※2</span></td>
+          <td style="text-align:center;padding:.6rem;color:var(--text2);">普通</td>
+          <td style="text-align:center;padding:.6rem;color:var(--ok);">略強</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:.6rem 1rem;color:var(--text2);">中文對話互動</td>
+          <td style="text-align:center;padding:.6rem;color:var(--ok);">強</td>
+          <td style="text-align:center;padding:.6rem;color:#7EDDB9;">非常強</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:.6rem 1rem;color:var(--text2);">新手上手難度</td>
+          <td style="text-align:center;padding:.6rem;color:#F0A0A0;">較高</td>
+          <td style="text-align:center;padding:.6rem;color:#7EDDB9;">較低</td>
+        </tr>
+        <tr>
+          <td style="padding:.6rem 1rem;color:var(--text2);">本地 sandbox</td>
+          <td style="text-align:center;padding:.6rem;color:var(--ok);">成熟</td>
+          <td style="text-align:center;padding:.6rem;color:var(--ok);">成熟</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="font-size:12px;color:var(--text3);margin-bottom:1.25rem;line-height:1.8;">
+    ※1 依 Terminal-Bench 2.0 數據：Codex 77.3%、Claude Code 65.4%，故 Codex CLI 略優但兩者均屬強級<br>
+    ※2 Claude 具備原生多模態能力，對 PDF 與截圖的空間理解略優於 Codex
+  </div>
+
+  <!-- TWO POSITIONING BOXES -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem;">
+    <div style="background:var(--fire-bg);border:1px solid var(--fire-bd);border-radius:12px;padding:1.2rem 1.4rem;">
+      <div style="font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--fire-l);margin-bottom:.5rem;">CLAUDE CODE 定位</div>
+      <div style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:.5rem;">超強 AI 工程師</div>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7;">互動式、對話式操作，適合<strong style="color:var(--text);">個人日常審圖</strong>、一邊問問題一邊分析、需要 AI 解釋推理過程的場景</p>
+    </div>
+    <div style="background:rgba(16,163,127,.07);border:1px solid rgba(16,163,127,.3);border-radius:12px;padding:1.2rem 1.4rem;">
+      <div style="font-size:12px;font-family:'JetBrains Mono',monospace;color:#5FCBAA;margin-bottom:.5rem;">CODEX 定位</div>
+      <div style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:.5rem;">AI DevOps 團隊</div>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7;">工程化流程、多任務並行，適合<strong style="color:var(--text);">夜間批次審圖</strong>、建立自動化 pipeline、需要 CI/CD 整合的大型系統</p>
+    </div>
+  </div>
+
+  <!-- FIRE PROTECTION USE CASE -->
+  <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:1.3rem 1.5rem;margin-bottom:1.25rem;">
+    <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:1rem;">消防圖面審查場景選擇建議</div>
+    <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border2);">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:var(--bg3);">
+            <th style="text-align:left;padding:.55rem .85rem;color:var(--text3);font-weight:500;border-bottom:1px solid var(--border2);">你的情境</th>
+            <th style="text-align:center;padding:.55rem .7rem;color:var(--text3);font-weight:500;border-bottom:1px solid var(--border2);">建議工具</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:.5rem .85rem;color:var(--text2);">個人製圖師，需要 AI 即時協助審圖、問法規</td>
+            <td style="text-align:center;padding:.5rem;"><span style="background:var(--fire-bg);color:var(--fire-l);border:1px solid var(--fire-bd);border-radius:5px;padding:2px 10px;font-size:11px;font-family:'JetBrains Mono',monospace;">Claude Code ✓</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:.5rem .85rem;color:var(--text2);">需要閱讀 PDF 或截圖理解整體圖面布局</td>
+            <td style="text-align:center;padding:.5rem;"><span style="background:var(--fire-bg);color:var(--fire-l);border:1px solid var(--fire-bd);border-radius:5px;padding:2px 10px;font-size:11px;font-family:'JetBrains Mono',monospace;">Claude Code ✓</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:.5rem .85rem;color:var(--text2);">開發 DXF parser / 法規 Rule Engine 程式</td>
+            <td style="text-align:center;padding:.5rem;"><span style="background:rgba(16,163,127,.1);color:#5FCBAA;border:1px solid rgba(16,163,127,.3);border-radius:5px;padding:2px 10px;font-size:11px;font-family:'JetBrains Mono',monospace;">Codex 或兩者皆可</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:.5rem .85rem;color:var(--text2);">建立夜間自動批次審圖 pipeline</td>
+            <td style="text-align:center;padding:.5rem;"><span style="background:rgba(16,163,127,.1);color:#5FCBAA;border:1px solid rgba(16,163,127,.3);border-radius:5px;padding:2px 10px;font-size:11px;font-family:'JetBrains Mono',monospace;">Codex 更適合</span></td>
+          </tr>
+          <tr>
+            <td style="padding:.5rem .85rem;color:var(--text2);">需要 GitHub PR 自動提案、CI 自動修復</td>
+            <td style="text-align:center;padding:.5rem;"><span style="background:rgba(16,163,127,.1);color:#5FCBAA;border:1px solid rgba(16,163,127,.3);border-radius:5px;padding:2px 10px;font-size:11px;font-family:'JetBrains Mono',monospace;">Codex 更適合</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- MVP PHASES -->
+  <div style="font-size:14px;font-weight:500;color:var(--text2);margin:.5rem 0 .75rem;">建議的自動化審圖系統開發順序（進階）</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.75rem;margin-bottom:1.25rem;">
+    <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:1rem;">
+      <div style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--fire-l);margin-bottom:.4rem;">PHASE 1</div>
+      <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:.3rem;">PDF + OCR</div>
+      <p style="font-size:12px;color:var(--text3);">PDF 圖說 + 文字辨識 + AI 初步 review，最快可驗證</p>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:1rem;">
+      <div style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--fire-l);margin-bottom:.4rem;">PHASE 2</div>
+      <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:.3rem;">DXF 幾何解析</div>
+      <p style="font-size:12px;color:var(--text3);">ezdxf 解析座標、圖層、設備位置，提供精確數值</p>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:1rem;">
+      <div style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--fire-l);margin-bottom:.4rem;">PHASE 3</div>
+      <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:.3rem;">法規 Rule Engine</div>
+      <p style="font-size:12px;color:var(--text3);">建立設置標準規則，自動比對並標記違規項目</p>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:1rem;">
+      <div style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--fire-l);margin-bottom:.4rem;">PHASE 4</div>
+      <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:.3rem;">自動化 Workflow</div>
+      <p style="font-size:12px;color:var(--text3);">批次排程、自動產報告、多案件並行處理</p>
+    </div>
+  </div>
+
+  <!-- REFERENCE LINKS -->
+  <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:1rem 1.3rem;">
+    <div style="font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--text3);margin-bottom:.6rem;">參考資料</div>
+    <div style="display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;font-size:13px;">
+      <a href="https://openai.com/codex/" target="_blank" style="color:var(--fire-l);">OpenAI Codex 官網</a>
+      <a href="https://github.com/openai/codex" target="_blank" style="color:var(--fire-l);">Codex CLI GitHub</a>
+      <a href="https://ezdxf.mozman.at/" target="_blank" style="color:var(--fire-l);">ezdxf 文件</a>
+      <a href="https://www.gnu.org/software/libredwg/" target="_blank" style="color:var(--fire-l);">LibreDWG</a>
+      <a href="https://www.opendesign.com/guestfiles/oda_file_converter" target="_blank" style="color:var(--fire-l);">ODA File Converter</a>
+    </div>
+  </div>
+
+</section>
+</div>
+
 <footer>
   <p>本教學適用 Claude 桌面應用程式（2025–2026）× Windows 10/11 × 消防製圖工作情境</p>
   <p style="margin-top:.4rem;">
     下載：<a href="https://claude.com/download" target="_blank">claude.com/download</a> &nbsp;·&nbsp;
     文件：<a href="https://docs.claude.com" target="_blank">docs.claude.com</a> &nbsp;·&nbsp;
-    支援：<a href="https://support.claude.com" target="_blank">support.claude.com</a>
+    支援：<a href="https://support.claude.com" target="_blank">support.claude.com</a> &nbsp;·&nbsp;
+    Codex：<a href="https://openai.com/codex/" target="_blank">openai.com/codex</a>
   </p>
   <p style="margin-top:.5rem;color:#2E2E45;">AI 輔助結果僅供參考，最終消防安全設備審查判斷需由具備資格之消防設備師（士）負責</p>
 </footer>
