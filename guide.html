@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>使用 Claude Code 與 Codex 進行消防圖面輔助審圖</title>
+  <title>消防製圖人員的 Claude AI 審圖入門完整指南</title>
   <style>
     :root {
       --bg: #06060c;
@@ -441,8 +441,20 @@
     <div class="orb three"></div>
   </div>
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="回到頂端"><span class="brand-mark"></span><span>Fire Review AI Playbook</span></a>
-    <nav class="top-nav" aria-label="頁面章節"><a href="#重要聲明">重要聲明</a><a href="#整體流程總覽">整體流程總覽</a><a href="#第一部分共同前置準備">共同前置準備</a><a href="#第二部分方法一使用-claude-code-審圖">方法一，使用 Claude Code 審圖</a><a href="#第三部分方法二使用-codex-審圖">方法二，使用 Codex 審圖</a><a href="#第四部分claude-code-與-codex-的選擇建議">Claude Code 與 Codex 的選擇建議</a><a href="#第五部分可直接複製使用的提示詞">可直接複製使用的提示詞</a><a href="#第六部分審查報告建議格式">審查報告建議格式</a><a href="#第七部分常見錯誤與處理方式">常見錯誤與處理方式</a><a href="#第八部分最小可行工作流程">最小可行工作流程</a><a href="#官方文件參考">官方文件參考</a><a href="#結語">結語</a></nav>
+    <a class="brand" href="#top" aria-label="回到頂端"><span class="brand-mark"></span><span>Fire Review AI 入門手冊</span></a>
+    <nav class="top-nav" aria-label="頁面章節">
+      <a href="#重要聲明">重要聲明</a>
+      <a href="#整體流程一覽">整體流程一覽</a>
+      <a href="#第一章帳號申請與安裝">第一章：帳號申請與安裝</a>
+      <a href="#第二章建立工作環境">第二章：工作環境</a>
+      <a href="#第三章第一次啟動-claude-code">第三章：啟動 Claude Code</a>
+      <a href="#第四章消防圖面審查實戰">第四章：審查實戰</a>
+      <a href="#第五章看懂-ai-的回應">第五章：看懂 AI 回應</a>
+      <a href="#第六章人工複核清單">第六章：人工複核</a>
+      <a href="#第七章常見問題">第七章：常見問題</a>
+      <a href="#進階工具codex">進階工具：Codex</a>
+      <a href="#結語">結語</a>
+    </nav>
   </header>
   <section class="hero" id="top">
     <svg class="graph-bg" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -454,129 +466,172 @@
       </g>
     </svg>
     <div>
-      <p class="eyebrow">Claude Code × Codex · Fire Safety Review</p>
-      <h1><span class="rainbow"><span class="line">使用 AI</span><span class="line">進行消防圖面</span><span class="line">輔助審圖</span></span></h1>
-      <p class="lede">從案件資料夾、圖面格式、Claude Code 互動審圖，到 Codex 自動化分析與報告輸出，建立一套可照做、可複核的消防圖面 AI 輔助初審流程。</p>
+      <p class="eyebrow">Claude AI · 消防製圖人員專用 · 零基礎入門</p>
+      <h1><span class="rainbow"><span class="line">消防製圖</span><span class="line">人員的</span><span class="line">AI 審圖指南</span></span></h1>
+      <p class="lede">從申請帳號、安裝軟體、建立工作資料夾，到第一次和 AI 對話審圖、產出報告，本手冊每一步都從零開始說明，不需要任何 AI 使用經驗。</p>
     </div>
     <aside class="hero-panel" aria-label="文件摘要">
       <div class="stat-grid">
-        <div class="stat"><strong>02</strong><span>Claude Code 與 Codex 兩條審圖路線</span></div>
-        <div class="stat"><strong>08</strong><span>從準備、提示詞到人工複核的完整章節</span></div>
-        <div class="stat"><strong>05</strong><span>固定工作資料夾與輸出位置</span></div>
-        <div class="stat"><strong>AI</strong><span>全部輸出保留「需確認」與複核機制</span></div>
+        <div class="stat"><strong>17</strong><span>步驟從零到第一份 AI 審查報告</span></div>
+        <div class="stat"><strong>07</strong><span>章節涵蓋帳號、環境、實戰、複核</span></div>
+        <div class="stat"><strong>12</strong><span>個可直接複製的審圖提示詞</span></div>
+        <div class="stat"><strong>AI</strong><span>所有輸出均保留「需確認」複核機制</span></div>
       </div>
     </aside>
   </section>
   <section class="node-map" aria-label="快速導覽">
     <div>
-      <p class="eyebrow">Workflow Map</p>
-      <h2>從資料夾建立到報告輸出，一頁快速跳轉。</h2>
+      <p class="eyebrow">Quick Navigation</p>
+      <h2>七章完整流程，點擊直接跳轉。</h2>
     </div>
-    <div class="nodes"><a class="node" href="#step-1建立審圖工作資料夾" style="--i:0"><span>1</span>Step 1：建立審圖工作資料夾</a><a class="node" href="#step-2準備三種圖面格式" style="--i:1"><span>2</span>Step 2：準備三種圖面格式</a><a class="node" href="#step-3統一檔案命名" style="--i:2"><span>3</span>Step 3：統一檔案命名</a><a class="node" href="#step-4建立案件說明檔" style="--i:3"><span>4</span>Step 4：建立案件說明檔</a><a class="node" href="#step-5建立常見缺失清單" style="--i:4"><span>5</span>Step 5：建立常見缺失清單</a><a class="node" href="#step-1確認帳號與方案" style="--i:5"><span>6</span>Step 1：確認帳號與方案</a><a class="node" href="#step-2安裝-claude-桌面應用程式" style="--i:6"><span>7</span>Step 2：安裝 Claude 桌面應用程式</a><a class="node" href="#step-3建立-claude-code-專用設定檔" style="--i:7"><span>8</span>Step 3：建立 Claude Code 專用設定檔</a></div>
+    <div class="nodes">
+      <a class="node" href="#第一章帳號申請與安裝" style="--i:0"><span>第一章</span>帳號申請與安裝（Step 1–5）</a>
+      <a class="node" href="#第二章建立工作環境" style="--i:1"><span>第二章</span>建立工作環境（Step 6–8）</a>
+      <a class="node" href="#第三章第一次啟動-claude-code" style="--i:2"><span>第三章</span>第一次啟動 Claude Code（Step 9–12）</a>
+      <a class="node" href="#第四章消防圖面審查實戰" style="--i:3"><span>第四章</span>消防圖面審查實戰（Step 13–17）</a>
+      <a class="node" href="#第五章看懂-ai-的回應" style="--i:4"><span>第五章</span>看懂 AI 的回應</a>
+      <a class="node" href="#第六章人工複核清單" style="--i:5"><span>第六章</span>人工複核清單</a>
+      <a class="node" href="#第七章常見問題" style="--i:6"><span>第七章</span>常見問題 Q&amp;A</a>
+      <a class="node" href="#進階工具codex" style="--i:7"><span>進階</span>Codex 進階工具</a>
+    </div>
   </section>
   <main>
     <article class="content-shell">
-      <div class="content"><h1 id="使用-claude-code-與-codex-進行消防圖面輔助審圖">使用 Claude Code 與 Codex 進行消防圖面輔助審圖</h1>
+      <div class="content">
+
+<h1 id="消防製圖人員的-ai-審圖完整入門指南">消防製圖人員的 AI 審圖完整入門指南</h1>
+
 <h2 id="重要聲明">重要聲明</h2>
-<p>AI 審圖只能作為輔助檢查工具。最終判斷仍需由具備資格與責任的人員確認。AI 輸出的法規條文、距離計算、設備配置意見，均需要回到原圖、原始標註、正式法規與專業判斷進行複核。</p>
-<p>本文件所稱「審圖」指的是「輔助初步檢查」，包含整理圖面、讀取標註、抽取設備座標、檢查常見缺漏、產生審查意見草稿。它不等同於正式審查、簽證或法定審核。</p>
-<h2 id="整體流程總覽">整體流程總覽</h2>
-<div class="table-wrap"><table><thead><tr><th>階段</th><th>目的</th><th>產出</th></tr></thead><tbody><tr><td>前置準備</td><td>建立固定資料夾與檔案格式</td><td>可被 AI 穩定讀取的案件資料夾</td></tr><tr><td>Claude Code 路線</td><td>以互動方式讀圖、問法規、產生審查意見</td><td>適合單案、即時問答、人工主導</td></tr><tr><td>Codex 路線</td><td>建立可重複執行的審圖工作流程</td><td>適合批次案件、腳本分析、自動化輸出</td></tr><tr><td>人工複核</td><td>檢查 AI 結論是否可靠</td><td>最終審查意見修正版</td></tr></tbody></table></div>
-<h2 id="第一部分共同前置準備">第一部分：共同前置準備</h2>
-<h3 id="step-1建立審圖工作資料夾">Step 1：建立審圖工作資料夾</h3>
-<p>在電腦中建立固定工作資料夾。以下以 Windows 為例：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>C:\消防審圖\
-  00_案件說明\
+<p>本手冊中的 AI 工具只能作為輔助初審工具，最終判斷仍需由具備資格與責任的消防設備師或相關專業人員確認。AI 輸出的法規條文、距離計算、設備配置意見，都必須回到原圖、正式法規與專業判斷進行人工複核。本手冊所稱「審圖」是指「AI 輔助初步檢查」，不等同於正式審查、簽證或任何法定審核程序。</p>
+
+<h2 id="整體流程一覽">整體流程一覽</h2>
+<div class="table-wrap"><table><thead><tr><th>階段</th><th>內容</th><th>對應章節</th><th>預計時間（首次）</th></tr></thead><tbody>
+<tr><td>第一階段：環境建立</td><td>申請帳號、安裝軟體、安裝 Claude Code</td><td>第一章、第二章</td><td>約 60–90 分鐘</td></tr>
+<tr><td>第二階段：首次啟動</td><td>開啟 PowerShell、進入資料夾、確認環境</td><td>第三章</td><td>約 20–30 分鐘</td></tr>
+<tr><td>第三階段：審圖實戰</td><td>建立索引、讀圖、法規對照、輸出報告</td><td>第四章</td><td>依案件規模而定</td></tr>
+<tr><td>第四階段：人工複核</td><td>核對 AI 輸出、修正結論、完成正式審查意見</td><td>第五章、第六章</td><td>依案件規模而定</td></tr>
+</tbody></table></div>
+
+<h2 id="第一章帳號申請與安裝">第一章：帳號申請與安裝</h2>
+
+<h3 id="step-1申請-claude-帳號">Step 1：申請 Claude 帳號</h3>
+<p>Claude 是 Anthropic 公司開發的 AI 助手。使用前需要先在官方網站建立帳號，就像申請電子郵件帳號一樣。</p>
+<p>操作步驟：</p>
+<ul>
+  <li>1. 打開電腦的瀏覽器（Chrome、Edge 或 Firefox 均可）。</li>
+  <li>2. 在網址列輸入 <code>claude.ai</code>，按 Enter。</li>
+  <li>3. 頁面會顯示 Claude 官方首頁。點擊畫面中央的「<strong>Sign up</strong>」按鈕。</li>
+  <li>4. 在「Email」欄位輸入你的電子郵件地址，然後點擊「<strong>Continue</strong>」。</li>
+  <li>5. 系統會發送一封驗證信到你的信箱。打開信箱，找到來自 Anthropic 的信，點擊信中的驗證連結。</li>
+  <li>6. 回到瀏覽器，依畫面提示設定你的帳號密碼，並填寫基本資料。</li>
+  <li>7. 完成後頁面會自動進入 Claude 的對話畫面，表示帳號建立成功。</li>
+</ul>
+<p>✅ <strong>確認成功的標誌：</strong>瀏覽器顯示一個對話框，左下角有一個文字輸入欄位，畫面上方顯示你的帳號名稱或電子郵件。</p>
+
+<h3 id="step-2選擇訂閱方案">Step 2：選擇訂閱方案</h3>
+<p>Claude 提供免費版與付費版。以下是兩個方案的比較：</p>
+<div class="table-wrap"><table><thead><tr><th>項目</th><th>免費版（Free）</th><th>付費版（Pro）</th></tr></thead><tbody>
+<tr><td>月費</td><td>$0</td><td>約 USD $20／月</td></tr>
+<tr><td>每日使用量</td><td>有限制，達到上限後需等待</td><td>使用量大幅提升，適合整天工作</td></tr>
+<tr><td>模型</td><td>僅可用較基礎的模型</td><td>可用最新最強的模型（如 Claude Sonnet、Opus）</td></tr>
+<tr><td>Claude Code 支援</td><td>受限</td><td>完整支援</td></tr>
+<tr><td>適合對象</td><td>試用、偶爾使用</td><td>每天需要審圖的專業人員</td></tr>
+</tbody></table></div>
+<p>⚠️ <strong>注意：</strong>本手冊的所有功能，特別是 Claude Code，需要 <strong>Pro 方案</strong>才能穩定使用。如果你打算在工作中每天使用，建議升級至 Pro。升級方式：登入 claude.ai 後，點擊左下角你的帳號名稱，選擇「Upgrade to Pro」，依畫面填寫信用卡資料即可。</p>
+
+<h3 id="step-3安裝-claude-桌面應用程式-windows">Step 3：安裝 Claude 桌面應用程式（Windows）</h3>
+<p>Claude 有一個桌面應用程式，安裝後可以不用每次都打開瀏覽器，直接從電腦桌面啟動，使用上更方便。</p>
+<p>操作步驟：</p>
+<ul>
+  <li>1. 打開瀏覽器，前往 <code>claude.ai/download</code>。</li>
+  <li>2. 頁面會自動偵測你的作業系統。點擊「<strong>Download for Windows</strong>」按鈕。</li>
+  <li>3. 下載完成後，到你電腦的「下載」資料夾（通常在「本機 &gt; 下載」），找到下載的安裝檔（檔名類似 <code>Claude-Setup-x.x.x.exe</code>）。</li>
+  <li>4. 雙擊安裝檔。若系統詢問「是否允許此應用程式對您的裝置進行變更」，點擊「<strong>是</strong>」。</li>
+  <li>5. 安裝過程全自動，完成後桌面會出現 Claude 的圖示。</li>
+  <li>6. 雙擊桌面的 Claude 圖示開啟應用程式，用你的帳號密碼登入。</li>
+</ul>
+<p>✅ <strong>確認成功的標誌：</strong>Claude 桌面應用程式開啟，畫面和網頁版相似，出現對話輸入框，上方顯示你的帳號。</p>
+
+<h3 id="step-4第一次對話確認">Step 4：第一次對話確認</h3>
+<p>安裝完成後，先在 Claude 桌面應用程式中測試一下，確認帳號正常運作。</p>
+<p>操作步驟：</p>
+<ul>
+  <li>1. 開啟 Claude 桌面應用程式。</li>
+  <li>2. 點擊畫面下方的文字輸入欄位。</li>
+  <li>3. 輸入以下測試訊息，然後按 Enter 或點擊送出按鈕：</li>
+</ul>
+<figure class="code-card"><figcaption>測試訊息</figcaption><pre><code>你好，我是消防設備製圖人員，請用繁體中文回答我：你能協助我進行消防圖面的初步檢查嗎？</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<ul>
+  <li>4. 等待 Claude 回應。正常情況下幾秒內就會出現一段繁體中文的回覆文字。</li>
+</ul>
+<p>✅ <strong>確認成功的標誌：</strong>Claude 用繁體中文回覆了一段關於消防圖面協助的文字。表示帳號、應用程式、網路連線都正常。</p>
+<p>⚠️ <strong>注意：</strong>這個對話框是「一般聊天模式」，適合測試，但不等於後面章節會用到的 Claude Code。兩者的用途不同，下一步會說明差異。</p>
+
+<h3 id="step-5安裝-claude-code-cli">Step 5：安裝 Claude Code CLI</h3>
+<p><strong>什麼是 CLI？</strong>CLI 是「Command Line Interface」的縮寫，中文叫做「命令列介面」。簡單說，它是一種讓你用文字指令操作電腦的方式，不用滑鼠點擊，直接打字告訴電腦要做什麼。Claude Code 就是透過這種方式運作的——你在一個叫做「終端機」或「PowerShell」的視窗裡打字，Claude Code 就會幫你讀取圖面、分析資料、產生報告。</p>
+<p>安裝 Claude Code 之前，需要先安裝 Node.js。Node.js 是一個程式執行環境，可以把它想成是讓 Claude Code 能在你電腦上運作的「底層引擎」。</p>
+<h4>第一步：安裝 Node.js</h4>
+<ul>
+  <li>1. 打開瀏覽器，前往 <code>nodejs.org</code>。</li>
+  <li>2. 點擊標示「<strong>LTS</strong>」的下載按鈕（LTS 代表長期穩定版，適合一般用途）。</li>
+  <li>3. 下載完成後，執行安裝檔，全程按「Next」與「Install」即可，不需要更改任何設定。</li>
+  <li>4. 安裝完成後，需要重新啟動電腦一次。</li>
+</ul>
+<h4>第二步：開啟 PowerShell</h4>
+<p>PowerShell 是 Windows 內建的終端機程式，就是我們等一下要打字指令的地方。</p>
+<ul>
+  <li>1. 按下鍵盤左下角的 <strong>Windows 鍵</strong>（或點擊螢幕左下角的 Windows 圖示）。</li>
+  <li>2. 在搜尋框輸入「<strong>PowerShell</strong>」。</li>
+  <li>3. 在搜尋結果中找到「<strong>Windows PowerShell</strong>」，對它按滑鼠右鍵。</li>
+  <li>4. 選擇「<strong>以系統管理員身分執行</strong>」。</li>
+  <li>5. 如果出現「是否允許此應用程式對您的裝置進行變更」，點擊「<strong>是</strong>」。</li>
+</ul>
+<p>這時會出現一個深色背景的視窗，裡面有一行文字結尾是 <code>&gt;</code> 符號，表示 PowerShell 已準備好接受你的指令了。</p>
+<h4>第三步：安裝 Claude Code</h4>
+<p>在 PowerShell 視窗中，輸入以下指令，然後按 Enter：</p>
+<figure class="code-card"><figcaption>powershell</figcaption><pre><code>npm install -g @anthropic-ai/claude-code</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>這行指令的意思：<code>npm</code> 是 Node.js 的套件管理工具（就像 App Store，用來安裝程式）；<code>install</code> 是安裝的意思；<code>-g</code> 代表安裝到全系統，讓所有資料夾都能使用；<code>@anthropic-ai/claude-code</code> 是 Claude Code 這個程式的正式名稱。</p>
+<p>安裝過程中會看到很多文字滾動，這是正常的。等到出現一行類似 <code>added xxx packages</code> 的訊息，就代表安裝完成。</p>
+<p>✅ <strong>確認安裝成功：</strong>在 PowerShell 中輸入以下指令並按 Enter：</p>
+<figure class="code-card"><figcaption>powershell</figcaption><pre><code>claude --version</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>如果顯示一個版本號碼（例如 <code>1.x.x</code>），代表 Claude Code 安裝成功。</p>
+<p>⚠️ <strong>注意：</strong>如果出現錯誤訊息「<code>npm 不是內部或外部命令</code>」或「<code>npm : 無法辨識 'npm' 詞彙</code>」，代表 Node.js 尚未安裝成功，或需要重新啟動電腦後再試一次。</p>
+
+<h2 id="第二章建立工作環境">第二章：建立工作環境</h2>
+
+<h3 id="step-6建立工作資料夾">Step 6：建立工作資料夾</h3>
+<p>在開始使用 Claude Code 之前，需要先在電腦上建立一個固定的工作資料夾。Claude Code 會在這個資料夾裡讀取你的圖面與設定，也會把分析結果存放在這裡。</p>
+<p>操作步驟（使用 Windows 檔案總管）：</p>
+<ul>
+  <li>1. 按 <strong>Windows 鍵 + E</strong> 開啟「檔案總管」。</li>
+  <li>2. 在左側點擊「本機」，然後點擊 C 槽（通常顯示為「本機磁碟 (C:)」）。</li>
+  <li>3. 在右側空白處按滑鼠右鍵，選擇「<strong>新增 &gt; 資料夾</strong>」。</li>
+  <li>4. 將資料夾命名為「<strong>消防審圖</strong>」，按 Enter 確認。</li>
+  <li>5. 雙擊進入剛建立的「消防審圖」資料夾。</li>
+  <li>6. 在資料夾內，依照相同方式逐一建立以下子資料夾：</li>
+</ul>
+<figure class="code-card"><figcaption>資料夾結構</figcaption><pre><code>C:\消防審圖\
   01_圖面輸入\
   02_法規參考\
   03_AI分析暫存\
-  04_審查報告輸出\
-  05_人工複核\</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>各資料夾用途如下：</p>
-<div class="table-wrap"><table><thead><tr><th>資料夾</th><th>用途</th></tr></thead><tbody><tr><td>00_案件說明</td><td>放置案件基本資料、場所用途、樓層、系統類型、審查範圍</td></tr><tr><td>01_圖面輸入</td><td>放置 DXF、PDF、PNG、JPG 等圖面資料</td></tr><tr><td>02_法規參考</td><td>放置法規摘要、內部審圖規則、常見缺失清單</td></tr><tr><td>03_AI分析暫存</td><td>放置 AI 產生的中間分析資料</td></tr><tr><td>04_審查報告輸出</td><td>放置 AI 產出的審查意見草稿</td></tr><tr><td>05_人工複核</td><td>放置人工修正後的最終版本</td></tr></tbody></table></div>
-<h3 id="step-2準備三種圖面格式">Step 2：準備三種圖面格式</h3>
-<p>建議同一張圖面同時準備三種版本。每種格式的用途不同。</p>
-<div class="table-wrap"><table><thead><tr><th>格式</th><th>用途</th><th>注意事項</th></tr></thead><tbody><tr><td>PDF</td><td>讓 AI 理解圖面整體配置、平面關係、標註內容</td><td>輸出時需保持清晰，避免文字過小</td></tr><tr><td>DXF</td><td>讓 AI 或輔助腳本抽取圖層、圖塊、座標、距離</td><td>需確認單位、比例、圖層命名是否穩定</td></tr><tr><td>PNG 或 JPG</td><td>讓 AI 檢查局部區域、設備配置、標註疑點</td><td>建議針對局部放大截圖，不要只用全圖縮圖</td></tr></tbody></table></div>
-<p>DXF 適合做數值計算。PDF 與截圖適合做空間理解。審圖時兩者要搭配使用。</p>
-<h3 id="step-3統一檔案命名">Step 3：統一檔案命名</h3>
-<p>檔名越穩定，AI 越容易理解案件結構。建議使用以下命名方式：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>案件A_B1_平面圖.pdf
-案件A_B1_消防設備圖.dxf
-案件A_B1_撒水系統局部.png
-案件A_案件說明.md
-案件A_法規摘要.md</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>命名規則：</p>
-<ul><li>開頭使用案件名稱。</li><li>中段標示樓層或區域。</li><li>後段標示圖面類型。</li><li>避免使用「最新版」「最終版」「新檔案」這類不穩定名稱。</li><li>同一案件的所有檔案使用同一個案件代號。</li></ul>
-<h3 id="step-4建立案件說明檔">Step 4：建立案件說明檔</h3>
-<p>在 <code>00_案件說明</code> 中建立 <code>案件說明.md</code>，內容如下：</p>
-<figure class="code-card"><figcaption>markdown</figcaption><pre><code># 案件說明
+  04_審查報告輸出\</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>各資料夾用途：</p>
+<div class="table-wrap"><table><thead><tr><th>資料夾</th><th>用途</th></tr></thead><tbody>
+<tr><td>01_圖面輸入</td><td>放置 DXF、PDF、PNG、JPG 等圖面檔案</td></tr>
+<tr><td>02_法規參考</td><td>放置法規摘要、內部審圖規則、常見缺失清單</td></tr>
+<tr><td>03_AI分析暫存</td><td>Claude Code 產生的中間分析資料存放位置</td></tr>
+<tr><td>04_審查報告輸出</td><td>AI 產出的審查意見草稿存放位置</td></tr>
+</tbody></table></div>
+<p>✅ <strong>確認成功的標誌：</strong>在 <code>C:\消防審圖</code> 內可以看到四個子資料夾，全部命名正確。</p>
 
-## 基本資料
-- 案件名稱：
-- 建築用途：
-- 樓層：
-- 審查範圍：
-- 圖面單位：公尺或毫米
-- 圖面比例：
-
-## 本次要檢查的項目
-- 自動撒水設備
-- 火警自動警報設備
-- 緊急廣播設備
-- 室內消防栓
-- 避難逃生動線
-
-## 已知限制
-- 本次只做 AI 輔助初審
-- 法規條文需人工複核
-- 圖面標註模糊處需列入需確認事項</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="step-5建立常見缺失清單">Step 5：建立常見缺失清單</h3>
-<p>在 <code>02_法規參考</code> 中建立 <code>常見缺失清單.md</code>，內容可先使用以下範本：</p>
-<figure class="code-card"><figcaption>markdown</figcaption><pre><code># 消防圖面常見缺失清單
-
-## 自動撒水設備
-- 未標示撒水頭間距
-- 撒水頭與牆面距離未確認
-- 樑下、天花高低差區域未特別檢討
-- 管線與撒水頭位置不一致
-
-## 火警自動警報設備
-- 探測器間距未標示
-- 探測器類型未標示
-- 樓梯間、走廊、機房等區域漏設
-- 探測器位置與燈具、風口、樑位衝突
-
-## 緊急廣播設備
-- 揚聲器位置未標示
-- 樓層或區域音壓覆蓋未說明
-- 分區與廣播迴路未對應
-
-## 室內消防栓
-- 消防栓位置與有效水平距離未檢討
-- 動線轉折處未確認實際可達距離
-- 圖例與設備數量表不一致
-
-## 避難逃生
-- 出口方向未標示
-- 疏散動線不清楚
-- 走廊寬度、門寬、出口數量需確認</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h2 id="第二部分方法一使用-claude-code-審圖">第二部分：方法一，使用 Claude Code 審圖</h2>
-<h3 id="適合使用-claude-code-的情境">適合使用 Claude Code 的情境</h3>
-<p>Claude Code 適合由人主導、一邊看圖一邊問問題的工作方式。若你需要 AI 協助閱讀 PDF、截圖、圖面說明，並用對話方式逐步產生審查意見，Claude Code 是比較直覺的選擇。</p>
-<p>適合情境：</p>
-<ul><li>單一案件的初步審圖。</li><li>需要用中文逐步詢問圖面疑點。</li><li>需要 AI 同時閱讀 PDF、截圖、DXF 與文字說明。</li><li>需要 AI 產生審查意見草稿，再由人工修改。</li><li>不想先建立完整自動化腳本。</li></ul>
-<h3 id="step-1確認帳號與方案">Step 1：確認帳號與方案</h3>
-<ul><li>前往 Claude 官方網站建立或登入帳號。</li><li>確認帳號具備 Claude Code 使用權限。通常可用方案包含 Pro、Max、Team、Enterprise 或 Claude Console 帳號，實際可用狀態以帳號頁面為準。</li><li>登入後先用一般聊天確認帳號可以正常回應。</li></ul>
-<h3 id="step-2安裝-claude-桌面應用程式">Step 2：安裝 Claude 桌面應用程式</h3>
-<p>Windows 使用者可用桌面應用程式作為入口。</p>
-<ul><li>前往 Claude 官方下載頁面。</li><li>下載 Windows 版本。</li><li>執行安裝檔。</li><li>開啟 Claude 應用程式。</li><li>使用你的 Claude 帳號登入。</li><li>在桌面應用程式中找到 Claude Code 入口。</li></ul>
-<p>若你使用 macOS 或 Linux，也可依官方文件使用終端機安裝 Claude Code。安裝方式以官方文件顯示為準。</p>
-<h3 id="step-3建立-claude-code-專用設定檔">Step 3：建立 Claude Code 專用設定檔</h3>
-<p>在 <code>C:\消防審圖</code> 根目錄建立 <code>CLAUDE.md</code>。這個檔案用來告訴 Claude Code 工作背景、回答格式與審圖規則。</p>
-<p>檔案位置：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>C:\消防審圖\CLAUDE.md</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>內容範本：</p>
-<figure class="code-card"><figcaption>markdown</figcaption><pre><code># 消防圖面輔助審查工作設定
+<h3 id="step-7建立-claude-md-設定檔">Step 7：建立 CLAUDE.md 設定檔</h3>
+<p><strong>CLAUDE.md 是什麼？</strong>可以把它想像成一份「工作說明書」或「簡報資料」，每次 Claude Code 啟動時，它會自動閱讀這份文件，了解自己的工作角色、這個案件的資料夾結構、以及回答問題時需要遵守的規則。有了這份文件，你不需要每次開始審圖都重新說明背景，Claude Code 會自動按照這份說明書工作。</p>
+<p>建立步驟（使用記事本）：</p>
+<ul>
+  <li>1. 按 <strong>Windows 鍵</strong>，在搜尋框輸入「<strong>記事本</strong>」，開啟記事本程式。</li>
+  <li>2. 將以下內容完整複製，貼到記事本中（點擊下方的 Copy 按鈕即可複製）：</li>
+</ul>
+<figure class="code-card"><figcaption>CLAUDE.md 內容範本</figcaption><pre><code># 消防圖面輔助審查工作設定
 
 ## 工作角色
 - 你是消防圖面輔助審查助手。
@@ -609,282 +664,230 @@
 - AI 結果僅供輔助初審。
 - 不得將 AI 結果視為正式審查結論。
 - 不得在沒有依據的狀況下捏造法規條文。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="step-4啟動-claude-code">Step 4：啟動 Claude Code</h3>
-<p>開啟 Claude Code 終端機後，輸入以下指令：</p>
-<figure class="code-card"><figcaption>powershell</figcaption><pre><code>cd C:\消防審圖
-claude</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>看到 Claude Code 進入互動狀態後，先確認它是否能讀取工作資料夾。</p>
-<p>可輸入：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請先讀取目前資料夾結構，列出你看到的資料夾與檔案。先不要進行審圖，也不要修改任何檔案。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="step-5讓-claude-code-建立案件索引">Step 5：讓 Claude Code 建立案件索引</h3>
-<p>輸入以下指令：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請讀取 00_案件說明、01_圖面輸入、02_法規參考 三個資料夾，建立本案檔案索引。請用表格列出每個檔案的檔名、格式、可能用途、需要人工確認的地方。先不要產生審查結論。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>目標產出：</p>
-<div class="table-wrap"><table><thead><tr><th>檔名</th><th>格式</th><th>用途</th><th>需確認事項</th></tr></thead><tbody><tr><td>案件A_B1_消防設備圖.dxf</td><td>DXF</td><td>抽取圖層、圖塊、座標</td><td>單位與比例</td></tr><tr><td>案件A_B1_平面圖.pdf</td><td>PDF</td><td>理解整體配置</td><td>標註是否清晰</td></tr><tr><td>案件A_B1_局部.png</td><td>圖片</td><td>檢查局部設備位置</td><td>截圖範圍是否完整</td></tr></tbody></table></div>
-<h3 id="step-6使用-pdf-或截圖進行視覺審圖">Step 6：使用 PDF 或截圖進行視覺審圖</h3>
-<p>輸入以下指令：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請先閱讀 01_圖面輸入 中的 PDF 與圖片。請根據圖面可見內容，檢查消防設備配置是否有明顯疑點。請只根據你能看見的內容回答。看不清楚或需要原圖確認的項目，請列為「需確認」。
+<ul>
+  <li>3. 在記事本的功能表列點擊「<strong>檔案</strong>」，選擇「<strong>另存新檔</strong>」。</li>
+  <li>4. 在「另存新檔」視窗中，先導覽到 <code>C:\消防審圖</code> 資料夾。</li>
+  <li>5. 在下方的「<strong>存檔類型</strong>」下拉選單，將「文字文件 (*.txt)」改為「<strong>所有檔案 (*.*)</strong>」。</li>
+  <li>6. 在「<strong>檔案名稱</strong>」欄位，清除原有內容，輸入 <code>CLAUDE.md</code>（注意：全部大寫，副檔名是 .md 不是 .txt）。</li>
+  <li>7. 點擊「<strong>存檔</strong>」。</li>
+</ul>
+<p>✅ <strong>確認成功的標誌：</strong>在 <code>C:\消防審圖</code> 資料夾內出現一個名為「CLAUDE.md」的檔案（圖示可能顯示為一般文件或有 MD 標示）。</p>
+<p>⚠️ <strong>注意：</strong>如果存檔後看到的是「CLAUDE.md.txt」這個檔名，表示「存檔類型」沒有改對。請重新執行步驟 3–7，確認步驟 5 有將存檔類型改為「所有檔案 (*.)」。</p>
+
+<h3 id="step-8準備圖面與案件說明檔">Step 8：準備圖面與案件說明檔</h3>
+<p>將本次要審查的圖面檔案複製到 <code>C:\消防審圖\01_圖面輸入</code> 資料夾中。建議同時準備 PDF、DXF 以及局部放大截圖。</p>
+<p>接著在 <code>C:\消防審圖</code> 資料夾中建立一個案件說明文字檔。使用記事本新增一個純文字檔，命名為 <code>案件說明.md</code>（存檔類型同樣要選「所有檔案」），內容填寫如下：</p>
+<figure class="code-card"><figcaption>案件說明.md 範本</figcaption><pre><code># 案件說明
+
+## 基本資料
+- 案件名稱：（填寫）
+- 建築用途：（例如：辦公室、百貨公司、地下停車場）
+- 樓層範圍：（例如：B2F～10F）
+- 審查範圍：（例如：自動撒水、火警警報、室內消防栓）
+- 圖面單位：（公尺 或 毫米——非常重要，必須填寫）
+- 圖面比例：（例如：1:100）
+
+## 已知限制
+- 本次只做 AI 輔助初審
+- 法規條文需人工複核
+- 圖面標註模糊處請列入需確認事項</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>⚠️ <strong>注意：</strong>「圖面單位」欄位一定要填，公尺和毫米差了 1000 倍，如果填錯，AI 的距離計算結果會全部跑掉。</p>
+
+<h2 id="第三章第一次啟動-claude-code">第三章：第一次啟動 Claude Code</h2>
+
+<h3 id="什麼是終端機">什麼是終端機？</h3>
+<p>終端機（或稱「命令提示字元」、「PowerShell」）是一種純文字的操作視窗。它的外觀就是一個深色背景的視窗，裡面只有文字，沒有按鈕和圖示。你可以把它想像成一個「打字搜尋欄」——不同的是，這個搜尋欄是直接和電腦的作業系統對話，告訴它要做什麼事。Claude Code 就是在這個視窗裡運作的。你打字，Claude Code 就回應。</p>
+<p>不需要擔心「打錯指令」會弄壞電腦。Claude Code 的指令都很安全，最壞的情況不過是顯示錯誤訊息，關掉重開就好。</p>
+
+<h3 id="step-9開啟-powershell">Step 9：開啟 PowerShell</h3>
+<ul>
+  <li>1. 按下鍵盤的 <strong>Windows 鍵</strong>（或點擊螢幕左下角的 Windows 圖示）。</li>
+  <li>2. 在搜尋框輸入「<strong>PowerShell</strong>」。</li>
+  <li>3. 在搜尋結果中看到「<strong>Windows PowerShell</strong>」，對它按滑鼠<strong>右鍵</strong>。</li>
+  <li>4. 選擇「<strong>以系統管理員身分執行</strong>」。</li>
+  <li>5. 出現確認視窗時，點擊「<strong>是</strong>」。</li>
+</ul>
+<p>PowerShell 視窗開啟後，你會看到類似 <code>PS C:\Windows\system32&gt;</code> 的文字，表示 PowerShell 已準備好，等你輸入指令。</p>
+
+<h3 id="step-10進入工作資料夾">Step 10：進入工作資料夾</h3>
+<p>在 PowerShell 中，需要先「告訴電腦你想在哪個資料夾工作」。這個動作叫做「切換工作目錄」，使用 <code>cd</code> 指令（cd 是 change directory 的縮寫，意思是「換到這個資料夾」）。</p>
+<p>在 PowerShell 視窗中輸入以下指令，然後按 Enter：</p>
+<figure class="code-card"><figcaption>powershell</figcaption><pre><code>cd C:\消防審圖</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>按下 Enter 後，你會看到畫面最前面的文字從 <code>PS C:\Windows\system32&gt;</code> 變成 <code>PS C:\消防審圖&gt;</code>，這表示你現在「站在」消防審圖資料夾裡了。</p>
+<p>✅ <strong>確認成功的標誌：</strong>游標前方的路徑顯示 <code>C:\消防審圖</code>。</p>
+
+<h3 id="step-11啟動-claude-code">Step 11：啟動 Claude Code</h3>
+<p>確認路徑正確後，輸入以下指令並按 Enter：</p>
+<figure class="code-card"><figcaption>powershell</figcaption><pre><code>claude</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>第一次啟動時，Claude Code 會要求你登入 Anthropic 帳號。依照畫面的指引操作：</p>
+<ul>
+  <li>畫面會顯示一個網址，請用瀏覽器打開那個網址（或者畫面會自動開啟瀏覽器）。</li>
+  <li>在瀏覽器中登入你的 Claude 帳號（就是在 Step 1 申請的那個帳號）。</li>
+  <li>授權完成後，回到 PowerShell 視窗。</li>
+  <li>Claude Code 應該會顯示歡迎訊息，並出現一個 <code>&gt;</code> 或 <code>?</code> 提示符號，等待你輸入問題。</li>
+</ul>
+<p>✅ <strong>確認成功的標誌：</strong>PowerShell 視窗底部出現一個輸入提示，可以開始打字。Claude Code 可能會顯示「Welcome to Claude Code」或類似的文字。</p>
+<p>⚠️ <strong>注意：</strong>如果出現「<code>claude : 無法辨識 'claude' 詞彙</code>」或「<code>command not found</code>」的錯誤，代表 Claude Code 安裝未完成。請回到 Step 5，重新執行安裝步驟，並確認 PowerShell 是以系統管理員身分開啟。</p>
+
+<h3 id="step-12確認環境">Step 12：確認環境</h3>
+<p>第一次啟動後，先讓 Claude Code 確認它能看到你的資料夾結構，確保 CLAUDE.md 有被正確讀取。</p>
+<p>在 Claude Code 的輸入提示後，輸入以下內容，然後按 Enter：</p>
+<figure class="code-card"><figcaption>第一次確認提示詞</figcaption><pre><code>請先讀取目前資料夾結構，列出你看到的資料夾與檔案名稱。確認你已讀取 CLAUDE.md，並說明你理解的工作設定。先不要進行審圖，也不要修改任何檔案。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>Claude Code 應該會回覆一段文字，列出 <code>C:\消防審圖</code> 內的資料夾與檔案，並說明它已讀取 CLAUDE.md、了解自己的工作角色與規則。</p>
+<p>✅ <strong>確認成功的標誌：</strong>Claude Code 的回覆中提到了 CLAUDE.md、四個子資料夾的名稱，以及「消防圖面輔助審查助手」或類似的角色說明。如果回覆中有這些內容，表示工作環境設定完成，可以開始審圖了。</p>
+
+<h2 id="第四章消防圖面審查實戰">第四章：消防圖面審查實戰</h2>
+<p>以下提示詞可直接複製貼到 Claude Code 的輸入框。每次送出後，等 Claude Code 完成回覆再輸入下一個提示詞。</p>
+
+<h3 id="step-13建立案件索引">Step 13：建立案件索引</h3>
+<figure class="code-card"><figcaption>提示詞：建立案件索引</figcaption><pre><code>請讀取目前資料夾（包含 CLAUDE.md、案件說明.md、01_圖面輸入、02_法規參考），建立本案檔案索引。請用表格列出每個檔案的檔名、格式、可能用途、需要人工確認的地方。先不要產生審查結論，只建立索引。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>預期 Claude Code 會產出一個表格，列出你放入 01_圖面輸入 的所有圖面檔案，並標示各檔案的格式與用途。如果它標示某個檔案「需確認單位」，請記得回到 案件說明.md 補充。</p>
+
+<h3 id="step-14pdf-與截圖初審">Step 14：PDF 與截圖初審</h3>
+<figure class="code-card"><figcaption>提示詞：PDF 與截圖初審</figcaption><pre><code>請先閱讀 01_圖面輸入 中的 PDF 與圖片截圖。請根據圖面可見內容，檢查消防設備配置是否有明顯疑點。請只根據你能看見的內容回答，看不清楚或需要原圖確認的項目請列為「需確認」。
 
 輸出格式：
 1. 圖面整體說明
 2. 已能確認的設備與區域
-3. 明顯疑點
-4. 需放大或補圖的區域
+3. 明顯疑點（標示符合／不符合／需確認）
+4. 需要放大或補圖的區域
 5. 下一步建議檢查項目</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>這一步用來建立空間理解。不要在這一步要求它做精確距離判斷，除非圖上已清楚標示尺寸。</p>
-<h3 id="step-7使用-dxf-進行座標與距離檢查">Step 7：使用 DXF 進行座標與距離檢查</h3>
-<p>輸入以下指令：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請讀取 01_圖面輸入 中的 DXF 檔案。請先列出圖層名稱、圖塊名稱、文字標註與可辨識的設備符號。接著找出可能代表撒水頭、探測器、消防栓、揚聲器的圖塊或圖層。請不要直接下結論，先列出你判斷的依據。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>確認 AI 找到正確圖層與圖塊後，再輸入：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請針對你已辨識出的撒水頭座標進行距離檢查。請輸出每一組相鄰撒水頭的距離、最大距離、疑似超距的位置。若單位無法確認，請先停止並要求我確認單位。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>如果要檢查探測器，改用：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請針對你已辨識出的探測器座標進行配置檢查。請列出探測器之間的距離、與牆面或區域邊界的關係、疑似漏設區域。無法從 DXF 判斷的內容請列為「需確認」。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="step-8進行法規對照">Step 8：進行法規對照</h3>
-<p>輸入以下指令：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請根據 02_法規參考 中的資料，對照本案圖面檢查結果。請不要引用你無法確認來源的條文。若參考資料不足，請明確列出需要人工查證的條文名稱與問題。
+<p>這一步用來建立空間理解。不要在這一步要求精確距離判斷，除非圖面上已清楚標示尺寸。</p>
+
+<h3 id="step-15dxf-座標分析">Step 15：DXF 座標分析</h3>
+<p>⚠️ <strong>注意：</strong>執行這步之前，確認案件說明.md 的「圖面單位」欄位已填寫正確（公尺或毫米）。</p>
+<figure class="code-card"><figcaption>提示詞：DXF 圖層與座標讀取</figcaption><pre><code>請讀取 01_圖面輸入 中的 DXF 檔案。請先列出圖層名稱、圖塊名稱、文字標註。接著找出可能代表撒水頭、探測器、消防栓、揚聲器的圖塊或圖層，列出你判斷的依據。請先不要下結論，等我確認圖層對應正確後再進行距離計算。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>確認 Claude Code 找到正確圖層後，再輸入：</p>
+<figure class="code-card"><figcaption>提示詞：DXF 距離計算</figcaption><pre><code>請根據案件說明.md 中標示的圖面單位，針對你已辨識出的撒水頭（或探測器）座標進行距離檢查。請輸出每一組相鄰設備的距離、最大距離、疑似超距的位置。若單位有任何疑問，請先停止並告知我。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+
+<h3 id="step-16法規對照">Step 16：法規對照</h3>
+<figure class="code-card"><figcaption>提示詞：法規對照</figcaption><pre><code>請根據 02_法規參考 中的資料，對照本案圖面分析結果進行法規對照。請不要引用你無法確認來源的條文。若參考資料不足以判斷，請明確列出需要人工查證的條文名稱與問題。
 
 輸出欄位：
 - 審查項目
 - 圖面依據
-- 參考法規或規則
-- 判斷狀態
+- 參考法規或規則（需標示條號或來源）
+- 判斷狀態（符合／不符合／需確認）
 - 疑義說明
 - 建議處理</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="step-9輸出審查意見草稿">Step 9：輸出審查意見草稿</h3>
-<p>輸入以下指令：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請將目前審圖結果整理成 Markdown 報告，儲存到 04_審查報告輸出，檔名為「案件A_AI輔助審查意見草稿.md」。
+
+<h3 id="step-17輸出審查報告">Step 17：輸出審查報告</h3>
+<figure class="code-card"><figcaption>提示詞：輸出審查報告</figcaption><pre><code>請將目前審圖結果整理成 Markdown 報告，儲存到 04_審查報告輸出，檔名為「案件名稱_AI輔助審查意見草稿.md」（請用實際案件名稱替換「案件名稱」）。
 
 報告結構如下：
 1. 案件摘要
 2. 使用檔案清單
 3. 審查方法
-4. 審查結果總表
-5. 不符合項目
-6. 需確認項目
+4. 審查結果總表（表格，含符合／不符合／需確認）
+5. 不符合項目（詳細說明）
+6. 需確認項目（詳細說明）
 7. 建議補圖或補標註事項
-8. AI 限制與人工複核清單</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="step-10人工複核-claude-code-輸出">Step 10：人工複核 Claude Code 輸出</h3>
-<p>人工複核時至少檢查以下內容：</p>
-<ul><li>AI 是否讀到正確圖面。</li><li>DXF 單位是否正確。</li><li>設備圖塊是否被正確辨識。</li><li>PDF 中的標註是否被誤讀。</li><li>法規條文是否真實存在。</li><li>距離計算是否可重算。</li><li>「不符合」與「需確認」是否有明確依據。</li><li>報告語氣是否適合交付內部討論。</li></ul>
-<h2 id="第三部分方法二使用-codex-審圖">第三部分：方法二，使用 Codex 審圖</h2>
-<h3 id="適合使用-codex-的情境">適合使用 Codex 的情境</h3>
-<p>Codex 適合把審圖流程工程化。它能在指定資料夾內讀取檔案、建立輔助腳本、執行 Python 分析、產生報告，也適合批次案件與自動化流程。</p>
-<p>適合情境：</p>
-<ul><li>想建立可重複執行的審圖流程。</li><li>想用 Python 分析 DXF、PDF、圖片。</li><li>需要批次處理多個案件。</li><li>需要將審查結果固定輸出為 Markdown、Excel 或 CSV。</li><li>需要日後擴充為規則引擎或內部工具。</li></ul>
-<h3 id="step-1選擇-codex-使用入口">Step 1：選擇 Codex 使用入口</h3>
-<p>Codex 有兩種常用入口。</p>
-<div class="table-wrap"><table><thead><tr><th>入口</th><th>適合對象</th><th>使用方式</th></tr></thead><tbody><tr><td>Codex App</td><td>新手、需要視覺化管理多個任務者</td><td>安裝 App，登入 ChatGPT 帳號，選擇專案資料夾</td></tr><tr><td>Codex CLI</td><td>熟悉終端機、想做自動化者</td><td>安裝 CLI，在終端機執行 <code>codex</code></td></tr></tbody></table></div>
-<p>建議新手先用 Codex App。需要可重複執行的流程時，再改用 Codex CLI。</p>
-<h3 id="step-2安裝-codex-app">Step 2：安裝 Codex App</h3>
-<ul><li>前往 OpenAI Codex App 官方頁面。</li><li>下載 Windows 或 macOS 版本。</li><li>安裝完成後開啟 Codex App。</li><li>使用 ChatGPT 帳號登入，或依畫面提示使用 API key。</li><li>選擇專案資料夾：<code>C:\消防審圖</code>。</li><li>建立新的任務對話。</li></ul>
-<h3 id="step-3安裝-codex-cli">Step 3：安裝 Codex CLI</h3>
-<p>如果要使用終端機方式，先確認已安裝 Node.js。接著開啟 PowerShell，輸入：</p>
-<figure class="code-card"><figcaption>powershell</figcaption><pre><code>npm i -g @openai/codex</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>安裝完成後進入工作資料夾：</p>
-<figure class="code-card"><figcaption>powershell</figcaption><pre><code>cd C:\消防審圖
-codex</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>首次啟動時，依畫面提示登入 ChatGPT 帳號或 API key。</p>
-<p>Windows 使用者可使用原生 Codex App 或 CLI。若你的工作流程需要 Linux 工具，可改用 WSL2。新手不建議一開始就使用 WSL2，除非公司工具鏈已經建在 Linux 環境。</p>
-<h3 id="step-4建立-codex-專用設定檔-agentsmd">Step 4：建立 Codex 專用設定檔 AGENTS.md</h3>
-<p>Codex 會讀取專案中的 <code>AGENTS.md</code> 作為工作指令。在 <code>C:\消防審圖</code> 根目錄建立此檔案。</p>
-<p>檔案位置：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>C:\消防審圖\AGENTS.md</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>內容範本：</p>
-<figure class="code-card"><figcaption>markdown</figcaption><pre><code># 消防圖面輔助審查專案指令
+8. AI 限制聲明與人工複核清單</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>✅ <strong>確認成功的標誌：</strong>在 <code>C:\消防審圖\04_審查報告輸出</code> 資料夾中出現一個新的 .md 檔案，用記事本或任何文字編輯器開啟，可以看到完整的審查報告結構。</p>
 
-## 專案目標
-本專案用於消防圖面 AI 輔助初審。請協助讀取 DXF、PDF、圖片與案件說明，產生可供人工複核的審查意見草稿。
+<h2 id="第五章看懂-ai-的回應">第五章：看懂 AI 的回應</h2>
 
-## 工作規則
-- 全程使用繁體中文。
-- 不要直接把 AI 判斷視為正式結論。
-- 不確定的內容標示為「需確認」。
-- 不得捏造法規條文。
-- 距離與數量檢查需要列出計算過程。
-- 修改或新增檔案前，先說明你要做什麼。
-- 不要刪除原始圖面檔案。
+<h3 id="三種判斷狀態的意思">三種判斷狀態的意思</h3>
+<p>Claude Code 在審查結果中會使用三種標籤，代表不同的判斷程度：</p>
+<div class="table-wrap"><table><thead><tr><th>標籤</th><th>意思</th><th>你應該怎麼做</th></tr></thead><tbody>
+<tr><td>✅ 符合</td><td>AI 根據可見圖面與參考資料，判斷此項目符合要求</td><td>仍需人工複核，確認 AI 看到的是正確的圖面與正確的標準</td></tr>
+<tr><td>❌ 不符合</td><td>AI 發現明顯的疑點，判斷此項目可能不符合要求</td><td>優先人工複核，確認 AI 的判斷依據是否正確，再決定是否列為正式缺失</td></tr>
+<tr><td>❓ 需確認</td><td>AI 無法從現有資料判斷，需要人工確認或補充資料</td><td>列出清單，逐項人工查證，不要忽略這個標籤</td></tr>
+</tbody></table></div>
 
-## 資料夾規則
-- 00_案件說明：案件背景與審查範圍。
-- 01_圖面輸入：原始圖面與截圖。
-- 02_法規參考：法規摘要與常見缺失。
-- 03_AI分析暫存：中間產物。
-- 04_審查報告輸出：AI 產出的報告草稿。
-- 05_人工複核：人工修正後版本。
+<h3 id="當-ai-說不確定時">當 AI 說不確定時</h3>
+<p>如果 Claude Code 回覆「我無法從現有資料判斷」或「需要更多資訊」，這是<strong>正確行為</strong>，表示它沒有憑空猜測。這時候你可以：</p>
+<ul>
+  <li>提供更清楚的截圖或局部放大圖，再問一次。</li>
+  <li>在案件說明.md 補充更多背景資訊，然後重新詢問。</li>
+  <li>接受「需確認」的結論，由人工查證。</li>
+</ul>
 
-## 建議分析流程
-1. 先建立檔案索引。
-2. 先分析 PDF 與圖片，理解圖面配置。
-3. 再分析 DXF，抽取圖層、圖塊、文字與座標。
-4. 將視覺判讀與座標資料互相對照。
-5. 產生審查意見草稿。
-6. 列出需人工複核項目。
+<h3 id="當法規條文看起來不對時">當法規條文看起來不對時</h3>
+<p>AI 有時會引用聽起來很像真實法規、但實際上並不存在或條號有誤的條文，這個現象叫做「幻覺」（hallucination）。遇到這種情況：</p>
+<ul>
+  <li>不要直接使用 AI 提供的條號。</li>
+  <li>在你熟悉的法規資料庫或書面資料中查證該條文是否真實存在。</li>
+  <li>如果查不到，將該審查項目改為「需確認」，並在報告中備註「法規條文待人工查證」。</li>
+  <li>你可以詢問 Claude Code：「你剛才引用的條文，你能確定這個條號是正確的嗎？若不確定請說明。」這樣的追問通常能讓它更誠實地標示不確定項目。</li>
+</ul>
 
-## 報告格式
-報告需包含：案件摘要、使用檔案、分析方法、審查結果總表、不符合項目、需確認項目、人工複核清單。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="step-5讓-codex-建立工具環境">Step 5：讓 Codex 建立工具環境</h3>
-<p>Codex 的優勢在於能建立與執行輔助腳本。第一次使用時，先要求它建立 Python 分析環境。</p>
-<p>在 Codex App 或 Codex CLI 中輸入：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請讀取本專案的 AGENTS.md。接著檢查目前資料夾結構。請建立一個 Python 虛擬環境與 requirements.txt，用於分析 DXF、PDF、圖片與輸出表格。先提出計畫，經我同意後再新增檔案。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>若你同意它建立環境，讓 Codex 執行類似以下流程：</p>
-<figure class="code-card"><figcaption>powershell</figcaption><pre><code>python -m venv .venv
-.venv\Scripts\activate
-pip install ezdxf pymupdf pandas openpyxl pillow
-pip freeze &gt; requirements.txt</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>套件用途：</p>
-<div class="table-wrap"><table><thead><tr><th>套件</th><th>用途</th></tr></thead><tbody><tr><td>ezdxf</td><td>讀取 DXF 圖層、圖塊、座標、文字</td></tr><tr><td>pymupdf</td><td>讀取 PDF 文字與渲染頁面圖片</td></tr><tr><td>pandas</td><td>整理表格資料</td></tr><tr><td>openpyxl</td><td>輸出 Excel 報表</td></tr><tr><td>pillow</td><td>處理圖片</td></tr></tbody></table></div>
-<h3 id="step-6讓-codex-建立-dxf-分析腳本">Step 6：讓 Codex 建立 DXF 分析腳本</h3>
-<p>輸入以下指令：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請在 scripts 資料夾建立 analyze_dxf.py。功能如下：
-1. 讀取 01_圖面輸入 中的 DXF 檔。
-2. 輸出圖層清單。
-3. 輸出圖塊名稱清單。
-4. 輸出 TEXT 與 MTEXT 文字內容。
-5. 嘗試找出名稱可能與撒水頭、探測器、消防栓、揚聲器相關的圖塊。
-6. 將結果輸出到 03_AI分析暫存/dxf_分析結果.csv 與 03_AI分析暫存/dxf_分析摘要.md。
+<h2 id="第六章人工複核清單">第六章：人工複核清單</h2>
+<p>AI 報告產出後，依下列清單逐項人工複核：</p>
+<ul>
+  <li>確認 AI 讀取的是正確版本的圖面，而非舊版或錯誤檔案。</li>
+  <li>確認 DXF 單位（公尺或毫米）與案件說明.md 一致。</li>
+  <li>確認設備圖塊的辨識是否正確（撒水頭是否真的是撒水頭，探測器是否為正確類型）。</li>
+  <li>確認 PDF 中的文字標註是否被正確讀取，沒有漏字或誤讀。</li>
+  <li>逐條查證報告中引用的法規條文是否真實存在、條號是否正確。</li>
+  <li>距離計算結果是否合理，可手算一到兩組數據進行比對。</li>
+  <li>「不符合」項目是否有明確的圖面依據，不只是 AI 的猜測。</li>
+  <li>「需確認」項目是否全部列入後續追蹤，沒有遺漏。</li>
+  <li>報告語氣是否適合內部討論，不包含過於肯定的法律判斷用語。</li>
+  <li>最終審查結論由具備資格的人員簽名確認，AI 報告僅作為草稿附件。</li>
+</ul>
 
-請先建立腳本，不要刪除任何原始檔案。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>建立後要求 Codex 執行：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請執行 scripts/analyze_dxf.py，檢查輸出結果，並用繁體中文摘要說明你找到的圖層、圖塊與疑似消防設備。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="step-7讓-codex-建立-pdf-與圖片分析流程">Step 7：讓 Codex 建立 PDF 與圖片分析流程</h3>
-<p>輸入以下指令：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請在 scripts 資料夾建立 analyze_pdf_images.py。功能如下：
-1. 讀取 01_圖面輸入 中的 PDF、PNG、JPG。
-2. 從 PDF 抽取可讀文字。
-3. 將 PDF 每頁輸出成圖片，存到 03_AI分析暫存/pdf_pages。
-4. 建立每個檔案的摘要清單。
-5. 將結果輸出到 03_AI分析暫存/pdf_image_分析摘要.md。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>執行後輸入：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請根據 pdf_image_分析摘要.md 與輸出的頁面圖片，整理本案圖面可見內容。請列出你能確認的內容與需要人工放大確認的區域。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="step-8讓-codex-建立審圖規則表">Step 8：讓 Codex 建立審圖規則表</h3>
-<p>在 <code>02_法規參考</code> 中建立 <code>審圖規則表.csv</code>，欄位建議如下：</p>
-<figure class="code-card"><figcaption>csv</figcaption><pre><code>系統,檢查項目,檢查依據,判斷方式,需要的圖面資料,人工複核重點
-自動撒水設備,撒水頭間距,依現行設置標準與案件條件確認,比對座標距離與圖面標註,DXF與PDF,確認場所分類與單位
-火警自動警報設備,探測器配置,依現行設置標準與案件條件確認,比對區域覆蓋與設備間距,PDF與DXF,確認探測器種類與天花條件
-室內消防栓,有效水平距離,依現行設置標準與案件條件確認,比對位置與動線,PDF,確認實際行走路徑
-緊急廣播設備,揚聲器配置,依現行設置標準與案件條件確認,比對分區與配置,PDF,確認音壓與分區設計</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>接著在 Codex 中輸入：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請讀取 02_法規參考/審圖規則表.csv，將它作為本次審圖規則。請不要自行新增不存在的條文。若規則表不足以判斷，請輸出「需確認」。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="step-9讓-codex-產生審查報告">Step 9：讓 Codex 產生審查報告</h3>
-<p>輸入以下指令：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請整合以下資料，產生本案 AI 輔助審查意見草稿：
-1. 00_案件說明/案件說明.md
-2. 03_AI分析暫存/dxf_分析摘要.md
-3. 03_AI分析暫存/pdf_image_分析摘要.md
-4. 02_法規參考/審圖規則表.csv
-5. 02_法規參考/常見缺失清單.md
+<h2 id="第七章常見問題">第七章：常見問題</h2>
 
-請輸出 Markdown 報告到 04_審查報告輸出/案件A_Codex輔助審查意見草稿.md。
+<h3 id="問題一輸入-claude-後出現-command-not-found-錯誤">問題一：輸入 <code>claude</code> 後出現「command not found」錯誤</h3>
+<p><strong>原因：</strong>Claude Code 未正確安裝，或 Node.js 安裝後未重新啟動電腦。</p>
+<p><strong>解決方式：</strong></p>
+<ul>
+  <li>1. 先確認 Node.js 是否安裝成功：在 PowerShell 中輸入 <code>node --version</code>，如果顯示版本號（例如 <code>v20.x.x</code>）表示 Node.js 正常；如果出現錯誤，請重新執行 Step 5 的 Node.js 安裝步驟，安裝後重新啟動電腦。</li>
+  <li>2. Node.js 確認正常後，重新執行 Claude Code 安裝指令：<code>npm install -g @anthropic-ai/claude-code</code>。</li>
+  <li>3. 安裝完成後，關閉 PowerShell，重新開啟（以系統管理員身分），再試一次 <code>claude --version</code>。</li>
+</ul>
 
-報告需包含：
-- 案件摘要
-- 使用資料
-- 分析方法
-- 審查結果總表
-- 不符合項目
-- 需確認項目
-- 建議補圖或補標註事項
-- 人工複核清單</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="step-10讓-codex-產生-excel-審查表">Step 10：讓 Codex 產生 Excel 審查表</h3>
-<p>若需要 Excel 版本，輸入：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請將 Markdown 報告中的審查結果總表另存為 Excel，輸出到 04_審查報告輸出/案件A_Codex審查結果表.xlsx。欄位包含：編號、系統、審查項目、圖面依據、判斷狀態、疑義說明、建議處理、人工複核結果。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="step-11批次審圖流程">Step 11：批次審圖流程</h3>
-<p>若有多個案件，建議使用以下資料夾結構：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>C:\消防審圖批次\
-  案件A\
-  案件B\
-  案件C\</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>每個案件資料夾內都使用同一套結構：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>00_案件說明\
-01_圖面輸入\
-02_法規參考\
-03_AI分析暫存\
-04_審查報告輸出\
-05_人工複核\
-AGENTS.md</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p>在 Codex 中輸入：</p>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請建立一個批次處理流程。逐一處理每個案件資料夾，對每案執行 DXF 分析、PDF 圖面摘要、審查報告輸出。每處理一案都要產生獨立報告，不要把不同案件的結果混在一起。執行前先列出計畫，經我確認後再開始。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="step-12人工複核-codex-輸出">Step 12：人工複核 Codex 輸出</h3>
-<p>Codex 可能會建立腳本與中間檔。人工複核時需檢查：</p>
-<ul><li>腳本是否讀取正確資料夾。</li><li>有沒有誤刪或覆蓋原始檔。</li><li>DXF 單位與比例是否正確。</li><li>圖塊名稱是否被誤判為設備。</li><li>PDF 文字抽取是否漏字或亂碼。</li><li>Excel 表格欄位是否完整。</li><li>報告中的法規依據是否需要補充正式條文。</li><li>批次處理時各案件結果是否混淆。</li></ul>
-<h2 id="第四部分claude-code-與-codex-的選擇建議">第四部分：Claude Code 與 Codex 的選擇建議</h2>
-<div class="table-wrap"><table><thead><tr><th>使用情境</th><th>建議工具</th><th>原因</th></tr></thead><tbody><tr><td>單案審圖、邊看邊問</td><td>Claude Code</td><td>對話式操作較直覺</td></tr><tr><td>PDF 與截圖閱讀</td><td>Claude Code</td><td>適合人工引導式視覺檢查</td></tr><tr><td>DXF 圖層與座標抽取</td><td>Codex</td><td>可建立腳本反覆分析</td></tr><tr><td>批次案件</td><td>Codex</td><td>可建立自動化流程</td></tr><tr><td>產生固定格式 Excel</td><td>Codex</td><td>可用 pandas 與 openpyxl 輸出</td></tr><tr><td>快速產生審查意見草稿</td><td>Claude Code</td><td>互動速度快，人工掌控強</td></tr><tr><td>建立長期內部審圖工具</td><td>Codex</td><td>適合規則表、腳本、版本控管</td></tr></tbody></table></div>
-<p>建議實務流程：</p>
-<ul><li>先用 Claude Code 對單案做人工引導式初審。</li><li>將穩定的檢查規則整理成表格。</li><li>再用 Codex 建立可重複執行的分析腳本。</li><li>最後讓 Codex 批次輸出報告與 Excel。</li><li>所有結果都進入人工複核。</li></ul>
-<h2 id="第五部分可直接複製使用的提示詞">第五部分：可直接複製使用的提示詞</h2>
-<h3 id="提示詞一建立檔案索引">提示詞一：建立檔案索引</h3>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請讀取目前案件資料夾，列出所有檔案。請依照檔案格式分類為案件說明、圖面、法規參考、分析暫存、輸出報告。請先不要審圖，只建立索引。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="提示詞二pdf-與截圖初步審圖">提示詞二：PDF 與截圖初步審圖</h3>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請根據 PDF 與截圖進行初步審圖。請只根據可見內容判斷，不清楚的地方列為「需確認」。請輸出圖面摘要、設備配置疑點、需要補圖的區域。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="提示詞三dxf-座標檢查">提示詞三：DXF 座標檢查</h3>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請讀取 DXF 檔案，列出圖層、圖塊、文字標註與可能的消防設備座標。請先確認單位，再進行距離計算。若單位無法確認，請停止並要求人工確認。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="提示詞四法規對照">提示詞四：法規對照</h3>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請根據法規參考資料與常見缺失清單，對照本案圖面分析結果。請不要引用無法確認的條文。若資料不足，請列為「需確認」。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="提示詞五輸出審查報告">提示詞五：輸出審查報告</h3>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請將目前分析結果整理成審查意見草稿。格式包含案件摘要、使用資料、分析方法、審查結果總表、不符合項目、需確認項目、建議補圖事項、人工複核清單。請輸出為 Markdown 檔案。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="提示詞六codex-建立分析腳本">提示詞六：Codex 建立分析腳本</h3>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請建立 Python 腳本分析 DXF、PDF 與圖片。腳本需將中間結果輸出到 03_AI分析暫存，最終報告輸出到 04_審查報告輸出。建立檔案前先提出計畫，不要刪除原始圖面。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h2 id="第六部分審查報告建議格式">第六部分：審查報告建議格式</h2>
-<figure class="code-card"><figcaption>markdown</figcaption><pre><code># 案件A AI 輔助審查意見草稿
+<h3 id="問題二claude-code-說找不到我的檔案">問題二：Claude Code 說找不到我的檔案</h3>
+<p><strong>原因：</strong>目前的工作路徑不對，或圖面檔案沒有放在正確資料夾。</p>
+<p><strong>解決方式：</strong></p>
+<ul>
+  <li>1. 確認你在 PowerShell 中有執行 <code>cd C:\消防審圖</code>，而且游標前方顯示 <code>C:\消防審圖&gt;</code>。</li>
+  <li>2. 用 PowerShell 輸入 <code>dir</code> 並按 Enter，確認列出的檔案清單中有你的圖面檔案和 CLAUDE.md。</li>
+  <li>3. 如果檔案不在清單中，請打開檔案總管，確認圖面已複製到 <code>C:\消防審圖\01_圖面輸入</code> 資料夾內。</li>
+</ul>
 
-## 一、案件摘要
+<h3 id="問題三ai-引用的法規條文我查不到">問題三：AI 引用的法規條文我查不到</h3>
+<p><strong>原因：</strong>AI 可能產生了不存在的條號（「幻覺」現象）。這在所有 AI 工具中都可能發生，無法完全避免。</p>
+<p><strong>解決方式：</strong></p>
+<ul>
+  <li>查不到的條文，一律改標為「需確認」，不要在正式文件中使用。</li>
+  <li>詢問 Claude Code：「你剛才引用的條文，你能確定這個條號準確嗎？」讓它自我核對。</li>
+  <li>在 CLAUDE.md 中已設定「若無法確認條號，請明確說明需要人工查證」，若 AI 沒有遵守，可以再提醒它：「請遵守 CLAUDE.md 中的回答規則，不確定的條文請標示需確認。」</li>
+</ul>
 
-## 二、使用資料
+<h3 id="問題四dxf-距離計算結果看起來不對">問題四：DXF 距離計算結果看起來不對</h3>
+<p><strong>原因：</strong>最常見的原因是圖面單位未正確設定，導致 AI 以錯誤的單位進行計算。</p>
+<p><strong>解決方式：</strong></p>
+<ul>
+  <li>1. 檢查 CLAUDE.md 與案件說明.md 中的圖面單位是否都填寫正確（公尺或毫米）。</li>
+  <li>2. 詢問 Claude Code：「你在計算距離時使用的單位是什麼？請說明你的判斷依據。」</li>
+  <li>3. 手動計算一到兩組距離進行比對，確認倍率是否正確。</li>
+  <li>4. 如果單位確認有誤，在案件說明.md 修正後，重新要求 Claude Code 進行計算。</li>
+</ul>
 
-| 檔名 | 格式 | 用途 |
-|---|---|---|
+<h3 id="問題五claude-code-的回應突然中斷">問題五：Claude Code 的回應突然中斷</h3>
+<p><strong>原因：</strong>Claude Code（以及所有 AI）有一個「上下文視窗」限制，就是說它能同時記住的資料量有上限。處理很多圖面或非常長的對話時，可能會在回應中途停止。</p>
+<p><strong>解決方式：</strong></p>
+<ul>
+  <li>輸入「請繼續」或「continue」讓它接著說完。</li>
+  <li>如果它已經忘記前面的內容，可以輸入：「請根據你目前讀取的資料，繼續完成審查報告。」</li>
+  <li>大型案件建議分段審查：先審一個系統（例如撒水），確認後再審下一個系統（例如探測器），不要一次要求它做全部。</li>
+</ul>
 
-## 三、分析方法
+<h2 id="進階工具codex">進階工具：Codex</h2>
+<p>Codex 是 OpenAI 開發的 AI 程式代理工具。和 Claude Code 的主要差異在於，Codex 能自動建立並執行 Python 腳本——也就是說，你給它一個任務，它會自己寫程式、執行程式、讀取輸出，再把結果整理給你。對於需要批次處理多個案件、或希望建立可重複使用的自動化分析流程的使用者，Codex 是很有價值的進階工具。</p>
+<p>建議在熟練使用 Claude Code 完成至少十個案件的審圖之後，再開始評估是否需要導入 Codex。Codex 的設定比 Claude Code 複雜，涉及 Python 虛擬環境、套件安裝、腳本除錯等技術細節，對於沒有程式背景的使用者，學習曲線較陡。Codex 使用 <code>AGENTS.md</code> 作為工作設定檔，功能與 Claude Code 的 CLAUDE.md 類似，可以在 OpenAI 官方文件中查閱相關設定方式。</p>
+<p>本手冊的範圍僅涵蓋 Claude Code 的完整使用流程。Codex 的詳細說明請參閱 OpenAI 官方開發者文件（前往 <code>platform.openai.com/docs</code>，搜尋「Codex」）。</p>
 
-## 四、審查結果總表
-
-| 編號 | 系統 | 審查項目 | 圖面依據 | 判斷狀態 | 疑義說明 | 建議處理 |
-|---|---|---|---|---|---|---|
-
-## 五、不符合項目
-
-## 六、需確認項目
-
-## 七、建議補圖或補標註事項
-
-## 八、人工複核清單
-
-## 九、AI 限制聲明</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h2 id="第七部分常見錯誤與處理方式">第七部分：常見錯誤與處理方式</h2>
-<h3 id="問題一ai-把-dxf-當成看得見的圖">問題一：AI 把 DXF 當成看得見的圖</h3>
-<p>處理方式：提醒 AI，DXF 主要用於抽取圖層、圖塊、座標與文字。空間配置需搭配 PDF 或截圖判讀。</p>
-<h3 id="問題二ai-直接下法規結論">問題二：AI 直接下法規結論</h3>
-<p>處理方式：要求 AI 標示依據來源。無來源時列為「需確認」。</p>
-<h3 id="問題三dxf-單位錯誤">問題三：DXF 單位錯誤</h3>
-<p>處理方式：在案件說明中明確寫出單位。執行距離計算前，要求 AI 先確認單位。</p>
-<h3 id="問題四設備圖塊辨識錯誤">問題四：設備圖塊辨識錯誤</h3>
-<p>處理方式：要求 AI 先列出圖塊名稱與判斷依據。人工確認後再進行數量與距離計算。</p>
-<h3 id="問題五pdf-標註太小">問題五：PDF 標註太小</h3>
-<p>處理方式：輸出局部放大截圖。每張截圖只包含一個區域或一個系統，避免全圖縮圖。</p>
-<h3 id="問題六批次審圖結果混在一起">問題六：批次審圖結果混在一起</h3>
-<p>處理方式：每個案件使用獨立資料夾。輸出檔名必須包含案件代號。</p>
-<h2 id="第八部分最小可行工作流程">第八部分：最小可行工作流程</h2>
-<p>若只想先快速開始，可依以下流程執行。</p>
-<h3 id="claude-code-最小流程">Claude Code 最小流程</h3>
-<ul><li>建立 <code>C:\消防審圖</code>。</li><li>放入 PDF、DXF、局部截圖。</li><li>建立 <code>CLAUDE.md</code>。</li><li>執行：</li></ul>
-<figure class="code-card"><figcaption>powershell</figcaption><pre><code>cd C:\消防審圖
-claude</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<ul><li>輸入：</li></ul>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請先建立本案檔案索引，再根據 PDF、截圖與 DXF 做消防圖面輔助初審。請將結果整理成 Markdown 報告，並列出人工複核清單。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h3 id="codex-最小流程">Codex 最小流程</h3>
-<ul><li>建立 <code>C:\消防審圖</code>。</li><li>放入 PDF、DXF、局部截圖。</li><li>建立 <code>AGENTS.md</code>。</li><li>安裝並開啟 Codex App，選擇 <code>C:\消防審圖</code>。</li><li>或使用 CLI：</li></ul>
-<figure class="code-card"><figcaption>powershell</figcaption><pre><code>cd C:\消防審圖
-codex</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<ul><li>輸入：</li></ul>
-<figure class="code-card"><figcaption>text</figcaption><pre><code>請讀取 AGENTS.md，建立 DXF、PDF、圖片分析流程，輸出審查意見草稿。請先提出計畫，經我確認後再建立或執行腳本。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<h2 id="官方文件參考">官方文件參考</h2>
-<ul><li>Claude Code：Claude 官方產品與下載頁面。</li><li>Codex CLI：OpenAI Developers Codex CLI 文件。</li><li>Codex App：OpenAI Developers Codex App 文件。</li><li>Codex AGENTS.md：OpenAI Developers Custom instructions with AGENTS.md 文件。</li></ul>
 <h2 id="結語">結語</h2>
-<p>Claude Code 的核心價值是互動式審圖。Codex 的核心價值是流程化與自動化。兩者都能用於消防圖面輔助初審，差異在工作型態。日常單案可先用 Claude Code，穩定規則與批次案件再交給 Codex。任何 AI 輸出都需保留人工複核程序。</p></div>
+<p>AI 工具不會取代消防審圖的專業判斷，但它可以幫助你更快整理資料、找出疑點、產生初步意見草稿，讓你把時間留給真正需要人工判斷的地方。本手冊所有步驟都設計成從零開始可以照做，遇到問題歡迎回到第七章查閱常見問題，或直接詢問 Claude Code 本身——「我剛才遇到這個錯誤，請幫我診斷」，往往也能得到有用的提示。祝審圖順利。</p>
+
+      </div>
     </article>
-    <aside class="callout">提醒：本頁保留原 Markdown 的限制聲明與人工複核流程。任何法規條文、距離計算與設備配置判斷，都應回到正式資料與專業人員確認。</aside>
+    <aside class="callout">⚠️ 提醒：本手冊所有 AI 輸出結果均屬輔助性質。法規條文、距離計算與設備配置判斷，最終皆須由具備資格的消防設備師或相關專業人員進行人工複核與確認，方可作為正式審查意見。</aside>
   </main>
-  <footer class="footer">AI 輔助初審結果僅供內部檢查與討論，正式判斷仍需人工複核。</footer>
+  <footer class="footer">AI 輔助初審結果僅供內部檢查與討論，正式判斷仍需人工複核。本手冊適用對象為消防設備製圖與審圖相關人員。</footer>
   <script>
     document.querySelectorAll(".copy-button").forEach((button) => {
       button.addEventListener("click", async () => {
