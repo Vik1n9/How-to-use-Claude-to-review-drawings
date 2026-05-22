@@ -1,1505 +1,904 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Claude 消防圖面審圖 — 新手完全安裝教學</title>
-<style>
-/* ============================================================
-   Atelier Zero 編輯風格 — Editorial Monocle 方向
-   色調：暖紙白底 × 深棕墨色 × 單一鐵鏽紅點綴
-   字體：Iowan Old Style / Charter 展示 ＋ 系統無襯線內文
-   ============================================================ */
-:root {
-  --bg:      oklch(98% 0.004 95);
-  --surface: oklch(100% 0.002 95);
-  --fg:      oklch(20% 0.018 70);
-  --muted:   oklch(48% 0.012 70);
-  --border:  oklch(88% 0.008 90);
-  --accent:  oklch(52% 0.10 28);
-  --accent-light: oklch(65% 0.06 28 / 0.18);
-  --code-bg: oklch(97% 0.006 90);
-  --table-stripe: oklch(96% 0.004 92);
-  --font-display: 'Iowan Old Style', 'Charter', Georgia, 'Noto Serif TC', serif;
-  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', system-ui, sans-serif;
-  --font-mono: ui-monospace, 'IBM Plex Mono', 'Cascadia Code', 'SF Mono', Menlo, monospace;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 64px; }
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font: 1.0625rem/1.75 var(--font-body);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* ---- 頂部進度列 (sticky) ---- */
-.progress-bar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  padding: 0;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-}
-.progress-bar-inner {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  max-width: 860px;
-  width: 100%;
-  padding: 0 32px;
-  justify-content: space-between;
-}
-.progress-step {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  font: 0.75rem/1 var(--font-mono);
-  letter-spacing: 0.04em;
-  color: var(--muted);
-  background: transparent;
-  border: 1.5px solid var(--border);
-  cursor: pointer;
-  transition: all 0.25s ease;
-  text-decoration: none;
-  flex-shrink: 0;
-}
-.progress-step:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-.progress-step.active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-.progress-step.passed {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-light);
-}
-.progress-line {
-  height: 1.5px;
-  background: var(--border);
-  flex: 1;
-  min-width: 6px;
-  max-width: 32px;
-  margin: 0 2px;
-  transition: background 0.3s;
-}
-.progress-line.passed {
-  background: var(--accent);
-}
-/* 手機版進度列 */
-.progress-mobile {
-  display: none;
-  align-items: center;
-  gap: 10px;
-  font: 0.8rem/1 var(--font-mono);
-  letter-spacing: 0.06em;
-  color: var(--muted);
-}
-.progress-mobile .cur { color: var(--accent); font-weight: 700; }
-.progress-mobile-bar {
-  flex: 1;
-  height: 3px;
-  background: var(--border);
-  border-radius: 2px;
-  overflow: hidden;
-}
-.progress-mobile-fill {
-  height: 100%;
-  background: var(--accent);
-  border-radius: 2px;
-  transition: width 0.3s ease;
-}
-
-@media (max-width: 860px) {
-  .progress-bar-inner { display: none; }
-  .progress-mobile { display: flex; }
-  .progress-bar { height: 48px; padding: 0 20px; }
-  html { scroll-padding-top: 56px; }
-}
-
-/* ---- 主內容 ---- */
-main {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 80px 32px 120px;
-}
-@media (max-width: 640px) {
-  main { padding: 48px 20px 80px; }
-}
-
-/* ---- Hero ---- */
-.hero {
-  text-align: center;
-  padding: 40px 0 64px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 72px;
-}
-.hero .kicker {
-  font: 0.75rem/1.4 var(--font-mono);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 20px;
-}
-.hero h1 {
-  font: 700 clamp(2rem, 5vw, 3.25rem)/1.18 var(--font-display);
-  letter-spacing: -0.015em;
-  color: var(--fg);
-  margin-bottom: 18px;
-}
-.hero .subtitle {
-  font: 1.1rem/1.6 var(--font-body);
-  color: var(--muted);
-  max-width: 520px;
-  margin: 0 auto 24px;
-}
-.hero .meta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 24px;
-  justify-content: center;
-  font: 0.8rem/1.5 var(--font-mono);
-  letter-spacing: 0.05em;
-  color: var(--muted);
-}
-.hero .meta-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 12px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  font-size: 0.72rem;
-}
-
-/* ---- 章節通用 ---- */
-section {
-  margin-bottom: 72px;
-}
-section:target {
-  scroll-margin-top: 72px;
-}
-.section-label {
-  font: 0.72rem/1.4 var(--font-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 8px;
-}
-.section-heading {
-  font: 700 1.75rem/1.3 var(--font-display);
-  letter-spacing: -0.01em;
-  margin-bottom: 12px;
-  color: var(--fg);
-}
-.section-subhead {
-  font: 0.95rem/1.5 var(--font-body);
-  color: var(--muted);
-  margin-bottom: 28px;
-  max-width: 600px;
-}
-
-/* ---- 步驟編號 ---- */
-.step-number {
-  display: inline-block;
-  font: 0.78rem/1 var(--font-mono);
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  border: 1.5px solid var(--accent);
-  border-radius: 999px;
-  padding: 5px 14px;
-  margin-bottom: 12px;
-}
-
-/* ---- 段落 ---- */
-p {
-  margin-bottom: 1.15em;
-  max-width: 640px;
-}
-p + p { margin-top: -0.25em; }
-
-/* ---- 強調 / 內文加粗 ---- */
-strong { font-weight: 600; color: var(--fg); }
-
-/* ---- 連結 ---- */
-a {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid var(--accent-light);
-  transition: border-color 0.2s;
-}
-a:hover { border-bottom-color: var(--accent); }
-
-/* ---- 水平分隔 ---- */
-hr {
-  border: 0;
-  border-top: 1px solid var(--border);
-  margin: 48px 0;
-}
-
-/* ---- 重要提示區塊 ---- */
-.callout {
-  background: var(--surface);
-  border-left: 3px solid var(--accent);
-  padding: 20px 24px;
-  margin: 28px 0;
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: var(--muted);
-}
-.callout strong { color: var(--fg); }
-.callout.warn {
-  border-left-color: oklch(58% 0.14 35);
-  background: oklch(96% 0.01 35 / 0.3);
-}
-
-/* ---- 能力卡片 ---- */
-.capability-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin: 24px 0 32px;
-}
-@media (max-width: 560px) {
-  .capability-grid { grid-template-columns: 1fr; }
-}
-.cap-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: 20px 22px;
-  font-size: 0.9rem;
-  line-height: 1.55;
-}
-.cap-card .cap-title {
-  font-weight: 600;
-  color: var(--fg);
-  margin-bottom: 6px;
-  font-size: 0.95rem;
-}
-.cap-card .cap-desc {
-  color: var(--muted);
-}
-
-/* ---- 代碼區塊（淺色編輯風格） ---- */
-.code-block {
-  background: var(--code-bg);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--muted);
-  padding: 18px 22px;
-  margin: 20px 0;
-  font: 0.85rem/1.6 var(--font-mono);
-  color: var(--fg);
-  overflow-x: auto;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-.code-block .comment { color: var(--muted); }
-.code-block.lang-powershell { border-left-color: oklch(55% 0.08 240); }
-.code-block.lang-text { border-left-color: var(--border); }
-.code-block.lang-markdown { border-left-color: oklch(55% 0.06 150); }
-
-/* ---- 行內代碼 ---- */
-code {
-  font: 0.88em/1.4 var(--font-mono);
-  background: var(--code-bg);
-  padding: 2px 6px;
-  border-radius: 3px;
-  border: 1px solid var(--border);
-  color: var(--fg);
-  white-space: nowrap;
-}
-
-/* ---- 子步驟標題 ---- */
-.substep {
-  font-weight: 600;
-  color: var(--fg);
-  margin: 22px 0 8px;
-  font-size: 1rem;
-  padding-left: 12px;
-  border-left: 2px solid var(--accent);
-}
-
-/* ---- 表格 ---- */
-.table-wrap {
-  overflow-x: auto;
-  margin: 24px 0;
-  border: 1px solid var(--border);
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font: 0.88rem/1.55 var(--font-body);
-}
-thead th {
-  background: var(--surface);
-  font-weight: 600;
-  text-align: left;
-  padding: 12px 16px;
-  border-bottom: 2px solid var(--border);
-  color: var(--fg);
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-tbody td {
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
-  color: var(--muted);
-  vertical-align: top;
-}
-tbody tr:nth-child(even) td {
-  background: var(--table-stripe);
-}
-tbody td:first-child {
-  color: var(--fg);
-  font-weight: 500;
-}
-
-/* ---- 對比卡片（Pro vs API 等） ---- */
-.compare-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin: 20px 0 28px;
-}
-@media (max-width: 520px) {
-  .compare-row { grid-template-columns: 1fr; }
-}
-.compare-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: 22px 24px;
-}
-.compare-card h4 {
-  font: 600 1rem/1.3 var(--font-body);
-  margin-bottom: 8px;
-  color: var(--fg);
-}
-.compare-card .price {
-  font: 700 1.5rem/1.2 var(--font-display);
-  color: var(--accent);
-  margin-bottom: 10px;
-}
-.compare-card ul {
-  list-style: none;
-  padding: 0;
-  font-size: 0.88rem;
-  color: var(--muted);
-  line-height: 1.7;
-}
-.compare-card ul li::before {
-  content: '— ';
-  color: var(--border);
-}
-
-/* ---- 列表 ---- */
-ul, ol {
-  margin: 12px 0 20px 24px;
-  color: var(--muted);
-  line-height: 1.7;
-  max-width: 620px;
-}
-li { margin-bottom: 6px; }
-
-/* ---- 流程摘要表格（設定完成後） ---- */
-.flow-table {
-  margin: 20px 0 28px;
-  border: 1px solid var(--border);
-}
-.flow-table .flow-row {
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  border-bottom: 1px solid var(--border);
-  align-items: center;
-}
-.flow-row:last-child { border-bottom: 0; }
-.flow-num {
-  font: 0.8rem/1 var(--font-mono);
-  color: var(--accent);
-  text-align: center;
-  padding: 14px 0;
-  font-weight: 600;
-}
-.flow-text {
-  padding: 14px 16px;
-  font-size: 0.92rem;
-  color: var(--fg);
-}
-.flow-text code {
-  font-size: 0.82em;
-}
-
-/* ---- 區塊引文 ---- */
-blockquote {
-  margin: 24px 0;
-  padding: 16px 24px;
-  border-left: 3px solid var(--accent);
-  background: var(--surface);
-  font-style: italic;
-  color: var(--muted);
-}
-
-/* ---- 標籤徽章 ---- */
-.badge {
-  display: inline-block;
-  font: 0.68rem/1 var(--font-mono);
-  letter-spacing: 0.06em;
-  padding: 3px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  margin-right: 6px;
-  vertical-align: middle;
-}
-
-/* ---- 卡片式資訊（台灣信用卡提示等） ---- */
-.info-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: 18px 22px;
-  margin: 20px 0;
-  font-size: 0.9rem;
-  color: var(--muted);
-  line-height: 1.6;
-}
-.info-card .info-title {
-  font-weight: 600;
-  color: var(--fg);
-  margin-bottom: 6px;
-  font-size: 0.92rem;
-}
-
-/* ---- 圖片佔位（示意用） ---- */
-.img-placeholder {
-  background: var(--code-bg);
-  border: 1px dashed var(--border);
-  padding: 32px 24px;
-  text-align: center;
-  font: 0.8rem/1.4 var(--font-mono);
-  color: var(--muted);
-  letter-spacing: 0.04em;
-  margin: 20px 0;
-}
-
-/* ---- 頁尾 ---- */
-footer {
-  border-top: 1px solid var(--border);
-  margin-top: 80px;
-  padding-top: 40px;
-  font: 0.82rem/1.7 var(--font-body);
-  color: var(--muted);
-}
-footer a {
-  color: var(--muted);
-  border-bottom-color: var(--border);
-}
-footer a:hover { color: var(--accent); }
-
-/* ---- 回到頂部 ---- */
-.back-to-top {
-  display: inline-block;
-  margin-top: 32px;
-  font: 0.75rem/1 var(--font-mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-  text-decoration: none;
-}
-.back-to-top:hover { color: var(--accent); border-bottom-color: var(--accent); }
-
-/* ---- 延伸閱讀區塊 ---- */
-.extended-header {
-  text-align: center;
-  padding: 32px 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  margin: 64px 0 40px;
-}
-.extended-header .section-label { margin-bottom: 6px; }
-
-/* ---- 階段區塊 ---- */
-.phase-list {
-  list-style: none;
-  padding: 0;
-  margin: 16px 0;
-  counter-reset: phase;
-}
-.phase-list li {
-  counter-increment: phase;
-  padding: 10px 0 10px 32px;
-  position: relative;
-  font-size: 0.9rem;
-  color: var(--fg);
-  border-bottom: 1px solid var(--border);
-}
-.phase-list li::before {
-  content: 'PHASE ' counter(phase);
-  position: absolute;
-  left: 0;
-  top: 10px;
-  font: 0.65rem/1.4 var(--font-mono);
-  letter-spacing: 0.06em;
-  color: var(--accent);
-  font-weight: 600;
-}
-.phase-list li .phase-desc {
-  display: block;
-  color: var(--muted);
-  font-size: 0.82rem;
-  margin-top: 2px;
-}
-
-/* ---- 決策表格（選擇建議） ---- */
-.decision-table {
-  margin: 20px 0;
-}
-.decision-row {
-  display: grid;
-  grid-template-columns: 1fr 120px;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 0.9rem;
-  align-items: center;
-}
-.decision-row:first-child {
-  border-top: 2px solid var(--border);
-  font-weight: 600;
-  color: var(--fg);
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-.decision-row .tool-rec {
-  font-weight: 600;
-  color: var(--accent);
-  font-size: 0.85rem;
-}
-
-/* ---- DXF 能力雙欄 ---- */
-.dxf-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin: 20px 0;
-}
-@media (max-width: 520px) {
-  .dxf-grid { grid-template-columns: 1fr; }
-}
-.dxf-col {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: 20px 22px;
-  font-size: 0.88rem;
-  line-height: 1.7;
-}
-.dxf-col h5 {
-  font: 600 0.85rem/1.3 var(--font-body);
-  margin-bottom: 10px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
-  color: var(--fg);
-}
-.dxf-col.do h5 { color: oklch(48% 0.1 145); }
-.dxf-col.cant h5 { color: oklch(48% 0.1 25); }
-.dxf-col ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.dxf-col ul li {
-  padding: 4px 0 4px 16px;
-  position: relative;
-}
-.dxf-col.do ul li::before {
-  content: '+';
-  position: absolute;
-  left: 0;
-  color: oklch(48% 0.1 145);
-  font-weight: 600;
-}
-.dxf-col.cant ul li::before {
-  content: '−';
-  position: absolute;
-  left: 0;
-  color: oklch(48% 0.1 25);
-  font-weight: 600;
-}
-
-/* ---- 流程圖文字 ---- */
-.flow-diagram {
-  font: 0.78rem/1.6 var(--font-mono);
-  color: var(--muted);
-  background: var(--code-bg);
-  border: 1px solid var(--border);
-  padding: 18px 22px;
-  margin: 16px 0;
-  letter-spacing: 0.03em;
-  white-space: pre;
-  overflow-x: auto;
-}
-
-/* ---- 列印 ---- */
-@media print {
-  .progress-bar { position: static; }
-  body { font-size: 11pt; }
-  main { max-width: 100%; padding: 0; }
-  section { page-break-inside: avoid; }
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>使用 Claude Code 與 Codex 進行消防圖面輔助審圖</title>
+  <style>
+    :root {
+      --bg: #06060c;
+      --bg2: #0e1020;
+      --text: #f0ece4;
+      --muted: #b0a99e;
+      --muted2: #817a72;
+      --warm: #e8a87c;
+      --blue: #7eb8da;
+      --green: #7ed3a4;
+      --rose: #d4a0b9;
+      --purple: #b8a4d6;
+      --danger: #e07070;
+      --glass: rgba(255,255,255,.045);
+      --glass-strong: rgba(255,255,255,.075);
+      --border: rgba(255,255,255,.12);
+      --radius: 20px;
+      --shadow: 0 18px 60px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);
+      --ease: cubic-bezier(.4,0,.2,1);
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 10% -10%, rgba(126,184,218,.28), transparent 32rem),
+        radial-gradient(circle at 92% 18%, rgba(232,168,124,.18), transparent 30rem),
+        radial-gradient(circle at 50% 72%, rgba(184,164,214,.16), transparent 36rem),
+        linear-gradient(160deg, #08080f, #0e1020 52%, #08080f);
+      color: var(--text);
+      font-family: Inter, "Noto Sans TC", "Noto Sans CJK TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .ambient {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(110px);
+      opacity: .34;
+      animation: drift 22s ease-in-out infinite alternate;
+    }
+    .orb.one { width: 520px; height: 520px; background: rgba(126,184,218,.54); top: -140px; left: -130px; }
+    .orb.two { width: 460px; height: 460px; background: rgba(232,168,124,.42); top: 44%; right: -150px; animation-delay: -6s; }
+    .orb.three { width: 430px; height: 430px; background: rgba(184,164,214,.36); bottom: -120px; left: 32%; animation-delay: -11s; }
+    @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(26px,-22px) scale(1.08); } }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px clamp(18px, 4vw, 56px);
+      background: rgba(6,6,12,.72);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(20px) saturate(160%);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, var(--warm), var(--rose) 42%, var(--purple) 74%);
+      box-shadow: 0 0 34px rgba(232,168,124,.35);
+    }
+    .top-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      max-width: 70vw;
+    }
+    .top-nav::-webkit-scrollbar { display: none; }
+    .top-nav a {
+      flex: 0 0 auto;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 999px;
+      padding: 7px 12px;
+      color: var(--muted);
+      font-size: 12px;
+      transition: color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease);
+    }
+    .top-nav a:hover, .top-nav a:focus-visible {
+      color: var(--text);
+      border-color: rgba(232,168,124,.35);
+      background: rgba(232,168,124,.08);
+      outline: none;
+    }
+    .hero {
+      min-height: min(760px, calc(100vh - 64px));
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(320px, .72fr);
+      align-items: center;
+      gap: clamp(28px, 5vw, 80px);
+      padding: clamp(56px, 9vw, 110px) clamp(20px, 6vw, 88px) clamp(34px, 7vw, 72px);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero > * { min-width: 0; }
+    .hero > div:first-of-type {
+      max-width: 100%;
+      overflow: hidden;
+    }
+    .graph-bg {
+      position: absolute;
+      inset: 4% 0 auto auto;
+      width: min(820px, 70vw);
+      height: auto;
+      opacity: .36;
+      z-index: -1;
+    }
+    .eyebrow {
+      color: var(--muted2);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin: 0 0 16px;
+    }
+    .hero h1 {
+      margin: 0;
+      max-width: 920px;
+      font-size: clamp(42px, 8vw, 92px);
+      line-height: 1.08;
+      letter-spacing: 0;
+      font-weight: 850;
+      overflow-wrap: anywhere;
+    }
+    .rainbow {
+      display: inline-block;
+      background: linear-gradient(90deg,#ff4d8a,#ff8d3f,#ffe066,#7ed3a4,#7eb8da,#b8a4d6,#ff4d8a);
+      background-size: 220% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: rainbow 6s linear infinite;
+    }
+    .rainbow .line { display: block; }
+    @keyframes rainbow { to { background-position: 220% center; } }
+    .lede {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: clamp(18px, 2.2vw, 24px);
+      font-weight: 300;
+      margin: 24px 0 0;
+      overflow-wrap: anywhere;
+    }
+    .hero-panel, .content-shell, .node-map, .callout {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px) saturate(160%);
+    }
+    .hero-panel {
+      padding: 24px;
+      width: 100%;
+      min-width: 0;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      min-height: 116px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px;
+      background: rgba(255,255,255,.035);
+    }
+    .stat strong {
+      display: block;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1;
+      color: var(--warm);
+      margin-bottom: 10px;
+    }
+    .stat span { color: var(--muted); font-size: 13px; }
+    .node-map {
+      margin: 0 clamp(20px, 6vw, 88px) 42px;
+      padding: clamp(18px, 3vw, 30px);
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 22px;
+      align-items: center;
+    }
+    .node-map h2 { margin: 0; font-size: clamp(24px, 3vw, 36px); line-height: 1.18; }
+    .nodes {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .node {
+      min-height: 94px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
+      padding: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      transition: transform .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
+    }
+    .node:hover, .node:focus-visible {
+      transform: translateY(-3px);
+      border-color: rgba(126,211,164,.32);
+      background: rgba(126,211,164,.07);
+      outline: none;
+    }
+    .node span {
+      display: block;
+      color: var(--green);
+      font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+      margin-bottom: 8px;
+    }
+    main {
+      padding: 0 clamp(16px, 5vw, 72px) 72px;
+    }
+    .content-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: clamp(22px, 5vw, 56px);
+    }
+    .content {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+    .content > * { max-width: 100%; }
+    h1, h2, h3, h4 { scroll-margin-top: 92px; }
+    .content h1 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.15;
+      margin: 0 0 20px;
+    }
+    .content h2 {
+      margin: 64px 0 18px;
+      padding-top: 18px;
+      font-size: clamp(29px, 4vw, 48px);
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+    .content h2::before {
+      content: "";
+      display: block;
+      width: 72px;
+      height: 3px;
+      margin-bottom: 18px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--warm), var(--rose), var(--purple));
+    }
+    .content h3 {
+      margin: 34px 0 12px;
+      font-size: clamp(22px, 2.6vw, 31px);
+      color: var(--text);
+    }
+    .content h4 {
+      margin: 24px 0 8px;
+      color: var(--blue);
+      font-size: 19px;
+    }
+    .content p, .content li { color: var(--muted); font-size: 16px; }
+    .content p { margin: 0 0 16px; }
+    .content ul {
+      display: grid;
+      gap: 9px;
+      margin: 12px 0 22px;
+      padding: 0;
+      list-style: none;
+    }
+    .content li {
+      position: relative;
+      padding-left: 22px;
+    }
+    .content li::before {
+      content: "";
+      position: absolute;
+      left: 1px;
+      top: .72em;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 18px rgba(126,211,164,.5);
+    }
+    .content strong { color: var(--text); }
+    .content code {
+      border: 1px solid rgba(126,211,164,.24);
+      border-radius: 7px;
+      background: rgba(126,211,164,.08);
+      color: #bceccb;
+      padding: 2px 6px;
+      font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+      font-size: .92em;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 20px 0 30px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.035);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+    }
+    th, td {
+      padding: 13px 14px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      text-align: left;
+      vertical-align: top;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    th {
+      color: var(--text);
+      background: rgba(255,255,255,.055);
+      font-weight: 650;
+    }
+    tr:last-child td { border-bottom: 0; }
+    .code-card {
+      position: relative;
+      margin: 18px 0 30px;
+      padding: 42px 18px 18px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px;
+      background: rgba(0,0,0,.55);
+      overflow: hidden;
+    }
+    .code-card figcaption {
+      position: absolute;
+      top: 13px;
+      left: 18px;
+      color: var(--muted2);
+      font: 12px/1 "SFMono-Regular", Menlo, Consolas, monospace;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+    .code-card pre {
+      margin: 0;
+      overflow-x: auto;
+      color: #d8d4c8;
+      font: 13px/1.75 "SFMono-Regular", Menlo, Consolas, monospace;
+    }
+    .copy-button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      padding: 6px 10px;
+      font: 12px/1 "SFMono-Regular", Menlo, Consolas, monospace;
+      cursor: pointer;
+    }
+    .copy-button:hover, .copy-button:focus-visible {
+      color: var(--text);
+      border-color: rgba(232,168,124,.35);
+      outline: none;
+    }
+    .callout {
+      max-width: 1180px;
+      margin: 32px auto 0;
+      padding: 22px;
+      color: var(--muted);
+      border-color: rgba(232,168,124,.22);
+      background: rgba(232,168,124,.055);
+    }
+    .footer {
+      padding: 0 clamp(16px, 5vw, 72px) 48px;
+      color: var(--muted2);
+      text-align: center;
+      font-size: 13px;
+    }
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .hero-panel { max-width: 620px; }
+      .node-map { grid-template-columns: 1fr; }
+      .nodes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .site-header { align-items: flex-start; flex-direction: column; }
+      .top-nav { max-width: 100%; width: 100%; }
+    }
+    @media (max-width: 560px) {
+      .brand { white-space: normal; letter-spacing: .05em; }
+      .site-header { padding-inline: 20px; overflow: hidden; }
+      .top-nav { padding-bottom: 2px; }
+      .hero { max-width: 100vw; padding: 44px 30px 34px; }
+      .hero h1, .lede, .eyebrow { max-width: min(100%, 292px); }
+      .hero h1 { font-size: clamp(32px, 10vw, 38px); line-height: 1.14; }
+      .lede { font-size: 18px; }
+      .hero-panel { max-width: calc(100vw - 60px); padding: 14px; border-radius: 16px; }
+      .graph-bg { width: 900px; max-width: none; opacity: .22; transform: translateX(28%); }
+      .stat-grid, .nodes { grid-template-columns: 1fr; }
+      .stat { min-height: 96px; }
+      .content-shell { border-radius: 16px; padding: 20px 16px; }
+      .content p, .content li { font-size: 15px; }
+      .content h2 { margin-top: 48px; }
+      table { min-width: 580px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
-
-<!-- ======== 頂部進度列 ======== -->
-<nav class="progress-bar" role="navigation" aria-label="教學步驟進度">
-  <div class="progress-bar-inner" id="progress-desktop">
-    <a href="#step-01" class="progress-step" data-step="1" title="步驟 01：申請帳號">01</a>
-    <span class="progress-line" data-line="1"></span>
-    <a href="#step-02" class="progress-step" data-step="2" title="步驟 02：訂閱 Pro">02</a>
-    <span class="progress-line" data-line="2"></span>
-    <a href="#step-03" class="progress-step" data-step="3" title="步驟 03：安裝桌面 App">03</a>
-    <span class="progress-line" data-line="3"></span>
-    <a href="#step-04" class="progress-step" data-step="4" title="步驟 04：登入">04</a>
-    <span class="progress-line" data-line="4"></span>
-    <a href="#step-05" class="progress-step" data-step="5" title="步驟 05：建立資料夾">05</a>
-    <span class="progress-line" data-line="5"></span>
-    <a href="#step-06" class="progress-step" data-step="6" title="步驟 06：CLAUDE.md">06</a>
-    <span class="progress-line" data-line="6"></span>
-    <a href="#step-07" class="progress-step" data-step="7" title="步驟 07：啟動 Claude Code">07</a>
-    <span class="progress-line" data-line="7"></span>
-    <a href="#step-08" class="progress-step" data-step="8" title="步驟 08：實戰範例">08</a>
-    <span class="progress-line" data-line="8"></span>
-    <a href="#step-09" class="progress-step" data-step="9" title="步驟 09：疑難排解">09</a>
+  <div class="ambient" aria-hidden="true">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
   </div>
-  <div class="progress-mobile" id="progress-mobile">
-    <span class="cur" id="mobile-cur">01</span>
-    <span>/</span>
-    <span id="mobile-total">09</span>
-    <div class="progress-mobile-bar">
-      <div class="progress-mobile-fill" id="mobile-fill" style="width:0%"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="回到頂端"><span class="brand-mark"></span><span>Fire Review AI Playbook</span></a>
+    <nav class="top-nav" aria-label="頁面章節"><a href="#重要聲明">重要聲明</a><a href="#整體流程總覽">整體流程總覽</a><a href="#第一部分共同前置準備">共同前置準備</a><a href="#第二部分方法一使用-claude-code-審圖">方法一，使用 Claude Code 審圖</a><a href="#第三部分方法二使用-codex-審圖">方法二，使用 Codex 審圖</a><a href="#第四部分claude-code-與-codex-的選擇建議">Claude Code 與 Codex 的選擇建議</a><a href="#第五部分可直接複製使用的提示詞">可直接複製使用的提示詞</a><a href="#第六部分審查報告建議格式">審查報告建議格式</a><a href="#第七部分常見錯誤與處理方式">常見錯誤與處理方式</a><a href="#第八部分最小可行工作流程">最小可行工作流程</a><a href="#官方文件參考">官方文件參考</a><a href="#結語">結語</a></nav>
+  </header>
+  <section class="hero" id="top">
+    <svg class="graph-bg" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g stroke="#7eb8da" stroke-width="1" stroke-opacity=".55" fill="none">
+        <line x1="300" y1="200" x2="520" y2="340"/><line x1="520" y1="340" x2="780" y2="260"/><line x1="780" y1="260" x2="1040" y2="420"/><line x1="520" y1="340" x2="640" y2="560"/><line x1="640" y1="560" x2="900" y2="620"/><line x1="900" y1="620" x2="1040" y2="420"/><line x1="1040" y1="420" x2="1260" y2="300"/><line x1="1260" y1="300" x2="1380" y2="500"/><line x1="900" y1="620" x2="1120" y2="720"/><line x1="300" y1="200" x2="200" y2="420"/><line x1="200" y1="420" x2="360" y2="640"/><line x1="360" y1="640" x2="640" y2="560"/>
+      </g>
+      <g>
+        <circle cx="300" cy="200" r="10" fill="#e8a87c"/><circle cx="520" cy="340" r="14" fill="#7eb8da"/><circle cx="780" cy="260" r="9" fill="#7ed3a4"/><circle cx="1040" cy="420" r="18" fill="#b8a4d6"/><circle cx="640" cy="560" r="11" fill="#d4a0b9"/><circle cx="900" cy="620" r="12" fill="#e8a87c"/><circle cx="1260" cy="300" r="8" fill="#7ed3a4"/><circle cx="1380" cy="500" r="10" fill="#7eb8da"/><circle cx="1120" cy="720" r="9" fill="#d4a0b9"/><circle cx="200" cy="420" r="8" fill="#b8a4d6"/><circle cx="360" cy="640" r="11" fill="#7eb8da"/>
+      </g>
+    </svg>
+    <div>
+      <p class="eyebrow">Claude Code × Codex · Fire Safety Review</p>
+      <h1><span class="rainbow"><span class="line">使用 AI</span><span class="line">進行消防圖面</span><span class="line">輔助審圖</span></span></h1>
+      <p class="lede">從案件資料夾、圖面格式、Claude Code 互動審圖，到 Codex 自動化分析與報告輸出，建立一套可照做、可複核的消防圖面 AI 輔助初審流程。</p>
     </div>
-  </div>
-</nav>
-
-<!-- ======== 主內容 ======== -->
-<main>
-
-<!-- Hero -->
-<header class="hero">
-  <div class="kicker">消防製圖人員專用 · 完全新手適用</div>
-  <h1>Claude 消防圖面審圖<br>新手完全安裝教學</h1>
-  <p class="subtitle">跟著 9 個步驟，讓 AI 幫你審消防圖。不需要會寫程式、不需要任何技術背景。下載官方安裝檔，完成帳號設定，就能用中文指揮 AI 讀取你的 AutoCAD 圖面。</p>
-  <div class="meta-row">
-    <span class="meta-tag">🖥 Windows 10 / 11</span>
-    <span class="meta-tag">🤖 Claude 桌面應用程式</span>
-    <span class="meta-tag">📐 AutoCAD · DXF · PDF</span>
-    <span class="meta-tag">🔥 消防設備圖面審查</span>
-  </div>
-  <p style="margin-top:18px;font-size:0.88rem;color:var(--muted);">約 25–35 分鐘完成</p>
-</header>
-
-<!-- ======== 開始前 ======== -->
-<section id="before-start">
-  <div class="section-label">開始前</div>
-  <h2 class="section-heading">這套工具能幫你做什麼？</h2>
-  <p class="section-subhead">完成設定後你能獲得的能力：</p>
-
-  <div class="capability-grid">
-    <div class="cap-card">
-      <div class="cap-title">圖面初步審查</div>
-      <div class="cap-desc">提供 PDF 或圖面截圖讓 AI 理解空間配置；提供 DXF 讓 AI 提取座標做數值計算</div>
+    <aside class="hero-panel" aria-label="文件摘要">
+      <div class="stat-grid">
+        <div class="stat"><strong>02</strong><span>Claude Code 與 Codex 兩條審圖路線</span></div>
+        <div class="stat"><strong>08</strong><span>從準備、提示詞到人工複核的完整章節</span></div>
+        <div class="stat"><strong>05</strong><span>固定工作資料夾與輸出位置</span></div>
+        <div class="stat"><strong>AI</strong><span>全部輸出保留「需確認」與複核機制</span></div>
+      </div>
+    </aside>
+  </section>
+  <section class="node-map" aria-label="快速導覽">
+    <div>
+      <p class="eyebrow">Workflow Map</p>
+      <h2>從資料夾建立到報告輸出，一頁快速跳轉。</h2>
     </div>
-    <div class="cap-card">
-      <div class="cap-title">間距與覆蓋計算</div>
-      <div class="cap-desc">驗算灑水頭間距、探測器覆蓋半徑，並顯示計算過程方便核對</div>
-    </div>
-    <div class="cap-card">
-      <div class="cap-title">缺漏清單自動整理</div>
-      <div class="cap-desc">比對圖說常見缺失，產生結構化待補項目清單，可存成 Word 或 Excel</div>
-    </div>
-    <div class="cap-card">
-      <div class="cap-title">法規條文對照查詢</div>
-      <div class="cap-desc">用中文問問題，快速找到設置標準相關條文與解釋</div>
-    </div>
-    <div class="cap-card" style="grid-column: 1 / -1;">
-      <div class="cap-title">批次圖面彙整</div>
-      <div class="cap-desc">一次處理多份案件，整合審查意見並輸出統一格式報告</div>
-    </div>
-  </div>
-
-  <div class="callout warn">
-    <strong>⚠ 重要：AI 僅為輔助工具</strong><br>
-    AI 審查結果僅供輔助確認與提示，最終審查判斷仍需由具備資格的消防設備師（士）負責，不可完全依賴 AI 輸出。
-  </div>
-</section>
-
-<hr>
-
-<!-- ======== 步驟 01 ======== -->
-<section id="step-01">
-  <span class="step-number">步驟 01</span>
-  <h2 class="section-heading">申請 Claude 帳號</h2>
-  <p class="section-subhead">
-    <span class="badge">claude.ai</span>
-    <span class="badge">免費</span>
-    <span class="badge">需要電子郵件</span>
-    <br>約 5 分鐘
-  </p>
-  <p>Claude 是 Anthropic 公司開發的 AI，我們需要先建立帳號。這個帳號同時用於網頁版和桌面應用程式。</p>
-
-  <p class="substep">步驟 1-1</p>
-  <p>開啟瀏覽器，前往 <a href="https://claude.ai" target="_blank" rel="noopener">https://claude.ai</a>，點選右上角的 <strong>「Sign up」</strong>（或中文介面的「免費使用」）。</p>
-
-  <p class="substep">步驟 1-2</p>
-  <p>輸入電子郵件，點 <strong>「Continue with email」</strong>。也可以點 <strong>「Continue with Google」</strong> 直接用 Google 帳號，更方便。</p>
-
-  <p class="substep">步驟 1-3</p>
-  <p>打開電子郵件信箱，找到 Anthropic 的驗證信，點信中的驗證連結（找不到的話，請查看垃圾郵件資料夾）。</p>
-
-  <p class="substep">步驟 1-4</p>
-  <p>設定名字與密碼，完成帳號建立。試傳一則訊息確認帳號正常。</p>
-
-  <div class="callout">
-    <strong>✓ 步驟 01 完成</strong><br>
-    能在 claude.ai 看到聊天介面並收到 AI 回應，代表帳號建立成功。
-  </div>
-</section>
-
-<hr>
-
-<!-- ======== 步驟 02 ======== -->
-<section id="step-02">
-  <span class="step-number">步驟 02</span>
-  <h2 class="section-heading">訂閱 Claude Pro 方案</h2>
-  <p class="section-subhead">
-    Claude Code 需要付費方案才能使用 · 約 5 分鐘
-  </p>
-  <p>Claude Code 不提供免費使用。對消防製圖工作而言，Claude Pro 設定最簡單，月費固定，最適合新手。</p>
-
-  <div class="compare-row">
-    <div class="compare-card">
-      <h4>Claude Pro（推薦新手）</h4>
-      <div class="price">USD 20 / 月</div>
-      <ul>
-        <li>登入即用，設定最簡單</li>
-        <li>含 Claude 網頁版 + 桌面版 + Claude Code</li>
-        <li>每月固定費用，容易控制預算</li>
-      </ul>
-    </div>
-    <div class="compare-card">
-      <h4>API 金鑰（進階）</h4>
-      <div class="price">依用量計費</div>
-      <ul>
-        <li>在 console.anthropic.com 申請</li>
-        <li>依實際用量計費</li>
-        <li>設定較複雜，有程式基礎者適用</li>
-      </ul>
-    </div>
-  </div>
-
-  <p class="substep">升級 Claude Pro 步驟</p>
-  <p><strong>步驟 2-1：</strong>登入 claude.ai，點選左下角你的帳號名稱或大頭貼。</p>
-  <p><strong>步驟 2-2：</strong>點「Upgrade plan」→ 選「Pro」→ 點「Subscribe to Pro」。</p>
-  <p><strong>步驟 2-3：</strong>輸入信用卡資訊（Visa / Mastercard 均可）完成付款。帳號顯示「Pro」代表訂閱成功。</p>
-
-  <div class="info-card">
-    <div class="info-title">💳 台灣信用卡注意</div>
-    Anthropic 為美國公司，部分銀行需先啟用「網路外幣交易」。建議使用玉山、國泰世華、中國信託等大型行庫的 Visa 或 Mastercard。
-  </div>
-
-  <div class="callout">
-    <strong>✓ 步驟 02 完成</strong><br>
-    帳號頁面顯示「Pro」即可繼續。
-  </div>
-</section>
-
-<hr>
-
-<!-- ======== 步驟 03 ======== -->
-<section id="step-03">
-  <span class="step-number">步驟 03</span>
-  <h2 class="section-heading">下載並安裝 Claude 桌面應用程式</h2>
-  <p class="section-subhead">
-    從官方網頁下載 .exe，安裝方式與一般軟體完全相同 · 約 5 分鐘
-  </p>
-  <p>Claude 桌面應用程式整合了聊天介面與 Claude Code 終端機，是新手最簡單的入門方式，不需要安裝 Node.js 或 Git，直接下載安裝即可。</p>
-
-  <div class="callout">
-    <strong>無需任何前置安裝</strong><br>
-    桌面應用程式已內建所有必要環境。不需要 Node.js、不需要 Git、不需要 PowerShell 指令。
-  </div>
-
-  <p class="substep">方式 A — 推薦新手首選：官方網頁下載頁面</p>
-
-  <p><strong>步驟 3-1｜前往下載頁面</strong><br>
-  開啟瀏覽器，前往 Claude 官方下載頁面：<a href="https://claude.com/download" target="_blank" rel="noopener">https://claude.com/download</a></p>
-
-  <p><strong>步驟 3-2｜點選 Windows 下載按鈕</strong><br>
-  在頁面找到「Desktop」區塊，點選 Windows 的「Download」按鈕。瀏覽器底部或右上角會顯示下載進度，檔名類似 <code>Claude-Setup-x64.exe</code>。</p>
-
-  <div class="img-placeholder">
-    📺 畫面說明：頁面上方有「Download for Windows」大按鈕。一般電腦（Intel/AMD）選第一個；若電腦是 ARM 架構，選「Windows (arm64)」。不確定就選第一個。
-  </div>
-
-  <p><strong>步驟 3-3｜執行安裝</strong><br>
-  下載完成後，雙擊 <code>Claude-Setup-x64.exe</code> 執行。Windows 若出現「是否允許此應用程式變更您的裝置？」→ 點 <strong>「是」</strong>。安裝全自動，約 30–60 秒完成，不需要任何設定選項，結束後 Claude 會自動開啟。</p>
-
-  <div class="callout">
-    <strong>安裝成功確認：</strong>桌面出現 Claude 圖示，或開始功能表搜尋「Claude」可找到，代表安裝完成。
-  </div>
-
-  <p class="substep">方式 B — 備選（公司電腦限制 .exe 時）</p>
-  <p>若公司政策不允許執行 .exe 安裝檔，可改用官方 PowerShell 腳本。以系統管理員身份開啟 PowerShell，貼上以下指令按 Enter：</p>
-
-  <div class="code-block lang-powershell">
-irm https://claude.ai/install.ps1 | iex
-  </div>
-
-  <p>安裝完成後關閉並重新開啟終端機即可使用。</p>
-
-  <div class="callout">
-    <strong>✓ 步驟 03 完成</strong><br>
-    桌面或開始功能表能看到 Claude 應用程式圖示即可繼續下一步。
-  </div>
-</section>
-
-<hr>
-
-<!-- ======== 步驟 04 ======== -->
-<section id="step-04">
-  <span class="step-number">步驟 04</span>
-  <h2 class="section-heading">首次啟動與帳號登入</h2>
-  <p class="section-subhead">
-    全圖形化介面，只需操作一次 · 約 3 分鐘
-  </p>
-
-  <p><strong>步驟 4-1：</strong>雙擊桌面的 Claude 圖示開啟應用程式。首次開啟會顯示登入歡迎畫面。</p>
-  <p><strong>步驟 4-2：</strong>點選畫面中的 <strong>「Sign in」</strong> 或 <strong>「Log in」</strong> 按鈕。系統會自動開啟瀏覽器，跳轉到 Claude 登入頁面。</p>
-  <p><strong>步驟 4-3：</strong>在瀏覽器，用步驟 01 建立的帳號登入（或 Google 登入）。</p>
-  <p><strong>步驟 4-4：</strong>登入後瀏覽器詢問是否開啟 Claude，點選 <strong>「Open Claude」</strong>，視窗跳回桌面 App。</p>
-
-  <p class="substep">認識三個功能區</p>
-  <div class="capability-grid" style="grid-template-columns: repeat(3, 1fr);">
-    <div class="cap-card">
-      <div class="cap-title">Chat</div>
-      <div class="cap-desc">一般聊天，和 claude.ai 網頁版相同</div>
-    </div>
-    <div class="cap-card">
-      <div class="cap-title">Cowork</div>
-      <div class="cap-desc">AI 自動操作電腦</div>
-    </div>
-    <div class="cap-card">
-      <div class="cap-title">Claude Code</div>
-      <div class="cap-desc"><strong>本教學主角</strong>，能讀取本機圖面並輸出審查報告</div>
-    </div>
-  </div>
-
-  <p>之後每次使用，只需從桌面開啟 Claude App，不需要重新登入，登入狀態自動保存。</p>
-
-  <div class="callout">
-    <strong>✓ 步驟 04 完成</strong><br>
-    看到主畫面左側有 Chat / Cowork / Claude Code 三個選項，代表登入成功。
-  </div>
-</section>
-
-<hr>
-
-<!-- ======== 步驟 05 ======== -->
-<section id="step-05">
-  <span class="step-number">步驟 05</span>
-  <h2 class="section-heading">建立消防審圖工作資料夾</h2>
-  <p class="section-subhead">
-    用檔案總管建立，不需要任何指令 · 約 3 分鐘
-  </p>
-  <p>建立固定的資料夾結構，讓 Claude Code 每次都能在同一個地方找到你的圖面和文件。</p>
-
-  <p><strong>步驟 5-1：</strong>按 <strong>Windows 鍵 + E</strong> 開啟檔案總管，進入「本機 (C:)」。在空白處按右鍵 →「新增」→「資料夾」，命名為 <strong>消防審圖</strong>。</p>
-
-  <p><strong>步驟 5-2：</strong>進入 <code>C:\消防審圖</code>，在裡面建立三個子資料夾：</p>
-  <ul>
-    <li><strong>圖面輸入</strong> — 放要審查的 DXF / PDF / 圖片</li>
-    <li><strong>審查報告輸出</strong> — AI 產出的審查意見草稿</li>
-    <li><strong>參考資料</strong> — 法規條文摘要等輔助文件</li>
-  </ul>
-
-  <p class="substep">完成後的資料夾結構</p>
-  <div class="code-block lang-text">
-C:\消防審圖\
-├── CLAUDE.md        ← 下一步建立的 AI 設定檔
-├── 圖面輸入\        ← 放要審查的 DXF / PDF / 圖片
-├── 審查報告輸出\    ← AI 產出的審查意見草稿
-└── 參考資料\        ← 法規條文摘要等輔助文件
-  </div>
-
-  <div class="info-card">
-    <div class="info-title">📐 DXF、PDF、截圖各有用途，建議雙管齊下</div>
-    AI 讀取 DXF 的方式是解析座標數字，無法「看見」圖面的空間樣貌。建議同時準備兩種格式：<strong>DXF</strong> 供 AI 提取座標做計算，<strong>PDF 或截圖</strong> 讓 AI 理解整體配置。詳細說明見步驟 08。
-  </div>
-
-  <div class="callout">
-    <strong>✓ 步驟 05 完成</strong><br>
-    C:\消防審圖 內有三個子資料夾即可繼續。
-  </div>
-</section>
-
-<hr>
-
-<!-- ======== 步驟 06 ======== -->
-<section id="step-06">
-  <span class="step-number">步驟 06</span>
-  <h2 class="section-heading">建立 CLAUDE.md 設定檔</h2>
-  <p class="section-subhead">
-    告訴 AI 你的工作背景，之後不用每次重複說明 · 約 5 分鐘
-  </p>
-
-  <p class="substep">CLAUDE.md 是什麼？</p>
-  <p>放在工作資料夾裡的文字檔，Claude Code 每次啟動都會自動讀取。把它想像成<strong>「給 AI 的工作說明書」</strong>——設定好後，AI 一開始就知道你是消防製圖人員、要審查哪些項目、用什麼格式輸出。</p>
-
-  <p class="substep">步驟 6-1｜用記事本建立檔案</p>
-  <p>按 <strong>Windows 鍵</strong> 搜尋「記事本」，開啟。先不要輸入任何內容，按 <strong>Ctrl + S</strong> 存檔：存檔位置選 <code>C:\消防審圖</code>，檔案名稱輸入 <code>CLAUDE.md</code>，存檔類型務必選 <strong>「所有檔案 (*.*)」</strong>（否則會存成 CLAUDE.md.txt），按儲存。</p>
-
-  <p class="substep">步驟 6-2｜貼入以下內容</p>
-  <p>將下方整個程式碼區塊的內容全選複製（Ctrl+A 全選，Ctrl+C 複製），貼到記事本中：</p>
-
-  <div class="code-block lang-markdown">
-<span class="comment"># 消防圖面輔助審查工作環境設定</span>
-
-<span class="comment">## 工作背景</span>
-- 我是消防設備製圖人員，負責消防安全設備圖面的繪製與初步審查
-- 主要使用 AutoCAD，圖面格式包含 DXF、PDF 及圖片（JPG/PNG）
-- 適用法規：《各類場所消防安全設備設置標準》（台灣）
-
-<span class="comment">## 主要審查項目</span>
-- 自動撒水設備：灑水頭間距、保護面積、水平距離
-- 火警自動警報設備：探測器間距、覆蓋半徑、類型選用
-- 緊急廣播設備：揚聲器配置、音壓規定
-- 消防栓：位置、有效水平距離
-- 避難逃生：走廊寬度、出口數量、疏散路徑
-
-<span class="comment">## 回答格式要求</span>
-- 請用繁體中文回答所有問題
-- 發現疑義時，請同時引用設置標準的條文編號
-- 審查結果請以「符合」「不符合」「需確認」三種狀態標示
-- 數值計算需顯示計算過程，方便核對
-- 輸出審查清單時，請使用表格格式
-
-<span class="comment">## 資料夾說明</span>
-- 圖面輸入/：待審查的 AutoCAD 圖面及相關文件
-- 審查報告輸出/：存放 AI 輔助生成的審查意見草稿
-- 參考資料/：法規條文摘要、常見缺失範本等
-
-<span class="comment">## 重要提醒</span>
-- AI 審查結果僅供輔助參考，最終判斷仍需具資格人員確認
-- 如遇模糊地帶，請說明需要進一步核對的項目
-  </div>
-
-  <p class="substep">步驟 6-3</p>
-  <p>按 <strong>Ctrl + S</strong> 存檔，確認 <code>C:\消防審圖</code> 中出現了 <code>CLAUDE.md</code> 檔案。</p>
-
-  <div class="callout">
-    <strong>✓ 步驟 06 完成</strong><br>
-    C:\消防審圖\CLAUDE.md 存在即完成。之後 AI 每次啟動都會自動讀取這份設定。
-  </div>
-</section>
-
-<hr>
-
-<!-- ======== 步驟 07 ======== -->
-<section id="step-07">
-  <span class="step-number">步驟 07</span>
-  <h2 class="section-heading">啟動 Claude Code，開始使用</h2>
-  <p class="section-subhead">
-    從桌面 App 進入終端機，輸入兩行指令 · 約 2 分鐘
-  </p>
-
-  <p><strong>步驟 7-1：</strong>雙擊桌面的 Claude 圖示開啟應用程式。</p>
-  <p><strong>步驟 7-2：</strong>點選左側邊欄的 <strong>「Claude Code」</strong>，開啟內建終端機視窗。（也可以另開命令提示字元 cmd 或 PowerShell，效果完全相同）</p>
-
-  <p class="substep">步驟 7-3｜輸入這兩行指令</p>
-  <p>在終端機中，先輸入第一行按 Enter，再輸入第二行按 Enter：</p>
-
-  <div class="code-block lang-powershell">
-cd C:\消防審圖
-claude
-  </div>
-
-  <p class="substep">啟動成功畫面範例</p>
-  <div class="code-block lang-text">
-PS C:\消防審圖&gt; claude
-
-✓ CLAUDE.md 已載入 — 消防圖面輔助審查工作環境設定
-✓ 已登入：your@email.com (Pro)
-✓ 工作目錄：C:\消防審圖
-
-claude&gt; █
-  </div>
-
-  <div class="info-card">
-    <div class="info-title">🖥「終端機」是什麼？</div>
-    就是那個深色文字輸入視窗。對我們來說只需記住兩個指令：<code>cd C:\消防審圖</code>（進入工作資料夾）和 <code>claude</code>（啟動 AI）。出現 <code>claude&gt;</code> 提示符之後，就用中文說話就好。
-  </div>
-
-  <div class="callout">
-    <strong>🎉 步驟 07 完成！全部設定結束</strong><br>
-    看到 <code>claude&gt;</code> 提示符，就可以開始用中文跟 AI 對話了。
-  </div>
-</section>
-
-<hr>
-
-<!-- ======== 步驟 08 ======== -->
-<section id="step-08">
-  <span class="step-number">步驟 08</span>
-  <h2 class="section-heading">消防審圖實戰範例</h2>
-  <p class="section-subhead">
-    可直接複製使用的中文指令
-  </p>
-  <p>在 <code>claude&gt;</code> 提示符後直接輸入中文即可，不需要任何特殊語法。以下是針對消防製圖工作的常用場景。</p>
-
-  <p class="substep">DXF 檔案的能力說明與建議工作流程</p>
-
-  <div class="dxf-grid">
-    <div class="dxf-col do">
-      <h5>DXF 可以做到</h5>
-      <ul>
-        <li>讀取圖層名稱清單</li>
-        <li>提取座標數值，計算設備間距</li>
-        <li>統計圖元數量（LINE、CIRCLE、INSERT）</li>
-        <li>讀取文字標註內容（TEXT / MTEXT）</li>
-        <li>識別圖塊名稱（設備符號定義）</li>
-      </ul>
-    </div>
-    <div class="dxf-col cant">
-      <h5>DXF 做不到</h5>
-      <ul>
-        <li>視覺化「看見」圖面空間配置</li>
-        <li>理解整體平面布局與動線</li>
-        <li>辨識圖面美觀、比例感</li>
-        <li>大型複雜 DXF 可能超出處理量</li>
-      </ul>
-    </div>
-  </div>
-
-  <p class="substep">建議雙管齊下的工作方式</p>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>審查需求</th><th>使用格式</th><th>怎麼做</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>灑水頭間距、座標計算</td><td>DXF</td><td>AutoCAD 另存新檔 → DXF</td></tr>
-        <tr><td>圖層名稱、圖塊清單確認</td><td>DXF</td><td>AutoCAD 另存新檔 → DXF</td></tr>
-        <tr><td>整體平面配置審查</td><td>PDF</td><td>AutoCAD 列印 → 存成 PDF</td></tr>
-        <tr><td>局部配置說明、探測器位置</td><td>截圖</td><td>Windows + Shift + S 截圖存 PNG</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p style="font-size:0.88rem;color:var(--muted);">實用建議：同一份圖同時準備 DXF 和 PDF 兩個版本，先用 PDF 讓 AI 理解整體配置，再用 DXF 做精確的數值計算，兩者互補效果最好。</p>
-
-  <p class="substep">範例一：列出圖面輸入資料夾中的所有檔案</p>
-  <div class="code-block lang-text">
-claude&gt; 請讀取「圖面輸入」資料夾中的所有檔案，列出檔案名稱並簡述圖面內容。
-  </div>
-  <div class="code-block lang-text">
-<span style="color:var(--muted);">AI 回覆範例：</span>
-
-我已掃描「圖面輸入」資料夾，找到以下檔案：
-1. 案件A_平面圖.dxf — AutoCAD DXF，B1 樓層平面與設備圖層
-2. 案件A_灑水系統.pdf — PDF 圖說，含撒水管線配置
-3. 案件B_探測器配置.png — 偵煙探測器位置分布圖
-
-請問您想先從哪個檔案開始審查？
-  </div>
-
-  <p class="substep">範例二：灑水頭間距驗算</p>
-  <div class="code-block lang-text">
-claude&gt; 圖面標示的灑水頭間距為 3.5m × 3.5m，閉式撒水頭，場所為辦公室。請驗算是否符合設置標準。
-  </div>
-  <div class="code-block lang-text">
-<span style="color:var(--muted);">AI 回覆範例：</span>
-
-【灑水頭間距驗算結果】
-■ 適用條文：設置標準第 46 條
-■ 場所分類：一般保護場所（辦公室）
-■ 法規最大間距：3.0m × 3.0m
-■ 圖面標示：3.5m × 3.5m
-■ 判斷：不符合 — 超過上限 3.0m，建議修改為 ≤ 3.0m
-  </div>
-
-  <p class="substep">範例三：產生審查報告並存檔</p>
-  <div class="code-block lang-text">
-claude&gt; 請把剛才的審查內容整理成表格，存到「審查報告輸出」資料夾，檔名「案件A審查意見.md」。
-  </div>
-  <div class="code-block lang-text">
-<span style="color:var(--muted);">AI 回覆範例：</span>
-
-已建立：審查報告輸出/案件A審查意見.md
-  審查項目共 8 項｜符合 5 項｜不符合 2 項｜需確認 1 項
-  </div>
-
-  <p class="substep">更多常用指令</p>
-  <ul>
-    <li><strong>法規查詢：</strong>「設置標準中，地下停車場的偵煙探測器安裝規定是哪一條？請摘要說明。」</li>
-    <li><strong>數量統計：</strong>「計算這份平面圖中的偵煙探測器總數量，確認與圖說標示數量一致。」</li>
-    <li><strong>圖面比對：</strong>「比對圖面A和圖面B，找出灑水系統配置的差異，用表格呈現。」</li>
-    <li><strong>缺漏清單：</strong>「這份圖說缺少哪些常見必要標示？請列出清單，存成 Excel。」</li>
-  </ul>
-
-  <p class="substep">Claude Code 常用系統指令</p>
-  <p>以 / 開頭的系統指令（在 <code>claude&gt;</code> 提示符後輸入）：</p>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>指令</th><th>功能</th></tr></thead>
-      <tbody>
-        <tr><td><code>/help</code></td><td>顯示所有可用指令說明</td></tr>
-        <tr><td><code>/clear</code></td><td>清除對話記錄，重新開始（不刪除已存的檔案）</td></tr>
-        <tr><td><code>/compact</code></td><td>壓縮對話歷史，節省用量（對話很長時使用）</td></tr>
-        <tr><td><code>/quit</code></td><td>結束 Claude Code（也可直接按 Ctrl+C）</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<hr>
-
-<!-- ======== 步驟 09 ======== -->
-<section id="step-09">
-  <span class="step-number">步驟 09</span>
-  <h2 class="section-heading">遇到問題怎麼辦？</h2>
-  <p class="section-subhead">常見疑難排解</p>
-
-  <p class="substep">安裝後找不到 Claude 應用程式圖示</p>
-  <ul>
-    <li>按 Windows 鍵搜尋「Claude」，找到後可右鍵釘選到桌面</li>
-    <li>找不到：重新啟動電腦後再搜尋</li>
-    <li>仍無效：至 <a href="https://claude.com/download" target="_blank" rel="noopener">https://claude.com/download</a> 重新下載安裝</li>
-  </ul>
-
-  <p class="substep">開啟 App 後登入頁面白畫面或無法載入</p>
-  <ul>
-    <li>確認網路正常（試開 google.com）</li>
-    <li>工作列右下角 Claude 圖示按右鍵 →「結束」，重新開啟</li>
-    <li>公司電腦：確認 claude.ai 與 api.anthropic.com 未被防火牆封鎖</li>
-  </ul>
-
-  <p class="substep">終端機輸入 claude 顯示「找不到命令」</p>
-  <ul>
-    <li>改用桌面 App 內建的 Claude Code 終端機，不需額外設定</li>
-    <li>若要用外部 cmd：完全關閉視窗，重新開啟再試</li>
-    <li>仍無效：重新啟動電腦讓 PATH 環境變數生效</li>
-  </ul>
-
-  <p class="substep">顯示「Authentication failed」或「Unauthorized」</p>
-  <p>登入狀態已過期。輸入 <code>/logout</code>，再輸入 <code>claude</code> 重新登入。或在 App 設定中重新登入帳號。</p>
-
-  <p class="substep">顯示「Insufficient credits」或「Payment required」</p>
-  <p>訂閱有問題。登入 claude.ai，確認 Pro 訂閱狀態，或確認信用卡有正常扣款。</p>
-
-  <p class="substep">AI 回覆的中文出現亂碼</p>
-  <p>桌面 App 內建終端機通常不會有此問題。若用外部 cmd，在啟動前輸入 <code>chcp 65001</code>。建議改用 App 內建終端機，或安裝 Microsoft Store 免費的 Windows Terminal。</p>
-
-  <p class="substep">如何更新 Claude 到最新版本</p>
-  <p>桌面應用程式會自動在背景更新，通常不需要手動處理。若想立即更新，在 Claude App 選單中找「Check for updates」，或在終端機輸入 <code>claude update</code>。</p>
-
-  <div class="callout">
-    <strong>還是無法解決？</strong><br>
-    前往 <a href="https://support.claude.com" target="_blank" rel="noopener">https://support.claude.com</a> 官方說明，或直接在 Claude 聊天視窗描述你的錯誤訊息，讓 AI 協助你排解。
-  </div>
-</section>
-
-<hr>
-
-<!-- ======== 設定完成 ======== -->
-<section id="setup-complete">
-  <div class="section-label">設定完成</div>
-  <h2 class="section-heading">每次使用只需 3 個動作</h2>
-  <p class="section-subhead">記住這個固定流程，每次審圖都一樣：</p>
-
-  <div class="flow-table">
-    <div class="flow-row">
-      <span class="flow-num">1</span>
-      <span class="flow-text">開啟 Claude 桌面 App</span>
-    </div>
-    <div class="flow-row">
-      <span class="flow-num">2</span>
-      <span class="flow-text">Claude Code 終端機輸入 <code>cd C:\消防審圖</code></span>
-    </div>
-    <div class="flow-row">
-      <span class="flow-num">3</span>
-      <span class="flow-text">輸入 <code>claude</code> 開始中文對話</span>
-    </div>
-  </div>
-
-  <p class="substep">每次開始審圖的指令（共 2 行）</p>
-  <div class="code-block lang-powershell">
-cd C:\消防審圖   <span class="comment"># 進入工作資料夾</span>
-claude            <span class="comment"># 啟動 AI，出現 claude&gt; 後直接用中文對話</span>
-  </div>
-
-  <div class="callout" style="border-left-color: oklch(50% 0.12 145); background: oklch(96% 0.02 145 / 0.2);">
-    <strong>🎉 恭喜完成所有設定！</strong><br>
-    你現在擁有一套 AI 輔助消防圖面審查工作環境。善用 CLAUDE.md 的設定，每次 AI 啟動都自動帶入消防審查背景知識。記住：AI 是你的助手，最終的專業判斷仍由你負責。祝審圖順利！
-  </div>
-</section>
-
-<!-- ======== 延伸閱讀 ======== -->
-<div class="extended-header">
-  <div class="section-label">延伸閱讀</div>
-  <p style="font-size:0.88rem;color:var(--muted);">進階使用者參考 · 工具選擇與消防審圖 AI 流程規劃</p>
-</div>
-
-<section id="extended">
-  <h2 class="section-heading">OpenAI Codex 與 Claude Code 比較</h2>
-  <p class="section-subhead">進階使用者參考</p>
-
-  <p class="substep">OpenAI Codex 是什麼？</p>
-  <p>Codex 是 OpenAI 開發的 AI coding agent，2025 年 4 月以全新形式發布（與 2021 年舊版 Codex API 完全無關）。它以終端機或雲端沙箱為工作環境，能同時並行處理多個任務，特別適合工程化的自動化 pipeline。目前由 GPT-5.3-Codex 模型驅動。</p>
-
-  <div class="capability-grid" style="grid-template-columns: repeat(3, 1fr);">
-    <div class="cap-card">
-      <div class="cap-title">CLI 終端機 agent</div>
-      <div class="cap-desc">命令列操作，適合自動化</div>
-    </div>
-    <div class="cap-card">
-      <div class="cap-title">多任務並行執行</div>
-      <div class="cap-desc">同時處理多個審圖案件</div>
-    </div>
-    <div class="cap-card">
-      <div class="cap-title">GitHub / CI/CD 整合</div>
-      <div class="cap-desc">PR 自動提案與 review、CI Autofix</div>
-    </div>
-    <div class="cap-card">
-      <div class="cap-title">雲端沙箱隔離環境</div>
-      <div class="cap-desc">不需本機安裝，遠端執行</div>
-    </div>
-    <div class="cap-card">
-      <div class="cap-title">PR 自動提案與 review</div>
-      <div class="cap-desc">自動化程式碼審查流程</div>
-    </div>
-    <div class="cap-card">
-      <div class="cap-title">CI Autofix 自動修復</div>
-      <div class="cap-desc">偵測問題後自動提交修正</div>
-    </div>
-  </div>
-
-  <p class="substep">消防圖面 AI 審查流程（兩種工具相同）</p>
-  <div class="flow-diagram">DWG / DXF 圖面
-    ↓ ezdxf / LibreDWG / ODA File Converter 轉換
-圖層解析 → 設備辨識 → 座標距離分析
-    ↓ 法規 Rule Engine 比對
-AI 推理 → 產生缺失報告
-
-兩種工具均不能直接讀取 DWG 格式，需透過 parser 轉換成 AI 可理解的格式後再分析</div>
-
-  <p class="substep">Codex vs Claude Code 功能比較</p>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>項目</th><th>Codex</th><th>Claude Code</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>大型程式專案</td><td>非常強</td><td>非常強</td></tr>
-        <tr><td>CLI 自動化</td><td>非常強</td><td>強</td></tr>
-        <tr><td>多 Agent 並行</td><td>非常強</td><td>普通</td></tr>
-        <tr><td>CI/CD 整合</td><td>非常強</td><td>普通</td></tr>
-        <tr><td>PR / Review 自動化</td><td>非常強</td><td>普通</td></tr>
-        <tr><td>長上下文理解</td><td>強</td><td>非常強</td></tr>
-        <tr><td>圖面推理（PDF / 截圖）</td><td>普通</td><td>略強</td></tr>
-        <tr><td>中文對話互動</td><td>強</td><td>非常強</td></tr>
-        <tr><td>新手上手難度</td><td>較高</td><td>較低</td></tr>
-        <tr><td>本地 sandbox</td><td>成熟</td><td>成熟</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p style="font-size:0.8rem;color:var(--muted);">依 Terminal-Bench 2.0 數據：Codex 77.3%、Claude Code 65.4%，故 Codex CLI 略優但兩者均屬強級。Claude 具備原生多模態能力，對 PDF 與截圖的空間理解略優於 Codex。</p>
-
-  <p class="substep">定位比較</p>
-  <div class="compare-row">
-    <div class="compare-card">
-      <h4>CLAUDE CODE — 超強 AI 工程師</h4>
-      <p style="font-size:0.88rem;color:var(--muted);">互動式、對話式操作，適合個人日常審圖、一邊問問題一邊分析、需要 AI 解釋推理過程的場景。</p>
-    </div>
-    <div class="compare-card">
-      <h4>CODEX — AI DevOps 團隊</h4>
-      <p style="font-size:0.88rem;color:var(--muted);">工程化流程、多任務並行，適合夜間批次審圖、建立自動化 pipeline、需要 CI/CD 整合的大型系統。</p>
-    </div>
-  </div>
-
-  <p class="substep">消防圖面審查場景選擇建議</p>
-  <div class="decision-table">
-    <div class="decision-row">
-      <span>你的情境</span>
-      <span>建議工具</span>
-    </div>
-    <div class="decision-row">
-      <span>個人製圖師，需要 AI 即時協助審圖、問法規</span>
-      <span class="tool-rec">Claude Code</span>
-    </div>
-    <div class="decision-row">
-      <span>需要閱讀 PDF 或截圖理解整體圖面布局</span>
-      <span class="tool-rec">Claude Code</span>
-    </div>
-    <div class="decision-row">
-      <span>開發 DXF parser / 法規 Rule Engine 程式</span>
-      <span class="tool-rec">Codex 或兩者皆可</span>
-    </div>
-    <div class="decision-row">
-      <span>建立夜間自動批次審圖 pipeline</span>
-      <span class="tool-rec">Codex 更適合</span>
-    </div>
-    <div class="decision-row">
-      <span>需要 GitHub PR 自動提案、CI 自動修復</span>
-      <span class="tool-rec">Codex 更適合</span>
-    </div>
-  </div>
-
-  <p class="substep">建議的自動化審圖系統開發順序（進階）</p>
-  <ol class="phase-list">
-    <li>
-      PDF + OCR
-      <span class="phase-desc">PDF 圖說 + 文字辨識 + AI 初步 review，最快可驗證</span>
-    </li>
-    <li>
-      DXF 幾何解析
-      <span class="phase-desc">ezdxf 解析座標、圖層、設備位置，提供精確數值</span>
-    </li>
-    <li>
-      法規 Rule Engine
-      <span class="phase-desc">建立設置標準規則，自動比對並標記違規項目</span>
-    </li>
-    <li>
-      自動化 Workflow
-      <span class="phase-desc">批次排程、自動產報告、多案件並行處理</span>
-    </li>
-  </ol>
-
-  <p class="substep">參考資料</p>
-  <ul>
-    <li><a href="https://openai.com/codex/" target="_blank" rel="noopener">OpenAI Codex 官網</a></li>
-    <li><a href="https://github.com/openai/codex" target="_blank" rel="noopener">Codex CLI GitHub</a></li>
-    <li><a href="https://ezdxf.readthedocs.io/" target="_blank" rel="noopener">ezdxf 文件</a></li>
-    <li><a href="https://www.gnu.org/software/libredwg/" target="_blank" rel="noopener">LibreDWG</a></li>
-    <li><a href="https://www.opendesign.com/guestfiles/oda_file_converter" target="_blank" rel="noopener">ODA File Converter</a></li>
-  </ul>
-</section>
-
-<!-- Footer -->
-<footer>
-  <p>
-    本教學適用 Claude 桌面應用程式（2025–2026）× Windows 10/11 × 消防製圖工作情境
-  </p>
-  <p style="margin-top:12px;">
-    下載：<a href="https://claude.com/download" target="_blank" rel="noopener">https://claude.com/download</a> &nbsp;·&nbsp;
-    文件：<a href="https://docs.claude.com" target="_blank" rel="noopener">https://docs.claude.com</a> &nbsp;·&nbsp;
-    支援：<a href="https://support.claude.com" target="_blank" rel="noopener">https://support.claude.com</a> &nbsp;·&nbsp;
-    Codex：<a href="https://openai.com/codex/" target="_blank" rel="noopener">https://openai.com/codex/</a>
-  </p>
-  <p style="margin-top:18px;font-size:0.78rem;">
-    ⚠ AI 輔助結果僅供參考，最終消防安全設備審查判斷需由具備資格之消防設備師（士）負責
-  </p>
-  <a href="#" class="back-to-top">↑ 回到頁首</a>
-</footer>
-
-</main>
-
-<!-- ======== 進度列 JS ======== -->
-<script>
-(function () {
-  var steps = Array.prototype.slice.call(document.querySelectorAll('.progress-step'));
-  var lines = Array.prototype.slice.call(document.querySelectorAll('.progress-line'));
-  var mobileCur = document.getElementById('mobile-cur');
-  var mobileTotal = document.getElementById('mobile-total');
-  var mobileFill = document.getElementById('mobile-fill');
-  var sections = [];
-  var sectionIds = [
-    'step-01','step-02','step-03','step-04','step-05',
-    'step-06','step-07','step-08','step-09'
-  ];
-
-  sectionIds.forEach(function (id) {
-    var el = document.getElementById(id);
-    if (el) sections.push(el);
-  });
-
-  if (mobileTotal) mobileTotal.textContent = String(sections.length).padStart(2, '0');
-
-  function updateProgress(activeIdx) {
-    steps.forEach(function (step, i) {
-      step.classList.remove('active', 'passed');
-      if (i < activeIdx) step.classList.add('passed');
-      if (i === activeIdx) step.classList.add('active');
-    });
-    lines.forEach(function (line, i) {
-      line.classList.toggle('passed', i < activeIdx);
-    });
-    if (mobileCur && activeIdx >= 0 && activeIdx < sections.length) {
-      mobileCur.textContent = String(activeIdx + 1).padStart(2, '0');
-    }
-    if (mobileFill && sections.length > 0) {
-      var pct = Math.min(100, Math.round(((activeIdx + 0.5) / sections.length) * 100));
-      mobileFill.style.width = pct + '%';
-    }
-  }
-
-  // IntersectionObserver — 判斷哪個步驟正在視窗中
-  if ('IntersectionObserver' in window && sections.length > 0) {
-    var observerOptions = { rootMargin: '-20% 0px -60% 0px' };
-    var observer = new IntersectionObserver(function (entries) {
-      var visible = entries.filter(function (e) { return e.isIntersecting; });
-      if (visible.length === 0) return;
-      // 取最上方可見者
-      visible.sort(function (a, b) {
-        return a.boundingClientRect.top - b.boundingClientRect.top;
+    <div class="nodes"><a class="node" href="#step-1建立審圖工作資料夾" style="--i:0"><span>1</span>Step 1：建立審圖工作資料夾</a><a class="node" href="#step-2準備三種圖面格式" style="--i:1"><span>2</span>Step 2：準備三種圖面格式</a><a class="node" href="#step-3統一檔案命名" style="--i:2"><span>3</span>Step 3：統一檔案命名</a><a class="node" href="#step-4建立案件說明檔" style="--i:3"><span>4</span>Step 4：建立案件說明檔</a><a class="node" href="#step-5建立常見缺失清單" style="--i:4"><span>5</span>Step 5：建立常見缺失清單</a><a class="node" href="#step-1確認帳號與方案" style="--i:5"><span>6</span>Step 1：確認帳號與方案</a><a class="node" href="#step-2安裝-claude-桌面應用程式" style="--i:6"><span>7</span>Step 2：安裝 Claude 桌面應用程式</a><a class="node" href="#step-3建立-claude-code-專用設定檔" style="--i:7"><span>8</span>Step 3：建立 Claude Code 專用設定檔</a></div>
+  </section>
+  <main>
+    <article class="content-shell">
+      <div class="content"><h1 id="使用-claude-code-與-codex-進行消防圖面輔助審圖">使用 Claude Code 與 Codex 進行消防圖面輔助審圖</h1>
+<h2 id="重要聲明">重要聲明</h2>
+<p>AI 審圖只能作為輔助檢查工具。最終判斷仍需由具備資格與責任的人員確認。AI 輸出的法規條文、距離計算、設備配置意見，均需要回到原圖、原始標註、正式法規與專業判斷進行複核。</p>
+<p>本文件所稱「審圖」指的是「輔助初步檢查」，包含整理圖面、讀取標註、抽取設備座標、檢查常見缺漏、產生審查意見草稿。它不等同於正式審查、簽證或法定審核。</p>
+<h2 id="整體流程總覽">整體流程總覽</h2>
+<div class="table-wrap"><table><thead><tr><th>階段</th><th>目的</th><th>產出</th></tr></thead><tbody><tr><td>前置準備</td><td>建立固定資料夾與檔案格式</td><td>可被 AI 穩定讀取的案件資料夾</td></tr><tr><td>Claude Code 路線</td><td>以互動方式讀圖、問法規、產生審查意見</td><td>適合單案、即時問答、人工主導</td></tr><tr><td>Codex 路線</td><td>建立可重複執行的審圖工作流程</td><td>適合批次案件、腳本分析、自動化輸出</td></tr><tr><td>人工複核</td><td>檢查 AI 結論是否可靠</td><td>最終審查意見修正版</td></tr></tbody></table></div>
+<h2 id="第一部分共同前置準備">第一部分：共同前置準備</h2>
+<h3 id="step-1建立審圖工作資料夾">Step 1：建立審圖工作資料夾</h3>
+<p>在電腦中建立固定工作資料夾。以下以 Windows 為例：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>C:\消防審圖\
+  00_案件說明\
+  01_圖面輸入\
+  02_法規參考\
+  03_AI分析暫存\
+  04_審查報告輸出\
+  05_人工複核\</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>各資料夾用途如下：</p>
+<div class="table-wrap"><table><thead><tr><th>資料夾</th><th>用途</th></tr></thead><tbody><tr><td>00_案件說明</td><td>放置案件基本資料、場所用途、樓層、系統類型、審查範圍</td></tr><tr><td>01_圖面輸入</td><td>放置 DXF、PDF、PNG、JPG 等圖面資料</td></tr><tr><td>02_法規參考</td><td>放置法規摘要、內部審圖規則、常見缺失清單</td></tr><tr><td>03_AI分析暫存</td><td>放置 AI 產生的中間分析資料</td></tr><tr><td>04_審查報告輸出</td><td>放置 AI 產出的審查意見草稿</td></tr><tr><td>05_人工複核</td><td>放置人工修正後的最終版本</td></tr></tbody></table></div>
+<h3 id="step-2準備三種圖面格式">Step 2：準備三種圖面格式</h3>
+<p>建議同一張圖面同時準備三種版本。每種格式的用途不同。</p>
+<div class="table-wrap"><table><thead><tr><th>格式</th><th>用途</th><th>注意事項</th></tr></thead><tbody><tr><td>PDF</td><td>讓 AI 理解圖面整體配置、平面關係、標註內容</td><td>輸出時需保持清晰，避免文字過小</td></tr><tr><td>DXF</td><td>讓 AI 或輔助腳本抽取圖層、圖塊、座標、距離</td><td>需確認單位、比例、圖層命名是否穩定</td></tr><tr><td>PNG 或 JPG</td><td>讓 AI 檢查局部區域、設備配置、標註疑點</td><td>建議針對局部放大截圖，不要只用全圖縮圖</td></tr></tbody></table></div>
+<p>DXF 適合做數值計算。PDF 與截圖適合做空間理解。審圖時兩者要搭配使用。</p>
+<h3 id="step-3統一檔案命名">Step 3：統一檔案命名</h3>
+<p>檔名越穩定，AI 越容易理解案件結構。建議使用以下命名方式：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>案件A_B1_平面圖.pdf
+案件A_B1_消防設備圖.dxf
+案件A_B1_撒水系統局部.png
+案件A_案件說明.md
+案件A_法規摘要.md</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>命名規則：</p>
+<ul><li>開頭使用案件名稱。</li><li>中段標示樓層或區域。</li><li>後段標示圖面類型。</li><li>避免使用「最新版」「最終版」「新檔案」這類不穩定名稱。</li><li>同一案件的所有檔案使用同一個案件代號。</li></ul>
+<h3 id="step-4建立案件說明檔">Step 4：建立案件說明檔</h3>
+<p>在 <code>00_案件說明</code> 中建立 <code>案件說明.md</code>，內容如下：</p>
+<figure class="code-card"><figcaption>markdown</figcaption><pre><code># 案件說明
+
+## 基本資料
+- 案件名稱：
+- 建築用途：
+- 樓層：
+- 審查範圍：
+- 圖面單位：公尺或毫米
+- 圖面比例：
+
+## 本次要檢查的項目
+- 自動撒水設備
+- 火警自動警報設備
+- 緊急廣播設備
+- 室內消防栓
+- 避難逃生動線
+
+## 已知限制
+- 本次只做 AI 輔助初審
+- 法規條文需人工複核
+- 圖面標註模糊處需列入需確認事項</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="step-5建立常見缺失清單">Step 5：建立常見缺失清單</h3>
+<p>在 <code>02_法規參考</code> 中建立 <code>常見缺失清單.md</code>，內容可先使用以下範本：</p>
+<figure class="code-card"><figcaption>markdown</figcaption><pre><code># 消防圖面常見缺失清單
+
+## 自動撒水設備
+- 未標示撒水頭間距
+- 撒水頭與牆面距離未確認
+- 樑下、天花高低差區域未特別檢討
+- 管線與撒水頭位置不一致
+
+## 火警自動警報設備
+- 探測器間距未標示
+- 探測器類型未標示
+- 樓梯間、走廊、機房等區域漏設
+- 探測器位置與燈具、風口、樑位衝突
+
+## 緊急廣播設備
+- 揚聲器位置未標示
+- 樓層或區域音壓覆蓋未說明
+- 分區與廣播迴路未對應
+
+## 室內消防栓
+- 消防栓位置與有效水平距離未檢討
+- 動線轉折處未確認實際可達距離
+- 圖例與設備數量表不一致
+
+## 避難逃生
+- 出口方向未標示
+- 疏散動線不清楚
+- 走廊寬度、門寬、出口數量需確認</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h2 id="第二部分方法一使用-claude-code-審圖">第二部分：方法一，使用 Claude Code 審圖</h2>
+<h3 id="適合使用-claude-code-的情境">適合使用 Claude Code 的情境</h3>
+<p>Claude Code 適合由人主導、一邊看圖一邊問問題的工作方式。若你需要 AI 協助閱讀 PDF、截圖、圖面說明，並用對話方式逐步產生審查意見，Claude Code 是比較直覺的選擇。</p>
+<p>適合情境：</p>
+<ul><li>單一案件的初步審圖。</li><li>需要用中文逐步詢問圖面疑點。</li><li>需要 AI 同時閱讀 PDF、截圖、DXF 與文字說明。</li><li>需要 AI 產生審查意見草稿，再由人工修改。</li><li>不想先建立完整自動化腳本。</li></ul>
+<h3 id="step-1確認帳號與方案">Step 1：確認帳號與方案</h3>
+<ul><li>前往 Claude 官方網站建立或登入帳號。</li><li>確認帳號具備 Claude Code 使用權限。通常可用方案包含 Pro、Max、Team、Enterprise 或 Claude Console 帳號，實際可用狀態以帳號頁面為準。</li><li>登入後先用一般聊天確認帳號可以正常回應。</li></ul>
+<h3 id="step-2安裝-claude-桌面應用程式">Step 2：安裝 Claude 桌面應用程式</h3>
+<p>Windows 使用者可用桌面應用程式作為入口。</p>
+<ul><li>前往 Claude 官方下載頁面。</li><li>下載 Windows 版本。</li><li>執行安裝檔。</li><li>開啟 Claude 應用程式。</li><li>使用你的 Claude 帳號登入。</li><li>在桌面應用程式中找到 Claude Code 入口。</li></ul>
+<p>若你使用 macOS 或 Linux，也可依官方文件使用終端機安裝 Claude Code。安裝方式以官方文件顯示為準。</p>
+<h3 id="step-3建立-claude-code-專用設定檔">Step 3：建立 Claude Code 專用設定檔</h3>
+<p>在 <code>C:\消防審圖</code> 根目錄建立 <code>CLAUDE.md</code>。這個檔案用來告訴 Claude Code 工作背景、回答格式與審圖規則。</p>
+<p>檔案位置：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>C:\消防審圖\CLAUDE.md</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>內容範本：</p>
+<figure class="code-card"><figcaption>markdown</figcaption><pre><code># 消防圖面輔助審查工作設定
+
+## 工作角色
+- 你是消防圖面輔助審查助手。
+- 使用者是消防設備製圖或審圖相關人員。
+- 你的任務是協助整理圖面資訊、發現疑點、產生審查意見草稿。
+
+## 圖面資料
+- 圖面輸入資料夾為：01_圖面輸入
+- 法規與參考資料資料夾為：02_法規參考
+- 分析暫存資料夾為：03_AI分析暫存
+- 審查報告輸出資料夾為：04_審查報告輸出
+
+## 審查範圍
+- 自動撒水設備
+- 火警自動警報設備
+- 緊急廣播設備
+- 室內消防栓
+- 避難逃生動線
+- 圖例、設備數量表、平面圖標註一致性
+
+## 回答規則
+- 全程使用繁體中文。
+- 不確定時標示為「需確認」，不要自行推定。
+- 數值計算需列出資料來源、公式、代入值、計算結果。
+- 法規條文需標示條號或來源，若無法確認條號，請明確說明需要人工查證。
+- 審查意見需分成「符合」「不符合」「需確認」。
+- 輸出表格時需包含：項目、圖面依據、檢查結果、疑義說明、建議處理。
+
+## 限制
+- AI 結果僅供輔助初審。
+- 不得將 AI 結果視為正式審查結論。
+- 不得在沒有依據的狀況下捏造法規條文。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="step-4啟動-claude-code">Step 4：啟動 Claude Code</h3>
+<p>開啟 Claude Code 終端機後，輸入以下指令：</p>
+<figure class="code-card"><figcaption>powershell</figcaption><pre><code>cd C:\消防審圖
+claude</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>看到 Claude Code 進入互動狀態後，先確認它是否能讀取工作資料夾。</p>
+<p>可輸入：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請先讀取目前資料夾結構，列出你看到的資料夾與檔案。先不要進行審圖，也不要修改任何檔案。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="step-5讓-claude-code-建立案件索引">Step 5：讓 Claude Code 建立案件索引</h3>
+<p>輸入以下指令：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請讀取 00_案件說明、01_圖面輸入、02_法規參考 三個資料夾，建立本案檔案索引。請用表格列出每個檔案的檔名、格式、可能用途、需要人工確認的地方。先不要產生審查結論。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>目標產出：</p>
+<div class="table-wrap"><table><thead><tr><th>檔名</th><th>格式</th><th>用途</th><th>需確認事項</th></tr></thead><tbody><tr><td>案件A_B1_消防設備圖.dxf</td><td>DXF</td><td>抽取圖層、圖塊、座標</td><td>單位與比例</td></tr><tr><td>案件A_B1_平面圖.pdf</td><td>PDF</td><td>理解整體配置</td><td>標註是否清晰</td></tr><tr><td>案件A_B1_局部.png</td><td>圖片</td><td>檢查局部設備位置</td><td>截圖範圍是否完整</td></tr></tbody></table></div>
+<h3 id="step-6使用-pdf-或截圖進行視覺審圖">Step 6：使用 PDF 或截圖進行視覺審圖</h3>
+<p>輸入以下指令：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請先閱讀 01_圖面輸入 中的 PDF 與圖片。請根據圖面可見內容，檢查消防設備配置是否有明顯疑點。請只根據你能看見的內容回答。看不清楚或需要原圖確認的項目，請列為「需確認」。
+
+輸出格式：
+1. 圖面整體說明
+2. 已能確認的設備與區域
+3. 明顯疑點
+4. 需放大或補圖的區域
+5. 下一步建議檢查項目</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>這一步用來建立空間理解。不要在這一步要求它做精確距離判斷，除非圖上已清楚標示尺寸。</p>
+<h3 id="step-7使用-dxf-進行座標與距離檢查">Step 7：使用 DXF 進行座標與距離檢查</h3>
+<p>輸入以下指令：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請讀取 01_圖面輸入 中的 DXF 檔案。請先列出圖層名稱、圖塊名稱、文字標註與可辨識的設備符號。接著找出可能代表撒水頭、探測器、消防栓、揚聲器的圖塊或圖層。請不要直接下結論，先列出你判斷的依據。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>確認 AI 找到正確圖層與圖塊後，再輸入：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請針對你已辨識出的撒水頭座標進行距離檢查。請輸出每一組相鄰撒水頭的距離、最大距離、疑似超距的位置。若單位無法確認，請先停止並要求我確認單位。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>如果要檢查探測器，改用：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請針對你已辨識出的探測器座標進行配置檢查。請列出探測器之間的距離、與牆面或區域邊界的關係、疑似漏設區域。無法從 DXF 判斷的內容請列為「需確認」。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="step-8進行法規對照">Step 8：進行法規對照</h3>
+<p>輸入以下指令：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請根據 02_法規參考 中的資料，對照本案圖面檢查結果。請不要引用你無法確認來源的條文。若參考資料不足，請明確列出需要人工查證的條文名稱與問題。
+
+輸出欄位：
+- 審查項目
+- 圖面依據
+- 參考法規或規則
+- 判斷狀態
+- 疑義說明
+- 建議處理</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="step-9輸出審查意見草稿">Step 9：輸出審查意見草稿</h3>
+<p>輸入以下指令：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請將目前審圖結果整理成 Markdown 報告，儲存到 04_審查報告輸出，檔名為「案件A_AI輔助審查意見草稿.md」。
+
+報告結構如下：
+1. 案件摘要
+2. 使用檔案清單
+3. 審查方法
+4. 審查結果總表
+5. 不符合項目
+6. 需確認項目
+7. 建議補圖或補標註事項
+8. AI 限制與人工複核清單</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="step-10人工複核-claude-code-輸出">Step 10：人工複核 Claude Code 輸出</h3>
+<p>人工複核時至少檢查以下內容：</p>
+<ul><li>AI 是否讀到正確圖面。</li><li>DXF 單位是否正確。</li><li>設備圖塊是否被正確辨識。</li><li>PDF 中的標註是否被誤讀。</li><li>法規條文是否真實存在。</li><li>距離計算是否可重算。</li><li>「不符合」與「需確認」是否有明確依據。</li><li>報告語氣是否適合交付內部討論。</li></ul>
+<h2 id="第三部分方法二使用-codex-審圖">第三部分：方法二，使用 Codex 審圖</h2>
+<h3 id="適合使用-codex-的情境">適合使用 Codex 的情境</h3>
+<p>Codex 適合把審圖流程工程化。它能在指定資料夾內讀取檔案、建立輔助腳本、執行 Python 分析、產生報告，也適合批次案件與自動化流程。</p>
+<p>適合情境：</p>
+<ul><li>想建立可重複執行的審圖流程。</li><li>想用 Python 分析 DXF、PDF、圖片。</li><li>需要批次處理多個案件。</li><li>需要將審查結果固定輸出為 Markdown、Excel 或 CSV。</li><li>需要日後擴充為規則引擎或內部工具。</li></ul>
+<h3 id="step-1選擇-codex-使用入口">Step 1：選擇 Codex 使用入口</h3>
+<p>Codex 有兩種常用入口。</p>
+<div class="table-wrap"><table><thead><tr><th>入口</th><th>適合對象</th><th>使用方式</th></tr></thead><tbody><tr><td>Codex App</td><td>新手、需要視覺化管理多個任務者</td><td>安裝 App，登入 ChatGPT 帳號，選擇專案資料夾</td></tr><tr><td>Codex CLI</td><td>熟悉終端機、想做自動化者</td><td>安裝 CLI，在終端機執行 <code>codex</code></td></tr></tbody></table></div>
+<p>建議新手先用 Codex App。需要可重複執行的流程時，再改用 Codex CLI。</p>
+<h3 id="step-2安裝-codex-app">Step 2：安裝 Codex App</h3>
+<ul><li>前往 OpenAI Codex App 官方頁面。</li><li>下載 Windows 或 macOS 版本。</li><li>安裝完成後開啟 Codex App。</li><li>使用 ChatGPT 帳號登入，或依畫面提示使用 API key。</li><li>選擇專案資料夾：<code>C:\消防審圖</code>。</li><li>建立新的任務對話。</li></ul>
+<h3 id="step-3安裝-codex-cli">Step 3：安裝 Codex CLI</h3>
+<p>如果要使用終端機方式，先確認已安裝 Node.js。接著開啟 PowerShell，輸入：</p>
+<figure class="code-card"><figcaption>powershell</figcaption><pre><code>npm i -g @openai/codex</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>安裝完成後進入工作資料夾：</p>
+<figure class="code-card"><figcaption>powershell</figcaption><pre><code>cd C:\消防審圖
+codex</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>首次啟動時，依畫面提示登入 ChatGPT 帳號或 API key。</p>
+<p>Windows 使用者可使用原生 Codex App 或 CLI。若你的工作流程需要 Linux 工具，可改用 WSL2。新手不建議一開始就使用 WSL2，除非公司工具鏈已經建在 Linux 環境。</p>
+<h3 id="step-4建立-codex-專用設定檔-agentsmd">Step 4：建立 Codex 專用設定檔 AGENTS.md</h3>
+<p>Codex 會讀取專案中的 <code>AGENTS.md</code> 作為工作指令。在 <code>C:\消防審圖</code> 根目錄建立此檔案。</p>
+<p>檔案位置：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>C:\消防審圖\AGENTS.md</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>內容範本：</p>
+<figure class="code-card"><figcaption>markdown</figcaption><pre><code># 消防圖面輔助審查專案指令
+
+## 專案目標
+本專案用於消防圖面 AI 輔助初審。請協助讀取 DXF、PDF、圖片與案件說明，產生可供人工複核的審查意見草稿。
+
+## 工作規則
+- 全程使用繁體中文。
+- 不要直接把 AI 判斷視為正式結論。
+- 不確定的內容標示為「需確認」。
+- 不得捏造法規條文。
+- 距離與數量檢查需要列出計算過程。
+- 修改或新增檔案前，先說明你要做什麼。
+- 不要刪除原始圖面檔案。
+
+## 資料夾規則
+- 00_案件說明：案件背景與審查範圍。
+- 01_圖面輸入：原始圖面與截圖。
+- 02_法規參考：法規摘要與常見缺失。
+- 03_AI分析暫存：中間產物。
+- 04_審查報告輸出：AI 產出的報告草稿。
+- 05_人工複核：人工修正後版本。
+
+## 建議分析流程
+1. 先建立檔案索引。
+2. 先分析 PDF 與圖片，理解圖面配置。
+3. 再分析 DXF，抽取圖層、圖塊、文字與座標。
+4. 將視覺判讀與座標資料互相對照。
+5. 產生審查意見草稿。
+6. 列出需人工複核項目。
+
+## 報告格式
+報告需包含：案件摘要、使用檔案、分析方法、審查結果總表、不符合項目、需確認項目、人工複核清單。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="step-5讓-codex-建立工具環境">Step 5：讓 Codex 建立工具環境</h3>
+<p>Codex 的優勢在於能建立與執行輔助腳本。第一次使用時，先要求它建立 Python 分析環境。</p>
+<p>在 Codex App 或 Codex CLI 中輸入：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請讀取本專案的 AGENTS.md。接著檢查目前資料夾結構。請建立一個 Python 虛擬環境與 requirements.txt，用於分析 DXF、PDF、圖片與輸出表格。先提出計畫，經我同意後再新增檔案。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>若你同意它建立環境，讓 Codex 執行類似以下流程：</p>
+<figure class="code-card"><figcaption>powershell</figcaption><pre><code>python -m venv .venv
+.venv\Scripts\activate
+pip install ezdxf pymupdf pandas openpyxl pillow
+pip freeze &gt; requirements.txt</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>套件用途：</p>
+<div class="table-wrap"><table><thead><tr><th>套件</th><th>用途</th></tr></thead><tbody><tr><td>ezdxf</td><td>讀取 DXF 圖層、圖塊、座標、文字</td></tr><tr><td>pymupdf</td><td>讀取 PDF 文字與渲染頁面圖片</td></tr><tr><td>pandas</td><td>整理表格資料</td></tr><tr><td>openpyxl</td><td>輸出 Excel 報表</td></tr><tr><td>pillow</td><td>處理圖片</td></tr></tbody></table></div>
+<h3 id="step-6讓-codex-建立-dxf-分析腳本">Step 6：讓 Codex 建立 DXF 分析腳本</h3>
+<p>輸入以下指令：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請在 scripts 資料夾建立 analyze_dxf.py。功能如下：
+1. 讀取 01_圖面輸入 中的 DXF 檔。
+2. 輸出圖層清單。
+3. 輸出圖塊名稱清單。
+4. 輸出 TEXT 與 MTEXT 文字內容。
+5. 嘗試找出名稱可能與撒水頭、探測器、消防栓、揚聲器相關的圖塊。
+6. 將結果輸出到 03_AI分析暫存/dxf_分析結果.csv 與 03_AI分析暫存/dxf_分析摘要.md。
+
+請先建立腳本，不要刪除任何原始檔案。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>建立後要求 Codex 執行：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請執行 scripts/analyze_dxf.py，檢查輸出結果，並用繁體中文摘要說明你找到的圖層、圖塊與疑似消防設備。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="step-7讓-codex-建立-pdf-與圖片分析流程">Step 7：讓 Codex 建立 PDF 與圖片分析流程</h3>
+<p>輸入以下指令：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請在 scripts 資料夾建立 analyze_pdf_images.py。功能如下：
+1. 讀取 01_圖面輸入 中的 PDF、PNG、JPG。
+2. 從 PDF 抽取可讀文字。
+3. 將 PDF 每頁輸出成圖片，存到 03_AI分析暫存/pdf_pages。
+4. 建立每個檔案的摘要清單。
+5. 將結果輸出到 03_AI分析暫存/pdf_image_分析摘要.md。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>執行後輸入：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請根據 pdf_image_分析摘要.md 與輸出的頁面圖片，整理本案圖面可見內容。請列出你能確認的內容與需要人工放大確認的區域。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="step-8讓-codex-建立審圖規則表">Step 8：讓 Codex 建立審圖規則表</h3>
+<p>在 <code>02_法規參考</code> 中建立 <code>審圖規則表.csv</code>，欄位建議如下：</p>
+<figure class="code-card"><figcaption>csv</figcaption><pre><code>系統,檢查項目,檢查依據,判斷方式,需要的圖面資料,人工複核重點
+自動撒水設備,撒水頭間距,依現行設置標準與案件條件確認,比對座標距離與圖面標註,DXF與PDF,確認場所分類與單位
+火警自動警報設備,探測器配置,依現行設置標準與案件條件確認,比對區域覆蓋與設備間距,PDF與DXF,確認探測器種類與天花條件
+室內消防栓,有效水平距離,依現行設置標準與案件條件確認,比對位置與動線,PDF,確認實際行走路徑
+緊急廣播設備,揚聲器配置,依現行設置標準與案件條件確認,比對分區與配置,PDF,確認音壓與分區設計</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>接著在 Codex 中輸入：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請讀取 02_法規參考/審圖規則表.csv，將它作為本次審圖規則。請不要自行新增不存在的條文。若規則表不足以判斷，請輸出「需確認」。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="step-9讓-codex-產生審查報告">Step 9：讓 Codex 產生審查報告</h3>
+<p>輸入以下指令：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請整合以下資料，產生本案 AI 輔助審查意見草稿：
+1. 00_案件說明/案件說明.md
+2. 03_AI分析暫存/dxf_分析摘要.md
+3. 03_AI分析暫存/pdf_image_分析摘要.md
+4. 02_法規參考/審圖規則表.csv
+5. 02_法規參考/常見缺失清單.md
+
+請輸出 Markdown 報告到 04_審查報告輸出/案件A_Codex輔助審查意見草稿.md。
+
+報告需包含：
+- 案件摘要
+- 使用資料
+- 分析方法
+- 審查結果總表
+- 不符合項目
+- 需確認項目
+- 建議補圖或補標註事項
+- 人工複核清單</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="step-10讓-codex-產生-excel-審查表">Step 10：讓 Codex 產生 Excel 審查表</h3>
+<p>若需要 Excel 版本，輸入：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請將 Markdown 報告中的審查結果總表另存為 Excel，輸出到 04_審查報告輸出/案件A_Codex審查結果表.xlsx。欄位包含：編號、系統、審查項目、圖面依據、判斷狀態、疑義說明、建議處理、人工複核結果。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="step-11批次審圖流程">Step 11：批次審圖流程</h3>
+<p>若有多個案件，建議使用以下資料夾結構：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>C:\消防審圖批次\
+  案件A\
+  案件B\
+  案件C\</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>每個案件資料夾內都使用同一套結構：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>00_案件說明\
+01_圖面輸入\
+02_法規參考\
+03_AI分析暫存\
+04_審查報告輸出\
+05_人工複核\
+AGENTS.md</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<p>在 Codex 中輸入：</p>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請建立一個批次處理流程。逐一處理每個案件資料夾，對每案執行 DXF 分析、PDF 圖面摘要、審查報告輸出。每處理一案都要產生獨立報告，不要把不同案件的結果混在一起。執行前先列出計畫，經我確認後再開始。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="step-12人工複核-codex-輸出">Step 12：人工複核 Codex 輸出</h3>
+<p>Codex 可能會建立腳本與中間檔。人工複核時需檢查：</p>
+<ul><li>腳本是否讀取正確資料夾。</li><li>有沒有誤刪或覆蓋原始檔。</li><li>DXF 單位與比例是否正確。</li><li>圖塊名稱是否被誤判為設備。</li><li>PDF 文字抽取是否漏字或亂碼。</li><li>Excel 表格欄位是否完整。</li><li>報告中的法規依據是否需要補充正式條文。</li><li>批次處理時各案件結果是否混淆。</li></ul>
+<h2 id="第四部分claude-code-與-codex-的選擇建議">第四部分：Claude Code 與 Codex 的選擇建議</h2>
+<div class="table-wrap"><table><thead><tr><th>使用情境</th><th>建議工具</th><th>原因</th></tr></thead><tbody><tr><td>單案審圖、邊看邊問</td><td>Claude Code</td><td>對話式操作較直覺</td></tr><tr><td>PDF 與截圖閱讀</td><td>Claude Code</td><td>適合人工引導式視覺檢查</td></tr><tr><td>DXF 圖層與座標抽取</td><td>Codex</td><td>可建立腳本反覆分析</td></tr><tr><td>批次案件</td><td>Codex</td><td>可建立自動化流程</td></tr><tr><td>產生固定格式 Excel</td><td>Codex</td><td>可用 pandas 與 openpyxl 輸出</td></tr><tr><td>快速產生審查意見草稿</td><td>Claude Code</td><td>互動速度快，人工掌控強</td></tr><tr><td>建立長期內部審圖工具</td><td>Codex</td><td>適合規則表、腳本、版本控管</td></tr></tbody></table></div>
+<p>建議實務流程：</p>
+<ul><li>先用 Claude Code 對單案做人工引導式初審。</li><li>將穩定的檢查規則整理成表格。</li><li>再用 Codex 建立可重複執行的分析腳本。</li><li>最後讓 Codex 批次輸出報告與 Excel。</li><li>所有結果都進入人工複核。</li></ul>
+<h2 id="第五部分可直接複製使用的提示詞">第五部分：可直接複製使用的提示詞</h2>
+<h3 id="提示詞一建立檔案索引">提示詞一：建立檔案索引</h3>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請讀取目前案件資料夾，列出所有檔案。請依照檔案格式分類為案件說明、圖面、法規參考、分析暫存、輸出報告。請先不要審圖，只建立索引。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="提示詞二pdf-與截圖初步審圖">提示詞二：PDF 與截圖初步審圖</h3>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請根據 PDF 與截圖進行初步審圖。請只根據可見內容判斷，不清楚的地方列為「需確認」。請輸出圖面摘要、設備配置疑點、需要補圖的區域。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="提示詞三dxf-座標檢查">提示詞三：DXF 座標檢查</h3>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請讀取 DXF 檔案，列出圖層、圖塊、文字標註與可能的消防設備座標。請先確認單位，再進行距離計算。若單位無法確認，請停止並要求人工確認。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="提示詞四法規對照">提示詞四：法規對照</h3>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請根據法規參考資料與常見缺失清單，對照本案圖面分析結果。請不要引用無法確認的條文。若資料不足，請列為「需確認」。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="提示詞五輸出審查報告">提示詞五：輸出審查報告</h3>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請將目前分析結果整理成審查意見草稿。格式包含案件摘要、使用資料、分析方法、審查結果總表、不符合項目、需確認項目、建議補圖事項、人工複核清單。請輸出為 Markdown 檔案。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="提示詞六codex-建立分析腳本">提示詞六：Codex 建立分析腳本</h3>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請建立 Python 腳本分析 DXF、PDF 與圖片。腳本需將中間結果輸出到 03_AI分析暫存，最終報告輸出到 04_審查報告輸出。建立檔案前先提出計畫，不要刪除原始圖面。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h2 id="第六部分審查報告建議格式">第六部分：審查報告建議格式</h2>
+<figure class="code-card"><figcaption>markdown</figcaption><pre><code># 案件A AI 輔助審查意見草稿
+
+## 一、案件摘要
+
+## 二、使用資料
+
+| 檔名 | 格式 | 用途 |
+|---|---|---|
+
+## 三、分析方法
+
+## 四、審查結果總表
+
+| 編號 | 系統 | 審查項目 | 圖面依據 | 判斷狀態 | 疑義說明 | 建議處理 |
+|---|---|---|---|---|---|---|
+
+## 五、不符合項目
+
+## 六、需確認項目
+
+## 七、建議補圖或補標註事項
+
+## 八、人工複核清單
+
+## 九、AI 限制聲明</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h2 id="第七部分常見錯誤與處理方式">第七部分：常見錯誤與處理方式</h2>
+<h3 id="問題一ai-把-dxf-當成看得見的圖">問題一：AI 把 DXF 當成看得見的圖</h3>
+<p>處理方式：提醒 AI，DXF 主要用於抽取圖層、圖塊、座標與文字。空間配置需搭配 PDF 或截圖判讀。</p>
+<h3 id="問題二ai-直接下法規結論">問題二：AI 直接下法規結論</h3>
+<p>處理方式：要求 AI 標示依據來源。無來源時列為「需確認」。</p>
+<h3 id="問題三dxf-單位錯誤">問題三：DXF 單位錯誤</h3>
+<p>處理方式：在案件說明中明確寫出單位。執行距離計算前，要求 AI 先確認單位。</p>
+<h3 id="問題四設備圖塊辨識錯誤">問題四：設備圖塊辨識錯誤</h3>
+<p>處理方式：要求 AI 先列出圖塊名稱與判斷依據。人工確認後再進行數量與距離計算。</p>
+<h3 id="問題五pdf-標註太小">問題五：PDF 標註太小</h3>
+<p>處理方式：輸出局部放大截圖。每張截圖只包含一個區域或一個系統，避免全圖縮圖。</p>
+<h3 id="問題六批次審圖結果混在一起">問題六：批次審圖結果混在一起</h3>
+<p>處理方式：每個案件使用獨立資料夾。輸出檔名必須包含案件代號。</p>
+<h2 id="第八部分最小可行工作流程">第八部分：最小可行工作流程</h2>
+<p>若只想先快速開始，可依以下流程執行。</p>
+<h3 id="claude-code-最小流程">Claude Code 最小流程</h3>
+<ul><li>建立 <code>C:\消防審圖</code>。</li><li>放入 PDF、DXF、局部截圖。</li><li>建立 <code>CLAUDE.md</code>。</li><li>執行：</li></ul>
+<figure class="code-card"><figcaption>powershell</figcaption><pre><code>cd C:\消防審圖
+claude</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<ul><li>輸入：</li></ul>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請先建立本案檔案索引，再根據 PDF、截圖與 DXF 做消防圖面輔助初審。請將結果整理成 Markdown 報告，並列出人工複核清單。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h3 id="codex-最小流程">Codex 最小流程</h3>
+<ul><li>建立 <code>C:\消防審圖</code>。</li><li>放入 PDF、DXF、局部截圖。</li><li>建立 <code>AGENTS.md</code>。</li><li>安裝並開啟 Codex App，選擇 <code>C:\消防審圖</code>。</li><li>或使用 CLI：</li></ul>
+<figure class="code-card"><figcaption>powershell</figcaption><pre><code>cd C:\消防審圖
+codex</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<ul><li>輸入：</li></ul>
+<figure class="code-card"><figcaption>text</figcaption><pre><code>請讀取 AGENTS.md，建立 DXF、PDF、圖片分析流程，輸出審查意見草稿。請先提出計畫，經我確認後再建立或執行腳本。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+<h2 id="官方文件參考">官方文件參考</h2>
+<ul><li>Claude Code：Claude 官方產品與下載頁面。</li><li>Codex CLI：OpenAI Developers Codex CLI 文件。</li><li>Codex App：OpenAI Developers Codex App 文件。</li><li>Codex AGENTS.md：OpenAI Developers Custom instructions with AGENTS.md 文件。</li></ul>
+<h2 id="結語">結語</h2>
+<p>Claude Code 的核心價值是互動式審圖。Codex 的核心價值是流程化與自動化。兩者都能用於消防圖面輔助初審，差異在工作型態。日常單案可先用 Claude Code，穩定規則與批次案件再交給 Codex。任何 AI 輸出都需保留人工複核程序。</p></div>
+    </article>
+    <aside class="callout">提醒：本頁保留原 Markdown 的限制聲明與人工複核流程。任何法規條文、距離計算與設備配置判斷，都應回到正式資料與專業人員確認。</aside>
+  </main>
+  <footer class="footer">AI 輔助初審結果僅供內部檢查與討論，正式判斷仍需人工複核。</footer>
+  <script>
+    document.querySelectorAll(".copy-button").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const code = button.parentElement.querySelector("code")?.innerText || "";
+        try {
+          await navigator.clipboard.writeText(code);
+          button.textContent = "Copied";
+          setTimeout(() => { button.textContent = "Copy"; }, 1400);
+        } catch {
+          button.textContent = "Select";
+          setTimeout(() => { button.textContent = "Copy"; }, 1400);
+        }
       });
-      var topId = visible[0].target.id;
-      var idx = sectionIds.indexOf(topId);
-      if (idx >= 0) updateProgress(idx);
-    }, observerOptions);
-
-    sections.forEach(function (el) { observer.observe(el); });
-  }
-
-  // 點擊進度列項目 → 平滑捲動
-  steps.forEach(function (step) {
-    step.addEventListener('click', function (e) {
-      e.preventDefault();
-      var targetId = step.getAttribute('href');
-      if (!targetId) return;
-      var target = document.querySelector(targetId);
-      if (!target) return;
-      var top = target.getBoundingClientRect().top + window.pageYOffset - 70;
-      window.scrollTo({ top: top, behavior: 'smooth' });
     });
-  });
-
-  // 回到頁首
-  var backBtn = document.querySelector('.back-to-top');
-  if (backBtn) {
-    backBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-})();
-</script>
-
+  </script>
 </body>
 </html>
