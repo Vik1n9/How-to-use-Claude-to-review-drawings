@@ -6,8 +6,9 @@
 
 | # | 指南 | 一句話介紹 | 線上閱讀 |
 |---|------|-----------|---------|
-| 1 | **從零開始前進美股** | 台灣投資人用複委託買美股的入門手冊 | [開啟](https://htmlpreview.github.io/?https://github.com/vik1n9/how-to-use-claude-to-review-drawings/blob/main/us-stocks-guide.html) |
-| 2 | **Claude AI 審圖指南** | 消防製圖人員用 Claude AI 輔助審圖 | [開啟](https://htmlpreview.github.io/?https://github.com/vik1n9/how-to-use-claude-to-review-drawings/blob/main/guide.html) |
+| 1 | **從零開始前進美股** | 台灣投資人用複委託買美股的入門手冊 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/us-stocks-guide.html) |
+| 2 | **Claude AI 審圖指南** | 消防製圖人員用 Claude AI 輔助審圖 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/guide.html) |
+| 3 | **製作幕後：用 AI 打造一頁式指南** | 從建倉、發想計畫、調用技能外掛、來回修正到推上 GitHub 的完整流程 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/making-of.html) |
 
 ---
 
@@ -18,7 +19,7 @@
 | 項目 | 內容 |
 |------|------|
 | 適用對象 | 熟悉台股、第一次接觸美股的社會人士，無投資經驗亦可閱讀 |
-| 線上閱讀 | [開啟教學頁面](https://htmlpreview.github.io/?https://github.com/vik1n9/how-to-use-claude-to-review-drawings/blob/main/us-stocks-guide.html) |
+| 線上閱讀 | [開啟教學頁面](https://vik1n9.github.io/One-Page-Beginners-Guide/us-stocks-guide.html) |
 | 檔案 | `us-stocks-guide.html` |
 | 資料日期 | 2026-06-09 |
 
@@ -42,7 +43,7 @@
 | 項目 | 內容 |
 |------|------|
 | 適用對象 | 消防設備製圖與審圖相關人員，無 AI 使用經驗亦可操作 |
-| 線上閱讀 | [開啟教學頁面](https://htmlpreview.github.io/?https://github.com/vik1n9/how-to-use-claude-to-review-drawings/blob/main/guide.html) |
+| 線上閱讀 | [開啟教學頁面](https://vik1n9.github.io/One-Page-Beginners-Guide/guide.html) |
 | 檔案 | `guide.html` |
 | 系統需求 | Windows 10 / 11、穩定網路、Claude Pro 訂閱（USD $20/月） |
 
@@ -62,11 +63,35 @@
 
 ---
 
+## 3. 製作幕後：用 AI 打造一頁式指南並推上 GitHub
+
+> 從一句話需求，到一個推上線的網站
+
+| 項目 | 內容 |
+|------|------|
+| 適用對象 | 想了解「這些指南是怎麼用 AI 做出來的」的一般使用者 |
+| 線上閱讀 | [開啟教學頁面](https://vik1n9.github.io/One-Page-Beginners-Guide/making-of.html) |
+| 檔案 | `making-of.html` |
+
+**內容重點**（六個步驟）
+
+- **建立倉庫** — GitHub 註冊、創建公開倉庫、放入 README
+- **發想與計畫** — 先讓 AI 寫計畫、在關鍵分岔點提問，確認後才動工
+- **技能與外掛** — 誠實列出本次調用的工具，並標示「官方／第三方」；所有第三方工具皆附**出處連結**
+- **溝通與修正** — 「描述 → 實作 → 截圖驗證 → 修正」的循環，含真實 bug 修正案例
+- **推送與展示** — `git push` 到 main、啟用 GitHub Pages 取得可分享網址
+- **完成** — 可重複套用的檢查清單
+
+> ⚠️ 本頁為製作流程示意，各工具與 GitHub 介面可能隨版本更新，實際操作請以官方文件為準。
+
+---
+
 ## 檔案說明
 
 | 檔案 | 說明 |
 |------|------|
 | `us-stocks-guide.html` | 美股複委託入門互動式教學頁面 |
 | `guide.html` | 消防審圖完整互動式教學頁面（七章 17 步驟） |
+| `making-of.html` | 製作幕後：用 AI 打造一頁式指南並推上 GitHub 的流程教學 |
 | `CLAUDE.md` | 本倉庫的 Claude 協作行為準則 |
 | `README.md` | 本說明文件 |
