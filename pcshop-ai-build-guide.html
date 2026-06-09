@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="以 PCShop 電腦組裝估價系統為案例，教初學者如何和 Codex 協作：從發想、建立計畫、建構相容性過濾、設計手機優先版面，到 GitHub 推送與 Pages 展示。">
-<title>PCShop 專案製作流程：過濾建構、版面設計與 Codex 上線</title>
+<meta name="description" content="以 PCShop 電腦組裝估價系統為案例，教初學者如何和 Codex 協作：從發想、建立計畫、建構相容性過濾、設計手機優先版面、建立店家後台、同步文件版本，到 GitHub 推送與 Pages 展示。">
+<title>PCShop 專案製作流程：過濾、版面、後台與維護紀律</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -203,6 +203,8 @@ footer a{color:var(--gold)}
       <a href="#plan">計畫</a>
       <a href="#filter">過濾</a>
       <a href="#layout">版面</a>
+      <a href="#admin">後台</a>
+      <a href="#maintain">維護</a>
       <a href="#tools">工具</a>
       <a href="#iterate">修正</a>
       <a href="#ship">推送</a>
@@ -221,10 +223,12 @@ footer a{color:var(--gold)}
       <a href="#plan"><span class="n">02</span>計畫</a>
       <a href="#filter"><span class="n">03</span>過濾建構</a>
       <a href="#layout"><span class="n">04</span>版面設計</a>
-      <a href="#tools"><span class="n">05</span>技能外掛</a>
-      <a href="#iterate"><span class="n">06</span>溝通修正</a>
-      <a href="#ship"><span class="n">07</span>推送展示</a>
-      <a href="#done"><span class="n">08</span>完成</a>
+      <a href="#admin"><span class="n">05</span>店家後台</a>
+      <a href="#maintain"><span class="n">06</span>維護紀律</a>
+      <a href="#tools"><span class="n">07</span>技能外掛</a>
+      <a href="#iterate"><span class="n">08</span>溝通修正</a>
+      <a href="#ship"><span class="n">09</span>推送展示</a>
+      <a href="#done"><span class="n">10</span>完成</a>
     </nav>
   </div>
 </header>
@@ -416,9 +420,86 @@ footer a{color:var(--gold)}
   </div>
 </section>
 
+<section id="admin">
+  <div class="wrap">
+    <div class="eyebrow-part" data-reveal><span class="pnum">05</span><span class="pname">店家後台</span></div>
+    <h2 class="h2" data-reveal>前台給客人用，<br>後台給店家維護資料。</h2>
+    <p class="lead" data-reveal data-d="1">PCShop 不只是一個展示頁，它要讓店家能維護商品。後台的設計原則很清楚：不要把管理入口放在顧客商店頁；入口只寫在 README 或維護文件裡，前台維持乾淨的估價流程。</p>
+
+    <div class="grid-2 block">
+      <div class="steps" data-reveal>
+        <div class="stepc">
+          <div class="num">1</div>
+          <div><h4>保留登入接口</h4><p>MVP 階段可以暫時不要求帳密，但仍保留 login / session API。未來要接真實帳密時，不需要重做整個管理流程。</p></div>
+        </div>
+        <div class="stepc">
+          <div class="num">2</div>
+          <div><h4>搜尋、修改、寫回 CSV</h4><p>後台不是假的表單。新增、編輯、刪除產品後，要真正寫回 <span class="mono">data/products.csv</span>，讓前台下次讀到同一份資料。</p></div>
+        </div>
+        <div class="stepc">
+          <div class="num">3</div>
+          <div><h4>入口只給維護者</h4><p>顧客不需要看到「管理後台」。把 <span class="mono">admin.html</span> 的使用方式放在 README，商店頁不放按鈕。</p></div>
+        </div>
+      </div>
+      <div class="card" data-reveal data-d="1">
+        <h4>後台最小架構</h4>
+        <p><span class="mono">server.js</span> 提供 session 與 <span class="mono">/api/products</span> CRUD；<span class="mono">admin.html</span> 是維護畫面；<span class="mono">admin.js</span> 處理搜尋與表單；<span class="mono">admin.css</span> 維持後台介面清楚。</p>
+        <p class="hint">搜尋欄位應包含 ID、品名、分類、庫存、價格、tags、badges、restriction、tone，讓店家可以快速找到要改的資料列。</p>
+      </div>
+    </div>
+
+    <div class="code block" data-reveal>
+      <div class="codehead"><span>後台資料流</span><button class="cp" type="button">複製</button></div>
+      <pre>admin.html → admin.js → /api/products → server.js
+                                      ↓
+                              data/products.csv
+                                      ↓
+                              index.html 前台重新讀取</pre>
+    </div>
+
+    <div class="card block" data-reveal>
+      <h4>教學重點</h4>
+      <p>後台不是「多做一頁」而已，它是營運入口。初學者要學會區分顧客路徑與維護者路徑：顧客只看到估價；店家才看到資料管理。</p>
+    </div>
+  </div>
+</section>
+
+<section id="maintain" class="section-tint">
+  <div class="wrap">
+    <div class="eyebrow-part" data-reveal><span class="pnum">06</span><span class="pname">維護紀律</span></div>
+    <h2 class="h2" data-reveal>每次改功能，<br>文件也要跟著升版。</h2>
+    <p class="lead" data-reveal data-d="1">PCShop 的長期維護靠兩份文件撐住：<span class="mono">PRODUCT.md</span> 說明產品意圖與體驗原則；<span class="mono">規格書.txt</span> 說明功能、資料、相容性、UI 與後台規則。只改程式不改文件，幾次之後專案就會失去方向。</p>
+
+    <div class="block">
+      <h3 class="subhead" data-reveal>什麼變更要同步文件？</h3>
+      <table class="mini-table" data-reveal>
+        <thead><tr><th>變更類型</th><th>同步位置</th><th>原因</th></tr></thead>
+        <tbody>
+          <tr><td>產品目的、使用者體驗、設計原則</td><td><code>PRODUCT.md</code></td><td>讓後續設計知道產品為誰服務、哪些體驗不能破壞。</td></tr>
+          <tr><td>相容性、過濾、資料結構、後台行為</td><td><code>規格書.txt</code></td><td>讓功能邏輯有可追蹤的規格來源。</td></tr>
+          <tr><td>功能同時影響體驗與邏輯</td><td>兩份都更新</td><td>例如 3DMark 預覽、估價單輸出、後台 CRUD，都同時影響產品與實作。</td></tr>
+          <tr><td>維護者入口或操作方式</td><td><code>README.md</code></td><td>讓維護者知道怎麼啟動、測試、進入後台，但不打擾顧客前台。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="flowgrid block" data-reveal>
+      <div class="flowcard"><strong>1. 改功能前</strong><span>先讀 <span class="mono">PRODUCT.md</span>、<span class="mono">規格書.txt</span>、<span class="mono">AGENTS.md</span>，確認約束。</span></div>
+      <div class="flowcard"><strong>2. 改功能時</strong><span>程式與文件同一批處理，不把規格更新留到「之後再補」。</span></div>
+      <div class="flowcard"><strong>3. 驗證時</strong><span>用本機頁面、CSV 檢查、Node 語法檢查或瀏覽器測試留下證據。</span></div>
+      <div class="flowcard"><strong>4. 推送時</strong><span>只提交本次相關檔案，避免把別人的未完成修改一起包進 commit。</span></div>
+    </div>
+
+    <div class="card block" data-reveal>
+      <h4>版本號的作用</h4>
+      <p>版本與日期不是形式主義。它讓維護者知道：現在這份程式碼對應哪一版產品概念、哪一版功能規格。當未來出現衝突，就能回頭查「這個行為是在哪次決策被寫進去的」。</p>
+    </div>
+  </div>
+</section>
+
 <section id="tools">
   <div class="wrap">
-    <div class="eyebrow-part" data-reveal><span class="pnum">05</span><span class="pname">技能與外掛</span></div>
+    <div class="eyebrow-part" data-reveal><span class="pnum">07</span><span class="pname">技能與外掛</span></div>
     <h2 class="h2" data-reveal>這次實際使用了哪些工具。</h2>
     <p class="lead" data-reveal data-d="1">以下區分「官方」、「本地專案規則」與「第三方」。第三方或非 OpenAI 官方項目都附出處，方便讀者自己找到工具，而不是只看到一串神祕名詞。</p>
 
@@ -500,7 +581,7 @@ footer a{color:var(--gold)}
 
 <section id="iterate" class="section-tint">
   <div class="wrap">
-    <div class="eyebrow-part" data-reveal><span class="pnum">06</span><span class="pname">溝通與修正</span></div>
+    <div class="eyebrow-part" data-reveal><span class="pnum">08</span><span class="pname">溝通與修正</span></div>
     <h2 class="h2" data-reveal>把 AI 當成同事，不是許願池。</h2>
     <p class="lead" data-reveal data-d="1">修正時最有效的做法，是把問題描述成可觀察狀態，然後要求 AI 實測。不要只說「幫我美化」，而是說「手機版工具卡太擠，請縮小內距並用瀏覽器確認沒有橫向溢位」。</p>
 
@@ -528,7 +609,7 @@ footer a{color:var(--gold)}
 
 <section id="ship">
   <div class="wrap">
-    <div class="eyebrow-part" data-reveal><span class="pnum">07</span><span class="pname">推送與展示</span></div>
+    <div class="eyebrow-part" data-reveal><span class="pnum">09</span><span class="pname">推送與展示</span></div>
     <h2 class="h2" data-reveal>從本機檔案，變成可分享網址。</h2>
     <p class="lead" data-reveal data-d="1">一頁式指南的優點是交付單純：只要 HTML 沒壞、README 有入口、GitHub Pages 已啟用，讀者就能用網址直接閱讀。</p>
 
@@ -570,13 +651,15 @@ git push origin main</pre>
 
 <section id="done" class="finale">
   <div class="wrap">
-    <div class="eyebrow-part" data-reveal><span class="pnum">08</span><span class="pname">完成</span></div>
+    <div class="eyebrow-part" data-reveal><span class="pnum">10</span><span class="pname">完成</span></div>
     <h2 class="h2" data-reveal>完成不是「寫完」，<br>而是可閱讀、可驗證、可追蹤。</h2>
     <div class="checklist block" data-reveal>
       <div class="check"><span class="box">✓</span><span>有清楚的產品起點：手機優先、避免相容性錯誤、本地店家可用。</span></div>
       <div class="check"><span class="box">✓</span><span>有主編計畫：先確認目標、讀者、素材、風格與驗收標準。</span></div>
       <div class="check"><span class="box">✓</span><span>有過濾引擎教學：欄位、約束表、智慧過濾與衝突回報都能說清楚。</span></div>
       <div class="check"><span class="box">✓</span><span>有版面設計教學：從手機使用姿勢推導出進度、挑選與估價單三個主區。</span></div>
+      <div class="check"><span class="box">✓</span><span>有店家後台教學：管理入口不放前台，CRUD 真正寫回產品資料。</span></div>
+      <div class="check"><span class="box">✓</span><span>有維護紀律：功能變更同步 PRODUCT.md、規格書.txt、README 與版本日期。</span></div>
       <div class="check"><span class="box">✓</span><span>有工具揭露：官方、本地、第三方來源分清楚。</span></div>
       <div class="check"><span class="box">✓</span><span>有互動教學：Prompt 對照、流程步驟、複製指令、完成清單。</span></div>
       <div class="check"><span class="box">✓</span><span>有上線流程：本機驗證、commit、push、GitHub Pages 展示。</span></div>
