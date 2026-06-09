@@ -9,6 +9,7 @@
 | 1 | **從零開始前進美股** | 台灣投資人用複委託買美股的入門手冊 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/us-stocks-guide.html) |
 | 2 | **Claude AI 審圖指南** | 消防製圖人員用 Claude AI 輔助審圖 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/guide.html) |
 | 3 | **製作幕後：用 AI 打造一頁式指南** | 從建倉、發想計畫、調用技能外掛、來回修正到推上 GitHub 的完整流程 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/making-of.html) |
+| 4 | **PCShop 專案製作流程** | 以電腦組裝估價系統為例，學會用 Codex 從發想到推送展示 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/pcshop-ai-build-guide.html) |
 
 ---
 
@@ -90,6 +91,31 @@
 
 ---
 
+## 4. PCShop 專案製作流程：用 Codex 從發想到上線
+
+> 以手機優先電腦組裝估價系統為案例，學會把模糊想法變成可執行、可驗證、可推送的 AI 協作流程
+
+| 項目 | 內容 |
+|------|------|
+| 適用對象 | 想用 Codex 製作真實專案、但不確定如何規劃與溝通的初學者 |
+| 線上閱讀 | [開啟教學頁面](https://vik1n9.github.io/One-Page-Beginners-Guide/pcshop-ai-build-guide.html) |
+| 檔案 | `pcshop-ai-build-guide.html` |
+| 系統需求 | 任何現代瀏覽器即可閱讀；實作需 GitHub 帳號與 Codex |
+| 資料日期 | 2026-06-10 |
+
+**內容重點**（六個步驟）
+
+- **發想與定位** — 從「傳統電腦估價網站手機難用、相容性容易選錯」轉成產品任務
+- **主編計畫** — 先要求 AI 讀素材、列計畫、確認後才動工
+- **技能與外掛** — 明確列出 OpenAI Codex、Codex Skills、Build Web Apps、Browser、GitHub Pages、Playwright、Git、GitHub CLI 與非官方技能來源
+- **溝通與修正** — 用可觀察、可驗證的指令取代抽象要求
+- **推送與展示** — 本機驗證、commit、push 到 `main`，再用 GitHub Pages 展示
+- **完成檢查** — 確認內容、互動、工具揭露、README 入口與線上網址都到位
+
+> ⚠️ 本頁為 AI 協作流程教學示例。工具版本、Codex 功能與 GitHub 介面可能隨時間更新，實際操作請以各官方文件與專案規則為準。
+
+---
+
 ## 檔案說明
 
 | 檔案 | 說明 |
@@ -97,5 +123,6 @@
 | `us-stocks-guide.html` | 美股複委託入門互動式教學頁面 |
 | `guide.html` | 消防審圖完整互動式教學頁面（七章 17 步驟） |
 | `making-of.html` | 製作幕後：用 AI 打造一頁式指南並推上 GitHub 的流程教學 |
+| `pcshop-ai-build-guide.html` | PCShop 專案製作流程：用 Codex 從發想到推送展示 |
 | `CLAUDE.md` | 本倉庫的 Claude 協作行為準則 |
 | `README.md` | 本說明文件 |

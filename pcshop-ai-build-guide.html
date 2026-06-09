@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="以 PCShop 電腦組裝估價系統為案例，教初學者如何和 Codex 協作：從發想、建立計畫、調用技能與外掛、溝通修正，到 GitHub 推送與 Pages 展示。">
+<title>PCShop 專案製作流程：用 Codex 從發想到上線</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg: oklch(1 0 0);
+  --paper: oklch(0.985 0.006 76);
+  --paper-2: oklch(0.962 0.011 74);
+  --ink-900: oklch(0.205 0.021 58);
+  --ink: oklch(0.31 0.018 56);
+  --muted: oklch(0.47 0.016 56);
+  --line: oklch(0.898 0.01 72);
+  --line-strong: oklch(0.82 0.013 70);
+  --gold: oklch(0.78 0.155 73);
+  --gold-deep: oklch(0.56 0.145 60);
+  --rust: oklch(0.49 0.13 39);
+  --blue: oklch(0.5 0.12 236);
+  --blue-soft: oklch(0.955 0.028 236);
+  --green: oklch(0.57 0.14 150);
+  --green-soft: oklch(0.95 0.04 150);
+  --red: oklch(0.56 0.19 25);
+  --red-soft: oklch(0.955 0.035 25);
+  --dark: oklch(0.195 0.022 58);
+  --dark-2: oklch(0.235 0.024 56);
+  --dark-ink: oklch(0.965 0.01 75);
+  --dark-muted: oklch(0.745 0.022 68);
+  --dark-line: oklch(0.34 0.02 58);
+  --code-bg: oklch(0.205 0.018 58);
+  --code-ink: oklch(0.93 0.012 80);
+  --maxw: 1080px;
+  --measure: 40rem;
+  --r: 16px;
+  --r-sm: 10px;
+  --ease: cubic-bezier(.16,1,.3,1);
+  --shadow: 0 1px 2px oklch(0.2 0.02 60 / .04), 0 14px 34px -18px oklch(0.2 0.02 60 / .22);
+  --font-display: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --font-body: "Noto Sans TC", system-ui, "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+  --font-mono: "Space Mono", ui-monospace, Menlo, monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:var(--font-body);color:var(--ink);background:var(--bg);line-height:1.85;font-size:1.0625rem;letter-spacing:0;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--font-display);color:var(--ink-900);line-height:1.22;font-weight:800;text-wrap:balance}
+p{text-wrap:pretty}
+a{color:var(--gold-deep)}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(20px,5vw,40px)}
+.mono{font-family:var(--font-mono);font-feature-settings:"tnum" 1}
+.lead{font-size:clamp(1.1rem,1.7vw,1.32rem);line-height:1.78;color:var(--ink);max-width:var(--measure)}
+.muted{color:var(--muted)}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--gold);z-index:100;transition:width .12s linear}
+.top{position:sticky;top:0;z-index:90;background:oklch(1 0 0 /.84);backdrop-filter:saturate(1.35) blur(12px);border-bottom:1px solid var(--line)}
+.top .row{height:60px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{font-family:var(--font-display);font-weight:900;color:var(--ink-900);font-size:1.08rem;white-space:nowrap}
+.brand b{color:var(--gold-deep)}
+.navlinks{display:flex;gap:4px}
+.navlinks a{text-decoration:none;color:var(--muted);font-size:.9rem;font-weight:600;padding:7px 12px;border-radius:99px;transition:color .2s,background .2s}
+.navlinks a:hover{color:var(--ink-900);background:var(--paper-2)}
+@media (max-width:920px){.navlinks{display:none}}
+.hero{background:radial-gradient(120% 90% at 86% -12%,var(--dark-2),var(--dark) 62%);color:var(--dark-ink);padding-block:clamp(78px,12vw,146px);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-9%;top:-25%;width:58vw;height:58vw;max-width:620px;max-height:620px;background:radial-gradient(circle,oklch(0.78 0.155 73 /.14),transparent 64%);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-mono);font-size:.8rem;color:var(--gold);border:1px solid var(--dark-line);border-radius:99px;padding:7px 15px;margin-bottom:28px}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px oklch(0.78 0.155 73 /.18)}
+.hero h1{color:var(--dark-ink);font-weight:900;font-size:clamp(2.25rem,6vw,4.08rem);line-height:1.12;max-width:18ch;margin-bottom:22px}
+.hero h1 span{color:var(--gold)}
+.hero .sub{font-size:clamp(1.05rem,1.8vw,1.35rem);color:var(--dark-muted);max-width:48ch;line-height:1.78}
+.stepper{margin-top:46px;display:flex;flex-wrap:wrap;gap:10px}
+.stepper a{display:inline-flex;align-items:center;gap:10px;text-decoration:none;border:1px solid var(--dark-line);border-radius:99px;padding:9px 16px;color:var(--dark-ink);font-size:.9rem;font-weight:600;transition:border-color .2s,background .2s}
+.stepper a:hover{border-color:var(--gold);background:oklch(0.78 0.155 73 /.08)}
+.stepper .n{font-family:var(--font-mono);font-weight:700;color:var(--gold)}
+section{padding-block:clamp(58px,8vw,108px);position:relative}
+.section-tint{background:linear-gradient(180deg,var(--paper),var(--bg))}
+.eyebrow-part{display:inline-flex;align-items:baseline;gap:14px;margin-bottom:22px}
+.eyebrow-part:before{content:"";width:34px;height:2px;background:var(--rust);align-self:center}
+.pnum{font-family:var(--font-mono);font-weight:700;font-size:clamp(1.1rem,2vw,1.4rem);color:var(--rust)}
+.pname{font-weight:700;font-size:.9rem;letter-spacing:.16em;color:var(--muted)}
+.h2{font-size:clamp(1.7rem,3.6vw,2.7rem);margin-bottom:20px}
+.block{margin-top:clamp(34px,5vw,62px)}
+.subhead{font-family:var(--font-body);font-weight:800;color:var(--ink-900);font-size:clamp(1.18rem,2.1vw,1.45rem);margin-bottom:16px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:760px){.grid-2{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:var(--r);padding:24px;background:var(--bg);box-shadow:0 0 0 transparent}
+.card h4{font-family:var(--font-body);font-size:1.06rem;color:var(--ink-900);margin-bottom:8px}
+.card p{font-size:.98rem;line-height:1.72}
+.steps{display:grid;gap:16px}
+.stepc{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;background:var(--bg)}
+.num{font-family:var(--font-mono);font-weight:700;color:#fff;background:var(--ink-900);width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:.95rem;flex:none}
+.stepc h4{font-family:var(--font-body);font-size:1.06rem;color:var(--ink-900);margin-bottom:5px}
+.stepc p{font-size:.97rem}
+.hint{font-size:.86rem;color:var(--muted);margin-top:6px}
+.timeline{position:relative;display:grid;gap:18px}
+.timeline:before{content:"";position:absolute;left:21px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.timeitem{display:grid;grid-template-columns:44px 1fr;gap:16px;position:relative}
+.timeitem .mark{width:44px;height:44px;border-radius:50%;border:1px solid var(--line-strong);background:var(--bg);display:grid;place-items:center;font-family:var(--font-mono);font-weight:700;color:var(--rust);z-index:1}
+.timeitem .body{border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;background:var(--bg)}
+.timeitem h4{font-family:var(--font-body);font-size:1.05rem;margin-bottom:5px}
+.toolgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:760px){.toolgrid{grid-template-columns:1fr}}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:20px;font-size:.9rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.tag{font-size:.7rem;font-weight:800;letter-spacing:.06em;padding:3px 10px;border-radius:99px}
+.tag.official{background:var(--blue-soft);color:var(--blue)}
+.tag.third{background:oklch(0.78 0.155 73 /.16);color:var(--gold-deep)}
+.tag.local{background:var(--green-soft);color:var(--green)}
+.tool{border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;background:var(--bg);display:flex;flex-direction:column;gap:8px}
+.tool .th{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tool .tn{font-family:var(--font-mono);font-weight:700;color:var(--ink-900);font-size:1.02rem;overflow-wrap:anywhere;word-break:break-word;min-width:0}
+.tool p{font-size:.93rem;line-height:1.62;flex:1}
+.src{font-size:.85rem}
+.src a{font-family:var(--font-mono);text-decoration:none;word-break:break-all;border-bottom:1px solid oklch(0.56 0.145 60 /.3)}
+.prompt{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--bg)}
+.prompt .seg{display:flex;background:var(--paper-2);border-bottom:1px solid var(--line)}
+.prompt button{flex:1;border:0;background:transparent;padding:11px;font-family:var(--font-body);font-size:.9rem;font-weight:800;color:var(--muted);cursor:pointer}
+.prompt button[aria-pressed="true"]{background:var(--bg);color:var(--ink-900);box-shadow:inset 0 -2px 0 var(--gold)}
+.prompt pre{background:var(--code-bg);color:var(--code-ink);font-family:var(--font-mono);font-size:.84rem;line-height:1.7;padding:18px;overflow-x:auto;margin:0}
+.note{padding:12px 18px;font-size:.9rem}
+.note.bad{background:var(--red-soft);color:var(--red)}
+.note.good{background:var(--green-soft);color:var(--green)}
+.loop{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-family:var(--font-mono);font-size:.9rem;margin:8px 0 26px}
+.loop b{background:var(--paper-2);border:1px solid var(--line-strong);border-radius:99px;padding:8px 16px;color:var(--ink-900)}
+.loop .arr{color:var(--rust);font-weight:700}
+.code{border:1px solid var(--dark-line);border-radius:var(--r-sm);overflow:hidden;margin:16px 0}
+.codehead{display:flex;align-items:center;justify-content:space-between;background:var(--dark-2);color:var(--dark-muted);font-family:var(--font-mono);font-size:.74rem;padding:8px 12px 8px 16px;letter-spacing:.04em}
+.code pre{background:var(--code-bg);color:var(--code-ink);font-family:var(--font-mono);font-size:.86rem;line-height:1.75;padding:16px;overflow-x:auto;margin:0}
+.cp{font-family:var(--font-body);font-weight:800;font-size:.74rem;color:var(--dark-ink);background:oklch(1 0 0 /.08);border:1px solid var(--dark-line);border-radius:7px;padding:5px 12px;cursor:pointer}
+.cp.done{background:var(--green);color:#fff;border-color:transparent}
+.checklist{display:grid;gap:10px;max-width:46rem}
+.check{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;padding:14px 18px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--bg)}
+.box{width:22px;height:22px;border-radius:6px;background:var(--green);color:#fff;display:grid;place-items:center;font-size:.8rem;flex:none;margin-top:2px}
+.finale{background:radial-gradient(120% 100% at 15% -10%,var(--dark-2),var(--dark) 62%);color:var(--dark-ink)}
+.finale h2,.finale h4{color:var(--dark-ink)}
+.finale .pname{color:var(--dark-muted)}
+.finale .check{background:oklch(1 0 0 /.03);border-color:var(--dark-line);color:var(--dark-ink)}
+.pull{margin-top:clamp(34px,6vw,64px);text-align:center;font-family:var(--font-display);font-weight:900;font-size:clamp(1.45rem,4vw,2.45rem);color:var(--dark-ink);line-height:1.4;text-wrap:balance}
+.pull span{color:var(--gold)}
+.cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.cta a{text-decoration:none;font-weight:800;padding:13px 24px;border-radius:99px;font-size:.98rem}
+.cta .primary{background:var(--gold);color:var(--dark)}
+.cta .ghost{border:1px solid var(--dark-line);color:var(--dark-ink)}
+footer{background:var(--ink-900);color:var(--dark-muted);padding-block:clamp(40px,6vw,68px);font-size:.92rem}
+footer .wrap{display:grid;gap:22px}
+footer h4{font-family:var(--font-body);font-size:1rem;color:var(--dark-ink);margin-bottom:8px}
+footer .disc{border:1px solid var(--dark-line);border-radius:var(--r);padding:20px 22px;line-height:1.8}
+footer a{color:var(--gold)}
+.colophon{border-top:1px solid var(--dark-line);padding-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--font-mono);font-size:.8rem}
+.anim [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.anim [data-reveal].in{opacity:1;transform:none}
+.anim [data-reveal][data-d="1"]{transition-delay:.07s}
+.anim [data-reveal][data-d="2"]{transition-delay:.14s}
+.anim [data-reveal][data-d="3"]{transition-delay:.21s}
+@media (prefers-reduced-motion:reduce){.anim [data-reveal]{opacity:1;transform:none;transition:none}}
+@media (max-width:620px){
+  .stepc{grid-template-columns:1fr}
+  .num{width:36px;height:36px}
+  .timeline:before{left:18px}
+  .timeitem{grid-template-columns:38px 1fr;gap:12px}
+  .timeitem .mark{width:38px;height:38px}
+  .prompt .seg{flex-direction:column}
+}
+@media print{
+  @page{size:A4;margin:0}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .top,.progress{display:none!important}
+  section{padding-block:42px!important}
+  .anim [data-reveal]{opacity:1!important;transform:none!important}
+  .card,.stepc,.tool,.timeitem,.code,.check,.prompt{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<nav class="top">
+  <div class="wrap row">
+    <div class="brand">PCShop <b>製作流程</b></div>
+    <div class="navlinks">
+      <a href="#idea">發想</a>
+      <a href="#plan">計畫</a>
+      <a href="#tools">工具</a>
+      <a href="#iterate">修正</a>
+      <a href="#ship">推送</a>
+      <a href="#done">完成</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="badge" data-reveal><span class="dot"></span>PCShop case study · 2026 / 06 / 10</div>
+    <h1 data-reveal data-d="1">從一句抱怨，<br>到一個<span>能上線</span>的專案。</h1>
+    <p class="sub" data-reveal data-d="2">這份教學以 PCShop 電腦組裝估價系統為例，示範如何和 Codex 協作：先把模糊想法編成計畫，再調用技能、讀檔、寫程式、用瀏覽器驗證，最後推送到 GitHub Pages 展示。</p>
+    <nav class="stepper" data-reveal data-d="3" aria-label="流程總覽">
+      <a href="#idea"><span class="n">01</span>發想</a>
+      <a href="#plan"><span class="n">02</span>計畫</a>
+      <a href="#tools"><span class="n">03</span>技能外掛</a>
+      <a href="#iterate"><span class="n">04</span>溝通修正</a>
+      <a href="#ship"><span class="n">05</span>推送展示</a>
+      <a href="#done"><span class="n">06</span>完成</a>
+    </nav>
+  </div>
+</header>
+
+<section id="idea">
+  <div class="wrap">
+    <div class="eyebrow-part" data-reveal><span class="pnum">01</span><span class="pname">發想與定位</span></div>
+    <h2 class="h2" data-reveal>先把「不滿」翻譯成產品任務。</h2>
+    <p class="lead" data-reveal data-d="1">PCShop 的起點很具體：傳統電腦估價網站太像舊式表格，手機難用，新手又怕 CPU、主機板、記憶體、機殼尺寸選錯。主編要做的第一件事，不是叫 AI 寫頁面，而是把這句抱怨整理成清楚的專案命題。</p>
+
+    <div class="grid-2 block">
+      <div class="card" data-reveal>
+        <h4>原始痛點</h4>
+        <p>使用者懂預算與用途，卻不一定懂 socket、瓦數、DDR4/DDR5 或顯示卡長度。傳統清單把所有責任丟給使用者，導致「看得到零件，卻不確定能不能買」。</p>
+      </div>
+      <div class="card" data-reveal data-d="1">
+        <h4>產品任務</h4>
+        <p>建立一個手機優先的本地電腦店估價工具：八大零件逐步選、硬衝突立即阻擋、軟警告清楚提示、CPU+GPU 選定後顯示 3DMark Time Spy 預估等級。</p>
+      </div>
+    </div>
+
+    <div class="block timeline">
+      <div class="timeitem" data-reveal>
+        <div class="mark">1</div>
+        <div class="body"><h4>寫下真實情境</h4><p>「手機上挑電腦」「怕買錯」「店家需要可分享估價單」比抽象的「做購物網站」更有方向。</p></div>
+      </div>
+      <div class="timeitem" data-reveal data-d="1">
+        <div class="mark">2</div>
+        <div class="body"><h4>定義使用者</h4><p>新手需要保護式引導；DIY 玩家需要快速篩選、本地庫存與即時相容性判斷。兩者都不想讀一整本硬體百科。</p></div>
+      </div>
+      <div class="timeitem" data-reveal data-d="2">
+        <div class="mark">3</div>
+        <div class="body"><h4>建立文件骨幹</h4><p><span class="mono">PRODUCT.md</span> 寫產品意圖與體驗原則；<span class="mono">規格書.txt</span> 寫資料結構、相容性規則、UI 行為與後台要求。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="plan" class="section-tint">
+  <div class="wrap">
+    <div class="eyebrow-part" data-reveal><span class="pnum">02</span><span class="pname">主編計畫</span></div>
+    <h2 class="h2" data-reveal>先要求 AI 做計畫，確認後才執行。</h2>
+    <p class="lead" data-reveal data-d="1">好的 AI 協作不是「請幫我做一個網站」就結束，而是先讓 AI 讀材料、列假設、提出成功標準。計畫是專案的安全帶：它讓人知道現在要做什麼，也讓 AI 知道哪些事不能亂猜。</p>
+
+    <div class="block steps">
+      <div class="stepc" data-reveal>
+        <div class="num">A</div>
+        <div><h4>交付材料</h4><p>提供 <span class="mono">teaching.txt</span>、產品概念、規格書、既有網頁風格參考，讓 AI 先讀懂「內容」和「出版形式」。</p></div>
+      </div>
+      <div class="stepc" data-reveal data-d="1">
+        <div class="num">B</div>
+        <div><h4>明確要求停在計畫</h4><p>指令中寫清楚：「你作為出版社主編輯，先設計計劃，確認後再執行。」這會迫使 AI 先說明取捨，不會直接改檔。</p></div>
+      </div>
+      <div class="stepc" data-reveal data-d="2">
+        <div class="num">C</div>
+        <div><h4>確認約束</h4><p>本次確認了檔名、工具要明確列出、非官方技能和外掛要附來源連結、風格要參考既有 <span class="mono">making-of.html</span>。</p></div>
+      </div>
+    </div>
+
+    <div class="prompt block" data-reveal>
+      <div class="seg" role="group" aria-label="Prompt 對照">
+        <button id="promptBad" aria-pressed="true">模糊說法</button>
+        <button id="promptGood" aria-pressed="false">可執行說法</button>
+      </div>
+      <div id="promptPaneBad">
+        <pre>幫我做一個 PCShop 教學網頁。</pre>
+        <div class="note bad">問題：沒有讀者、沒有素材、沒有驗收標準，也沒有說要不要先確認。</div>
+      </div>
+      <div id="promptPaneGood" hidden>
+        <pre>你作為出版社主編輯，先設計計劃，確認後再執行。
+請讀 teaching.txt、PRODUCT.md、規格書.txt，
+把 PCShop 製作流程做成單檔動態 HTML。
+明確列出使用的工具、技能與外掛；
+非官方項目請附來源連結。
+風格參考 making-of.html，完成後推送到 GitHub Pages。</pre>
+        <div class="note good">好處：角色、流程、素材、格式、工具揭露、風格與交付方式都清楚。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <div class="eyebrow-part" data-reveal><span class="pnum">03</span><span class="pname">技能與外掛</span></div>
+    <h2 class="h2" data-reveal>這次實際使用了哪些工具。</h2>
+    <p class="lead" data-reveal data-d="1">以下區分「官方」、「本地專案規則」與「第三方」。第三方或非 OpenAI 官方項目都附出處，方便讀者自己找到工具，而不是只看到一串神祕名詞。</p>
+
+    <div class="legend block" data-reveal>
+      <span><i class="tag official">官方</i> OpenAI / GitHub / Microsoft 等官方文件</span>
+      <span><i class="tag local">本地</i> 專案或使用者環境規則</span>
+      <span><i class="tag third">第三方</i> 社群或非官方技能</span>
+    </div>
+
+    <h3 class="subhead" data-reveal>官方與平台工具</h3>
+    <div class="toolgrid" data-reveal>
+      <div class="tool">
+        <div class="th"><span class="tn">OpenAI Codex</span><span class="tag official">官方</span></div>
+        <p>本次協作主體：讀檔、規劃、改 HTML、跑終端機、檢查 Git 狀態，並在完成後提交與推送。</p>
+        <div class="src"><a href="https://developers.openai.com/codex/cloud" target="_blank" rel="noopener">developers.openai.com/codex/cloud</a></div>
+      </div>
+      <div class="tool">
+        <div class="th"><span class="tn">Codex Skills</span><span class="tag official">官方</span></div>
+        <p>本次使用前端製作相關技能，確認單檔靜態頁也要有設計系統、互動狀態與瀏覽器驗證。</p>
+        <div class="src"><a href="https://developers.openai.com/codex/skills" target="_blank" rel="noopener">developers.openai.com/codex/skills</a></div>
+      </div>
+      <div class="tool">
+        <div class="th"><span class="tn">Build Web Apps: frontend-app-builder</span><span class="tag official">官方</span></div>
+        <p>本次製作 HTML 頁面時啟用的前端技能：要求先建立設計系統、落實響應式排版，並用瀏覽器實際驗證互動與版面。</p>
+        <div class="src"><a href="https://developers.openai.com/codex/skills" target="_blank" rel="noopener">developers.openai.com/codex/skills</a></div>
+      </div>
+      <div class="tool">
+        <div class="th"><span class="tn">Browser: control-in-app-browser</span><span class="tag official">官方</span></div>
+        <p>本次驗證頁面的瀏覽器外掛：開啟本機頁面、檢查桌面與手機尺寸、測試 Prompt 切換與複製按鈕。</p>
+        <div class="src"><a href="https://playwright.dev/" target="_blank" rel="noopener">playwright.dev</a></div>
+      </div>
+      <div class="tool">
+        <div class="th"><span class="tn">GitHub Pages</span><span class="tag official">官方</span></div>
+        <p>用來把倉庫裡的 HTML 直接變成可分享的線上網址，適合這種無後端的一頁式教學。</p>
+        <div class="src"><a href="https://pages.github.com/" target="_blank" rel="noopener">pages.github.com</a></div>
+      </div>
+      <div class="tool">
+        <div class="th"><span class="tn">Playwright</span><span class="tag official">官方</span></div>
+        <p>用瀏覽器自動化檢查頁面、截圖、測試按鈕與手機尺寸。這類工具能避免「程式有寫，但畫面其實壞掉」。</p>
+        <div class="src"><a href="https://playwright.dev/" target="_blank" rel="noopener">playwright.dev</a></div>
+      </div>
+      <div class="tool">
+        <div class="th"><span class="tn">Git</span><span class="tag official">官方</span></div>
+        <p>版本控制：檢查差異、建立 commit、推送到遠端。每次上線都應該留下可追蹤紀錄。</p>
+        <div class="src"><a href="https://git-scm.com/" target="_blank" rel="noopener">git-scm.com</a></div>
+      </div>
+      <div class="tool">
+        <div class="th"><span class="tn">GitHub CLI</span><span class="tag official">官方</span></div>
+        <p>命令列操作 GitHub，適合確認遠端、推送與管理倉庫工作流。</p>
+        <div class="src"><a href="https://cli.github.com/" target="_blank" rel="noopener">cli.github.com</a></div>
+      </div>
+    </div>
+
+    <h3 class="subhead block" data-reveal>本地規則與非官方技能</h3>
+    <div class="toolgrid" data-reveal>
+      <div class="tool">
+        <div class="th"><span class="tn">AGENTS.md / CLAUDE.md</span><span class="tag local">本地</span></div>
+        <p><span class="mono">AGENTS.md</span> 規定 PCShop 的文件維護與 RTK 指令；目標倉庫的 <span class="mono">CLAUDE.md</span> 規定主編輯工作法：先列假設、簡化、確認再動手。</p>
+        <div class="src">本機專案檔案，非公開套件。</div>
+      </div>
+      <div class="tool">
+        <div class="th"><span class="tn">RTK</span><span class="tag local">本地</span></div>
+        <p>本機 shell 代理規則要求命令前綴 <span class="mono">rtk</span>，用來降低終端輸出噪音並節省上下文。</p>
+        <div class="src">本機環境規則，非公開套件。</div>
+      </div>
+      <div class="tool">
+        <div class="th"><span class="tn">impeccable</span><span class="tag third">第三方</span></div>
+        <p>PCShop 先前視覺打磨與設計語彙曾用到的非官方技能來源；讀者若想建立更嚴格的前端設計審查語言，可從原始倉庫查看。</p>
+        <div class="src"><a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">github.com/pbakaus/impeccable</a></div>
+      </div>
+      <div class="tool">
+        <div class="th"><span class="tn">本倉庫既有風格頁</span><span class="tag local">本地</span></div>
+        <p>這份頁面參考 <span class="mono">making-of.html</span> 的出版感：深色 hero、暖金重點色、分段時間線、工具卡與 copy 按鈕。</p>
+        <div class="src">同一倉庫內既有 HTML。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="iterate" class="section-tint">
+  <div class="wrap">
+    <div class="eyebrow-part" data-reveal><span class="pnum">04</span><span class="pname">溝通與修正</span></div>
+    <h2 class="h2" data-reveal>把 AI 當成同事，不是許願池。</h2>
+    <p class="lead" data-reveal data-d="1">修正時最有效的做法，是把問題描述成可觀察狀態，然後要求 AI 實測。不要只說「幫我美化」，而是說「手機版工具卡太擠，請縮小內距並用瀏覽器確認沒有橫向溢位」。</p>
+
+    <div class="loop block" data-reveal>
+      <b>描述問題</b><span class="arr">→</span><b>指定驗證</b><span class="arr">→</span><b>AI 修改</b><span class="arr">→</span><b>瀏覽器檢查</b><span class="arr">→</span><b>推送</b>
+    </div>
+
+    <div class="grid-2">
+      <div class="card" data-reveal>
+        <h4>好修正</h4>
+        <p>「工具卡的官方/第三方標籤要更醒目，手機版不能換行到壓住文字。請改完後用 390px 寬度驗證。」</p>
+      </div>
+      <div class="card" data-reveal data-d="1">
+        <h4>難修正</h4>
+        <p>「整體再高級一點。」這句沒有錯，但它不是可驗證指令。AI 只能猜你的美感方向，最後容易越改越遠。</p>
+      </div>
+    </div>
+
+    <div class="card block" data-reveal>
+      <h4>主編輯檢查清單</h4>
+      <p>每次要求修正，都問三件事：讀者會不會更容易理解？修改是否符合原本風格？有沒有用實際頁面驗證？這三題比「多加一點動畫」更重要。</p>
+    </div>
+  </div>
+</section>
+
+<section id="ship">
+  <div class="wrap">
+    <div class="eyebrow-part" data-reveal><span class="pnum">05</span><span class="pname">推送與展示</span></div>
+    <h2 class="h2" data-reveal>從本機檔案，變成可分享網址。</h2>
+    <p class="lead" data-reveal data-d="1">一頁式指南的優點是交付單純：只要 HTML 沒壞、README 有入口、GitHub Pages 已啟用，讀者就能用網址直接閱讀。</p>
+
+    <div class="block">
+      <h3 class="subhead" data-reveal>① 先確認變更範圍</h3>
+      <div class="code" data-reveal>
+        <div class="codehead"><span>status / diff</span><button class="cp" type="button">複製</button></div>
+        <pre>git status --short --branch
+git diff -- pcshop-ai-build-guide.html README.md</pre>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3 class="subhead" data-reveal>② 本機驗證頁面</h3>
+      <div class="code" data-reveal>
+        <div class="codehead"><span>local preview</span><button class="cp" type="button">複製</button></div>
+        <pre>python3 -m http.server 4173
+# open http://127.0.0.1:4173/pcshop-ai-build-guide.html</pre>
+      </div>
+      <p class="muted">驗證重點：閱讀進度條、Prompt 對照切換、複製按鈕、手機版寬度、頁尾來源連結。</p>
+    </div>
+
+    <div class="block">
+      <h3 class="subhead" data-reveal>③ Commit、push、展示</h3>
+      <div class="code" data-reveal>
+        <div class="codehead"><span>ship</span><button class="cp" type="button">複製</button></div>
+        <pre>git add pcshop-ai-build-guide.html README.md
+git commit -m "Add PCShop AI build guide"
+git push origin main</pre>
+      </div>
+      <p class="muted">推送後，GitHub Pages 會展示這個檔案：</p>
+      <div class="code" data-reveal>
+        <div class="codehead"><span>Pages URL</span><button class="cp" type="button">複製</button></div>
+        <pre>https://vik1n9.github.io/One-Page-Beginners-Guide/pcshop-ai-build-guide.html</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="done" class="finale">
+  <div class="wrap">
+    <div class="eyebrow-part" data-reveal><span class="pnum">06</span><span class="pname">完成</span></div>
+    <h2 class="h2" data-reveal>完成不是「寫完」，<br>而是可閱讀、可驗證、可追蹤。</h2>
+    <div class="checklist block" data-reveal>
+      <div class="check"><span class="box">✓</span><span>有清楚的產品起點：手機優先、避免相容性錯誤、本地店家可用。</span></div>
+      <div class="check"><span class="box">✓</span><span>有主編計畫：先確認目標、讀者、素材、風格與驗收標準。</span></div>
+      <div class="check"><span class="box">✓</span><span>有工具揭露：官方、本地、第三方來源分清楚。</span></div>
+      <div class="check"><span class="box">✓</span><span>有互動教學：Prompt 對照、流程步驟、複製指令、完成清單。</span></div>
+      <div class="check"><span class="box">✓</span><span>有上線流程：本機驗證、commit、push、GitHub Pages 展示。</span></div>
+    </div>
+    <p class="pull" data-reveal>真正的 AI 協作，<br>是把想法變成<span>可維護的流程</span>。</p>
+    <div class="cta" data-reveal>
+      <a class="primary" href="https://github.com/Vik1n9/One-Page-Beginners-Guide" target="_blank" rel="noopener">看 GitHub 倉庫</a>
+      <a class="ghost" href="#idea">回到第一步</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="disc">
+      <h4>工具出處說明</h4>
+      本頁明確標示本次教學提到的工具來源。OpenAI Codex、Codex Skills、Build Web Apps、Browser、GitHub Pages、GitHub CLI、Git、Playwright 皆附官方文件或相鄰官方文件；非官方技能 impeccable 附 GitHub 原始倉庫。PCShop 的 <span class="mono">AGENTS.md</span>、<span class="mono">CLAUDE.md</span>、RTK 為本機專案或使用者環境規則，不視為公開外掛。
+    </div>
+    <div>
+      <h4>主要連結</h4>
+      <p>
+        OpenAI Codex（<a href="https://developers.openai.com/codex/cloud" target="_blank" rel="noopener">developers.openai.com/codex/cloud</a>）｜
+        Codex Skills（<a href="https://developers.openai.com/codex/skills" target="_blank" rel="noopener">developers.openai.com/codex/skills</a>）｜
+        Build Web Apps（<a href="https://developers.openai.com/codex/skills" target="_blank" rel="noopener">developers.openai.com/codex/skills</a>）｜
+        Browser / Playwright（<a href="https://playwright.dev/" target="_blank" rel="noopener">playwright.dev</a>）｜
+        GitHub Pages（<a href="https://pages.github.com/" target="_blank" rel="noopener">pages.github.com</a>）｜
+        GitHub CLI（<a href="https://cli.github.com/" target="_blank" rel="noopener">cli.github.com</a>）｜
+        Git（<a href="https://git-scm.com/" target="_blank" rel="noopener">git-scm.com</a>）｜
+        impeccable（<a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">github.com/pbakaus/impeccable</a>）
+      </p>
+    </div>
+    <div class="colophon">
+      <span>One-Page-Beginners-Guide ｜ PCShop AI Build Guide</span>
+      <span>2026-06-10</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var progress=document.getElementById("progress");
+  function onScroll(){
+    var h=document.documentElement;
+    var max=h.scrollHeight-h.clientHeight;
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    progress.style.width=(p*100).toFixed(2)+"%";
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+
+  var motionOK=!window.matchMedia||!window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(motionOK&&"IntersectionObserver" in window){
+    document.documentElement.classList.add("anim");
+    var els=[].slice.call(document.querySelectorAll("[data-reveal]"));
+    var io=new IntersectionObserver(function(ents){
+      ents.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    },{threshold:.12,rootMargin:"0px 0px -8% 0px"});
+    els.forEach(function(el){io.observe(el);});
+    setTimeout(function(){els.forEach(function(el){el.classList.add("in");});},2800);
+  }
+
+  [].slice.call(document.querySelectorAll(".code")).forEach(function(block){
+    var btn=block.querySelector(".cp");
+    var pre=block.querySelector("pre");
+    if(!btn||!pre) return;
+    btn.addEventListener("click",function(){
+      var text=pre.innerText;
+      function ok(){
+        btn.textContent="已複製 ✓";
+        btn.classList.add("done");
+        setTimeout(function(){btn.textContent="複製";btn.classList.remove("done");},1600);
+      }
+      function fallback(){
+        try{
+          var ta=document.createElement("textarea");
+          ta.value=text;
+          ta.style.position="fixed";
+          ta.style.opacity="0";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+          ok();
+        }catch(e){btn.textContent="請手動複製";}
+      }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(ok,fallback);
+      }else{
+        fallback();
+      }
+    });
+  });
+
+  var promptBad=document.getElementById("promptBad");
+  var promptGood=document.getElementById("promptGood");
+  var paneBad=document.getElementById("promptPaneBad");
+  var paneGood=document.getElementById("promptPaneGood");
+  if(promptBad&&promptGood){
+    function show(good){
+      promptGood.setAttribute("aria-pressed",good);
+      promptBad.setAttribute("aria-pressed",!good);
+      paneGood.hidden=!good;
+      paneBad.hidden=good;
+    }
+    promptBad.addEventListener("click",function(){show(false);});
+    promptGood.addEventListener("click",function(){show(true);});
+  }
+})();
+</script>
+</body>
+</html>
