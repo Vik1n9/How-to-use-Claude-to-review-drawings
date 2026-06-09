@@ -1,15 +1,45 @@
-# 消防製圖人員的 Claude AI 審圖完整指南
+# 一頁式網頁指南合集
 
-適用對象：消防設備製圖與審圖相關人員，無 AI 使用經驗亦可操作。
-系統需求：Windows 10 / 11、穩定網路連線、Claude Pro 訂閱（USD $20/月）。
+本倉庫收錄各種主題的「一頁式」互動教學網頁。每份指南都是獨立、可直接在瀏覽器開啟的 HTML 檔案，無需安裝任何軟體。
 
-## 閱讀完整教學
+## 指南列表
 
-[點此開啟互動式教學頁面](https://htmlpreview.github.io/?https://github.com/vik1n9/how-to-use-claude-to-review-drawings/blob/main/guide.html)
+| 指南 | 主題 | 線上閱讀 |
+|------|------|---------|
+| 從零開始前進美股 | 台灣投資人的複委託入門手冊 | [開啟](https://htmlpreview.github.io/?https://github.com/vik1n9/how-to-use-claude-to-review-drawings/blob/main/us-stocks-guide.html) |
+| 消防製圖人員的 Claude AI 審圖完整指南 | 用 Claude AI 輔助消防審圖 | [開啟](https://htmlpreview.github.io/?https://github.com/vik1n9/how-to-use-claude-to-review-drawings/blob/main/guide.html) |
 
 ---
 
-## 教學內容
+## 從零開始前進美股 — 台灣投資人的複委託入門手冊
+
+> 檔案：`us-stocks-guide.html` ｜ 資料更新於 2026-06-09
+
+[點此開啟互動式教學頁面](https://htmlpreview.github.io/?https://github.com/vik1n9/how-to-use-claude-to-review-drawings/blob/main/us-stocks-guide.html)
+
+適用對象：熟悉台股、第一次想接觸美股的社會人士，無投資經驗亦可閱讀。
+
+一頁讀懂用台幣帳戶（複委託）投資美股的完整流程。內容涵蓋：
+
+- **台美制度差異** — 扣款幣別、賣出後的交割時間、換匯設定、定期定額與碎股（零股）
+- **成本拆解** — 手續費以外的隱藏成本，以及如何挑選券商方案
+- **稅務說明** — 美股股息預扣稅、是否需自行報稅
+- **降低稅損與風險控制** — 「節稅成長」思路、以及美股無漲跌幅限制下停損單的重要性
+- **新手常見問題** — 整理五個最常被問到的問題
+- **行動建議** — 用三個步驟建立自己的美股投資系統
+
+**重要：** 本指南僅為教育與資訊整理，不構成投資建議。費率、稅務與市場數據會隨時間變動，實際下單前請以券商及主管機關公告為準，投資前請自行評估風險。
+
+---
+
+## 消防製圖人員的 Claude AI 審圖完整指南
+
+> 檔案：`guide.html`
+
+[點此開啟互動式教學頁面](https://htmlpreview.github.io/?https://github.com/vik1n9/how-to-use-claude-to-review-drawings/blob/main/guide.html)
+
+適用對象：消防設備製圖與審圖相關人員，無 AI 使用經驗亦可操作。
+系統需求：Windows 10 / 11、穩定網路連線、Claude Pro 訂閱（USD $20/月）。
 
 全手冊共七章、17 個步驟，從申請帳號到輸出第一份 AI 審查報告。
 
@@ -23,9 +53,7 @@
 | 第六章 | 人工複核清單 | — |
 | 第七章 | 常見問題與錯誤排解 | — |
 
----
-
-## AI 可協助的工作項目
+**AI 可協助的工作項目**
 
 - **圖面初步審查** — 讀取 PDF、截圖，檢查設備配置是否有明顯疑點
 - **座標與間距計算** — 讀取 DXF，驗算撒水頭間距、探測器配置，並列出計算過程
@@ -41,6 +69,7 @@
 
 | 檔案 | 說明 |
 |------|------|
-| `guide.html` | 完整互動式教學頁面（七章 17 步驟） |
-| `CLAUDE.md` | Claude Code 工作設定檔（放置於審圖工作資料夾） |
+| `us-stocks-guide.html` | 美股複委託入門互動式教學頁面 |
+| `guide.html` | 消防審圖完整互動式教學頁面（七章 17 步驟） |
+| `CLAUDE.md` | Claude Code 工作設定檔 |
 | `README.md` | 本說明文件 |
