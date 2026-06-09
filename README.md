@@ -21,6 +21,7 @@
 | 適用對象 | 熟悉台股、第一次接觸美股的社會人士，無投資經驗亦可閱讀 |
 | 線上閱讀 | [開啟教學頁面](https://vik1n9.github.io/One-Page-Beginners-Guide/us-stocks-guide.html) |
 | 檔案 | `us-stocks-guide.html` |
+| 系統需求 | 任何現代瀏覽器即可閱讀；實際投資需開通複委託證券帳戶 |
 | 資料日期 | 2026-06-09 |
 
 **內容重點**
@@ -46,6 +47,7 @@
 | 線上閱讀 | [開啟教學頁面](https://vik1n9.github.io/One-Page-Beginners-Guide/guide.html) |
 | 檔案 | `guide.html` |
 | 系統需求 | Windows 10 / 11、穩定網路、Claude Pro 訂閱（USD $20/月） |
+| 資料日期 | 2026-06-09 |
 
 **內容重點**（共七章 17 步驟）
 
@@ -72,6 +74,8 @@
 | 適用對象 | 想了解「這些指南是怎麼用 AI 做出來的」的一般使用者 |
 | 線上閱讀 | [開啟教學頁面](https://vik1n9.github.io/One-Page-Beginners-Guide/making-of.html) |
 | 檔案 | `making-of.html` |
+| 系統需求 | 任何現代瀏覽器即可閱讀；實作需 GitHub 帳號與 Claude |
+| 資料日期 | 2026-06-09 |
 
 **內容重點**（六個步驟）
 
