@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="以 PCShop 電腦組裝估價系統為案例，教初學者如何和 Codex 協作：從發想、建立計畫、調用技能與外掛、溝通修正，到 GitHub 推送與 Pages 展示。">
-<title>PCShop 專案製作流程：用 Codex 從發想到上線</title>
+<meta name="description" content="以 PCShop 電腦組裝估價系統為案例，教初學者如何和 Codex 協作：從發想、建立計畫、建構相容性過濾、設計手機優先版面，到 GitHub 推送與 Pages 展示。">
+<title>PCShop 專案製作流程：過濾建構、版面設計與 Codex 上線</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -134,6 +134,25 @@ section{padding-block:clamp(58px,8vw,108px);position:relative}
 .checklist{display:grid;gap:10px;max-width:46rem}
 .check{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;padding:14px 18px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--bg)}
 .box{width:22px;height:22px;border-radius:6px;background:var(--green);color:#fff;display:grid;place-items:center;font-size:.8rem;flex:none;margin-top:2px}
+.mini-table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--bg)}
+.mini-table th,.mini-table td{padding:13px 15px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:.94rem}
+.mini-table th{font-family:var(--font-body);font-weight:800;color:var(--ink-900);background:var(--paper-2)}
+.mini-table tr:last-child td{border-bottom:0}
+.mini-table code{font-family:var(--font-mono);font-size:.86em;color:var(--rust);overflow-wrap:anywhere}
+.flowgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.flowcard{border:1px solid var(--line);border-radius:var(--r);padding:18px;background:var(--bg)}
+.flowcard strong{display:block;font-family:var(--font-body);font-size:1rem;color:var(--ink-900);margin-bottom:6px}
+.flowcard span{font-size:.9rem;color:var(--muted);line-height:1.55}
+.wire{border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,var(--bg),var(--paper));padding:18px;display:grid;gap:12px}
+.phone-shell{max-width:330px;margin-inline:auto;border:1px solid var(--line-strong);border-radius:26px;padding:16px;background:var(--bg);box-shadow:var(--shadow)}
+.phone-bar{height:34px;border-radius:999px;background:var(--dark);color:var(--dark-ink);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.75rem;margin-bottom:12px}
+.phone-row{border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:10px;background:var(--paper)}
+.phone-row b{display:block;color:var(--ink-900);font-size:.94rem}
+.phone-row small{color:var(--muted)}
+.bottom-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}
+.bottom-nav span{border:1px solid var(--line);border-radius:10px;padding:8px 4px;text-align:center;font-size:.72rem;color:var(--muted)}
+@media (max-width:860px){.flowgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.flowgrid{grid-template-columns:1fr}.mini-table{display:block;overflow-x:auto}.phone-shell{max-width:100%}}
 .finale{background:radial-gradient(120% 100% at 15% -10%,var(--dark-2),var(--dark) 62%);color:var(--dark-ink)}
 .finale h2,.finale h4{color:var(--dark-ink)}
 .finale .pname{color:var(--dark-muted)}
@@ -182,6 +201,8 @@ footer a{color:var(--gold)}
     <div class="navlinks">
       <a href="#idea">發想</a>
       <a href="#plan">計畫</a>
+      <a href="#filter">過濾</a>
+      <a href="#layout">版面</a>
       <a href="#tools">工具</a>
       <a href="#iterate">修正</a>
       <a href="#ship">推送</a>
@@ -198,10 +219,12 @@ footer a{color:var(--gold)}
     <nav class="stepper" data-reveal data-d="3" aria-label="流程總覽">
       <a href="#idea"><span class="n">01</span>發想</a>
       <a href="#plan"><span class="n">02</span>計畫</a>
-      <a href="#tools"><span class="n">03</span>技能外掛</a>
-      <a href="#iterate"><span class="n">04</span>溝通修正</a>
-      <a href="#ship"><span class="n">05</span>推送展示</a>
-      <a href="#done"><span class="n">06</span>完成</a>
+      <a href="#filter"><span class="n">03</span>過濾建構</a>
+      <a href="#layout"><span class="n">04</span>版面設計</a>
+      <a href="#tools"><span class="n">05</span>技能外掛</a>
+      <a href="#iterate"><span class="n">06</span>溝通修正</a>
+      <a href="#ship"><span class="n">07</span>推送展示</a>
+      <a href="#done"><span class="n">08</span>完成</a>
     </nav>
   </div>
 </header>
@@ -283,9 +306,119 @@ footer a{color:var(--gold)}
   </div>
 </section>
 
+<section id="filter">
+  <div class="wrap">
+    <div class="eyebrow-part" data-reveal><span class="pnum">03</span><span class="pname">過濾建構</span></div>
+    <h2 class="h2" data-reveal>相容性不是寫死，<br>而是先把規則資料化。</h2>
+    <p class="lead" data-reveal data-d="1">PCShop 的核心不是商品清單，而是「保護新手不要選錯」。所以第一步不是寫很多 if/else，而是把每個零件會影響相容性的欄位整理出來，再用一張約束表描述跨類別規則。</p>
+
+    <div class="block">
+      <h3 class="subhead" data-reveal>① 先決定每個類別需要哪些欄位</h3>
+      <table class="mini-table" data-reveal>
+        <thead><tr><th>類別</th><th>過濾需要看的欄位</th><th>用途</th></tr></thead>
+        <tbody>
+          <tr><td>CPU</td><td><code>socket</code>、<code>tdp</code>、<code>memory_type</code></td><td>決定主機板腳位、記憶體類型與電源瓦數餘裕。</td></tr>
+          <tr><td>主機板</td><td><code>socket</code>、<code>memory_type</code>、<code>form_factor</code></td><td>對齊 CPU、RAM，並檢查機殼支援尺寸。</td></tr>
+          <tr><td>顯示卡</td><td><code>length_mm</code>、<code>tdp</code>、<code>power_connector</code></td><td>檢查機殼能不能裝、電源是否足夠。</td></tr>
+          <tr><td>機殼 / 電源</td><td><code>max_gpu_length_mm</code>、<code>wattage</code></td><td>把尺寸和瓦數變成可計算條件。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block">
+      <h3 class="subhead" data-reveal>② 把相容性規則做成約束表</h3>
+      <table class="mini-table" data-reveal>
+        <thead><tr><th>source</th><th>target</th><th>條件</th><th>類型</th><th>提示</th></tr></thead>
+        <tbody>
+          <tr><td>CPU</td><td>主機板</td><td><code>CPU.socket = MB.socket</code></td><td>硬衝突</td><td>CPU 與主機板腳位不符。</td></tr>
+          <tr><td>主機板</td><td>記憶體</td><td><code>MB.memory_type = RAM.memory_type</code></td><td>硬衝突</td><td>記憶體規格不符合主機板。</td></tr>
+          <tr><td>顯示卡</td><td>機殼</td><td><code>GPU.length_mm &lt;= Case.max_gpu_length_mm</code></td><td>硬衝突</td><td>顯示卡長度超出機殼限制。</td></tr>
+          <tr><td>CPU + GPU</td><td>電源</td><td><code>PSU.wattage &gt;= tdp_sum + 150</code></td><td>軟警告</td><td>電源餘裕偏低，建議升級。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="flowgrid block" data-reveal>
+      <div class="flowcard"><strong>1. 讀取已選零件</strong><span>例如使用者已選 LGA1700 CPU，就把 <span class="mono">socket=LGA1700</span> 當成條件來源。</span></div>
+      <div class="flowcard"><strong>2. 找目標類別規則</strong><span>切到主機板頁時，只拿「目標是主機板」的規則，不掃全部資料。</span></div>
+      <div class="flowcard"><strong>3. 產生可買清單</strong><span>智慧過濾開啟時，只顯示可直接加入的零件；新手不會誤選。</span></div>
+      <div class="flowcard"><strong>4. 回報不可買原因</strong><span>智慧過濾關閉時，不相容品保留但灰階，並顯示被哪條規則擋住。</span></div>
+    </div>
+
+    <div class="code block" data-reveal>
+      <div class="codehead"><span>教學用偽程式</span><button class="cp" type="button">複製</button></div>
+      <pre>function filterProducts(category, selectedParts, smartFiltering) {
+  const rules = constraints.filter(rule =&gt; rule.target === category);
+  return products
+    .filter(product =&gt; product.category === category)
+    .map(product =&gt; ({ product, conflicts: checkRules(product, selectedParts, rules) }))
+    .filter(row =&gt; !smartFiltering || row.conflicts.every(c =&gt; !c.isHard));
+}</pre>
+    </div>
+
+    <div class="card block" data-reveal>
+      <h4>主編提醒</h4>
+      <p>教初學者時，先教「資料怎麼長」再教「程式怎麼寫」。因為過濾引擎的難點不是語法，而是有沒有把真實世界的相容性轉成穩定欄位與可追蹤規則。</p>
+    </div>
+  </div>
+</section>
+
+<section id="layout" class="section-tint">
+  <div class="wrap">
+    <div class="eyebrow-part" data-reveal><span class="pnum">04</span><span class="pname">版面設計</span></div>
+    <h2 class="h2" data-reveal>版面從使用姿勢開始，<br>不是從漂亮卡片開始。</h2>
+    <p class="lead" data-reveal data-d="1">PCShop 是手機優先工具，所以版面設計先問：使用者單手拿手機時，最常做什麼？答案是看進度、切類別、加入零件、修正錯誤。因此頁面要圍繞這四件事，而不是把桌機表格硬縮成手機版。</p>
+
+    <div class="grid-2 block">
+      <div class="wire" data-reveal>
+        <h3 class="subhead">手機主流程線框</h3>
+        <div class="phone-shell" aria-label="PCShop 手機版線框示意">
+          <div class="phone-bar">PCShop Quote</div>
+          <div class="phone-row"><b>組裝進度</b><small>CPU ✓　主機板待選　GPU ✓　PSU 警告</small></div>
+          <div class="phone-row"><b>3DMark Time Spy</b><small>CPU + GPU 選定後顯示效能等級</small></div>
+          <div class="phone-row"><b>零件挑選列</b><small>產品名稱、價格、庫存、相容性提示</small></div>
+          <div class="bottom-nav"><span>進度</span><span>挑零件</span><span>估價單</span></div>
+        </div>
+      </div>
+      <div class="steps" data-reveal data-d="1">
+        <div class="stepc">
+          <div class="num">1</div>
+          <div><h4>底部導覽</h4><p>手機拇指容易碰到的位置放三個主工作：組裝進度、零件挑選、我的估價單。</p></div>
+        </div>
+        <div class="stepc">
+          <div class="num">2</div>
+          <div><h4>進度總覽優先</h4><p>新手最怕忘記還缺什麼，所以進度區要能顯示完成、待選、警告，並能直接替換或移除。</p></div>
+        </div>
+        <div class="stepc">
+          <div class="num">3</div>
+          <div><h4>產品列取代密集表格</h4><p>每個零件先露出名稱、價格、庫存與重點規格；完整規格用展開層承接。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3 class="subhead" data-reveal>設計決策對照</h3>
+      <table class="mini-table" data-reveal>
+        <thead><tr><th>設計問題</th><th>PCShop 的做法</th><th>原因</th></tr></thead>
+        <tbody>
+          <tr><td>如何降低新手焦慮？</td><td>預設智慧過濾，只顯示可加入零件。</td><td>少看不相關選項，比一次給完整表格更友善。</td></tr>
+          <tr><td>如何讓 DIY 玩家保有自由？</td><td>提供「智慧過濾關閉」狀態，不相容品仍可看見。</td><td>進階使用者可以理解原因並自行判斷。</td></tr>
+          <tr><td>如何避免手機擁擠？</td><td>列表只放決策資訊，詳細規格點開才看。</td><td>行動版重點是快速判斷，不是展示所有資料。</td></tr>
+          <tr><td>如何讓估價更像店員？</td><td>用平實文字說明硬衝突與軟警告。</td><td>提示應該解決問題，不應丟出硬體術語考使用者。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card block" data-reveal>
+      <h4>版面設計口訣</h4>
+      <p>先排工作流，再排元件；先保護新手，再提供進階自由；先讓手機好用，桌機只是把資訊變得更密，不改變使用邏輯。</p>
+    </div>
+  </div>
+</section>
+
 <section id="tools">
   <div class="wrap">
-    <div class="eyebrow-part" data-reveal><span class="pnum">03</span><span class="pname">技能與外掛</span></div>
+    <div class="eyebrow-part" data-reveal><span class="pnum">05</span><span class="pname">技能與外掛</span></div>
     <h2 class="h2" data-reveal>這次實際使用了哪些工具。</h2>
     <p class="lead" data-reveal data-d="1">以下區分「官方」、「本地專案規則」與「第三方」。第三方或非 OpenAI 官方項目都附出處，方便讀者自己找到工具，而不是只看到一串神祕名詞。</p>
 
@@ -367,7 +500,7 @@ footer a{color:var(--gold)}
 
 <section id="iterate" class="section-tint">
   <div class="wrap">
-    <div class="eyebrow-part" data-reveal><span class="pnum">04</span><span class="pname">溝通與修正</span></div>
+    <div class="eyebrow-part" data-reveal><span class="pnum">06</span><span class="pname">溝通與修正</span></div>
     <h2 class="h2" data-reveal>把 AI 當成同事，不是許願池。</h2>
     <p class="lead" data-reveal data-d="1">修正時最有效的做法，是把問題描述成可觀察狀態，然後要求 AI 實測。不要只說「幫我美化」，而是說「手機版工具卡太擠，請縮小內距並用瀏覽器確認沒有橫向溢位」。</p>
 
@@ -395,7 +528,7 @@ footer a{color:var(--gold)}
 
 <section id="ship">
   <div class="wrap">
-    <div class="eyebrow-part" data-reveal><span class="pnum">05</span><span class="pname">推送與展示</span></div>
+    <div class="eyebrow-part" data-reveal><span class="pnum">07</span><span class="pname">推送與展示</span></div>
     <h2 class="h2" data-reveal>從本機檔案，變成可分享網址。</h2>
     <p class="lead" data-reveal data-d="1">一頁式指南的優點是交付單純：只要 HTML 沒壞、README 有入口、GitHub Pages 已啟用，讀者就能用網址直接閱讀。</p>
 
@@ -437,11 +570,13 @@ git push origin main</pre>
 
 <section id="done" class="finale">
   <div class="wrap">
-    <div class="eyebrow-part" data-reveal><span class="pnum">06</span><span class="pname">完成</span></div>
+    <div class="eyebrow-part" data-reveal><span class="pnum">08</span><span class="pname">完成</span></div>
     <h2 class="h2" data-reveal>完成不是「寫完」，<br>而是可閱讀、可驗證、可追蹤。</h2>
     <div class="checklist block" data-reveal>
       <div class="check"><span class="box">✓</span><span>有清楚的產品起點：手機優先、避免相容性錯誤、本地店家可用。</span></div>
       <div class="check"><span class="box">✓</span><span>有主編計畫：先確認目標、讀者、素材、風格與驗收標準。</span></div>
+      <div class="check"><span class="box">✓</span><span>有過濾引擎教學：欄位、約束表、智慧過濾與衝突回報都能說清楚。</span></div>
+      <div class="check"><span class="box">✓</span><span>有版面設計教學：從手機使用姿勢推導出進度、挑選與估價單三個主區。</span></div>
       <div class="check"><span class="box">✓</span><span>有工具揭露：官方、本地、第三方來源分清楚。</span></div>
       <div class="check"><span class="box">✓</span><span>有互動教學：Prompt 對照、流程步驟、複製指令、完成清單。</span></div>
       <div class="check"><span class="box">✓</span><span>有上線流程：本機驗證、commit、push、GitHub Pages 展示。</span></div>
