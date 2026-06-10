@@ -10,6 +10,7 @@
 | 2 | **Claude AI 審圖指南** | 消防製圖人員用 Claude AI 輔助審圖 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/guide.html) |
 | 3 | **製作幕後：用 AI 打造一頁式指南** | 從建倉、發想計畫、調用技能外掛、來回修正到推上 GitHub 的完整流程 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/making-of.html) |
 | 4 | **PCShop 專案製作流程** | 電腦組裝估價系統的製作筆記：用 DeepSeek 聊出規格、再用 Codex 從發想、過濾、版面到上線 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/pcshop-ai-build-guide.html) |
+| 5 | **美容儀器說明書 AI 協作工作流** | 簡體說明書 PDF 的三段 AI 接力：DeepSeek 翻譯與合規改寫、Codex 複驗校稿、Claude Code 配圖排版輸出 A4 PDF | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/beauty-manual-ai-guide.html) |
 
 ---
 
@@ -120,6 +121,33 @@
 
 ---
 
+## 5. 美容儀器說明書 AI 協作工作流：翻譯、合規改寫與排版的三段接力
+
+> 一份簡體說明書 PDF，經 DeepSeek 產出、Codex 審稿、Claude Code 排版，變成 28 頁 A4 繁中新版手冊的工作筆記
+
+| 項目 | 內容 |
+|------|------|
+| 適用對象 | 對 AI 工具有興趣、想看文件翻譯改寫＋排版任務怎麼用多個 AI 接力完成的同好 |
+| 線上閱讀 | [開啟教學頁面](https://vik1n9.github.io/One-Page-Beginners-Guide/beauty-manual-ai-guide.html) |
+| 檔案 | `beauty-manual-ai-guide.html` |
+| 系統需求 | 任何現代瀏覽器即可閱讀；實作需 Open Code（DeepSeek）、Codex 與 Claude Code |
+| 資料日期 | 2026-06-10 |
+
+**內容重點**（十個段落）
+
+- **案前判斷** — 表面是翻譯，實際有疑似醫療描述、簡轉繁陷阱、格式保留三個風險
+- **工作流總覽** — 以「計劃 → 開發 → 驗證（審稿）→ 品管 → agent 輸出」五階段理念安排三個 AI 工具的分工
+- **三階段分工** — DeepSeek 產出初版（含工具選用理由）、Codex 對照原稿複驗校稿、Claude Code 配圖排版輸出 A4 PDF
+- **Prompt 設計** — 三段實際使用的 Prompt 原文與拆解：講清楚風險與標準、強調重新檢查、硬規格講死軟決策留白
+- **人工守門點** — 哪些名詞與設計決策必須停下來問人，含「美斑筆 → 美容筆」實例
+- **排版管線與踩坑** — 六步可重跑腳本管線，與第一版成品逐頁目檢抓出的五個坑
+- **完工複驗** — 程式斷言＋逐頁目檢雙保險的驗收做法
+- **可複用模板** — 初版製作、複驗修正、排版任務、完工複驗四份 Prompt 模板，可直接複製套用
+
+> ⚠️ 本頁為工作流程分享。文中合規改寫做法僅為產品文件編輯實務，實際文案是否合規仍需依當地法規與專業意見判斷；各 AI 工具功能與介面可能隨版本更新，實際操作請以各官方文件為準。
+
+---
+
 ## 檔案說明
 
 | 檔案 | 說明 |
@@ -128,5 +156,6 @@
 | `guide.html` | 消防審圖完整互動式教學頁面（七章 17 步驟） |
 | `making-of.html` | 製作幕後：用 AI 打造一頁式指南並推上 GitHub 的流程教學 |
 | `pcshop-ai-build-guide.html` | PCShop 專案製作筆記：用 DeepSeek 聊出規格、再用 Codex 從發想、過濾建構、版面設計、店家後台到維護推送 |
+| `beauty-manual-ai-guide.html` | 美容儀器說明書 AI 協作工作流筆記：DeepSeek 翻譯與合規改寫、Codex 複驗校稿、Claude Code 配圖排版輸出 A4 PDF |
 | `CLAUDE.md` | 本倉庫的 Claude 協作行為準則 |
 | `README.md` | 本說明文件 |
