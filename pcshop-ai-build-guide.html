@@ -237,7 +237,7 @@ footer a{color:var(--gold)}
   <div class="wrap">
     <div class="eyebrow-part" data-reveal><span class="pnum">01</span><span class="pname">發想與定位</span></div>
     <h2 class="h2" data-reveal>先把「不滿」翻譯成產品任務。</h2>
-    <p class="lead" data-reveal data-d="1">PCShop 的起點很具體：傳統電腦估價網站太像舊式表格，手機難用，新手又怕 CPU、主機板、記憶體、機殼尺寸選錯。主編要做的第一件事，不是叫 AI 寫頁面，而是把這句抱怨整理成清楚的專案命題。</p>
+    <p class="lead" data-reveal data-d="1">PCShop 的起點很具體：傳統電腦估價網站太像舊式表格，手機難用，新手又怕 CPU、主機板、記憶體、機殼尺寸選錯。這份教學的起點也一樣：先搞清楚誰在用、痛點是什麼，再把問題轉化成可驗證的產品任務，最後才動手設計與實作。</p>
 
     <div class="grid-2 block">
       <div class="card" data-reveal>
@@ -248,6 +248,18 @@ footer a{color:var(--gold)}
         <h4>產品任務</h4>
         <p>建立一個手機優先的本地電腦店估價工具：八大零件逐步選、硬衝突立即阻擋、軟警告清楚提示、CPU+GPU 選定後顯示 3DMark Time Spy 預估等級。</p>
       </div>
+    </div>
+
+    <div class="block" data-reveal>
+      <h3 class="subhead">目標使用者</h3>
+      <table class="mini-table">
+        <thead><tr><th>使用者</th><th>核心痛點</th><th>需要什麼</th></tr></thead>
+        <tbody>
+          <tr><td>電腦新手</td><td>不懂 socket 腳位、DDR 世代差異，怕買到不相容零件</td><td>保護式引導：預設只顯示相容選項，衝突時說明原因</td></tr>
+          <tr><td>DIY 玩家</td><td>懂自己要什麼，卻苦於傳統表格速度慢、手機更難操作</td><td>快速過濾 + 本地庫存即時查詢 + 相容性警告</td></tr>
+          <tr><td>電腦店店家</td><td>估價靠人工核對，缺乏讓客人自助挑選的工具</td><td>可維護的商品後台與可分享的估價單連結</td></tr>
+        </tbody>
+      </table>
     </div>
 
     <div class="block timeline">
@@ -269,7 +281,7 @@ footer a{color:var(--gold)}
 
 <section id="plan" class="section-tint">
   <div class="wrap">
-    <div class="eyebrow-part" data-reveal><span class="pnum">02</span><span class="pname">主編計畫</span></div>
+    <div class="eyebrow-part" data-reveal><span class="pnum">02</span><span class="pname">協作規劃</span></div>
     <h2 class="h2" data-reveal>先要求 AI 做計畫，確認後才執行。</h2>
     <p class="lead" data-reveal data-d="1">好的 AI 協作不是「請幫我做一個網站」就結束，而是先讓 AI 讀材料、列假設、提出成功標準。計畫是專案的安全帶：它讓人知道現在要做什麼，也讓 AI 知道哪些事不能亂猜。</p>
 
@@ -280,7 +292,7 @@ footer a{color:var(--gold)}
       </div>
       <div class="stepc" data-reveal data-d="1">
         <div class="num">B</div>
-        <div><h4>明確要求停在計畫</h4><p>指令中寫清楚：「你作為出版社主編輯，先設計計劃，確認後再執行。」這會迫使 AI 先說明取捨，不會直接改檔。</p></div>
+        <div><h4>明確要求停在計畫</h4><p>在指令中說清楚：「先設計執行計劃，確認後再動手。」這個做法讓 AI 先說明假設與取捨，確認目標一致後才開始修改檔案。</p></div>
       </div>
       <div class="stepc" data-reveal data-d="2">
         <div class="num">C</div>
@@ -298,7 +310,7 @@ footer a{color:var(--gold)}
         <div class="note bad">問題：沒有讀者、沒有素材、沒有驗收標準，也沒有說要不要先確認。</div>
       </div>
       <div id="promptPaneGood" hidden>
-        <pre>你作為出版社主編輯，先設計計劃，確認後再執行。
+        <pre>你是一位資深全端講師，先設計執行計劃，確認後再動手。
 請讀 teaching.txt、PRODUCT.md、規格書.txt，
 把 PCShop 製作流程做成單檔動態 HTML。
 明確列出使用的工具、技能與外掛；
@@ -361,8 +373,8 @@ footer a{color:var(--gold)}
     </div>
 
     <div class="card block" data-reveal>
-      <h4>主編提醒</h4>
-      <p>教初學者時，先教「資料怎麼長」再教「程式怎麼寫」。因為過濾引擎的難點不是語法，而是有沒有把真實世界的相容性轉成穩定欄位與可追蹤規則。</p>
+      <h4>觀念提示</h4>
+      <p>教初學者時，先教「資料怎麼長」再教「程式怎麼寫」。過濾引擎的難點不是語法，而是有沒有把真實世界的相容性轉成穩定欄位與可追蹤規則。</p>
     </div>
   </div>
 </section>
@@ -557,7 +569,7 @@ footer a{color:var(--gold)}
     <div class="toolgrid" data-reveal>
       <div class="tool">
         <div class="th"><span class="tn">AGENTS.md / CLAUDE.md</span><span class="tag local">本地</span></div>
-        <p><span class="mono">AGENTS.md</span> 規定 PCShop 的文件維護與 RTK 指令；目標倉庫的 <span class="mono">CLAUDE.md</span> 規定主編輯工作法：先列假設、簡化、確認再動手。</p>
+        <p><span class="mono">AGENTS.md</span> 規定 PCShop 的文件維護與 RTK 指令；目標倉庫的 <span class="mono">CLAUDE.md</span> 規定協作工作法：先列假設、簡化、確認再動手。</p>
         <div class="src">本機專案檔案，非公開套件。</div>
       </div>
       <div class="tool">
@@ -601,8 +613,8 @@ footer a{color:var(--gold)}
     </div>
 
     <div class="card block" data-reveal>
-      <h4>主編輯檢查清單</h4>
-      <p>每次要求修正，都問三件事：讀者會不會更容易理解？修改是否符合原本風格？有沒有用實際頁面驗證？這三題比「多加一點動畫」更重要。</p>
+      <h4>修正前的自問清單</h4>
+      <p>每次要求修正，都先問三件事：讀者會不會更容易理解？修改是否符合原本風格？有沒有用實際頁面驗證？這三題比「多加一點動畫」更重要。</p>
     </div>
   </div>
 </section>
@@ -655,7 +667,7 @@ git push origin main</pre>
     <h2 class="h2" data-reveal>完成不是「寫完」，<br>而是可閱讀、可驗證、可追蹤。</h2>
     <div class="checklist block" data-reveal>
       <div class="check"><span class="box">✓</span><span>有清楚的產品起點：手機優先、避免相容性錯誤、本地店家可用。</span></div>
-      <div class="check"><span class="box">✓</span><span>有主編計畫：先確認目標、讀者、素材、風格與驗收標準。</span></div>
+      <div class="check"><span class="box">✓</span><span>有協作計畫：先確認目標、讀者、素材、風格與驗收標準。</span></div>
       <div class="check"><span class="box">✓</span><span>有過濾引擎教學：欄位、約束表、智慧過濾與衝突回報都能說清楚。</span></div>
       <div class="check"><span class="box">✓</span><span>有版面設計教學：從手機使用姿勢推導出進度、挑選與估價單三個主區。</span></div>
       <div class="check"><span class="box">✓</span><span>有店家後台教學：管理入口不放前台，CRUD 真正寫回產品資料。</span></div>
