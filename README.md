@@ -9,7 +9,7 @@
 | 1 | **從零開始前進美股** | 台灣投資人用複委託買美股的入門手冊 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/us-stocks-guide.html) |
 | 2 | **Claude AI 審圖指南** | 消防製圖人員用 Claude AI 輔助審圖 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/guide.html) |
 | 3 | **製作幕後：用 AI 打造一頁式指南** | 從建倉、發想計畫、調用技能外掛、來回修正到推上 GitHub 的完整流程 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/making-of.html) |
-| 4 | **PCShop 專案製作流程** | 以電腦組裝估價系統為例，學會用 Codex 從發想、過濾建構、版面設計、店家後台到維護推送 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/pcshop-ai-build-guide.html) |
+| 4 | **PCShop 專案製作流程** | 電腦組裝估價系統的製作筆記：用 DeepSeek 聊出規格、再用 Codex 從發想、過濾、版面到上線 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/pcshop-ai-build-guide.html) |
 
 ---
 
@@ -91,32 +91,32 @@
 
 ---
 
-## 4. PCShop 專案製作流程：用 Codex 從發想到上線
+## 4. PCShop 專案製作流程：從一句抱怨到能上線的網站
 
-> 以手機優先電腦組裝估價系統為案例，學會把模糊想法變成可執行、可驗證、可推送的 AI 協作流程
+> 手機優先電腦組裝估價系統的製作筆記：用 DeepSeek 聊出規格、再用 Codex 規劃與實作，記錄這個專案怎麼從痛點一路走到上線
 
 | 項目 | 內容 |
 |------|------|
-| 適用對象 | 想用 Codex 製作真實專案、但不確定如何規劃與溝通的初學者 |
+| 適用對象 | 對 AI 工具有興趣、想看一個真實專案怎麼做出來的同好 |
 | 線上閱讀 | [開啟教學頁面](https://vik1n9.github.io/One-Page-Beginners-Guide/pcshop-ai-build-guide.html) |
 | 檔案 | `pcshop-ai-build-guide.html` |
-| 系統需求 | 任何現代瀏覽器即可閱讀；實作需 GitHub 帳號與 Codex |
+| 系統需求 | 任何現代瀏覽器即可閱讀；實作需 GitHub 帳號、DeepSeek 與 Codex |
 | 資料日期 | 2026-06-10 |
 
 **內容重點**（十個步驟）
 
 - **發想與定位** — 從「傳統電腦估價網站手機難用、相容性容易選錯」轉成產品任務
-- **主編計畫** — 先要求 AI 讀素材、列計畫、確認後才動工
+- **協作規劃** — DeepSeek 聊出大綱與初版規格書，Codex 先列計畫、確認後才動工
 - **過濾建構** — 用結構化欄位、相容性約束表、智慧過濾與衝突回報建立新手保護機制
 - **版面設計** — 從手機使用姿勢推導出底部導覽、進度總覽、產品列與完整規格展開
 - **店家後台** — 建立維護者專用入口、保留登入接口，並讓商品 CRUD 真正寫回 `data/products.csv`
 - **維護紀律** — 功能變更同步更新 `PRODUCT.md`、`規格書.txt`、`README.md` 與版本日期
-- **技能與外掛** — 明確列出 OpenAI Codex、Codex Skills、Build Web Apps、Browser、GitHub Pages、Playwright、Git、GitHub CLI 與非官方技能來源
+- **技能與外掛** — 明確列出 DeepSeek、OpenAI Codex、Codex Skills、Build Web Apps、Browser、GitHub Pages、Playwright、Git、GitHub CLI 與非官方技能來源
 - **溝通與修正** — 用可觀察、可驗證的指令取代抽象要求
-- **推送與展示** — 本機驗證、commit、push 到 `main`，再用 GitHub Pages 展示
-- **完成檢查** — 確認內容、互動、工具揭露、README 入口與線上網址都到位
+- **推送與展示** — 本機驗證、推到 `main`，再由 GitHub Actions 自動發佈到 Pages
+- **完成與下一步** — 收尾檢查內容、互動、工具揭露與線上網址，並分享留言板／一鍵跟單的後續構想
 
-> ⚠️ 本頁為 AI 協作流程教學示例。工具版本、Codex 功能與 GitHub 介面可能隨時間更新，實際操作請以各官方文件與專案規則為準。
+> ⚠️ 本頁為製作流程分享。工具版本、DeepSeek 與 Codex 功能、GitHub 介面可能隨時間更新，實際操作請以各官方文件與專案規則為準。
 
 ---
 
@@ -127,6 +127,6 @@
 | `us-stocks-guide.html` | 美股複委託入門互動式教學頁面 |
 | `guide.html` | 消防審圖完整互動式教學頁面（七章 17 步驟） |
 | `making-of.html` | 製作幕後：用 AI 打造一頁式指南並推上 GitHub 的流程教學 |
-| `pcshop-ai-build-guide.html` | PCShop 專案製作流程：用 Codex 從發想、過濾建構、版面設計、店家後台到維護推送 |
+| `pcshop-ai-build-guide.html` | PCShop 專案製作筆記：用 DeepSeek 聊出規格、再用 Codex 從發想、過濾建構、版面設計、店家後台到維護推送 |
 | `CLAUDE.md` | 本倉庫的 Claude 協作行為準則 |
 | `README.md` | 本說明文件 |
