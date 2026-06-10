@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="以 PCShop 電腦組裝估價系統為案例，教初學者如何和 Codex 協作：從發想、建立計畫、建構相容性過濾、設計手機優先版面、建立店家後台、同步文件版本，到 GitHub 推送與 Pages 展示。">
+<meta name="description" content="PCShop 電腦組裝估價系統的製作筆記：用 DeepSeek 聊出規格、再用 Codex 規劃與實作。從發想、相容性過濾、手機優先版面、店家後台、文件同步，到 GitHub 推送與 Pages 發佈，分享給對 AI 工具有興趣的同好。">
 <title>PCShop 專案製作流程：過濾、版面、後台與維護紀律</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -215,9 +215,9 @@ footer a{color:var(--gold)}
 
 <header class="hero">
   <div class="wrap">
-    <div class="badge" data-reveal><span class="dot"></span>PCShop case study · 2026 / 06 / 10</div>
+    <div class="badge" data-reveal><span class="dot"></span>PCShop 製作筆記 · 2026 / 06 / 10</div>
     <h1 data-reveal data-d="1">從一句抱怨，<br>到一個<span>能上線</span>的專案。</h1>
-    <p class="sub" data-reveal data-d="2">這份教學以 PCShop 電腦組裝估價系統為例，示範如何和 Codex 協作：先把模糊想法編成計畫，再調用技能、讀檔、寫程式、用瀏覽器驗證，最後推送到 GitHub Pages 展示。</p>
+    <p class="sub" data-reveal data-d="2">這是 PCShop 電腦組裝估價系統的製作筆記。從「組裝電腦不知道怎麼搭」這個老問題出發，記錄整個流程：先用 DeepSeek 把模糊想法聊成大綱與初版規格書，再交給 Codex 規劃設計、做出雛型、寫程式、用瀏覽器驗證，最後部署成可分享的網站。寫給同樣在玩 AI 工具的新手同好參考。</p>
     <nav class="stepper" data-reveal data-d="3" aria-label="流程總覽">
       <a href="#idea"><span class="n">01</span>發想</a>
       <a href="#plan"><span class="n">02</span>計畫</a>
@@ -237,16 +237,16 @@ footer a{color:var(--gold)}
   <div class="wrap">
     <div class="eyebrow-part" data-reveal><span class="pnum">01</span><span class="pname">發想與定位</span></div>
     <h2 class="h2" data-reveal>先把「不滿」翻譯成產品任務。</h2>
-    <p class="lead" data-reveal data-d="1">PCShop 的起點很具體：傳統電腦估價網站太像舊式表格，手機難用，新手又怕 CPU、主機板、記憶體、機殼尺寸選錯。這份教學的起點也一樣：先搞清楚誰在用、痛點是什麼，再把問題轉化成可驗證的產品任務，最後才動手設計與實作。</p>
+    <p class="lead" data-reveal data-d="1">買組裝電腦最頭痛的，往往不是預算或用途，而是不知道怎麼搭：要做一堆功課、到處比價找心得，最後還得去論壇貼配單請人指教。雖然現在有原價屋、欣亞這類線上估價單，但風格像二十年前的產物，找產品慢、不知道搭出來有沒有問題，用手機更是難操作。於是我想：能不能做一個會自動篩掉不相容零件、自動擋掉常見錯誤、還能直接秀出效能等級的線上估價單？PCShop 就是這樣開始的。</p>
 
     <div class="grid-2 block">
       <div class="card" data-reveal>
         <h4>原始痛點</h4>
-        <p>使用者懂預算與用途，卻不一定懂 socket、瓦數、DDR4/DDR5 或顯示卡長度。傳統清單把所有責任丟給使用者，導致「看得到零件，卻不確定能不能買」。</p>
+        <p>使用者懂預算與用途，卻不一定懂 socket、瓦數、DDR4/DDR5 或顯示卡長度。傳統清單把所有判斷丟回給使用者，結果「看得到零件，卻不確定能不能買」。</p>
       </div>
       <div class="card" data-reveal data-d="1">
         <h4>產品任務</h4>
-        <p>建立一個手機優先的本地電腦店估價工具：八大零件逐步選、硬衝突立即阻擋、軟警告清楚提示、CPU+GPU 選定後顯示 3DMark Time Spy 預估等級。</p>
+        <p>做一個手機優先的本地電腦店估價工具：八大零件逐步選、硬衝突當場擋、軟警告講清楚、選好 CPU+GPU 後直接顯示 3DMark Time Spy 預估等級。</p>
       </div>
     </div>
 
@@ -265,15 +265,15 @@ footer a{color:var(--gold)}
     <div class="block timeline">
       <div class="timeitem" data-reveal>
         <div class="mark">1</div>
-        <div class="body"><h4>寫下真實情境</h4><p>「手機上挑電腦」「怕買錯」「店家需要可分享估價單」比抽象的「做購物網站」更有方向。</p></div>
+        <div class="body"><h4>寫下真實情境</h4><p>「手機上挑電腦」「怕買錯」「店家要能給可分享估價單」，比抽象的「做購物網站」更有方向。</p></div>
       </div>
       <div class="timeitem" data-reveal data-d="1">
         <div class="mark">2</div>
-        <div class="body"><h4>定義使用者</h4><p>新手需要保護式引導；DIY 玩家需要快速篩選、本地庫存與即時相容性判斷。兩者都不想讀一整本硬體百科。</p></div>
+        <div class="body"><h4>定義使用者</h4><p>新手要保護式引導；DIY 玩家要快速篩選、本地庫存與即時相容性判斷。兩種人都不想讀一整本硬體百科。</p></div>
       </div>
       <div class="timeitem" data-reveal data-d="2">
         <div class="mark">3</div>
-        <div class="body"><h4>建立文件骨幹</h4><p><span class="mono">PRODUCT.md</span> 寫產品意圖與體驗原則；<span class="mono">規格書.txt</span> 寫資料結構、相容性規則、UI 行為與後台要求。</p></div>
+        <div class="body"><h4>先聊出大綱</h4><p>用 DeepSeek 的聊天功能把想法討論成整體大綱，再整理成初版 <span class="mono">規格書.txt</span> 與 <span class="mono">PRODUCT.md</span>，當作後續開發的依據。</p></div>
       </div>
     </div>
   </div>
@@ -282,41 +282,41 @@ footer a{color:var(--gold)}
 <section id="plan" class="section-tint">
   <div class="wrap">
     <div class="eyebrow-part" data-reveal><span class="pnum">02</span><span class="pname">協作規劃</span></div>
-    <h2 class="h2" data-reveal>先要求 AI 做計畫，確認後才執行。</h2>
-    <p class="lead" data-reveal data-d="1">好的 AI 協作不是「請幫我做一個網站」就結束，而是先讓 AI 讀材料、列假設、提出成功標準。計畫是專案的安全帶：它讓人知道現在要做什麼，也讓 AI 知道哪些事不能亂猜。</p>
+    <h2 class="h2" data-reveal>先讓 AI 做計畫，確認後才動手。</h2>
+    <p class="lead" data-reveal data-d="1">我的做法不是丟一句「幫我做個網站」就等結果，而是分兩棒：DeepSeek 負責把模糊想法聊成大綱、產出初版規格書；Codex 拿到規格書後，先規劃整個設計流程讓我審閱，我改過一輪，再請它把網站雛型補完。計畫是專案的安全帶——讓人知道現在在做什麼，也讓 AI 知道哪些事不能亂猜。</p>
 
     <div class="block steps">
       <div class="stepc" data-reveal>
         <div class="num">A</div>
-        <div><h4>交付材料</h4><p>提供 <span class="mono">teaching.txt</span>、產品概念、規格書、既有網頁風格參考，讓 AI 先讀懂「內容」和「出版形式」。</p></div>
+        <div><h4>交付材料</h4><p>把產品概念、初版規格書、既有網頁風格參考交給 AI，先讓它讀懂「內容」和「想要的形式」。</p></div>
       </div>
       <div class="stepc" data-reveal data-d="1">
         <div class="num">B</div>
-        <div><h4>明確要求停在計畫</h4><p>在指令中說清楚：「先設計執行計劃，確認後再動手。」這個做法讓 AI 先說明假設與取捨，確認目標一致後才開始修改檔案。</p></div>
+        <div><h4>先停在計畫</h4><p>明確要求「先把執行計劃做出來，確認後再動手」，讓 AI 先講假設與取捨，目標一致了才改檔案。</p></div>
       </div>
       <div class="stepc" data-reveal data-d="2">
         <div class="num">C</div>
-        <div><h4>確認約束</h4><p>本次確認了檔名、工具要明確列出、非官方技能和外掛要附來源連結、風格要參考既有 <span class="mono">making-of.html</span>。</p></div>
+        <div><h4>確認約束</h4><p>這次先講好檔名、工具要明確列出、非官方技能和外掛要附來源連結、風格參考既有 <span class="mono">making-of.html</span>。</p></div>
       </div>
     </div>
 
     <div class="prompt block" data-reveal>
       <div class="seg" role="group" aria-label="Prompt 對照">
         <button id="promptBad" aria-pressed="true">模糊說法</button>
-        <button id="promptGood" aria-pressed="false">可執行說法</button>
+        <button id="promptGood" aria-pressed="false">具體說法</button>
       </div>
       <div id="promptPaneBad">
-        <pre>幫我做一個 PCShop 教學網頁。</pre>
-        <div class="note bad">問題：沒有讀者、沒有素材、沒有驗收標準，也沒有說要不要先確認。</div>
+        <pre>幫我做一個 PCShop 估價網站。</pre>
+        <div class="note bad">問題：沒有讀者、沒有素材、沒有驗收標準，AI 只能猜。</div>
       </div>
       <div id="promptPaneGood" hidden>
-        <pre>你是一位資深全端講師，先設計執行計劃，確認後再動手。
-請讀 teaching.txt、PRODUCT.md、規格書.txt，
+        <pre>你是一位資深全端工程師，先設計執行計劃，確認後再動手。
+請讀 PRODUCT.md、規格書.txt 與既有網頁風格參考，
 把 PCShop 製作流程做成單檔動態 HTML。
 明確列出使用的工具、技能與外掛；
 非官方項目請附來源連結。
 風格參考 making-of.html，完成後推送到 GitHub Pages。</pre>
-        <div class="note good">好處：角色、流程、素材、格式、工具揭露、風格與交付方式都清楚。</div>
+        <div class="note good">差別：角色、流程、素材、格式、工具揭露、風格與交付方式都講清楚，回來的東西才接近想要的。</div>
       </div>
     </div>
   </div>
@@ -326,7 +326,7 @@ footer a{color:var(--gold)}
   <div class="wrap">
     <div class="eyebrow-part" data-reveal><span class="pnum">03</span><span class="pname">過濾建構</span></div>
     <h2 class="h2" data-reveal>相容性不是寫死，<br>而是先把規則資料化。</h2>
-    <p class="lead" data-reveal data-d="1">PCShop 的核心不是商品清單，而是「保護新手不要選錯」。所以第一步不是寫很多 if/else，而是把每個零件會影響相容性的欄位整理出來，再用一張約束表描述跨類別規則。</p>
+    <p class="lead" data-reveal data-d="1">PCShop 的核心不是商品清單，而是「保護新手不要選錯」。我採用的方式是：每個零件建檔時就輸入規格標籤——CPU 的插槽類型、顯卡的瓦數與長度、機殼能容納的顯卡長度與散熱器高度等等。選單再依這些標籤過濾，讓不相符的產品不會被選進來，避免 AMD 的 CPU 配到 Intel 主機板，或買了機殼結果顯卡裝不下這種事。</p>
 
     <div class="block">
       <h3 class="subhead" data-reveal>① 先決定每個類別需要哪些欄位</h3>
@@ -359,10 +359,11 @@ footer a{color:var(--gold)}
       <div class="flowcard"><strong>2. 找目標類別規則</strong><span>切到主機板頁時，只拿「目標是主機板」的規則，不掃全部資料。</span></div>
       <div class="flowcard"><strong>3. 產生可買清單</strong><span>智慧過濾開啟時，只顯示可直接加入的零件；新手不會誤選。</span></div>
       <div class="flowcard"><strong>4. 回報不可買原因</strong><span>智慧過濾關閉時，不相容品保留但灰階，並顯示被哪條規則擋住。</span></div>
+      <div class="flowcard"><strong>5. 列出必需種類</strong><span>把組裝必需的種類都列在進度區，使用者一眼看到還缺什麼，少了散熱器開不了機這種事就不會發生。</span></div>
     </div>
 
     <div class="code block" data-reveal>
-      <div class="codehead"><span>教學用偽程式</span><button class="cp" type="button">複製</button></div>
+      <div class="codehead"><span>篩選邏輯大致長這樣</span><button class="cp" type="button">複製</button></div>
       <pre>function filterProducts(category, selectedParts, smartFiltering) {
   const rules = constraints.filter(rule =&gt; rule.target === category);
   return products
@@ -373,8 +374,8 @@ footer a{color:var(--gold)}
     </div>
 
     <div class="card block" data-reveal>
-      <h4>觀念提示</h4>
-      <p>教初學者時，先教「資料怎麼長」再教「程式怎麼寫」。過濾引擎的難點不是語法，而是有沒有把真實世界的相容性轉成穩定欄位與可追蹤規則。</p>
+      <h4>一個小心得</h4>
+      <p>先想清楚「資料怎麼長」，再想「程式怎麼寫」。過濾引擎難的不是語法，而是有沒有把真實世界的相容性，變成穩定的欄位與可追蹤的規則。</p>
     </div>
   </div>
 </section>
@@ -383,7 +384,7 @@ footer a{color:var(--gold)}
   <div class="wrap">
     <div class="eyebrow-part" data-reveal><span class="pnum">04</span><span class="pname">版面設計</span></div>
     <h2 class="h2" data-reveal>版面從使用姿勢開始，<br>不是從漂亮卡片開始。</h2>
-    <p class="lead" data-reveal data-d="1">PCShop 是手機優先工具，所以版面設計先問：使用者單手拿手機時，最常做什麼？答案是看進度、切類別、加入零件、修正錯誤。因此頁面要圍繞這四件事，而不是把桌機表格硬縮成手機版。</p>
+    <p class="lead" data-reveal data-d="1">PCShop 是手機優先的工具，所以我更在意 UX 而不是 UI。手機頁面小，我把資訊拆成三個頁簽，把不必占用畫面的東西移到別處，讓使用者專心挑零件。版面圍繞單手使用最常做的四件事：看進度、切類別、加入零件、修正錯誤——而不是把桌機表格硬縮成手機版。</p>
 
     <div class="grid-2 block">
       <div class="wire" data-reveal>
@@ -407,7 +408,7 @@ footer a{color:var(--gold)}
         </div>
         <div class="stepc">
           <div class="num">3</div>
-          <div><h4>產品列取代密集表格</h4><p>每個零件先露出名稱、價格、庫存與重點規格；完整規格用展開層承接。</p></div>
+          <div><h4>產品列取代密集表格</h4><p>每個零件先露出名稱、價格、庫存與重點規格；其餘刻意收起，只留關鍵訊息，並附官方頁面連結，讓人用最少力氣挑到適合的產品，完整規格用展開層承接。</p></div>
         </div>
       </div>
     </div>
@@ -426,8 +427,8 @@ footer a{color:var(--gold)}
     </div>
 
     <div class="card block" data-reveal>
-      <h4>版面設計口訣</h4>
-      <p>先排工作流，再排元件；先保護新手，再提供進階自由；先讓手機好用，桌機只是把資訊變得更密，不改變使用邏輯。</p>
+      <h4>關於配色</h4>
+      <p>產品本身的配色，我參考了華碩、蘋果這類大廠購物頁的調性——沉穩靛藍當品牌色、青藍當「相容／通過」的輔助色，想給人簡約、專業、不複雜的感覺，符合 <span class="mono">PRODUCT.md</span> 定的「沉穩、精準、守護」。整體原則就一句：先排工作流再排元件，先保護新手再給進階自由，先讓手機好用、桌機只是把資訊變得更密。</p>
     </div>
   </div>
 </section>
@@ -436,7 +437,7 @@ footer a{color:var(--gold)}
   <div class="wrap">
     <div class="eyebrow-part" data-reveal><span class="pnum">05</span><span class="pname">店家後台</span></div>
     <h2 class="h2" data-reveal>前台給客人用，<br>後台給店家維護資料。</h2>
-    <p class="lead" data-reveal data-d="1">PCShop 不只是一個展示頁，它要讓店家能維護商品。後台的設計原則很清楚：不要把管理入口放在顧客商店頁；入口只寫在 README 或維護文件裡，前台維持乾淨的估價流程。</p>
+    <p class="lead" data-reveal data-d="1">PCShop 不只是一個展示頁，它要讓店家能維護商品。後台的原則很清楚：不要把管理入口放在顧客商店頁；入口只寫在 README 或維護文件裡，前台維持乾淨的估價流程。</p>
 
     <div class="grid-2 block">
       <div class="steps" data-reveal>
@@ -470,8 +471,8 @@ footer a{color:var(--gold)}
     </div>
 
     <div class="card block" data-reveal>
-      <h4>教學重點</h4>
-      <p>後台不是「多做一頁」而已，它是營運入口。初學者要學會區分顧客路徑與維護者路徑：顧客只看到估價；店家才看到資料管理。</p>
+      <h4>一個營運上的分界</h4>
+      <p>後台不是「多做一頁」而已，它是營運入口。這裡的關鍵是把顧客路徑和維護者路徑分開：顧客只看到估價；店家才看到資料管理。</p>
     </div>
   </div>
 </section>
@@ -512,8 +513,8 @@ footer a{color:var(--gold)}
 <section id="tools">
   <div class="wrap">
     <div class="eyebrow-part" data-reveal><span class="pnum">07</span><span class="pname">技能與外掛</span></div>
-    <h2 class="h2" data-reveal>這次實際使用了哪些工具。</h2>
-    <p class="lead" data-reveal data-d="1">以下區分「官方」、「本地專案規則」與「第三方」。第三方或非 OpenAI 官方項目都附出處，方便讀者自己找到工具，而不是只看到一串神祕名詞。</p>
+    <h2 class="h2" data-reveal>這次實際用到哪些工具。</h2>
+    <p class="lead" data-reveal data-d="1">以下區分「官方」、「本地專案規則」與「第三方」。第三方或非 OpenAI 官方項目都附出處，方便同好自己找到工具，而不是只看到一串神祕名詞。整個流程其實是雙工具接力：DeepSeek 負責聊出規格，Codex 負責規劃與實作。</p>
 
     <div class="legend block" data-reveal>
       <span><i class="tag official">官方</i> OpenAI / GitHub / Microsoft 等官方文件</span>
@@ -521,11 +522,16 @@ footer a{color:var(--gold)}
       <span><i class="tag third">第三方</i> 社群或非官方技能</span>
     </div>
 
-    <h3 class="subhead" data-reveal>官方與平台工具</h3>
+    <h3 class="subhead" data-reveal>AI 工具與平台</h3>
     <div class="toolgrid" data-reveal>
       <div class="tool">
+        <div class="th"><span class="tn">DeepSeek</span><span class="tag third">第三方</span></div>
+        <p>規劃階段的主要對談對象：用聊天功能討論產品大綱、釐清目標客群，並產出初版規格書與產品概念，作為交給 Codex 的依據。</p>
+        <div class="src"><a href="https://www.deepseek.com/" target="_blank" rel="noopener">deepseek.com</a></div>
+      </div>
+      <div class="tool">
         <div class="th"><span class="tn">OpenAI Codex</span><span class="tag official">官方</span></div>
-        <p>本次協作主體：讀檔、規劃、改 HTML、跑終端機、檢查 Git 狀態，並在完成後提交與推送。</p>
+        <p>實作階段的主體：拿到規格書後規劃設計流程、做出網站雛型、改 HTML、跑終端機、檢查 Git 狀態，並在完成後提交與推送。</p>
         <div class="src"><a href="https://developers.openai.com/codex/cloud" target="_blank" rel="noopener">developers.openai.com/codex/cloud</a></div>
       </div>
       <div class="tool">
@@ -545,7 +551,7 @@ footer a{color:var(--gold)}
       </div>
       <div class="tool">
         <div class="th"><span class="tn">GitHub Pages</span><span class="tag official">官方</span></div>
-        <p>用來把倉庫裡的 HTML 直接變成可分享的線上網址，適合這種無後端的一頁式教學。</p>
+        <p>用來把倉庫裡的 HTML 直接變成可分享的線上網址，適合這種無後端的一頁式頁面。</p>
         <div class="src"><a href="https://pages.github.com/" target="_blank" rel="noopener">pages.github.com</a></div>
       </div>
       <div class="tool">
@@ -573,9 +579,9 @@ footer a{color:var(--gold)}
         <div class="src">本機專案檔案，非公開套件。</div>
       </div>
       <div class="tool">
-        <div class="th"><span class="tn">RTK</span><span class="tag local">本地</span></div>
-        <p>本機 shell 代理規則要求命令前綴 <span class="mono">rtk</span>，用來降低終端輸出噪音並節省上下文。</p>
-        <div class="src">本機環境規則，非公開套件。</div>
+        <div class="th"><span class="tn">RTK</span><span class="tag third">第三方</span></div>
+        <p>一套命令列工具，把終端輸出整理得更精簡、節省上下文；專案中以 <span class="mono">rtk</span> 前綴呼叫，那條本機規則只是這套工具的使用方式。</p>
+        <div class="src"><a href="https://github.com/rtk-ai/rtk" target="_blank" rel="noopener">github.com/rtk-ai/rtk</a></div>
       </div>
       <div class="tool">
         <div class="th"><span class="tn">impeccable</span><span class="tag third">第三方</span></div>
@@ -595,7 +601,7 @@ footer a{color:var(--gold)}
   <div class="wrap">
     <div class="eyebrow-part" data-reveal><span class="pnum">08</span><span class="pname">溝通與修正</span></div>
     <h2 class="h2" data-reveal>把 AI 當成同事，不是許願池。</h2>
-    <p class="lead" data-reveal data-d="1">修正時最有效的做法，是把問題描述成可觀察狀態，然後要求 AI 實測。不要只說「幫我美化」，而是說「手機版工具卡太擠，請縮小內距並用瀏覽器確認沒有橫向溢位」。</p>
+    <p class="lead" data-reveal data-d="1">整個專案最難的地方，其實是「改進消費體驗」：購物按鈕怎麼點、選錯了怎麼修正、當下該顯示什麼、又有哪些不必顯示。好設計不是資訊堆滿或畫面花俏，而是讓人用最快、最輕鬆的方式，迎接屬於自己的新電腦。改 AI 的產出時也一樣——把問題描述成可觀察的狀態，再要求它實測。不要只說「幫我美化」，而是說「手機版工具卡太擠，請縮小內距並用瀏覽器確認沒有橫向溢位」。</p>
 
     <div class="loop block" data-reveal>
       <b>描述問題</b><span class="arr">→</span><b>指定驗證</b><span class="arr">→</span><b>AI 修改</b><span class="arr">→</span><b>瀏覽器檢查</b><span class="arr">→</span><b>推送</b>
@@ -613,8 +619,8 @@ footer a{color:var(--gold)}
     </div>
 
     <div class="card block" data-reveal>
-      <h4>修正前的自問清單</h4>
-      <p>每次要求修正，都先問三件事：讀者會不會更容易理解？修改是否符合原本風格？有沒有用實際頁面驗證？這三題比「多加一點動畫」更重要。</p>
+      <h4>我每次改之前會先問自己</h4>
+      <p>每次要求修正，先問三件事：使用者會不會更容易理解？修改是否符合原本風格？有沒有用實際頁面驗證？這三題比「多加一點動畫」更重要。</p>
     </div>
   </div>
 </section>
@@ -623,39 +629,35 @@ footer a{color:var(--gold)}
   <div class="wrap">
     <div class="eyebrow-part" data-reveal><span class="pnum">09</span><span class="pname">推送與展示</span></div>
     <h2 class="h2" data-reveal>從本機檔案，變成可分享網址。</h2>
-    <p class="lead" data-reveal data-d="1">一頁式指南的優點是交付單純：只要 HTML 沒壞、README 有入口、GitHub Pages 已啟用，讀者就能用網址直接閱讀。</p>
+    <p class="lead" data-reveal data-d="1">PCShop 是純前端的靜態站，部署很單純：本機先驗一輪，推到 <span class="mono">main</span> 就由 GitHub Actions 自動把整個站台重新發佈，不必手動上傳。</p>
 
     <div class="block">
-      <h3 class="subhead" data-reveal>① 先確認變更範圍</h3>
-      <div class="code" data-reveal>
-        <div class="codehead"><span>status / diff</span><button class="cp" type="button">複製</button></div>
-        <pre>git status --short --branch
-git diff -- pcshop-ai-build-guide.html README.md</pre>
-      </div>
-    </div>
-
-    <div class="block">
-      <h3 class="subhead" data-reveal>② 本機驗證頁面</h3>
+      <h3 class="subhead" data-reveal>① 本機預覽</h3>
       <div class="code" data-reveal>
         <div class="codehead"><span>local preview</span><button class="cp" type="button">複製</button></div>
         <pre>python3 -m http.server 4173
-# open http://127.0.0.1:4173/pcshop-ai-build-guide.html</pre>
+# open http://localhost:4173/</pre>
       </div>
-      <p class="muted">驗證重點：閱讀進度條、Prompt 對照切換、複製按鈕、手機版寬度、頁尾來源連結。</p>
+      <p class="muted">因為前端要用 <span class="mono">fetch()</span> 讀 CSV，必須透過 HTTP 開啟，直接點開檔案會載不到資料。驗證重點：相容性過濾、進度總覽、3DMark 預覽、手機單欄與桌面雙欄。</p>
     </div>
 
     <div class="block">
-      <h3 class="subhead" data-reveal>③ Commit、push、展示</h3>
+      <h3 class="subhead" data-reveal>② 推送到 main</h3>
       <div class="code" data-reveal>
         <div class="codehead"><span>ship</span><button class="cp" type="button">複製</button></div>
-        <pre>git add pcshop-ai-build-guide.html README.md
-git commit -m "Add PCShop AI build guide"
+        <pre>git status --short --branch
+git add -A
+git commit -m "Update PCShop quotation flow"
 git push origin main</pre>
       </div>
-      <p class="muted">推送後，GitHub Pages 會展示這個檔案：</p>
+    </div>
+
+    <div class="block">
+      <h3 class="subhead" data-reveal>③ GitHub Actions 自動發佈</h3>
+      <p class="muted">倉庫的 Pages 來源設為 GitHub Actions（<span class="mono">.github/workflows/pages.yml</span>），每次推到 <span class="mono">main</span> 就自動重新發佈；也能在 Actions 手動觸發。發佈完成後直接用網址開啟：</p>
       <div class="code" data-reveal>
         <div class="codehead"><span>Pages URL</span><button class="cp" type="button">複製</button></div>
-        <pre>https://vik1n9.github.io/One-Page-Beginners-Guide/pcshop-ai-build-guide.html</pre>
+        <pre>https://vik1n9.github.io/PCShop/</pre>
       </div>
     </div>
   </div>
@@ -663,18 +665,22 @@ git push origin main</pre>
 
 <section id="done" class="finale">
   <div class="wrap">
-    <div class="eyebrow-part" data-reveal><span class="pnum">10</span><span class="pname">完成</span></div>
+    <div class="eyebrow-part" data-reveal><span class="pnum">10</span><span class="pname">完成與下一步</span></div>
     <h2 class="h2" data-reveal>完成不是「寫完」，<br>而是可閱讀、可驗證、可追蹤。</h2>
     <div class="checklist block" data-reveal>
-      <div class="check"><span class="box">✓</span><span>有清楚的產品起點：手機優先、避免相容性錯誤、本地店家可用。</span></div>
-      <div class="check"><span class="box">✓</span><span>有協作計畫：先確認目標、讀者、素材、風格與驗收標準。</span></div>
-      <div class="check"><span class="box">✓</span><span>有過濾引擎教學：欄位、約束表、智慧過濾與衝突回報都能說清楚。</span></div>
-      <div class="check"><span class="box">✓</span><span>有版面設計教學：從手機使用姿勢推導出進度、挑選與估價單三個主區。</span></div>
-      <div class="check"><span class="box">✓</span><span>有店家後台教學：管理入口不放前台，CRUD 真正寫回產品資料。</span></div>
-      <div class="check"><span class="box">✓</span><span>有維護紀律：功能變更同步 PRODUCT.md、規格書.txt、README 與版本日期。</span></div>
-      <div class="check"><span class="box">✓</span><span>有工具揭露：官方、本地、第三方來源分清楚。</span></div>
-      <div class="check"><span class="box">✓</span><span>有互動教學：Prompt 對照、流程步驟、複製指令、完成清單。</span></div>
-      <div class="check"><span class="box">✓</span><span>有上線流程：本機驗證、commit、push、GitHub Pages 展示。</span></div>
+      <div class="check"><span class="box">✓</span><span>產品起點清楚：手機優先、避免相容性錯誤、本地店家可用。</span></div>
+      <div class="check"><span class="box">✓</span><span>協作分工清楚：DeepSeek 聊出規格、Codex 規劃與實作，先確認再動手。</span></div>
+      <div class="check"><span class="box">✓</span><span>相容性用欄位＋約束表處理，智慧過濾與衝突回報都說得清楚。</span></div>
+      <div class="check"><span class="box">✓</span><span>版面從手機使用姿勢出發，收斂成進度、挑選與估價單三個主區。</span></div>
+      <div class="check"><span class="box">✓</span><span>店家後台分界清楚：管理入口不放前台，CRUD 真正寫回產品資料。</span></div>
+      <div class="check"><span class="box">✓</span><span>維護有紀律：功能變更同步 PRODUCT.md、規格書.txt、README 與版本日期。</span></div>
+      <div class="check"><span class="box">✓</span><span>工具有揭露：官方、本地、第三方來源分清楚。</span></div>
+      <div class="check"><span class="box">✓</span><span>互動有設計：Prompt 對照、流程步驟、複製指令、完成清單。</span></div>
+      <div class="check"><span class="box">✓</span><span>上線有流程：本機驗證、推到 main、GitHub Actions 自動發佈。</span></div>
+    </div>
+    <div class="card block" data-reveal>
+      <h4>下一步想做的</h4>
+      <p>加一個留言板，讓每個人把自己設計好的菜單貼上去，可以按讚、可以留言；看到喜歡的還能一鍵跟單，直接照抄整份配置。把單機的估價工具，變成大家可以互相參考的社群。</p>
     </div>
     <p class="pull" data-reveal>真正的 AI 協作，<br>是把想法變成<span>可維護的流程</span>。</p>
     <div class="cta" data-reveal>
@@ -688,11 +694,12 @@ git push origin main</pre>
   <div class="wrap">
     <div class="disc">
       <h4>工具出處說明</h4>
-      本頁明確標示本次教學提到的工具來源。OpenAI Codex、Codex Skills、Build Web Apps、Browser、GitHub Pages、GitHub CLI、Git、Playwright 皆附官方文件或相鄰官方文件；非官方技能 impeccable 附 GitHub 原始倉庫。PCShop 的 <span class="mono">AGENTS.md</span>、<span class="mono">CLAUDE.md</span>、RTK 為本機專案或使用者環境規則，不視為公開外掛。
+      本頁明確標示這次製作提到的工具來源。OpenAI Codex、Codex Skills、Build Web Apps、Browser、GitHub Pages、GitHub CLI、Git、Playwright 皆附官方文件或相鄰官方文件；第三方的 DeepSeek、RTK、非官方技能 impeccable 附原始網站或倉庫。PCShop 的 <span class="mono">AGENTS.md</span>、<span class="mono">CLAUDE.md</span> 為本機專案或使用者環境規則，不視為公開外掛。
     </div>
     <div>
       <h4>主要連結</h4>
       <p>
+        DeepSeek（<a href="https://www.deepseek.com/" target="_blank" rel="noopener">deepseek.com</a>）｜
         OpenAI Codex（<a href="https://developers.openai.com/codex/cloud" target="_blank" rel="noopener">developers.openai.com/codex/cloud</a>）｜
         Codex Skills（<a href="https://developers.openai.com/codex/skills" target="_blank" rel="noopener">developers.openai.com/codex/skills</a>）｜
         Build Web Apps（<a href="https://developers.openai.com/codex/skills" target="_blank" rel="noopener">developers.openai.com/codex/skills</a>）｜
@@ -700,6 +707,7 @@ git push origin main</pre>
         GitHub Pages（<a href="https://pages.github.com/" target="_blank" rel="noopener">pages.github.com</a>）｜
         GitHub CLI（<a href="https://cli.github.com/" target="_blank" rel="noopener">cli.github.com</a>）｜
         Git（<a href="https://git-scm.com/" target="_blank" rel="noopener">git-scm.com</a>）｜
+        RTK（<a href="https://github.com/rtk-ai/rtk" target="_blank" rel="noopener">github.com/rtk-ai/rtk</a>）｜
         impeccable（<a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">github.com/pbakaus/impeccable</a>）
       </p>
     </div>
