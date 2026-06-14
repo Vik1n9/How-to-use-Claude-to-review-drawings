@@ -8,191 +8,108 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/style.css">
 <style>
+/* 本頁專屬元件（共用部分已移至 assets/）。色彩全部走共用 token。 */
 :root{
-  --bg: oklch(1 0 0);
-  --surface: oklch(0.984 0.007 75);
-  --surface-2: oklch(0.965 0.012 72);
-  --ink-900: oklch(0.205 0.021 58);
-  --ink: oklch(0.305 0.018 56);
-  --ink-soft: oklch(0.44 0.016 56);
-  --primary: oklch(0.79 0.158 73);
-  --primary-deep: oklch(0.56 0.145 60);
-  --accent: oklch(0.505 0.132 39);
-  --official: oklch(0.50 0.10 232);
-  --official-soft: oklch(0.95 0.03 232);
-  --line: oklch(0.905 0.01 72);
-  --line-strong: oklch(0.83 0.012 70);
-  --dark-bg: oklch(0.195 0.022 58);
-  --dark-bg-2: oklch(0.235 0.024 56);
-  --dark-ink: oklch(0.965 0.01 75);
-  --dark-muted: oklch(0.745 0.022 68);
-  --dark-line: oklch(0.34 0.02 58);
-  --code-bg: oklch(0.205 0.018 58);
-  --code-ink: oklch(0.93 0.012 80);
-  --ok: oklch(0.585 0.145 152);
-  --bad: oklch(0.565 0.196 25);
-
-  --maxw: 1080px;
-  --measure: 38rem;
-  --r: 16px;
-  --r-sm: 10px;
-  --ease: cubic-bezier(.16,1,.3,1);
-  --shadow: 0 1px 2px oklch(0.2 0.02 60 / .04), 0 12px 32px -16px oklch(0.2 0.02 60 / .18);
-
-  --font-display: "Noto Serif TC", "Songti TC", Georgia, serif;
-  --font-body: "Noto Sans TC", system-ui, "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
-  --font-mono: "Space Mono", ui-monospace, "JetBrains Mono", Menlo, monospace;
+  --code-bg: oklch(0.13 0.01 60);
+  --code-ink: var(--ink);
+  --official: var(--info);
+  --official-soft: oklch(0.74 0.09 230 / .14);
+  --ok: var(--up);
+  --bad: var(--down);
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth; scroll-padding-top:72px; -webkit-text-size-adjust:100%}
-@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
-body{font-family:var(--font-body); color:var(--ink); background:var(--bg); line-height:1.85; letter-spacing:.012em; font-size:1.0625rem; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden}
-h1,h2,h3,h4{font-family:var(--font-display); color:var(--ink-900); line-height:1.24; font-weight:700; text-wrap:balance}
-p{text-wrap:pretty}
-a{color:var(--primary-deep)}
-.mono{font-family:var(--font-mono); font-feature-settings:"tnum" 1; letter-spacing:0}
-.wrap{max-width:var(--maxw); margin-inline:auto; padding-inline:clamp(20px,5vw,40px)}
-.prose{max-width:var(--measure)}
-.lead{font-size:clamp(1.1rem,1.6vw,1.3rem); color:var(--ink); line-height:1.8}
-.muted{color:var(--ink-soft)}
-
-section{padding-block:clamp(58px,8vw,108px); position:relative}
-.section-tint{background:linear-gradient(180deg,var(--surface),var(--bg))}
-.eyebrow-part{display:inline-flex; align-items:baseline; gap:14px; margin-bottom:22px}
-.eyebrow-part .pnum{font-family:var(--font-mono); font-weight:700; font-size:clamp(1.1rem,2vw,1.4rem); color:var(--accent)}
-.eyebrow-part .pname{font-weight:700; font-size:.9rem; letter-spacing:.16em; color:var(--ink-soft)}
-.eyebrow-part::before{content:""; width:34px; height:2px; background:var(--accent); align-self:center}
-.h2{font-size:clamp(1.7rem,3.6vw,2.7rem); margin-bottom:20px; letter-spacing:.005em}
-
-.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--primary);z-index:100;transition:width .12s linear}
-nav.top{position:sticky; top:0; z-index:90; background:oklch(1 0 0 / .82); backdrop-filter:saturate(1.4) blur(12px); border-bottom:1px solid var(--line)}
-nav.top .row{display:flex; align-items:center; justify-content:space-between; height:60px}
-.brand{font-family:var(--font-display); font-weight:900; font-size:1.1rem; color:var(--ink-900); letter-spacing:.02em; white-space:nowrap}
-.brand b{color:var(--primary-deep)}
-.navlinks{display:flex; gap:4px}
-.navlinks a{font-size:.9rem; font-weight:500; color:var(--ink-soft); text-decoration:none; padding:7px 12px; border-radius:99px; transition:color .2s, background .2s}
-.navlinks a:hover{color:var(--ink-900); background:var(--surface-2)}
-@media (max-width:920px){ .navlinks{display:none} }
-
-.hero{background:radial-gradient(120% 90% at 85% -10%, var(--dark-bg-2), var(--dark-bg) 60%); color:var(--dark-ink); position:relative; overflow:hidden; padding-block:clamp(80px,12vw,150px)}
-.hero::after{content:""; position:absolute; right:-10%; top:-20%; width:55vw; height:55vw; max-width:600px; max-height:600px; background:radial-gradient(circle, oklch(0.79 0.158 73 / .16), transparent 62%); pointer-events:none}
-.badge-date{display:inline-flex; align-items:center; gap:9px; font-family:var(--font-mono); font-size:.8rem; color:var(--primary); border:1px solid var(--dark-line); border-radius:99px; padding:7px 15px; margin-bottom:28px}
-.badge-date .dot{width:7px;height:7px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 4px oklch(0.79 0.158 73 /.18)}
-.hero h1{color:var(--dark-ink); font-weight:900; font-size:clamp(2.3rem,6vw,4.1rem); line-height:1.12; letter-spacing:.01em; margin-bottom:22px; max-width:18ch}
-.hero h1 .am{color:var(--primary)}
-.hero .sub{font-size:clamp(1.05rem,1.8vw,1.35rem); color:var(--dark-muted); max-width:46ch; line-height:1.8}
+.h2{font-size:clamp(1.8rem,4vw,2.7rem); margin-bottom:20px; letter-spacing:.005em}
+.eyebrow-part{margin-bottom:22px}
 
 .stepper{margin-top:48px; display:flex; flex-wrap:wrap; gap:10px}
-.stepper a{display:inline-flex; align-items:center; gap:10px; text-decoration:none; border:1px solid var(--dark-line); border-radius:99px; padding:9px 16px; color:var(--dark-ink); font-size:.9rem; font-weight:500; transition:border-color .2s, background .2s}
-.stepper a:hover{border-color:var(--primary); background:oklch(0.79 0.158 73 /.08)}
-.stepper a .n{font-family:var(--font-mono); font-weight:700; color:var(--primary)}
+.stepper a{display:inline-flex; align-items:center; gap:10px; border:1px solid var(--line); border-radius:99px; padding:9px 16px; color:var(--ink); font-size:.9rem; font-weight:500; transition:border-color .2s, background .2s}
+.stepper a:hover{border-color:var(--accent-line); background:var(--accent-dim)}
+.stepper a .n{font-family:var(--font-mono); font-weight:700; color:var(--accent)}
 
 .block{margin-top:clamp(34px,5vw,64px)}
-.subhead{font-family:var(--font-body); font-weight:700; color:var(--ink-900); font-size:clamp(1.2rem,2.2vw,1.5rem); margin:0 0 16px}
-.card{border:1px solid var(--line); border-radius:var(--r); padding:24px; background:var(--bg)}
-.card h4{font-family:var(--font-body); font-size:1.06rem; color:var(--ink-900); margin-bottom:8px}
-.card p{font-size:.98rem; color:var(--ink)}
+.subhead{font-family:var(--font-body); font-weight:700; color:var(--ink); font-size:clamp(1.2rem,2.2vw,1.5rem); margin:0 0 16px}
 .two{display:grid; grid-template-columns:1fr 1fr; gap:18px}
 @media (max-width:760px){ .two{grid-template-columns:1fr} }
 
 /* numbered step list */
 .steps{display:grid; gap:16px}
-.stepc{display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:start; border:1px solid var(--line); border-radius:var(--r); padding:22px 24px; background:var(--bg)}
-.stepc .num{font-family:var(--font-mono); font-weight:700; color:#fff; background:var(--ink-900); width:40px;height:40px; border-radius:11px; display:grid; place-items:center; font-size:.95rem; flex:none}
-.stepc h4{font-family:var(--font-body); font-size:1.06rem; color:var(--ink-900); margin-bottom:5px}
-.stepc p{font-size:.97rem; color:var(--ink)}
-.stepc .hint{font-size:.86rem; color:var(--ink-soft); margin-top:6px}
+.stepc{display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:start; border:1px solid var(--line); border-radius:var(--radius); padding:22px 24px; background:var(--surface); box-shadow:var(--shadow-sm)}
+.stepc .num{font-family:var(--font-mono); font-weight:700; color:var(--bg); background:linear-gradient(150deg,var(--accent-strong),var(--accent-deep)); width:40px;height:40px; border-radius:11px; display:grid; place-items:center; font-size:.95rem; flex:none}
+.stepc h4{font-family:var(--font-body); font-size:1.06rem; color:var(--ink); margin-bottom:5px}
+.stepc p{font-size:.97rem; color:var(--ink-soft)}
+.stepc .hint{font-size:.86rem; color:var(--muted); margin-top:6px}
 
 /* code block + copy */
-.code{position:relative; margin:16px 0; border-radius:var(--r-sm); overflow:hidden; border:1px solid var(--dark-line)}
-.code .codehead{display:flex; align-items:center; justify-content:space-between; background:var(--dark-bg-2); color:var(--dark-muted); font-family:var(--font-mono); font-size:.74rem; padding:8px 12px 8px 16px; letter-spacing:.04em}
+.code{position:relative; margin:16px 0; border-radius:var(--radius-sm); overflow:hidden; border:1px solid var(--line)}
+.code .codehead{display:flex; align-items:center; justify-content:space-between; background:var(--surface-2); color:var(--muted); font-family:var(--font-mono); font-size:.74rem; padding:8px 12px 8px 16px; letter-spacing:.04em}
 .code pre{background:var(--code-bg); color:var(--code-ink); font-family:var(--font-mono); font-size:.86rem; line-height:1.75; padding:16px; overflow-x:auto; margin:0}
-.code .cp{font-family:var(--font-body); font-weight:700; font-size:.74rem; color:var(--dark-ink); background:oklch(1 0 0 / .08); border:1px solid var(--dark-line); border-radius:7px; padding:5px 12px; cursor:pointer; transition:background .2s; white-space:nowrap}
-.code .cp:hover{background:oklch(0.79 0.158 73 / .2)}
-.code .cp.done{background:var(--ok); color:#fff; border-color:transparent}
+.code .cp{font-family:var(--font-body); font-weight:700; font-size:.74rem; color:var(--ink); background:oklch(1 0 0 / .06); border:1px solid var(--line); border-radius:7px; padding:5px 12px; cursor:pointer; transition:background .2s, color .2s; white-space:nowrap}
+.code .cp:hover{background:var(--accent-dim); color:var(--accent)}
+.code .cp.done{background:var(--ok); color:#06140c; border-color:transparent}
 
 /* skill / tool cards */
 .tools{display:grid; grid-template-columns:1fr 1fr; gap:16px}
 @media (max-width:760px){ .tools{grid-template-columns:1fr} }
-.tool{border:1px solid var(--line); border-radius:var(--r); padding:20px 22px; background:var(--bg); display:flex; flex-direction:column; gap:8px}
+.tool{border:1px solid var(--line); border-radius:var(--radius); padding:20px 22px; background:var(--surface); display:flex; flex-direction:column; gap:8px; box-shadow:var(--shadow-sm)}
 .tool .th{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
-.tool .tn{font-family:var(--font-mono); font-weight:700; color:var(--ink-900); font-size:1.02rem}
+.tool .tn{font-family:var(--font-mono); font-weight:700; color:var(--ink); font-size:1.02rem}
 .tag{font-size:.7rem; font-weight:700; letter-spacing:.06em; padding:3px 10px; border-radius:99px}
-.tag.official{background:var(--official-soft); color:var(--official)}
-.tag.third{background:oklch(0.79 0.158 73 /.16); color:var(--primary-deep)}
-.tool p{font-size:.93rem; color:var(--ink); line-height:1.6; flex:1}
+.tag.official{background:var(--official-soft); color:var(--info)}
+.tag.third{background:var(--accent-dim); color:var(--accent)}
+.tool p{font-size:.93rem; color:var(--ink-soft); line-height:1.6; flex:1}
 .tool .src{font-size:.85rem}
-.tool .src a{font-family:var(--font-mono); color:var(--primary-deep); text-decoration:none; word-break:break-all; border-bottom:1px solid oklch(0.56 0.145 60 /.3)}
-.tool .src a:hover{border-bottom-color:var(--primary-deep)}
-.tool .src .ext{color:var(--ink-soft)}
-.legend{display:flex; gap:18px; flex-wrap:wrap; margin-bottom:20px; font-size:.9rem; color:var(--ink-soft)}
+.tool .src a{font-family:var(--font-mono); color:var(--accent); word-break:break-all; border-bottom:1px solid var(--accent-line)}
+.tool .src a:hover{border-bottom-color:var(--accent)}
+.tool .src .ext{color:var(--muted)}
+.legend{display:flex; gap:18px; flex-wrap:wrap; margin-bottom:20px; font-size:.9rem; color:var(--muted)}
 .legend span{display:inline-flex; align-items:center; gap:8px}
 
 /* iterate loop */
 .loop{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:8px 0 26px; font-family:var(--font-mono); font-size:.9rem}
-.loop b{background:var(--surface-2); border:1px solid var(--line-strong); border-radius:99px; padding:8px 16px; color:var(--ink-900)}
+.loop b{background:var(--surface-2); border:1px solid var(--line-strong); border-radius:99px; padding:8px 16px; color:var(--ink)}
 .loop .arr{color:var(--accent); font-weight:700}
 .casegrid{display:grid; gap:16px}
-.case{border:1px solid var(--line); border-radius:var(--r); padding:22px 24px; background:var(--bg)}
-.case .ct{display:flex; align-items:center; gap:10px; margin-bottom:8px}
-.case .ck{font-family:var(--font-mono); font-size:.74rem; font-weight:700; color:#fff; background:var(--accent); padding:3px 10px; border-radius:99px}
-.case h4{font-family:var(--font-body); font-size:1.05rem; color:var(--ink-900)}
-.case p{font-size:.96rem; color:var(--ink)}
+.case{border:1px solid var(--line); border-radius:var(--radius); padding:22px 24px; background:var(--surface); box-shadow:var(--shadow-sm)}
+.case .ct{display:flex; align-items:center; gap:10px; margin-bottom:8px; flex-wrap:wrap}
+.case .ck{font-family:var(--font-mono); font-size:.74rem; font-weight:700; color:var(--bg); background:var(--accent); padding:3px 10px; border-radius:99px}
+.case h4{font-family:var(--font-body); font-size:1.05rem; color:var(--ink)}
+.case p{font-size:.96rem; color:var(--ink-soft)}
 
 /* before/after toggle */
-.ba{margin-top:16px; border:1px solid var(--line); border-radius:var(--r-sm); overflow:hidden}
+.ba{margin-top:16px; border:1px solid var(--line); border-radius:var(--radius-sm); overflow:hidden}
 .ba .seg{display:flex; background:var(--surface-2); border-bottom:1px solid var(--line)}
-.ba .seg button{flex:1; font-family:var(--font-body); font-weight:700; font-size:.9rem; border:none; background:transparent; color:var(--ink-soft); padding:11px; cursor:pointer; transition:all .2s}
-.ba .seg button[aria-pressed="true"]{color:var(--ink-900); background:var(--bg)}
+.ba .seg button{flex:1; font-family:var(--font-body); font-weight:700; font-size:.9rem; border:none; background:transparent; color:var(--muted); padding:11px; cursor:pointer; transition:all .2s}
+.ba .seg button[aria-pressed="true"]{color:var(--ink); background:var(--surface)}
 .ba .seg button[aria-pressed="true"].bad{box-shadow:inset 0 -2px 0 var(--bad)}
 .ba .seg button[aria-pressed="true"].good{box-shadow:inset 0 -2px 0 var(--ok)}
 .ba .panes pre{background:var(--code-bg); color:var(--code-ink); font-family:var(--font-mono); font-size:.84rem; line-height:1.7; padding:18px; overflow-x:auto; margin:0}
 .ba .panes .note{padding:12px 18px; font-size:.9rem; display:flex; gap:9px; align-items:center}
-.ba .panes .note.bad{background:oklch(0.565 0.196 25 /.08); color:var(--bad)}
-.ba .panes .note.good{background:oklch(0.585 0.145 152 /.1); color:var(--ok)}
+.ba .panes .note.bad{background:oklch(0.68 0.16 25 /.1); color:var(--bad)}
+.ba .panes .note.good{background:oklch(0.74 0.13 150 /.12); color:var(--ok)}
 .tok-add{color:var(--ok)}
-.tok-com{color:var(--dark-muted)}
+.tok-com{color:var(--muted)}
 
 /* checklist */
 .checklist{display:grid; gap:10px; max-width:var(--measure)}
-.check{display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start; padding:14px 18px; border:1px solid var(--line); border-radius:var(--r-sm); background:var(--bg)}
-.check .box{width:22px;height:22px;border-radius:6px; background:var(--ok); color:#fff; display:grid; place-items:center; font-size:.8rem; flex:none; margin-top:2px}
-.check span{font-size:.97rem; color:var(--ink)}
+.check{display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start; padding:14px 18px; border:1px solid var(--line); border-radius:var(--radius-sm); background:var(--surface)}
+.check .box{width:22px;height:22px;border-radius:6px; background:var(--ok); color:#06140c; display:grid; place-items:center; font-size:.8rem; flex:none; margin-top:2px}
+.check span{font-size:.97rem; color:var(--ink-soft)}
 
-.finale{background:radial-gradient(120% 100% at 15% -10%, var(--dark-bg-2), var(--dark-bg) 62%); color:var(--dark-ink)}
-.finale h2{color:var(--dark-ink)}
-.pull{margin-top:clamp(34px,6vw,64px); text-align:center; font-family:var(--font-display); font-weight:900; font-size:clamp(1.5rem,4vw,2.5rem); color:var(--dark-ink); line-height:1.4; text-wrap:balance}
-.pull span{color:var(--primary)}
+/* finale */
+.finale{background:radial-gradient(120% 100% at 15% -10%, var(--bg-2), var(--bg) 62%); border-top:1px solid var(--line)}
+.pull{margin-top:clamp(34px,6vw,64px); text-align:center; font-family:var(--font-display); font-weight:900; font-size:clamp(1.5rem,4vw,2.5rem); color:var(--ink); line-height:1.4; text-wrap:balance}
+.pull span{color:var(--accent)}
 .cta{margin-top:34px; display:flex; gap:14px; flex-wrap:wrap; justify-content:center}
-.cta a{text-decoration:none; font-weight:700; padding:13px 24px; border-radius:99px; font-size:.98rem}
-.cta a.primary{background:var(--primary); color:var(--dark-bg)}
-.cta a.ghost{border:1px solid var(--dark-line); color:var(--dark-ink)}
+.cta a{font-weight:700; padding:13px 24px; border-radius:99px; font-size:.98rem; transition:transform .3s var(--ease), background .3s var(--ease)}
+.cta a.primary{background:var(--accent); color:var(--bg)}
+.cta a.primary:hover{transform:translateY(-2px); background:var(--accent-strong)}
+.cta a.ghost{border:1px solid var(--line-strong); color:var(--ink)}
+.cta a.ghost:hover{background:var(--surface)}
 
-footer{background:var(--ink-900); color:var(--dark-muted); padding-block:clamp(40px,6vw,68px); font-size:.92rem}
-footer .wrap{display:grid; gap:22px}
-footer h4{color:var(--dark-ink); font-family:var(--font-body); font-size:1rem; margin-bottom:8px}
-footer .disc{border:1px solid var(--dark-line); border-radius:var(--r); padding:20px 22px; line-height:1.8}
-footer .disc b{color:var(--primary)}
-footer a{color:var(--primary)}
-footer .colophon{border-top:1px solid var(--dark-line); padding-top:20px; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-family:var(--font-mono); font-size:.8rem}
-
-.anim [data-reveal]{opacity:0; transform:translateY(22px); transition:opacity .8s var(--ease), transform .8s var(--ease)}
-.anim [data-reveal].in{opacity:1; transform:none}
-.anim [data-reveal][data-d="1"]{transition-delay:.07s}
-.anim [data-reveal][data-d="2"]{transition-delay:.14s}
-.anim [data-reveal][data-d="3"]{transition-delay:.21s}
-@media (prefers-reduced-motion: reduce){ .anim [data-reveal]{opacity:1;transform:none;transition:none} }
-
-@media print{
-  @page{ size:A4; margin:0 }
-  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important }
-  nav.top, .progress{ display:none !important }
-  .hero::after,.finale::after{ display:none }
-  section{ padding-block:42px !important }
-  .anim [data-reveal]{ opacity:1 !important; transform:none !important }
-  .card,.stepc,.tool,.case,.code,.check,.ba{ break-inside:avoid }
-}
+footer .disc b{color:var(--accent)}
+@media (max-width:920px){ .navlinks{display:none} }
 </style>
 </head>
 <body>
@@ -213,9 +130,10 @@ footer .colophon{border-top:1px solid var(--dark-line); padding-top:20px; displa
 </nav>
 
 <header class="hero">
+  <div class="hero-glow" data-parallax="0.08"></div>
   <div class="wrap">
     <div class="badge-date" data-reveal><span class="dot"></span>製作紀錄 · 2026 / 06 / 09</div>
-    <h1 data-reveal data-d="1">從一句話需求，<br>到一個<span class="am">推上線</span>的網站。</h1>
+    <h1 data-reveal="mask" data-d="1">從一句話需求，<br>到一個<span class="am">推上線</span>的網站。</h1>
     <p class="sub" data-reveal data-d="2">這份指南本身，就是用 AI（Claude）做出來的。以下完整還原六個步驟：怎麼開 GitHub 倉庫、怎麼發想並先寫計畫、實際調用了哪些技能與外掛、怎麼和 AI 來回修正、最後怎麼推送上 GitHub 並用 Pages 展示。</p>
     <nav class="stepper" data-reveal data-d="3" aria-label="流程總覽">
       <a href="#repo"><span class="n">01</span>建倉</a>
@@ -232,7 +150,7 @@ footer .colophon{border-top:1px solid var(--dark-line); padding-top:20px; displa
 <section id="repo">
   <div class="wrap">
     <div class="eyebrow-part" data-reveal><span class="pnum">01</span><span class="pname">建立倉庫</span></div>
-    <h2 class="h2" data-reveal>GitHub 註冊與創建倉庫</h2>
+    <h2 class="h2" data-reveal="mask">GitHub 註冊與創建倉庫</h2>
     <p class="lead prose" data-reveal data-d="1">GitHub 是放程式碼與網頁的雲端倉庫。一個倉庫（repository）就是「一個專案的家」，這份指南合集就住在裡面。</p>
 
     <div class="block steps">
@@ -265,7 +183,7 @@ footer .colophon{border-top:1px solid var(--dark-line); padding-top:20px; displa
 <section id="plan" class="section-tint">
   <div class="wrap">
     <div class="eyebrow-part" data-reveal><span class="pnum">02</span><span class="pname">發想與計畫</span></div>
-    <h2 class="h2" data-reveal>先想清楚、先寫計畫，<br>確認後才動工。</h2>
+    <h2 class="h2" data-reveal="mask">先想清楚、先寫計畫，<br>確認後才動工。</h2>
     <p class="lead prose" data-reveal data-d="1">這是整個流程最關鍵的紀律：不要一開口就叫 AI 寫程式。先讓它讀懂需求、盤點現況，把「要做什麼、怎麼做」寫成計畫，等你點頭再執行，能省下大量來回。</p>
 
     <div class="block steps">
@@ -283,7 +201,7 @@ footer .colophon{border-top:1px solid var(--dark-line); padding-top:20px; displa
         <div><h4>看過計畫，按下確認</h4><p>計畫寫成文件後，你逐項確認或修改，AI 才開始實作。中途要追加要求（例如「第三方工具要附出處連結」）也是在這個關卡補上。</p></div>
       </div>
     </div>
-    <div class="card block" data-reveal style="background:oklch(0.79 0.158 73 /.08); border-color:oklch(0.79 0.158 73 /.35)">
+    <div class="card block" data-reveal style="background:var(--accent-dim); border-color:var(--accent-line)">
       <h4>一句話心法</h4>
       <p>「描述意圖，不是下指令。」你負責定義<b>想要什麼、給誰看、底線在哪</b>；AI 負責把它變成可執行的計畫與程式。計畫這一關省下來的，是後面十倍的返工。</p>
     </div>
@@ -294,7 +212,7 @@ footer .colophon{border-top:1px solid var(--dark-line); padding-top:20px; displa
 <section id="tools">
   <div class="wrap">
     <div class="eyebrow-part" data-reveal><span class="pnum">03</span><span class="pname">技能與外掛</span></div>
-    <h2 class="h2" data-reveal>實際調用了哪些技能與外掛</h2>
+    <h2 class="h2" data-reveal="mask">實際調用了哪些技能與外掛</h2>
     <p class="lead prose" data-reveal data-d="1">AI 不是憑空生成，而是調用了一組工具。以下誠實列出本次用到的每一項，並標示「官方／第三方」。<b>所有第三方工具都附上出處連結</b>，你可以自己找到並安裝。</p>
 
     <div class="legend block" data-reveal>
@@ -361,7 +279,7 @@ footer .colophon{border-top:1px solid var(--dark-line); padding-top:20px; displa
 <section id="iterate" class="section-tint">
   <div class="wrap">
     <div class="eyebrow-part" data-reveal><span class="pnum">04</span><span class="pname">溝通與修正</span></div>
-    <h2 class="h2" data-reveal>如何和 AI 來回修正</h2>
+    <h2 class="h2" data-reveal="mask">如何和 AI 來回修正</h2>
     <p class="lead prose" data-reveal data-d="1">第一版不會完美。重點是建立一個可驗證的循環：你描述問題，AI 改，並用工具<b>實際打開來看</b>，確認真的修好，而不是「看起來像修好」。</p>
 
     <div class="loop block" data-reveal>
@@ -420,7 +338,7 @@ footer .colophon{border-top:1px solid var(--dark-line); padding-top:20px; displa
 <section id="ship">
   <div class="wrap">
     <div class="eyebrow-part" data-reveal><span class="pnum">05</span><span class="pname">推送與展示</span></div>
-    <h2 class="h2" data-reveal>推送到 GitHub，<br>並用 Pages 展示成線上網址。</h2>
+    <h2 class="h2" data-reveal="mask">推送到 GitHub，<br>並用 Pages 展示成線上網址。</h2>
     <p class="lead prose" data-reveal data-d="1">檔案做好後，把它推上倉庫，再開啟 GitHub Pages，任何人就能用網址直接打開，不必下載檔案。</p>
 
     <div class="block">
@@ -467,8 +385,8 @@ git push origin main</pre>
 <!-- 06 DONE -->
 <section id="done" class="finale">
   <div class="wrap">
-    <div class="eyebrow-part" data-reveal><span class="pnum">06</span><span class="pname" style="color:var(--dark-muted)">完成</span></div>
-    <h2 class="h2" data-reveal>六步走完，<br>一份指南就上線了。</h2>
+    <div class="eyebrow-part" data-reveal><span class="pnum">06</span><span class="pname">完成</span></div>
+    <h2 class="h2" data-reveal="mask">六步走完，<br>一份指南就上線了。</h2>
     <div class="checklist block" data-reveal style="--measure:46rem">
       <div class="check"><span class="box">✓</span><span>建立 GitHub 帳號與公開倉庫，放入 README</span></div>
       <div class="check"><span class="box">✓</span><span>讓 AI 先寫計畫、在分岔點提問，確認後才動工</span></div>
@@ -510,22 +428,11 @@ git push origin main</pre>
   </div>
 </footer>
 
+<script src="assets/deck.js" defer></script>
 <script>
 (function(){
   "use strict";
-  var motionOK = !window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  var progress=document.getElementById('progress');
-  function onScroll(){ var h=document.documentElement; var max=h.scrollHeight-h.clientHeight; var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0; progress.style.width=(p*100).toFixed(2)+'%'; }
-  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
-
-  if(motionOK && 'IntersectionObserver' in window){
-    document.documentElement.classList.add('anim');
-    var els=[].slice.call(document.querySelectorAll('[data-reveal]'));
-    var io=new IntersectionObserver(function(ents){ ents.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
-    els.forEach(function(el){ io.observe(el); });
-    setTimeout(function(){ els.forEach(function(el){ el.classList.add('in'); }); }, 2800);
-  }
+  /* 本頁專屬互動：複製鈕 + 修正前後切換（進場動畫／進度條／列印由 assets/deck.js 統一處理） */
 
   /* copy buttons */
   [].slice.call(document.querySelectorAll('.code')).forEach(function(block){
