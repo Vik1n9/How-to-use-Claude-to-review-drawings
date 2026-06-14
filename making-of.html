@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="製作幕後：一句話需求，如何透過 AI（Claude）從發想、計畫、調用技能外掛、來回修正，到推上 GitHub 並用 Pages 展示，完成一份一頁式互動指南。附所有第三方工具的出處連結。">
+<meta name="description" content="製作幕後：一句話需求，如何透過 AI（Claude）從發想、計畫、調用技能外掛、來回修正，到推上 GitHub 並用 Pages 展示，完成一份一頁式互動指南；並記錄上線後的維護紀律與用同一套流程做全站改版的工作流程。附所有第三方工具的出處連結。">
 <title>製作幕後：用 AI 從零打造一份一頁式指南並推上 GitHub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -124,6 +124,7 @@ footer .disc b{color:var(--accent)}
       <a href="#tools">技能外掛</a>
       <a href="#iterate">溝通修正</a>
       <a href="#ship">推送展示</a>
+      <a href="#maintain">維護重構</a>
       <a href="#done">完成</a>
     </div>
   </div>
@@ -134,14 +135,15 @@ footer .disc b{color:var(--accent)}
   <div class="wrap">
     <div class="badge-date" data-reveal><span class="dot"></span>製作紀錄 · 2026 / 06 / 09</div>
     <h1 data-reveal="mask" data-d="1">從一句話需求，<br>到一個<span class="am">推上線</span>的網站。</h1>
-    <p class="sub" data-reveal data-d="2">這份指南本身，就是用 AI（Claude）做出來的。以下完整還原六個步驟：怎麼開 GitHub 倉庫、怎麼發想並先寫計畫、實際調用了哪些技能與外掛、怎麼和 AI 來回修正、最後怎麼推送上 GitHub 並用 Pages 展示。</p>
+    <p class="sub" data-reveal data-d="2">這份指南本身，就是用 AI（Claude）做出來的。以下完整還原七個步驟：怎麼開 GitHub 倉庫、怎麼發想並先寫計畫、實際調用了哪些技能與外掛、怎麼和 AI 來回修正、怎麼推送上 GitHub 並用 Pages 展示，以及上線後如何維護、用同一套流程做全站改版。</p>
     <nav class="stepper" data-reveal data-d="3" aria-label="流程總覽">
       <a href="#repo"><span class="n">01</span>建倉</a>
       <a href="#plan"><span class="n">02</span>發想計畫</a>
       <a href="#tools"><span class="n">03</span>技能外掛</a>
       <a href="#iterate"><span class="n">04</span>溝通修正</a>
       <a href="#ship"><span class="n">05</span>推送展示</a>
-      <a href="#done"><span class="n">06</span>完成</a>
+      <a href="#maintain"><span class="n">06</span>維護重構</a>
+      <a href="#done"><span class="n">07</span>完成</a>
     </nav>
   </div>
 </header>
@@ -266,6 +268,11 @@ footer .disc b{color:var(--accent)}
         <p>預覽面板（開啟網頁、截圖、跑 JS、切換手機/桌機檢查）、網路搜尋與抓取、終端機、檔案讀寫、計畫模式與向使用者提問，都是內建能力。</p>
         <div class="src"><span class="ext">↗ </span><a href="https://docs.claude.com/en/docs/claude-code" target="_blank" rel="noopener">docs.claude.com/en/docs/claude-code</a></div>
       </div>
+      <div class="tool">
+        <div class="th"><span class="tn">子代理（平行委派）</span><span class="tag official">官方</span></div>
+        <p>把多個獨立工作交給多個子代理平行進行——例如先派人去探索現況與寫計畫，或同時改寫好幾個頁面——主代理負責統籌與最後驗收。後面第六步的「全站改版」就靠它加速。</p>
+        <div class="src"><span class="ext">↗ </span><a href="https://docs.claude.com/en/docs/claude-code" target="_blank" rel="noopener">docs.claude.com/en/docs/claude-code</a></div>
+      </div>
     </div>
 
     <div class="card block" data-reveal>
@@ -382,17 +389,100 @@ git push origin main</pre>
   </div>
 </section>
 
-<!-- 06 DONE -->
+<!-- 06 MAINTAIN -->
+<section id="maintain" class="section-tint">
+  <div class="wrap">
+    <div class="eyebrow-part" data-reveal><span class="pnum">06</span><span class="pname">維護與重構</span></div>
+    <h2 class="h2" data-reveal="mask">上線不是終點，<br>而是維護的起點。</h2>
+    <p class="lead prose" data-reveal data-d="1">倉庫會持續長大：新增指南、修正內容、改版風格。這一節記下兩件事——日後怎麼維護，以及這次「全站統一改版」實際怎麼跑，給未來的你（或接手的人）一份可複製的流程。</p>
+
+    <!-- 共用資產 -->
+    <div class="block">
+      <h3 class="subhead" data-reveal>把樣式抽成「共用資產」，改一次、全站同步</h3>
+      <p class="prose muted" data-reveal data-d="1" style="margin-bottom:6px">這次改版最關鍵的一步：原本每個 HTML 各自內嵌一大段樣式，重複又難維護。現在統一抽到 <span class="mono">assets/</span> 三個檔，五頁共用。要改色、改字、改動畫，只改這裡。</p>
+      <div class="code" data-reveal>
+        <div class="codehead"><span>倉庫結構</span><button class="cp" type="button">複製</button></div>
+        <pre>assets/
+  tokens.css   <span class="tok-com"># 色彩・字級・間距・進場動畫 token（設計變數）</span>
+  style.css    <span class="tok-com"># 元件：導覽、Hero、卡片、表格、頁尾…</span>
+  deck.js      <span class="tok-com"># 捲動進場動畫引擎、進度條、複製鈕、列印處理</span>
+
+us-stocks-guide.html   <span class="tok-com"># 每頁只連結上面三個檔，再放自己的內容</span>
+guide.html
+making-of.html
+…</pre>
+      </div>
+      <div class="two block">
+        <div class="card" data-reveal>
+          <h4>好處</h4>
+          <p>想把金色換成別的色、想讓動畫更收斂，只動 <span class="mono">tokens.css</span> 幾行，五份指南同時生效，不必逐檔改。</p>
+        </div>
+        <div class="card" data-reveal data-d="1">
+          <h4>紀律</h4>
+          <p>新增頁面時，照抄任一頁的 <span class="mono">&lt;head&gt;</span> 三行連結與結尾的 <span class="mono">deck.js</span>，內容區塊加上 <span class="mono">data-reveal</span> 就會自動有進場動畫。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 重構流程 -->
+    <div class="block">
+      <h3 class="subhead" data-reveal>這次「全站改版」怎麼跑：六個動作</h3>
+      <p class="prose muted" data-reveal data-d="1">需求一樣是一句話：「把所有頁面風格統一成沈穩洗鍊的深色專業風，每頁像在看 PPT，段落切換有動畫。」流程和做新指南相同，只是多了「盤點既有、平行施工、逐項驗收」。</p>
+      <div class="block steps">
+        <div class="stepc" data-reveal>
+          <div class="num">1</div>
+          <div><h4>先盤點，再規劃</h4><p>進入計畫模式，派出<b>探索／計畫子代理</b>盤點五頁現況，發現它們其實分屬兩種不一致的風格，再把改法寫成計畫。</p></div>
+        </div>
+        <div class="stepc" data-reveal data-d="1">
+          <div class="num">2</div>
+          <div><h4>在分岔點提問</h4><p>動工前先問清楚關鍵選擇：要真翻頁還是長捲動？深色還是淺色？動畫多戲劇？列印要白底還是深底？點綴色全站統一嗎？</p>
+          <p class="hint">確認後才動手，避免大返工——和做新指南時「先計畫再執行」是同一個紀律。</p></div>
+        </div>
+        <div class="stepc" data-reveal data-d="2">
+          <div class="num">3</div>
+          <div><h4>建立共用設計系統</h4><p>先寫好 <span class="mono">tokens.css／style.css／deck.js</span>，把「統一」這件事一次定義清楚，後面每頁都對齊它。</p></div>
+        </div>
+        <div class="stepc" data-reveal data-d="3">
+          <div class="num">4</div>
+          <div><h4>平行施工、難的自己扛</h4><p>多個<b>子代理同時</b>各遷一頁加快進度；而含試算器、互動最多的高風險頁，由主代理親自處理，確保計算功能不被改壞。</p></div>
+        </div>
+        <div class="stepc" data-reveal data-d="4">
+          <div class="num">5</div>
+          <div><h4>逐項驗收</h4><p>本機開個小伺服器，逐頁比對：三個資產有沒有連上、有沒有殘留舊的淺色、互動元件的 id 有沒有被動到、深色換成白底列印對不對。</p></div>
+        </div>
+        <div class="stepc" data-reveal data-d="5">
+          <div class="num">6</div>
+          <div><h4>開分支、送 PR</h4><p>所有改動在<b>分支</b>上做，推上去後開一個 <b>draft PR</b>，讓變更可被檢視、CI 可被監看，沒問題再合併，而不是直接動 main。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 維護循環 -->
+    <div class="block">
+      <h3 class="subhead" data-reveal>日常維護的循環</h3>
+      <div class="loop" data-reveal>
+        <b>改 assets／內容</b><span class="arr">→</span><b>本機驗證</b><span class="arr">→</span><b>分支 commit</b><span class="arr">→</span><b>開 PR</b><span class="arr">→</span><b>合併上線</b>
+      </div>
+      <div class="card block" data-reveal>
+        <h4>維護心法</h4>
+        <p>① <b>單一來源</b>：樣式只住在 <span class="mono">assets/</span>，別再寫回各頁。② <b>文件同步</b>：新增或改名指南，順手更新 README 索引與第三方出處連結。③ <b>小步快跑</b>：一次一個明確改動、配一輪驗證，容易確認也容易回退。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 DONE -->
 <section id="done" class="finale">
   <div class="wrap">
-    <div class="eyebrow-part" data-reveal><span class="pnum">06</span><span class="pname">完成</span></div>
-    <h2 class="h2" data-reveal="mask">六步走完，<br>一份指南就上線了。</h2>
+    <div class="eyebrow-part" data-reveal><span class="pnum">07</span><span class="pname">完成</span></div>
+    <h2 class="h2" data-reveal="mask">七步走完，<br>從上線到維護都成形。</h2>
     <div class="checklist block" data-reveal style="--measure:46rem">
       <div class="check"><span class="box">✓</span><span>建立 GitHub 帳號與公開倉庫，放入 README</span></div>
       <div class="check"><span class="box">✓</span><span>讓 AI 先寫計畫、在分岔點提問，確認後才動工</span></div>
       <div class="check"><span class="box">✓</span><span>清楚知道調用了哪些技能與外掛，第三方都附出處</span></div>
       <div class="check"><span class="box">✓</span><span>用「描述 → 實作 → 驗證 → 修正」循環來回打磨</span></div>
       <div class="check"><span class="box">✓</span><span>push 到 main、啟用 Pages，取得可分享的網址</span></div>
+      <div class="check"><span class="box">✓</span><span>樣式抽到 assets／用同一套流程維護與全站改版</span></div>
     </div>
     <p class="pull" data-reveal>「你定義<span>想要什麼</span>，<br>AI 把它變成<span>能上線的東西</span>。」</p>
     <div class="cta" data-reveal>
