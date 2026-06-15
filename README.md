@@ -1,8 +1,11 @@
 # 一頁式網頁指南合集
 
-本倉庫收錄各種主題的「一頁式」互動教學網頁。每份指南都是獨立、可直接在瀏覽器開啟的 HTML 檔案，無需安裝軟體、不需後端伺服器。
+本倉庫收錄各種主題的「一頁式」互動教學網頁。每份指南都是獨立、可直接在瀏覽器開啟的 HTML 檔案，無需後端伺服器或建置流程。
 
-> 全站採用統一的深色墨黑視覺風格與捲動進場動畫；共用樣式與動效引擎集中於 `assets/`（`tokens.css`、`style.css`、`deck.js`）。
+全站採用統一的 **Mission Manual** 黑白展演式設計系統：固定 overlay 導覽、全屏 cinematic hero、長篇指南章節 rail，以及 GSAP + ScrollTrigger 的捲動動效。後續任何版面、動畫或視覺改版，請先讀：
+
+1. `PRODUCT.md`：產品定位、讀者、品牌語氣、設計原則。
+2. `DESIGN.md`：黑白 mission manual 視覺規則、元件、動效規範。
 
 ## 指南列表
 
@@ -11,153 +14,39 @@
 | 1 | **從零開始前進美股** | 台灣投資人用複委託買美股的入門手冊 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/us-stocks-guide.html) |
 | 2 | **Claude AI 審圖指南** | 消防製圖人員用 Claude AI 輔助審圖 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/guide.html) |
 | 3 | **製作幕後：用 AI 打造一頁式指南** | 從建倉、發想計畫、調用技能外掛、來回修正到推上 GitHub 的完整流程 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/making-of.html) |
-| 4 | **PCShop 專案製作流程** | 電腦組裝估價系統的製作筆記：用 DeepSeek 聊出規格、再用 Codex 從發想、過濾、版面到上線 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/pcshop-ai-build-guide.html) |
-| 5 | **美容儀器說明書 AI 協作工作流** | 簡體說明書 PDF 的三段 AI 接力：DeepSeek 翻譯與合規改寫、Codex 複驗校稿、Claude Code 配圖排版輸出 A4 PDF | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/beauty-manual-ai-guide.html) |
+| 4 | **PCShop 專案製作流程** | 電腦組裝估價系統的製作筆記：從痛點、規格、過濾、版面到上線 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/pcshop-ai-build-guide.html) |
+| 5 | **美容儀器說明書 AI 協作工作流** | 簡體說明書 PDF 的三段 AI 接力：翻譯、複驗校稿、排版輸出 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/beauty-manual-ai-guide.html) |
 
----
+## 設計與動畫規則
 
-## 1. 從零開始前進美股
+- `assets/tokens.css`：黑白色階、字體、radius、列印與 reduced-motion 基礎規則。
+- `assets/style.css`：Mission hero、overlay nav、章節 rail、長文排版、表格、code block、callout、FAQ。
+- `assets/deck.js`：GSAP 動效引擎，包含 hero timeline、ScrollTrigger reveal、進度條、章節 rail、copy button 與列印 finalize。
+- `assets/media/mission-control-hero.png`：本地生成式 cinematic hero 背景，避免外部圖片依賴與品牌資產風險。
 
-> 台灣投資人的複委託入門手冊
+目前使用固定版本 CDN：
 
-| 項目 | 內容 |
-|------|------|
-| 適用對象 | 熟悉台股、第一次接觸美股的社會人士，無投資經驗亦可閱讀 |
-| 線上閱讀 | [開啟教學頁面](https://vik1n9.github.io/One-Page-Beginners-Guide/us-stocks-guide.html) |
-| 檔案 | `us-stocks-guide.html` |
-| 系統需求 | 任何現代瀏覽器即可閱讀；實際投資需開通複委託證券帳戶 |
-| 資料日期 | 2026-06-09 |
+```html
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+```
 
-**內容重點**
-
-- **台美制度差異** — 扣款幣別、賣出交割時間、換匯設定、定期定額與碎股（零股）
-- **成本拆解** — 手續費以外的隱藏成本，以及如何挑選券商方案
-- **稅務說明** — 美股股息預扣稅、是否需自行報稅
-- **風險控制** — 「節稅成長」思路，以及美股無漲跌幅限制下停損單的重要性
-- **新手常見問題** — 整理五個最常被問到的問題
-- **行動建議** — 用三個步驟建立自己的美股投資系統
-
-> ⚠️ 本指南僅為教育與資訊整理，不構成投資建議。費率、稅務與市場數據會隨時間變動，實際下單前請以券商及主管機關公告為準，投資請自行評估風險。
-
----
-
-## 2. 消防製圖人員的 Claude AI 審圖完整指南
-
-> 從申請帳號到輸出第一份 AI 審查報告
-
-| 項目 | 內容 |
-|------|------|
-| 適用對象 | 消防設備製圖與審圖相關人員，無 AI 使用經驗亦可操作 |
-| 線上閱讀 | [開啟教學頁面](https://vik1n9.github.io/One-Page-Beginners-Guide/guide.html) |
-| 檔案 | `guide.html` |
-| 系統需求 | Windows 10 / 11、穩定網路、Claude Pro 訂閱（USD $20/月） |
-| 資料日期 | 2026-06-09 |
-
-**內容重點**（共七章 17 步驟）
-
-- **第一章 申請與安裝** — 註冊 Claude、選擇方案、安裝桌面應用程式與 Claude Code（約 60–90 分鐘）
-- **第二章 環境準備** — 建立工作資料夾、CLAUDE.md 設定檔、準備圖面（約 20–30 分鐘）
-- **第三章 啟動 Claude Code** — 開啟 PowerShell、確認工作環境（約 20 分鐘）
-- **第四章 實際審圖** — 建立案件索引、PDF 初審、DXF 分析、法規對照、輸出報告（依案件規模而定）
-- **第五～七章 判讀與排錯** — 三種判斷狀態、人工複核清單、常見問題排解
-
-**AI 可協助的工作**
-
-- 圖面初步審查、座標與間距計算、缺失清單整理、法規條文對照、審查報告輸出
-
-> ⚠️ AI 審查結果僅供輔助初審，最終判斷仍需由具備資格的消防設備師或相關專業人員確認。
-
----
-
-## 3. 製作幕後：用 AI 打造一頁式指南並推上 GitHub
-
-> 從一句話需求，到一個推上線的網站
-
-| 項目 | 內容 |
-|------|------|
-| 適用對象 | 想了解「這些指南是怎麼用 AI 做出來的」的一般使用者 |
-| 線上閱讀 | [開啟教學頁面](https://vik1n9.github.io/One-Page-Beginners-Guide/making-of.html) |
-| 檔案 | `making-of.html` |
-| 系統需求 | 任何現代瀏覽器即可閱讀；實作需 GitHub 帳號與 Claude |
-| 資料日期 | 2026-06-09 |
-
-**內容重點**（六個步驟）
-
-- **建立倉庫** — GitHub 註冊、創建公開倉庫、放入 README
-- **發想與計畫** — 先讓 AI 寫計畫、在關鍵分岔點提問，確認後才動工
-- **技能與外掛** — 誠實列出本次調用的工具，並標示「官方／第三方」；所有第三方工具皆附**出處連結**
-- **溝通與修正** — 「描述 → 實作 → 截圖驗證 → 修正」的循環，含真實 bug 修正案例
-- **推送與展示** — `git push` 到 main、啟用 GitHub Pages 取得可分享網址
-- **完成** — 可重複套用的檢查清單
-
-> ⚠️ 本頁為製作流程示意，各工具與 GitHub 介面可能隨版本更新，實際操作請以官方文件為準。
-
----
-
-## 4. PCShop 專案製作流程：從一句抱怨到能上線的網站
-
-> 手機優先電腦組裝估價系統的製作筆記：用 DeepSeek 聊出規格、再用 Codex 規劃與實作，記錄這個專案怎麼從痛點一路走到上線
-
-| 項目 | 內容 |
-|------|------|
-| 適用對象 | 對 AI 工具有興趣、想看一個真實專案怎麼做出來的同好 |
-| 線上閱讀 | [開啟教學頁面](https://vik1n9.github.io/One-Page-Beginners-Guide/pcshop-ai-build-guide.html) |
-| 檔案 | `pcshop-ai-build-guide.html` |
-| 系統需求 | 任何現代瀏覽器即可閱讀；實作需 GitHub 帳號、DeepSeek 與 Codex |
-| 資料日期 | 2026-06-10 |
-
-**內容重點**（十個步驟）
-
-- **發想與定位** — 從「傳統電腦估價網站手機難用、相容性容易選錯」轉成產品任務
-- **協作規劃** — DeepSeek 聊出大綱與初版規格書，Codex 先列計畫、確認後才動工
-- **過濾建構** — 用結構化欄位、相容性約束表、智慧過濾與衝突回報建立新手保護機制
-- **版面設計** — 從手機使用姿勢推導出底部導覽、進度總覽、產品列與完整規格展開
-- **店家後台** — 建立維護者專用入口、保留登入接口，並讓商品 CRUD 真正寫回 `data/products.csv`
-- **維護紀律** — 功能變更同步更新 `PRODUCT.md`、`規格書.txt`、`README.md` 與版本日期
-- **技能與外掛** — 明確列出 DeepSeek、OpenAI Codex、Codex Skills、Build Web Apps、Browser、GitHub Pages、Playwright、Git、GitHub CLI 與非官方技能來源
-- **溝通與修正** — 用可觀察、可驗證的指令取代抽象要求
-- **推送與展示** — 本機驗證、推到 `main`，再由 GitHub Actions 自動發佈到 Pages
-- **完成與下一步** — 收尾檢查內容、互動、工具揭露與線上網址，並分享留言板／一鍵跟單的後續構想
-
-> ⚠️ 本頁為製作流程分享。工具版本、DeepSeek 與 Codex 功能、GitHub 介面可能隨時間更新，實際操作請以各官方文件與專案規則為準。
-
----
-
-## 5. 美容儀器說明書 AI 協作工作流：翻譯、合規改寫與排版的三段接力
-
-> 一份簡體說明書 PDF，經 DeepSeek 產出、Codex 審稿、Claude Code 排版，變成 28 頁 A4 繁中新版手冊的工作筆記
-
-| 項目 | 內容 |
-|------|------|
-| 適用對象 | 對 AI 工具有興趣、想看文件翻譯改寫＋排版任務怎麼用多個 AI 接力完成的同好 |
-| 線上閱讀 | [開啟教學頁面](https://vik1n9.github.io/One-Page-Beginners-Guide/beauty-manual-ai-guide.html) |
-| 檔案 | `beauty-manual-ai-guide.html` |
-| 系統需求 | 任何現代瀏覽器即可閱讀；實作需 Open Code（DeepSeek）、Codex 與 Claude Code |
-| 資料日期 | 2026-06-10 |
-
-**內容重點**（十個段落）
-
-- **案前判斷** — 表面是翻譯，實際有疑似醫療描述、簡轉繁陷阱、格式保留三個風險
-- **工作流總覽** — 以「計劃 → 開發 → 驗證（審稿）→ 品管 → agent 輸出」五階段理念安排三個 AI 工具的分工
-- **三階段分工** — DeepSeek 產出初版（含工具選用理由）、Codex 對照原稿複驗校稿、Claude Code 配圖排版輸出 A4 PDF
-- **Prompt 設計** — 三段實際使用的 Prompt 原文與拆解：講清楚風險與標準、強調重新檢查、硬規格講死軟決策留白
-- **人工守門點** — 哪些名詞與設計決策必須停下來問人，含「美斑筆 → 美容筆」實例
-- **排版管線與踩坑** — 六步可重跑腳本管線，與第一版成品逐頁目檢抓出的五個坑
-- **完工複驗** — 程式斷言＋逐頁目檢雙保險的驗收做法
-- **可複用模板** — 初版製作、複驗修正、排版任務、完工複驗四份 Prompt 模板，可直接複製套用
-
-> ⚠️ 本頁為工作流程分享。文中合規改寫做法僅為產品文件編輯實務，實際文案是否合規仍需依當地法規與專業意見判斷；各 AI 工具功能與介面可能隨版本更新，實際操作請以各官方文件為準。
-
----
+`prefers-reduced-motion: reduce` 時會停用大位移、scrub 與 parallax，內容仍會立即可見。
 
 ## 檔案說明
 
 | 檔案 | 說明 |
 |------|------|
+| `PRODUCT.md` | 本站產品定位與後續改版必讀規則 |
+| `DESIGN.md` | 本站 Mission Manual 視覺與動效規格 |
 | `us-stocks-guide.html` | 美股複委託入門互動式教學頁面 |
 | `guide.html` | 消防審圖完整互動式教學頁面（七章 17 步驟） |
 | `making-of.html` | 製作幕後：用 AI 打造一頁式指南並推上 GitHub 的流程教學 |
-| `pcshop-ai-build-guide.html` | PCShop 專案製作筆記：用 DeepSeek 聊出規格、再用 Codex 從發想、過濾建構、版面設計、店家後台到維護推送 |
-| `beauty-manual-ai-guide.html` | 美容儀器說明書 AI 協作工作流筆記：DeepSeek 翻譯與合規改寫、Codex 複驗校稿、Claude Code 配圖排版輸出 A4 PDF |
+| `pcshop-ai-build-guide.html` | PCShop 專案製作筆記 |
+| `beauty-manual-ai-guide.html` | 美容儀器說明書 AI 協作工作流筆記 |
+| `assets/` | 共用設計系統、GSAP 動效與本地媒體資產 |
 | `CLAUDE.md` | 本倉庫的 Claude 協作行為準則 |
-| `README.md` | 本說明文件 |
+
+## 部署
+
+本專案維持靜態 GitHub Pages 部署。修改 HTML/CSS/JS 後推送到 `main`，GitHub Pages 會使用同一批靜態檔案更新線上頁面。

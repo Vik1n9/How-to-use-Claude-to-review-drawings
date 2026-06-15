@@ -1,162 +1,110 @@
 /* ============================================================
-   deck.js — 跨頁進場動效與互動引擎（vanilla，無依賴）
-   reveal(stagger) · count-up · 進度條 · 視差 · 複製鈕 · 列印 finalize
-   各頁專屬互動（試算器等）留在各檔內嵌 <script>，不在此檔。
+   deck.js — GSAP mission manual engine
+   GSAP enhanced · readable fallback · reduced-motion safe
    ============================================================ */
-(function () {
+(function(){
   "use strict";
+  var doc=document;
+  var root=doc.documentElement;
+  var reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var gsapOK=!!(window.gsap);
+  var stOK=!!(window.gsap && window.ScrollTrigger);
+  var progress=doc.querySelector('.progress');
+  var railFill=doc.querySelector('.chapter-progress span');
 
-  var motionOK = !window.matchMedia ||
-    !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var hasIO = 'IntersectionObserver' in window;
-  var doc = document;
+  function updateProgress(){
+    var h=doc.documentElement;
+    var max=h.scrollHeight-h.clientHeight;
+    var p=max>0?(h.scrollTop||doc.body.scrollTop)/max:0;
+    if(progress) progress.style.width=(p*100).toFixed(2)+'%';
+    if(railFill) railFill.style.height=(p*100).toFixed(2)+'%';
+  }
+  window.addEventListener('scroll', updateProgress, {passive:true});
+  window.addEventListener('resize', updateProgress, {passive:true});
+  updateProgress();
 
-  /* ---------- 進度條 ---------- */
-  var progress = doc.getElementById('progress') || doc.querySelector('.progress');
-  if (progress) {
-    var onScroll = function () {
-      var h = doc.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      var p = max > 0 ? (h.scrollTop || doc.body.scrollTop) / max : 0;
-      progress.style.width = (p * 100).toFixed(2) + '%';
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+  function fillBars(){
+    [].slice.call(doc.querySelectorAll('.bf[data-w]')).forEach(function(bar){
+      bar.style.width = bar.getAttribute('data-w') + '%';
+    });
   }
 
-  /* ---------- reveal（stagger 進場） ---------- */
-  var revEls = [].slice.call(doc.querySelectorAll('[data-reveal]'));
-  if (motionOK && hasIO && revEls.length) {
-    doc.documentElement.classList.add('anim');
-    var io = new IntersectionObserver(function (ents) {
-      ents.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
-    revEls.forEach(function (el) { io.observe(el); });
-    // 安全網：慢速 / headless 算繪時不留白
-    setTimeout(function () { revEls.forEach(function (el) { el.classList.add('in'); }); fillBars(); }, 2800);
-  }
-
-  /* ---------- count-up（[data-count]） ---------- */
-  function countUp(el) {
+  function countUp(el){
     var target = parseFloat(el.getAttribute('data-count'));
+    if (Number.isNaN(target)) return;
     var suffix = el.getAttribute('data-suffix') || '';
     var prefix = el.getAttribute('data-prefix') || '';
-    var dec = (target % 1 !== 0) ? 1 : 0;
-    if (!motionOK) { el.textContent = prefix + target.toFixed(dec) + suffix; return; }
-    var dur = 1300, start = null;
-    el.textContent = prefix + '0' + suffix;
-    function tick(ts) {
+    var decimals = target % 1 !== 0 ? 1 : 0;
+    if (reduce || !window.requestAnimationFrame) {
+      el.textContent = prefix + target.toFixed(decimals) + suffix;
+      return;
+    }
+    var start = null;
+    var duration = 1200;
+    function tick(ts){
       if (!start) start = ts;
-      var t = Math.min(1, (ts - start) / dur);
+      var t = Math.min(1, (ts - start) / duration);
       var eased = 1 - Math.pow(1 - t, 3);
-      el.textContent = prefix + (target * eased).toFixed(dec) + suffix;
+      el.textContent = prefix + (target * eased).toFixed(decimals) + suffix;
       if (t < 1) requestAnimationFrame(tick);
-      else el.textContent = prefix + target.toFixed(dec) + suffix;
+      else el.textContent = prefix + target.toFixed(decimals) + suffix;
     }
     requestAnimationFrame(tick);
   }
-  var counts = [].slice.call(doc.querySelectorAll('[data-count]'));
-  if (counts.length) {
-    if (hasIO) {
-      var cio = new IntersectionObserver(function (ents) {
-        ents.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } });
-      }, { threshold: 0.6 });
-      counts.forEach(function (el) { cio.observe(el); });
-    } else counts.forEach(countUp);
-  }
 
-  /* ---------- 條狀填充（.bf[data-w] 於 #costBars 或 [data-bars]） ---------- */
-  function fillBars() {
-    [].slice.call(doc.querySelectorAll('.bf[data-w]')).forEach(function (b) {
-      b.style.width = b.getAttribute('data-w') + '%';
+  function prepareRevealTargets(){
+    var selectors='section, .guide-article h1, .guide-article h2, .guide-article h3, .card, .panel, .table-wrap, .code-card, .code, .callout, details, .step, .stepc, .tool, .flowcard, .note, .node, .stat';
+    [].slice.call(doc.querySelectorAll(selectors)).forEach(function(el){
+      if(!el.hasAttribute('data-reveal')) el.setAttribute('data-reveal','');
     });
   }
-  var barWrap = doc.getElementById('costBars') || doc.querySelector('[data-bars]');
-  if (barWrap) {
-    if (hasIO) {
-      var bio = new IntersectionObserver(function (ents) {
-        ents.forEach(function (e) { if (e.isIntersecting) { fillBars(); bio.disconnect(); } });
-      }, { threshold: 0.3 });
-      bio.observe(barWrap);
-    } else fillBars();
+  prepareRevealTargets();
+  var revealEls=[].slice.call(doc.querySelectorAll('[data-reveal]'));
+
+  if(gsapOK && !reduce){
+    root.classList.add('js-motion');
+    if(stOK) gsap.registerPlugin(ScrollTrigger);
+    gsap.defaults({duration:.85,ease:'power3.out',overwrite:'auto'});
+
+    var heroTl=gsap.timeline({defaults:{duration:.9,ease:'power3.out'}});
+    heroTl.from('.hero-media',{scale:1.06,autoAlpha:.72,duration:1.4})
+      .from('.mission-kicker',{y:18,autoAlpha:0},'<.12')
+      .from('.mission-hero h1 .line',{y:52,autoAlpha:0,stagger:.09},'<.08')
+      .from('.hero-lead',{y:24,autoAlpha:0},'<.2')
+      .from('.btn',{y:16,autoAlpha:0},'<.12')
+      .from('.hero-telemetry span',{y:18,autoAlpha:0,stagger:.06},'<.1');
+
+    if(stOK){
+      gsap.to('.hero-media',{yPercent:7,ease:'none',scrollTrigger:{trigger:'.mission-hero',start:'top top',end:'bottom top',scrub:1}});
+      ScrollTrigger.batch(revealEls,{start:'top 86%',once:true,interval:.08,batchMax:6,onEnter:function(batch){gsap.to(batch,{autoAlpha:1,y:0,stagger:.07,clearProps:'visibility'});batch.forEach(function(el){el.classList.add('is-visible');});}});
+      ScrollTrigger.batch('[data-count]',{start:'top 84%',once:true,onEnter:function(batch){batch.forEach(countUp);}});
+      ScrollTrigger.create({trigger:doc.querySelector('[data-bars]') || doc.getElementById('costBars') || doc.body,start:'top 84%',once:true,onEnter:fillBars});
+    }else{
+      gsap.to(revealEls,{autoAlpha:1,y:0,stagger:.04,onComplete:function(){revealEls.forEach(function(el){el.classList.add('is-visible');});}});
+      [].slice.call(doc.querySelectorAll('[data-count]')).forEach(countUp);
+      fillBars();
+    }
+    setTimeout(function(){revealEls.forEach(function(el){el.classList.add('is-visible');});},2600);
+  }else{
+    revealEls.forEach(function(el){el.classList.add('is-visible');});
+    [].slice.call(doc.querySelectorAll('[data-count]')).forEach(countUp);
+    fillBars();
   }
 
-  /* ---------- 視差（[data-parallax]，rAF 節流） ---------- */
-  var pxEls = [].slice.call(doc.querySelectorAll('[data-parallax]'));
-  if (motionOK && pxEls.length) {
-    var ticking = false;
-    var apply = function () {
-      var vh = window.innerHeight || doc.documentElement.clientHeight;
-      pxEls.forEach(function (el) {
-        var speed = parseFloat(el.getAttribute('data-parallax')) || 0.12;
-        var r = el.getBoundingClientRect();
-        var center = r.top + r.height / 2;
-        var off = (center - vh / 2) * -speed;
-        // 限幅，維持精緻不誇張
-        if (off > 90) off = 90; else if (off < -90) off = -90;
-        el.style.setProperty('--parallax', off.toFixed(1) + 'px');
-      });
-      ticking = false;
-    };
-    var req = function () { if (!ticking) { ticking = true; requestAnimationFrame(apply); } };
-    window.addEventListener('scroll', req, { passive: true });
-    window.addEventListener('resize', req, { passive: true });
-    apply();
-  }
-
-  /* ---------- 複製鈕（.copy-button[data-copy] 或就近 <pre>） ---------- */
-  [].slice.call(doc.querySelectorAll('.copy-button')).forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var sel = btn.getAttribute('data-copy');
-      var src = sel ? doc.querySelector(sel) : null;
-      if (!src) {
-        var card = btn.closest('.code-card') || btn.parentElement;
-        src = card ? card.querySelector('pre, code') : null;
-      }
-      var text = src ? (src.innerText || src.textContent) : '';
-      var done = function () {
-        var label = btn.getAttribute('data-label') || btn.textContent;
-        btn.setAttribute('data-label', label);
-        btn.classList.add('copied');
-        btn.textContent = '已複製 ✓';
-        setTimeout(function () { btn.classList.remove('copied'); btn.textContent = label; }, 1800);
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done, done);
-      } else {
-        var ta = doc.createElement('textarea');
-        ta.value = text; doc.body.appendChild(ta); ta.select();
-        try { doc.execCommand('copy'); } catch (e) {}
-        doc.body.removeChild(ta); done();
-      }
+  [].slice.call(doc.querySelectorAll('.copy-button,.cp')).forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var sel=btn.getAttribute('data-copy');
+      var src=sel?doc.querySelector(sel):null;
+      if(!src){var card=btn.closest('.code-card,.code,figure')||btn.parentElement;src=card?card.querySelector('pre, code'):null;}
+      var text=src?(src.innerText||src.textContent):'';
+      function done(){var label=btn.getAttribute('data-label')||btn.textContent||'Copy';btn.setAttribute('data-label',label);btn.classList.add('copied','done');btn.textContent='已複製';setTimeout(function(){btn.classList.remove('copied','done');btn.textContent=label;},1600);}
+      if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done,done);
+      else{var ta=doc.createElement('textarea');ta.value=text;doc.body.appendChild(ta);ta.select();try{doc.execCommand('copy');}catch(e){}doc.body.removeChild(ta);done();}
     });
   });
 
-  /* ---------- 列印 finalize（白底黑字 + 展開 details + 全顯） ---------- */
-  function setDetailsOpen(open) {
-    [].slice.call(doc.querySelectorAll('details.q, details.faq')).forEach(function (d) {
-      if (open) {
-        if (!d.hasAttribute('data-wasopen')) d.setAttribute('data-wasopen', d.open ? '1' : '0');
-        d.open = true;
-      } else {
-        d.open = d.getAttribute('data-wasopen') === '1';
-        d.removeAttribute('data-wasopen');
-      }
-    });
-  }
-  function finalizeForPrint() {
-    revEls.forEach(function (e) { e.classList.add('in'); });
-    fillBars();
-    setDetailsOpen(true);
-  }
-  window.addEventListener('beforeprint', finalizeForPrint);
-  window.addEventListener('afterprint', function () { setDetailsOpen(false); });
-  if (window.matchMedia) {
-    var mqp = window.matchMedia('print');
-    var onmq = function (e) { if (e.matches) finalizeForPrint(); else setDetailsOpen(false); };
-    if (mqp.addEventListener) mqp.addEventListener('change', onmq);
-    else if (mqp.addListener) mqp.addListener(onmq);
-  }
+  function setDetailsOpen(open){[].slice.call(doc.querySelectorAll('details.q,details.faq,details')).forEach(function(d){if(open){if(!d.hasAttribute('data-wasopen'))d.setAttribute('data-wasopen',d.open?'1':'0');d.open=true;}else{d.open=d.getAttribute('data-wasopen')==='1';d.removeAttribute('data-wasopen');}});}
+  function finalizeForPrint(){revealEls.forEach(function(el){el.classList.add('is-visible');});setDetailsOpen(true);}
+  window.addEventListener('beforeprint',finalizeForPrint);
+  window.addEventListener('afterprint',function(){setDetailsOpen(false);});
 })();
