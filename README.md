@@ -12,7 +12,7 @@
 | # | 指南 | 一句話介紹 | 線上閱讀 |
 |---|------|-----------|---------|
 | 1 | **從零開始前進美股** | 台灣投資人用複委託買美股的入門手冊 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/us-stocks-guide.html) |
-| 2 | **Claude AI 審圖指南** | 消防製圖人員用 Claude AI 輔助審圖 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/guide.html) |
+| 2 | **Codex 輔助審圖工作流** | 消防製圖人員用 Codex Windows App 建立案件管理、日誌、版本與 AI 輔助初審流程 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/guide.html) |
 | 3 | **製作幕後：用 AI 打造一頁式指南** | 從建倉、發想計畫、調用技能外掛、來回修正到推上 GitHub 的完整流程 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/making-of.html) |
 | 4 | **PCShop 專案製作流程** | 電腦組裝估價系統的製作筆記：從痛點、規格、過濾、版面到上線 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/pcshop-ai-build-guide.html) |
 | 5 | **美容儀器說明書 AI 協作工作流** | 簡體說明書 PDF 的三段 AI 接力：翻譯、複驗校稿、排版輸出 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/beauty-manual-ai-guide.html) |
@@ -40,12 +40,11 @@
 | `PRODUCT.md` | 本站產品定位與後續改版必讀規則 |
 | `DESIGN.md` | 本站 Mission Manual 視覺與動效規格 |
 | `us-stocks-guide.html` | 美股複委託入門互動式教學頁面 |
-| `guide.html` | 消防審圖完整互動式教學頁面（七章 17 步驟） |
+| `guide.html` | 消防審圖 Codex GUI 工作流教學頁面：案件資料夾、AGENTS.md、工作日誌、本機 Git 與人工複核 |
 | `making-of.html` | 製作幕後：用 AI 打造一頁式指南並推上 GitHub 的流程教學 |
 | `pcshop-ai-build-guide.html` | PCShop 專案製作筆記 |
 | `beauty-manual-ai-guide.html` | 美容儀器說明書 AI 協作工作流筆記 |
 | `assets/` | 共用設計系統、GSAP 動效與本地媒體資產 |
-| `CLAUDE.md` | 本倉庫的 Claude 協作行為準則 |
 
 ## 部署
 
