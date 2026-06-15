@@ -23,6 +23,23 @@
   window.addEventListener('resize', updateProgress, {passive:true});
   updateProgress();
 
+  function labelResponsiveTables(){
+    [].slice.call(doc.querySelectorAll('.table-wrap table, table.data, .mini-table')).forEach(function(table){
+      var labels=[].slice.call(table.querySelectorAll('thead th')).map(function(th){
+        return (th.textContent || '').trim();
+      });
+      if(!labels.length) return;
+      [].slice.call(table.querySelectorAll('tbody tr')).forEach(function(row){
+        [].slice.call(row.children).forEach(function(cell,index){
+          if(cell.tagName && cell.tagName.toLowerCase()==='td' && labels[index]){
+            cell.setAttribute('data-label', labels[index]);
+          }
+        });
+      });
+    });
+  }
+  labelResponsiveTables();
+
   function fillBars(){
     [].slice.call(doc.querySelectorAll('.bf[data-w]')).forEach(function(bar){
       bar.style.width = bar.getAttribute('data-w') + '%';
