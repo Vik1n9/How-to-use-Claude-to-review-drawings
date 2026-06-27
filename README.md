@@ -16,6 +16,7 @@
 | 3 | **製作幕後：用 AI 打造一頁式指南** | 從建倉、發想計畫、調用技能外掛、來回修正到推上 GitHub 的完整流程 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/making-of.html) |
 | 4 | **PCShop 專案製作流程** | 電腦組裝估價系統的製作筆記：從痛點、規格、過濾、版面到上線 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/pcshop-ai-build-guide.html) |
 | 5 | **美容儀器說明書 AI 協作工作流** | 簡體說明書 PDF 的三段 AI 接力：翻譯、複驗校稿、排版輸出 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/beauty-manual-ai-guide.html) |
+| 6 | **USJ 入園方案比較報告** | 6 人・10 月初的 Express Pass／團體・私人 VIP 五方案比較與選擇建議 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/usj-vip-guide.html) |
 
 ## 設計與動畫規則
 
@@ -44,6 +45,7 @@
 | `making-of.html` | 製作幕後：用 AI 打造一頁式指南並推上 GitHub 的流程教學 |
 | `pcshop-ai-build-guide.html` | PCShop 專案製作筆記 |
 | `beauty-manual-ai-guide.html` | 美容儀器說明書 AI 協作工作流筆記 |
+| `usj-vip-guide.html` | USJ 入園方案比較報告（獨立排版，未套用站內 Mission Manual 設計系統） |
 | `assets/` | 共用設計系統、GSAP 動效與本地媒體資產 |
 
 ## 部署
