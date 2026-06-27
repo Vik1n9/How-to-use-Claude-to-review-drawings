@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USJ 入園方案比較報告 v2｜6 人・10 月初</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15181E;--ink-soft:#2A2F39;--paper:#F3F4F6;--card:#FCFCFD;
+    --line:#D9DCE2;--line-soft:#E8EAEF;--gold:#B6781B;--gold-bright:#D89B33;
+    --crimson:#922B33;--teal:#1E6F69;--slate:#42566B;--muted:#6A7180;
+    --shadow:0 1px 2px rgba(20,24,30,.04),0 8px 24px rgba(20,24,30,.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Noto Sans TC",system-ui,sans-serif;background:var(--paper);color:var(--ink);
+    line-height:1.7;font-weight:300;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  .mono{font-family:"Space Mono",monospace}
+
+  header{background:var(--ink);color:#EDEEF1;padding:44px 0 0;position:relative;overflow:hidden}
+  header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;
+    background:linear-gradient(90deg,var(--slate) 0%,var(--crimson) 35%,var(--gold) 62%,var(--gold-bright) 80%,var(--teal) 100%)}
+  .cred-tag{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--gold-bright);margin-bottom:18px;display:flex;align-items:center;gap:12px}
+  .cred-tag::before{content:"";width:30px;height:1px;background:var(--gold)}
+  .cred-tag .v2{background:var(--crimson);color:#fff;padding:2px 7px;border-radius:3px;letter-spacing:.1em}
+  header h1{font-family:"Noto Serif TC",serif;font-weight:900;font-size:clamp(27px,5.2vw,44px);
+    line-height:1.18;color:#fff;letter-spacing:.01em}
+  header h1 .accent{color:var(--gold-bright)}
+  .sub{color:#A7AEBC;font-size:15px;margin-top:14px;max-width:64ch;font-weight:300}
+  .params{display:flex;flex-wrap:wrap;gap:0;margin-top:34px;border-top:1px solid #2C313C}
+  .param{flex:1 1 0;min-width:120px;padding:16px 18px 18px;border-right:1px solid #2C313C}
+  .param:last-child{border-right:none}
+  .param .k{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:#7A828F;margin-bottom:5px}
+  .param .v{font-size:16px;color:#fff;font-weight:500}
+  .param .v small{color:#9AA2B0;font-weight:300;font-size:12.5px}
+
+  section{padding:46px 0}
+  section + section{border-top:1px solid var(--line-soft)}
+  .eyebrow{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .eyebrow .num{color:var(--crimson);font-weight:700}
+  h2{font-family:"Noto Serif TC",serif;font-weight:700;font-size:clamp(21px,3.4vw,28px);line-height:1.3;
+    color:var(--ink);margin-bottom:8px;letter-spacing:.01em}
+  .lead{color:var(--muted);font-size:15px;margin-bottom:26px;max-width:68ch}
+  h3{font-family:"Noto Serif TC",serif;font-weight:700;font-size:18px;margin:30px 0 12px;color:var(--ink-soft)}
+  p{margin-bottom:14px}strong{font-weight:700;color:var(--ink)}
+
+  /* New-items banner */
+  .newitems{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:6px}
+  .ni{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;box-shadow:var(--shadow)}
+  .ni .code{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.12em;color:#fff;padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:9px}
+  .ni.a .code{background:var(--gold)} .ni.b .code{background:var(--slate)} .ni.c .code{background:var(--teal)}
+  .ni h4{font-family:"Noto Serif TC",serif;font-size:16px;font-weight:700;margin-bottom:5px}
+  .ni p{font-size:13px;color:var(--muted);margin:0}
+  .ni .conf{font-family:"Space Mono",monospace;font-size:11px;margin-top:9px}
+  .ni .ok{color:var(--teal)} .ni .warn{color:var(--crimson)}
+
+  .verdict{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);
+    border-radius:10px;padding:24px 26px;box-shadow:var(--shadow)}
+  .vrow{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-top:1px dashed var(--line-soft);align-items:start}
+  .vrow:first-child{border-top:none;padding-top:0}
+  .vrow .tier{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    padding-top:3px;font-weight:700}
+  .t-best{color:var(--crimson)} .t-value{color:var(--gold)} .t-flex{color:var(--teal)}
+  .vrow .pickname{font-family:"Noto Serif TC",serif;font-size:18px;font-weight:700;margin-bottom:2px}
+  .vrow .px{font-family:"Space Mono",monospace;font-size:13px;color:var(--slate);margin-bottom:4px}
+  .vrow .why{font-size:13.5px;color:var(--muted)}
+
+  .table-scroll{overflow-x:auto;border-radius:10px;border:1px solid var(--line);box-shadow:var(--shadow);background:var(--card)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:680px}
+  thead th{background:var(--ink);color:#E9EBEF;font-weight:500;text-align:left;padding:13px 14px;font-size:12.5px;letter-spacing:.03em;vertical-align:bottom}
+  thead th.num{text-align:right;font-family:"Space Mono",monospace}
+  tbody td{padding:12px 14px;border-top:1px solid var(--line-soft);vertical-align:top}
+  tbody td.num{text-align:right;font-family:"Space Mono",monospace;white-space:nowrap}
+  tbody tr:nth-child(even){background:#F8F9FB}
+  .rowhead{font-weight:500;color:var(--ink)}
+  .c-exp{color:var(--slate);font-weight:500}.c-grp{color:var(--gold);font-weight:500}.c-priv{color:var(--teal);font-weight:500}
+  .hi{color:var(--crimson);font-weight:700}
+  .caption{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.6}
+  .yes{color:var(--teal);font-weight:500}.no{color:#B0454B}.mid{color:var(--gold)}
+
+  .bars{margin-top:6px}
+  .bar-row{display:grid;grid-template-columns:140px 1fr;gap:14px;align-items:center;margin-bottom:13px}
+  .bar-row .blab{font-size:13px;font-weight:500}
+  .bar-row .blab small{display:block;color:var(--muted);font-weight:300;font-size:11px;font-family:"Space Mono",monospace}
+  .bar-track{background:var(--line-soft);border-radius:6px;height:30px;position:relative;overflow:hidden}
+  .bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;
+    padding-right:10px;color:#fff;font-family:"Space Mono",monospace;font-size:12px;font-weight:700}
+  .bar-fill.exp{background:linear-gradient(90deg,#5A6E84,var(--slate))}
+  .bar-fill.grp{background:linear-gradient(90deg,#C99435,var(--gold))}
+  .bar-fill.p5{background:linear-gradient(90deg,#2C8A82,var(--teal))}
+  .bar-fill.p8{background:linear-gradient(90deg,#A8343C,var(--crimson))}
+
+  .insight{background:#F7F3EC;border:1px solid #E7D6BC;border-left:4px solid var(--gold);border-radius:10px;padding:20px 24px;margin-top:8px}
+  .insight h3{margin-top:0;color:var(--gold)}
+  .insight p{font-size:14px;margin-bottom:8px}
+
+  .matrix{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:8px}
+  .mcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;box-shadow:var(--shadow);position:relative}
+  .mcard .crown{font-family:"Space Mono",monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+    position:absolute;top:-9px;left:16px;color:#fff;padding:3px 8px;border-radius:4px}
+  .mcard.best .crown{background:var(--crimson)}.mcard.value .crown{background:var(--gold)}
+  .mcard h4{font-family:"Noto Serif TC",serif;font-size:16px;font-weight:700;margin-bottom:3px}
+  .mcard .who{font-size:11.5px;color:var(--muted);font-family:"Space Mono",monospace;margin-bottom:11px}
+  .mcard .line{display:flex;justify-content:space-between;font-size:12.5px;padding:5px 0;border-top:1px solid var(--line-soft)}
+  .mcard .line span:last-child{font-family:"Space Mono",monospace;font-weight:700}
+
+  .notes{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 24px;box-shadow:var(--shadow)}
+  .notes li{list-style:none;padding:14px 0 14px 30px;position:relative;border-top:1px solid var(--line-soft);font-size:14px}
+  .notes li:first-child{border-top:none}
+  .notes li::before{content:"●";position:absolute;left:6px;top:14px;color:var(--gold);font-size:9px}
+  .notes li b{color:var(--crimson);font-weight:700}
+
+  .flag{background:#FBF3F3;border:1px solid #E7C9CB;border-left:4px solid var(--crimson);border-radius:10px;padding:20px 24px;margin-top:8px}
+  .flag h3{margin-top:0;color:var(--crimson)}
+  .flag ul{padding-left:20px;font-size:13.5px;color:var(--ink-soft)}.flag li{margin-bottom:7px}
+  .flag.gold{background:#FBF8F2;border-color:#E7D6BC;border-left-color:var(--gold)}
+  .flag.gold h3{color:var(--gold)}
+
+  .src{font-size:12px;color:var(--muted);line-height:1.8}
+  footer{background:var(--ink);color:#9AA2B0;padding:30px 0;margin-top:10px;font-size:12.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer .mono{color:#6E7682}
+
+  @media (max-width:620px){
+    .param{flex:1 1 45%;border-right:none;border-bottom:1px solid #2C313C}
+    .newitems{grid-template-columns:1fr}
+    .bar-row{grid-template-columns:1fr}
+    .vrow{grid-template-columns:1fr;gap:4px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="cred-tag">USJ Ticketing Options · Dossier <span class="v2">v2</span></div>
+    <h1>USJ <span class="accent">入園方案</span>比較與規劃報告</h1>
+    <p class="sub">於 VIP 私人／團體之外，新增「團體・超級任天堂世界（PVIP_SNWG1）」「團體・25 週年特別版（2 小時）」與「Express Pass（EXP0080）」，五個方案一次比較。針對 6 人・10 月初。</p>
+    <div class="params">
+      <div class="param"><div class="k">人數</div><div class="v">6 人 <small>／滿4人後加價</small></div></div>
+      <div class="param"><div class="k">出發</div><div class="v">10 月初 <small>／萬聖節旺季</small></div></div>
+      <div class="param"><div class="k">比較項</div><div class="v">5 方案 <small>／含新增3項</small></div></div>
+      <div class="param"><div class="k">幣別</div><div class="v">JPY <small>／含稅・浮動</small></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 0. 新增兩項 -->
+<section id="newitems">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">00</span> 本次新增</div>
+    <h2>兩個官方商店連結是什麼</h2>
+    <div class="newitems">
+      <div class="ni a">
+        <span class="code">PVIP_SNWG1</span>
+        <h4>VIP 體驗・團體行程〜超級任天堂世界〜</h4>
+        <p>專任導遊帶領的 3 小時團體 VIP，主打超級任天堂世界保證入場與優先體驗。<strong>1 名起、可單人購買</strong>，每人約 ¥29,000～47,000（依日浮動；旺季／週年加強版偏上緣）。</p>
+        <div class="conf ok">✓ 已確認（官方商店＋攻略一致）</div>
+      </div>
+      <div class="ni c">
+        <span class="code">團體・週年 2h</span>
+        <h4>VIP 體驗・團體・25 週年特別版</h4>
+        <p>較短較便宜的 2 小時版，1 名起、每人約 ¥15,000~，主打水世界優先與週年遊行。<strong>不含任天堂保證入場、也沒有 4 張 Express Pass</strong>，性質與上者不同。</p>
+        <div class="conf ok">✓ 已確認（castel.jp 等多源）</div>
+      </div>
+      <div class="ni b">
+        <span class="code">EXP0080</span>
+        <h4>Universal Express Pass（快速通關）</h4>
+        <p>純縮短排隊的優先券組合，無導遊、無貴賓室。但此商品代碼未見於公開索引、官方頁為動態渲染。</p>
+        <div class="conf warn">⚠ 確切檔次未能核實，下表以代表值估算</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 1. 結論 -->
+<section id="verdict">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">01</span> 結論先行</div>
+    <h2>6 人・10 月初的分情境建議</h2>
+    <p class="lead">10 月初為萬聖節旺季，排隊最長、VIP 的免排隊價值最高、價格也在頂端。下列為「按目標對號入座」的三層建議。</p>
+
+    <div class="verdict">
+      <div class="vrow">
+        <div class="tier t-best">體驗最佳</div>
+        <div>
+          <div class="pickname">私人行程・8 小時</div>
+          <div class="px">6 人約 ¥522,000–597,000（行程費，含午＋晚兩餐；門票另計）</div>
+          <div class="why">一日玩好玩滿、全程幾乎不排隊；遠地來、短期不再訪者的最優解。旺季人潮越多，時間價值越高。</div>
+        </div>
+      </div>
+      <div class="vrow">
+        <div class="tier t-value">最佳性價比</div>
+        <div>
+          <div class="pickname">團體・超級任天堂世界（PVIP_SNWG1）</div>
+          <div class="px">6 人約 ¥174,000~（每人 ¥29,000~；旺季上緣每人達 ¥47,000；門票另計）</div>
+          <div class="why">每人 ¥29,000~ 起（旺季上緣約 ¥47,000）就內含 <strong>4 張 Express Pass</strong>＋導遊＋任天堂保證入場＋¥1,500 餐券＋10% 餐廳折扣＋週年限定品；且 <strong>1 名起、可單人購買</strong>。把「快速通關」算進去後，相對單買 Express Pass 的溢價其實不大。</div>
+        </div>
+      </div>
+      <div class="vrow">
+        <div class="tier t-flex">最省・最彈性</div>
+        <div>
+          <div class="pickname">Express Pass（EXP0080）</div>
+          <div class="px">6 人約 ¥108,000–258,000（視檔次與日期；門票另計）</div>
+          <div class="why">純縮短排隊、自己安排路線。無導遊、無貴賓室、無餐、需指定時段、1 人 1 張。適合自助能力強、只想砍排隊的人。</div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:18px;font-size:14px;color:var(--ink-soft)">私人 5 小時（¥372k–447k）介於 8 小時與團體之間，保有專屬與客製、含 1 餐與全日貴賓室，預算折衷時可選。</p>
+  </div>
+</section>
+
+<!-- 2. 五方案總表 -->
+<section id="overview">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">02</span> 全方案總表</div>
+    <h2>五個方案・一張表看差異</h2>
+    <p class="lead">由左（最省、自助）到右（最貴、最尊榮）。所有方案都<strong>不含入園門票（1-Day Studio Pass）</strong>，須另購。</p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th class="c-exp">Express Pass<br><small>EXP0080*</small></th>
+            <th class="c-grp">團體・週年2h<br><small>25 週年版</small></th>
+            <th class="c-grp">團體・SNW<br><small>PVIP_SNWG1</small></th>
+            <th class="c-priv">私人・5h</th>
+            <th class="c-priv">私人・8h</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="rowhead">最低人數</td><td>1 人 1 張</td><td class="yes">1 名起</td><td class="yes">1 名起</td><td>4 人基本</td><td>4 人基本</td></tr>
+          <tr><td class="rowhead">專任導遊</td><td class="no">✗</td><td class="yes">✓ 2h</td><td class="yes">✓ 3h</td><td class="yes">✓ 5h</td><td class="yes">✓ 8h</td></tr>
+          <tr><td class="rowhead">行程客製</td><td class="no">✗ 自排</td><td class="no">✗ 固定</td><td class="no">✗ 固定</td><td class="yes">✓ 完全</td><td class="yes">✓ 完全</td></tr>
+          <tr><td class="rowhead">同行對象</td><td>—</td><td>與陌生團共行</td><td>與陌生團共行</td><td class="yes">僅自己人</td><td class="yes">僅自己人</td></tr>
+          <tr><td class="rowhead">任天堂保證入場</td><td class="mid">部分檔次含</td><td class="no">✗</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td class="rowhead">免排隊範圍</td><td>指定 4–7 項</td><td>水世界優先＋遊行</td><td>導遊帶＋4張Pass</td><td class="yes">導遊全程</td><td class="yes">導遊全程</td></tr>
+          <tr><td class="rowhead">貴賓室</td><td class="no">✗</td><td>—</td><td>出發前 20 分</td><td class="yes">全日</td><td class="yes">全日</td></tr>
+          <tr><td class="rowhead">餐飲</td><td class="no">✗</td><td class="no">✗</td><td>餐券¥1,500＋10%折扣</td><td>含 1 餐</td><td class="yes">含 2 餐</td></tr>
+          <tr><td class="rowhead">專用入口</td><td class="no">✗</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td class="rowhead">時段綁定</td><td class="no">✗ 須指定</td><td>須準時集合</td><td>須準時集合</td><td>須準時集合</td><td>須準時集合</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">* EXP0080 確切檔次未核實；「指定 4–7 項」「部分檔次含任天堂」為 Express Pass 家族的一般特性。團體・週年2h 之貴賓室／餐飲以保守值（—／✗）標示，實際以該商品頁為準。</p>
+  </div>
+</section>
+
+<!-- 3. 6人估價 -->
+<section id="cost">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">03</span> 6 人實際估價</div>
+    <h2>把人數與加價算進去</h2>
+    <p class="lead">Express Pass 與團體＝純按人頭；私人＝4 人同價、第 5 人起逐人加價。皆為方案費（含稅、不含門票），10 月旺季以區間上緣估計。</p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>方案</th>
+            <th class="num">計價方式</th>
+            <th class="num">每人</th>
+            <th class="num">6 人合計</th>
+            <th class="num">含什麼</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rowhead c-exp">Express Pass*</td>
+            <td class="num">按人頭</td>
+            <td class="num">¥9.8k–43k</td>
+            <td class="num hi">¥59k–258k</td>
+            <td>優先券・無導遊</td>
+          </tr>
+          <tr>
+            <td class="rowhead c-grp">團體・週年2h</td>
+            <td class="num">按人頭</td>
+            <td class="num">¥15k~</td>
+            <td class="num hi">¥90k~</td>
+            <td>導遊2h・水世界＋遊行</td>
+          </tr>
+          <tr>
+            <td class="rowhead c-grp">團體・SNW</td>
+            <td class="num">按人頭</td>
+            <td class="num">¥29k–47k</td>
+            <td class="num hi">¥174k–282k</td>
+            <td>導遊3h＋4張Pass＋餐券</td>
+          </tr>
+          <tr>
+            <td class="rowhead c-priv">私人・5h</td>
+            <td class="num">4人同價＋加人</td>
+            <td class="num">¥62k–74.5k</td>
+            <td class="num hi">¥372k–447k</td>
+            <td>導遊5h＋1餐＋全日貴賓室</td>
+          </tr>
+          <tr>
+            <td class="rowhead c-priv">私人・8h</td>
+            <td class="num">4人同價＋加人</td>
+            <td class="num">¥87k–99.5k</td>
+            <td class="num hi">¥522k–597k</td>
+            <td>導遊8h＋2餐＋全日貴賓室</td>
+          </tr>
+          <tr style="background:#F1ECE2">
+            <td class="rowhead">＋ 門票（必加）</td>
+            <td class="num">按人頭</td>
+            <td class="num">約¥8.6k–11k</td>
+            <td class="num">約¥52k–66k</td>
+            <td>1-Day Studio Pass</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">k＝千日圓。Express Pass 6 人＝6×單價（檔次差異大）。私人 6 人＝基本(≤4)＋2 名加人費。門票價格依日浮動、未逐日核實。</p>
+
+    <h3>每人方案費・視覺比較（旺季上緣）</h3>
+    <div class="bars">
+      <div class="bar-row"><div class="blab">團體・週年2h<small>per person</small></div>
+        <div class="bar-track"><div class="bar-fill grp" style="width:15%">¥15k</div></div></div>
+      <div class="bar-row"><div class="blab">Express Pass<small>flagship 上緣</small></div>
+        <div class="bar-track"><div class="bar-fill exp" style="width:43%">¥43k</div></div></div>
+      <div class="bar-row"><div class="blab">團體・SNW<small>per person</small></div>
+        <div class="bar-track"><div class="bar-fill grp" style="width:47%">¥47k</div></div></div>
+      <div class="bar-row"><div class="blab">私人・5h<small>per person</small></div>
+        <div class="bar-track"><div class="bar-fill p5" style="width:75%">¥74.5k</div></div></div>
+      <div class="bar-row"><div class="blab">私人・8h<small>per person</small></div>
+        <div class="bar-track"><div class="bar-fill p8" style="width:100%">¥99.5k</div></div></div>
+    </div>
+    <p class="caption">長度以私人 8h 上緣（¥99.5k）為 100%。注意：Express Pass 入門檔（4 張）可低至 ¥9.8k，圖中為旗艦檔上緣。</p>
+  </div>
+</section>
+
+<!-- 4. 關鍵洞察 -->
+<section id="insight">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">04</span> 關鍵洞察</div>
+    <h2>團體 SNW 的「隱藏性價比」</h2>
+    <div class="insight">
+      <h3>把 Express Pass 折算回去，溢價沒想像中大</h3>
+      <p>團體・SNW 每人約 ¥29,000~（旺季／週年加強版上緣約 ¥47,000），已內含 <strong>4 張可自選、且行程外仍可用的 Express Pass</strong>。旺季一張任天堂相關 Express Pass 動輒 ¥10,000–18,000。</p>
+      <p>換言之：若你本來就打算買 Express Pass（約 ¥15,000–25,000／人）＋想要任天堂保證入場，淡季只要再補幾千圓、旺季再補約 ¥20,000 上下，就升級成「有專任導遊帶 3 小時、含餐券與週年限定品」的 VIP 團體——這層溢價，對首訪、想穩穩玩到任天堂的 6 人團，往往划算。</p>
+      <p style="margin-bottom:0">推論（非官方）：對「想要 VIP 感、但不想跳到私人 ¥372k 以上」的折衷需求，<strong>團體 SNW 是這份比較裡 CP 值轉折點</strong>。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. 決策矩陣 -->
+<section id="matrix">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">05</span> 決策矩陣</div>
+    <h2>按你們的優先序對號入座</h2>
+    <div class="matrix">
+      <div class="mcard">
+        <h4>Express Pass</h4>
+        <div class="who">最省・自助派</div>
+        <div class="line"><span>價格</span><span class="yes">最低</span></div>
+        <div class="line"><span>自由度</span><span class="yes">高</span></div>
+        <div class="line"><span>省力度</span><span class="no">低</span></div>
+        <div class="line"><span>餐／室</span><span class="no">無</span></div>
+      </div>
+      <div class="mcard">
+        <h4>團體・週年2h</h4>
+        <div class="who">最短・嚐鮮派</div>
+        <div class="line"><span>價格</span><span class="yes">低</span></div>
+        <div class="line"><span>自由度</span><span class="no">低</span></div>
+        <div class="line"><span>省力度</span><span class="mid">中</span></div>
+        <div class="line"><span>含Pass</span><span class="no">無</span></div>
+      </div>
+      <div class="mcard value">
+        <span class="crown">CP值</span>
+        <h4>團體・SNW</h4>
+        <div class="who">首訪・任天堂控</div>
+        <div class="line"><span>價格</span><span class="mid">中低</span></div>
+        <div class="line"><span>自由度</span><span class="no">低</span></div>
+        <div class="line"><span>省力度</span><span class="yes">高</span></div>
+        <div class="line"><span>含Pass</span><span class="yes">4張</span></div>
+      </div>
+      <div class="mcard">
+        <h4>私人・5h</h4>
+        <div class="who">折衷・要專屬</div>
+        <div class="line"><span>價格</span><span class="mid">中高</span></div>
+        <div class="line"><span>自由度</span><span class="yes">高</span></div>
+        <div class="line"><span>省力度</span><span class="yes">高</span></div>
+        <div class="line"><span>餐</span><span class="mid">1餐</span></div>
+      </div>
+      <div class="mcard best">
+        <span class="crown">體驗王</span>
+        <h4>私人・8h</h4>
+        <div class="who">一次到位・遠程客</div>
+        <div class="line"><span>價格</span><span class="no">最高</span></div>
+        <div class="line"><span>自由度</span><span class="yes">高</span></div>
+        <div class="line"><span>省力度</span><span class="yes">極高</span></div>
+        <div class="line"><span>餐</span><span class="yes">2餐</span></div>
+      </div>
+    </div>
+
+    <h3>選擇邏輯</h3>
+    <p>・<strong>預算優先、自助能力強</strong> → Express Pass，砍掉最痛的排隊即可。<br>
+       ・<strong>想短時間、低預算嚐鮮 VIP 團、不執著任天堂</strong> → 團體・週年2h（無任天堂保證、無 4 張 Pass）。<br>
+       ・<strong>首訪、想穩穩玩到任天堂、要 VIP 感但控預算</strong> → 團體 SNW（含 4 張 Pass 最划算）。<br>
+       ・<strong>要專屬與客製、但 8 小時太多</strong> → 私人 5h。<br>
+       ・<strong>想一天玩遍看遍、全程零排隊</strong> → 私人 8h。<br>
+       ・<strong>一年多次來／已有年票</strong> → 只買 Express Pass 即可。</p>
+  </div>
+</section>
+
+<!-- 6. 預訂與10月注意 -->
+<section id="notes">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">06</span> 預訂規則與 10 月須知</div>
+    <h2>下單前一定要先確認</h2>
+    <ul class="notes">
+      <li><b>全部方案皆不含門票</b>：6 人須另購 1-Day Studio Pass 才能入園。</li>
+      <li><b>僅官網（WEB）販售為主</b>；旺季常於開賣即售完，<b>越早訂越好</b>。Express Pass 另可在 Lawson Ticket、官方飯店購入。</li>
+      <li>人數計算：孩童與長者同等計 1 人；<b>3 歲以下不計入、免費</b>。例：大人 4＋4 歲孩 2 ＝ 6 人。</li>
+      <li>Express Pass <b>1 人 1 張、不可共用</b>，購買時須<b>指定各設施體驗時段</b>，與餐廳預約勿撞時間。</li>
+      <li>團體方案（SNW／週年2h）：<b>1 名起、可單人購買</b>，價格按人頭算（可能與其他組客人併團）；出發 30 分前須完成受理，VIP 受付的 QR 與入園 Studio Pass 的 QR 是<b>兩組不同碼</b>，別搞混。</li>
+      <li>價格為<b>浮動制</b>，依入園日不同；10 月旺季多落在區間上緣。</li>
+    </ul>
+
+    <div class="flag">
+      <h3>⚑ 10 月初專屬：萬聖節旺季變數</h3>
+      <ul>
+        <li><strong>Halloween Horror Nights</strong>：傍晚後全園轉萬聖驚悚氛圍、人潮全年高峰之一，免排隊價值最高。</li>
+        <li>同期常有限定的 <strong>Halloween RIP Tour</strong>（殭屍特別問候、萬聖限定），屬另一條 VIP 路線，需另查官網。</li>
+        <li>若同行有幼童，留意夜間驚悚演出適齡性；可請導遊把恐怖時段排在白天設施之後。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 7. 來源與限制 -->
+<section id="src">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">07</span> 資料來源與限制</div>
+    <h2>事實基礎與待確認</h2>
+    <p style="font-size:14px;color:var(--ink-soft)"><strong>誠實揭露：</strong>官方 VIP／商店頁皆為動態渲染、指南頁封鎖自動讀取，我<strong>無法直接讀取官網原文</strong>。以下為佐證；價格、檔次隨時可能調整，<strong>請以實際購買頁為準</strong>。</p>
+
+    <div class="flag gold">
+      <h3>⚑ 仍待你向官網確認</h3>
+      <ul>
+        <li><strong>EXP0080 的確切檔次與內容</strong>（本報告以 Express Pass 家族代表值估算，可能與實際差異大）。</li>
+        <li>10 月初指定日的<strong>各方案實際浮動價</strong>。</li>
+        <li><strong>1-Day Studio Pass 門票</strong>當日價格（旺季每人約 ¥8.6k–11k，未逐日核實）。</li>
+        <li>團體 SNW 的 <strong>4 張 Express Pass 可選清單</strong>是否隨季節調整。</li>
+        <li>團體・週年 2h 版的<strong>貴賓室與餐飲</strong>細節（本報告以保守值標示）。</li>
+      </ul>
+    </div>
+
+    <p class="src" style="margin-top:18px">
+      <strong>來源：</strong>USJ 官方線上商店 store.usj.co.jp（方案與起跳價）；castel.jp（2026/06 更新，團體 SNW 特典清單 ¥29,000~47,000、25 週年 2h 版 ¥15,000~、加人費、Express Pass 種類與價格 ¥9,800~）；t-marche、storyweb、個人體驗部落格（特典與實況佐證）。<br>
+      <strong>事實</strong>＝官方商店與多源一致項目（含 PVIP_SNWG1 內容）；<strong>推論</strong>＝旺季價格落點、團體 SNW 性價比折算；<strong>待確認</strong>＝EXP0080 檔次、門票逐日價。
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>USJ 入園方案比較報告 v2 · 6 人／10 月初 · 5 方案</span>
+    <span class="mono">含稅・JPY・浮動價・以官網為準</span>
+  </div>
+</footer>
+
+</body>
+</html>
