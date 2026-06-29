@@ -565,6 +565,26 @@ body.usj-travel-page .ticket-legend>div{
 }
 body.usj-travel-page .ticket-legend p{color:var(--travel-muted)}
 body.usj-travel-page .table-wrap{background:#fff;overflow-x:auto}
+body.usj-travel-page .choice-table{overflow:visible}
+body.usj-travel-page .choice-table table{
+  min-width:0;
+  table-layout:fixed;
+}
+body.usj-travel-page .choice-table th,
+body.usj-travel-page .choice-table td{
+  padding:12px 10px;
+  overflow-wrap:anywhere;
+}
+body.usj-travel-page .choice-table th:nth-child(1),
+body.usj-travel-page .choice-table td:nth-child(1){width:19%}
+body.usj-travel-page .choice-table th:nth-child(2),
+body.usj-travel-page .choice-table td:nth-child(2){width:21%}
+body.usj-travel-page .choice-table th:nth-child(3),
+body.usj-travel-page .choice-table td:nth-child(3){width:20%}
+body.usj-travel-page .choice-table th:nth-child(4),
+body.usj-travel-page .choice-table td:nth-child(4){width:25%}
+body.usj-travel-page .choice-table th:nth-child(5),
+body.usj-travel-page .choice-table td:nth-child(5){width:15%}
 body.usj-travel-page .table-wrap th,
 body.usj-travel-page table.data th,
 body.usj-travel-page .mini-table th{
@@ -589,6 +609,12 @@ body.usj-travel-page .source-list a{
 body.usj-travel-page .choice-table a{
   border-color:var(--travel-green);
   color:var(--travel-green-dark);
+  min-width:0;
+  white-space:normal;
+  overflow-wrap:normal;
+  word-break:keep-all;
+  text-align:center;
+  line-height:1.35;
 }
 body.usj-travel-page .choice-table a:hover{
   background:var(--travel-green);
@@ -719,4 +745,23 @@ body.usj-travel-page .source-list li{border-bottom-color:#eee8dc}
   body.usj-travel-page .travel-section-title span{grid-column:1;margin-top:-8px}
   body.usj-travel-page .breadcrumb{font-size:.8rem}
   body.usj-travel-page .breadcrumb span::before{width:14px}
+}
+@media (max-width:700px){
+  body.usj-travel-page .table-wrap{overflow:visible;background:transparent;border:0;box-shadow:none}
+  body.usj-travel-page .table-wrap tr,
+  body.usj-travel-page table.data tr,
+  body.usj-travel-page .mini-table tr{
+    background:#fff;
+    border-color:var(--travel-line);
+  }
+  body.usj-travel-page .table-wrap td::before,
+  body.usj-travel-page table.data td::before,
+  body.usj-travel-page .mini-table td::before{
+    color:var(--travel-green-dark);
+  }
+  body.usj-travel-page .choice-table th,
+  body.usj-travel-page .choice-table td{
+    width:100%!important;
+    padding:8px 0;
+  }
 }
