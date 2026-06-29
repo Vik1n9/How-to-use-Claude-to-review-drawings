@@ -638,7 +638,12 @@ body.usj-travel-page .skip-list{
 body.usj-travel-page .skip-list h3{color:var(--travel-green-dark)}
 body.usj-travel-page .skip-list li{color:#4b463c}
 body.usj-travel-page .skip-list li:before{border-color:var(--travel-orange)}
-body.usj-travel-page .checklist-card input{accent-color:var(--travel-green)}
+body.usj-travel-page .checklist-card label{color:#4b463c}
+body.usj-travel-page .checklist-card input{
+  accent-color:var(--travel-green);
+  outline:1px solid #a9a392;
+  outline-offset:0;
+}
 body.usj-travel-page .source-list li{border-bottom-color:#eee8dc}
 
 @media (max-width:900px){
