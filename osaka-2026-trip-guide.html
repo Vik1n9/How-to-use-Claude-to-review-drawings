@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="2026 大阪五天自由行總覽：航班與飯店資訊、五天行程入口、分團原則、餐廳候選總表、周遊券判斷與行前檢查清單。">
+<title>2026 大阪五天自由行總覽｜6 人自由行指南</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Osaka 2026 trip guide — travel brochure skin，與 usj-vip-guide.html 同一視覺家族 */
+  :root{
+    --ink:#3B2C22;--ink-soft:#513E31;--paper:#FFFDF7;--card:#FFFDF8;
+    --line:#E8D2A4;--line-soft:#F1E0BD;--gold:#C99B45;--gold-bright:#E5B84A;
+    --crimson:#C95B41;--teal:#35A84C;--slate:#5E6FA6;--muted:#7B6B5C;
+    --shadow:0 14px 34px rgba(106,73,33,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Sans TC",system-ui,sans-serif;color:var(--ink);line-height:1.7;font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    background:
+      linear-gradient(90deg,rgba(137,89,40,.045) 1px,transparent 1px),
+      linear-gradient(180deg,#F1D5A9 0,#F7E6CA 480px,#fff 480px);
+    background-size:38px 100%,auto;
+  }
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  .mono{font-family:"Space Mono",monospace}
+  a{color:#267A32}
+  p{margin-bottom:14px}strong{font-weight:700}
+
+  /* ---- trip-nav：六頁切換（sticky） ---- */
+  .trip-nav{
+    position:sticky;top:0;z-index:120;background:rgba(255,253,247,.94);
+    border-bottom:1px solid #ECD8AD;box-shadow:0 8px 24px rgba(91,63,24,.06);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
+    padding:11px max(24px,calc((100vw - 1160px)/2 + 24px));
+  }
+  .trip-nav::-webkit-scrollbar{display:none}
+  .trip-nav a{
+    display:inline-flex;align-items:center;padding:7px 14px;border:1px solid #E8D2A4;border-radius:999px;
+    background:#fff;color:#756554;font-size:13px;font-weight:800;text-decoration:none;white-space:nowrap;
+    transition:color .2s,border-color .2s,background .2s;
+  }
+  .trip-nav a:hover{border-color:#E39A37;color:#3B2C22}
+  .trip-nav a[aria-current="page"]{background:var(--teal);border-color:var(--teal);color:#fff}
+
+  /* ---- hero ---- */
+  header{position:relative;overflow:hidden;padding:76px 0 120px;color:var(--ink);
+    background:
+      radial-gradient(circle at 12% 18%,rgba(255,255,255,.6) 0 60px,transparent 62px),
+      radial-gradient(circle at 90% 12%,rgba(255,255,255,.45) 0 84px,transparent 86px),
+      repeating-linear-gradient(96deg,#E8C99C 0 24px,#F3D9B1 24px 48px,#E1BD89 48px 72px);}
+  header::after{content:"";position:absolute;left:-3%;right:-3%;bottom:-1px;z-index:2;height:96px;background:#fff;
+    clip-path:polygon(0 48%,8% 58%,20% 44%,35% 62%,49% 46%,62% 58%,75% 42%,88% 59%,100% 44%,100% 100%,0 100%)}
+  .hero-card{position:relative;z-index:1;max-width:720px;border:1px solid rgba(194,151,78,.48);border-radius:2px;
+    background:rgba(255,246,207,.92);box-shadow:0 18px 42px rgba(95,60,24,.16);padding:34px 36px 30px}
+  .hero-card::after{content:"";position:absolute;right:-26px;top:-30px;width:86px;height:86px;
+    background:linear-gradient(140deg,#C94625 0 45%,#EF8B24 46% 64%,#D85A27 65%);
+    clip-path:polygon(50% 0,61% 32%,96% 17%,69% 48%,100% 60%,64% 64%,78% 100%,51% 73%,24% 100%,35% 64%,0 60%,31% 48%,4% 17%,39% 32%);
+    filter:drop-shadow(0 8px 4px rgba(112,57,18,.18));transform:rotate(18deg)}
+  .cred-tag{display:block;margin-bottom:12px;color:#91672E;font-size:14px;font-weight:700}
+  header h1{font-family:"Noto Serif TC",serif;font-weight:900;color:var(--crimson);
+    font-size:clamp(30px,4.5vw,52px);line-height:1.2;text-shadow:0 2px 0 #fff,0 8px 16px rgba(124,55,27,.14)}
+  header h1 .accent{color:#D58A25}
+  .sub{color:#5D4A3A;margin-top:14px;font-size:15px;font-weight:700;line-height:1.85;max-width:60ch}
+  .params{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:20px}
+  .param{min-width:0;padding:10px 14px;border:1px solid rgba(198,153,76,.4);border-radius:999px;background:#fffdf8}
+  .param .k{color:#9B6730;font-size:12px;font-weight:800}
+  .param .v{color:#5F4937;font-size:13px;font-weight:800}
+  .param .v small{color:#8B7A68;font-weight:400}
+
+  /* ---- sections ---- */
+  section{position:relative;padding:54px 0;background:#fff;scroll-margin-top:74px}
+  section + section{border-top:1px solid #F0DFBD}
+  .eyebrow{color:#A35A21;font-size:13px;font-weight:900;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .eyebrow .num{color:var(--crimson);font-family:"Space Mono",monospace;font-weight:700}
+  h2{font-family:"Noto Serif TC",serif;font-weight:700;color:#3F2D22;font-size:clamp(24px,3.5vw,34px);line-height:1.38;margin-bottom:8px}
+  h3{font-family:"Noto Serif TC",serif;font-weight:700;font-size:18px;margin:30px 0 12px;color:#5A3C26}
+  .lead{color:#665446;font-size:16px;font-weight:500;margin-bottom:26px;max-width:68ch}
+
+  /* ---- 卡片 ---- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px;margin-top:8px}
+  .card{position:relative;display:grid;gap:9px;align-content:start;padding:18px 20px;
+    border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow)}
+  .card h4{font-family:"Noto Serif TC",serif;font-size:16px;font-weight:700;color:#4B3527}
+  .card .px{font-family:"Space Mono",monospace;font-size:12.5px;color:#A35A21}
+  .card p{font-size:13px;color:#665446;margin:0}
+  .card a.card-link{font-weight:800}
+
+  /* ---- add-on 標籤（四類，全站統一） ---- */
+  .tag{display:inline-flex;align-items:center;border-radius:999px;padding:2px 10px;font-size:11.5px;font-weight:900;border:1px solid transparent}
+  .tag-add{background:#E8F6EA;color:#1E6F2A;border-color:#BFE3C5}      /* 可加入原行程 */
+  .tag-split{background:#EDF1FA;color:#44548C;border-color:#C9D3EC}    /* 適合分團 */
+  .tag-ref{background:#FFF6D8;color:#A35A21;border-color:#E2BD73}      /* 只列備查 */
+  .tag-no{background:#FFF3EA;color:#A6402E;border-color:#E6C3A4}       /* 不建議本次加入 */
+  .tag-group{background:#F8EBC7;color:#70451F;border-color:#E2C281}    /* 全團同行 */
+
+  /* ---- 時間軸 ---- */
+  .timeline{border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow);padding:8px 24px;margin-top:8px}
+  .timeline li{list-style:none;display:grid;grid-template-columns:92px 1fr;gap:14px;padding:14px 0;border-top:1px solid #F0DFBD;font-size:14px}
+  .timeline li:first-child{border-top:none}
+  .timeline .t{font-family:"Space Mono",monospace;font-size:13px;color:#A35A21;font-weight:700;white-space:nowrap}
+  .timeline b{color:#3F2D22}
+  .timeline .d{color:#665446;font-size:13px}
+
+  /* ---- 提示框 ---- */
+  .insight{background:#FFF6D8;border:1px solid #E2BD73;border-left:4px solid #E2A534;border-radius:6px;padding:20px 24px;margin-top:8px}
+  .insight h3{margin-top:0;color:#A35A21}
+  .insight p{font-size:14px;margin-bottom:8px}.insight p:last-child{margin-bottom:0}
+  .flag{background:#FFF3EA;border:1px solid #E6C3A4;border-left:4px solid var(--crimson);border-radius:6px;padding:20px 24px;margin-top:8px;color:#7C382C}
+  .flag h3{margin-top:0;color:var(--crimson)}
+  .flag ul{padding-left:20px;font-size:13.5px}.flag li{margin-bottom:7px}
+  .flag p{font-size:13.5px;margin-bottom:0}
+
+  /* ---- 表格 ---- */
+  .table-scroll{overflow-x:auto;border-radius:6px;border:1px solid #EAD6AB;box-shadow:var(--shadow);background:#fff;margin-top:8px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px}
+  thead th{background:#F8EBC7;color:#70451F;font-weight:900;text-align:left;padding:13px 14px;font-size:12.5px;vertical-align:bottom}
+  tbody td{padding:12px 14px;border-top:1px solid #F0DFBD;vertical-align:top;color:#514236}
+  tbody tr:nth-child(even){background:#FFF8E8}
+  .caption{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.6}
+
+  /* ---- 連結藥丸 ---- */
+  .link-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .link-pill{display:inline-flex;align-items:center;min-height:34px;padding:0 14px;border:1px solid #E2C281;border-radius:999px;
+    background:#fffdf8;color:#267A32;text-decoration:none;white-space:nowrap;font-size:12.5px;font-weight:800;
+    transition:background .2s,color .2s,border-color .2s}
+  .link-pill:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+
+  /* ---- 清單/檢查表 ---- */
+  .notes{border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow);padding:8px 24px;margin-top:22px}
+  .notes li{list-style:none;padding:14px 0 14px 30px;position:relative;border-top:1px solid #F0DFBD;font-size:14px}
+  .notes li:first-child{border-top:none}
+  .notes li::before{content:"●";position:absolute;left:6px;top:14px;color:#D96A25;font-size:9px}
+  .notes li b{color:var(--crimson);font-weight:700}
+  .checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+  .chk{border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow);padding:18px 20px}
+  .chk h4{font-family:"Noto Serif TC",serif;font-size:15.5px;font-weight:700;margin-bottom:10px;color:#4B3527}
+  .chk label{display:grid;grid-template-columns:20px 1fr;gap:9px;align-items:start;font-size:13px;color:#665446;line-height:1.6;padding:6px 0;border-top:1px solid #F0DFBD}
+  .chk label:first-of-type{border-top:none}
+  .chk input{width:15px;height:15px;margin-top:3px;accent-color:var(--teal)}
+
+  /* ---- 來源 ---- */
+  .src{font-size:12px;color:#665446;line-height:1.8}
+  .src li{list-style:none;padding:8px 0;border-top:1px solid #F0DFBD}
+  .src li:first-child{border-top:none}
+
+  /* ---- day-pager + footer ---- */
+  .day-pager{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    max-width:1160px;margin:0 auto;padding:34px 24px}
+  .day-pager a{display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border:1px solid #E2C281;border-radius:999px;
+    background:#fffdf8;color:#267A32;text-decoration:none;font-size:14px;font-weight:900;transition:background .2s,color .2s,border-color .2s}
+  .day-pager a:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+  footer{background:#3B2C22;color:#E9D9B8;padding:30px 0;font-size:12.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer .mono,footer a{color:#D5BC8C}
+
+  @media (max-width:620px){
+    body{background:linear-gradient(180deg,#F3D9B1 0,#fff 560px)}
+    .wrap{padding:0 20px}
+    header{padding:52px 0 100px}
+    .hero-card{padding:26px 22px 24px}
+    .hero-card::after{width:70px;height:70px;right:-10px;top:-26px}
+    .params{grid-template-columns:1fr 1fr}
+    .timeline li{grid-template-columns:70px 1fr}
+  }
+</style>
+</head>
+<body>
+
+<nav class="trip-nav" aria-label="大阪五天自由行頁面切換">
+  <a href="osaka-2026-trip-guide.html" aria-current="page">總覽</a>
+  <a href="osaka-2026-day1.html">Day 1</a>
+  <a href="usj-vip-guide.html">Day 2 USJ</a>
+  <a href="osaka-2026-day3.html">Day 3</a>
+  <a href="osaka-2026-day4.html">Day 4</a>
+  <a href="osaka-2026-day5.html">Day 5</a>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="hero-card">
+      <span class="cred-tag">2026 大阪五天自由行・總覽</span>
+      <h1>大阪五天自由行<span class="accent">總覽</span></h1>
+      <p class="sub">6 位成人、10/5（一）～10/9（五）四夜五天。本頁是行程入口：航班與飯店基本資料、五天入口連結、分團原則、餐廳候選總表、周遊券判斷與行前檢查清單，細節請點入各日頁面。</p>
+      <div class="params">
+        <div class="param"><div class="k">日期</div><div class="v">10/05(一)-10/09(五)</div></div>
+        <div class="param"><div class="k">人數</div><div class="v">6 位成人</div></div>
+        <div class="param"><div class="k">飯店</div><div class="v">靜鐵飯店普雷西奧大阪心齋橋</div></div>
+        <div class="param"><div class="k">航班</div><div class="v">BR178 去／BR129 回</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- 2. Trip Snapshot -->
+  <section id="snapshot">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">01</span>行程快照</div>
+      <h2>航班・飯店・行李重點</h2>
+      <p class="lead">查核日期：2026-07-02，出發前 1-2 個月重查（機位艙等、飯店寄存細節、航廈櫃檯配置皆可能調整）。</p>
+
+      <h3>航班</h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>航班</th><th>方向</th><th>時間</th><th>備註</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">BR178</td><td>去程 TPE→KIX</td><td class="mono">06:30 → 10:10</td><td>長榮航空</td></tr>
+            <tr><td class="mono">BR129</td><td>回程 KIX→TPE</td><td class="mono">18:30 → 20:30</td><td>長榮航空；查詢當下顯示使用關西機場第1航廈(T1)，報到樓層 T1-4F「F」報到區，起飛前3小時開櫃——此為即時查詢資料，非10/9當天正式排班，出發前需重查</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption">回程建議抵達機場時間：起飛前3小時（約15:30），若有退稅需求再提早30-60分鐘。查核日期：2026-07-02，出發前 1-2 個月重查。</p>
+
+      <h3>飯店</h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>項目</th><th>內容</th></tr></thead>
+          <tbody>
+            <tr><td>名稱</td><td>靜鐵飯店普雷西奧大阪心齋橋（静鉄ホテルプレジオ[大阪心斎橋]）</td></tr>
+            <tr><td>地址</td><td>〒541-0058 大阪府大阪市中央区南久宝寺町四丁目6番1号</td></tr>
+            <tr><td>電話</td><td class="mono">06-6563-7330</td></tr>
+            <tr><td>Check-in / Check-out</td><td>15:00 / 11:00（無明確門限，惟凌晨1:00-5:00大門上鎖，需房卡或聯絡櫃檯）</td></tr>
+            <tr><td>最近車站</td><td>Osaka Metro 御堂筋線「心斎橋」站 徒步約7分；「本町」站 徒步約6分</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption">來源：飯店官網首頁、官網FAQ、じゃらんnet。查核日期：2026-07-02，出發前 1-2 個月重查。</p>
+
+      <div class="flag">
+        <h3>行李提醒</h3>
+        <ul>
+          <li><b>去程 BR178 為長榮 Basic (V) 艙等</b>：每人僅含 1 件託運，23kg。6 人合計最多 6 件，剛好等於總免費額度，不可再多託運，且需依訂票確認信上的實際艙等代碼核對（艙等代碼會因促銷變動）。</li>
+          <li><b>回程 BR129 為長榮 Standard (Q) 艙等</b>：每人可託運 2 件，23kg/件，6 人合計最多 12 件，回程採購空間較寬裕。</li>
+          <li>飯店官網FAQ確認入住前、退房後皆可寄放行李，但<b>未載明數量上限、是否收費，也未確認能否一次容納6件大型行李箱</b>，建議出發前致電 06-6563-7330 或透過訂房平台事先確認。備案：難波站（步行約10-15分）置物櫃選擇較多，或用 ecbo cloak App 查詢心齋橋周邊加盟店當日空位。</li>
+        </ul>
+        <p class="caption">來源：EVA Air Checked Baggage 官網、飯店官網FAQ、ecbonist。查核日期：2026-07-02，出發前 1-2 個月重查（艙等代碼與行李寄存容量務必以實際訂票紀錄及飯店回覆為準）。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Page Navigator -->
+  <section id="days">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">02</span>五天入口</div>
+      <h2>Page Navigator</h2>
+      <p class="lead">點入各日頁面看逐站行程、餐廳候選與風險備案。Day 2 為 USJ 獨立指南，已完成，內容不重複收錄於此。</p>
+      <div class="cards">
+        <div class="card">
+          <h4>Day 1・10/05（一）</h4>
+          <p>大鳥大社・住吉大社・今宮戎神社・通天閣／新世界串炸晚餐</p>
+          <a class="card-link" href="osaka-2026-day1.html">進入 Day 1 →</a>
+        </div>
+        <div class="card">
+          <h4>Day 2・10/06（二）・USJ VIP</h4>
+          <p>第二天指南已完成，請直接使用 USJ 獨立指南。</p>
+          <a class="card-link" href="usj-vip-guide.html">進入 USJ 指南 →</a>
+        </div>
+        <div class="card">
+          <h4>Day 3・10/07（三）</h4>
+          <p>勝尾寺・箕面瀑布／晚間表演（無真正深夜場，詳見日頁替代方案）</p>
+          <a class="card-link" href="osaka-2026-day3.html">進入 Day 3 →</a>
+        </div>
+        <div class="card">
+          <h4>Day 4・10/08（四）</h4>
+          <p>木津市場・難波八阪神社／道頓堀水上觀光船／神戶牛晚餐</p>
+          <a class="card-link" href="osaka-2026-day4.html">進入 Day 4 →</a>
+        </div>
+        <div class="card">
+          <h4>Day 5・10/09（五）</h4>
+          <p>臨空城 Outlet／返程 BR129，18:30 KIX 起飛</p>
+          <a class="card-link" href="osaka-2026-day5.html">進入 Day 5 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Group Rules -->
+  <section id="group-rules">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">03</span>分團原則</div>
+      <h2>6 人同行怎麼分</h2>
+      <p class="lead">6 人同行不必每個點都全員到齊。以下是各日容易分團的段落與需要全團集合的段落。</p>
+      <div class="cards">
+        <div class="card">
+          <h4>黑門市場 <span class="tag tag-split">適合分團</span></h4>
+          <p>可依起床時間分開行動，逛市場、拍照、少量嚐鮮即可，不必當作正餐消費核心。</p>
+        </div>
+        <div class="card">
+          <h4>USJ 出發時間 <span class="tag tag-split">適合分團</span></h4>
+          <p>已有獨立指南，可分開出發或分組行動，細節見 Day 2 USJ 指南。</p>
+        </div>
+        <div class="card">
+          <h4>日本橋電器街／藥妝／唐吉訶德 <span class="tag tag-split">適合分團</span></h4>
+          <p>各自逛需求不同的店，注意女僕咖啡廳與街邊招攬，依個人意願決定是否進場消費。</p>
+        </div>
+        <div class="card">
+          <h4>臨空城 Outlet <span class="tag tag-split">適合分團</span></h4>
+          <p>可各逛各的；沒有購物欲的人可安排咖啡、休息或提早前往機場。</p>
+        </div>
+        <div class="card">
+          <h4>道頓堀水上觀光船 <span class="tag tag-group">全團同行</span></h4>
+          <p>船票需當日現場換票、時間指定，適合全團集合一起排隊兌換與搭乘。</p>
+        </div>
+        <div class="card">
+          <h4>重點晚餐 <span class="tag tag-group">全團同行</span></h4>
+          <p>神戶牛／和牛壽喜燒等訂位制餐廳已依 6 人安排座位，建議全團準時集合。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Food Board Summary -->
+  <section id="food-board">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">04</span>餐食總表</div>
+      <h2>Food Board Summary</h2>
+      <p class="lead">以下為研究筆記整理的餐廳候選總表，狀態欄只標警示重點，細節（地址、電話、套餐內容）見各日頁面。查核日期：2026-07-02，出發前 1-2 個月重查（日本餐飲業營業時間、公休日、套餐內容常臨時調整）。</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>日別</th><th>類型</th><th>店名</th><th>人均概估</th><th>訂位方式</th><th>備註／狀態</th></tr></thead>
+          <tbody>
+            <tr><td>Day 1</td><td>河豚／蟹</td><td>蟹ふぐ 雪月花</td><td>約5,000-6,000円（晚間）</td><td>Hot Pepper Gourmet線上或電話</td><td><span class="tag tag-no">平日中午不營業</span>週一為16:00開店，午餐候選不可行，需改晚間或改午餐替代方案</td></tr>
+            <tr><td>Day 1</td><td>河豚／蟹</td><td>ふぐかず 鳳店</td><td>約5,000-6,000円（晚間）</td><td>Hot Pepper Gourmet線上或電話</td><td><span class="tag tag-no">平日中午不營業</span>週一至五17:00開店，且與雪月花同在堺市鳳地區，離心齋橋較遠，位置待與原規劃者確認</td></tr>
+            <tr><td>Day 1</td><td>串炸</td><td>新世界串カツ いっとく 道頓堀戎橋店</td><td>2,000-3,999円</td><td>電話或線上，350席可包場</td><td><span class="tag tag-add">可加入原行程</span>年中無休 11:00-01:00</td></tr>
+            <tr><td>Day 3</td><td>炸牛排</td><td>牛かつ もと村 道頓堀店</td><td>2,000-2,999円</td><td>不開放預約，現場排隊</td><td>建議避開尖峰或分批入座</td></tr>
+            <tr><td>Day 3</td><td>炸牛排</td><td>牛かつ冨田</td><td>1,000-2,999円</td><td>不開放預約，現場排隊</td><td><span class="tag tag-ref">只列備查</span>僅收現金，人氣高常大排長龍</td></tr>
+            <tr><td>Day 4</td><td>神戶牛食べ放題</td><td>焼肉屋 大牧場 道頓堀店</td><td>13,200円（神戸牛食べ放題）</td><td>ぐるなび線上或電話</td><td><span class="tag tag-add">可加入原行程</span>明確支援6人預約</td></tr>
+            <tr><td>Day 4</td><td>壽喜燒</td><td>候選A：心たけ／候選B：牛丸 心斎橋</td><td>候選A約6,776円／候選B約15,400円</td><td>電話或HotPepper</td><td><span class="tag tag-ref">兩家候選待確認</span>店名「Kokorotake」原意未明，候選A店名吻合但地點價位不符，候選B地點價位吻合但店名不符，需出發前向規劃人確認</td></tr>
+            <tr><td>Day 4</td><td>鐵板燒</td><td>New Matsusaka 難波御堂筋店</td><td>套餐金額未取得</td><td>電話或官網</td><td><span class="tag tag-ref">只列備查</span>套餐價格待重查</td></tr>
+            <tr><td>Day 4</td><td>燒肉套餐</td><td>板前焼肉 一牛 心斎橋店</td><td>16,500円（天套餐）</td><td>線上或電話，提供6人半個室</td><td><span class="tag tag-add">可加入原行程</span>價位與行程表估算完全一致</td></tr>
+            <tr><td>Day 4</td><td>大阪燒</td><td>美津の（道頓堀本店）</td><td>1,000-2,000円</td><td>現場排隊</td><td><span class="tag tag-ref">只列備查</span>排隊常超過1小時</td></tr>
+            <tr><td>Day 4</td><td>大阪燒</td><td>千房 道頓堀ビル店</td><td>1,000-1,999円</td><td>3人以上可預約（旺季除外）</td><td><span class="tag tag-ref">只列備查</span>樓層多，較容易安排6人同桌</td></tr>
+            <tr><td>Day 4</td><td>燒肉吃到飽</td><td>特選和牛焼肉食べ放題 298 PREMIUM 難波店</td><td>1,100-1,980円起</td><td>電話或官網</td><td><span class="tag tag-ref">只列備查</span>僅搜尋摘要，未逐頁查證，待重查</td></tr>
+            <tr><td>不限</td><td>螃蟹料理</td><td>かに道楽 道頓堀本店</td><td>晚間7,590-8,690円；帝王蟹課程22,000円起</td><td>線上預約，6人以下有個室</td><td><span class="tag tag-add">可加入原行程</span>季節性菜單需出發前確認</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption">來源：大阪自由行餐廳查證報告（各店官網／Tabelog／HotPepper，詳見各日頁面來源列表）。查核日期：2026-07-02，出發前 1-2 個月重查。</p>
+    </div>
+  </section>
+
+  <!-- 6. Pass And Booking Board -->
+  <section id="pass-booking">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">05</span>票券與預約</div>
+      <h2>Pass And Booking Board</h2>
+      <p class="lead">查核日期：2026-07-02，出發前 1-2 個月重查（票價、可用設施範圍常有細節變動）。</p>
+
+      <h3>大阪周遊券（Osaka Amazing Pass）判斷</h3>
+      <div class="insight">
+        <h3>1 日券 3,500円／2 日券 5,000円（2026年4月新年度價格）</h3>
+        <p>本行程明確會用到周遊券免費項目的只有 <b>Day 1 通天閣＋TOWER SLIDER</b>（約1,500円/人）與 <b>Day 4 道頓堀水上觀光船</b>（約2,000円/人），兩者分屬不同天。</p>
+        <p>判斷邏輯：若同一天使用，合計約3,500円/人的免費額度與1日券價格打平，還能疊加當天不限次數的地鐵/私鉄免費搭乘，通常划算；若分屬兩天（如本行程現況），需分別比較「當天實際單程票總和＋景點門票」是否超過周遊券票價（1日券或2日券），才能判斷買不買划算。其餘神社寺院與傳統市場多半免費入場，周遊券在這些點沒有額外優惠。</p>
+        <p><b>結論：需依最終定案的每日動線試算，出發前用實際車資（含往堺市大鳥大社的JR/南海車資）精算一次再決定。</b></p>
+      </div>
+      <p class="caption">來源：Osaka Metro 大阪周遊パス2026年度公告、大阪楽遊パス設施頁（通天閣／観光船）。查核日期：2026-07-02，出發前 1-2 個月重查（通天閣是否全免或僅折扣有兩種說法，待重查確認）。</p>
+
+      <h3>需預約清單</h3>
+      <div class="checks">
+        <div class="chk">
+          <h4>餐廳訂位</h4>
+          <label><input type="checkbox"> Day 1 串炸いっとく（350席，假日尖峰建議先訂）</label>
+          <label><input type="checkbox"> Day 4 大牧場神戶牛食べ放題（6人預約）</label>
+          <label><input type="checkbox"> Day 4 壽喜燒候選確認後訂位（心たけ／牛丸心斎橋）</label>
+          <label><input type="checkbox"> Day 4 板前焼肉一牛（6人半個室）</label>
+          <label><input type="checkbox"> かに道楽道頓堀本店（如安排螃蟹晚餐）</label>
+        </div>
+        <div class="chk">
+          <h4>交通與電話</h4>
+          <label><input type="checkbox"> Rapi:t 特急劃位（全車指定席，6人建議提早在南海官網或車站購票）</label>
+          <label><input type="checkbox"> 飯店行李寄存確認電話：<span class="mono">06-6563-7330</span></label>
+        </div>
+        <div class="chk">
+          <h4>票券</h4>
+          <label><input type="checkbox"> 通天閣一般展望台／TOWER SLIDER 入場時間預約</label>
+          <label><input type="checkbox"> 道頓堀觀光船：僅限當日現場換票，不接受電話預約</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Final Checklist -->
+  <section id="checklist">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">06</span>行前檢查</div>
+      <h2>Final Checklist</h2>
+      <p class="lead">查核日期：2026-07-02，出發前 1-2 個月重查。</p>
+      <div class="checks">
+        <div class="chk">
+          <h4>行李</h4>
+          <label><input type="checkbox"> 去程 BR178 Basic (V)：每人1件23kg，6人合計最多6件，不留超額空間</label>
+          <label><input type="checkbox"> 回程 BR129 Standard (Q)：每人2件23kg，回程採購空間較寬裕</label>
+          <label><input type="checkbox"> 出發前致電飯店確認6件行李能否一次寄存（06-6563-7330）</label>
+          <label><input type="checkbox"> 備案：難波站置物櫃或ecbo cloak App 查詢心齋橋周邊空位</label>
+        </div>
+        <div class="chk">
+          <h4>現金</h4>
+          <label><input type="checkbox"> 牛かつ冨田僅收現金，備妥零錢</label>
+          <label><input type="checkbox"> 臨空城Outlet「手荷物一時預かりサービス」1,000円/件/日僅收現金</label>
+        </div>
+        <div class="chk">
+          <h4>票券</h4>
+          <label><input type="checkbox"> 決定周遊券是否購買（依當天動線試算後）</label>
+          <label><input type="checkbox"> 通天閣／TOWER SLIDER 入場時間預約</label>
+        </div>
+        <div class="chk">
+          <h4>預約</h4>
+          <label><input type="checkbox"> Day 4 壽喜燒候選確認後完成訂位</label>
+          <label><input type="checkbox"> Rapi:t 劃位（如選用）</label>
+          <label><input type="checkbox"> 重點晚餐6人訂位皆已確認</label>
+        </div>
+        <div class="chk">
+          <h4>備案</h4>
+          <label><input type="checkbox"> Day 1 河豚午餐兩家候選平日中午不營業，確認替代方案（改晚間或改午餐選項）</label>
+          <label><input type="checkbox"> Day 3 勝尾寺⇔箕面瀑布平日銜接方式（周遊巴士僅假日/暑假），出發前重查阪急巴士時刻表</label>
+          <label><input type="checkbox"> Day 4 確認木津市場10/8是否臨時休市（電話 06-6631-1139 或官網月曆）</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Sources And Last Checked -->
+  <section id="sources">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">07</span>來源</div>
+      <h2>Sources And Last Checked</h2>
+      <p class="lead">以下為本頁引用的主要來源，查核日期均為 2026-07-02，出發前 1-2 個月重查。</p>
+      <ul class="src">
+        <li>飯店官網首頁：<a href="https://www.hotel-prezio.co.jp/osaka-shinsaibashi/" target="_blank" rel="noopener">https://www.hotel-prezio.co.jp/osaka-shinsaibashi/</a></li>
+        <li>飯店官網FAQ：<a href="https://www.hotel-prezio.co.jp/osaka-shinsaibashi/faq/" target="_blank" rel="noopener">https://www.hotel-prezio.co.jp/osaka-shinsaibashi/faq/</a></li>
+        <li>じゃらんnet 飯店頁：<a href="https://www.jalan.net/yad345542/" target="_blank" rel="noopener">https://www.jalan.net/yad345542/</a></li>
+        <li>ecbonist（心斎橋 ecbo cloak介紹）：<a href="https://ecbonist.ecbo.io/ecbo_cloak_shops_osaka_shinsaibashi_top5/" target="_blank" rel="noopener">https://ecbonist.ecbo.io/ecbo_cloak_shops_osaka_shinsaibashi_top5/</a></li>
+        <li>関西国際空港 フライト情報 BR129：<a href="https://www.kansai-airport.or.jp/flight/detail/DEP/INT/1?flight_number=BR129&date=today&service_type=PAX" target="_blank" rel="noopener">https://www.kansai-airport.or.jp/flight/detail/...BR129</a></li>
+        <li>EVA Air Checked Baggage（Global）：<a href="https://www.evaair.com/en-global/fly-prepare/baggage/free-baggage/checked-baggage/" target="_blank" rel="noopener">https://www.evaair.com/en-global/fly-prepare/baggage/free-baggage/checked-baggage/</a></li>
+        <li>EVA Air Check-in Information（日本語）：<a href="https://www.evaair.com/ja-jp/fly-prepare/at-the-airport/check-in/check-in-information/" target="_blank" rel="noopener">https://www.evaair.com/ja-jp/fly-prepare/at-the-airport/check-in/check-in-information/</a></li>
+        <li>Osaka Metro 大阪周遊パス2026年度公告：<a href="https://subway.osakametro.co.jp/guide/page/20260401_osaka_amazing_pass.php" target="_blank" rel="noopener">https://subway.osakametro.co.jp/guide/page/20260401_osaka_amazing_pass.php</a></li>
+        <li>大阪楽遊パス設施頁（通天閣）：<a href="https://www.e-pass.osaka-info.jp/jp/facility/detail?id=240" target="_blank" rel="noopener">https://www.e-pass.osaka-info.jp/jp/facility/detail?id=240</a></li>
+        <li>大阪楽遊パス設施頁（観光船）：<a href="https://www.e-pass.osaka-info.jp/jp/facility/detail?id=4" target="_blank" rel="noopener">https://www.e-pass.osaka-info.jp/jp/facility/detail?id=4</a></li>
+        <li>とんぼりリバークルーズ官方（一本松海運）：<a href="https://www.ipponmatsu.co.jp/cruise/tombori.html" target="_blank" rel="noopener">https://www.ipponmatsu.co.jp/cruise/tombori.html</a></li>
+        <li>通天閣官方營業資訊：<a href="https://www.tsutenkaku.co.jp/annai/index.html" target="_blank" rel="noopener">https://www.tsutenkaku.co.jp/annai/index.html</a></li>
+        <li>通天閣 TOWER SLIDER 官方：<a href="https://www.tsutenkaku.co.jp/tour/tower-slider.html" target="_blank" rel="noopener">https://www.tsutenkaku.co.jp/tour/tower-slider.html</a></li>
+        <li>木津の朝市官方：<a href="https://kiduichiba.jp/" target="_blank" rel="noopener">https://kiduichiba.jp/</a></li>
+        <li>木津卸売市場市場カレンダー：<a href="https://kizu-ichiba.com/calendar/" target="_blank" rel="noopener">https://kizu-ichiba.com/calendar/</a></li>
+        <li>各餐廳官網／Tabelog／HotPepper：詳見各日頁面來源列表（蟹ふぐ雪月花、ふぐかず鳳店、串カツいっとく、牛かつもと村、牛かつ冨田、焼肉屋大牧場、心たけ、牛丸心斎橋、New Matsusaka、板前焼肉一牛、美津の、千房、かに道楽）</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<nav class="day-pager" aria-label="前後日切換">
+  <a href="osaka-2026-day1.html">開始閱讀：Day 1 →</a>
+  <a href="usj-vip-guide.html">Day 2 USJ 指南</a>
+</nav>
+
+<footer>
+  <div class="wrap">
+    <span>2026 大阪五天自由行指南｜本頁：總覽</span>
+    <span class="mono">查核日期：2026-07-02・出發前 1-2 個月重查時效性資訊</span>
+  </div>
+</footer>
+
+</body>
+</html>
