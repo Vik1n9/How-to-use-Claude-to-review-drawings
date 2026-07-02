@@ -770,3 +770,701 @@ body.usj-travel-page .source-list li{border-bottom-color:#eee8dc}
     padding:8px 0;
   }
 }
+
+/* USJ page: Hokkaido Library-inspired travel brochure restyle */
+body.usj-travel-page{
+  --travel-green:#35b64a;
+  --travel-green-dark:#237a31;
+  --travel-gold:#cba75f;
+  --travel-orange:#ea7b27;
+  --travel-red:#d8583e;
+  --travel-ink:#3b2c22;
+  --travel-muted:#776c61;
+  --travel-line:#e0c99e;
+  --travel-soft:#fff9ea;
+  --travel-paper:#fffdf7;
+  --travel-shadow:0 20px 46px rgba(91,55,24,.18);
+  padding-left:0;
+  background:
+    radial-gradient(circle at 8% 12%,rgba(255,255,255,.58) 0 7%,transparent 8%),
+    radial-gradient(circle at 94% 8%,rgba(255,255,255,.36) 0 6%,transparent 7%),
+    linear-gradient(90deg,rgba(122,76,33,.06) 1px,transparent 1px),
+    linear-gradient(180deg,#f5dfbd 0,#faedd5 36%,#fff 36%);
+  background-size:auto,auto,38px 100%,auto;
+  color:var(--travel-ink);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  letter-spacing:0;
+}
+body.usj-travel-page .progress{
+  height:5px;
+  background:linear-gradient(90deg,var(--travel-green),#f5b33e,var(--travel-red));
+}
+body.usj-travel-page .site-header{
+  right:0;
+  bottom:auto;
+  width:auto;
+  height:78px;
+  min-height:0;
+  flex-direction:row;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:10px clamp(18px,4vw,44px);
+  background:rgba(255,255,255,.72);
+  border-right:0;
+  border-bottom:1px solid rgba(188,151,91,.22);
+  box-shadow:0 10px 26px rgba(89,55,20,.08);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+body.usj-travel-page .brand{
+  min-height:0;
+  position:relative;
+  flex-direction:row;
+  gap:12px;
+  padding:12px 28px 12px 18px;
+  border-radius:0 0 42px 0;
+  background:#fff;
+  color:var(--travel-ink);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  font-size:14px;
+  line-height:1.25;
+  letter-spacing:0;
+  text-transform:none;
+  writing-mode:horizontal-tb;
+  box-shadow:0 14px 30px rgba(79,48,21,.12);
+}
+body.usj-travel-page .brand b{
+  color:#5b59a7;
+  font-size:16px;
+  letter-spacing:0;
+}
+body.usj-travel-page .brand-mark{
+  width:45px;
+  height:30px;
+  border:0;
+  border-radius:0;
+  transform:none;
+  background:
+    radial-gradient(circle at 22% 68%,#5f64b2 0 4px,transparent 5px),
+    radial-gradient(circle at 44% 68%,#111 0 4px,transparent 5px),
+    radial-gradient(circle at 66% 68%,#111 0 4px,transparent 5px),
+    linear-gradient(150deg,transparent 0 32%,#6a62b7 33% 42%,transparent 43%),
+    linear-gradient(18deg,transparent 0 35%,#e08f42 36% 41%,transparent 42%);
+}
+body.usj-travel-page .brand-mark::after{
+  left:0;
+  right:0;
+  top:4px;
+  width:auto;
+  height:18px;
+  border:0;
+  border-top:3px solid #6a62b7;
+  border-radius:50%;
+  transform:rotate(-8deg);
+}
+body.usj-travel-page .site-nav{
+  width:auto;
+  max-width:min(720px,64vw);
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+  overflow-x:auto;
+}
+body.usj-travel-page .nav-link{
+  min-height:34px;
+  padding:7px 12px;
+  border:1px solid rgba(97,71,39,.14);
+  border-radius:999px;
+  background:rgba(255,255,255,.72);
+  color:#4a3a2b;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0;
+  line-height:1.2;
+  white-space:nowrap;
+}
+body.usj-travel-page .nav-link[href$="usj-vip-guide.html"],
+body.usj-travel-page .nav-link:hover,
+body.usj-travel-page .nav-link:focus-visible{
+  color:#fff;
+  border-color:var(--travel-green);
+  background:var(--travel-green);
+}
+body.usj-travel-page .mission-hero{
+  isolation:isolate;
+  min-height:640px;
+  align-items:center;
+  padding:118px clamp(20px,5vw,62px) 86px;
+  background:
+    radial-gradient(circle at 22% 28%,rgba(255,255,255,.72) 0 58px,transparent 60px),
+    radial-gradient(circle at 88% 32%,rgba(255,255,255,.54) 0 74px,transparent 76px),
+    linear-gradient(100deg,rgba(118,71,28,.2),rgba(255,246,229,.2)),
+    repeating-linear-gradient(95deg,#efd2a7 0 22px,#f6dfbb 22px 44px,#e9c79a 44px 66px);
+  color:var(--travel-ink);
+}
+body.usj-travel-page .mission-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 12% 82%,#d46b22 0 10px,transparent 11px),
+    radial-gradient(ellipse at 17% 78%,#f6c32f 0 14px,transparent 15px),
+    radial-gradient(ellipse at 82% 81%,#f1cf39 0 14px,transparent 15px),
+    radial-gradient(ellipse at 88% 35%,#d96a25 0 10px,transparent 11px),
+    radial-gradient(ellipse at 70% 18%,#b94625 0 7px,transparent 8px),
+    radial-gradient(ellipse at 32% 16%,#d9802f 0 5px,transparent 6px);
+  filter:drop-shadow(0 7px 2px rgba(111,61,19,.12));
+}
+body.usj-travel-page .mission-hero::after{
+  content:"";
+  position:absolute;
+  left:-3%;
+  right:-3%;
+  bottom:-1px;
+  z-index:2;
+  height:118px;
+  pointer-events:none;
+  background:
+    radial-gradient(120px 42px at 16% 65%,transparent 48%,#fff 50%),
+    radial-gradient(160px 56px at 38% 38%,transparent 48%,#fff 50%),
+    radial-gradient(150px 56px at 67% 62%,transparent 48%,#fff 50%),
+    radial-gradient(190px 66px at 88% 32%,transparent 48%,#fff 50%),
+    linear-gradient(#fff,#fff);
+  clip-path:polygon(0 48%,8% 58%,18% 46%,31% 64%,45% 45%,58% 58%,72% 42%,86% 59%,100% 44%,100% 100%,0 100%);
+}
+body.usj-travel-page .hero-media{
+  inset:auto auto 110px clamp(30px,8vw,110px);
+  z-index:1;
+  width:min(680px,62vw);
+  height:360px;
+  border:14px solid #fff;
+  border-bottom-width:24px;
+  border-radius:2px;
+  background-image:var(--hero-image);
+  background-position:center;
+  background-size:cover;
+  opacity:1!important;
+  visibility:visible!important;
+  filter:saturate(1.22) contrast(1.04);
+  transform:rotate(-4deg);
+  box-shadow:var(--travel-shadow);
+}
+body.usj-travel-page .hero-media::before{
+  content:"";
+  position:absolute;
+  right:-210px;
+  top:28px;
+  width:290px;
+  height:210px;
+  border:10px solid #fff;
+  border-bottom-width:18px;
+  background-image:var(--hero-image);
+  background-position:right center;
+  background-size:cover;
+  box-shadow:0 18px 36px rgba(81,48,20,.16);
+  transform:rotate(7deg);
+}
+body.usj-travel-page .hero-media::after{
+  inset:-14px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.2),transparent 34%),
+    linear-gradient(180deg,transparent 64%,rgba(84,45,12,.08));
+}
+body.usj-travel-page .hero-inner{
+  position:relative;
+  z-index:3;
+  width:min(520px,46%);
+  margin-left:auto;
+  display:grid;
+  grid-template-columns:82px minmax(0,1fr);
+  column-gap:18px;
+  align-items:end;
+  justify-content:end;
+  padding:24px 30px 26px;
+  border:1px solid rgba(192,151,82,.46);
+  border-radius:2px;
+  background:rgba(255,246,210,.88);
+  color:var(--travel-ink);
+  text-align:left;
+  box-shadow:0 18px 42px rgba(94,58,24,.16);
+}
+body.usj-travel-page .hero-inner::before,
+body.usj-travel-page .hero-inner::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  background:linear-gradient(140deg,#cc4d25 0 45%,#f28a20 46% 62%,#d75024 63%);
+  filter:drop-shadow(0 8px 4px rgba(112,57,18,.18));
+}
+body.usj-travel-page .hero-inner::before{
+  right:-38px;
+  top:-28px;
+  width:92px;
+  height:92px;
+  clip-path:polygon(50% 0,61% 32%,96% 17%,69% 48%,100% 60%,64% 64%,78% 100%,51% 73%,24% 100%,35% 64%,0 60%,31% 48%,4% 17%,39% 32%);
+  transform:rotate(18deg);
+}
+body.usj-travel-page .hero-inner::after{
+  left:-70px;
+  bottom:-30px;
+  width:86px;
+  height:86px;
+  clip-path:polygon(50% 0,61% 32%,96% 17%,69% 48%,100% 60%,64% 64%,78% 100%,51% 73%,24% 100%,35% 64%,0 60%,31% 48%,4% 17%,39% 32%);
+  transform:rotate(-24deg);
+  background:linear-gradient(140deg,#f5cf30 0 48%,#e67d24 49% 66%,#c84f20 67%);
+}
+body.usj-travel-page .mission-kicker{
+  grid-column:2;
+  justify-self:start;
+  margin:0 0 6px;
+  color:#8d6530;
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:0;
+  text-shadow:none;
+  writing-mode:horizontal-tb;
+}
+body.usj-travel-page .travel-day{
+  grid-column:1;
+  grid-row:1 / span 5;
+  width:72px;
+  height:72px;
+  margin:0 0 6px;
+  align-self:center;
+  border:2px solid rgba(209,163,82,.58);
+  background:#fff;
+  color:var(--travel-gold);
+  box-shadow:0 10px 24px rgba(94,58,24,.12);
+}
+body.usj-travel-page .travel-day strong{
+  margin-bottom:-14px;
+  font-size:32px;
+  letter-spacing:0;
+}
+body.usj-travel-page .travel-day span{
+  font-size:12px;
+  letter-spacing:0;
+}
+body.usj-travel-page .hero-place{
+  grid-column:2;
+  justify-self:start;
+  margin:0 0 8px;
+  color:#c25b37;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:0;
+  text-shadow:none;
+}
+body.usj-travel-page .mission-hero h1{
+  grid-column:2;
+  justify-self:start;
+  max-width:11ch;
+  margin:0 0 12px;
+  color:var(--travel-red);
+  font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  font-size:44px;
+  line-height:1.18;
+  letter-spacing:0;
+  text-shadow:0 2px 0 #fff,0 8px 16px rgba(124,55,27,.16);
+}
+body.usj-travel-page .mission-hero h1::after{
+  width:100%;
+  margin:12px 0 0;
+  border-top:2px solid rgba(127,99,55,.36);
+}
+body.usj-travel-page .hero-lead{
+  grid-column:2;
+  justify-self:start;
+  max-width:30rem;
+  margin:0 0 16px;
+  color:#5e4a38;
+  font-size:15px;
+  line-height:1.78;
+  font-weight:700;
+  letter-spacing:0;
+  text-shadow:none;
+}
+body.usj-travel-page .btn{
+  grid-column:2;
+  justify-self:start;
+  min-height:42px;
+  padding:11px 22px;
+  border:0;
+  border-radius:999px;
+  background:var(--travel-green);
+  color:#fff;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:0;
+  box-shadow:0 12px 24px rgba(40,128,48,.22);
+}
+body.usj-travel-page .btn:hover,
+body.usj-travel-page .btn:focus-visible{
+  background:var(--travel-orange);
+  color:#fff;
+}
+body.usj-travel-page .hero-telemetry{
+  grid-column:1 / -1;
+  justify-self:stretch;
+  display:flex;
+  gap:8px;
+  margin-top:18px;
+  background:transparent;
+  box-shadow:none;
+}
+body.usj-travel-page .hero-telemetry span{
+  min-height:34px;
+  padding:8px 12px;
+  border:1px solid rgba(197,151,78,.36);
+  border-radius:999px;
+  background:#fffdf8;
+  color:#6d5138;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:0;
+}
+body.usj-travel-page .mission-layout{
+  position:relative;
+  grid-template-columns:minmax(170px,220px) minmax(0,1fr);
+  gap:42px;
+  max-width:1240px;
+  margin:0 auto;
+  padding:30px clamp(22px,5vw,70px) 104px;
+  background:#fff;
+}
+body.usj-travel-page .mission-layout::before,
+body.usj-travel-page .mission-layout::after{
+  content:"";
+  position:absolute;
+  top:10px;
+  width:170px;
+  height:88px;
+  pointer-events:none;
+  opacity:.78;
+  background:
+    linear-gradient(var(--travel-gold),var(--travel-gold)) 0 22px/120px 5px no-repeat,
+    linear-gradient(var(--travel-gold),var(--travel-gold)) 34px 42px/86px 5px no-repeat,
+    linear-gradient(var(--travel-gold),var(--travel-gold)) 12px 62px/46px 5px no-repeat;
+  border-radius:50%;
+}
+body.usj-travel-page .mission-layout::before{left:22px}
+body.usj-travel-page .mission-layout::after{right:22px;transform:scaleX(-1)}
+body.usj-travel-page .breadcrumb{
+  min-height:54px;
+  padding:10px 0 18px;
+  color:#b09b76;
+  font-size:13px;
+  letter-spacing:0;
+}
+body.usj-travel-page .breadcrumb a{color:var(--travel-green-dark)}
+body.usj-travel-page .breadcrumb span::before{
+  width:18px;
+  border-top-color:#dfc58f;
+}
+body.usj-travel-page .travel-section-title{
+  margin:42px 0 46px;
+  color:var(--travel-gold);
+}
+body.usj-travel-page .travel-section-title::before,
+body.usj-travel-page .travel-section-title::after{
+  border-top:3px solid rgba(203,167,95,.72);
+}
+body.usj-travel-page .travel-section-title h2{
+  color:#f07164;
+  font-size:32px;
+  letter-spacing:0;
+}
+body.usj-travel-page .travel-section-title span{
+  color:#4f453d;
+  font-family:"Comic Sans MS","Segoe Print",cursive;
+  font-size:17px;
+  letter-spacing:0;
+}
+body.usj-travel-page .chapter-rail{
+  top:98px;
+  margin-top:92px;
+  padding:18px 0 18px 18px;
+  color:var(--travel-muted);
+}
+body.usj-travel-page .chapter-title{
+  color:var(--travel-green-dark);
+  font-weight:900;
+  letter-spacing:0;
+}
+body.usj-travel-page .chapter-link{
+  color:#746653;
+  font-size:14px;
+  letter-spacing:0;
+}
+body.usj-travel-page .chapter-link:hover,
+body.usj-travel-page .chapter-link:focus-visible{
+  color:var(--travel-red);
+}
+body.usj-travel-page .guide-article section{
+  padding:54px 0;
+  border-top:1px solid #f0dfbd;
+}
+body.usj-travel-page .guide-article h2{
+  color:#3f2d22;
+  font-size:34px;
+  line-height:1.38;
+  letter-spacing:0;
+}
+body.usj-travel-page .guide-article h3,
+body.usj-travel-page .guide-article h4{
+  color:#4b3527;
+  letter-spacing:0;
+}
+body.usj-travel-page .guide-article p,
+body.usj-travel-page .guide-article li{
+  color:#57483d;
+  line-height:1.9;
+  letter-spacing:0;
+}
+body.usj-travel-page .lead{
+  color:#514033;
+  font-size:18px;
+}
+body.usj-travel-page .card,
+body.usj-travel-page .panel,
+body.usj-travel-page .slot,
+body.usj-travel-page .note,
+body.usj-travel-page .src,
+body.usj-travel-page .disc,
+body.usj-travel-page .step,
+body.usj-travel-page .stepc,
+body.usj-travel-page .tool,
+body.usj-travel-page .flowcard,
+body.usj-travel-page .timeitem .body,
+body.usj-travel-page .tl-detail,
+body.usj-travel-page .wire,
+body.usj-travel-page .prompt,
+body.usj-travel-page .callout,
+body.usj-travel-page .node,
+body.usj-travel-page .stat,
+body.usj-travel-page details.q,
+body.usj-travel-page details.faq,
+body.usj-travel-page .table-wrap{
+  border:1px solid #ead6ab;
+  border-radius:6px;
+  background:linear-gradient(180deg,#fff 0,#fffaf0 100%);
+  color:var(--travel-ink);
+  box-shadow:0 14px 34px rgba(106,73,33,.08);
+}
+body.usj-travel-page .card:hover,
+body.usj-travel-page a.card:hover{
+  border-color:#e49c41;
+  transform:translateY(-3px) rotate(-.25deg);
+}
+body.usj-travel-page .tag,
+body.usj-travel-page .chip,
+body.usj-travel-page .pill,
+body.usj-travel-page .badge-date,
+body.usj-travel-page .disclaimer-badge{
+  border-color:#ecd196;
+  background:#fff7df;
+  color:#a35a21;
+  font-weight:900;
+  letter-spacing:0;
+}
+body.usj-travel-page .first-timer-strip{
+  gap:10px;
+  border:0;
+  background:transparent;
+}
+body.usj-travel-page .first-step{
+  border:1px solid #ecd8ad;
+  border-radius:6px;
+  background:#fffdf8;
+  color:#564538;
+  box-shadow:0 10px 24px rgba(106,73,33,.06);
+}
+body.usj-travel-page .first-step b{
+  border-color:#e9b64a;
+  background:#e9b64a;
+}
+body.usj-travel-page .ticket-legend>div{
+  border-color:#ecd8ad;
+  background:#fffdf8;
+  border-radius:6px;
+}
+body.usj-travel-page .ticket-legend strong{color:#3f2d22}
+body.usj-travel-page .table-wrap th,
+body.usj-travel-page table.data th,
+body.usj-travel-page .mini-table th{
+  background:#f8ebc7;
+  color:#70451f;
+  font-weight:900;
+  letter-spacing:0;
+}
+body.usj-travel-page .table-wrap td,
+body.usj-travel-page table.data td,
+body.usj-travel-page .mini-table td{
+  border-bottom-color:#f0dfbd;
+  color:#514236;
+}
+body.usj-travel-page .choice-table a{
+  border-color:var(--travel-green);
+  border-radius:999px;
+  color:var(--travel-green-dark);
+  font-weight:900;
+}
+body.usj-travel-page .choice-table a:hover{
+  background:var(--travel-green);
+  color:#fff;
+}
+body.usj-travel-page .callout{
+  border-color:#e2bd73;
+  background:#fff6d8;
+}
+body.usj-travel-page .callout .label{
+  color:#b05e22;
+  font-weight:900;
+  letter-spacing:0;
+}
+body.usj-travel-page .skip-list{
+  border-color:#ecd8ad;
+  border-radius:6px;
+  background:#fffaf0;
+}
+body.usj-travel-page .skip-list h3{color:#784b24}
+body.usj-travel-page .skip-list li:before{border-color:var(--travel-red)}
+body.usj-travel-page .checklist-card input{
+  accent-color:var(--travel-green);
+  outline:1px solid #d2b36e;
+}
+
+@media (max-width:1050px){
+  body.usj-travel-page .mission-hero{min-height:720px}
+  body.usj-travel-page .hero-media{
+    left:36px;
+    bottom:250px;
+    width:min(620px,78vw);
+    height:300px;
+  }
+  body.usj-travel-page .hero-inner{
+    width:min(620px,92%);
+    margin:260px auto 0;
+  }
+}
+@media (max-width:900px){
+  body.usj-travel-page .site-header{
+    position:sticky;
+    height:auto;
+    min-height:70px;
+    padding:10px 14px;
+  }
+  body.usj-travel-page .brand{padding:10px 16px}
+  body.usj-travel-page .site-nav{
+    max-width:none;
+    flex-wrap:nowrap;
+  }
+  body.usj-travel-page .mission-hero{
+    min-height:760px;
+    padding:72px 18px 72px;
+  }
+  body.usj-travel-page .hero-media{
+    top:112px;
+    left:28px;
+    right:28px;
+    bottom:auto;
+    width:auto;
+    height:260px;
+  }
+  body.usj-travel-page .hero-media::before{
+    right:-30px;
+    top:150px;
+    width:180px;
+    height:126px;
+  }
+  body.usj-travel-page .hero-inner{
+    grid-template-columns:72px minmax(0,1fr);
+    width:100%;
+    margin:372px auto 0;
+    padding:22px;
+  }
+  body.usj-travel-page .mission-hero h1{
+    font-size:34px;
+    max-width:13ch;
+  }
+  body.usj-travel-page .mission-layout{
+    display:block;
+    padding-inline:20px;
+  }
+  body.usj-travel-page .chapter-rail{
+    margin-top:24px;
+    padding-left:0;
+  }
+  body.usj-travel-page .chapter-list{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding-bottom:8px;
+  }
+  body.usj-travel-page .chapter-link{
+    min-width:max-content;
+    padding:8px 12px;
+    border:1px solid var(--travel-line);
+    border-radius:999px;
+    background:#fffdf8;
+  }
+}
+@media (max-width:620px){
+  body.usj-travel-page .site-header{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:10px;
+  }
+  body.usj-travel-page .site-nav{
+    width:100%;
+    padding-left:2px;
+  }
+  body.usj-travel-page .mission-hero{
+    min-height:820px;
+    padding-top:34px;
+  }
+  body.usj-travel-page .hero-media{
+    top:150px;
+    left:22px;
+    right:22px;
+    bottom:auto;
+    height:210px;
+    border-width:9px;
+    border-bottom-width:16px;
+  }
+  body.usj-travel-page .hero-media::before{display:none}
+  body.usj-travel-page .hero-inner{
+    grid-template-columns:1fr;
+    margin-top:380px;
+  }
+  body.usj-travel-page .travel-day{
+    grid-column:1;
+    grid-row:auto;
+    width:64px;
+    height:64px;
+  }
+  body.usj-travel-page .mission-kicker,
+  body.usj-travel-page .hero-place,
+  body.usj-travel-page .mission-hero h1,
+  body.usj-travel-page .hero-lead,
+  body.usj-travel-page .btn{grid-column:1}
+  body.usj-travel-page .mission-hero h1{font-size:30px}
+  body.usj-travel-page .hero-telemetry{
+    grid-template-columns:1fr 1fr;
+    display:grid;
+  }
+  body.usj-travel-page .travel-section-title{
+    grid-template-columns:1fr;
+    gap:6px;
+    margin:34px 0;
+  }
+  body.usj-travel-page .travel-section-title::before,
+  body.usj-travel-page .travel-section-title::after{display:none}
+  body.usj-travel-page .travel-section-title span{grid-column:1;margin-top:-6px}
+  body.usj-travel-page .guide-article h2{font-size:26px}
+  body.usj-travel-page .breadcrumb span::before{width:12px}
+}
