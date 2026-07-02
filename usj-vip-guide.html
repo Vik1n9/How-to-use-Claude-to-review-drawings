@@ -3,166 +3,348 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="第一次帶 6 個人去日本環球影城（2026/10/6）？這份新手指南幫你從「只買門票」到團體 VIP、Express、私人 VIP 共 5 個選項裡挑一個，算好每個人要先分多少錢，附 10 月活動與入園流程。" name="description"/>
-<title>第一次去 USJ 怎麼買票？6 人團 10/6 票券與每人分多少錢一次看懂</title>
+<meta content="第一次帶 6 個人去日本環球影城（2026/10/6）？照著流程走：行前準備（裝 App）→ 買 6 張門票 → 像點餐一樣挑一個配套 → 即時算出總金額與每人分攤 → 直達購買頁。" name="description"/>
+<title>第一次去 USJ 怎麼買票？6 人團照流程「點餐式」選配套，算好每人分攤</title>
 <link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
 <link href="favicon.ico" rel="alternate icon"/>
 <link href="assets/tokens.css" rel="stylesheet"/>
 <link href="assets/style.css" rel="stylesheet"/>
+<style>
+/* ---- page-specific: flow layout ---- */
+.mission-layout{display:block;max-width:1160px}
+.guide-article{max-width:1040px;margin-inline:auto;padding-bottom:96px}
+/* ---- sticky flow stepper ---- */
+.flow-stepper{position:sticky;top:var(--stick-top,64px);z-index:120;background:rgba(0,0,0,.92);border-bottom:1px solid var(--hairline-faint);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.flow-stepper ol{display:flex;gap:4px;list-style:none;margin:0;padding:10px clamp(14px,4vw,54px);overflow-x:auto;scrollbar-width:none}
+.flow-stepper ol::-webkit-scrollbar{display:none}
+.flow-stepper a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid transparent;border-radius:999px;color:var(--muted);font-family:var(--font-display);font-size:12px;font-weight:800;letter-spacing:.06em;text-decoration:none;white-space:nowrap;transition:color .2s,border-color .2s,background .2s}
+.flow-stepper a b{display:grid;place-items:center;width:22px;height:22px;border:1px solid var(--hairline);border-radius:50%;font-size:11px;color:inherit;flex:0 0 auto}
+.flow-stepper li.is-done a{color:rgba(255,255,255,.78)}
+.flow-stepper li.is-done a b{background:#fff;border-color:#fff;color:#000}
+.flow-stepper li.is-active a{color:#fff;border-color:var(--hairline-soft);background:rgba(255,255,255,.09)}
+.flow-fill{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:#fff}
+/* ---- fast-food menu ---- */
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:12px;margin:26px 0 10px}
+.menu-item{position:relative;display:grid;gap:10px;align-content:start;padding:18px;border:1px solid var(--hairline);border-radius:var(--radius-sm);background:var(--surface);cursor:pointer;transition:border-color .2s var(--ease),background .2s var(--ease)}
+.menu-item input{position:absolute;opacity:0;pointer-events:none}
+.menu-item:hover{border-color:rgba(255,255,255,.55)}
+.menu-item:focus-within{outline:2px solid #fff;outline-offset:2px}
+.menu-item.is-picked{border-color:#fff;background:rgba(255,255,255,.06)}
+.menu-item.is-picked::after{content:"✓ 已選";position:absolute;top:14px;right:14px;font-family:var(--font-display);font-size:11px;font-weight:800;letter-spacing:.06em;color:#000;background:#fff;border-radius:999px;padding:4px 10px}
+.mi-head{display:grid;gap:4px;padding-right:70px}
+.mi-head b{color:#fff;font-family:var(--font-display);font-size:1.02rem;letter-spacing:.03em;line-height:1.35}
+.mi-head i{font-style:normal;color:#fff;font-family:var(--font-display);font-size:.94rem;letter-spacing:.03em}
+.mi-note{color:var(--muted);font-size:.93rem;line-height:1.7}
+.mi-tags{display:flex;gap:6px;flex-wrap:wrap}
+.mi-extra{border-style:dashed}
+/* ---- order bar (fixed bottom) ---- */
+.order-bar{position:fixed;left:0;right:0;bottom:0;z-index:140;display:none;align-items:center;justify-content:space-between;gap:14px;padding:12px clamp(14px,4vw,54px);background:rgba(0,0,0,.94);border-top:1px solid var(--hairline);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.order-bar.show{display:flex}
+.ob-info{display:grid;gap:2px;min-width:0}
+.ob-combo{color:var(--muted);font-size:12px;line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ob-total{color:#fff;font-family:var(--font-display);font-size:15px;letter-spacing:.03em}
+.ob-per{color:rgba(255,255,255,.82);font-size:12.5px}
+.ob-btn{flex:0 0 auto;display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:1px solid #fff;border-radius:999px;color:#fff;font-family:var(--font-display);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+.ob-btn:hover,.ob-btn:focus-visible{background:#fff;color:#000;outline:none}
+@media (max-width:700px){.ob-combo{white-space:normal}.ob-total{font-size:14px}}
+/* ---- receipt ---- */
+.receipt{margin:24px 0}
+.rc-line{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:11px 0;border-bottom:1px solid var(--hairline-faint)}
+.rc-line span:first-child{color:var(--ink-soft)}
+.rc-line b{color:#fff;font-family:var(--font-display);letter-spacing:.03em;white-space:nowrap}
+.rc-total{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:16px 0 4px}
+.rc-total span:first-child{color:#fff;font-weight:800}
+.rc-total b{color:#fff;font-family:var(--font-display);font-size:clamp(1.15rem,2.4vw,1.5rem);letter-spacing:.03em;text-align:right}
+.rc-per{margin:2px 0 0;text-align:right;color:rgba(255,255,255,.85);font-family:var(--font-display);font-size:1rem}
+.rc-warn{margin-top:14px;padding:12px 14px;border:1px dashed var(--hairline-soft);border-radius:var(--radius-xs);color:var(--muted);font-size:.92rem;line-height:1.7}
+.buy-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.btn-sm{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid #fff;border-radius:999px;color:#fff;font-family:var(--font-display);font-size:12px;font-weight:800;letter-spacing:.08em;text-decoration:none}
+.btn-sm:hover,.btn-sm:focus-visible{background:#fff;color:#000;outline:none}
+/* ---- link pills (app downloads etc.) ---- */
+.link-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.link-pill{display:inline-flex;align-items:center;min-height:38px;padding:0 14px;border:1px solid var(--hairline);border-radius:999px;color:#fff;text-decoration:none;white-space:nowrap;font-size:.92rem}
+.link-pill:hover,.link-pill:focus-visible{background:#fff;color:#000;outline:none}
+.price-hero{display:flex;flex-wrap:wrap;gap:6px 26px;align-items:baseline;margin:8px 0 4px}
+.price-hero b{color:#fff;font-family:var(--font-display);font-size:clamp(1.5rem,4vw,2.4rem);letter-spacing:.03em}
+.price-hero span{color:var(--muted)}
+</style>
 </head>
 <body>
 <div aria-hidden="true" class="progress" id="progress"></div>
-<header aria-label="全站導覽" class="site-header">
+<header aria-label="全站導覽" class="site-header" id="siteHeader">
 <div aria-label="One-Page Beginners Guide" class="brand"><span aria-hidden="true" class="brand-mark"></span><span>One-Page Beginners Guide</span></div>
 <nav aria-label="指南列表" class="site-nav"><a class="nav-link" href="us-stocks-guide.html">美股入門</a><a class="nav-link" href="guide.html">AI 審圖</a><a class="nav-link" href="making-of.html">製作幕後</a><a class="nav-link" href="pcshop-ai-build-guide.html">PCShop</a><a class="nav-link" href="beauty-manual-ai-guide.html">美容說明書</a><a class="nav-link" href="usj-vip-guide.html">USJ VIP</a></nav>
 </header>
 <section class="mission-hero" id="top">
 <div aria-hidden="true" class="hero-media" data-hero-media=""></div>
 <div class="hero-inner">
-<h1><span class="line">第一次去 USJ？6 個人的票這樣買就好</span></h1>
-<p class="hero-lead">要在 2026 年 10 月 6 日帶 6 個人去日本環球影城嗎？這份指南把票券整理成 5 個可以直接照著選的選項（含最省的「只買門票」），並算好每個人要先分多少錢。</p>
-<a class="btn" href="#快速結論">看怎麼買</a>
+<h1><span class="line">第一次去 USJ？6 個人的票像點餐一樣買</span></h1>
+<p class="hero-lead">2026 年 10 月 6 日、6 個人的日本環球影城。照著上方流程走：先做行前準備，再買 6 張門票（主餐），然後從配套裡挑一個（副餐），頁面會即時算出總金額和每人要分多少錢，最後直達購買頁。</p>
+<a class="btn" href="#行前準備">開始第一步</a>
 </div>
 </section>
-<main class="mission-layout">
-<aside aria-label="章節導覽" class="chapter-rail">
-<div class="chapter-title">本頁章節</div>
-<div aria-hidden="true" class="chapter-progress"><span></span></div>
-<ol class="chapter-list">
-<li><a class="chapter-link" href="#快速結論">快速結論</a></li>
-<li><a class="chapter-link" href="#查核前提">查核前提</a></li>
-<li><a class="chapter-link" href="#10月活動">10 月活動</a></li>
-<li><a class="chapter-link" href="#安心選購表">安心選購表</a></li>
-<li><a class="chapter-link" href="#團體-vip-分析">團體 VIP</a></li>
-<li><a class="chapter-link" href="#私人-vip-分析">私人 VIP</a></li>
-<li><a class="chapter-link" href="#購票與入園流程">購票與入園流程</a></li>
-<li><a class="chapter-link" href="#購買注意事項">購買注意事項</a></li>
+<nav aria-label="購票流程進度" class="flow-stepper" id="flowStepper">
+<ol id="flowSteps">
+<li><a href="#行前準備"><b>1</b><span>行前準備</span></a></li>
+<li><a href="#必買門票"><b>2</b><span>必買門票</span></a></li>
+<li><a href="#挑配套"><b>3</b><span>挑配套</span></a></li>
+<li><a href="#配套詳情"><b>4</b><span>配套詳情</span></a></li>
+<li><a href="#算錢購買"><b>5</b><span>算錢購買</span></a></li>
+<li><a href="#入園提醒"><b>6</b><span>入園提醒</span></a></li>
 </ol>
-</aside>
+<span aria-hidden="true" class="flow-fill" id="flowFill"></span>
+</nav>
+<main class="mission-layout">
 <article class="guide-article" id="guide-content">
-<section id="summary">
-<h2 data-reveal="mask" id="快速結論">第一次去 USJ：照這個順序買就對了。</h2>
-<div class="first-timer-strip" data-reveal="">
-<div class="first-step"><b>1</b><span>先買 6 張 1-Day Studio Pass（一日通，也就是門票）。6 個人都要買，沒有它，VIP、Express、活動票都不能進園。</span></div>
-<div class="first-step"><b>2</b><span>能接受排隊、行程想隨性走？→ 只買門票就夠了，加值一毛都不用花。</span></div>
-<div class="first-step"><b>3</b><span>想少排隊？只求玩得快 → 加一份 Express Pass；還想要導覽、休息室這種 VIP 待遇 → 改加團體 VIP（任天堂必玩就選 SNW 版，導覽是日文）。</span></div>
-<div class="first-step"><b>4</b><span>想整天有專人帶路、全團絕不走散？→ 才考慮私人 VIP。它最貴，而且基本價只含 4 人，你們第 5、6 位要另外加價。</span></div>
+<section id="行前準備">
+<h2 data-reveal="mask">第一步｜行前準備：先把工具裝好，到現場才不會手忙腳亂。</h2>
+<div class="grid-2 block">
+<div class="card" data-reveal=""><h3>安裝 USJ 官方 App（最重要）</h3><p>看設施等候時間、園區地圖、抽 e 整理券（超級任天堂世界常常需要）、綁定門票 QR code 都靠它。6 個人每人都先裝好、開好定位權限。</p>
+<div class="link-row"><a class="link-pill" href="https://apps.apple.com/jp/app/id532097000" rel="noopener" target="_blank">App Store（iPhone）</a><a class="link-pill" href="https://play.google.com/store/apps/details?id=jp.co.usj.guideapp" rel="noopener" target="_blank">Google Play（Android）</a><a class="link-pill" href="https://s.usj.co.jp/enjoy/app/" rel="noopener" target="_blank">官方 App 介紹頁</a></div></div>
+<div class="card" data-d="1" data-reveal=""><h3>確認 10/6 營業時間與活動</h3><p>10 月是活動旺季，營業時間和活動檔期會變。出發前 1-2 週再查一次官方活動頁，確認當天有哪些秀和限定活動。</p>
+<div class="link-row"><a class="link-pill" href="https://www.usj.co.jp/web/ja/jp/events" rel="noopener" target="_blank">官方活動頁</a><a class="link-pill" href="https://www.usj.co.jp/web/ja/jp/tickets/lineup" rel="noopener" target="_blank">官方票券總頁</a></div></div>
+<div class="card" data-reveal=""><h3>6 人先分工</h3><p>先講好誰當團長：一人管全部票券 QR code、一人管 App 和整理券、一人負責收錢。本頁最後會算好每人要分多少，照那個數字收就行。</p></div>
+<div class="card" data-d="1" data-reveal=""><h3>知道要在哪裡下單</h3><p>USJ 官方商店主要服務日本國內用戶。從台灣或海外出發，實際下單通常透過 Klook、KKday、Trip.com、JTB 等官方合作旅行平台；本頁的官方連結拿來核對內容和原價。</p></div>
+</div>
+<aside class="callout" data-reveal=""><span class="label">價格怎麼看</span>本頁所有金額都是官方「最低起價」（查核日 2026-06-28，匯率 1 日圓 ≈ NT$0.197），實際價格依日期與庫存浮動，以結帳頁為準。</aside>
+</section>
+<section id="必買門票">
+<h2 data-reveal="mask">第二步｜必買：6 張 1-Day Studio Pass（一日通）。這步沒得選。</h2>
+<p class="lead" data-reveal="">一日通就是門票，6 個人每人一張。後面所有配套都「不含門票、也不能單獨入園」，所以這 6 張是唯一的必買項目。</p>
+<div class="card" data-reveal="">
+<h3>1-Day Studio Pass（成人，12 歲以上）</h3>
+<div class="price-hero"><b>¥8,900 起／人</b><span>6 人合計 ¥53,400 起（約 NT$10,500）｜每人先收約 NT$1,800</span></div>
+<div class="link-row"><a class="link-pill" href="https://www.usj.co.jp/web/ja/jp/tickets/lineup" rel="noopener" target="_blank">查門票官方頁</a></div>
 </div>
 <div class="ticket-legend" data-reveal="">
 <div><span class="tag">入園券</span><strong>一日通</strong><p>進園必備。這是門票，不是加速服務。</p></div>
 <div><span class="tag">加速券</span><strong>Express Pass</strong><p>指定設施省排隊。不能入園，沒有導覽。</p></div>
-<div><span class="tag">導覽</span><strong>團體 / 私人 VIP</strong><p>買導覽、Lounge（VIP 休息室）、部分優先體驗。通常仍要另買入園券。</p></div>
+<div><span class="tag">導覽</span><strong>團體 / 私人 VIP</strong><p>買導覽、Lounge（VIP 休息室）、部分優先體驗。仍要另買門票。</p></div>
 <div><span class="tag">活動票</span><strong>ONE PIECE 等</strong><p>只解鎖活動或座位，不解決全園動線。</p></div>
 </div>
-<div class="grid-3 block">
-<div class="card decision-card" data-reveal=""><span class="tag">首選方向</span><h3>一日通 + 團體 VIP</h3><p>團體 VIP 最便宜從 ¥15,000 起（約 NT$3,000），比私人 VIP 的一組費用低很多。若目標是省時又控制預算，先從團體方案挑。</p></div>
-<div class="card decision-card" data-d="1" data-reveal=""><span class="tag">保守備選</span><h3>一日通 + Express Pass</h3><p>不需要導覽或 Lounge 時，用 Express Pass 4/5/7/8/Premium（數字＝可優先通關的設施數量，越多越貴）補熱門設施即可。缺點是沒有專人調整動線，遇到臨時停運要自己處理。</p></div>
-<div class="card decision-card" data-d="2" data-reveal=""><span class="tag">升級條件</span><h3>私人 VIP 需說清楚價值</h3><p>私人 5 小時從 ¥198,000 起（約 NT$39,000/組），8 小時從 ¥298,000 起（約 NT$58,700/組）。注意：起價只含 1-4 人，你們 6 人要為第 5、6 位加價。多付的是專屬導覽、客製路線、VIP 專用餐飲與全團同步。</p></div>
-</div>
-<aside class="callout" data-reveal=""><span class="label">一句話總結</span>先抓住重點：每個方案都是「6 張一日通（門票）＋ 最多一種加值」。加值可買可不買；要買就四選一、挑一個，不是疊著買。願意花的話，最推薦「一日通 ＋ 25 周年團體 VIP」，平均每人先收約 ¥23,900（NT$4,700），就有導覽和 VIP 待遇。任天堂是這趟重點，就把那個 VIP 換成「SNW 團體 VIP」（是替換，不是再多買一個）；只想少排隊就改用 Express；想全程有人帶路才考慮私人 VIP——但注意它基本價只含 4 人，第 5、6 位要加價。</aside>
+<aside class="callout" data-reveal=""><span class="label">最容易出錯的一件事</span>USJ 官方明示：Express Pass、活動限定票、VIP 都不能入園，一定要另有門票（Studio Pass 或年票）。不要只買配套就出發。</aside>
 </section>
-<section id="assumptions">
-<h2 data-reveal="mask" id="查核前提">出發前先知道：表上都是「最低起價」，10/6 的庫存和最終金額記得自己再進官網確認一次。</h2>
+<section id="挑配套">
+<h2 data-reveal="mask">第三步｜挑配套：主餐固定了，副餐挑一個就好（也可以不加）。</h2>
+<p class="lead" data-reveal="">下面 6 個選項單選一個，想看 ONE PIECE 的再「加點」秀票。點下去，頁面底部的結帳列會即時算出 6 人總金額和每人分攤。</p>
+<div class="menu-grid" id="addonMenu" role="radiogroup" aria-label="配套選擇（單選）">
+<label class="menu-item"><input name="addon" type="radio" value="none"/><span class="mi-head"><b>不加配套</b><i>+¥0</i></span><span class="mi-note">行程隨性、預算優先。靠早進場＋App 抽 e 整理券，接受 10 月旺季熱門設施排長隊。</span><span class="mi-tags"><span class="tag">最省</span></span></label>
+<label class="menu-item"><input checked="" name="addon" type="radio" value="vip25"/><span class="mi-head"><b>25 周年團體 VIP</b><i>+¥15,000 起／人</i></span><span class="mi-note">有導覽、Lounge、周年限定內容，是最便宜的 VIP 待遇。第一次去、想穩又不想爆預算選這個。</span><span class="mi-tags"><span class="tag">最推薦</span><span class="tag">日文導覽</span></span></label>
+<label class="menu-item"><input name="addon" type="radio" value="vipsnw"/><span class="mi-head"><b>SNW 團體 VIP</b><i>+¥29,000 起／人</i></span><span class="mi-note">把預算集中在最容易卡關的超級任天堂世界，比自己抽整理券更穩。全團任天堂必玩才選。</span><span class="mi-tags"><span class="tag">任天堂優先</span><span class="tag">日文導覽</span></span></label>
+<label class="menu-item"><input name="addon" type="radio" value="express7"/><span class="mi-head"><b>Express Pass 7</b><i>+¥14,100 起／人</i></span><span class="mi-note">7 項指定設施優先通關。純加速、沒有導覽，適合願意自己排動線、只想少排隊的團。</span><span class="mi-tags"><span class="tag">少排隊</span></span></label>
+<label class="menu-item"><input name="addon" type="radio" value="express8"/><span class="mi-head"><b>Express Pass 8</b><i>+¥15,500 起／人</i></span><span class="mi-note">8 項指定設施優先通關，比 Express 7 多一項。同樣純加速、沒有導覽。</span><span class="mi-tags"><span class="tag">少排隊</span></span></label>
+<label class="menu-item"><input name="addon" type="radio" value="private5"/><span class="mi-head"><b>私人 VIP 5 小時</b><i>+¥198,000 起／組（含 4 人）</i></span><span class="mi-note">專任導覽、客製路線、VIP 餐飲、全團同步。注意：基本價只含 4 人，第 5、6 位要在結帳頁另外加價（每人可能數萬日圓）。</span><span class="mi-tags"><span class="tag">全團省心</span><span class="tag">最貴</span></span></label>
+</div>
+<div class="menu-grid">
+<label class="menu-item mi-extra"><input id="opShow" type="checkbox"/><span class="mi-head"><b>加點：ONE PIECE 秀票</b><i>+¥3,000 起／人</i></span><span class="mi-note">ONE PIECE 秀 2026/7/30–11/19 檔期內，10/6 看得到。想看秀再加點，跟上面任何配套都不衝突。</span><span class="mi-tags"><span class="tag">可加可不加</span></span></label>
+</div>
+<div class="skip-list" data-reveal="">
+<h3>菜單上為什麼沒有這些？先不用分心</h3>
+<ul>
+<li><b>Express Pass 4／5：</b>設施數偏少，比較像補強，不適合當 6 人團的主要省時方案。</li>
+<li><b>Express Premium：</b>很貴又沒有導覽；預算到這個級距，先比較私人 VIP。</li>
+<li><b>Kids Adventure、Premier Luxury：</b>一個偏親子、一個是紀念型高價方案，都不是 6 位成人的首選。</li>
+<li><b>25 周年＋ONE PIECE 團體 VIP（¥26,000 起／人）：</b>想看秀的話，「25 周年 VIP＋加點秀票」通常更便宜，詳見下一步。</li>
+</ul>
+</div>
+</section>
+<section id="配套詳情">
+<h2 data-reveal="mask">第四步｜配套在做什麼？值不值得，看這裡。</h2>
+<h3 data-reveal="">團體 VIP：便宜的 VIP 待遇，但路線彈性較低</h3>
+<div class="grid-3 block">
+<div class="card" data-reveal=""><span class="tag">預算首選</span><h3>25 周年スペシャル</h3><p>¥15,000 起／人。有日文導覽、Lounge、部分周年體驗與限定物。只是想比一般入園更順，這是最低門檻。</p></div>
+<div class="card" data-d="1" data-reveal=""><span class="tag">任天堂重點</span><h3>SUPER NINTENDO WORLD</h3><p>¥29,000 起／人。超級任天堂世界是全園最容易進不去的區域，這個方案比單靠抽整理券更穩，但出發前要再看當日商品細節。</p></div>
+<div class="card" data-d="2" data-reveal=""><span class="tag">組合款</span><h3>25 周年＋ONE PIECE</h3><p>¥26,000 起／人。周年內容加 ONE PIECE 特典的組合款。想看秀的話先比較「25 周年 VIP（¥15,000）＋秀票（¥3,000）」，通常更省。</p></div>
+</div>
+<h3 data-reveal="">私人 VIP 5 小時：多付的錢，買的是全團省心</h3>
+<div class="table-wrap" data-reveal=""><table><thead><tr><th>多付費用買到什麼</th><th>實際價值</th><th>什麼情況划算</th></tr></thead><tbody>
+<tr><td>專任導覽客製路線</td><td>不用 6 個人臨場討論先去哪，能依偏好安排熱門設施、秀與餐飲。</td><td>同行者不想做功課，或大家喜好不同但希望一起行動。</td></tr>
+<tr><td>最短路線與優先引導</td><td>由導覽帶著走，降低迷路、錯過集合、排錯隊的風險。</td><td>10 月人潮高、天氣不穩、活動多時，價值上升。</td></tr>
+<tr><td>VIP 專用餐飲／Lounge</td><td>5 小時午餐/晚餐方案含 VIP 專用餐飲安排，用餐節奏可控。</td><td>6 人要一起用餐、不想在熱門餐廳排隊。</td></tr>
+<tr><td>全團同步體驗</td><td>不會因抽整理券、Express 時段或排隊差異走散。</td><td>紀念旅行、家庭/朋友聚會，不想有人落單。</td></tr>
+<tr><td>突發狀況處理</td><td>設施暫停、時段衝突、天氣改變時，有官方導覽協助調整。</td><td>不熟 USJ，想把不確定性降到最低。</td></tr>
+</tbody></table></div>
+<aside class="callout" data-reveal=""><span class="label">私人 VIP 的價格陷阱</span>起價 ¥198,000／組只含 1-4 人，你們 6 人要在結帳頁為第 5、6 位加價，每人加價可能達數萬日圓，總價會比表列高出不少。下單前務必先看到「6 人的最終金額」。另有 8 小時方案（¥298,000 起／組），適合整天只玩 USJ。私人導覽可提出英文需求，但官方不保證。</aside>
+<h3 data-reveal="">Express Pass 7／8：純加速，沒有服務</h3>
+<div class="card" data-reveal=""><p>數字＝可優先通關的設施數量，越多越貴。沒有導覽、沒有 Lounge、遇到設施臨時停運要自己重排動線。總價和 25 周年團體 VIP 接近，差別是一個買「速度」、一個買「服務」。</p></div>
+<h3 data-reveal="">10 月的活動，會影響你挑哪個配套</h3>
+<div class="table-wrap" data-reveal=""><table><thead><tr><th>類別</th><th>10/6 查核結果</th><th>對配套選擇的影響</th></tr></thead><tbody>
+<tr><td>ONE PIECE</td><td>ワンピース・プレミアショー 2026：7/30–11/19，10/6 在檔期內</td><td>想看秀就「加點」秀票（¥3,000 起／人），或考慮 25 周年＋ONE PIECE 組合款。</td></tr>
+<tr><td>SUPER NINTENDO WORLD</td><td>常態熱門，入區可能需要 Area Timed Entry（區域入場時段預約）</td><td>任天堂必玩的團，SNW 團體 VIP 比賭整理券穩。</td></tr>
+<tr><td>Halloween</td><td>查核時官方尚未公布 2026 年 10 月的 Halloween 票券頁</td><td>出發前 1-2 個月重查活動頁；若有新活動票，多半屬「加點」性質，不影響主配套選擇。</td></tr>
+</tbody></table></div>
+</section>
+<section id="算錢購買">
+<h2 data-reveal="mask">第五步｜算錢與購買：你的組合、總金額、每人分攤。</h2>
+<p class="lead" data-reveal="">這張「點餐單」跟著你在第三步的選擇即時更新。收錢就照「每人先收」的數字，購買按鈕直達對應的官方頁面。</p>
+<div aria-live="polite" class="card receipt" data-reveal="" id="receipt">
+<div class="rc-line"><span>1-Day Studio Pass（門票）×6</span><b>¥53,400 起</b></div>
+<div class="rc-line"><span>25 周年團體 VIP ×6</span><b>¥90,000 起</b></div>
+<div class="rc-total"><span>6 人總計</span><b>¥143,400 起（約 NT$28,200）</b></div>
+<p class="rc-per">每人先收 ¥23,900 起（約 NT$4,700）</p>
+</div>
+<div class="buy-links" id="buyLinks">
+<a class="btn-sm" href="https://www.usj.co.jp/web/ja/jp/tickets/lineup" rel="noopener" target="_blank">買門票</a>
+<a class="btn-sm" href="https://store.usj.co.jp/ja/jp/c/extra/PVIP_25THG" rel="noopener" target="_blank">買 25 周年團體 VIP</a>
+</div>
+<aside class="callout" data-reveal=""><span class="label">從台灣／海外下單</span>官方商店主要服務日本國內用戶（且常有排隊機制）。海外旅客實際下單通常透過 Klook、KKday、Trip.com、JTB 等官方合作平台，搜尋「USJ＋票券名稱」即可；上面的官方連結拿來核對內容與原價。</aside>
+<div class="grid-3 block">
+<div class="card" data-reveal=""><h3>價格與庫存會變</h3><p>官方頁多處標示價格依庫存或入場日變動。本頁全部是「最低起價」，不是 10/6 的最終結帳金額，實際以購買當下頁面為準。</p></div>
+<div class="card" data-d="1" data-reveal=""><h3>轉售票風險很高</h3><p>官方明文禁止轉售，確認轉售時 QR code 可能無效。只用官方授權或可查證的平台，不買來源不明的代排、私導。</p></div>
+<div class="card" data-d="2" data-reveal=""><h3>語言與集合時間</h3><p>團體 VIP 是日文導覽；私人 VIP 可提出英文需求但不保證。VIP 通常要在出發前 30 分鐘報到，別把第一個行程排太緊。</p></div>
+</div>
+</section>
+<section id="入園提醒">
+<h2 data-reveal="mask">第六步｜買完之後：照清單走，避免到現場才補救。</h2>
+<div class="checklist-grid block">
+<div class="card checklist-card" data-reveal=""><h3>付款後</h3><label><input type="checkbox"/>保存 6 張門票 QR code。</label><label><input type="checkbox"/>保存 VIP／Express 購買確認信與購買連結。</label><label><input type="checkbox"/>記下集合時間、集合地點、取消規則、不可轉售/不可改期限制。</label><label><input type="checkbox"/>建立一份 6 人票券分配表。</label></div>
+<div class="card checklist-card" data-d="1" data-reveal=""><h3>出發前一天</h3><label><input type="checkbox"/>確認 6 人都裝好官方 App。</label><label><input type="checkbox"/>匯入或截圖保存票券 QR code。</label><label><input type="checkbox"/>確認超級任天堂世界的 Area Timed Entry（區域入場時段預約）是否已由配套涵蓋。</label><label><input type="checkbox"/>再查一次營業時間、天氣、交通與行李限制。</label></div>
+<div class="card checklist-card" data-d="2" data-reveal=""><h3>入園當天</h3><label><input type="checkbox"/>提早抵達，預留安檢與掃票時間。</label><label><input type="checkbox"/>先確認 VIP／Express 指定時段與集合點。</label><label><input type="checkbox"/>若需 Area Timed Entry，入園後優先處理。</label><label><input type="checkbox"/>6 人分工就位：票券、App、集合時間各有人管。</label></div>
+<div class="card checklist-card" data-reveal=""><h3>入園後</h3><label><input type="checkbox"/>依 VIP／Express 時段安排設施。</label><label><input type="checkbox"/>保留用餐、移動、拍照與臨時排隊緩衝。</label><label><input type="checkbox"/>每完成一個指定時段，確認下一個集合/入場時間。</label><label><input type="checkbox"/>天候或設施暫停時，優先找官方人員確認替代安排。</label></div>
+</div>
+<div class="callout" data-reveal=""><span class="label">QR 入園原則</span><p>USJ Direct In 說明頁標示：門票與 Express Pass 都要「一人一張完整票券畫面」，不能只截 QR 小圖。6 人同行最好同時備妥「主手機＋離線截圖＋雲端備份」。</p></div>
+</section>
+<section id="sources">
+<h2 data-reveal="mask">資料前提與來源</h2>
 <div class="table-wrap" data-reveal=""><table><thead><tr><th>項目</th><th>本指南採用</th><th>備註</th></tr></thead><tbody>
 <tr><td>日期</td><td>2026-10-06</td><td>官方票券頁查核日：2026-06-28。10 月活動仍可能更新。</td></tr>
 <tr><td>人數</td><td>6 位成人</td><td>成人票依 USJ 票券頁定義為 12 歲以上；本頁未估兒童/長者折扣。</td></tr>
 <tr><td>匯率</td><td>1 日圓約 NT$0.197</td><td>以 open.er-api.com 於 2026-06-28 回傳 JPY/TWD 0.196924 粗算，台幣金額四捨五入到百元。</td></tr>
-<tr><td>入園券</td><td>另列 1-Day Studio Pass</td><td>USJ 票券頁明示 Express Pass、活動限定票不能入園；VIP 商店頁也標示需另購 Studio Pass 或年票。</td></tr>
-<tr><td>購買來源</td><td>官方頁與官方 Web Ticket Store</td><td>USJ 商店頁提示日本國內居住者服務，海外旅客可洽 Klook、KKday、Trip.com、JTB 等旅行代理店；本頁仍以官方價格與官方入口為基準。</td></tr>
+<tr><td>門票</td><td>另列 1-Day Studio Pass</td><td>USJ 票券頁明示 Express Pass、活動限定票不能入園；VIP 商店頁也標示需另購 Studio Pass 或年票。</td></tr>
+<tr><td>購買來源</td><td>官方頁與官方 Web Ticket Store</td><td>官方商店主要服務日本國內用戶；海外旅客可洽 Klook、KKday、Trip.com、JTB 等旅行代理店。</td></tr>
 </tbody></table></div>
-</section>
-<section id="events">
-<h2 data-reveal="mask" id="10月活動">10 月活動：只留下會影響你買票決定的活動。</h2>
-<div class="table-wrap" data-reveal=""><table><thead><tr><th>類別</th><th>10/6 查核結果</th><th>對方案選擇的影響</th><th>官方入口</th></tr></thead><tbody>
-<tr><td>一般入園 / 一日通</td><td>1-Day Studio Pass 成人 ¥8,900 起（約 NT$1,800）</td><td>所有 VIP、Express、活動票券的共同基礎。</td><td><a href="https://www.usj.co.jp/web/ja/jp/tickets/lineup" rel="noopener" target="_blank">票券總頁</a></td></tr>
-<tr><td>Express Pass</td><td>4/5/7/8/Premium 皆有官方起價</td><td>想省時但不需要導覽時，是團體 VIP 的主要替代方案。</td><td><a href="https://www.usj.co.jp/web/ja/jp/tickets/lineup" rel="noopener" target="_blank">票券總頁</a></td></tr>
-<tr><td>VIP Experience</td><td>私人 4 種、團體 5 種已在 VIP 頁確認</td><td>團體方案較便宜；私人方案買的是彈性、專屬導覽與全團同步。</td><td><a href="https://www.usj.co.jp/web/ja/jp/tickets/lineup/vip-experience" rel="noopener" target="_blank">VIP 頁</a></td></tr>
-<tr><td>ONE PIECE</td><td>ワンピース・プレミアショー 2026：2026/7/30 至 2026/11/19，10/6 在期間內</td><td>若想看秀，需把「ONE PIECE 票券」或「25 周年 + ONE PIECE 團體 VIP」放進比較。</td><td><a href="https://www.usj.co.jp/web/ja/jp/tickets/lineup" rel="noopener" target="_blank">票券總頁</a></td></tr>
-<tr><td>25 周年</td><td>VIP 頁有 25 周年團體方案與 25 周年 + SNW / ONE PIECE 組合</td><td>比純私人 VIP 便宜，適合想要期間限定紀念品與周年內容的人。</td><td><a href="https://store.usj.co.jp/ja/jp/c/extra/PVIP_25THG" rel="noopener" target="_blank">25 周年團體 VIP</a></td></tr>
-<tr><td>SUPER NINTENDO WORLD</td><td>VIP 頁有 SNW 團體方案；私人 5 小時商品頁也標示可更順暢安排熱門 SNW 設施</td><td>若任天堂是主目標，優先看 SNW 團體 VIP 或私人 5 小時以上。</td><td><a href="https://store.usj.co.jp/ja/jp/c/extra/PVIP_SNWG1" rel="noopener" target="_blank">SNW 團體 VIP</a></td></tr>
-<tr><td>Halloween</td><td>官方活動頁本次查核未顯示 2026 年 10 月 Halloween 票券或頁面</td><td>不納入已確認方案；出發前 1-2 個月需重查官方活動頁與 Express Pass。</td><td><a href="https://www.usj.co.jp/web/ja/jp/events" rel="noopener" target="_blank">活動頁</a></td></tr>
-<tr><td>餐飲 / 秀類額外票券</td><td>ONE PIECE 秀票成人 ¥3,000 起（約 NT$600）；其他 10 月餐飲票未確認</td><td>若行程以秀為主，秀票可比 VIP 便宜很多，但不解決全園動線。</td><td><a href="https://www.usj.co.jp/web/ja/jp/tickets/lineup" rel="noopener" target="_blank">票券總頁</a></td></tr>
-</tbody></table></div>
-</section>
-<section id="price-table-section">
-<h2 data-reveal="mask" id="安心選購表">安心選購表：新手團體只需要看這 5 個選項。</h2>
-<p class="lead" data-reveal="">每個選項都是「6 張一日通 ＋ 最多一種加值」，挑一個就好、不用全部買——只買門票不加值也完全可以。從台灣或海外出發的話要注意：官方商店主要服務日本國內用戶，實際下單通常透過 Klook、KKday、Trip.com、JTB 等官方合作平台，下面的官方連結先拿來核對內容與原價。</p>
-<div class="table-wrap choice-table" data-reveal=""><table><thead><tr><th>選購情境</th><th>建議組合</th><th>6 人總價／每人先收</th><th>為什麼是它</th><th>下一步</th></tr></thead><tbody>
-<tr><td data-label="選購情境"><strong>預算最省：加值都不買</strong></td><td data-label="建議組合">只買 6 張 1-Day Studio Pass</td><td data-label="6 人總價／每人先收">¥53,400 起（約 NT$10,500）<span class="per">每人先收約 ¥8,900（NT$1,800）</span></td><td data-label="為什麼是它">加值都不是必需品，只買門票也玩得成。代價是 10 月屬活動旺季，熱門設施要排長隊，任天堂區可能要抽整理券。行程隨性、預算優先就選這個。</td><td data-label="下一步"><a href="https://www.usj.co.jp/web/ja/jp/tickets/lineup" rel="noopener" target="_blank">查門票</a></td></tr>
-<tr><td data-label="選購情境"><strong>最推薦：想有 VIP 待遇又不爆預算</strong></td><td data-label="建議組合">6 張 1-Day Studio Pass + 25 周年團體 VIP（日文導覽）</td><td data-label="6 人總價／每人先收">¥143,400 起（約 NT$28,200）<span class="per">每人先收約 ¥23,900（NT$4,700）</span></td><td data-label="為什麼是它">比私人 VIP 便宜很多，又有導覽、Lounge、周年內容與限定物。適合第一次去、想穩但不想爆預算的 6 人團。</td><td data-label="下一步"><a href="https://store.usj.co.jp/ja/jp/c/extra/PVIP_25THG" rel="noopener" target="_blank">查團體 VIP</a></td></tr>
-<tr><td data-label="選購情境"><strong>任天堂優先：SNW 是必玩</strong></td><td data-label="建議組合">6 張 1-Day Studio Pass + SUPER NINTENDO WORLD 團體 VIP（日文導覽）</td><td data-label="6 人總價／每人先收">¥227,400 起（約 NT$44,800）<span class="per">每人先收約 ¥37,900（NT$7,500）</span></td><td data-label="為什麼是它">把預算集中在最容易卡關的任天堂區，比自己現場抽「整理券」（熱門設施的時段預約券）更安心。適合全團都把 SNW 當主目標。</td><td data-label="下一步"><a href="https://store.usj.co.jp/ja/jp/c/extra/PVIP_SNWG1" rel="noopener" target="_blank">查 SNW 團體 VIP</a></td></tr>
-<tr><td data-label="選購情境"><strong>只想少排隊：不需要導覽</strong></td><td data-label="建議組合">6 張 1-Day Studio Pass + Express Pass 7 或 8</td><td data-label="6 人總價／每人先收">約 ¥138,000-¥146,400 起（約 NT$27,200-NT$28,800）<span class="per">每人先收約 ¥23,000-24,400（NT$4,500-4,800）</span></td><td data-label="為什麼是它">總價接近 25 周年團體 VIP，但沒有導覽與 Lounge。適合你們願意自己排動線，只想把熱門設施等待時間壓低。</td><td data-label="下一步"><a href="https://store.usj.co.jp/ja/jp/c/ticket" rel="noopener" target="_blank">查 Express</a></td></tr>
-<tr><td data-label="選購情境"><strong>全團省心：有人帶路最重要</strong></td><td data-label="建議組合">6 張 1-Day Studio Pass + 私人 5 小時午餐或晚餐</td><td data-label="6 人總價／每人先收">¥251,400 起 + 第 5、6 人加價（約 NT$49,500 起 + 加價）<span class="per">每人先收約 ¥41,900 起；加價後可能達 ¥60,000 上下（NT$12,000 左右）</span></td><td data-label="為什麼是它">買到客製路線、專任導覽、VIP 專用餐飲與全團同步。但基本價只含 4 人，第 5、6 位的加價每人可能是數萬日圓，6 人實際總價會比表列高出不少——下單前一定要在結帳頁看到 6 人的最終金額。</td><td data-label="下一步"><a href="https://store.usj.co.jp/ja/jp/c/extra/VIPP_5HL" rel="noopener" target="_blank">查私人 VIP</a></td></tr>
-</tbody></table></div>
-<aside class="callout" data-reveal=""><span class="label">如果是我，我會這樣選</span>第一次去、6 個人、想安心又不要太貴，我會先查 25 周年團體 VIP——跟每個人先收約 NT$4,700 就能成行。全團最在意任天堂，才把那一種加值改選 SNW 團體 VIP（每人約 NT$7,500）。如果大家不想跟導覽，就改用 Express 7/8（每人約 NT$4,500-4,800）。私人 VIP 只有在「真的不想自己排路線」時才值得，而且要先算進第 5、6 人的加價。反過來說，如果預算最重要，只買門票（每人約 NT$1,800）也完全可以成行。</aside>
-<div class="skip-list" data-reveal="">
-<h3>先不要被這些選項分心</h3>
-<ul>
-<li><b>Express Pass 4/5：</b>比較像補強，不適合當 6 人團的主要省時方案。</li>
-<li><b>Express Premium：</b>很貴，沒有導覽；除非全團只在乎設施數量，否則先比較私人 VIP。</li>
-<li><b>Kids Adventure + SNW：</b>偏親子，不是 6 位成人的首選。</li>
-<li><b>Premier Luxury：</b>紀念型高價方案，不是一般團體省時預算解。</li>
-<li><b>ONE PIECE 單買秀票：</b>適合想看秀，但不能取代入園券、Express 或 VIP。</li>
-</ul>
-</div>
-</section>
-<section id="group-vip">
-<h2 data-reveal="mask" id="團體-vip-分析">團體 VIP：便宜，但路線彈性較低。</h2>
-<div class="grid-3 block">
-<div class="card" data-reveal=""><span class="tag">預算首選</span><h3>25 周年スペシャル</h3><p>¥15,000 起（約 NT$3,000），6 人約 ¥90,000 起（約 NT$17,700）。有導覽、Lounge、部分周年體驗與限定物；若只是想比一般入園更順，這是最低門檻。</p></div>
-<div class="card" data-d="1" data-reveal=""><span class="tag">任天堂重點</span><h3>SUPER NINTENDO WORLD</h3><p>¥29,000 起（約 NT$5,700），6 人約 ¥174,000 起（約 NT$34,300）。如果 SNW 是必玩，這比單靠抽整理券更穩，但仍要看當日商品細節。</p></div>
-<div class="card" data-d="2" data-reveal=""><span class="tag">限定內容</span><h3>25 周年 + ONE PIECE</h3><p>¥26,000 起（約 NT$5,100），6 人約 ¥156,000 起（約 NT$30,700）。10/6 落在 ONE PIECE 2026 期間內，想看秀的人可列為團體 VIP 備選。</p></div>
-</div>
-<div class="callout" data-reveal=""><span class="label">推薦判斷</span><p>若你們的核心是「省錢又有 VIP 待遇」，選 25 周年團體 VIP。若核心是「任天堂區成功率」，選 SNW 或 25 周年 + SNW。若核心是「ONE PIECE 秀」，選 25 周年 + ONE PIECE 或直接買秀票。</p></div>
-</section>
-<section id="private-vip">
-<h2 data-reveal="mask" id="私人-vip-分析">私人 VIP：多付的錢，要換到全團省心。</h2>
-<p class="lead" data-reveal="">私人 VIP 多付的錢，買的是「全團更省心」。下表看你們 6 個人這樣花划不划算。</p>
-<div class="table-wrap" data-reveal=""><table><thead><tr><th>多付費用買到什麼</th><th>實際價值</th><th>什麼情況划算</th></tr></thead><tbody>
-<tr><td>專任導覽客製路線</td><td>不用 6 個人臨場討論先去哪，能依偏好安排熱門設施、秀與餐飲。</td><td>同行者不想做功課，或大家喜好不同但希望一起行動。</td></tr>
-<tr><td>最短路線與優先引導</td><td>不只是 Express Pass 時段，而是由導覽帶著走，降低迷路、錯過集合、排錯隊的風險。</td><td>10 月若人潮高、天氣不穩、活動多，價值會上升。</td></tr>
-<tr><td>VIP 專用餐飲 / Lounge</td><td>私人 5 小時午餐/晚餐含 VIP 專用餐飲安排；集合與用餐節奏較可控。</td><td>6 人要一起用餐、不想在熱門餐廳排隊時。</td></tr>
-<tr><td>全團同步體驗</td><td>不容易因抽整理券、Express Pass 時段或排隊差異分散。</td><td>這趟是紀念旅行、家庭/朋友聚會，不想有人落單。</td></tr>
-<tr><td>突發狀況處理</td><td>設施暫停、時段衝突、天氣改變時，有官方導覽協助調整。</td><td>不熟 USJ，或希望把不確定性降到最低。</td></tr>
-</tbody></table></div>
-<aside class="callout" data-reveal=""><span class="label">私人方案建議</span>若要選私人，優先看 5 小時午餐或晚餐：起價比 8 小時低，且已包含 VIP 專用餐飲與客製動線。但注意：起價只含 1-4 人，你們 6 人要在結帳頁為第 5、6 位加價，每人加價可能達數萬日圓，總價會比表列起價高出不少——下單前務必先看到 6 人的最終金額。8 小時適合把 USJ 當成全日主行程；Premier Luxury 像紀念型體驗，不是省時預算解。</aside>
-</section>
-<section id="purchase-flow">
-<h2 data-reveal="mask" id="購票與入園流程">購票與入園流程：照清單走，避免到現場才補救。</h2>
-<div class="checklist-grid block">
-<div class="card checklist-card" data-reveal=""><h3>購票前</h3><label><input type="checkbox"/>確認 2026-10-06 營業日、營業時間與活動檔期。</label><label><input type="checkbox"/>確認 6 位成人都需要 1-Day Studio Pass。</label><label><input type="checkbox"/>確認 VIP/Express Pass 是否另含或不含入園券。</label><label><input type="checkbox"/>比較一日通、Express Pass、團體 VIP、私人 VIP 的 6 人總價。</label></div>
-<div class="card checklist-card" data-d="1" data-reveal=""><h3>付款後</h3><label><input type="checkbox"/>保存 6 張入園券 QR code。</label><label><input type="checkbox"/>保存 VIP/Express Pass 購買確認信與購買連結。</label><label><input type="checkbox"/>記下集合時間、集合地點、取消規則、不可轉售/不可改期限制。</label><label><input type="checkbox"/>建立一份 6 人票券分配表。</label></div>
-<div class="card checklist-card" data-d="2" data-reveal=""><h3>出發前一天</h3><label><input type="checkbox"/>安裝 USJ 官方 App。</label><label><input type="checkbox"/>匯入或截圖保存票券 QR code。</label><label><input type="checkbox"/>確認超級任天堂世界的 Area Timed Entry（區域入場時段預約）是否已由方案涵蓋。</label><label><input type="checkbox"/>再查一次營業時間、天氣、交通與行李限制。</label></div>
-<div class="card checklist-card" data-reveal=""><h3>入園當天</h3><label><input type="checkbox"/>提早抵達，預留安檢與掃票時間。</label><label><input type="checkbox"/>先確認 VIP/Express Pass 指定時段與集合點。</label><label><input type="checkbox"/>若需 Area Timed Entry（區域入場時段預約），入園後優先處理。</label><label><input type="checkbox"/>6 人分工：一人管票券、一人管 App、一人管集合時間。</label></div>
-<div class="card checklist-card" data-d="1" data-reveal=""><h3>入園後</h3><label><input type="checkbox"/>依 VIP/Express Pass 時段安排設施。</label><label><input type="checkbox"/>保留用餐、移動、拍照與臨時排隊緩衝。</label><label><input type="checkbox"/>每完成一個指定時段，確認下一個集合/入場時間。</label><label><input type="checkbox"/>若天候或設施暫停，優先找官方人員確認替代安排。</label></div>
-</div>
-<div class="callout" data-reveal=""><span class="label">QR 入園原則</span><p>USJ Direct In 說明頁標示，入園券與 Express Pass 都要一人一張 QR code 票券畫面；不能只截 QR 小圖，需保存或列印完整票券畫面。6 人同行時，最好同時有「主手機 + 離線截圖 + 雲端備份」。</p></div>
-</section>
-<section id="warnings">
-<h2 data-reveal="mask" id="購買注意事項">購買注意事項：最容易出錯的是「以為加購票可以入園」。</h2>
-<div class="grid-2 block">
-<div class="card" data-reveal=""><h3>一定要另有入園資格</h3><p>USJ 票券總頁明示 Express Pass、活動限定票不能入園，另需入場券。VIP 商品頁也寫明入園需另有 Studio Pass 或年票。不要只買 VIP/Express 就出發。</p></div>
-<div class="card" data-d="1" data-reveal=""><h3>價格與庫存會變</h3><p>官方頁多處標示價格依庫存或入場日變動。表格是起價比較，不是 10/6 最終結帳金額；實際以購買當下頁面為準。</p></div>
-<div class="card" data-reveal=""><h3>轉售票風險很高</h3><p>官方商店頁標示禁止轉售，確認轉售時 QR code 可能無效。第三方只用官方授權或可查證平台，不買來源不明的代排/私導。</p></div>
-<div class="card" data-d="1" data-reveal=""><h3>語言與集合時間要先確認</h3><p>團體 VIP 商品頁標示日本語團體導覽；私人 VIP 可提出英文需求但不保證。VIP 通常要在出發前 30 分鐘報到，別把第一個時段排太緊。</p></div>
-</div>
-</section>
-<section id="sources">
-<h2 data-reveal="mask">來源與查核紀錄</h2>
 <ul class="source-list" data-reveal="">
 <li><a href="https://www.usj.co.jp/web/ja/jp/tickets/lineup" rel="noopener" target="_blank">USJ 官方票券總頁</a>：1-Day Studio Pass、Express Pass、活動票券起價與入園券規則。</li>
 <li><a href="https://www.usj.co.jp/web/ja/jp/tickets/lineup/vip-experience" rel="noopener" target="_blank">USJ 官方 VIP Experience 頁</a>：私人 VIP 與團體 VIP 方案名稱、起價與特典摘要。</li>
-<li><a href="https://store.usj.co.jp/ja/jp/c/extra/PVIP_25THG" rel="noopener" target="_blank">USJ Web Ticket Store 25 周年團體 VIP 商品頁</a>：另需入園券、報到、取消/轉售、日語導覽等注意事項。</li>
-<li><a href="https://store.usj.co.jp/ja/jp/c/extra/VIPP_5HL" rel="noopener" target="_blank">USJ Web Ticket Store 私人 5 小時午餐商品頁</a>：另需入園券、5-10 人追加、VIP 專用餐飲、英文需求限制等注意事項。</li>
+<li><a href="https://store.usj.co.jp/ja/jp/c/extra/PVIP_25THG" rel="noopener" target="_blank">USJ Web Ticket Store 25 周年團體 VIP 商品頁</a>：另需門票、報到、取消/轉售、日語導覽等注意事項。</li>
+<li><a href="https://store.usj.co.jp/ja/jp/c/extra/VIPP_5HL" rel="noopener" target="_blank">USJ Web Ticket Store 私人 5 小時午餐商品頁</a>：另需門票、5-10 人追加、VIP 專用餐飲、英文需求限制等注意事項。</li>
+<li><a href="https://s.usj.co.jp/enjoy/app/" rel="noopener" target="_blank">USJ 官方 App 介紹頁</a>：App 功能說明與 App Store／Google Play 下載入口。</li>
 <li><a href="https://www.usj.co.jp/web/ja/jp/tickets/guide/usage" rel="noopener" target="_blank">USJ Direct In（QR code）說明</a>：一人一張票券畫面、不可只使用裁切 QR。</li>
-<li><a href="https://www.usj.co.jp/web/ja/jp/enjoy/numbered-ticket" rel="noopener" target="_blank">USJ e整理券說明</a>：區域入場整理券、抽選券與 App 取得方式。</li>
+<li><a href="https://www.usj.co.jp/web/ja/jp/enjoy/numbered-ticket" rel="noopener" target="_blank">USJ e 整理券說明</a>：區域入場整理券、抽選券與 App 取得方式。</li>
 <li><a href="https://open.er-api.com/v6/latest/JPY" rel="noopener" target="_blank">Open ER API JPY 匯率</a>：2026-06-28 回傳 1 JPY = 0.196924 TWD，本頁以 0.197 粗估。</li>
 </ul>
 </section>
 </article>
 </main>
+<div aria-live="polite" class="order-bar" id="orderBar">
+<div class="ob-info">
+<span class="ob-combo" id="obCombo">6 張門票＋25 周年團體 VIP</span>
+<span class="ob-total" id="obTotal">¥143,400 起（約 NT$28,200）</span>
+<span class="ob-per" id="obPer">每人先收 ¥23,900 起（約 NT$4,700）</span>
+</div>
+<a class="ob-btn" href="#算錢購買">去購買</a>
+</div>
 <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script defer src="assets/deck.js"></script>
+<script>
+(function(){
+"use strict";
+var doc=document;
+var RATE=0.197,N=6,TICKET=8900;
+var LINKS={
+tickets:{href:'https://www.usj.co.jp/web/ja/jp/tickets/lineup',label:'買門票'},
+vip25:{href:'https://store.usj.co.jp/ja/jp/c/extra/PVIP_25THG',label:'買 25 周年團體 VIP'},
+vipsnw:{href:'https://store.usj.co.jp/ja/jp/c/extra/PVIP_SNWG1',label:'買 SNW 團體 VIP'},
+express7:{href:'https://store.usj.co.jp/ja/jp/c/ticket',label:'買 Express Pass 7'},
+express8:{href:'https://store.usj.co.jp/ja/jp/c/ticket',label:'買 Express Pass 8'},
+private5:{href:'https://store.usj.co.jp/ja/jp/c/extra/VIPP_5HL',label:'買私人 VIP 5 小時'},
+onepiece:{href:'https://www.usj.co.jp/web/ja/jp/tickets/lineup',label:'買 ONE PIECE 秀票'}
+};
+var ADDONS={
+none:{label:'不加配套',per:0},
+vip25:{label:'25 周年團體 VIP',per:15000},
+vipsnw:{label:'SNW 團體 VIP',per:29000},
+express7:{label:'Express Pass 7',per:14100},
+express8:{label:'Express Pass 8',per:15500},
+private5:{label:'私人 VIP 5 小時',group:198000,surcharge:true}
+};
+function yen(n){return '¥'+n.toLocaleString('en-US');}
+function nt(n){return 'NT$'+(Math.round(n*RATE/100)*100).toLocaleString('en-US');}
+/* ---- header height → sticky offset ---- */
+var header=doc.getElementById('siteHeader');
+function setStickTop(){doc.documentElement.style.setProperty('--stick-top',(header?header.offsetHeight:64)+'px');}
+setStickTop();
+window.addEventListener('resize',setStickTop,{passive:true});
+/* ---- order state ---- */
+var menu=doc.getElementById('addonMenu');
+var opBox=doc.getElementById('opShow');
+var receipt=doc.getElementById('receipt');
+var buyLinks=doc.getElementById('buyLinks');
+var obCombo=doc.getElementById('obCombo'),obTotal=doc.getElementById('obTotal'),obPer=doc.getElementById('obPer');
+function picked(){var r=menu?menu.querySelector('input[name=addon]:checked'):null;return r?r.value:'vip25';}
+function markPicked(){
+[].slice.call(doc.querySelectorAll('.menu-item')).forEach(function(item){
+var input=item.querySelector('input');
+item.classList.toggle('is-picked',!!(input&&input.checked));
+});
+}
+function render(){
+var key=picked(),addon=ADDONS[key],op=!!(opBox&&opBox.checked);
+var addonCost=addon.group?addon.group:addon.per*N;
+var total=TICKET*N+addonCost+(op?3000*N:0);
+var per=Math.round(total/N/100)*100;
+var plus=addon.surcharge?'＋第 5、6 人加價':'';
+var lines='<div class="rc-line"><span>1-Day Studio Pass（門票）×6</span><b>'+yen(TICKET*N)+' 起</b></div>';
+if(key!=='none') lines+='<div class="rc-line"><span>'+addon.label+(addon.group?'（1 組，含 4 人）':' ×6')+'</span><b>'+yen(addonCost)+' 起</b></div>';
+if(op) lines+='<div class="rc-line"><span>ONE PIECE 秀票 ×6</span><b>'+yen(3000*N)+' 起</b></div>';
+lines+='<div class="rc-total"><span>6 人總計</span><b>'+yen(total)+' 起'+plus+'（約 '+nt(total)+(addon.surcharge?' 起＋加價':'')+'）</b></div>';
+lines+='<p class="rc-per">每人先收 '+yen(per)+' 起'+(addon.surcharge?'＋加價分攤':'')+'（約 '+nt(per)+'）</p>';
+if(addon.surcharge) lines+='<div class="rc-warn">⚠ 私人 VIP 起價只含 1-4 人，第 5、6 位的加價（每人可能數萬日圓）要在官方結帳頁才看得到。下單前務必先確認 6 人的最終金額。</div>';
+if(receipt) receipt.innerHTML=lines;
+var btns='<a class="btn-sm" href="'+LINKS.tickets.href+'" rel="noopener" target="_blank">'+LINKS.tickets.label+'</a>';
+if(key!=='none'&&LINKS[key]) btns+='<a class="btn-sm" href="'+LINKS[key].href+'" rel="noopener" target="_blank">'+LINKS[key].label+'</a>';
+if(op) btns+='<a class="btn-sm" href="'+LINKS.onepiece.href+'" rel="noopener" target="_blank">'+LINKS.onepiece.label+'</a>';
+if(buyLinks) buyLinks.innerHTML=btns;
+if(obCombo) obCombo.textContent='6 張門票'+(key!=='none'?'＋'+addon.label:'')+(op?'＋ONE PIECE 秀票':'');
+if(obTotal) obTotal.textContent=yen(total)+' 起'+plus+'（約 '+nt(total)+'）';
+if(obPer) obPer.textContent='每人先收 '+yen(per)+' 起'+(addon.surcharge?'＋加價分攤':'')+'（約 '+nt(per)+'）';
+markPicked();
+}
+if(menu) menu.addEventListener('change',render);
+if(opBox) opBox.addEventListener('change',render);
+render();
+/* ---- stepper scrollspy + progress fill + order-bar visibility ---- */
+var stepIds=['行前準備','必買門票','挑配套','配套詳情','算錢購買','入園提醒'];
+var stepEls=stepIds.map(function(id){return doc.getElementById(id);});
+var stepItems=[].slice.call(doc.querySelectorAll('#flowSteps li'));
+var stepper=doc.getElementById('flowStepper');
+var fill=doc.getElementById('flowFill');
+var orderBar=doc.getElementById('orderBar');
+var menuSection=doc.getElementById('挑配套');
+var lastActive=-1;
+function offsetTop(el){var y=0;while(el){y+=el.offsetTop;el=el.offsetParent;}return y;}
+function spy(){
+var stickH=(header?header.offsetHeight:64)+(stepper?stepper.offsetHeight:48);
+var pos=window.scrollY+stickH+24;
+var current=-1;
+for(var i=0;i<stepEls.length;i++){if(stepEls[i]&&offsetTop(stepEls[i])<=pos)current=i;}
+if(current!==lastActive){
+lastActive=current;
+stepItems.forEach(function(li,i){
+li.classList.toggle('is-active',i===current);
+li.classList.toggle('is-done',i<current);
+});
+if(current>=0&&stepItems[current]){
+var chip=stepItems[current],rail=chip.parentElement;
+rail.scrollTo({left:chip.offsetLeft-rail.clientWidth/2+chip.offsetWidth/2,behavior:'smooth'});
+}
+}
+if(fill&&stepEls[0]&&stepEls[stepEls.length-1]){
+var start=offsetTop(stepEls[0])-stickH;
+var last=stepEls[stepEls.length-1];
+var end=offsetTop(last)+last.offsetHeight-window.innerHeight;
+var p=end>start?Math.min(1,Math.max(0,(window.scrollY-start)/(end-start))):0;
+fill.style.width=(p*100).toFixed(2)+'%';
+}
+if(orderBar&&menuSection){
+orderBar.classList.toggle('show',window.scrollY+window.innerHeight*0.85>offsetTop(menuSection));
+}
+}
+window.addEventListener('scroll',spy,{passive:true});
+window.addEventListener('resize',spy,{passive:true});
+spy();
+})();
+</script>
 </body>
 </html>
