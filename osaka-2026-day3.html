@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="2026 大阪五天自由行 Day 3（10/7 週三）深度頁：分兩組行動——山線組勝尾寺＋箕面瀑布、市區組黑門市場＋電器街＋藥妝採購，晚間炸牛排與夜間表演查證替代方案。">
+<title>2026 大阪五天自由行 Day 3｜分兩組行動：勝尾寺・箕面瀑布・黑門市場・電器街</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Osaka 2026 trip guide — travel brochure skin，與 usj-vip-guide.html 同一視覺家族 */
+  :root{
+    --ink:#3B2C22;--ink-soft:#513E31;--paper:#FFFDF7;--card:#FFFDF8;
+    --line:#E8D2A4;--line-soft:#F1E0BD;--gold:#C99B45;--gold-bright:#E5B84A;
+    --crimson:#C95B41;--teal:#35A84C;--slate:#5E6FA6;--muted:#7B6B5C;
+    --shadow:0 14px 34px rgba(106,73,33,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Sans TC",system-ui,sans-serif;color:var(--ink);line-height:1.7;font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    background:
+      linear-gradient(90deg,rgba(137,89,40,.045) 1px,transparent 1px),
+      linear-gradient(180deg,#F1D5A9 0,#F7E6CA 480px,#fff 480px);
+    background-size:38px 100%,auto;
+  }
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  .mono{font-family:"Space Mono",monospace}
+  a{color:#267A32}
+  p{margin-bottom:14px}strong{font-weight:700}
+
+  /* ---- trip-nav：六頁切換（sticky） ---- */
+  .trip-nav{
+    position:sticky;top:0;z-index:120;background:rgba(255,253,247,.94);
+    border-bottom:1px solid #ECD8AD;box-shadow:0 8px 24px rgba(91,63,24,.06);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
+    padding:11px max(24px,calc((100vw - 1160px)/2 + 24px));
+  }
+  .trip-nav::-webkit-scrollbar{display:none}
+  .trip-nav a{
+    display:inline-flex;align-items:center;padding:7px 14px;border:1px solid #E8D2A4;border-radius:999px;
+    background:#fff;color:#756554;font-size:13px;font-weight:800;text-decoration:none;white-space:nowrap;
+    transition:color .2s,border-color .2s,background .2s;
+  }
+  .trip-nav a:hover{border-color:#E39A37;color:#3B2C22}
+  .trip-nav a[aria-current="page"]{background:var(--teal);border-color:var(--teal);color:#fff}
+
+  /* ---- hero ---- */
+  header{position:relative;overflow:hidden;padding:76px 0 120px;color:var(--ink);
+    background:
+      radial-gradient(circle at 12% 18%,rgba(255,255,255,.6) 0 60px,transparent 62px),
+      radial-gradient(circle at 90% 12%,rgba(255,255,255,.45) 0 84px,transparent 86px),
+      repeating-linear-gradient(96deg,#E8C99C 0 24px,#F3D9B1 24px 48px,#E1BD89 48px 72px);}
+  header::after{content:"";position:absolute;left:-3%;right:-3%;bottom:-1px;z-index:2;height:96px;background:#fff;
+    clip-path:polygon(0 48%,8% 58%,20% 44%,35% 62%,49% 46%,62% 58%,75% 42%,88% 59%,100% 44%,100% 100%,0 100%)}
+  .hero-card{position:relative;z-index:1;max-width:720px;border:1px solid rgba(194,151,78,.48);border-radius:2px;
+    background:rgba(255,246,207,.92);box-shadow:0 18px 42px rgba(95,60,24,.16);padding:34px 36px 30px}
+  .hero-card::after{content:"";position:absolute;right:-26px;top:-30px;width:86px;height:86px;
+    background:linear-gradient(140deg,#C94625 0 45%,#EF8B24 46% 64%,#D85A27 65%);
+    clip-path:polygon(50% 0,61% 32%,96% 17%,69% 48%,100% 60%,64% 64%,78% 100%,51% 73%,24% 100%,35% 64%,0 60%,31% 48%,4% 17%,39% 32%);
+    filter:drop-shadow(0 8px 4px rgba(112,57,18,.18));transform:rotate(18deg)}
+  .cred-tag{display:block;margin-bottom:12px;color:#91672E;font-size:14px;font-weight:700}
+  header h1{font-family:"Noto Serif TC",serif;font-weight:900;color:var(--crimson);
+    font-size:clamp(30px,4.5vw,52px);line-height:1.2;text-shadow:0 2px 0 #fff,0 8px 16px rgba(124,55,27,.14)}
+  header h1 .accent{color:#D58A25}
+  .sub{color:#5D4A3A;margin-top:14px;font-size:15px;font-weight:700;line-height:1.85;max-width:60ch}
+  .params{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:20px}
+  .param{min-width:0;padding:10px 14px;border:1px solid rgba(198,153,76,.4);border-radius:999px;background:#fffdf8}
+  .param .k{color:#9B6730;font-size:12px;font-weight:800}
+  .param .v{color:#5F4937;font-size:13px;font-weight:800}
+  .param .v small{color:#8B7A68;font-weight:400}
+
+  /* ---- sections ---- */
+  section{position:relative;padding:54px 0;background:#fff;scroll-margin-top:74px}
+  section + section{border-top:1px solid #F0DFBD}
+  .eyebrow{color:#A35A21;font-size:13px;font-weight:900;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .eyebrow .num{color:var(--crimson);font-family:"Space Mono",monospace;font-weight:700}
+  h2{font-family:"Noto Serif TC",serif;font-weight:700;color:#3F2D22;font-size:clamp(24px,3.5vw,34px);line-height:1.38;margin-bottom:8px}
+  h3{font-family:"Noto Serif TC",serif;font-weight:700;font-size:18px;margin:30px 0 12px;color:#5A3C26}
+  .lead{color:#665446;font-size:16px;font-weight:500;margin-bottom:26px;max-width:68ch}
+
+  /* ---- 卡片 ---- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px;margin-top:8px}
+  .card{position:relative;display:grid;gap:9px;align-content:start;padding:18px 20px;
+    border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow)}
+  .card h4{font-family:"Noto Serif TC",serif;font-size:16px;font-weight:700;color:#4B3527}
+  .card .px{font-family:"Space Mono",monospace;font-size:12.5px;color:#A35A21}
+  .card p{font-size:13px;color:#665446;margin:0}
+  .card a.card-link{font-weight:800}
+
+  /* ---- add-on 標籤（四類，全站統一） ---- */
+  .tag{display:inline-flex;align-items:center;border-radius:999px;padding:2px 10px;font-size:11.5px;font-weight:900;border:1px solid transparent}
+  .tag-add{background:#E8F6EA;color:#1E6F2A;border-color:#BFE3C5}      /* 可加入原行程 */
+  .tag-split{background:#EDF1FA;color:#44548C;border-color:#C9D3EC}    /* 適合分團 */
+  .tag-ref{background:#FFF6D8;color:#A35A21;border-color:#E2BD73}      /* 只列備查 */
+  .tag-no{background:#FFF3EA;color:#A6402E;border-color:#E6C3A4}       /* 不建議本次加入 */
+  .tag-group{background:#F8EBC7;color:#70451F;border-color:#E2C281}    /* 全團同行 */
+
+  /* ---- 時間軸（today at a glance / main route） ---- */
+  .timeline{border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow);padding:8px 24px;margin-top:8px}
+  .timeline li{list-style:none;display:grid;grid-template-columns:92px 1fr;gap:14px;padding:14px 0;border-top:1px solid #F0DFBD;font-size:14px}
+  .timeline li:first-child{border-top:none}
+  .timeline .t{font-family:"Space Mono",monospace;font-size:13px;color:#A35A21;font-weight:700;white-space:nowrap}
+  .timeline b{color:#3F2D22}
+  .timeline .d{color:#665446;font-size:13px}
+
+  /* ---- 提示框 ---- */
+  .insight{background:#FFF6D8;border:1px solid #E2BD73;border-left:4px solid #E2A534;border-radius:6px;padding:20px 24px;margin-top:8px}
+  .insight h3{margin-top:0;color:#A35A21}
+  .insight p{font-size:14px;margin-bottom:8px}.insight p:last-child{margin-bottom:0}
+  .flag{background:#FFF3EA;border:1px solid #E6C3A4;border-left:4px solid var(--crimson);border-radius:6px;padding:20px 24px;margin-top:8px;color:#7C382C}
+  .flag h3{margin-top:0;color:var(--crimson)}
+  .flag ul{padding-left:20px;font-size:13.5px}.flag li{margin-bottom:7px}
+  .flag p{font-size:13.5px;margin-bottom:0}
+
+  /* ---- 表格 ---- */
+  .table-scroll{overflow-x:auto;border-radius:6px;border:1px solid #EAD6AB;box-shadow:var(--shadow);background:#fff;margin-top:8px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px}
+  thead th{background:#F8EBC7;color:#70451F;font-weight:900;text-align:left;padding:13px 14px;font-size:12.5px;vertical-align:bottom}
+  tbody td{padding:12px 14px;border-top:1px solid #F0DFBD;vertical-align:top;color:#514236}
+  tbody tr:nth-child(even){background:#FFF8E8}
+  .caption{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.6}
+
+  /* ---- 連結藥丸 ---- */
+  .link-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .link-pill{display:inline-flex;align-items:center;min-height:34px;padding:0 14px;border:1px solid #E2C281;border-radius:999px;
+    background:#fffdf8;color:#267A32;text-decoration:none;white-space:nowrap;font-size:12.5px;font-weight:800;
+    transition:background .2s,color .2s,border-color .2s}
+  .link-pill:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+
+  /* ---- 清單/檢查表 ---- */
+  .notes{border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow);padding:8px 24px;margin-top:22px}
+  .notes li{list-style:none;padding:14px 0 14px 30px;position:relative;border-top:1px solid #F0DFBD;font-size:14px}
+  .notes li:first-child{border-top:none}
+  .notes li::before{content:"●";position:absolute;left:6px;top:14px;color:#D96A25;font-size:9px}
+  .notes li b{color:var(--crimson);font-weight:700}
+  .checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+  .chk{border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow);padding:18px 20px}
+  .chk h4{font-family:"Noto Serif TC",serif;font-size:15.5px;font-weight:700;margin-bottom:10px;color:#4B3527}
+  .chk label{display:grid;grid-template-columns:20px 1fr;gap:9px;align-items:start;font-size:13px;color:#665446;line-height:1.6;padding:6px 0;border-top:1px solid #F0DFBD}
+  .chk label:first-of-type{border-top:none}
+  .chk input{width:15px;height:15px;margin-top:3px;accent-color:var(--teal)}
+
+  /* ---- 來源 ---- */
+  .src{font-size:12px;color:#665446;line-height:1.8}
+  .src li{list-style:none;padding:8px 0;border-top:1px solid #F0DFBD}
+  .src li:first-child{border-top:none}
+
+  /* ---- day-pager + footer ---- */
+  .day-pager{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    max-width:1160px;margin:0 auto;padding:34px 24px}
+  .day-pager a{display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border:1px solid #E2C281;border-radius:999px;
+    background:#fffdf8;color:#267A32;text-decoration:none;font-size:14px;font-weight:900;transition:background .2s,color .2s,border-color .2s}
+  .day-pager a:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+  footer{background:#3B2C22;color:#E9D9B8;padding:30px 0;font-size:12.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer .mono,footer a{color:#D5BC8C}
+
+  @media (max-width:620px){
+    body{background:linear-gradient(180deg,#F3D9B1 0,#fff 560px)}
+    .wrap{padding:0 20px}
+    header{padding:52px 0 100px}
+    .hero-card{padding:26px 22px 24px}
+    .hero-card::after{width:70px;height:70px;right:-10px;top:-26px}
+    .params{grid-template-columns:1fr 1fr}
+    .timeline li{grid-template-columns:70px 1fr}
+  }
+</style>
+</head>
+<body>
+
+<nav class="trip-nav" aria-label="大阪五天自由行頁面切換">
+  <a href="osaka-2026-trip-guide.html">總覽</a>
+  <a href="osaka-2026-day1.html">Day 1</a>
+  <a href="usj-vip-guide.html">Day 2 USJ</a>
+  <a href="osaka-2026-day3.html" aria-current="page">Day 3</a>
+  <a href="osaka-2026-day4.html">Day 4</a>
+  <a href="osaka-2026-day5.html">Day 5</a>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="hero-card">
+      <span class="cred-tag">2026 大阪五天自由行・Day 3｜10/07 週三</span>
+      <h1>分兩組行動<span class="accent">：山線與市區線</span></h1>
+      <p class="sub">本日行程表明定「分兩組行動」：山線組走勝尾寺＋箕面瀑布，市區組逛黑門市場＋電器街＋藥妝採購，晚餐（炸牛排）或表演前集合。兩點間平日交通銜接尚待重查，山線體力需求較高，請視當天狀況彈性調整。</p>
+      <div class="params">
+        <div class="param"><div class="k">日期</div><div class="v">2026-10-07（週三）</div></div>
+        <div class="param"><div class="k">人數</div><div class="v">6 位成人</div></div>
+        <div class="param"><div class="k">飯店基準點</div><div class="v">靜鐵飯店普雷西奧大阪心齋橋</div></div>
+        <div class="param"><div class="k">本日型態</div><div class="v">分兩組行動<small>，晚餐/表演前集合</small></div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- 1. Today at a glance -->
+  <section id="glance">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">01</span>今日一眼看完</div>
+      <h2>兩組各走各的路，晚餐/表演前在難波周邊集合</h2>
+      <p class="lead">行程表本日主軸是「分兩組行動」：喜歡走路爬階梯、想看瀑布的人建議走山線；想睡晚一點、逛市場買藥妝的人適合市區線。兩組人數、出發時間都可彈性拆分，不需要全員同進退。</p>
+      <ol class="timeline">
+        <li><span class="t">上午</span><div><b>兩組分開出發</b><div class="d"><span class="tag tag-split">分團</span> 山線組（勝尾寺＋箕面瀑布）建議較早出發；市區組（黑門市場）可視起床時間彈性抓 9 點後出發。</div></div></li>
+        <li><span class="t">山線組</span><div><b>心齋橋→梅田→千里中央/箕面萱野→阪急巴士→勝尾寺→箕面瀑布</b><div class="d">門票 500 円/人，平日 8:00-17:00（最終受付 16:30）；瀑布步道單程 2.7km、無纜車，體力吃緊者可只選一項。</div></div></li>
+        <li><span class="t">市區組</span><div><b>黑門市場（逛拍照、少量嚐鮮）→ 日本橋電器街</b><div class="d">黑門市場約 9:00-18:00、各店不一；電器街含女僕咖啡廳與街邊招攬，建議先問清消費規則再決定要不要進。</div></div></li>
+        <li><span class="t">傍晚集合</span><div><b>炸牛排：牛かつもと村 or 牛かつ冨田</b><div class="d">兩家都不接受訂位、純排隊；冨田只收現金，建議避峰或分批入座。</div></div></li>
+        <li><span class="t">晚間</span><div><b>唐吉訶德／藥妝店採購</b><div class="d"><span class="tag tag-split">分團</span> 適合各買各的，注意採購量勿超過去程 Basic (V) 每人 1 件 23kg 的隨身配置。</div></div></li>
+        <li><span class="t">夜間</span><div><b>「日本歌舞劇」查證結論：無深夜場</b><div class="d">最接近替代為なんばグランド花月/心齋橋角座傍晚場（約 18:00-19:30 開演，21:00-21:30 結束），詳見第 7 節。</div></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 2. Main Route：黑門市場 -->
+  <section id="kuromon">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">02</span>表定主線・市區組</div>
+      <h2>黑門市場 <span class="tag tag-split" style="vertical-align:middle;font-size:14px;padding:3px 12px">分團彈性</span></h2>
+      <p class="lead">依聊天補充定位：黑門市場「值得去、不一定值得消費」——逛市場、拍照、少量嚐鮮即可，不當作本日主餐消費核心，正餐留給晚上的炸牛排。</p>
+      <div class="cards">
+        <div class="card">
+          <h4>營業時間</h4>
+          <p>整體約 <b>9:00-18:00</b>，但各店舖時間不一，部分店家清晨開、部分延後打烊，需以個別店家公告為準。</p>
+        </div>
+        <div class="card">
+          <h4>整體休市風險</h4>
+          <p>市場「年中無休，僅元旦休市」，2026-10-05～10-09 期間沒有查到整體休市資訊，<b>風險低</b>。個別小店（如生魚片、蔬果攤）偶有不定期公休，屬單店行為，建議準備備案攤位。</p>
+        </div>
+        <div class="card">
+          <h4>本次定位</h4>
+          <p>逛市場、拍照、少量嚐鮮，<b>不當主餐消費核心</b>；正餐已排在傍晚炸牛排。市區組可依起床時間彈性安排出發早晚。</p>
+        </div>
+      </div>
+      <p class="caption">查核日期：2026-07-02，出發前 1-2 個月重查（尤其個別店家臨時公休）。</p>
+    </div>
+  </section>
+
+  <!-- 3. Deep Spots：勝尾寺＋箕面瀑布 -->
+  <section id="katsuoji-minoo">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">03</span>表定主線・山線組</div>
+      <h2>勝尾寺＋箕面瀑布 <span class="tag tag-split" style="vertical-align:middle;font-size:14px;padding:3px 12px">分團・體力需求較高</span></h2>
+      <p class="lead">兩處都在箕面山區，交通比市區景點費時，體力（尤其瀑布單程 2.7km 步道）也是重要考量。若時間或體力不足，可只選其一。</p>
+
+      <h3>勝尾寺</h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>項目</th><th>內容</th></tr></thead>
+          <tbody>
+            <tr><td>門票</td><td>大人（高校生以上）500円、小・中学生400円、未就學兒童100円、2歳以下免費</td></tr>
+            <tr><td>拜觀時間</td><td>平日・日曜・祝日 8:00-17:00（最終受付16:30）；10/7（三）為平日，適用此時段</td></tr>
+            <tr><td>交通建議</td><td>心齋橋→（御堂筋線）梅田→北大阪急行→千里中央→轉阪急巴士「特急30」系統，或箕面萱野駅轉巴士（約15-22分）</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>箕面瀑布（箕面大滝）</h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>項目</th><th>內容</th></tr></thead>
+          <tbody>
+            <tr><td>步道</td><td>阪急箕面駅⇔瀑布單程約 2.7km，步行約 40-60 分鐘；來回合計約 1.5-2 小時，含中途休息建議抓 3 小時。全程鋪裝步道，<b>無纜車</b>，僅能步行往返</td></tr>
+            <tr><td>10月上旬狀態</td><td>箕面紅葉季通常為 11 月中旬至 12 月上旬，10/7 造訪應仍是綠葉狀態，非賞楓高峰期</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="flag">
+        <h3>待重查：勝尾寺⇔箕面瀑布平日銜接方式不明確</h3>
+        <p>箕面萱野駅有「箕面滝道ワンウェイ観光周遊バス」連接阪急箕面駅⇔箕面大滝⇔勝尾寺，但此周遊巴士僅於假日、暑假期間運行，10/7（三）為平日，極可能不會運行。平日替代方案為阪急巴士「特急30系統」連接箕面萱野駅⇔勝尾寺（約15-22分），但沒有查到「箕面駅/箕面瀑布」與「勝尾寺」之間的直達平日巴士。</p>
+        <ul>
+          <li>務實走法：勝尾寺（阪急巴士）→回箕面萱野駅→轉搭箕面線至箕面駅→步行滝道（或反過來）</li>
+          <li>另一方案：計程車直接連接勝尾寺與瀑布（車程約15-20分，經山區道路）</li>
+        </ul>
+        <p><b>查核日期：2026-07-02，出發前 1-2 個月重查</b>：以阪急巴士官網時刻表及箕面市公告的周遊巴士2026年度運行日期為準。</p>
+      </div>
+
+      <div class="insight">
+        <h3>體力不足的替代</h3>
+        <p>兩點交通銜接本身就需要額外轉乘時間，加上瀑布步道來回近3小時，體力或時間不足時建議<b>只選其一</b>：想清幽古寺氛圍選勝尾寺，想看瀑布景觀選箕面瀑布（箕面公園周邊也有咖啡、土產店可逛）。</p>
+      </div>
+      <p class="caption">查核日期：2026-07-02，出發前 1-2 個月重查（尤其阪急巴士時刻表與周遊巴士2026年度公告）。</p>
+    </div>
+  </section>
+
+  <!-- 4. Food Options：炸牛排 -->
+  <section id="food">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">04</span>本日餐廳候選</div>
+      <h2>炸牛排：午/晚餐皆可，市區組方便吃</h2>
+      <p class="lead">兩家都在難波徒步圈內，適合市區組隨時順路解決一餐；山線組回程後也可在此集合會合。兩家都<b>不接受訂位、純排隊</b>，6人同行建議避開尖峰或分批入座。</p>
+      <div class="cards">
+        <div class="card">
+          <h4>牛かつもと村（道頓堀店）</h4>
+          <p class="px">約 JPY 1500-2999／人</p>
+          <p>大阪府大阪市中央区心斎橋筋2-4-2；なんば駅徒步約6分。營業 11:00-22:00（L.O. 21:00）。<b>不開放預約</b>，需現場排隊，建議避開 12:00-13:00／19:00-20:00 尖峰，或分批入座。</p>
+        </div>
+        <div class="card">
+          <h4>牛かつ冨田</h4>
+          <p class="px">約 JPY 1000-2999／人</p>
+          <p>大阪府大阪市浪速区難波中2-3-1 2F；なんば駅徒步約3分。營業 11:00-21:00，每日營業。<b>不開放預約</b>，純排隊制，人氣高；<b>只收現金</b>，不收信用卡/電子支付/QR碼。建議提早開店前或離峰時段（14:00-17:00）前往，並備現金。</p>
+        </div>
+      </div>
+      <p class="caption">查核日期：2026-07-02，出發前 1-2 個月重查（定休日資訊查無公告，疑似全年營業，建議仍以官網/現場公告為準）。</p>
+    </div>
+  </section>
+
+  <!-- 5. 日本橋電器街 + 唐吉訶德/藥妝採購 -->
+  <section id="denden-dq">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">05</span>表定主線・市區組</div>
+      <h2>日本橋電器街 <span class="tag tag-split" style="vertical-align:middle;font-size:14px;padding:3px 12px">適合分團逛</span></h2>
+      <p class="lead">電器街範圍大、興趣點分散（電玩、模型、家電、動漫周邊），適合各逛各的、約時間集合。</p>
+      <div class="insight">
+        <h3>女僕咖啡廳與街邊招攬注意</h3>
+        <p>電器街周邊有女僕咖啡廳與街頭招攬人員，容易被拉入不確定消費規則的店家。建議：進店前先問清「基本消費（seat charge）」「拍照/合照是否額外收費」「有無強制加點」等規則，<b>不確定就不進</b>，避免臨場糾紛。</p>
+      </div>
+
+      <h3>唐吉訶德／藥妝店採購</h3>
+      <p><span class="tag tag-split">適合分團</span> 各自採購清單不同，逛藥妝、唐吉訶德建議分頭進行，約定集合時間地點即可。</p>
+      <div class="flag">
+        <h3>採購量提醒（細節見 Day 5）</h3>
+        <p>回程長榮 Standard (Q) 艙等託運行李為每人 2 件、每件 23kg；但<b>去程 Basic (V) 艙等只有 1 件 23kg</b>，出發時的行李箱空間本就較緊，本日及後續採購量請留意去程配置，勿現場買到超過隨身/託運可承受的量。詳細行李額度比較見 Day 5 頁。</p>
+      </div>
+      <p class="caption">查核日期：2026-07-02，出發前 1-2 個月重查。</p>
+    </div>
+  </section>
+
+  <!-- 6. 夜間表演查證 -->
+  <section id="show">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">06</span>表定主線・夜間</div>
+      <h2>「半夜日本歌舞劇」查證結論</h2>
+      <p class="lead">行程表原訂半夜看「日本歌舞劇」，但查證後大阪主流劇場並無真正深夜（22:00後開演）場次，以下列出查證結論與最接近的替代方案。</p>
+      <div class="insight">
+        <h3>查證結論：大阪主流劇場無 22:00 後深夜場</h3>
+        <p>大阪府「青少年健全育成条例」對深夜興行有規範，加上主流劇場慣例，晚間場多在 18:00-19:30 開演、21:00-21:30 前後結束，沒有查到任何對外公開售票且在 22:00 後才開演的觀光客取向表演。</p>
+        <p><b>最接近替代</b>：なんばグランド花月／心齋橋角座的傍晚場（約 18:00-19:30 開演，21:00-21:30 結束，天天有），可安排在晚餐後時段。大阪松竹座若 10 月恰有歌舞伎公演，也以日間場（11:00或16:00左右）為主，非深夜。</p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <h4>なんばグランド花月（NGK）<span class="tag tag-ref" style="margin-left:6px">備查</span></h4>
+          <p>漫才・喜劇・落語為主，非嚴格意義的「歌舞伎」。平日慣例最晚一場約傍晚 18:00-19:00 開演，21:00-21:30 結束。語言以日文為主，隔閡較大；新喜劇肢體表演相對較易理解。</p>
+        </div>
+        <div class="card">
+          <h4>心齋橋角座<span class="tag tag-ref" style="margin-left:6px">備查</span></h4>
+          <p>落語・喜劇為主。常見場次：晝場 12:30/14:15，晚場 18:00 開場、18:30 開演，約 21:00 結束，同樣沒有深夜場。</p>
+        </div>
+        <div class="card">
+          <h4>大阪松竹座（歌舞伎）<span class="tag tag-ref" style="margin-left:6px">備查</span></h4>
+          <p>正統歌舞伎公演場地，位於道頓堀，較貼近字面「歌舞伎」。若10月恰有排期，開演時間通常為日間 11:00 或 16:00 左右，公演約4小時，也不會有深夜場。票價約 5,000-20,000円/人。</p>
+        </div>
+      </div>
+      <div class="flag">
+        <h3>出發前 1-2 個月重查：10 月檔期未公布</h3>
+        <p>なんばグランド花月、大阪松竹座、心齋橋角座的 2026 年 10 月確切排期與開演時刻表在查核當下（2026-07-02）尚未公布，須臨近月份分別查各官網確認場次、票價與是否符合當天時間安排。</p>
+      </div>
+      <p class="caption">查核日期：2026-07-02，出發前 1-2 個月重查。</p>
+    </div>
+  </section>
+
+  <!-- 7. Split Group Notes -->
+  <section id="split">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">07</span>全團／分團總覽</div>
+      <h2>本日分組建議</h2>
+      <p class="lead">本日主軸即為分兩組行動，以下彙整建議分法，晚餐或表演前集合即可，過程不需要互相等待。</p>
+      <div class="cards">
+        <div class="card">
+          <h4>山線組 <span class="tag tag-split">分團</span></h4>
+          <p>勝尾寺＋箕面瀑布。適合體力較好、想早點出發、喜歡自然景觀與古寺氛圍的人。交通耗時較長，建議上午較早出發。</p>
+        </div>
+        <div class="card">
+          <h4>市區組 <span class="tag tag-split">分團</span></h4>
+          <p>黑門市場＋日本橋電器街＋藥妝/唐吉訶德採購。適合想睡晚一點、逛街購物、對山區步行興趣較低的人。可依起床時間彈性抓出發時間。</p>
+        </div>
+        <div class="card">
+          <h4>晚餐與表演 <span class="tag tag-group">全團集合</span></h4>
+          <p>炸牛排（もと村/冨田）與晚間表演建議兩組集合後一起進行，避免各自在難波周邊多次移動。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Risk And Backup -->
+  <section id="risk">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">08</span>風險與備案</div>
+      <h2>雨天與體力備案</h2>
+      <div class="flag">
+        <h3>雨天備案</h3>
+        <ul>
+          <li>山線（勝尾寺／箕面瀑布步道）若遇雨，步道濕滑、來回近3小時不建議勉強，山線組可改當日行程為市區組行程（黑門市場、電器街、藥妝採購），兩組合併為市區行動日。</li>
+          <li>市區組行程（市場、電器街、店內採購）多為室內或有遮蔽路段，受雨天影響較小，可作為山線組雨天的替代選項。</li>
+        </ul>
+      </div>
+      <div class="insight">
+        <h3>其他備案</h3>
+        <p>若勝尾寺與箕面瀑布平日銜接的巴士/計程車安排臨場出狀況，可考慮只完成其中一項，把省下的時間留給市區組的黑門市場或電器街，晚上仍在難波集合吃炸牛排。</p>
+      </div>
+      <p class="caption">查核日期：2026-07-02，出發前 1-2 個月重查。</p>
+    </div>
+  </section>
+
+  <!-- 9. Booking And Tickets -->
+  <section id="booking">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">09</span>預約與票券清單</div>
+      <h2>出發前準備</h2>
+      <div class="checks">
+        <div class="chk">
+          <h4>山線組</h4>
+          <label><input type="checkbox">確認 10/7 阪急巴士「特急30系統」時刻表（出發前1-2個月）</label>
+          <label><input type="checkbox">確認箕面滝道周遊巴士2026年度是否延伸至平日</label>
+          <label><input type="checkbox">準備勝尾寺門票現金 500円/人</label>
+          <label><input type="checkbox">穿著適合2.7km步道的鞋子</label>
+        </div>
+        <div class="chk">
+          <h4>市區組</h4>
+          <label><input type="checkbox">確認黑門市場當日各店營業狀況（無需事先預約）</label>
+          <label><input type="checkbox">電器街消費先問清規則，不確定不進店</label>
+          <label><input type="checkbox">準備藥妝/唐吉訶德採購清單，控制行李空間</label>
+        </div>
+        <div class="chk">
+          <h4>晚餐與表演</h4>
+          <label><input type="checkbox">牛かつ冨田用餐備現金（不收卡/電子支付）</label>
+          <label><input type="checkbox">避開炸牛排尖峰 12:00-13:00／19:00-20:00</label>
+          <label><input type="checkbox">出發前1-2個月查NGK/角座/松竹座10月場次與票價</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Sources And Last Checked -->
+  <section id="sources">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">10</span>來源與查核</div>
+      <h2>Sources And Last Checked</h2>
+      <ul class="src">
+        <li>勝尾寺官方（門票／拜觀時間）：https://katsuo-ji-temple.or.jp/access/index.php　查核日期：2026-07-02</li>
+        <li>阪急バス勝尾寺路線（特急30系統）：https://www.hankyubus.co.jp/rosen/pole/1327.html　查核日期：2026-07-02</li>
+        <li>箕面滝道ワンウェイ観光周遊バス（箕面市公告）：https://www.city.minoh.lg.jp/eigyou/kankou/r6_onewaykankousyuuyuubus.html　查核日期：2026-07-02（待重查：2026年度運行日期尚未公告）</li>
+        <li>箕面瀑布步行時間：https://www.love-wife-life.com/how-far-to-minoo-waterfall/ ；https://insta-torisetsu.jp/aruite/　查核日期：2026-07-02</li>
+        <li>箕面觀光協會（紅葉預測）：https://minohkankou.net/　查核日期：2026-07-02（待重查）</li>
+        <li>黑門市場官方：https://kuromon.com/jp/category/shopping/ ；https://kuromon.com/jp/category/henkou/　查核日期：2026-07-02</li>
+        <li>牛かつもと村道頓堀店 食べログ：https://tabelog.com/en/osaka/A2701/A270202/27143925/　查核日期：2026-07-02</li>
+        <li>牛かつ冨田 食べログ：https://tabelog.com/en/osaka/A2701/A270202/27096938/　查核日期：2026-07-02</li>
+        <li>なんばグランド花月官方：https://ngk.yoshimoto.co.jp/schedule/　查核日期：2026-07-02（待重查：10月排期未公布）</li>
+        <li>心齋橋角座整理站：https://kansai-owarai.com/cat3/shinsaibashi-kadoza.html ；官方 https://www.shochikugeino.co.jp/kadoza_event　查核日期：2026-07-02</li>
+        <li>大阪松竹座官方：https://www.shochiku.co.jp/play/theater/shochikuza/ ；https://www.shochiku.co.jp/play/schedules/　查核日期：2026-07-02（待重查：10月排期未公布）</li>
+        <li>大阪府青少年健全育成条例：https://www.pref.osaka.lg.jp/houbun/reiki/reiki_honbun/k201RG00000487.html　查核日期：2026-07-02</li>
+        <li>EVA Air Checked Baggage（Basic/Standard 艙等差異）：https://www.evaair.com/en-global/fly-prepare/baggage/free-baggage/checked-baggage/　查核日期：2026-07-02</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<nav class="day-pager" aria-label="前後日切換">
+  <a href="usj-vip-guide.html">← 上一天：Day 2 USJ</a>
+  <a href="osaka-2026-day4.html">下一天：Day 4 →</a>
+</nav>
+
+<footer>
+  <div class="wrap">
+    <span>2026 大阪五天自由行指南｜本頁：Day 3</span>
+    <span class="mono">查核日期：2026-07-02・出發前 1-2 個月重查時效性資訊</span>
+  </div>
+</footer>
+
+</body>
+</html>
