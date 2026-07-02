@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="2026年10月5日（週一）大阪自由行第一天深度頁：關西機場入境與6人行李動線、大鳥大社・住吉大社・今宮戎神社參拜、通天閣TOWER SLIDER、新世界串炸晚餐，含河豚午餐平日不營業的風險與備案。">
+<title>2026 大阪五天自由行 Day 1｜10/05 抵達日：機場、神社與通天閣</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Osaka 2026 trip guide — travel brochure skin，與 usj-vip-guide.html 同一視覺家族 */
+  :root{
+    --ink:#3B2C22;--ink-soft:#513E31;--paper:#FFFDF7;--card:#FFFDF8;
+    --line:#E8D2A4;--line-soft:#F1E0BD;--gold:#C99B45;--gold-bright:#E5B84A;
+    --crimson:#C95B41;--teal:#35A84C;--slate:#5E6FA6;--muted:#7B6B5C;
+    --shadow:0 14px 34px rgba(106,73,33,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Sans TC",system-ui,sans-serif;color:var(--ink);line-height:1.7;font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    background:
+      linear-gradient(90deg,rgba(137,89,40,.045) 1px,transparent 1px),
+      linear-gradient(180deg,#F1D5A9 0,#F7E6CA 480px,#fff 480px);
+    background-size:38px 100%,auto;
+  }
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  .mono{font-family:"Space Mono",monospace}
+  a{color:#267A32}
+  p{margin-bottom:14px}strong{font-weight:700}
+
+  /* ---- trip-nav：六頁切換（sticky） ---- */
+  .trip-nav{
+    position:sticky;top:0;z-index:120;background:rgba(255,253,247,.94);
+    border-bottom:1px solid #ECD8AD;box-shadow:0 8px 24px rgba(91,63,24,.06);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
+    padding:11px max(24px,calc((100vw - 1160px)/2 + 24px));
+  }
+  .trip-nav::-webkit-scrollbar{display:none}
+  .trip-nav a{
+    display:inline-flex;align-items:center;padding:7px 14px;border:1px solid #E8D2A4;border-radius:999px;
+    background:#fff;color:#756554;font-size:13px;font-weight:800;text-decoration:none;white-space:nowrap;
+    transition:color .2s,border-color .2s,background .2s;
+  }
+  .trip-nav a:hover{border-color:#E39A37;color:#3B2C22}
+  .trip-nav a[aria-current="page"]{background:var(--teal);border-color:var(--teal);color:#fff}
+
+  /* ---- hero ---- */
+  header{position:relative;overflow:hidden;padding:76px 0 120px;color:var(--ink);
+    background:
+      radial-gradient(circle at 12% 18%,rgba(255,255,255,.6) 0 60px,transparent 62px),
+      radial-gradient(circle at 90% 12%,rgba(255,255,255,.45) 0 84px,transparent 86px),
+      repeating-linear-gradient(96deg,#E8C99C 0 24px,#F3D9B1 24px 48px,#E1BD89 48px 72px);}
+  header::after{content:"";position:absolute;left:-3%;right:-3%;bottom:-1px;z-index:2;height:96px;background:#fff;
+    clip-path:polygon(0 48%,8% 58%,20% 44%,35% 62%,49% 46%,62% 58%,75% 42%,88% 59%,100% 44%,100% 100%,0 100%)}
+  .hero-card{position:relative;z-index:1;max-width:720px;border:1px solid rgba(194,151,78,.48);border-radius:2px;
+    background:rgba(255,246,207,.92);box-shadow:0 18px 42px rgba(95,60,24,.16);padding:34px 36px 30px}
+  .hero-card::after{content:"";position:absolute;right:-26px;top:-30px;width:86px;height:86px;
+    background:linear-gradient(140deg,#C94625 0 45%,#EF8B24 46% 64%,#D85A27 65%);
+    clip-path:polygon(50% 0,61% 32%,96% 17%,69% 48%,100% 60%,64% 64%,78% 100%,51% 73%,24% 100%,35% 64%,0 60%,31% 48%,4% 17%,39% 32%);
+    filter:drop-shadow(0 8px 4px rgba(112,57,18,.18));transform:rotate(18deg)}
+  .cred-tag{display:block;margin-bottom:12px;color:#91672E;font-size:14px;font-weight:700}
+  header h1{font-family:"Noto Serif TC",serif;font-weight:900;color:var(--crimson);
+    font-size:clamp(30px,4.5vw,52px);line-height:1.2;text-shadow:0 2px 0 #fff,0 8px 16px rgba(124,55,27,.14)}
+  header h1 .accent{color:#D58A25}
+  .sub{color:#5D4A3A;margin-top:14px;font-size:15px;font-weight:700;line-height:1.85;max-width:60ch}
+  .params{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:20px}
+  .param{min-width:0;padding:10px 14px;border:1px solid rgba(198,153,76,.4);border-radius:999px;background:#fffdf8}
+  .param .k{color:#9B6730;font-size:12px;font-weight:800}
+  .param .v{color:#5F4937;font-size:13px;font-weight:800}
+  .param .v small{color:#8B7A68;font-weight:400}
+
+  /* ---- sections ---- */
+  section{position:relative;padding:54px 0;background:#fff;scroll-margin-top:74px}
+  section + section{border-top:1px solid #F0DFBD}
+  .eyebrow{color:#A35A21;font-size:13px;font-weight:900;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .eyebrow .num{color:var(--crimson);font-family:"Space Mono",monospace;font-weight:700}
+  h2{font-family:"Noto Serif TC",serif;font-weight:700;color:#3F2D22;font-size:clamp(24px,3.5vw,34px);line-height:1.38;margin-bottom:8px}
+  h3{font-family:"Noto Serif TC",serif;font-weight:700;font-size:18px;margin:30px 0 12px;color:#5A3C26}
+  .lead{color:#665446;font-size:16px;font-weight:500;margin-bottom:26px;max-width:68ch}
+
+  /* ---- 卡片 ---- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px;margin-top:8px}
+  .card{position:relative;display:grid;gap:9px;align-content:start;padding:18px 20px;
+    border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow)}
+  .card h4{font-family:"Noto Serif TC",serif;font-size:16px;font-weight:700;color:#4B3527}
+  .card .px{font-family:"Space Mono",monospace;font-size:12.5px;color:#A35A21}
+  .card p{font-size:13px;color:#665446;margin:0}
+  .card a.card-link{font-weight:800}
+
+  /* ---- add-on 標籤（四類，全站統一） ---- */
+  .tag{display:inline-flex;align-items:center;border-radius:999px;padding:2px 10px;font-size:11.5px;font-weight:900;border:1px solid transparent}
+  .tag-add{background:#E8F6EA;color:#1E6F2A;border-color:#BFE3C5}      /* 可加入原行程 */
+  .tag-split{background:#EDF1FA;color:#44548C;border-color:#C9D3EC}    /* 適合分團 */
+  .tag-ref{background:#FFF6D8;color:#A35A21;border-color:#E2BD73}      /* 只列備查 */
+  .tag-no{background:#FFF3EA;color:#A6402E;border-color:#E6C3A4}       /* 不建議本次加入 */
+  .tag-group{background:#F8EBC7;color:#70451F;border-color:#E2C281}    /* 全團同行 */
+
+  /* ---- 時間軸（today at a glance / main route） ---- */
+  .timeline{border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow);padding:8px 24px;margin-top:8px}
+  .timeline li{list-style:none;display:grid;grid-template-columns:92px 1fr;gap:14px;padding:14px 0;border-top:1px solid #F0DFBD;font-size:14px}
+  .timeline li:first-child{border-top:none}
+  .timeline .t{font-family:"Space Mono",monospace;font-size:13px;color:#A35A21;font-weight:700;white-space:nowrap}
+  .timeline b{color:#3F2D22}
+  .timeline .d{color:#665446;font-size:13px}
+
+  /* ---- 提示框 ---- */
+  .insight{background:#FFF6D8;border:1px solid #E2BD73;border-left:4px solid #E2A534;border-radius:6px;padding:20px 24px;margin-top:8px}
+  .insight h3{margin-top:0;color:#A35A21}
+  .insight p{font-size:14px;margin-bottom:8px}.insight p:last-child{margin-bottom:0}
+  .flag{background:#FFF3EA;border:1px solid #E6C3A4;border-left:4px solid var(--crimson);border-radius:6px;padding:20px 24px;margin-top:8px;color:#7C382C}
+  .flag h3{margin-top:0;color:var(--crimson)}
+  .flag ul{padding-left:20px;font-size:13.5px}.flag li{margin-bottom:7px}
+  .flag p{font-size:13.5px;margin-bottom:0}
+
+  /* ---- 表格 ---- */
+  .table-scroll{overflow-x:auto;border-radius:6px;border:1px solid #EAD6AB;box-shadow:var(--shadow);background:#fff;margin-top:8px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px}
+  thead th{background:#F8EBC7;color:#70451F;font-weight:900;text-align:left;padding:13px 14px;font-size:12.5px;vertical-align:bottom}
+  tbody td{padding:12px 14px;border-top:1px solid #F0DFBD;vertical-align:top;color:#514236}
+  tbody tr:nth-child(even){background:#FFF8E8}
+  .caption{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.6}
+
+  /* ---- 連結藥丸 ---- */
+  .link-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .link-pill{display:inline-flex;align-items:center;min-height:34px;padding:0 14px;border:1px solid #E2C281;border-radius:999px;
+    background:#fffdf8;color:#267A32;text-decoration:none;white-space:nowrap;font-size:12.5px;font-weight:800;
+    transition:background .2s,color .2s,border-color .2s}
+  .link-pill:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+
+  /* ---- 清單/檢查表 ---- */
+  .notes{border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow);padding:8px 24px;margin-top:22px}
+  .notes li{list-style:none;padding:14px 0 14px 30px;position:relative;border-top:1px solid #F0DFBD;font-size:14px}
+  .notes li:first-child{border-top:none}
+  .notes li::before{content:"●";position:absolute;left:6px;top:14px;color:#D96A25;font-size:9px}
+  .notes li b{color:var(--crimson);font-weight:700}
+  .checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+  .chk{border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow);padding:18px 20px}
+  .chk h4{font-family:"Noto Serif TC",serif;font-size:15.5px;font-weight:700;margin-bottom:10px;color:#4B3527}
+  .chk label{display:grid;grid-template-columns:20px 1fr;gap:9px;align-items:start;font-size:13px;color:#665446;line-height:1.6;padding:6px 0;border-top:1px solid #F0DFBD}
+  .chk label:first-of-type{border-top:none}
+  .chk input{width:15px;height:15px;margin-top:3px;accent-color:var(--teal)}
+
+  /* ---- 來源 ---- */
+  .src{font-size:12px;color:#665446;line-height:1.8}
+  .src li{list-style:none;padding:8px 0;border-top:1px solid #F0DFBD}
+  .src li:first-child{border-top:none}
+
+  /* ---- day-pager + footer ---- */
+  .day-pager{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    max-width:1160px;margin:0 auto;padding:34px 24px}
+  .day-pager a{display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border:1px solid #E2C281;border-radius:999px;
+    background:#fffdf8;color:#267A32;text-decoration:none;font-size:14px;font-weight:900;transition:background .2s,color .2s,border-color .2s}
+  .day-pager a:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+  footer{background:#3B2C22;color:#E9D9B8;padding:30px 0;font-size:12.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer .mono,footer a{color:#D5BC8C}
+
+  @media (max-width:620px){
+    body{background:linear-gradient(180deg,#F3D9B1 0,#fff 560px)}
+    .wrap{padding:0 20px}
+    header{padding:52px 0 100px}
+    .hero-card{padding:26px 22px 24px}
+    .hero-card::after{width:70px;height:70px;right:-10px;top:-26px}
+    .params{grid-template-columns:1fr 1fr}
+    .timeline li{grid-template-columns:70px 1fr}
+  }
+</style>
+</head>
+<body>
+
+<nav class="trip-nav" aria-label="大阪五天自由行頁面切換">
+  <a href="osaka-2026-trip-guide.html">總覽</a>
+  <a href="osaka-2026-day1.html" aria-current="page">Day 1</a>
+  <a href="usj-vip-guide.html">Day 2 USJ</a>
+  <a href="osaka-2026-day3.html">Day 3</a>
+  <a href="osaka-2026-day4.html">Day 4</a>
+  <a href="osaka-2026-day5.html">Day 5</a>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="hero-card">
+      <span class="cred-tag">2026 大阪五天自由行・Day 1｜10/05（一）・抵達日</span>
+      <h1>入境第一天<span class="accent">：行李、神社與通天閣</span></h1>
+      <p class="sub">今天要在長途飛行後處理6人6件行李、走完三座神社，再收尾在通天閣與新世界。表定的河豚/蟹午餐平日中午不營業，本頁把這個風險和調整方向講清楚，其餘照表操課。</p>
+      <div class="params">
+        <div class="param"><div class="k">日期</div><div class="v">2026-10-05（週一）</div></div>
+        <div class="param"><div class="k">人數</div><div class="v">6 位成人</div></div>
+        <div class="param"><div class="k">飯店基準點</div><div class="v">靜鐵飯店普雷西奧大阪心齋橋</div></div>
+        <div class="param"><div class="k">航班</div><div class="v">長榮 BR178<small>・10:10 抵達 KIX</small></div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- 01 今日一眼看完 -->
+  <section id="glance">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">01</span>今日一眼看完</div>
+      <h2>抵達日主線時間軸</h2>
+      <p class="lead">以下為表定順序的概估時間軸，非官方時刻表。午餐一步標「詳見風險與備案」，因為兩家候選店平日中午都不營業，實際順序建議依 03 節的調整方向決定。</p>
+      <ul class="timeline">
+        <li><span class="t">10:10</span><div><b>BR178 抵達 KIX</b><div class="d">入境審查＋領取行李，6人同行建議抓充裕時間（概估，非官方數據）。</div></div></li>
+        <li><span class="t">約11:30起</span><div><b>機場 → 心齋橋</b><div class="d">南海空港急行／Rapi:t／利木津巴士三方案比較，見 02 節。</div></div></li>
+        <li><span class="t">約13:00起</span><div><b>飯店寄放行李</b><div class="d">靜鐵飯店普雷西奧大阪心齋橋，寄放規則與備案見 02 節。</div></div></li>
+        <li><span class="t">午前</span><div><b>大鳥大社</b><div class="d">JR阪和線鳳駅西出口徒步約5分，開門6:00、閉門18:00。</div></div></li>
+        <li><span class="t">午餐</span><div><b>河豚／蟹（雪月花／ふぐかず，鳳駅周邊）</b><div class="d">⚠️ 平日午間不營業，詳見「風險與備案」調整方向。</div></div></li>
+        <li><span class="t">午後</span><div><b>住吉大社</b><div class="d">南海本線住吉大社駅／住吉東駅／阪堺電車住吉鳥居前駅，開門6:30-17:00。</div></div></li>
+        <li><span class="t">午後</span><div><b>今宮戎神社</b><div class="d">南海高野線今宮戎駅下車即到，開門6:00-17:00。</div></div></li>
+        <li><span class="t">傍晚</span><div><b>通天閣＋TOWER SLIDER</b><div class="d">展望台9:00-21:45、TOWER SLIDER 9:30-20:30，限制見 04 節。</div></div></li>
+        <li><span class="t">傍晚</span><div><b>新世界散步</b><div class="d">通天閣周邊商店街，順道拍照、逛街。</div></div></li>
+        <li><span class="t">晚餐</span><div><b>串炸 いっとく 道頓堀戎橋店</b><div class="d">新世界傍晚結束後移動回道頓堀方向，350席，11:00-01:00。</div></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 02 抵達與行李計畫 -->
+  <section id="arrival">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">02</span>抵達與行李計畫</div>
+      <h2>入境、機場到心齋橋、行李寄放</h2>
+      <p class="lead">6人6件大型行李是今天上午的主要變數：入境動線、機場到飯店的交通方式、以及飯店能不能一次收下6件行李，都需要出發前再次確認。</p>
+
+      <h3>入境與領行李</h3>
+      <p>10:10 抵達 KIX 後，入境審查＋領取託運行李，6人同行建議抓較充裕的緩衝時間（此為規劃概估，非官方公告數據，實際依當日航班與海關人潮而定）。</p>
+
+      <h3>KIX → 心齋橋：三方案比較</h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>方案</th><th>時間</th><th>票價／人</th><th>備註</th></tr></thead>
+          <tbody>
+            <tr><td><b>(A) 南海電鐵 空港急行</b></td><td>約44分（關西空港→なんば）</td><td>970円＋轉乘地下鐵至心齋橋約240円</td><td>自由座、班次密集（約15分一班）；到なんば後轉御堂筋線1站或計程車最後一段。6人6件行李搭地下鐵略擁擠。</td></tr>
+            <tr><td><b>(B) 特急ラピート Rapi:t</b></td><td>官網最短34分（一般估約38-44分）</td><td>約1,490円（自由分開購買乘車券+一般席特急券）／約1,700円（Super Seat）</td><td>全車指定席，6人需一次劃位，旺季建議提早訂票。套票「関空トク割ラピートきっぷ」1,560/1,740円，出發前需重新比價（查詢當下套票反而較貴，可能未更新）。</td></tr>
+            <tr><td><b>(C) 利木津巴士（關西空港交通）</b></td><td>約50-55分，心齋橋（ホテル日航大阪站牌）</td><td>1,800円（單程，6人約10,800円）</td><td>不需轉乘、行李直接放車廂下方行李艙，對6人6件大行李最省力；票價較貴、班次較列車少，易受路況影響。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption">來源：南海電鐵特急ラピート官網、関空トク割ラピートきっぷ官網、ekitan.com難波⇔関西空港運賃、関西空港交通株式会社時刻表／のりば案内。查核日期：2026-07-02，出發前1-2個月重查票價與班次是否調整。JR関空快速無直達難波/心齋橋路線，需在天王寺或新今宮轉乘，精確票價/時間本次未查得，待重查。</p>
+      <p><strong>實務建議</strong>：若不介意轉乘，空港急行cp值最高；若想省力（尤其6人搬6件大行李），利木津巴士直達心齋橋較輕鬆；Rapi:t 需事先劃位，較適合已決定要指定席體驗的情況。</p>
+
+      <h3>飯店行李寄放</h3>
+      <div class="insight">
+        <h3>靜鐵飯店普雷西奧大阪心齋橋（電話 06-6563-7330）</h3>
+        <p>官網FAQ明確表示：入住前、退房後皆可寄放行李，可使用飯店入口附近的自助寄物櫃（バゲッジポート），或請櫃檯人員協助。</p>
+        <p><strong>⚠️ 待確認</strong>：官網未載明寄放數量上限、是否收費、以及能否一次容納6件大型行李箱（自助寄物櫃格數有限）。<strong>建議出發前致電 06-6563-7330 事先確認</strong>。</p>
+      </div>
+      <p class="caption">來源：飯店官網首頁與FAQ頁。查核日期：2026-07-02。</p>
+
+      <h3>備案：難波置物櫃 ／ ecbo cloak</h3>
+      <ul class="notes">
+        <li><b>難波站置物櫃</b>：大阪Metro御堂筋線難波站北東改札附近大型置物櫃（800～1,000円）約95個；南海難波站2樓北改札外、中央口、南口方向及周邊商場（如高島屋）也有多處置物櫃；大阪Metro四つ橋線難波站定期券售票處內的臨時行李寄放櫃檯可寄放行李箱20件、包包10件。距心齋橋步行約10-15分。</li>
+        <li><b>ecbo cloak（心齋橋加盟店）</b>：一店可寄放行李箱10件、包包10件，但營業時間為傍晚18:00起，白天不適用；另一近長堀橋站的加盟點可寄放行李箱30件、包包10件，營業時間11:00-18:00。屬「共享空間」寄放服務，容量與營業時間會變動，建議事先在 cloak.ecbo.io App 上查詢當日空位並預約。</li>
+      </ul>
+      <p class="caption">來源：ぶらっとなんば難波駅コインロッカー、Osaka Metro Service公告、ecbonist心斎橋加盟店介紹。查核日期：2026-07-02。</p>
+
+      <h3>機場宅配行李到飯店 <span class="tag tag-ref">待查選項，未決定</span></h3>
+      <p>黑貓宅急便「空港宅急便」可將行李從KIX送到飯店，費用為「基本宅急便運費＋660円手續費」；另有「當日配送」服務（一般宅配運費＋1,000円/件），受理時間6:30～12:30，理論上10:10抵達當天可能來得及送達。但是否可行仍有兩個未確認條件：(a) 飯店是否為Yamato/JALABC的合作代收飯店；(b) 6件大型行李箱的個別運費未查得具體金額。<strong>此方案標記「待查選項，未決定」，若考慮採用，需出發前1-2個月直接聯繫 Yamato 空港宅急便 KIX櫃檯或飯店確認代收條件。</strong></p>
+      <p class="caption">來源：ヤマト運輸空港宅急便官網、ヤマト運輸FAQ、JALABC關西空港宅配。查核日期：2026-07-02。</p>
+    </div>
+  </section>
+
+  <!-- 03 主線逐站 -->
+  <section id="route">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">03</span>表定主線逐站</div>
+      <h2>大鳥大社 → 住吉大社 → 今宮戎神社 → 通天閣 → 新世界</h2>
+      <p class="lead">三座神社＋通天閣是今天下午到傍晚的主線。以下按官方資訊列出交通與開放時間；站與站之間若研究筆記沒有直接查證的轉乘方式，會標明為一般路線推估，建議出發前用乘換案內App核對當日班次。</p>
+
+      <h3>大鳥大社（堺市）</h3>
+      <p>JR阪和線「鳳（おおとり）駅」西出口，徒步約5分；天王寺駅搭阪和線約15分。開門時間10月-3月為6:00，閉門18:00；授与所（御守/御朱印）受付9:00-16:30。參拜免費。</p>
+      <p class="caption">來源：大鳥大社官方（access頁）、jyun-en.jp／jinjafan.jp御朱印資訊。查核日期：2026-07-02。</p>
+
+      <h3>大鳥大社 → 住吉大社</h3>
+      <p>研究筆記僅明確記載「心齋橋出發→難波轉南海本線約10分達住吉大社駅」的路線，並未直接查證「從鳳返回」的轉乘方式。合理推估為原路搭JR阪和線返回天王寺，再轉乘南海本線（經新今宮）或阪堺電車上町線（天王寺駅前→住吉鳥居前，官方列出住吉大社的到站方式之一即為「阪堺電車住吉鳥居前駅即到」）。<strong>此段轉乘為推估路線，出發前請以乘換案內App查詢當日實際班次與所需時間。</strong></p>
+
+      <h3>住吉大社</h3>
+      <p>開閉門時間10月-3月為6:30-17:00；御守授与所9:00-17:00、祈祷受付9:00-15:50。參拜免費。到站方式：南海本線「住吉大社駅」東行約3分；南海高野線「住吉東駅」西行約5分；阪堺電車「住吉鳥居前駅」即到。</p>
+      <p class="caption">來源：住吉大社官方（access／FAQ頁）、hirotravel.com交通整理站。查核日期：2026-07-02。</p>
+
+      <h3>住吉大社 → 今宮戎神社</h3>
+      <p>研究筆記記載的路線為：南海本線住吉大社駅→難波駅→轉乘南海高野線一站至今宮戎駅（此為心齋橋出發的官方建議路線之一，方向與本段一致）。</p>
+
+      <h3>今宮戎神社</h3>
+      <p>開門6:00-17:00（南側脇門至22:00）；授与所・電話應對9:00-17:00，祈祷受付9:30-16:30。到站方式：南海高野線「今宮戎駅」下車東行即到（最便利）；亦可從地下鉄御堂筋線「大国町駅」3号出口東行約8分。</p>
+      <p class="caption">來源：今宮戎神社官方access頁。查核日期：2026-07-02。</p>
+
+      <h3>今宮戎神社 → 通天閣／新世界</h3>
+      <p>兩地相距約1.5-2公里，研究筆記未直接查證此段轉乘方式。可步行前往（約20-25分，一般估算）或搭乘地下鐵御堂筋線轉乘至通天閣周邊，<strong>確切轉乘班次建議出發前以乘換案內App查詢當日路線</strong>。</p>
+
+      <h3>通天閣＋TOWER SLIDER</h3>
+      <p>一般展望台開放時間9:00-21:45（最終入場21:15），採入場時間預約制，建議提前線上購票。票價：大人（15歳以上）1,500円、子ども（5歳～14歳）800円；<span class="tag tag-ref">5歳未満定價未載，待重查</span>。</p>
+      <p>TOWER SLIDER（溜滑梯）營業時間9:30-20:30（最終受付20:00）。票價：大人（15～65歳）1,100円、子ども（7～14歳）600円（官網當前公告價，另有搜尋結果顯示舊票價1,000/500円，以官網1,100/600円為準）。<strong>限制</strong>：6歳以下、66歳以上不可使用；身高120cm以下不可使用；體重120kg以上不可使用（部分次要來源寫100kg，以官網120kg為準）；孕婦、骨骼疾病者、身體不適、暈車體質、對光敏感、視覺/肢體障礙、懼高/懼密閉/懼暗者均不建議或禁止使用。現場及線上皆須「入場時間預約」。</p>
+      <div class="insight">
+        <h3>期待值設定</h3>
+        <p>通天閣與TOWER SLIDER適合當作「第一次感受大阪味」的體驗，但整體評價偏向「有特色、周邊普通」——可以玩，不必抱過高期待，重點放在拍照與新世界散步的氣氛上。</p>
+      </div>
+      <p class="caption">來源：通天閣官方營業資訊、TOWER SLIDER官方頁。查核日期：2026-07-02。</p>
+
+      <h3>新世界散步 → 晚餐串炸</h3>
+      <p>通天閣周邊即新世界商店街，適合傍晚散步拍照。晚餐串炸「新世界串カツいっとく 道頓堀戎橋店」實際位於道頓堀（地址：大阪市中央区道頓堀1-6-10），不是在新世界內，動線為「新世界傍晚逛完 → 移動回道頓堀方向用晚餐」。營業時間11:00-01:00（L.O. 00:30），年中無休，總席數350席，可電話（050-5597-2644）或線上訂位，可包場；6人平日應可直接排隊入座，假日晚餐尖峰建議先線上訂位。</p>
+      <p class="caption">來源：串カツいっとく店舗一覧、Tabelog店頁。查核日期：2026-07-02。</p>
+    </div>
+  </section>
+
+  <!-- 04 風險與備案 -->
+  <section id="risk">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">04</span>風險與備案</div>
+      <h2>本頁重點：河豚/蟹午餐平日中午不營業</h2>
+      <p class="lead">這是Day1最需要出發前確認的一件事，其餘為長途飛行後的體力與雨天備案提醒。</p>
+
+      <div class="flag">
+        <h3>河豚/蟹午餐候選：10/5（一）中午不營業</h3>
+        <ul>
+          <li><b>蟹ふぐ雪月花</b>（堺市西区鳳東町，鳳駅東出口徒步約9分）：週一、三～五、假日前夕營業時間為 <b>16:00-23:00</b>，週一中午不開店。</li>
+          <li><b>ふぐかず鳳店</b>（鳳駅西口徒步約5分）：週一至週五營業時間為 <b>17:00-24:00</b>，週一中午同樣不開店。</li>
+          <li>兩家位置與大鳥大社（鳳駅徒步5分）一致，午餐安排在大鳥大社參拜前後本身沒有問題，<b>問題純粹是平日午間營業時間衝突</b>。</li>
+        </ul>
+        <p><strong>調整方向（供選擇，最終決定請出發前確認）：</strong></p>
+        <ul>
+          <li>方向一：把河豚/蟹移到晚間吃（雪月花16:00後、ふぐかず17:00後皆可），原晚餐串炸改到中午（いっとく 11:00-01:00全天營業，午餐時段一樣可以吃）。</li>
+          <li>方向二：午餐改到道頓堀方向，例如 <b>かに道楽 道頓堀本店</b> 午間かに御膳 <span class="mono">3,740円起</span>（點餐至16:00），晚上維持原定新世界串炸。<span class="tag tag-ref">只列備查，非表定行程</span></li>
+        </ul>
+        <p>兩個方向都可行，牽涉當天整體動線與是否想保留河豚體驗，<strong>建議出發前確認最終選擇</strong>。</p>
+      </div>
+      <p class="caption">來源：蟹ふぐ雪月花官網／HotPepper、ふぐかず官網／Tabelog、かに道楽道頓堀本店官網／HotPepper。查核日期：2026-07-02，出發前1-2個月重查是否仍營業。</p>
+
+      <h3>長途飛行第一天體力</h3>
+      <p>當天先經歷長程飛行與入境流程，下午還要連走三座神社加通天閣，體力消耗較大。若有成員感到疲累，可考慮縮短某一站的停留時間，或視情況調整順序，不必堅持走完全部景點才回飯店。</p>
+
+      <h3>雨天備案</h3>
+      <p>大鳥大社、住吉大社、今宮戎神社皆為戶外參拜為主，雨天可縮短停留、快速參拜即可；通天閣展望台為室內設施可避雨，新世界商店街多有騎樓/拱廊，晚餐串炸店內用餐不受影響。</p>
+    </div>
+  </section>
+
+  <!-- 05 周遊券註記 -->
+  <section id="pass">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">05</span>大阪周遊パス</div>
+      <h2>若今天使用1日券</h2>
+      <p class="lead">大阪周遊パス2026年版1日券3,500円/人（2026-04-01起適用）。若把使用日排在Day1，通天閣一般展望台與TOWER SLIDER皆列在免費設施清單中。</p>
+      <ul class="notes">
+        <li><b>TOWER SLIDER</b>：免費（僅滑梯本身，展望台需另外付費或以周遊パス免費項目兌換）。</li>
+        <li><b>通天閣一般展望台</b>：官方免費設施清單列為免費，<span class="tag tag-ref">但另有資訊顯示可能是「折扣而非全免」的例外規則，兩種說法未能完全排除疑慮，待重查</span>，建議出發前1-2個月直接查官網或e-pass通天閣頁面確認最新規則。</li>
+        <li>今天會用到的地鐵/私鉄段（前往鳳、住吉、今宮戎）多為JR阪和線或南海電鐵區間，是否全數涵蓋在周遊パス範圍內需另行核對，划不划算取決於當天實際車資總和是否超過3,500円/人。</li>
+      </ul>
+      <p class="caption">來源：Osaka Metro大阪周遊パス2026年度公告、e-pass通天閣設施頁。查核日期：2026-07-02。</p>
+    </div>
+  </section>
+
+  <!-- 06 全團/分團 -->
+  <section id="group">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">06</span>全團與分團</div>
+      <h2>抵達日以全團同行為主 <span class="tag tag-group">全團</span></h2>
+      <p class="lead">Day1剛下飛機、行李還沒安頓好，本日全程建議6人一起行動，方便互相照應行李與初來乍到的動線判斷。</p>
+      <p>若有成員因時差或體力因素想提早結束、先回飯店休息，可視現場狀況彈性調整，不影響其餘成員繼續走完當天行程。</p>
+    </div>
+  </section>
+
+  <!-- 07 預約與票券清單 -->
+  <section id="booking">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">07</span>預約與票券清單</div>
+      <h2>出發前要辦好的事</h2>
+      <div class="checks">
+        <div class="chk">
+          <h4>行李與飯店</h4>
+          <label><input type="checkbox"><span>電話 06-6563-7330 確認飯店行李寄存規則、容量與是否收費</span></label>
+          <label><input type="checkbox"><span>備妥難波置物櫃地點資訊或 ecbo cloak App 帳號作為備案</span></label>
+        </div>
+        <div class="chk">
+          <h4>機場交通</h4>
+          <label><input type="checkbox"><span>若選 Rapi:t，事先於南海官網完成6人指定席劃位</span></label>
+          <label><input type="checkbox"><span>出發前以乘換案內App核對當日KIX→心齋橋班次與票價</span></label>
+        </div>
+        <div class="chk">
+          <h4>午晚餐</h4>
+          <label><input type="checkbox"><span>確認河豚/蟹午餐時間衝突的最終調整方向（見04節）</span></label>
+          <label><input type="checkbox"><span>串炸いっとく道頓堀戎橋店線上或電話訂位（050-5597-2644）</span></label>
+        </div>
+        <div class="chk">
+          <h4>通天閣／TOWER SLIDER</h4>
+          <label><input type="checkbox"><span>官網完成TOWER SLIDER入場時間線上預約</span></label>
+          <label><input type="checkbox"><span>確認隨行者是否符合年齡/身高/體重限制</span></label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 Sources -->
+  <section id="sources">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">08</span>Sources And Last Checked</div>
+      <h2>資料來源與查核日期</h2>
+      <p class="lead">除另有標註者外，以下所有連結查核日期均為 2026-07-02，出發前1-2個月請重新查證時效性資訊（票價、營業時間、預約規則）。</p>
+      <ul class="src">
+        <li>飯店官網首頁：https://www.hotel-prezio.co.jp/osaka-shinsaibashi/</li>
+        <li>飯店官網FAQ：https://www.hotel-prezio.co.jp/osaka-shinsaibashi/faq/</li>
+        <li>ecbonist心斎橋加盟店介紹：https://ecbonist.ecbo.io/ecbo_cloak_shops_osaka_shinsaibashi_top5/</li>
+        <li>ぶらっとなんば難波駅コインロッカー：https://ebisubashi-magazine.com/osakametro-namba-station-coin-lockers/</li>
+        <li>Osaka Metro Service公告：https://www.osakametro-service.jp/info/20250501/</li>
+        <li>南海電鉄 特急ラピート：https://www.nankai.co.jp/traffic/express/rapit.html</li>
+        <li>南海電鉄 関空トク割ラピートきっぷ：https://www.nankai.co.jp/traffic/otoku/kankutokuwari.html</li>
+        <li>ekitan.com 難波(南海)⇔関西空港運賃：https://ekitan.com/transit/fare/sf-5728/st-5130</li>
+        <li>関西空港交通株式会社 心斎橋のりば案内：https://www.kate.co.jp/busstop/detail/3101</li>
+        <li>関西空港交通株式会社 時刻表：https://www.kate.co.jp/timetable/detail/UH</li>
+        <li>ヤマト運輸 空港宅急便：https://www.kuronekoyamato.co.jp/ytc/customer/send/services/airport/</li>
+        <li>ヤマト運輸FAQ：https://faq.kuronekoyamato.co.jp/app/answers/detail/a_id/1437/</li>
+        <li>JALABC 関西空港宅配：https://www.jalabc.com/delivery_service/hotel_delivery/kansai-airport.html</li>
+        <li>大鳥大社官方：https://www.ootoritaisha.jp/access/</li>
+        <li>住吉大社官方：https://www.sumiyoshitaisha.net/access/ ／ https://www.sumiyoshitaisha.net/faq/</li>
+        <li>住吉大社交通整理站：https://hirotravel.com/kansai/sumiyosi/akusesu.html</li>
+        <li>今宮戎神社官方：https://www.imamiya-ebisu.jp/access</li>
+        <li>通天閣官方營業資訊：https://www.tsutenkaku.co.jp/annai/index.html</li>
+        <li>通天閣TOWER SLIDER官方：https://www.tsutenkaku.co.jp/tour/tower-slider.html</li>
+        <li>大阪周遊パス2026年度公告：https://subway.osakametro.co.jp/guide/page/20260401_osaka_amazing_pass.php</li>
+        <li>大阪楽遊パス設施頁（通天閣）：https://www.e-pass.osaka-info.jp/jp/facility/detail?id=240</li>
+        <li>蟹ふぐ雪月花官網：https://kanifugusetsugetsuka.owst.jp/ ／ HotPepper：https://www.hotpepper.jp/strJ003984816/</li>
+        <li>ふぐかず鳳店 Tabelog：https://tabelog.com/osaka/A2705/A270501/27006252/ ／ 官網：https://fugukazu.foodre.jp/</li>
+        <li>串カツいっとく 店舗一覧：https://kushikatsuittoku.com/store/ ／ Tabelog：https://tabelog.com/en/osaka/A2701/A270202/27139874/</li>
+        <li>かに道楽道頓堀本店官網：https://douraku.co.jp/kansai/honten/ ／ HotPepper：https://www.hotpepper.jp/strJ000018294/</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<nav class="day-pager" aria-label="前後日切換">
+  <a href="osaka-2026-trip-guide.html">← 總覽</a>
+  <a href="usj-vip-guide.html">Day 2 USJ →</a>
+</nav>
+
+<footer>
+  <div class="wrap">
+    <span>2026 大阪五天自由行指南｜本頁：Day 1 抵達日</span>
+    <span class="mono">查核日期：2026-07-02・出發前 1-2 個月重查時效性資訊</span>
+  </div>
+</footer>
+
+</body>
+</html>

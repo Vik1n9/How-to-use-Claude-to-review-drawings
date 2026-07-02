@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="2026大阪五天自由行 Day 4（10/8週四）深度頁：木津市場清晨採買、難波八阪神社、道頓堀水上觀光船換票攻略、道頓堀大阪燒、神戶牛晚餐四家平等候選、日本橋夜購與「半夜日本時代劇」查證結論。">
+<title>2026 大阪五天自由行 Day 4｜道頓堀與美食日（10/8週四）</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Osaka 2026 trip guide — travel brochure skin，與 usj-vip-guide.html 同一視覺家族 */
+  :root{
+    --ink:#3B2C22;--ink-soft:#513E31;--paper:#FFFDF7;--card:#FFFDF8;
+    --line:#E8D2A4;--line-soft:#F1E0BD;--gold:#C99B45;--gold-bright:#E5B84A;
+    --crimson:#C95B41;--teal:#35A84C;--slate:#5E6FA6;--muted:#7B6B5C;
+    --shadow:0 14px 34px rgba(106,73,33,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Sans TC",system-ui,sans-serif;color:var(--ink);line-height:1.7;font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    background:
+      linear-gradient(90deg,rgba(137,89,40,.045) 1px,transparent 1px),
+      linear-gradient(180deg,#F1D5A9 0,#F7E6CA 480px,#fff 480px);
+    background-size:38px 100%,auto;
+  }
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  .mono{font-family:"Space Mono",monospace}
+  a{color:#267A32}
+  p{margin-bottom:14px}strong{font-weight:700}
+
+  /* ---- trip-nav：六頁切換（sticky） ---- */
+  .trip-nav{
+    position:sticky;top:0;z-index:120;background:rgba(255,253,247,.94);
+    border-bottom:1px solid #ECD8AD;box-shadow:0 8px 24px rgba(91,63,24,.06);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
+    padding:11px max(24px,calc((100vw - 1160px)/2 + 24px));
+  }
+  .trip-nav::-webkit-scrollbar{display:none}
+  .trip-nav a{
+    display:inline-flex;align-items:center;padding:7px 14px;border:1px solid #E8D2A4;border-radius:999px;
+    background:#fff;color:#756554;font-size:13px;font-weight:800;text-decoration:none;white-space:nowrap;
+    transition:color .2s,border-color .2s,background .2s;
+  }
+  .trip-nav a:hover{border-color:#E39A37;color:#3B2C22}
+  .trip-nav a[aria-current="page"]{background:var(--teal);border-color:var(--teal);color:#fff}
+
+  /* ---- hero ---- */
+  header{position:relative;overflow:hidden;padding:76px 0 120px;color:var(--ink);
+    background:
+      radial-gradient(circle at 12% 18%,rgba(255,255,255,.6) 0 60px,transparent 62px),
+      radial-gradient(circle at 90% 12%,rgba(255,255,255,.45) 0 84px,transparent 86px),
+      repeating-linear-gradient(96deg,#E8C99C 0 24px,#F3D9B1 24px 48px,#E1BD89 48px 72px);}
+  header::after{content:"";position:absolute;left:-3%;right:-3%;bottom:-1px;z-index:2;height:96px;background:#fff;
+    clip-path:polygon(0 48%,8% 58%,20% 44%,35% 62%,49% 46%,62% 58%,75% 42%,88% 59%,100% 44%,100% 100%,0 100%)}
+  .hero-card{position:relative;z-index:1;max-width:720px;border:1px solid rgba(194,151,78,.48);border-radius:2px;
+    background:rgba(255,246,207,.92);box-shadow:0 18px 42px rgba(95,60,24,.16);padding:34px 36px 30px}
+  .hero-card::after{content:"";position:absolute;right:-26px;top:-30px;width:86px;height:86px;
+    background:linear-gradient(140deg,#C94625 0 45%,#EF8B24 46% 64%,#D85A27 65%);
+    clip-path:polygon(50% 0,61% 32%,96% 17%,69% 48%,100% 60%,64% 64%,78% 100%,51% 73%,24% 100%,35% 64%,0 60%,31% 48%,4% 17%,39% 32%);
+    filter:drop-shadow(0 8px 4px rgba(112,57,18,.18));transform:rotate(18deg)}
+  .cred-tag{display:block;margin-bottom:12px;color:#91672E;font-size:14px;font-weight:700}
+  header h1{font-family:"Noto Serif TC",serif;font-weight:900;color:var(--crimson);
+    font-size:clamp(30px,4.5vw,52px);line-height:1.2;text-shadow:0 2px 0 #fff,0 8px 16px rgba(124,55,27,.14)}
+  header h1 .accent{color:#D58A25}
+  .sub{color:#5D4A3A;margin-top:14px;font-size:15px;font-weight:700;line-height:1.85;max-width:60ch}
+  .params{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:20px}
+  .param{min-width:0;padding:10px 14px;border:1px solid rgba(198,153,76,.4);border-radius:999px;background:#fffdf8}
+  .param .k{color:#9B6730;font-size:12px;font-weight:800}
+  .param .v{color:#5F4937;font-size:13px;font-weight:800}
+  .param .v small{color:#8B7A68;font-weight:400}
+
+  /* ---- sections ---- */
+  section{position:relative;padding:54px 0;background:#fff;scroll-margin-top:74px}
+  section + section{border-top:1px solid #F0DFBD}
+  .eyebrow{color:#A35A21;font-size:13px;font-weight:900;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .eyebrow .num{color:var(--crimson);font-family:"Space Mono",monospace;font-weight:700}
+  h2{font-family:"Noto Serif TC",serif;font-weight:700;color:#3F2D22;font-size:clamp(24px,3.5vw,34px);line-height:1.38;margin-bottom:8px}
+  h3{font-family:"Noto Serif TC",serif;font-weight:700;font-size:18px;margin:30px 0 12px;color:#5A3C26}
+  .lead{color:#665446;font-size:16px;font-weight:500;margin-bottom:26px;max-width:68ch}
+
+  /* ---- 卡片 ---- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px;margin-top:8px}
+  .card{position:relative;display:grid;gap:9px;align-content:start;padding:18px 20px;
+    border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow)}
+  .card h4{font-family:"Noto Serif TC",serif;font-size:16px;font-weight:700;color:#4B3527}
+  .card .px{font-family:"Space Mono",monospace;font-size:12.5px;color:#A35A21}
+  .card p{font-size:13px;color:#665446;margin:0}
+  .card a.card-link{font-weight:800}
+
+  /* ---- add-on 標籤（四類，全站統一） ---- */
+  .tag{display:inline-flex;align-items:center;border-radius:999px;padding:2px 10px;font-size:11.5px;font-weight:900;border:1px solid transparent}
+  .tag-add{background:#E8F6EA;color:#1E6F2A;border-color:#BFE3C5}      /* 可加入原行程 */
+  .tag-split{background:#EDF1FA;color:#44548C;border-color:#C9D3EC}    /* 適合分團 */
+  .tag-ref{background:#FFF6D8;color:#A35A21;border-color:#E2BD73}      /* 只列備查 */
+  .tag-no{background:#FFF3EA;color:#A6402E;border-color:#E6C3A4}       /* 不建議本次加入 */
+  .tag-group{background:#F8EBC7;color:#70451F;border-color:#E2C281}    /* 全團同行 */
+
+  /* ---- 時間軸（today at a glance / main route） ---- */
+  .timeline{border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow);padding:8px 24px;margin-top:8px}
+  .timeline li{list-style:none;display:grid;grid-template-columns:92px 1fr;gap:14px;padding:14px 0;border-top:1px solid #F0DFBD;font-size:14px}
+  .timeline li:first-child{border-top:none}
+  .timeline .t{font-family:"Space Mono",monospace;font-size:13px;color:#A35A21;font-weight:700;white-space:nowrap}
+  .timeline b{color:#3F2D22}
+  .timeline .d{color:#665446;font-size:13px}
+
+  /* ---- 提示框 ---- */
+  .insight{background:#FFF6D8;border:1px solid #E2BD73;border-left:4px solid #E2A534;border-radius:6px;padding:20px 24px;margin-top:8px}
+  .insight h3{margin-top:0;color:#A35A21}
+  .insight p{font-size:14px;margin-bottom:8px}.insight p:last-child{margin-bottom:0}
+  .flag{background:#FFF3EA;border:1px solid #E6C3A4;border-left:4px solid var(--crimson);border-radius:6px;padding:20px 24px;margin-top:8px;color:#7C382C}
+  .flag h3{margin-top:0;color:var(--crimson)}
+  .flag ul{padding-left:20px;font-size:13.5px}.flag li{margin-bottom:7px}
+  .flag p{font-size:13.5px;margin-bottom:0}
+
+  /* ---- 表格 ---- */
+  .table-scroll{overflow-x:auto;border-radius:6px;border:1px solid #EAD6AB;box-shadow:var(--shadow);background:#fff;margin-top:8px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px}
+  thead th{background:#F8EBC7;color:#70451F;font-weight:900;text-align:left;padding:13px 14px;font-size:12.5px;vertical-align:bottom}
+  tbody td{padding:12px 14px;border-top:1px solid #F0DFBD;vertical-align:top;color:#514236}
+  tbody tr:nth-child(even){background:#FFF8E8}
+  .caption{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.6}
+
+  /* ---- 連結藥丸 ---- */
+  .link-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .link-pill{display:inline-flex;align-items:center;min-height:34px;padding:0 14px;border:1px solid #E2C281;border-radius:999px;
+    background:#fffdf8;color:#267A32;text-decoration:none;white-space:nowrap;font-size:12.5px;font-weight:800;
+    transition:background .2s,color .2s,border-color .2s}
+  .link-pill:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+
+  /* ---- 清單/檢查表 ---- */
+  .notes{border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow);padding:8px 24px;margin-top:22px}
+  .notes li{list-style:none;padding:14px 0 14px 30px;position:relative;border-top:1px solid #F0DFBD;font-size:14px}
+  .notes li:first-child{border-top:none}
+  .notes li::before{content:"●";position:absolute;left:6px;top:14px;color:#D96A25;font-size:9px}
+  .notes li b{color:var(--crimson);font-weight:700}
+  .checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+  .chk{border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow);padding:18px 20px}
+  .chk h4{font-family:"Noto Serif TC",serif;font-size:15.5px;font-weight:700;margin-bottom:10px;color:#4B3527}
+  .chk label{display:grid;grid-template-columns:20px 1fr;gap:9px;align-items:start;font-size:13px;color:#665446;line-height:1.6;padding:6px 0;border-top:1px solid #F0DFBD}
+  .chk label:first-of-type{border-top:none}
+  .chk input{width:15px;height:15px;margin-top:3px;accent-color:var(--teal)}
+
+  /* ---- 來源 ---- */
+  .src{font-size:12px;color:#665446;line-height:1.8}
+  .src li{list-style:none;padding:8px 0;border-top:1px solid #F0DFBD}
+  .src li:first-child{border-top:none}
+
+  /* ---- day-pager + footer ---- */
+  .day-pager{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    max-width:1160px;margin:0 auto;padding:34px 24px}
+  .day-pager a{display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border:1px solid #E2C281;border-radius:999px;
+    background:#fffdf8;color:#267A32;text-decoration:none;font-size:14px;font-weight:900;transition:background .2s,color .2s,border-color .2s}
+  .day-pager a:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+  footer{background:#3B2C22;color:#E9D9B8;padding:30px 0;font-size:12.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer .mono,footer a{color:#D5BC8C}
+
+  @media (max-width:620px){
+    body{background:linear-gradient(180deg,#F3D9B1 0,#fff 560px)}
+    .wrap{padding:0 20px}
+    header{padding:52px 0 100px}
+    .hero-card{padding:26px 22px 24px}
+    .hero-card::after{width:70px;height:70px;right:-10px;top:-26px}
+    .params{grid-template-columns:1fr 1fr}
+    .timeline li{grid-template-columns:70px 1fr}
+  }
+</style>
+</head>
+<body>
+
+<nav class="trip-nav" aria-label="大阪五天自由行頁面切換">
+  <a href="osaka-2026-trip-guide.html">總覽</a>
+  <a href="osaka-2026-day1.html">Day 1</a>
+  <a href="usj-vip-guide.html">Day 2 USJ</a>
+  <a href="osaka-2026-day3.html">Day 3</a>
+  <a href="osaka-2026-day4.html" aria-current="page">Day 4</a>
+  <a href="osaka-2026-day5.html">Day 5</a>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="hero-card">
+      <span class="cred-tag">2026 大阪五天自由行・Day 4｜10/08 週四</span>
+      <h1>道頓堀<span class="accent">與美食日</span></h1>
+      <p class="sub">全行程餐飲內容最重的一天：早起先去木津市場（清晨市場約11點收攤），順路難波八阪神社；白天先幫晚上的道頓堀水上觀光船換票，再回來搭乘；晚餐是神戶牛系四家平等候選，不排序，由旅客自選並儘早訂位。表定「半夜日本時代劇」查無深夜場次，頁內附查證結論與替代建議。</p>
+      <div class="params">
+        <div class="param"><div class="k">日期</div><div class="v">2026-10-08（週四）</div></div>
+        <div class="param"><div class="k">人數</div><div class="v">6 位成人</div></div>
+        <div class="param"><div class="k">飯店基準點</div><div class="v">靜鐵飯店普雷西奧大阪心齋橋</div></div>
+        <div class="param"><div class="k">本日主題</div><div class="v">木津市場早市＋道頓堀水上觀光船＋神戶牛晚餐</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- 01 今日一眼看完 -->
+  <section id="glance">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">01</span>今日一眼看完</div>
+      <h2>早起是今天唯一的難關</h2>
+      <p class="lead">木津市場約 11:00 多數店舖就收攤，是全天最容易被「多睡半小時」犧牲掉的行程，建議前一晚提醒全團。其餘動線都在道頓堀步行圈內，晚餐前記得先幫觀光船換票。</p>
+      <ul class="timeline">
+        <li><span class="t">08:30–10:30</span><div><b>木津市場（早起組）</b><div class="d">清晨市場，越晚到店家越少；建議此時段內完成，週日／國定假日固定休，另有不定期週三休。<span class="tag tag-split">分團可選</span></div></div></li>
+        <li><span class="t">10:30–11:00</span><div><b>難波八阪神社</b><div class="d">獅子殿地標，與木津市場同路徑順道參拜，免費開放。<span class="tag tag-split">分團可選</span></div></div></li>
+        <li><span class="t">11:00 起</span><div><b>道頓堀水上觀光船先換票</b><div class="d">白天先到太左衛門橋窗口把晚上想搭的時段換成「時間指定券」，避免傍晚場售完。</div></div></li>
+        <li><span class="t">午後</span><div><b>道頓堀散步＋大阪燒</b><div class="d">美津の／千房兩案比較，人均約1,000-2,000円。<span class="tag tag-split">分團可選</span></div></div></li>
+        <li><span class="t">傍晚</span><div><b>道頓堀水上觀光船（正式登船）</b><div class="d">20分鐘航程，建議全團集合同一時段一起排隊登船。<span class="tag tag-group">全團</span></div></div></li>
+        <li><span class="t">晚餐</span><div><b>神戶牛系四家平等候選</b><div class="d">大牧場／Kokorotake壽喜燒（雙候選待確認）／New Matsusaka／板前燒肉一牛，四案不分優劣，全團先選一家。<span class="tag tag-group">全團</span></div></div></li>
+        <li><span class="t">晚餐後</span><div><b>日本橋夜間採購（可選）</b><div class="d">電器街、藥妝、唐吉訶德，適合分團。<span class="tag tag-split">分團可選</span></div></div></li>
+        <li><span class="t">深夜</span><div><b>「日本時代劇」</b><div class="d">查證結論：大阪查無真正深夜（22:00後）場次，詳見本頁第 5 節的說明與替代建議。</div></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 02 表定主線逐站 -->
+  <section id="route">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">02</span>表定主線逐站</div>
+      <h2>木津市場 → 八阪神社 → 道頓堀觀光船 → 大阪燒</h2>
+      <p class="lead">四站都在難波／道頓堀步行圈內，只要早起出門，其餘節奏都不緊繃。</p>
+
+      <h3>木津市場（大阪木津卸売市場）</h3>
+      <p>清晨市場，約 6:00 起店舖陸續開始營業，<strong>約 11:00 多數店舖已收攤</strong>，建議造訪時段為 <strong>8:30–10:30</strong>。一般遊客可自由參觀選購生鮮、乾貨、熟食，不需會員資格。</p>
+      <div class="flag">
+        <h3>公休與 10/8 是否營業：待重查</h3>
+        <ul>
+          <li>官方公休慣例：<strong>日曜日、國定假日固定休市</strong>，另有「不定期的水曜日」休市（配合大阪市中央卸売市場休市日曆），黃金週、盂蘭盆節、年末年始另有長假休市。</li>
+          <li>10/8（週四）：官方休市規則中沒有「週四固定休」的說明，理論上應正常營業；但 <strong>2026 年 10 月的逐日休市曆尚未公布</strong>，官網「市場カレンダー」目前僅顯示到下半年月份縮圖，無法讀取到 10/8 當天的具體標記。</li>
+          <li>10/7（三）、10/8（四）皆非「木津の朝市」擴大促銷日（每月第2週六與最終週六 9:00–12:00 才有），只能體驗一般批發市場的日常樣貌，不是特別活動日。</li>
+        </ul>
+        <p><strong>待重查</strong>：出發前 1-2 個月致電 <span class="mono">06-6631-1139</span> 或查官網 kizu-ichiba.com/calendar 確認 10/8 是否為臨時／不定期公休日。查核日期：2026-07-02，出發前 1-2 個月重查。</p>
+      </div>
+
+      <h3>難波八阪神社</h3>
+      <p>境內「獅子殿」是地標，全年無休、免費參觀。開門時間 6:00–17:00。交通：大阪 Metro 御堂筋線・四つ橋線・千日前線「なんば」駅徒步約 6-9 分；阪神なんば線・近鉄「大阪難波」駅徒步約 9 分——從難波或木津市場方向過來都順路。</p>
+
+      <h3>道頓堀水上觀光船（とんぼりリバークルーズ）</h3>
+      <p>沿道頓堀川約 20 分鐘迷你巡航，經過 9 座橋樑並有導覽解說，從太左衛門橋船着場出發（乘船受理窗口在唐吉訶德道頓堀店河側入口旁／東側）。班次為 <strong>11:00–21:00 每半小時一班</strong>（尖峰時段可能加開至最短10分鐘一班）。票價：大人 2,000円、學生（中學～專門學校）1,000円、小學生500円，學齡前兒童每位大人可攜1位免費同行。</p>
+      <div class="insight">
+        <h3>換票關鍵：只能現場、不能電話預約</h3>
+        <p>票券<strong>僅限當日發售</strong>，且<strong>只能現場購票／兌換，不接受電話預約</strong>；傍晚班次容易提早售完，建議白天先到窗口把晚上想搭的時段換成「時間指定券」，晚點再回來排隊登船。小雨仍照常出航。</p>
+        <p>大阪周遊パス可免費兌換（列於周遊パス「QRコード提示で無料で利用できる施設」清單中），但仍須現場出示 QR Code／卡片換「時間指定」乘船券，規則與現場購票相同。 <span class="tag tag-group">適合全團集合體驗</span></p>
+      </div>
+
+      <h3>道頓堀散步＋大阪燒</h3>
+      <div class="cards">
+        <div class="card">
+          <h4>美津の（道頓堀本店）</h4>
+          <span class="px">人均約 1,000–2,000円</span>
+          <p>1945年創業老店，米其林必比登多次入選。開店前常見10組以上排隊，近期因外國遊客增加，<strong>排隊常超過1小時</strong>，平日晚間也曾記錄約40分鐘等候。6人同桌等候時間現場無法保證。</p>
+        </div>
+        <div class="card">
+          <h4>千房 道頓堀ビル店</h4>
+          <span class="px">人均約 1,000–1,999円</span>
+          <p>1-6樓、最大可容納187席，規模較大、樓層多，<strong>比美津の更容易安排6人同桌</strong>。宴會套餐需3人以上預約；年末年始／黃金週／盂蘭盆節等旺季不接受預約，建議先電話或官網詢問是否需排隊。</p>
+        </div>
+      </div>
+      <p class="caption">查核日期：2026-07-02，出發前 1-2 個月重查排隊狀況與是否恢復預約。</p>
+    </div>
+  </section>
+
+  <!-- 03 晚餐候選 -->
+  <section id="dinner">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">03</span>晚餐候選</div>
+      <h2>神戶牛系四家平等候選</h2>
+      <p class="lead">以下四家不分優劣、不排序，由旅客依當晚偏好（吃到飽燒肉／壽喜燒／鐵板燒／精緻拼盤套餐）與預算自行決定，6人團體位少，決定後請儘早訂位。</p>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>店名</th><th>地點與交通</th><th>套餐與價格</th><th>訂位方式</th><th>備註</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>焼肉屋 大牧場 道頓堀店</td>
+              <td>道頓堀1-6-15 コムラード・ドウトンビル5F／なんば駅14番出口徒步約3分</td>
+              <td>神戸牛食べ放題 <strong>13,200円/人</strong>（另有PREMIUMコース9,328円起）</td>
+              <td>ぐるなび線上或電話 050-5486-1589，明確可預約6人</td>
+              <td>11:00–24:00（L.O.23:30），不定休</td>
+            </tr>
+            <tr>
+              <td>壽喜燒「Kokorotake」（兩候選待確認）</td>
+              <td>候選A 心たけ：北新地／大江橋駅徒步約5分（離心齋橋較遠）<br>候選B 牛丸 心斎橋：東心斎橋2-8-26／心斎橋駅徒步約5分</td>
+              <td>候選A：鐵板燒/涮涮鍋套餐約6,776–7,800円/人<br>候選B：神戸牛+松葉蟹食べ放題 <strong>15,400円/人</strong></td>
+              <td>候選A：官網 kokorotake.gorp.jp　候選B：電話 06-6224-0259 或 HotPepper</td>
+              <td><strong>行程表原意待確認，出發前向規劃人確認後再訂位。</strong>詳見下方說明。</td>
+            </tr>
+            <tr>
+              <td>ニュー松坂 難波御堂筋店</td>
+              <td>難波3-7-19 GEMSなんば9階／なんば駅11番出口徒步約1分</td>
+              <td>晚餐主打黒毛和牛／神戸牛／松阪牛鐵板燒套餐，<strong>具體套餐價格待重查</strong></td>
+              <td>電話 06-6537-9920 或官網，可包場洽詢</td>
+              <td>晚餐17:00–22:00（L.O.21:00），不定休</td>
+            </tr>
+            <tr>
+              <td>板前焼肉 一牛 心斎橋店</td>
+              <td>南船場3-9-6／心斎橋駅徒步約5分</td>
+              <td>天套餐 <strong>16,500円/人</strong>（8道拼盤+和牛握壽司等，與行程表估算精確吻合）；另有一牛套餐7,700円、月套餐9,900円</td>
+              <td>線上預約（免電話）或電話 050-5597-8084／06-4256-1677，官網明確提供6人用半個室</td>
+              <td>17:00–23:00（L.O.22:30）每日營業，定休日網頁未明確標示（另有資訊指本店週日公休，出發前電話確認）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption">價格與營業時間查核日期：2026-07-02，出發前 1-2 個月重查（日本餐飲業套餐內容與定休日常臨時調整，6人團體位建議儘早訂位）。</p>
+
+      <div class="flag">
+        <h3>Kokorotake 店名疑義：兩案並列，待人工確認</h3>
+        <ul>
+          <li><strong>候選A「心たけ」</strong>：讀音正好是 Kokoro-take，與行程表音譯完全吻合，但地點在北新地／東梅田一帶，不在心齋橋／道頓堀步行圈；套餐價位約6,776–7,800円/人，約是行程表估算15,000円的一半；且此店主打鐵板燒／涮涮鍋複合料理，非純壽喜燒專門店。</li>
+          <li><strong>候選B「牛丸 心斎橋」</strong>：音譯與「Kokorotake」無關聯，但地點在心齋橋步行圈、神戸牛+松葉蟹食べ放題套餐15,400円與行程表15,000円幾乎一致。</li>
+          <li><strong>建議</strong>：出發前向原行程規劃人確認「Kokorotake」究竟指哪一家；若以「心齋橋步行圈＋15,000円神戶牛壽喜燒」為選店標準，候選B較貼合，若堅持店名發音，則是候選A（需接受地點較遠、預算下修）。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 加碼選項 Add-on -->
+  <section id="addon">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">04</span>加碼選項</div>
+      <h2>依聊天補充：帝王蟹、燒肉吃到飽、日本橋夜購</h2>
+      <p class="lead">以下項目來自聊天補充素材，非表定主線，依情況標示標籤，供有興趣者自行加選。</p>
+      <div class="cards">
+        <div class="card">
+          <h4>かに道楽 道頓堀本店 <span class="tag tag-ref">只列備查</span></h4>
+          <span class="px">晩間かに会席 7,590–8,690円／人；極上かに会席22,000–28,600円／人</span>
+          <p>地址道頓堀1-6-18（招牌大螃蟹地標），なんば駅14番出口徒步約3分。晚間人均7,590円起即可吃到蟹會席套餐，適合6人一室；<strong>若想吃帝王蟹（タラバ）專門課程，需選22,000円以上高階套餐</strong>。線上可預約（當日20:00前），個室2-20人皆有，9人以上建議改約鄰近分店。菜單隨產季浮動，出發前重查。</p>
+        </div>
+        <div class="card">
+          <h4>燒肉吃到飽：298 PREMIUM 難波店 <span class="tag tag-ref">只列備查・待重查</span></h4>
+          <span class="px">1,100円／1,980円／特選和牛食べ放題等多種價位</span>
+          <p>設有2-6人用桌型個室共10間，適合小團體。<strong>本項目僅有搜尋摘要、未逐頁查證確切地址與最新課程內容</strong>，出發前務必電話或官網重新確認。焼肉屋大牧場（見上方晚餐表格）已可兼任「燒肉吃到飽」代表選項，且已完整查證。</p>
+        </div>
+        <div class="card">
+          <h4>日本橋電器街夜間採購 <span class="tag tag-split">適合分團</span></h4>
+          <span class="px">電器、動漫周邊、女僕咖啡廳</span>
+          <p>晚餐後可安排自由逛日本橋電器街，街邊常有招攬（含女僕咖啡廳），建議想逛的人分團前往，不想逛的人可直接返回飯店。留意店家招攬與消費規則，議價前先確認含稅價與保固條件。</p>
+        </div>
+      </div>
+      <p class="caption">查核日期：2026-07-02，出發前 1-2 個月重查價格與課程內容。</p>
+    </div>
+  </section>
+
+  <!-- 05 半夜日本時代劇查證 -->
+  <section id="latenight">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">05</span>半夜「日本時代劇」查證</div>
+      <h2>查證結論：大阪查無真正的深夜場</h2>
+      <p class="lead">行程表寫「半夜日本時代劇」，但實際查證後，大阪主流商業演出體系中沒有這類深夜場次。</p>
+      <div class="flag">
+        <h3>結論</h3>
+        <p>大阪主流劇場與商業演出<strong>查無真正「深夜」（22:00後開演或跨午夜）場次</strong>。大阪府「青少年健全育成条例」對深夜興行有嚴格規範，加上主流劇場慣例，晚間場多在18:00–19:30開演、21:00–21:30前後結束。</p>
+      </div>
+      <div class="insight">
+        <h3>最接近的替代：SAMURAI CAFE，但與週四衝突</h3>
+        <p><strong>SAMURAI CAFE</strong>（武士／忍者參與式時代劇娛樂餐廳，含觀眾互動與殺陣表演）最貼近「時代劇」氛圍：晚場20:30–21:30，基本方案10,000円/人起（含高級便當方案16,000円/人）。地點在大阪市北區，距心齋橋／難波較遠，需計程車（難波出發約18分）。</p>
+        <p><strong>但此店只在週一、週二、週五營運，與 Day 4（10/8週四）衝突。</strong>若想體驗這個項目，需要挪到 Day 1（10/5週一）晚上，或接受捨棄本項目——這是需要旅客取捨的決定，本頁不代為決定。</p>
+        <p>其他晚間替代如なんばグランド花月（NGK）、心齋橋角座的傍晚場天天有開演（多在18:00–19:30），但語言隔閡較大（漫才／落語以日文為主），氛圍也偏喜劇而非時代劇。 <span class="tag tag-ref">只列備查</span></p>
+      </div>
+      <p class="caption">查核日期：2026-07-02，出發前 1-2 個月重查：NGK／心齋橋角座2026年10月確切排期尚未公布；SAMURAI CAFE營運星期與票價以官網 samurai-cafe.com 為準。</p>
+    </div>
+  </section>
+
+  <!-- 06 全團／分團建議 -->
+  <section id="split">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">06</span>全團／分團建議</div>
+      <h2>哪些是集合點、哪些可以自由脫隊</h2>
+      <ul class="notes">
+        <li><b>木津市場（早起組）</b>：可依起床意願自由參加，晚起者可在飯店多睡，或直接於難波周邊等候會合。<span class="tag tag-split">分團</span></li>
+        <li><b>難波八阪神社</b>：與木津市場順路，早起組同行即可，非早起者也可另約時間補訪。<span class="tag tag-split">分團</span></li>
+        <li><b>道頓堀水上觀光船</b>：需要指定時段登船，建議統一換票時間、全團同一班次集合。<span class="tag tag-group">全團</span></li>
+        <li><b>道頓堀大阪燒</b>：想排隊等美津の的人與想快速入座千房的人可分兩桌行動。<span class="tag tag-split">分團</span></li>
+        <li><b>晚餐神戶牛四案</b>：全團先討論選定一家並統一訂位，是本日的核心集合點。<span class="tag tag-group">全團</span></li>
+        <li><b>日本橋夜間採購</b>：想逛電器街／藥妝的人與想早點回飯店休息的人可分開行動。<span class="tag tag-split">分團</span></li>
+        <li><b>半夜日本時代劇</b>：若最終決定挪到Day1，屬於想去的人另外安排的項目，非Day4全團行程。<span class="tag tag-split">分團</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 07 風險與備案 -->
+  <section id="risk">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">07</span>風險與備案</div>
+      <h2>本日五個需要留意的風險點</h2>
+      <div class="flag">
+        <h3>風險清單</h3>
+        <ul>
+          <li><strong>木津市場10/8是否臨時休市未定</strong>——2026年10月逐日曆尚未公布。備案：出發前電話確認；若真的休市，改成當天只在附近散步拍照，或改前往黑門市場（整體年中無休僅元旦休，但需留意個別小店可能公休）。</li>
+          <li><strong>道頓堀觀光船傍晚場容易售完</strong>——備案：白天先兌換晚上時段票；若仍額滿，改搭下午時段，或調整成隔天彈性時間再補搭。</li>
+          <li><strong>「Kokorotake」壽喜燒店名歧異未解</strong>——備案：出發前向原規劃人確認是候選A（心たけ）還是候選B（牛丸心斎橋）；若無法確認，直接改選表格中其他三家已完整查證的候選。</li>
+          <li><strong>New Matsusaka（難波御堂筋店）套餐價格未查得</strong>——備案：出發前電話06-6537-9920或官網MENU頁確認實際金額，再決定是否選用。</li>
+          <li><strong>半夜日本時代劇查無深夜場</strong>——備案：若堅持要體驗，只能挪到Day1（週一）晚上找SAMURAI CAFE的週一場；Day4當晚建議改為道頓堀／日本橋夜間採購，或提早回飯店休息。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 預約與票券 -->
+  <section id="booking">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">08</span>預約與票券</div>
+      <h2>出發前與當天要完成的事</h2>
+      <div class="checks">
+        <div class="chk">
+          <h4>晚餐訂位</h4>
+          <label><input type="checkbox"><span>全團討論並選定四家神戶牛候選中的一家</span></label>
+          <label><input type="checkbox"><span>若選「Kokorotake」，先向原規劃人確認是心たけ還是牛丸心斎橋，再訂位</span></label>
+          <label><input type="checkbox"><span>電話或線上預約6人位，出發前1-2週再次確認訂位</span></label>
+        </div>
+        <div class="chk">
+          <h4>道頓堀觀光船換票</h4>
+          <label><input type="checkbox"><span>抵達道頓堀後，先到太左衛門橋（唐吉訶德河側）窗口換票</span></label>
+          <label><input type="checkbox"><span>若使用大阪周遊パス，記得帶QR Code／卡片現場換「時間指定」乘船券</span></label>
+          <label><input type="checkbox"><span>優先換傍晚／晚餐前後時段，避免向晚售完</span></label>
+        </div>
+        <div class="chk">
+          <h4>木津市場出發前確認</h4>
+          <label><input type="checkbox"><span>出發前1-2個月電話06-6631-1139或查官網日曆確認10/8是否休市</span></label>
+          <label><input type="checkbox"><span>若確認臨時休市，備案調整為當天不早起或直接前往八阪神社／道頓堀</span></label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 Sources And Last Checked -->
+  <section id="sources">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">09</span>Sources And Last Checked</div>
+      <h2>資料來源與查核日期</h2>
+      <ul class="src">
+        <li>木津の朝市官方：<a href="https://kiduichiba.jp/" target="_blank" rel="noopener">kiduichiba.jp</a>　查核日期：2026-07-02</li>
+        <li>木津卸売市場市場カレンダー：<a href="https://kizu-ichiba.com/calendar/" target="_blank" rel="noopener">kizu-ichiba.com/calendar</a>　查核日期：2026-07-02（待重查：2026年10月逐日曆尚未公布）</li>
+        <li>木津市場活動介紹：<a href="https://guide.jr-odekake.net/event/120368" target="_blank" rel="noopener">guide.jr-odekake.net</a>　查核日期：2026-07-02</li>
+        <li>難波八阪神社介紹：<a href="https://osaka-info.jp/spot/nanbayasakajinja/" target="_blank" rel="noopener">osaka-info.jp</a>／<a href="https://otent-nankai.jp/category/topic/240401_nambayasaka-shrine_947" target="_blank" rel="noopener">otent-nankai.jp</a>　查核日期：2026-07-02</li>
+        <li>とんぼりリバークルーズ官方（一本松海運）：<a href="https://www.ipponmatsu.co.jp/cruise/tombori.html" target="_blank" rel="noopener">ipponmatsu.co.jp</a>　查核日期：2026-07-02</li>
+        <li>大阪楽遊パス設施頁（道頓堀観光船）：<a href="https://www.e-pass.osaka-info.jp/jp/facility/detail?id=4" target="_blank" rel="noopener">e-pass.osaka-info.jp</a>　查核日期：2026-07-02</li>
+        <li>美津の官網：<a href="https://www.mizuno-osaka.com/sp/shopinfo.html" target="_blank" rel="noopener">mizuno-osaka.com</a>　查核日期：2026-07-02</li>
+        <li>千房道頓堀ビル店官網：<a href="https://shop.chibo.com/detail/28/" target="_blank" rel="noopener">shop.chibo.com</a>　查核日期：2026-07-02</li>
+        <li>焼肉屋大牧場道頓堀店官網：<a href="https://daibokujyo.gorp.jp/" target="_blank" rel="noopener">daibokujyo.gorp.jp</a>　查核日期：2026-07-02</li>
+        <li>心たけ官網：<a href="https://kokorotake.gorp.jp/" target="_blank" rel="noopener">kokorotake.gorp.jp</a>　查核日期：2026-07-02</li>
+        <li>牛丸心斎橋官網（コース）：<a href="https://ushimarushinsaibashi.owst.jp/courses" target="_blank" rel="noopener">ushimarushinsaibashi.owst.jp</a>　查核日期：2026-07-02</li>
+        <li>New Matsusaka官網：<a href="https://new-matsusaka.com/shop/namba.html" target="_blank" rel="noopener">new-matsusaka.com</a>　查核日期：2026-07-02（待重查：套餐價格）</li>
+        <li>板前焼肉一牛官網：<a href="https://www.ichigyu.jp/" target="_blank" rel="noopener">ichigyu.jp</a>　查核日期：2026-07-02</li>
+        <li>かに道楽道頓堀本店官網：<a href="https://douraku.co.jp/kansai/honten/" target="_blank" rel="noopener">douraku.co.jp</a>　查核日期：2026-07-02</li>
+        <li>特選和牛焼肉食べ放題298 PREMIUM難波店：搜尋摘要來源，未逐頁查證　查核日期：2026-07-02（待重查）</li>
+        <li>SAMURAI CAFE官方：<a href="https://samurai-cafe.com/" target="_blank" rel="noopener">samurai-cafe.com</a>　查核日期：2026-07-02</li>
+        <li>なんばグランド花月官方：<a href="https://ngk.yoshimoto.co.jp/schedule/" target="_blank" rel="noopener">ngk.yoshimoto.co.jp</a>　查核日期：2026-07-02（待重查：2026年10月排期）</li>
+      </ul>
+      <p class="caption">全頁查核日期：2026-07-02，出發前 1-2 個月重查所有時效性資訊（營業時間、公休日、票價、套餐內容）。</p>
+    </div>
+  </section>
+
+</main>
+
+<nav class="day-pager" aria-label="前後日切換">
+  <a href="osaka-2026-day3.html">← 上一天：Day 3</a>
+  <a href="osaka-2026-day5.html">下一天：Day 5 →</a>
+</nav>
+
+<footer>
+  <div class="wrap">
+    <span>2026 大阪五天自由行指南｜本頁：Day 4</span>
+    <span class="mono">查核日期：2026-07-02・出發前 1-2 個月重查時效性資訊</span>
+  </div>
+</footer>
+
+</body>
+</html>

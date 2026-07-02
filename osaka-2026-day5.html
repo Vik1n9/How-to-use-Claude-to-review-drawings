@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="2026 大阪五天自由行 Day 5（10/9 週五）：飯店退房、臨空城 Rinku Premium Outlets 分團自由逛、關西機場返程流程與長榮 BR129 時程倒推。">
+<title>2026 大阪五天自由行 Day 5｜Outlet 與返程日（10/9 週五）</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Osaka 2026 trip guide — travel brochure skin，與 usj-vip-guide.html 同一視覺家族 */
+  :root{
+    --ink:#3B2C22;--ink-soft:#513E31;--paper:#FFFDF7;--card:#FFFDF8;
+    --line:#E8D2A4;--line-soft:#F1E0BD;--gold:#C99B45;--gold-bright:#E5B84A;
+    --crimson:#C95B41;--teal:#35A84C;--slate:#5E6FA6;--muted:#7B6B5C;
+    --shadow:0 14px 34px rgba(106,73,33,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Sans TC",system-ui,sans-serif;color:var(--ink);line-height:1.7;font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    background:
+      linear-gradient(90deg,rgba(137,89,40,.045) 1px,transparent 1px),
+      linear-gradient(180deg,#F1D5A9 0,#F7E6CA 480px,#fff 480px);
+    background-size:38px 100%,auto;
+  }
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  .mono{font-family:"Space Mono",monospace}
+  a{color:#267A32}
+  p{margin-bottom:14px}strong{font-weight:700}
+
+  /* ---- trip-nav：六頁切換（sticky） ---- */
+  .trip-nav{
+    position:sticky;top:0;z-index:120;background:rgba(255,253,247,.94);
+    border-bottom:1px solid #ECD8AD;box-shadow:0 8px 24px rgba(91,63,24,.06);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
+    padding:11px max(24px,calc((100vw - 1160px)/2 + 24px));
+  }
+  .trip-nav::-webkit-scrollbar{display:none}
+  .trip-nav a{
+    display:inline-flex;align-items:center;padding:7px 14px;border:1px solid #E8D2A4;border-radius:999px;
+    background:#fff;color:#756554;font-size:13px;font-weight:800;text-decoration:none;white-space:nowrap;
+    transition:color .2s,border-color .2s,background .2s;
+  }
+  .trip-nav a:hover{border-color:#E39A37;color:#3B2C22}
+  .trip-nav a[aria-current="page"]{background:var(--teal);border-color:var(--teal);color:#fff}
+
+  /* ---- hero ---- */
+  header{position:relative;overflow:hidden;padding:76px 0 120px;color:var(--ink);
+    background:
+      radial-gradient(circle at 12% 18%,rgba(255,255,255,.6) 0 60px,transparent 62px),
+      radial-gradient(circle at 90% 12%,rgba(255,255,255,.45) 0 84px,transparent 86px),
+      repeating-linear-gradient(96deg,#E8C99C 0 24px,#F3D9B1 24px 48px,#E1BD89 48px 72px);}
+  header::after{content:"";position:absolute;left:-3%;right:-3%;bottom:-1px;z-index:2;height:96px;background:#fff;
+    clip-path:polygon(0 48%,8% 58%,20% 44%,35% 62%,49% 46%,62% 58%,75% 42%,88% 59%,100% 44%,100% 100%,0 100%)}
+  .hero-card{position:relative;z-index:1;max-width:720px;border:1px solid rgba(194,151,78,.48);border-radius:2px;
+    background:rgba(255,246,207,.92);box-shadow:0 18px 42px rgba(95,60,24,.16);padding:34px 36px 30px}
+  .hero-card::after{content:"";position:absolute;right:-26px;top:-30px;width:86px;height:86px;
+    background:linear-gradient(140deg,#C94625 0 45%,#EF8B24 46% 64%,#D85A27 65%);
+    clip-path:polygon(50% 0,61% 32%,96% 17%,69% 48%,100% 60%,64% 64%,78% 100%,51% 73%,24% 100%,35% 64%,0 60%,31% 48%,4% 17%,39% 32%);
+    filter:drop-shadow(0 8px 4px rgba(112,57,18,.18));transform:rotate(18deg)}
+  .cred-tag{display:block;margin-bottom:12px;color:#91672E;font-size:14px;font-weight:700}
+  header h1{font-family:"Noto Serif TC",serif;font-weight:900;color:var(--crimson);
+    font-size:clamp(30px,4.5vw,52px);line-height:1.2;text-shadow:0 2px 0 #fff,0 8px 16px rgba(124,55,27,.14)}
+  header h1 .accent{color:#D58A25}
+  .sub{color:#5D4A3A;margin-top:14px;font-size:15px;font-weight:700;line-height:1.85;max-width:60ch}
+  .params{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:20px}
+  .param{min-width:0;padding:10px 14px;border:1px solid rgba(198,153,76,.4);border-radius:999px;background:#fffdf8}
+  .param .k{color:#9B6730;font-size:12px;font-weight:800}
+  .param .v{color:#5F4937;font-size:13px;font-weight:800}
+  .param .v small{color:#8B7A68;font-weight:400}
+
+  /* ---- sections ---- */
+  section{position:relative;padding:54px 0;background:#fff;scroll-margin-top:74px}
+  section + section{border-top:1px solid #F0DFBD}
+  .eyebrow{color:#A35A21;font-size:13px;font-weight:900;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .eyebrow .num{color:var(--crimson);font-family:"Space Mono",monospace;font-weight:700}
+  h2{font-family:"Noto Serif TC",serif;font-weight:700;color:#3F2D22;font-size:clamp(24px,3.5vw,34px);line-height:1.38;margin-bottom:8px}
+  h3{font-family:"Noto Serif TC",serif;font-weight:700;font-size:18px;margin:30px 0 12px;color:#5A3C26}
+  .lead{color:#665446;font-size:16px;font-weight:500;margin-bottom:26px;max-width:68ch}
+
+  /* ---- 卡片 ---- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px;margin-top:8px}
+  .card{position:relative;display:grid;gap:9px;align-content:start;padding:18px 20px;
+    border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow)}
+  .card h4{font-family:"Noto Serif TC",serif;font-size:16px;font-weight:700;color:#4B3527}
+  .card .px{font-family:"Space Mono",monospace;font-size:12.5px;color:#A35A21}
+  .card p{font-size:13px;color:#665446;margin:0}
+  .card a.card-link{font-weight:800}
+
+  /* ---- add-on 標籤（四類，全站統一） ---- */
+  .tag{display:inline-flex;align-items:center;border-radius:999px;padding:2px 10px;font-size:11.5px;font-weight:900;border:1px solid transparent}
+  .tag-add{background:#E8F6EA;color:#1E6F2A;border-color:#BFE3C5}      /* 可加入原行程 */
+  .tag-split{background:#EDF1FA;color:#44548C;border-color:#C9D3EC}    /* 適合分團 */
+  .tag-ref{background:#FFF6D8;color:#A35A21;border-color:#E2BD73}      /* 只列備查 */
+  .tag-no{background:#FFF3EA;color:#A6402E;border-color:#E6C3A4}       /* 不建議本次加入 */
+  .tag-group{background:#F8EBC7;color:#70451F;border-color:#E2C281}    /* 全團同行 */
+
+  /* ---- 時間軸（today at a glance / main route） ---- */
+  .timeline{border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow);padding:8px 24px;margin-top:8px}
+  .timeline li{list-style:none;display:grid;grid-template-columns:92px 1fr;gap:14px;padding:14px 0;border-top:1px solid #F0DFBD;font-size:14px}
+  .timeline li:first-child{border-top:none}
+  .timeline .t{font-family:"Space Mono",monospace;font-size:13px;color:#A35A21;font-weight:700;white-space:nowrap}
+  .timeline b{color:#3F2D22}
+  .timeline .d{color:#665446;font-size:13px}
+
+  /* ---- 提示框 ---- */
+  .insight{background:#FFF6D8;border:1px solid #E2BD73;border-left:4px solid #E2A534;border-radius:6px;padding:20px 24px;margin-top:8px}
+  .insight h3{margin-top:0;color:#A35A21}
+  .insight p{font-size:14px;margin-bottom:8px}.insight p:last-child{margin-bottom:0}
+  .flag{background:#FFF3EA;border:1px solid #E6C3A4;border-left:4px solid var(--crimson);border-radius:6px;padding:20px 24px;margin-top:8px;color:#7C382C}
+  .flag h3{margin-top:0;color:var(--crimson)}
+  .flag ul{padding-left:20px;font-size:13.5px}.flag li{margin-bottom:7px}
+  .flag p{font-size:13.5px;margin-bottom:0}
+
+  /* ---- 表格 ---- */
+  .table-scroll{overflow-x:auto;border-radius:6px;border:1px solid #EAD6AB;box-shadow:var(--shadow);background:#fff;margin-top:8px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px}
+  thead th{background:#F8EBC7;color:#70451F;font-weight:900;text-align:left;padding:13px 14px;font-size:12.5px;vertical-align:bottom}
+  tbody td{padding:12px 14px;border-top:1px solid #F0DFBD;vertical-align:top;color:#514236}
+  tbody tr:nth-child(even){background:#FFF8E8}
+  .caption{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.6}
+
+  /* ---- 連結藥丸 ---- */
+  .link-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .link-pill{display:inline-flex;align-items:center;min-height:34px;padding:0 14px;border:1px solid #E2C281;border-radius:999px;
+    background:#fffdf8;color:#267A32;text-decoration:none;white-space:nowrap;font-size:12.5px;font-weight:800;
+    transition:background .2s,color .2s,border-color .2s}
+  .link-pill:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+
+  /* ---- 清單/檢查表 ---- */
+  .notes{border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow);padding:8px 24px;margin-top:22px}
+  .notes li{list-style:none;padding:14px 0 14px 30px;position:relative;border-top:1px solid #F0DFBD;font-size:14px}
+  .notes li:first-child{border-top:none}
+  .notes li::before{content:"●";position:absolute;left:6px;top:14px;color:#D96A25;font-size:9px}
+  .notes li b{color:var(--crimson);font-weight:700}
+  .checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+  .chk{border:1px solid #EAD6AB;border-radius:6px;background:linear-gradient(180deg,#fff 0,#FFFAF0 100%);box-shadow:var(--shadow);padding:18px 20px}
+  .chk h4{font-family:"Noto Serif TC",serif;font-size:15.5px;font-weight:700;margin-bottom:10px;color:#4B3527}
+  .chk label{display:grid;grid-template-columns:20px 1fr;gap:9px;align-items:start;font-size:13px;color:#665446;line-height:1.6;padding:6px 0;border-top:1px solid #F0DFBD}
+  .chk label:first-of-type{border-top:none}
+  .chk input{width:15px;height:15px;margin-top:3px;accent-color:var(--teal)}
+
+  /* ---- 來源 ---- */
+  .src{font-size:12px;color:#665446;line-height:1.8}
+  .src li{list-style:none;padding:8px 0;border-top:1px solid #F0DFBD}
+  .src li:first-child{border-top:none}
+
+  /* ---- day-pager + footer ---- */
+  .day-pager{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    max-width:1160px;margin:0 auto;padding:34px 24px}
+  .day-pager a{display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border:1px solid #E2C281;border-radius:999px;
+    background:#fffdf8;color:#267A32;text-decoration:none;font-size:14px;font-weight:900;transition:background .2s,color .2s,border-color .2s}
+  .day-pager a:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+  footer{background:#3B2C22;color:#E9D9B8;padding:30px 0;font-size:12.5px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer .mono,footer a{color:#D5BC8C}
+
+  @media (max-width:620px){
+    body{background:linear-gradient(180deg,#F3D9B1 0,#fff 560px)}
+    .wrap{padding:0 20px}
+    header{padding:52px 0 100px}
+    .hero-card{padding:26px 22px 24px}
+    .hero-card::after{width:70px;height:70px;right:-10px;top:-26px}
+    .params{grid-template-columns:1fr 1fr}
+    .timeline li{grid-template-columns:70px 1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- 共用 trip-nav：每頁一致；本頁的連結加 aria-current="page" -->
+<nav class="trip-nav" aria-label="大阪五天自由行頁面切換">
+  <a href="osaka-2026-trip-guide.html">總覽</a>
+  <a href="osaka-2026-day1.html">Day 1</a>
+  <a href="usj-vip-guide.html">Day 2 USJ</a>
+  <a href="osaka-2026-day3.html">Day 3</a>
+  <a href="osaka-2026-day4.html">Day 4</a>
+  <a href="osaka-2026-day5.html" aria-current="page">Day 5</a>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="hero-card">
+      <span class="cred-tag">2026 大阪五天自由行・Day 5｜10/09（週五）</span>
+      <h1>退房、Outlet 與<span class="accent">飛回台北</span></h1>
+      <p class="sub">本日主線：11:00 飯店退房後直接前往臨空城 Rinku Premium Outlets，逛到下午再一站搭車到關西機場，搭乘 18:30 長榮 BR129 返回桃園。不想逛街的人可以在 Outlet 周邊喝咖啡、沿海邊散步，或提早去機場，不必勉強奉陪購物組。</p>
+      <div class="params">
+        <div class="param"><div class="k">日期</div><div class="v">2026-10-09（週五）</div></div>
+        <div class="param"><div class="k">人數</div><div class="v">6 位成人</div></div>
+        <div class="param"><div class="k">飯店基準點</div><div class="v">靜鐵飯店普雷西奧大阪心齋橋</div></div>
+        <div class="param"><div class="k">回程航班</div><div class="v">長榮 BR129・KIX 18:30 起飛<small>→ TPE 20:30 抵達</small></div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- 01 Today at a glance -->
+  <section id="glance">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">01</span>今日一眼看完</div>
+      <h2>退房 → Outlet → 機場 → 起飛</h2>
+      <p class="lead">全程不趕早，重點是把「逛街」與「候機」合併成同一段路線，省掉回心齋橋取行李的來回時間。以下時刻為建議值，出發前 1-2 個月請依實際班次重新核對。<span class="mono">查核日期：2026-07-02，出發前 1-2 個月重查</span></p>
+      <ul class="timeline">
+        <li><span class="t">11:00</span><div><b>飯店退房</b><div class="d">行李隨身帶著（建議方案，見下方「退房與行李」比較），退房後步行至心齋橋站。</div></div></li>
+        <li><span class="t">11:20</span><div><b>心齋橋 → 難波</b><div class="d">Osaka Metro 御堂筋線 1 站，轉乘南海電鐵難波站。</div></div></li>
+        <li><span class="t">11:30</span><div><b>難波搭南海空港急行</b><div class="d">往りんくうタウン方向，車程約 40 分。</div></div></li>
+        <li><span class="t">12:15</span><div><b>抵達りんくうタウン站</b><div class="d">步行約 6 分至臨空城 Rinku Premium Outlets，大型行李可寄置物櫃或臨時寄物櫃檯。</div></div></li>
+        <li><span class="t">12:15-15:00</span><div><b>Outlet 自由活動</b><div class="d">購物組續逛；不購物者可選咖啡休息、りんくう公園海邊散步，或提早前往機場（詳見「Outlet 深度」段落）。</div></div></li>
+        <li><span class="t">15:00-15:30</span><div><b>前往關西機場</b><div class="d">南海空港急行りんくうタウン → 関西空港，1 站約 6 分；或視情況搭乘 Sky Shuttle 接駁。</div></div></li>
+        <li><span class="t">15:30</span><div><b>抵達 T1 完成報到</b><div class="d">建議起飛前 3 小時抵達；有退稅需求者提早 30-60 分鐘（15:00 前）。</div></div></li>
+        <li><span class="t">18:30</span><div><b>BR129 起飛</b><div class="d">關西機場 KIX 起飛。</div></div></li>
+        <li><span class="t">20:30</span><div><b>抵達桃園機場（台灣時間）</b><div class="d">五天四夜行程結束。</div></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 02 Main Route -->
+  <section id="main-route">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">02</span>表定主線逐站</div>
+      <h2>退房、Outlet、機場，三段路線細節</h2>
+      <p class="lead">本日交通簡單（只有難波轉乘一次），真正需要決策的是「行李怎麼帶」與「幾點出發去機場」。</p>
+
+      <h3>退房與行李：兩案比較</h3>
+      <div class="cards">
+        <div class="card">
+          <h4>方案 A：寄放飯店，下午回心齋橋取件</h4>
+          <p class="px">耗時：多一趟來回約 1.5-2 小時</p>
+          <p>11:00 退房時把行李寄放飯店，輕裝去 Outlet，逛完再搭車回心齋橋取行李，最後再前往機場。優點是逛街全程輕鬆，缺點是「Outlet → 心齋橋 → 機場」等於多繞一段路，且需精算回程時間避免壓縮到機場報到時限。</p>
+        </div>
+        <div class="card">
+          <h4>方案 B：行李隨身帶到 Outlet（建議）</h4>
+          <p class="px">耗時：與表定路線一致，不繞路</p>
+          <p>退房時把行李一次帶齊，直接前往 Outlet，用館內置物櫃或臨時寄物櫃檯寄放後再逛，逛完直接一站搭車到機場。優點是全程只走一條路線，Outlet 與機場只差一站（約 6 分鐘），省下方案 A 的來回時間。</p>
+        </div>
+      </div>
+      <div class="insight">
+        <h3>建議採用方案 B</h3>
+        <p>りんくうタウン站與関西空港站只隔一站、車程約 6 分鐘，Outlet 逛完直接殺去機場最省事。方案 A 的來回車程（心齋橋 ⇄ りんくうタウン各約 40-50 分）反而會吃掉更多逛街或候機的彈性時間，對 6 人 6+ 件行李來說也是多一次搬運風險。</p>
+        <p>Outlet 館內置物櫃：大型（83×37×55cm）400 円、中型 300 円、小型 200 円，Main Side／Sea Side 各 3 處。超尺寸行李箱放不進置物櫃時，可用「手荷物一時預かりサービス」臨時寄物櫃檯，費用 1,000 円/件/日（僅收現金），地點在 Main Side 1F Information Center 或 Sea Side 1F Welcome Center。</p>
+      </div>
+
+      <h3>前往臨空城 Outlet</h3>
+      <p>心齋橋先搭 Osaka Metro 御堂筋線 1 站到難波，轉乘南海電鐵「空港急行」（Airport Express，自由座）約 40 分至「りんくうタウン」站，步行約 6 分即達。營業時間 10:00-20:00（此為一般查詢結果，<strong>2026 年 10 月正式營時待重查</strong>，出發前 1-2 個月請以官網確認）。</p>
+      <div class="link-row">
+        <a class="link-pill" href="https://www.premiumoutlets.co.jp/rinku/" target="_blank" rel="noopener">臨空城 Outlet 官網</a>
+        <a class="link-pill" href="https://www.premiumoutlets.co.jp/en/rinku/access/access_bus.html" target="_blank" rel="noopener">電車・巴士交通頁</a>
+      </div>
+
+      <h3>前往關西機場</h3>
+      <p>南海電鐵：りんくうタウン駅搭「空港急行」1 站約 6 分即達關西空港駅。另有 Sky Shuttle 巴士（關西空港第 1 航廈 1 樓 12 號站牌上車、約 15 分一班、票價成人 300 円），研究資料查到的是「機場 → Outlet」方向的時刻表；<strong>「Outlet → 機場」反向班次是否對應運行，待出發前 1-2 個月重新查詢</strong>。若無把握銜接時間，直接搭南海電鐵 1 站最保險。</p>
+      <div class="link-row">
+        <a class="link-pill" href="https://www.kate.co.jp/timetable/detail/SKYB" target="_blank" rel="noopener">Sky Shuttle 時刻表（関西空港交通）</a>
+      </div>
+
+      <h3>機場時程倒推</h3>
+      <ul class="timeline">
+        <li><span class="t">15:00 前</span><div><b>有退稅需求者最晚抵達時間</b><div class="d">免稅品退稅／海關蓋章手續需在託運或安檢前完成，建議比一般時程再提早 30-60 分鐘。</div></div></li>
+        <li><span class="t">15:30</span><div><b>建議抵達 T1 報到櫃檯</b><div class="d">依查詢資料，BR129 18:30 起飛班次報到約於起飛前 3 小時（15:30）開始受理；此為 2026-07-02 查詢當下的即時航班資料，非 10/9 當天正式排班，需重查。</div></div></li>
+        <li><span class="t">緩衝 +30 分</span><div><b>6 人 6+ 件行李排隊緩衝</b><div class="d">多人同時報到、託運，建議比個人旅行多留 30 分鐘餘裕。</div></div></li>
+        <li><span class="t">18:30</span><div><b>BR129 起飛</b><div class="d">起飛前應已完成報到、託運、安檢、（如需要）退稅。</div></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 03 Deep Spots -->
+  <section id="outlet-deep">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">03</span>深度玩法</div>
+      <h2>Outlet 深度：買與不買都自在</h2>
+      <p class="lead"><strong>不想逛街的人不必陪逛。</strong>這是本頁最重要的一件事——Outlet 這種行程本來就適合各走各的，購物組留在店裡慢慢挑，其他人可以在りんくう周邊找自己的方式打發時間，約定集合時間地點即可。</p>
+
+      <h3>購物組：自由行動</h3>
+      <div class="cards">
+        <div class="card">
+          <span class="tag tag-split">適合分團</span>
+          <h4>Outlet 內自由逛店</h4>
+          <p>依個人喜好安排品牌與路線，不需配合他人節奏。建議先約定集合時間與地點（如 Main Side 1F Information Center 附近），逛完各自帶著（或先寄放的）行李會合再一起去搭車。</p>
+        </div>
+      </div>
+
+      <h3>不購物者：替代方案</h3>
+      <div class="cards">
+        <div class="card">
+          <span class="tag tag-add">可加入原行程</span>
+          <span class="tag tag-split">適合分團</span>
+          <h4>りんくう周邊咖啡／休息</h4>
+          <p>不想逛街的人可以在 Outlet 周邊找咖啡廳坐下休息，避開人潮與走路里程，等購物組逛完再會合。</p>
+        </div>
+        <div class="card">
+          <span class="tag tag-add">可加入原行程</span>
+          <span class="tag tag-split">適合分團</span>
+          <h4>りんくう公園海邊散步</h4>
+          <p>りんくうタウン站周邊臨海，可沿りんくう公園散步看海景，作為 Outlet 之外的輕鬆選項。</p>
+        </div>
+        <div class="card">
+          <span class="tag tag-add">可加入原行程</span>
+          <span class="tag tag-split">適合分團</span>
+          <h4>提早去機場</h4>
+          <p>關西機場就在隔壁站（南海電鐵 1 站約 6 分），對逛街沒興趣的人可以提早出發，先辦報到、逛機場免稅店，不必等其他人逛完。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Food Options / 最後採購提醒 -->
+  <section id="last-shopping">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">04</span>最後採購與用餐</div>
+      <h2>Outlet 美食街，或留著在機場免稅店買</h2>
+      <p class="lead">本日沒有安排正式餐廳，午餐、下午茶可在 Outlet 美食街解決；至於最後採購，Outlet 折扣品項與機場免稅店（菸酒、化妝品、伴手禮）各有優勢，兩邊都能買，依個人行李空間與時間分配即可，不需要特別規劃順序。</p>
+    </div>
+  </section>
+
+  <!-- 05 Split Group Notes -->
+  <section id="split-group">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">05</span>全團與分團</div>
+      <h2>哪些時段要集合，哪些可以各走各的</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>時段</th><th>安排</th><th>說明</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>飯店退房、前往 Outlet</td><td><span class="tag tag-group">全團同行</span></td><td>一起退房、一起搭南海空港急行，路線單純不需分批。</td></tr>
+            <tr><td>Outlet 逛街時段</td><td><span class="tag tag-split">適合分團</span></td><td>購物組自由逛店；不購物者選擇咖啡休息、海邊散步或提早去機場，約定集合時間地點。</td></tr>
+            <tr><td>前往機場、報到</td><td><span class="tag tag-group">全團同行</span></td><td>務必在機場集合完成，一起報到、託運行李，避免有人臨時延誤班機。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption">集合時間建議以「機場 T1 報到櫃檯開櫃前」（約 15:00-15:30）為底線倒推，讓提早出發或提早離開 Outlet 的人有明確依循。</p>
+    </div>
+  </section>
+
+  <!-- 06 Risk And Backup -->
+  <section id="risk">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">06</span>風險與備案</div>
+      <h2>行李、班機、人潮，三件事先想好</h2>
+      <div class="flag">
+        <h3>行李與託運提醒</h3>
+        <ul>
+          <li><b>回程託運額度：</b>長榮經濟艙 Standard（Q）艙等每人可託運 2 件、每件 23kg（6 人合計最多 12 件額度），比去程 Basic（V）每人僅 1 件 23kg 寬鬆，回程採購空間相對充裕，但仍以訂票確認信上實際艙等代碼為準。</li>
+          <li><b>當天在 Outlet 採購的液體（酒、保養品）必須託運</b>，不可放入手提行李。</li>
+          <li><b>行動電源必須隨身攜帶</b>，不可放入託運行李。</li>
+          <li>建議在機場秤重前先重新分裝，把接近超重的行李箱調整一下，避免臨櫃現場才發現超重、需要拆箱調整。</li>
+        </ul>
+      </div>
+      <div class="flag">
+        <h3>其他風險</h3>
+        <ul>
+          <li><b>班機延誤：</b>本日為末程直飛回台，沒有轉機銜接風險，但仍建議出發前以長榮航空官網或關西機場即時航班資訊確認 BR129 是否準點。</li>
+          <li><b>行李超重：</b>超額費用（Excess Baggage Fee）依長榮航空當期公告，建議出發前查官網「Excess Baggage and Other Optional Fees」頁面，或在機場報到時直接詢問現場費率。</li>
+          <li><b>Outlet 人潮：</b>10/9 為平日週五，人潮應低於週末，但仍建議提早確認集合時間，避免有人逛過頭壓縮到機場時程。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 Booking And Tickets -->
+  <section id="booking">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">07</span>預約與票券清單</div>
+      <h2>出發前該確認的事</h2>
+      <div class="checks">
+        <div class="chk">
+          <h4>出發前 1-2 個月重查</h4>
+          <label><input type="checkbox"><span>臨空城 Outlet 2026 年 10 月正式營業時間（官網公告）</span></label>
+          <label><input type="checkbox"><span>Sky Shuttle「Outlet → 機場」反向班次是否運行、班距是否仍為每小時一班</span></label>
+          <label><input type="checkbox"><span>長榮 BR129 10/9 當天正式報到樓層／櫃檯區（航廈配置可能調整）</span></label>
+        </div>
+        <div class="chk">
+          <h4>行李準備</h4>
+          <label><input type="checkbox"><span>出發前確認每人訂票艙等代碼（Q/V 等），核對實際託運件數額度</span></label>
+          <label><input type="checkbox"><span>當天採購的液體、酒類先規劃放入託運行李</span></label>
+          <label><input type="checkbox"><span>行動電源、貴重物品確認放在隨身行李</span></label>
+          <label><input type="checkbox"><span>退稅單據、護照、購買憑證備妥（如需退稅）</span></label>
+        </div>
+        <div class="chk">
+          <h4>當天集合</h4>
+          <label><input type="checkbox"><span>Outlet 內約定購物組與不購物組的集合時間地點</span></label>
+          <label><input type="checkbox"><span>確認機場集合時間（建議 15:00-15:30 前，依退稅需求調整）</span></label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 Sources And Last Checked -->
+  <section id="sources">
+    <div class="wrap">
+      <div class="eyebrow"><span class="num">08</span>資料來源與查核日期</div>
+      <h2>Sources And Last Checked</h2>
+      <ul class="src">
+        <li>Premium Outlets 官網 - りんくう 電車・バスアクセス：<a href="https://www.premiumoutlets.co.jp/en/rinku/access/access_bus.html" target="_blank" rel="noopener">premiumoutlets.co.jp/en/rinku/access</a>　查核日期：2026-07-02</li>
+        <li>臨空城 Outlet 官網（營業時間，2026年10月正式時間待重查）：<a href="https://www.premiumoutlets.co.jp/rinku/" target="_blank" rel="noopener">premiumoutlets.co.jp/rinku</a>　查核日期：2026-07-02</li>
+        <li>置物櫃與臨時寄物櫃檯資訊：<a href="https://www.kuchikomi7.com/rinku-outlet/servise/locker.html" target="_blank" rel="noopener">kuchikomi7.com（元スッチー整理站）</a>　查核日期：2026-07-02</li>
+        <li>関西空港交通株式会社 - Sky Shuttle 時刻表：<a href="https://www.kate.co.jp/timetable/detail/SKYB" target="_blank" rel="noopener">kate.co.jp/timetable/detail/SKYB</a>　查核日期：2026-07-02（機場→Outlet方向資料，反向班次待重查）</li>
+        <li>関西国際空港 - フライト情報 BR129：<a href="https://www.kansai-airport.or.jp/flight/detail/DEP/INT/1?flight_number=BR129&date=today&service_type=PAX" target="_blank" rel="noopener">kansai-airport.or.jp</a>　查核日期：2026-07-02（即時查詢資料，非10/9正式排班，待重查）</li>
+        <li>EVA Air - Check-in Information：<a href="https://www.evaair.com/ja-jp/fly-prepare/at-the-airport/check-in/check-in-information/" target="_blank" rel="noopener">evaair.com</a>　查核日期：2026-07-02</li>
+        <li>EVA Air - Checked Baggage（Global）：<a href="https://www.evaair.com/en-global/fly-prepare/baggage/free-baggage/checked-baggage/" target="_blank" rel="noopener">evaair.com</a>　查核日期：2026-07-02</li>
+      </ul>
+      <p class="caption">以上所有時效性資訊查核日期均為 2026-07-02，出發前 1-2 個月請重新查核官方公告。</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- day-pager -->
+<nav class="day-pager" aria-label="前後日切換">
+  <a href="osaka-2026-day4.html">← Day 4</a>
+  <a href="osaka-2026-trip-guide.html">回總覽 →</a>
+</nav>
+
+<footer>
+  <div class="wrap">
+    <span>2026 大阪五天自由行指南｜本頁：Day 5 Outlet 與返程日</span>
+    <span class="mono">查核日期：2026-07-02・出發前 1-2 個月重查時效性資訊</span>
+  </div>
+</footer>
+
+</body>
+</html>
