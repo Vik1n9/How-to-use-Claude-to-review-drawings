@@ -592,9 +592,34 @@
       width:100%;
     }
   }
+
+  /* 大阪五天自由行 trip-nav / day-pager（本頁為 Day 2；不做 sticky 以免與流程列衝突） */
+  .trip-nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
+    padding:11px max(24px,calc((100vw - 1160px)/2 + 24px));
+    background:rgba(255,253,247,.94);border-bottom:1px solid #ECD8AD}
+  .trip-nav::-webkit-scrollbar{display:none}
+  .trip-nav a{display:inline-flex;align-items:center;padding:7px 14px;border:1px solid #E8D2A4;border-radius:999px;
+    background:#fff;color:#756554;font-size:13px;font-weight:800;text-decoration:none;white-space:nowrap;
+    transition:color .2s,border-color .2s,background .2s}
+  .trip-nav a:hover{border-color:#E39A37;color:#3B2C22}
+  .trip-nav a[aria-current="page"]{background:var(--teal);border-color:var(--teal);color:#fff}
+  .day-pager{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    max-width:1160px;margin:0 auto;padding:34px 24px;background:#fff}
+  .day-pager a{display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border:1px solid #E2C281;border-radius:999px;
+    background:#fffdf8;color:#267A32;text-decoration:none;font-size:14px;font-weight:900;transition:background .2s,color .2s,border-color .2s}
+  .day-pager a:hover{background:var(--teal);border-color:var(--teal);color:#fff}
 </style>
 </head>
 <body>
+
+<nav class="trip-nav" aria-label="大阪五天自由行頁面切換">
+  <a href="osaka-2026-trip-guide.html">總覽</a>
+  <a href="osaka-2026-day1.html">Day 1</a>
+  <a href="usj-vip-guide.html" aria-current="page">Day 2 USJ</a>
+  <a href="osaka-2026-day3.html">Day 3</a>
+  <a href="osaka-2026-day4.html">Day 4</a>
+  <a href="osaka-2026-day5.html">Day 5</a>
+</nav>
 
 <header>
   <div class="wrap">
@@ -856,6 +881,11 @@
     </ul>
   </div>
 </section>
+
+<nav class="day-pager" aria-label="前後日切換">
+  <a href="osaka-2026-day1.html">← 上一天：Day 1</a>
+  <a href="osaka-2026-day3.html">下一天：Day 3 →</a>
+</nav>
 
 <footer>
   <div class="wrap">
