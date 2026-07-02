@@ -491,6 +491,39 @@
     border-top-color:#E9B64A;
   }
   .ob-combo,.ob-per{color:#E9D9B8}
+  .buy-links{
+    align-items:center;
+    gap:12px;
+    margin:22px 0 18px;
+    padding:16px;
+    border:1px solid rgba(233,182,74,.55);
+    border-top:3px solid #E9B64A;
+    border-radius:16px;
+    background:#3B2C22;
+    box-shadow:0 18px 40px rgba(59,44,34,.18);
+  }
+  .buy-links .btn-buy{
+    flex:1 1 180px;
+    justify-content:center;
+    min-height:46px;
+    padding:0 22px;
+    border-color:#E2C281;
+    border-radius:999px;
+    background:#fffdf8;
+    color:#267A32;
+    font-family:"Noto Sans TC",system-ui,sans-serif;
+    font-size:14px;
+    font-weight:900;
+    letter-spacing:0;
+    text-transform:none;
+    box-shadow:0 10px 24px rgba(0,0,0,.14);
+  }
+  .buy-links .btn-buy:hover,
+  .buy-links .btn-buy:focus-visible{
+    background:var(--teal);
+    border-color:var(--teal);
+    color:#fff;
+  }
 
   @media (max-width:900px){
     header{
@@ -550,6 +583,15 @@
     .order-bar{padding:10px 14px}
     .ob-inner{align-items:flex-start;flex-direction:column}
     .ob-btn{width:100%;justify-content:center}
+    .buy-links{
+      flex-direction:column;
+      align-items:stretch;
+      padding:14px;
+    }
+    .buy-links .btn-buy{
+      flex:0 0 auto;
+      width:100%;
+    }
   }
 </style>
 </head>
