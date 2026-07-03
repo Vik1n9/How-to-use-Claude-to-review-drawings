@@ -3,213 +3,288 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="大阪五天四夜主行程之外的獨立夜間私人行程：以《人中之龍》大阪篇（蒼天堀）氛圍為靈感，把 10/5、10/7、10/8 晚餐後到午夜的空檔，接上曽根崎新地歌舞秀、復古電玩、爵士酒吧、立飲居酒屋等真實可查核的合法夜間去處，另附主行程臨時取消時可自行前往的柏青哥／場外馬券備案清單（依難波・道頓堀距離排序，分日間／夜間）。與主行程完全獨立，無任何超連結往返。">
-<title>蒼天堀夜行｜大阪隱藏版私人行程（獨立篇）</title>
+<meta name="description" content="大阪五天四夜主行程之外的獨立夜間私人行程：以人中之龍大阪篇蒼天堀氛圍為靈感，把 10/5、10/7、10/8 晚餐後到午夜的空檔，接上曽根崎新地歌舞秀、復古電玩、爵士酒吧、立飲居酒屋等真實可查核的合法夜間去處，另附主行程臨時取消時可自行前往的柏青哥／場外馬券備案清單。">
+<title>蒼天堀夜行｜大阪黑道版夜生活私人行程</title>
 <link rel="icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#07060d;--bg2:#0e0f22;--line:rgba(255,255,255,.10);
-    --ink:#eef0fb;--ink-soft:#aab0d8;--muted:#767ca3;
-    --pink:#ff2f92;--pink-soft:#ff86bd;--cyan:#2de2e6;--gold:#ffb84d;
-    --shadow:0 18px 40px rgba(0,0,0,.55);
+    --ink:#E9EEF3;--ink-soft:#C6D0D8;--paper:#0A0D10;--card:#111820;
+    --line:#33424E;--line-soft:#24313B;--gold:#C7A15D;--gold-bright:#E0C070;
+    --crimson:#C91F32;--teal:#19C7C6;--slate:#6F8192;--muted:#8B98A4;
+    --shadow:0 18px 42px rgba(0,0,0,.32);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
-    font-family:"Noto Sans TC",system-ui,sans-serif;color:var(--ink);line-height:1.75;font-weight:400;
-    -webkit-font-smoothing:antialiased;position:relative;
-    background:
-      radial-gradient(circle at 12% 0%,rgba(255,47,146,.14),transparent 45%),
-      radial-gradient(circle at 88% 18%,rgba(45,226,230,.11),transparent 42%),
-      linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
+    font-family:"Noto Sans TC",system-ui,sans-serif;color:var(--ink);line-height:1.8;font-weight:400;
+    -webkit-font-smoothing:antialiased;background:
+      linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px) 0 0/38px 100%,
+      radial-gradient(circle at 8% 0%,rgba(201,31,50,.16),transparent 38%),
+      radial-gradient(circle at 92% 8%,rgba(25,199,198,.11),transparent 34%),
+      linear-gradient(180deg,#080A0D 0%,var(--paper) 44%,#080A0D 100%);
   }
   body::before{
-    content:"";position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
-    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)"/></svg>');
+    content:"";position:fixed;inset:0;z-index:200;pointer-events:none;opacity:.045;mix-blend-mode:screen;
+    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)"/></svg>');
   }
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
-  a{color:var(--cyan)}
-  p{margin-bottom:14px}
-  strong{font-weight:700;color:#fff}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
   .mono{font-family:"Space Mono",monospace}
+  a{color:var(--teal);text-decoration-thickness:1px;text-underline-offset:3px}
+  p{margin-bottom:14px}
+  b,strong{font-weight:800;color:#fff}
 
-  header{position:relative;padding:84px 0 68px;overflow:hidden;border-bottom:1px solid var(--line)}
-  .eyebrow-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;
-    border:1px solid rgba(255,184,77,.4);background:rgba(255,184,77,.08);color:var(--gold);
-    font-size:12.5px;font-weight:800;letter-spacing:.04em;margin-bottom:20px}
-  h1{font-family:"Noto Serif TC",serif;font-weight:900;font-size:clamp(32px,5vw,54px);line-height:1.28;color:#fff;
-    text-shadow:0 0 18px rgba(255,47,146,.5),0 0 44px rgba(45,226,230,.22)}
-  h1 .accent{color:var(--pink)}
-  .sub{color:var(--ink-soft);margin-top:18px;font-size:15.5px;max-width:66ch;line-height:1.9}
-  .disclaimer-badge{display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:10px 16px;
-    border-radius:8px;border:1px solid rgba(255,47,146,.4);background:rgba(255,47,146,.09);
-    color:var(--pink-soft);font-size:13px;font-weight:700}
-  .params{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:28px}
-  .param{padding:12px 16px;border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.03)}
-  .param .k{color:var(--gold);font-size:11.5px;font-weight:800;letter-spacing:.03em}
-  .param .v{color:var(--ink);font-size:13.5px;font-weight:700;margin-top:3px}
-  .param .v small{color:var(--muted);font-weight:400}
+  /* ---- trip-nav: same Osaka guide skeleton, dark branch skin ---- */
+  .trip-nav{
+    position:sticky;top:0;z-index:120;background:rgba(8,10,13,.9);
+    border-bottom:1px solid rgba(51,66,78,.9);display:flex;gap:8px;overflow-x:auto;
+    padding:10px max(18px,calc((100vw - 1080px)/2 + 24px));backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);scrollbar-width:none;
+  }
+  .trip-nav::-webkit-scrollbar{display:none}
+  .trip-nav a{
+    flex:0 0 auto;border:1px solid var(--line);border-radius:999px;padding:8px 14px;
+    background:#0F151B;color:var(--ink-soft);font-size:13px;font-weight:900;text-decoration:none;
+    transition:color .2s,border-color .2s,background .2s,transform .2s;
+  }
+  .trip-nav a:hover{border-color:var(--teal);color:#fff;transform:translateY(-1px)}
+  .trip-nav a[aria-current="page"]{background:var(--crimson);border-color:var(--crimson);color:#fff}
 
-  section{padding:56px 0;position:relative}
-  section+section{border-top:1px solid var(--line)}
-  .eyebrow{color:var(--cyan);font-size:13px;font-weight:900;letter-spacing:.05em;margin-bottom:12px;display:flex;align-items:center;gap:10px}
-  .eyebrow .num{font-family:"Space Mono",monospace;color:var(--pink)}
-  h2{font-family:"Noto Serif TC",serif;font-weight:700;font-size:clamp(23px,3.5vw,32px);color:#fff;margin-bottom:10px}
-  h3{font-family:"Noto Serif TC",serif;font-size:17px;font-weight:700;color:var(--gold);margin:26px 0 10px}
-  .lead{color:var(--ink-soft);font-size:15.5px;max-width:70ch;margin-bottom:26px}
+  /* ---- hero ---- */
+  header{
+    position:relative;overflow:hidden;padding:76px 0 118px;color:var(--ink);
+    background:
+      linear-gradient(90deg,rgba(8,10,13,.92) 0%,rgba(8,10,13,.78) 40%,rgba(8,10,13,.28) 72%,rgba(8,10,13,.58) 100%),
+      url("assets/media/osaka-2026-yakuza-nights-hero.png") center/cover no-repeat;
+  }
+  header::after{
+    content:"";position:absolute;left:-3%;right:-3%;bottom:-1px;z-index:0;height:92px;
+    background:linear-gradient(180deg,rgba(10,13,16,0),var(--paper) 72%);
+  }
+  .hero-card{
+    position:relative;z-index:1;max-width:740px;border:1px solid rgba(111,129,146,.62);
+    background:rgba(12,18,24,.82);box-shadow:0 24px 52px rgba(0,0,0,.42);
+    padding:30px 32px;border-radius:8px;backdrop-filter:blur(7px);
+  }
+  .hero-card::after{
+    content:"";position:absolute;right:-20px;top:-28px;width:74px;height:74px;border:1px solid rgba(25,199,198,.38);
+    background:linear-gradient(135deg,rgba(201,31,50,.64),rgba(25,199,198,.12));transform:rotate(8deg);
+    box-shadow:0 18px 44px rgba(201,31,50,.25);
+  }
+  .cred-tag{
+    display:inline-block;background:rgba(201,31,50,.14);border:1px solid rgba(201,31,50,.5);
+    color:#F4A8B0;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:.03em;
+    margin-bottom:16px;
+  }
+  h1{font-family:"Noto Serif TC",serif;font-weight:900;font-size:clamp(34px,5vw,60px);line-height:1.15;color:#fff}
+  h1 .accent{color:var(--crimson)}
+  .sub{margin-top:16px;color:var(--ink-soft);font-size:15.5px;max-width:66ch}
+  .adult-note{
+    display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:9px 14px;border-radius:8px;
+    border:1px solid rgba(224,192,112,.45);background:rgba(224,192,112,.1);color:var(--gold-bright);
+    font-size:13px;font-weight:900;
+  }
+  .params{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}
+  .param{min-width:0;padding:10px 14px;border:1px solid rgba(111,129,146,.45);border-radius:6px;background:rgba(255,255,255,.045)}
+  .param .k{font-size:11px;color:var(--gold-bright);font-weight:900;letter-spacing:.04em}
+  .param .v{font-size:13px;color:#fff;font-weight:800;line-height:1.55;margin-top:3px}
+  .param small{display:block;color:var(--muted);font-weight:500}
 
-  .timeline{border:1px solid var(--line);border-radius:10px;
-    background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));
-    box-shadow:var(--shadow);padding:8px 24px;margin-top:10px}
-  .timeline li{list-style:none;display:grid;grid-template-columns:96px 1fr;gap:16px;padding:16px 0;
-    border-top:1px solid var(--line);font-size:14px}
-  .timeline li:first-child{border-top:none}
-  .timeline .t{font-family:"Space Mono",monospace;font-size:13px;color:var(--pink);font-weight:700;white-space:nowrap}
-  .timeline b{color:#fff}
-  .timeline .d{color:var(--ink-soft);font-size:13.5px;margin-top:4px}
-  .timeline .tag{display:inline-flex;margin-top:7px;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:800;
-    border:1px solid rgba(45,226,230,.4);color:var(--cyan);background:rgba(45,226,230,.08)}
-
-  .flag{background:rgba(255,47,146,.07);border:1px solid rgba(255,47,146,.35);border-left:4px solid var(--pink);
-    border-radius:8px;padding:20px 24px;margin-top:16px;color:#ffd7ea}
-  .flag h3{margin-top:0;color:var(--pink-soft)}
-  .flag ul{padding-left:20px;font-size:13.5px}
-  .flag li{margin-bottom:8px}
-
+  /* ---- sections ---- */
+  section{padding:64px 0;scroll-margin-top:72px}
+  section+section{border-top:1px solid var(--line-soft)}
+  .eyebrow{display:flex;align-items:center;gap:10px;color:var(--teal);font-size:13px;font-weight:900;letter-spacing:.04em;margin-bottom:11px}
+  .eyebrow .num{font-family:"Space Mono",monospace;color:var(--crimson)}
+  h2{font-family:"Noto Serif TC",serif;font-weight:800;font-size:clamp(24px,3.5vw,34px);line-height:1.35;color:#fff;margin-bottom:12px}
+  h3{font-family:"Noto Serif TC",serif;font-size:18px;font-weight:800;color:var(--gold-bright);margin:26px 0 10px}
+  .lead{font-size:15.5px;color:var(--ink-soft);max-width:74ch;margin-bottom:24px}
   .caption{font-size:12px;color:var(--muted);margin-top:14px}
 
-  footer{background:#030309;border-top:1px solid var(--line);padding:36px 0;font-size:12.5px;color:var(--muted)}
-  footer .disc h4{color:var(--gold);font-size:13px;margin-bottom:8px}
-  footer .disc p{color:var(--ink-soft);max-width:900px}
-  footer .isolation{margin-top:14px;color:var(--ink-soft)}
-  footer .mono{margin-top:14px;display:block;color:var(--muted)}
+  .flag{
+    background:linear-gradient(180deg,rgba(201,31,50,.1),rgba(201,31,50,.045));
+    border:1px solid rgba(201,31,50,.45);border-left:5px solid var(--crimson);
+    border-radius:7px;padding:20px 24px;margin-top:16px;box-shadow:var(--shadow);
+  }
+  .flag h3{margin-top:0;color:#F4A8B0}
+  .flag ul{padding-left:20px;font-size:13.8px;color:#F1DADF}
+  .flag li{margin-bottom:8px}
 
-  @media (max-width:620px){
+  .route-note{
+    border:1px solid rgba(25,199,198,.32);background:rgba(25,199,198,.07);border-radius:7px;
+    color:#CFF9F9;padding:14px 16px;margin:18px 0 20px;font-size:13.5px;
+  }
+  .timeline{
+    border:1px solid var(--line);border-radius:8px;background:linear-gradient(180deg,rgba(17,24,32,.92),rgba(10,13,16,.92));
+    box-shadow:var(--shadow);padding:6px 22px;margin-top:10px;
+  }
+  .timeline li{list-style:none;display:grid;grid-template-columns:110px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line-soft);font-size:14px}
+  .timeline li:first-child{border-top:0}
+  .timeline .t{font-family:"Space Mono",monospace;color:#F05A66;font-weight:700;font-size:13px;white-space:nowrap}
+  .timeline b{color:#fff}
+  .timeline .d{font-size:13.5px;color:var(--ink-soft);margin-top:4px}
+  .tag{display:inline-flex;margin-top:8px;border:1px solid rgba(25,199,198,.45);border-radius:999px;background:rgba(25,199,198,.08);color:#A9FFFF;font-size:11px;font-weight:900;padding:2px 9px}
+
+  .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:rgba(17,24,32,.88);box-shadow:var(--shadow)}
+  table{width:100%;border-collapse:collapse;min-width:720px;font-size:13.5px}
+  th,td{padding:12px 14px;border-top:1px solid var(--line-soft);vertical-align:top;text-align:left}
+  thead th{border-top:0;background:rgba(201,31,50,.14);color:#F4A8B0;font-weight:900}
+  tbody td{color:var(--ink-soft)}
+  tbody td:first-child{font-weight:900;color:#fff}
+
+  footer{background:#050608;border-top:1px solid var(--line-soft);padding:38px 0;font-size:12.5px;color:var(--muted)}
+  footer h4{color:var(--gold-bright);font-size:13px;margin-bottom:8px}
+  footer p{max-width:900px;color:var(--ink-soft)}
+  footer .mono{display:block;margin-top:14px;color:var(--muted)}
+
+  @media (max-width:760px){
     .wrap{padding:0 20px}
-    header{padding:56px 0 48px}
-    .timeline li{grid-template-columns:74px 1fr}
+    header{padding:58px 0 88px}
+    .hero-card{padding:24px 22px}
+    .hero-card::after{display:none}
+    .params{grid-template-columns:1fr 1fr}
+    .timeline li{grid-template-columns:78px 1fr;gap:12px}
+    .table-scroll{border:0;box-shadow:none;background:transparent}
+    table{border-collapse:separate;border-spacing:0 10px;min-width:0}
+    thead{display:none}
+    tbody,tbody tr,tbody td{display:block;width:100%}
+    tbody tr{border:1px solid var(--line);border-radius:6px;background:#111820;box-shadow:var(--shadow);overflow:hidden}
+    tbody td{border-top:1px solid var(--line-soft);padding:10px 12px}
+    tbody td:first-child{border-top:0;background:#18222B;color:#fff}
+    tbody td::before{content:attr(data-label);display:block;margin-bottom:2px;color:var(--gold-bright);font-size:11.5px;font-weight:900;line-height:1.4}
+    tbody td[data-label=""]::before{display:none}
   }
 </style>
 </head>
 <body>
 
+<nav class="trip-nav" aria-label="蒼天堀夜行頁面段落切換">
+  <a href="#rules" aria-current="page">守則</a>
+  <a href="#night1">10/5</a>
+  <a href="#night3">10/7</a>
+  <a href="#night4">10/8</a>
+  <a href="#backup">備案</a>
+</nav>
+
 <header>
   <div class="wrap">
-    <span class="eyebrow-badge">獨立於五天四夜主行程之外・僅供成人參考</span>
-    <h1>蒼天堀<span class="accent">夜行</span></h1>
-    <p class="sub">主行程的白天已經排滿神社、市場與道頓堀觀光船——晚餐後到午夜之間，還有三個晚上是空的。這裡把那幾段空檔接上去：以《人中之龍》大阪篇（蒼天堀）的霓虹小巷氛圍為底色，站站都是真實可查核的合法夜間去處，走法與營業時間已比照主行程的查證強度處理過。</p>
-    <span class="disclaimer-badge">⚠ 本行程僅限心智健全的成人參與。</span>
-    <div class="params">
-      <div class="param"><div class="k">適用夜晚</div><div class="v">10/5・10/7・10/8<small>（三段獨立夜行）</small></div></div>
-      <div class="param"><div class="k">時段</div><div class="v">晚餐後 → 午夜<small>（00:00 前返回飯店）</small></div></div>
-      <div class="param"><div class="k">基準點</div><div class="v">心齋橋<small>大部分站點 7-10 分鐘徒步圈內</small></div></div>
+    <div class="hero-card">
+      <span class="cred-tag">大阪五天自由行・主行程之外的黑道版支線</span>
+      <h1>蒼天堀<span class="accent">夜行</span></h1>
+      <p class="sub">白天的主行程走市場、神社、觀光船與環球影城；晚餐後到午夜，這頁切到另一種大阪。以人中之龍大阪篇的霓虹小巷氛圍為靈感，整理 10/5、10/7、10/8 三段真實可查核的合法夜生活路線。</p>
+      <span class="adult-note">僅供成人參考；氛圍可以借，違法的事不借。</span>
+      <div class="params">
+        <div class="param"><div class="k">適用夜晚</div><div class="v">10/5・10/7・10/8<small>三段獨立夜行</small></div></div>
+        <div class="param"><div class="k">時段</div><div class="v">晚餐後 → 午夜<small>00:00 前返回飯店</small></div></div>
+        <div class="param"><div class="k">基準點</div><div class="v">心齋橋<small>多數站點徒步圈內</small></div></div>
+        <div class="param"><div class="k">定位</div><div class="v">支線頁<small>不改動主行程</small></div></div>
+      </div>
     </div>
   </div>
 </header>
 
 <main>
 
-  <!-- 01 夜行守則 -->
   <section id="rules">
     <div class="wrap">
       <div class="eyebrow"><span class="num">01</span>夜行守則</div>
       <h2>合法性是唯一的判準</h2>
-      <p class="lead">蒼天堀的氛圍可以借，違法的事不能借。以下三條是這份私人行程的底線，站站都照這個標準查過。</p>
+      <p class="lead">蒼天堀的氛圍可以借，違法的事不能借。以下三條是這份私人行程的底線，站站都照主行程的查核強度處理過。</p>
       <div class="flag">
         <h3>三條底線</h3>
         <ul>
-          <li><strong>只走合法業態</strong>：復古電玩、卡拉OK、酒吧／Live House、立飲居酒屋、付費入場的歌舞秀場。酒吧與 Live House 一律只寫音樂、燈光、調酒與社交氛圍；歌舞秀場只寫舞台演出與觀眾巡桌打賞的觀演氛圍，皆不涉及陪侍或仲介性質的服務。</li>
-          <li><strong>不安排真正的路邊屋台</strong>：大阪的街邊攤販實務上很難取得道路使用許可，與福岡不同。想吃屋台氛圍的深夜小酌，一律改成室內立飲／居酒屋。</li>
-          <li><strong>絕大多數站點在徒步圈內</strong>：三段夜行中，Day1、Day4 全程、Day3 大半站點彼此都在 1-7 分鐘徒步範圍內，距心齋橋飯店 7-10 分鐘徒步；Day3 唯一的例外是搭一段四つ橋線北上曽根崎新地看秀，來回約20分鐘車程。備案末班車為 Osaka Metro 御堂筋線心齋橋站，往難波／天王寺方向 00:15、往梅田方向 23:51。</li>
+          <li><strong>只走合法業態</strong>：復古電玩、卡拉OK、酒吧／Live House、立飲居酒屋、付費入場的歌舞秀場。酒吧與 Live House 只寫音樂、燈光、調酒與社交氛圍；歌舞秀場只寫舞台演出與觀眾巡桌打賞的觀演氛圍，不涉及陪侍或仲介性質服務。</li>
+          <li><strong>不安排真正的路邊屋台</strong>：大阪街邊攤販實務上很難取得道路使用許可，與福岡不同。想吃屋台氛圍的深夜小酌，一律改成室內立飲／居酒屋。</li>
+          <li><strong>絕大多數站點在徒步圈內</strong>：Day 1、Day 4 全程與 Day 3 大半站點都在 1-7 分鐘徒步範圍內，距心齋橋飯店約 7-10 分鐘徒步；Day 3 唯一例外是搭四つ橋線北上曽根崎新地看秀，來回約 20 分鐘車程。</li>
         </ul>
       </div>
-      <p class="caption">查核日期：2026-07-03，出發前 1-2 個月重查各站營業時間與公休日。</p>
+      <p class="caption">查核日期：2026-07-03，出發前 1-2 個月重查各站營業時間與公休日。備案末班車：Osaka Metro 御堂筋線心齋橋站，往難波／天王寺方向 00:15、往梅田方向 23:51。</p>
     </div>
   </section>
 
-  <!-- 02 Day1 -->
   <section id="night1">
     <div class="wrap">
       <div class="eyebrow"><span class="num">02</span>10/5 週一・千日前殘光</div>
-      <h2>戎橋晚餐散場後 → 開始私人夜行（至午夜）</h2>
-      <p class="lead">串炸いっとく道頓堀戎橋店（11:00–01:00營業）散場，約 21:00。這一夜全程在徒步圈內，往千日前一帶延伸再折返道頓堀收尾。</p>
+      <h2>戎橋晚餐散場後，開始私人夜行</h2>
+      <p class="lead">串炸いっとく道頓堀戎橋店（11:00-01:00營業）散場，約 21:00。這一夜全程在徒步圈內，往千日前一帶延伸，再折返道頓堀收尾。</p>
+      <div class="route-note">推薦節奏：道頓堀水面與招牌先暖機，千日前看鐵捲門後的食品模型與劇場殘光，最後用電玩或卡拉OK收尾。</div>
       <ul class="timeline">
-        <li><span class="t">21:00</span><div><b>道頓堀・千日前劇場周邊街景</b><div class="d">晚餐店旁即是，往千日前方向散步。水面被格力高招牌的霓虹染成一片，なんばグランド花月一帶招牌的殘光在夜色裡格外醒目——像走進了蒼天堀某個轉角，桐生一馬式的視角，冷靜掃過人潮與招牌。</div></div></li>
-        <li><span class="t">21:15</span><div><b>千日前道具屋筋</b><div class="d">千日前南側，徒步5-7分可達。<strong>店家此時已打烊</strong>，只適合逛招牌與櫥窗——食品模型在鐵捲門後的靜謐，是白天完全體驗不到的樣子。</div></div></li>
-        <li><span class="t">21:30</span><div><b>（可選延伸）日本橋でんでんタウン／スーパーポテト オタロード店</b><div class="d">浪速区日本橋3-8-18，從千日前徒步約10分鐘。<strong>平日20:00已打烊，這裡只能是招牌與櫥窗的打卡點，不是入內選購的行程</strong>。給想朝聖復古電玩聖地招牌的人。</div></div></li>
-        <li><span class="t">22:00</span><div><b>千日前一帶立飲酒場小酌</b><div class="d">候選「千日前えん」（立呑・ホルモン串），千日前。<strong>不同來源對營業時間記載有出入</strong>（一說11:00-16:00，一說17:00-01:00），實際以店家公告為準，建議去電 <span class="mono">06-6632-7811</span> 確認後再前往；若時間對不上，退而求其次選千日前一帶其他立飲店家即可。</div></div></li>
-        <li><span class="t">22:45</span><div><b>GiGO 大阪道頓堀本店 或 ジャンカラ道頓堀店收尾</b><div class="d">從千日前走回道頓堀約5-7分鐘。GiGO：道頓堀1-8-22 道頓座ビル，戎橋旁徒步約3分，10:00–翌1:00營業，2024年開幕的關西旗艦店，內有懷舊機台區。ジャンカラ：道頓堀1-7-23，難波站15-B出口徒步約7分，24小時營業，純包廂無接待性質。二選一收尾即可，成人在這類場館沒有宵禁限制，可以待到隨心所欲。</div></div></li>
-        <li><span class="t">23:20</span><div><b>返回心齋橋飯店</b><div class="d">徒步約7-10分鐘，全程在徒步圈內，不需要再靠電車銜接。</div></div></li>
+        <li><span class="t">21:00</span><div><b>道頓堀・千日前劇場周邊街景</b><div class="d">晚餐店旁即是，往千日前方向散步。水面被格力高招牌的霓虹染成一片，なんばグランド花月一帶招牌的殘光在夜色裡格外醒目。</div></div></li>
+        <li><span class="t">21:15</span><div><b>千日前道具屋筋</b><div class="d">千日前南側，徒步 5-7 分可達。店家此時已打烊，只適合逛招牌與櫥窗；食品模型在鐵捲門後的靜謐，是白天完全體驗不到的樣子。</div></div></li>
+        <li><span class="t">21:30</span><div><b>可選延伸：日本橋でんでんタウン／スーパーポテト オタロード店</b><div class="d">浪速区日本橋3-8-18，從千日前徒步約 10 分鐘。平日 20:00 已打烊，這裡只能是招牌與櫥窗打卡點，不是入內選購的行程。</div></div></li>
+        <li><span class="t">22:00</span><div><b>千日前一帶立飲酒場小酌</b><div class="d">候選「千日前えん」（立呑・ホルモン串），千日前。不同來源對營業時間記載有出入，建議去電 <span class="mono">06-6632-7811</span> 確認後再前往；若時間對不上，退而求其次選千日前一帶其他立飲店家即可。</div></div></li>
+        <li><span class="t">22:45</span><div><b>GiGO 大阪道頓堀本店 或 ジャンカラ道頓堀店收尾</b><div class="d">GiGO：道頓堀1-8-22 道頓座ビル，戎橋旁徒步約 3 分，10:00-翌1:00營業。ジャンカラ：道頓堀1-7-23，難波站 15-B 出口徒步約 7 分，24 小時營業，純包廂無接待性質。</div></div></li>
+        <li><span class="t">23:20</span><div><b>返回心齋橋飯店</b><div class="d">徒步約 7-10 分鐘，全程在徒步圈內，不需要再靠電車銜接。</div></div></li>
       </ul>
       <p class="caption">查核日期：2026-07-03，出發前 1-2 個月重查營業時間，尤其千日前立飲店家的實際時段。</p>
     </div>
   </section>
 
-  <!-- 03 Day3 -->
   <section id="night3">
     <div class="wrap">
       <div class="eyebrow"><span class="num">03</span>10/7 週三・霓虹之夜</div>
-      <h2>炸牛排晚餐與採購結束後 → 開始私人夜行（至午夜）</h2>
-      <p class="lead">本次私人行程不安排なんばグランド花月／心齋橋角座等劇場表演，晚餐（炸牛排）與唐吉訶德/藥妝採購結束後，約 21:00。這一夜先搭一段地鐵北上曽根崎新地看一場歌舞秀，再搭車折返道頓堀收尾——是三夜裡唯一需要離開徒步圈的一晚。</p>
+      <h2>炸牛排晚餐與採購結束後，北上看秀再折返道頓堀</h2>
+      <p class="lead">晚餐與唐吉訶德／藥妝採購結束後，約 21:00。這一夜先搭一段地鐵北上曽根崎新地看歌舞秀，再搭車折返道頓堀收尾，是三夜裡唯一需要離開徒步圈的一晚。</p>
+      <div class="route-note">交通重點：Osaka Metro 四つ橋線難波站 → 西梅田站，車程約 7-9 分鐘；門到門抓 20 分鐘。</div>
       <ul class="timeline">
-        <li><span class="t">21:00</span><div><b>道頓堀運河散步</b><div class="d">難波周邊集合後即是。水面被格力高招牌的霓虹染成一片，像走進了蒼天堀某個轉角——桐生一馬式的視角，冷靜掃過人潮與招牌，先讓眼睛適應這座城市的夜晚。</div></div></li>
-        <li><span class="t">21:10</span><div><b>移動：難波 → 西梅田</b><div class="d">步行至Osaka Metro四つ橋線難波駅（約5-7分），搭車往西梅田方向（約7-9分鐘車程），出站再步行2分抵達，門到門約20分鐘。</div></div></li>
-        <li><span class="t">21:30–22:40</span><div><b>Burlesque Osaka</b>（歌舞秀場）<div class="d">大阪市北区曽根崎新地1-3-8 グランパレ壱番館4F，JR東西線北新地駅／大阪メトロ四つ橋線西梅田駅徒步約2分。週一至週六19:30、21:30、23:30三場，每場約70分鐘，<strong>建議先線上訂位</strong>，票價約5,000円起視方案。LED舞台上的編舞秀隨燈光節奏轉換，舞者巡桌時觀眾可自由給小費打賞——是曽根崎新地霓虹街區裡最直接的一場感官秀，蒼天堀式的華麗與喧囂在此濃縮成七十分鐘。屬供酒夜間場所，建議20歲以上參加（官網未明訂年齡限制，比照日本法定飲酒年齡自行拿捏）。</div></div></li>
-        <li><span class="t">22:40</span><div><b>返程：西梅田 → 難波</b><div class="d">搭四つ橋線回難波（約7-9分鐘），再步行回道頓堀方向（約5-7分），總計約15-20分鐘。</div></div></li>
-        <li><span class="t">23:00</span><div><b>法善寺橫丁＋宗右衛門町</b><div class="d">走回道頓堀方向2-3分鐘。石疊小巷、水掛不動尊上的青苔，鬧市邊緣忽然安靜下來的反差，是這一夜最適合放慢腳步的一段。</div></div></li>
-        <li><span class="t">23:20</span><div><b>GiGO 大阪道頓堀本店</b>（復古電玩）<div class="d">道頓堀1-8-22 道頓座ビル，戎橋旁徒步約3分，10:00–翌1:00營業，2024年開幕的關西旗艦店，內有懷舊機台區。成人在這類場館沒有宵禁限制，可以待到隨心所欲。</div></div></li>
-        <li><span class="t">23:45</span><div><b>ジャンカラ 道頓堀店</b>（24小時卡拉OK）<div class="d">道頓堀1-7-23，難波站15-B出口徒步約7分，24小時營業，純包廂無接待性質。<span class="tag">時間充裕才續攤</span>今晚行程較滿，時間夠再進去唱一輪，否則直接返回飯店。</div></div></li>
-        <li><span class="t">24:00</span><div><b>返回心齋橋飯店</b><div class="d">徒步約7-10分鐘，回到道頓堀後便回到原本的徒步圈內，不需要再靠電車銜接。</div></div></li>
+        <li><span class="t">21:00</span><div><b>道頓堀運河散步</b><div class="d">難波周邊集合後即是。先沿水面和招牌慢走，讓眼睛適應這座城市的夜晚。</div></div></li>
+        <li><span class="t">21:10</span><div><b>移動：難波 → 西梅田</b><div class="d">步行至四つ橋線難波站約 5-7 分，搭車往西梅田方向約 7-9 分，出站再步行 2 分抵達。</div></div></li>
+        <li><span class="t">21:30-22:40</span><div><b>Burlesque Osaka</b><div class="d">大阪市北区曽根崎新地1-3-8 グランパレ壱番館4F，北新地站／西梅田站徒步約 2 分。週一至週六 19:30、21:30、23:30 三場，每場約 70 分鐘，建議先線上訂位，票價約 5,000 円起視方案。屬供酒夜間場所，建議 20 歲以上參加。</div></div></li>
+        <li><span class="t">22:40</span><div><b>返程：西梅田 → 難波</b><div class="d">搭四つ橋線回難波，再步行回道頓堀方向，總計約 15-20 分鐘。</div></div></li>
+        <li><span class="t">23:00</span><div><b>法善寺橫丁＋宗右衛門町</b><div class="d">石疊小巷、水掛不動尊上的青苔，鬧市邊緣忽然安靜下來的反差，是這一夜最適合放慢腳步的一段。</div></div></li>
+        <li><span class="t">23:20</span><div><b>GiGO 大阪道頓堀本店</b><div class="d">戎橋旁徒步約 3 分，10:00-翌1:00營業，2024 年開幕的關西旗艦店，內有懷舊機台區。</div></div></li>
+        <li><span class="t">23:45</span><div><b>ジャンカラ 道頓堀店</b><div class="d">24 小時卡拉OK，純包廂無接待性質。<span class="tag">時間充裕才續攤</span></div></div></li>
+        <li><span class="t">24:00</span><div><b>返回心齋橋飯店</b><div class="d">回到道頓堀後便回到原本徒步圈內，不需要再靠電車銜接。</div></div></li>
       </ul>
       <p class="caption">查核日期：2026-07-03，出發前 1-2 個月重查營業時間、班次與訂位規則。</p>
     </div>
   </section>
 
-  <!-- 04 Day4 -->
   <section id="night4">
     <div class="wrap">
       <div class="eyebrow"><span class="num">04</span>10/8 週四・爵士與威士忌</div>
-      <h2>神戶牛晚餐／日本橋採購結束後 → 開始私人夜行（至午夜）</h2>
-      <p class="lead">四家神戶牛候選餐廳都在道頓堀/難波/心齋橋徒步圈內，這一夜走酒吧與立飲路線，作為五天行程裡最後一個私人夜晚。</p>
+      <h2>神戶牛晚餐／日本橋採購後，用爵士與立飲收束</h2>
+      <p class="lead">四家神戶牛候選餐廳都在道頓堀／難波／心齋橋徒步圈內，這一夜走酒吧與立飲路線，作為五天行程裡最後一個私人夜晚。</p>
       <ul class="timeline">
         <li><span class="t">22:00</span><div><b>道頓堀／宗右衛門町河畔散步</b><div class="d">晚餐店步行可達。旅程尾聲的沉澱時刻，沿河慢慢走，不用急著找下一站。</div></div></li>
-        <li><span class="t">22:20–23:00</span><div><b>Rastro／Jazz Bar 845</b>（爵士酒吧）<div class="d">西心斎橋1-5-13 大塩アメリカ村ビル4F，心齋橋站7號出口徒步約2分。每晚有現場爵士演奏，建議先訂位，入場費約3,000円（含桌邊費用）。純音樂與調酒的氛圍，鋼琴手指尖流過的即興旋律，是蒼天堀夜晚裡優雅的一面。</div></div></li>
-        <li><span class="t">23:05</span><div><b>深夜立飲／居酒屋小酌</b><div class="d">道頓堀/千日前一帶皆可，申報深夜營業即可合法開到半夜。最後一杯的儀式感，不需要特定指名店家。</div></div></li>
-        <li><span class="t">23:35</span><div><b>ジャンカラ道頓堀店 或 GiGO道頓堀本店收尾</b><div class="d">資訊同10/5夜段，二選一輕收尾即可。</div></div></li>
-        <li><span class="t">23:55</span><div><b>返回心齋橋飯店</b><div class="d">徒步約7-10分鐘，五天行程的最後一個私人夜晚在此收束，明天是退房與返程日。</div></div></li>
+        <li><span class="t">22:20-23:00</span><div><b>Rastro／Jazz Bar 845</b><div class="d">西心斎橋1-5-13 大塩アメリカ村ビル4F，心齋橋站 7 號出口徒步約 2 分。每晚有現場爵士演奏，建議先訂位，入場費約 3,000 円（含桌邊費用）。</div></div></li>
+        <li><span class="t">23:05</span><div><b>深夜立飲／居酒屋小酌</b><div class="d">道頓堀／千日前一帶皆可，申報深夜營業即可合法開到半夜。最後一杯的儀式感，不需要特定指名店家。</div></div></li>
+        <li><span class="t">23:35</span><div><b>ジャンカラ道頓堀店 或 GiGO道頓堀本店收尾</b><div class="d">資訊同 10/5 夜段，二選一輕收尾即可。</div></div></li>
+        <li><span class="t">23:55</span><div><b>返回心齋橋飯店</b><div class="d">徒步約 7-10 分鐘，五天行程的最後一個私人夜晚在此收束，明天是退房與返程日。</div></div></li>
       </ul>
       <p class="caption">查核日期：2026-07-03，出發前 1-2 個月重查營業時間與訂位規則。</p>
     </div>
   </section>
 
-  <!-- 05 主行程備案 -->
   <section id="backup">
     <div class="wrap">
       <div class="eyebrow"><span class="num">05</span>主行程備案去處</div>
-      <h2>萬一主行程臨時取消：難波／道頓堀鬧區可自行前往的合法去處</h2>
-      <p class="lead">下面都是真實可查核、合法經營的業態——柏青哥／柏青嫂店與JRA／地方競馬場外馬券売場。依離難波／道頓堀鬧區中心的徒步距離由近到遠排序，供主行程當天臨時取消（下雨、體力不濟、店家臨時公休等）時自行參考前往，非表定行程。</p>
+      <h2>萬一主行程臨時取消，難波／道頓堀可自行前往的合法去處</h2>
+      <p class="lead">下面都是真實可查核、合法經營的業態：柏青哥／柏青嫂店與 JRA／地方競馬場外馬券売場。依離難波／道頓堀鬧區中心的徒步距離由近到遠排序，供下雨、體力不濟、店家臨時公休時參考，非表定行程。</p>
 
       <h3>日間備案</h3>
-      <ul class="timeline">
-        <li><span class="t">徒步1分</span><div><b>ARROW namBa HIPS</b>（柏青哥／柏青嫂）<div class="d">Osaka Metro難波駅15-B出口即到，10:00-23:00營業，1,122台機種。與大多數柏青哥店規定一致，18歲以下不得入店。</div></div></li>
-        <li><span class="t">徒步1分</span><div><b>楽園なんば店</b>（柏青哥／柏青嫂）<div class="d">Osaka Metro御堂筋線難波駅E5出口即到，10:00-22:40營業，1,281台機種。同樣18歲以下不得入店。</div></div></li>
-        <li><span class="t">徒步2-3分</span><div><b>パチンコ博物館</b>（懷舊柏青哥博物館）<div class="d">大阪市中央区道頓堀1，展示1948年「正村ゲージ」等歷史機台14台＋古董角子機6台，免費體驗（需現場登記會員），12:00-19:00營業。<strong>⚠ 開幕於2010年，近年資訊少見更新，出發前建議先致電或查證是否仍在營業。</strong></div></div></li>
-        <li><span class="t">徒步3-5分</span><div><b>マルハンなんば本館</b>（柏青哥／柏青嫂）<div class="d">千日前商店街，なんばオリエンタルホテル對面，10:00-22:50營業，1,156台機種。同樣18歲以下不得入店。</div></div></li>
-        <li><span class="t">徒步3-5分</span><div><b>ウインズ難波</b>（JRA中央競馬場外馬券売場）<div class="d">大阪市中央区道頓堀2-10-70，Osaka Metro御堂筋線難波駅徒步約3分，位於なんばパークス商業設施內。<strong>僅中央競馬開催日（通常週六、日，另有部分假日）營業</strong>，発売・払戻9:20-17:00，設施開放10:00-16:00，可順道逛街用餐。</div></div></li>
-        <li><span class="t">徒步5分</span><div><b>ウインズ道頓堀</b>（JRA中央競馬場外馬券売場）<div class="d">大阪市中央区道頓堀1-3-3，難波駅徒步約5分／心齋橋駅徒步約10分。<strong>同樣僅中央競馬開催日營業</strong>，時段同ウインズ難波，二選一即可，不需兩處都去。</div></div></li>
-        <li><span class="t">徒步4-10分</span><div><b>DASH心斎橋</b>（地方競馬場外馬券売場・園田／姫路競馬）<div class="d">大阪市中央区東心斎橋2-4-30 グランドジャニスビル，長堀橋駅⑦號出口徒步約4分／心齋橋駅⑥號出口徒步約10分。<strong>原則週一至週五營業（中央競馬開催日除外）</strong>，10:00開始発売。園田競馬設有ナイター（夜間賽事，約14:00-21:00），若當週恰逢園田ナイター場次，白天、晚上都能去——詳見下方「夜間備案」。</div></div></li>
-      </ul>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>距離</th><th>去處</th><th>重點</th><th>注意</th></tr></thead>
+          <tbody>
+            <tr><td data-label="距離">徒步1分</td><td data-label="去處">ARROW namBa HIPS</td><td data-label="重點">柏青哥／柏青嫂；難波站 15-B 出口即到，10:00-23:00 營業，1,122 台機種。</td><td data-label="注意">18 歲以下不得入店。</td></tr>
+            <tr><td data-label="距離">徒步1分</td><td data-label="去處">楽園なんば店</td><td data-label="重點">柏青哥／柏青嫂；御堂筋線難波站 E5 出口即到，10:00-22:40 營業，1,281 台機種。</td><td data-label="注意">18 歲以下不得入店。</td></tr>
+            <tr><td data-label="距離">徒步2-3分</td><td data-label="去處">パチンコ博物館</td><td data-label="重點">展示 1948 年「正村ゲージ」等歷史機台，免費體驗，12:00-19:00 營業。</td><td data-label="注意">近年資訊少見更新，出發前先確認是否仍營業。</td></tr>
+            <tr><td data-label="距離">徒步3-5分</td><td data-label="去處">マルハンなんば本館</td><td data-label="重點">柏青哥／柏青嫂；千日前商店街，10:00-22:50 營業，1,156 台機種。</td><td data-label="注意">18 歲以下不得入店。</td></tr>
+            <tr><td data-label="距離">徒步3-5分</td><td data-label="去處">ウインズ難波</td><td data-label="重點">JRA 中央競馬場外馬券売場；発売・払戻 9:20-17:00，設施開放 10:00-16:00。</td><td data-label="注意">僅中央競馬開催日營業，通常週六、週日與部分假日。</td></tr>
+            <tr><td data-label="距離">徒步5分</td><td data-label="去處">ウインズ道頓堀</td><td data-label="重點">JRA 中央競馬場外馬券売場；難波站徒步約 5 分，心齋橋站徒步約 10 分。</td><td data-label="注意">同樣僅中央競馬開催日營業，與ウインズ難波二選一即可。</td></tr>
+            <tr><td data-label="距離">徒步4-10分</td><td data-label="去處">DASH心斎橋</td><td data-label="重點">地方競馬場外馬券売場；長堀橋站徒步約 4 分／心齋橋站徒步約 10 分，10:00 開始発売。</td><td data-label="注意">原則週一至週五營業，中央競馬開催日除外；園田ナイター日可延伸到晚間。</td></tr>
+          </tbody>
+        </table>
+      </div>
 
       <h3>夜間備案</h3>
-      <p class="lead">晚餐後主行程臨時取消時可去的選項：柏青哥店整晚都在營業；JRA場外馬券所已收攤，但地方競馬（園田ナイター）若當週有夜間賽事仍可下注到晚間。</p>
       <ul class="timeline">
-        <li><span class="t">徒步1-5分</span><div><b>柏青哥三店（ARROW／楽園／マルハン）</b><div class="d">同上方「日間備案」清單，三店最晚營業到22:40-23:00，晚餐後仍可前往，地址與交通資訊同上。</div></div></li>
-        <li><span class="t">徒步4-10分</span><div><b>DASH心斎橋・園田ナイター</b><div class="d">若當週園田競馬恰逢夜間賽事（約14:00-21:00），此處可一路下注到收攤，是三段夜行以外唯一能在晚間體驗「賽馬」氛圍的合法去處。地址與交通同上方日間備案。<strong>出發前建議先查園田競馬2026年10月賽程</strong>，確認當週是否為ナイター場次。</div></div></li>
+        <li><span class="t">徒步1-5分</span><div><b>柏青哥三店（ARROW／楽園／マルハン）</b><div class="d">三店最晚營業到 22:40-23:00，晚餐後仍可前往，地址與交通資訊同上。</div></div></li>
+        <li><span class="t">徒步4-10分</span><div><b>DASH心斎橋・園田ナイター</b><div class="d">若當週園田競馬恰逢夜間賽事（約 14:00-21:00），此處可下注到收攤，是三段夜行以外唯一能在晚間體驗賽馬氛圍的合法去處。出發前建議先查園田競馬 2026 年 10 月賽程。</div></div></li>
       </ul>
-      <p class="caption">查核日期：2026-07-03，出發前 1-2 個月重查各店營業時間、JRA／地方競馬2026年10月賽程，以及是否仍在營業（尤其パチンコ博物館，資訊來源較舊）。柏青哥與馬券売場僅供合法成人休閒消費參考，未涉及非法賭博場所。</p>
+      <p class="caption">查核日期：2026-07-03，出發前 1-2 個月重查各店營業時間、JRA／地方競馬 2026 年 10 月賽程，以及是否仍在營業（尤其パチンコ博物館）。柏青哥與馬券売場僅供合法成人休閒消費參考，未涉及非法賭博場所。</p>
     </div>
   </section>
 
@@ -217,12 +292,10 @@
 
 <footer>
   <div class="wrap">
-    <div class="disc">
-      <h4>免責聲明</h4>
-      <p>本行程僅限心智健全的成人參與。內容僅為氛圍與動線參考，所有場所皆為日本境內合法經營之業態，實際營業時間、價格與公休日請以店家最新公告為準。</p>
-      <p class="isolation">本頁與原「2026 大阪五天自由行指南」（osaka-2026-trip-guide.html 及 Day 1/3/4/5 深度頁）完全獨立，不包含任何指向原始行程的連結，也未修改原始行程檔案任何內容。</p>
-      <span class="mono">走法與營業時段依 2026-07-03 查核之大阪府風俗營業相關規定與實際步行距離為準，出發前 1-2 個月請重新查核。</span>
-    </div>
+    <h4>免責聲明</h4>
+    <p>本行程僅限心智健全的成人參與。內容僅為氛圍與動線參考，所有場所皆為日本境內合法經營之業態，實際營業時間、價格與公休日請以店家最新公告為準。</p>
+    <p>本頁是原「2026 大阪五天自由行指南」之外的獨立黑道版支線，不修改主行程內容，也不要求全團採用。</p>
+    <span class="mono">走法與營業時段依 2026-07-03 查核之大阪府風俗營業相關規定與實際步行距離為準，出發前 1-2 個月請重新查核。</span>
   </div>
 </footer>
 
