@@ -76,3 +76,16 @@ Strong success criteria let the editor (or AI) iterate independently. Weak crite
 - Unnecessary changes in edited drafts drop sharply.  
 - Rewrites due to overcomplication become rare.  
 - Clarifying questions come *before* the edit, not after mistakes are made.
+
+---
+
+## 5. Model Role Hierarchy
+
+This project uses a layered model assignment when a task is split across multiple Claude models/agents:
+
+- **Fable — Coordinator**: Owns overall planning and task breakdown; decides how work is divided among the roles below.
+- **Sonnet — Executor**: Carries out the actual work (writing, editing, implementation).
+- **Haiku — CLI/Terminal Operator**: Handles CLI/terminal command tasks (running commands, reading output).
+- **Opus — Reviewer**: Reviews completed work and reports the results.
+
+**Fallback**: If Fable is unavailable, Opus takes over the Coordinator role in addition to its own review duties.
