@@ -158,10 +158,10 @@
   .flag.gold h3{color:var(--gold)}
 
   /* tables */
-  .table-scroll{overflow-x:auto;border-radius:10px;border:1px solid var(--line);box-shadow:var(--shadow);background:var(--card);margin-top:8px}
-  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px}
+  .table-scroll{overflow-x:visible;border-radius:10px;border:1px solid var(--line);box-shadow:var(--shadow);background:var(--card);margin-top:8px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:0}
   thead th{background:var(--ink);color:#E9EBEF;font-weight:500;text-align:left;padding:13px 14px;font-size:12.5px;letter-spacing:.03em;vertical-align:bottom}
-  tbody td{padding:12px 14px;border-top:1px solid var(--line-soft);vertical-align:top}
+  tbody td{padding:12px 14px;border-top:1px solid var(--line-soft);vertical-align:top;overflow-wrap:anywhere}
   tbody tr:nth-child(even){background:#F8F9FB}
   .caption{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.6}
 
@@ -192,9 +192,10 @@
   .chk label:first-of-type{border-top:none}
   .chk input{width:15px;height:15px;margin-top:3px;accent-color:var(--gold)}
 
-  .src{font-size:12px;color:var(--muted);line-height:1.8}
+  .src{font-size:12px;color:var(--muted);line-height:1.8;overflow-wrap:anywhere;word-break:break-word}
   .src li{list-style:none;padding:8px 0;border-top:1px solid var(--line-soft)}
   .src li:first-child{border-top:none}
+  .src a{overflow-wrap:anywhere}
   footer{background:var(--ink);color:#9AA2B0;padding:30px 0;margin-top:10px;font-size:12.5px}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   footer .mono{color:#6E7682}
@@ -227,28 +228,16 @@
   a{color:#267A32}
 
   header{
-    min-height:650px;
-    padding:112px 0 118px;
+    position:relative;
+    overflow:hidden;
+    padding:76px 0 120px;
     background:
-      radial-gradient(circle at 21% 28%,rgba(255,255,255,.68) 0 58px,transparent 60px),
-      radial-gradient(circle at 88% 31%,rgba(255,255,255,.46) 0 80px,transparent 82px),
-      repeating-linear-gradient(96deg,#E8C99C 0 24px,#F3D9B1 24px 48px,#E1BD89 48px 72px);
+      linear-gradient(90deg,rgba(255,248,220,.94) 0%,rgba(255,248,220,.76) 42%,rgba(255,248,220,.18) 74%),
+      url("assets/media/usj-2026-hero.png") center/cover no-repeat;
     color:var(--ink);
   }
   header::before{
-    content:"";
-    position:absolute;
-    left:clamp(34px,8vw,110px);
-    top:190px;
-    z-index:0;
-    width:min(660px,56vw);
-    height:350px;
-    border:14px solid #fff;
-    border-bottom-width:24px;
-    border-radius:2px;
-    background:url("assets/media/usj-travel-hero.png") center/cover no-repeat;
-    box-shadow:0 22px 50px rgba(87,54,22,.2);
-    transform:rotate(-4deg);
+    content:none;
   }
   header::after{
     content:"";
@@ -261,42 +250,18 @@
     background:#fff;
     clip-path:polygon(0 48%,8% 58%,20% 44%,35% 62%,49% 46%,62% 58%,75% 42%,88% 59%,100% 44%,100% 100%,0 100%);
   }
-  header .wrap{
-    position:relative;
-    z-index:1;
-    min-height:420px;
-  }
+  header .wrap{position:relative;z-index:1}
   header .wrap::before{
-    content:"";
-    position:absolute;
-    top:0;
-    right:24px;
-    bottom:0;
-    width:min(500px,47vw);
-    border:1px solid rgba(194,151,78,.48);
-    border-radius:2px;
-    background:rgba(255,246,207,.9);
-    box-shadow:0 18px 42px rgba(95,60,24,.16);
+    content:none;
   }
   header .wrap::after{
-    content:"";
-    position:absolute;
-    right:-12px;
-    top:-34px;
-    z-index:2;
-    width:95px;
-    height:95px;
-    background:linear-gradient(140deg,#C94625 0 45%,#EF8B24 46% 64%,#D85A27 65%);
-    clip-path:polygon(50% 0,61% 32%,96% 17%,69% 48%,100% 60%,64% 64%,78% 100%,51% 73%,24% 100%,35% 64%,0 60%,31% 48%,4% 17%,39% 32%);
-    filter:drop-shadow(0 8px 4px rgba(112,57,18,.18));
-    transform:rotate(18deg);
+    content:none;
   }
-  header .wrap>*{
-    position:relative;
-    z-index:3;
-    width:min(430px,42vw);
-    margin-left:auto;
-  }
+  .hero-card{position:relative;z-index:1;max-width:720px;border:1px solid rgba(194,151,78,.48);border-radius:2px;
+    background:rgba(255,246,207,.88);box-shadow:0 18px 42px rgba(95,60,24,.16);padding:34px 36px 30px;
+    backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+  .hero-card::after{content:"🍁";position:absolute;right:-22px;top:-36px;font-size:76px;line-height:1;
+    filter:drop-shadow(0 8px 4px rgba(112,57,18,.18));transform:rotate(14deg)}
   .cred-tag{
     display:block;
     margin-bottom:12px;
@@ -328,8 +293,6 @@
     align-items:center;
     justify-content:center;
     margin-top:22px;
-    margin-left:auto;
-    margin-right:0;
     width:auto;
     min-height:44px;
     padding:10px 22px;
@@ -526,54 +489,21 @@
 
   @media (max-width:900px){
     header{
-      min-height:870px;
-      padding:88px 0 100px;
+      padding:64px 0 110px;
     }
-    header::before{
-      left:24px;
-      right:24px;
-      top:130px;
-      width:auto;
-      height:260px;
-      border-width:10px;
-      border-bottom-width:18px;
-    }
-    header .wrap{min-height:690px;padding-top:330px}
-    header .wrap::before{
-      right:24px;
-      left:24px;
-      width:auto;
-      top:330px;
-      bottom:0;
-    }
-    header .wrap::after{right:8px;top:300px}
-    header .wrap>*{width:auto;margin-left:24px;margin-right:24px}
     header h1{font-size:clamp(30px,9vw,46px)}
     .params{grid-template-columns:1fr 1fr}
   }
   @media (max-width:620px){
-    body{background:linear-gradient(180deg,#F3D9B1 0,#fff 760px)}
+    body{background:linear-gradient(180deg,#F3D9B1 0,#fff 560px)}
+    .trip-nav,.flow-stepper ol{flex-wrap:wrap;overflow-x:visible;padding:9px 20px}
+    .trip-nav a,.flow-stepper a{padding:6px 12px;font-size:12.5px}
     .wrap{padding:0 20px}
     header{
-      min-height:920px;
-      padding-top:58px;
+      padding:52px 0 100px;
     }
-    header::before{
-      top:128px;
-      left:18px;
-      right:18px;
-      height:218px;
-      transform:rotate(-3deg);
-    }
-    header .wrap{padding-top:345px}
-    header .wrap::before{left:20px;right:20px;top:338px}
-    header .wrap::after{
-      width:78px;
-      height:78px;
-      top:308px;
-      right:0;
-    }
-    header .wrap>*{margin-left:22px;margin-right:22px}
+    .hero-card{padding:26px 22px 24px}
+    .hero-card::after{font-size:58px;right:8px;top:-24px}
     header h1{font-size:32px}
     .sub{font-size:14px}
     .params{grid-template-columns:1fr}
@@ -591,6 +521,15 @@
       flex:0 0 auto;
       width:100%;
     }
+    .table-scroll{border:0;box-shadow:none;background:transparent}
+    table{border-collapse:separate;border-spacing:0 10px}
+    thead{display:none}
+    tbody,tbody tr,tbody td{display:block;width:100%}
+    tbody tr{border:1px solid #EAD6AB;border-radius:6px;background:#fff;box-shadow:var(--shadow);overflow:hidden}
+    tbody td{border-top:1px solid #F0DFBD;padding:10px 12px;overflow-wrap:anywhere}
+    tbody td:first-child{border-top:0;background:#FFF8E8;font-weight:800;color:#4B3527}
+    tbody td::before{content:attr(data-label);display:block;margin-bottom:2px;color:#A35A21;font-size:11.5px;font-weight:900;line-height:1.4}
+    tbody td[data-label=""]::before{display:none}
   }
 
   /* 大阪五天自由行 trip-nav / day-pager（本頁為 Day 2；不做 sticky 以免與流程列衝突） */
@@ -623,15 +562,17 @@
 
 <header>
   <div class="wrap">
-    <div class="cred-tag">USJ First-Timer Ordering Guide</div>
-    <h1>第一次去 USJ？<span class="accent">6 個人的票</span>像點餐一樣買</h1>
-    <p class="sub">2026 年 10 月 6 日、6 位成人的日本環球影城。照著流程走：先做行前準備，再買 6 張門票（主餐），然後從配套裡挑一個（副餐），頁面會即時算出總金額和每人要分多少錢，最後直達購買頁。</p>
-    <a class="cta" href="#行前準備">開始第一步 ↓</a>
-    <div class="params">
-      <div class="param"><div class="k">人數</div><div class="v">6 位成人 <small>／12 歲以上</small></div></div>
-      <div class="param"><div class="k">日期</div><div class="v">2026-10-06 <small>／活動旺季</small></div></div>
-      <div class="param"><div class="k">匯率</div><div class="v">0.197 <small>／JPY→TWD・2026-06-28</small></div></div>
-      <div class="param"><div class="k">玩法</div><div class="v">點餐式 <small>／配套挑一個就好</small></div></div>
+    <div class="hero-card">
+      <div class="cred-tag">2026 大阪五天自由行・Day 2 USJ｜10/06（二）</div>
+      <h1>第一次去 USJ？<span class="accent">6 個人的票</span>像點餐一樣買</h1>
+      <p class="sub">2026 年 10 月 6 日、6 位成人的日本環球影城。照著流程走：先做行前準備，再買 6 張門票（主餐），然後從配套裡挑一個（副餐），頁面會即時算出總金額和每人要分多少錢，最後直達購買頁。</p>
+      <a class="cta" href="#行前準備">開始第一步 ↓</a>
+      <div class="params">
+        <div class="param"><div class="k">人數</div><div class="v">6 位成人 <small>／12 歲以上</small></div></div>
+        <div class="param"><div class="k">日期</div><div class="v">2026-10-06 <small>／活動旺季</small></div></div>
+        <div class="param"><div class="k">匯率</div><div class="v">0.197 <small>／JPY→TWD・2026-06-28</small></div></div>
+        <div class="param"><div class="k">玩法</div><div class="v">點餐式 <small>／配套挑一個就好</small></div></div>
+      </div>
     </div>
   </div>
 </header>
@@ -908,6 +849,14 @@
 <script>
 (function(){
 "use strict";
+document.querySelectorAll(".table-scroll table").forEach(function(table){
+var headers=[].slice.call(table.querySelectorAll("thead th")).map(function(th){return th.textContent.trim();});
+[].slice.call(table.querySelectorAll("tbody tr")).forEach(function(row){
+[].slice.call(row.children).forEach(function(cell,index){
+cell.dataset.label=headers[index]||"";
+});
+});
+});
 var doc=document;
 var RATE=0.197,N=6,TICKET=8900;
 var LINKS={
