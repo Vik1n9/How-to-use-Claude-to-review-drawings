@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <!-- ==================================================================
      LONG DOCUMENT · parchment design system · zh-TW
-     美容儀器說明書 AI 協作工作流
+     簡體說明書看不懂？用三段 AI 接力做出 28 頁繁中手冊
      ================================================================== -->
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<title>美容儀器說明書 AI 協作工作流：翻譯、合規改寫與排版的三段接力</title>
-<meta name="description" content="美容儀器說明書 AI 協作工作流：翻譯、合規改寫與排版的三段接力。">
-<meta name="keywords" content="AI 工作流, 說明書翻譯, 合規改寫, Claude Code, Codex, DeepSeek">
+<title>簡體說明書看不懂？我們用三段 AI 接力做出 28 頁繁中手冊</title>
+<meta name="description" content="19 頁簡體說明書如何變成 28 頁繁中 A4 手冊：DeepSeek 翻譯、Codex 複驗校稿、Claude Code 排版，每一棒只做一種性質的工作。">
+<meta name="keywords" content="AI 工作流, 說明書翻譯, 合規改寫, 簡轉繁, Claude Code, Codex, DeepSeek, QA 驗收">
 <meta name="generator" content="Kami">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -44,7 +44,7 @@
     }
 
     @bottom-center {
-      content: counter(page) "  ·  美容儀器說明書 AI 協作工作流";
+      content: counter(page) "  ·  三段 AI 接力做出 28 頁繁中手冊";
       font-family: "Iansui", "TsangerJinKai02", "Source Han Serif SC",
                    "Noto Serif CJK SC", "Songti TC", "Songti SC", Georgia, serif;
       font-size: 9pt;
@@ -416,6 +416,42 @@
     font-size: 13pt;
   }
 
+  /* ========== FIGURE / QUOTE / PULL ========== */
+  figure { margin: 14pt 0; break-inside: avoid; }
+  figure > figcaption {
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: var(--stone);
+    text-align: center;
+    margin-top: 6pt;
+    line-height: 1.45;
+  }
+  .prompt > figcaption { text-align: left; margin-top: 0; }
+  blockquote {
+    margin: 14pt 0;
+    padding: 0 18pt;
+    font-size: 12.5pt;
+    line-height: 1.5;
+    color: var(--olive);
+    break-inside: avoid;
+  }
+  blockquote .cite {
+    display: block;
+    font-size: 9pt;
+    color: var(--stone);
+    margin-top: 5pt;
+  }
+  .pull {
+    font-size: 15pt;
+    line-height: 1.4;
+    color: var(--brand);
+    margin: 18pt 0;
+  }
+  .diagram-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .diagram { width: 100%; height: auto; display: block; }
+  @media screen and (max-width: 640px) { .diagram { min-width: 440px; } }
+  @media print { .diagram { min-width: 0; } }
+
   /* ========== CHAPTER BREAK ========== */
   .chapter { break-before: page; }
 
@@ -452,9 +488,9 @@
 <!-- ═════════════ COVER ═════════════ -->
 <section class="cover">
   <div>
-    <div class="cover-eyebrow">Workflow Note · AI 協作工作流</div>
-    <div class="cover-title">美容儀器說明書<br>AI 協作工作流</div>
-    <div class="cover-sub">一份簡體說明書 PDF，透過 DeepSeek、Codex、Claude Code 三段接力，變成繁中 A4 手冊。</div>
+    <div class="cover-eyebrow">Workflow Note · 三段 AI 接力</div>
+    <div class="cover-title">簡體說明書<br>看不懂？</div>
+    <div class="cover-sub">我們用三段 AI 接力，把 19 頁簡體美容儀器說明書做成 28 頁繁中 A4 手冊——每一棒只做一種性質的工作。</div>
   </div>
   <div class="cover-meta">
     <strong>Plan → Rewrite → Dev → QA</strong><br>
@@ -466,438 +502,239 @@
 <!-- ═════════════ TOC ═════════════ -->
 <section class="toc">
   <h2>目錄</h2>
-  <div class="toc-item">
-    <span class="toc-num">01</span>
-    <a class="toc-title" href="#ch-summary">執行摘要</a>
-  </div>
-  <div class="toc-item">
-    <span class="toc-num">02</span>
-    <a class="toc-title" href="#plan">Plan：案前判斷與工作計畫</a>
-  </div>
-  <div class="toc-item">
-    <span class="toc-num">03</span>
-    <a class="toc-title" href="#rewrite">Rewrite：翻譯與合規改寫</a>
-  </div>
-  <div class="toc-item">
-    <span class="toc-num">04</span>
-    <a class="toc-title" href="#dev">Dev：複驗修正與版面開發</a>
-  </div>
-  <div class="toc-item">
-    <span class="toc-num">05</span>
-    <a class="toc-title" href="#qa">QA：驗收複驗</a>
-  </div>
-  <div class="toc-item">
-    <span class="toc-num">06</span>
-    <a class="toc-title" href="#tools">工具與技能總表</a>
-  </div>
-  <div class="toc-item">
-    <span class="toc-num">07</span>
-    <a class="toc-title" href="#prompt-templates">可複用 Prompt 模板</a>
-  </div>
-  <div class="toc-item">
-    <span class="toc-num">08</span>
-    <a class="toc-title" href="#conclusion">總結：四階段，五條準則</a>
-  </div>
+  <div class="toc-item"><span class="toc-num">01</span><a class="toc-title" href="#拿著簡體說明書為什麼我們總是看不懂">拿著簡體說明書，為什麼我們總是看不懂？</a></div>
+  <div class="toc-item"><span class="toc-num">02</span><a class="toc-title" href="#三段ai接力賽每一棒到底在做什麼">三段 AI 接力賽，每一棒到底在做什麼？</a></div>
+  <div class="toc-item"><span class="toc-num">03</span><a class="toc-title" href="#一次丟給ai翻譯為什麼反而更危險">一次丟給 AI 翻譯，為什麼反而更危險？</a></div>
+  <div class="toc-item"><span class="toc-num">04</span><a class="toc-title" href="#排版輸出這最後一棒我們該怎麼驗收">排版輸出這最後一棒，我們該怎麼驗收？</a></div>
 </section>
 
-<!-- ═════════════ Chapter 01：執行摘要 ═════════════ -->
-<section class="chapter" id="ch-summary">
-  <div class="chapter-num">01 · Summary · 執行摘要</div>
-  <h1>執行摘要</h1>
+<!-- ═════════════ Chapter 01 ═════════════ -->
+<section class="chapter" id="拿著簡體說明書為什麼我們總是看不懂">
+  <div class="chapter-num">01 · Risks · 案前判斷</div>
+  <h1>拿著簡體說明書，為什麼我們總是看不懂？</h1>
 
-  <p class="lead">
-    這個案子的素材是一份 19 頁的簡體中文美容儀器說明書 PDF，最終交付是一份 28 頁 A4、繁體中文、含封面目錄配圖的新版手冊 PDF。以下按 <strong>Plan → Rewrite → Dev → QA</strong> 四個階段，記錄每一步的判斷邏輯、使用者下的 Prompt、哪些決策必須由人來做。
-  </p>
+  <p class="lead">最近拿到一份 19 頁簡體美容儀器說明書 PDF，裡面寫滿專有名詞與功效描述，因而無法直接給台灣使用者用。</p>
+
+  <p class="pull">字都認識，文件卻不能用。</p>
 
   <div class="exec-summary">
-    <h2>四個階段各自負責什麼</h2>
-    <ul>
-      <li><strong>Plan</strong>：定義要做什麼、怎麼做、守門點在哪。</li>
-      <li><strong>Rewrite</strong>：把原始素材轉成可修改的繁體中文草稿。</li>
-      <li><strong>Dev</strong>：修正錯誤並開發可交付的最終成品。</li>
-      <li><strong>QA</strong>：確認成品符合計畫與原始目標。</li>
-    </ul>
+    <h2>這趟接力做了什麼</h2>
+    <p>把 19 頁原稿交給三棒 AI 處理，最後產出含封面、目錄與重配配圖的 <strong class="hl">28 頁 A4 繁中手冊 PDF</strong>。這頁把整套「接力賽」跑法完整拆解。</p>
   </div>
-</section>
 
-<!-- ═════════════ Chapter 02：Plan ═════════════ -->
-<section class="chapter" id="plan">
-  <div class="chapter-num">02 · Plan · 案前判斷</div>
-  <h1>Plan：案前判斷與工作計畫</h1>
-
-  <p class="lead">表面任務是「PDF 翻譯成繁體中文 HTML」，但動工前先判斷出這份文件有三個風險，每一個都會讓「直接翻譯」變成錯誤做法：</p>
-
-  <ul>
-    <li><strong>疑似醫療描述</strong>——原稿有大量容易被誤認為醫療行為、疾病診斷、療效宣稱的語句，必須改寫而不是照翻。</li>
-    <li><strong>簡轉繁陷阱</strong>——原稿是簡體中文，不能只做字形轉換，專有名詞與台灣常用語都要深度在地化。</li>
-    <li><strong>格式保留</strong>——說明書有章節、警告、注意事項、表格、配件清單，轉出來不能只剩純文字。</li>
-  </ul>
-
-  <p>所以這個案子的目標從一開始就定義成：</p>
-
-  <figure class="prompt">
-    <figcaption>目標定義</figcaption>
-    <pre><code>把原始 PDF 轉成繁體中文 HTML 說明書，同時移除或改寫醫療行為、疾病診斷、療效宣稱相關語句，並保留原始說明書格式。</code></pre>
-    <button class="copy-button" type="button">複製</button>
+  <figure>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>項目</th><th>原稿</th><th>成品</th></tr></thead>
+        <tbody>
+          <tr><td>頁數</td><td>19 頁</td><td>28 頁</td></tr>
+          <tr><td>語言</td><td>簡體中文</td><td>繁體中文（深度在地化）</td></tr>
+          <tr><td>格式</td><td>PDF</td><td>A4 PDF（由 HTML 定稿轉出）</td></tr>
+          <tr><td>結構</td><td>章節、警告、表格、配件清單與配圖</td><td>加上封面、目錄頁、頁碼與重配配圖</td></tr>
+          <tr><td>語氣</td><td>帶醫療行為與療效宣稱</td><td>美容儀器文件語氣</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figcaption>19 頁簡體 PDF 與 28 頁繁中 A4 手冊對照。</figcaption>
   </figure>
 
-  <h2 id="plan-framework">四階段工作骨架</h2>
-  <p>這個案子的工作骨架是 <strong>Plan → Rewrite → Dev → QA</strong>。這樣安排有兩個前提，每個階段都要遵守：</p>
-  <ul>
-    <li><strong>每階段只做一種性質的工作</strong>——翻譯、質檢、排版分開，Prompt 才能聚焦，出問題才能歸因。</li>
-    <li><strong>上一階段的產物永遠當草稿</strong>——每個新階段都明確告訴 AI「不要直接視為正確稿」，避免錯誤被沿用到底。</li>
-  </ul>
+  <h2 id="三個讓直翻失敗的風險">三個讓直翻失敗的風險</h2>
+
+  <p>我們動工前先做案前判斷，找出三個讓直翻失敗的風險。這三個風險正是後面必須分棒處理的原因。</p>
 
   <div class="table-wrap">
     <table>
-      <thead><tr><th>階段</th><th>本案對應工作</th><th>工具</th><th>目的</th></tr></thead>
+      <thead><tr><th>風險</th><th>為什麼會失敗</th></tr></thead>
       <tbody>
-        <tr><td><strong>Plan</strong></td><td>案前風險判斷、目標定義、工具規劃、計畫核准</td><td>人工 + AI 計畫模式</td><td>定義要做什麼、怎麼做、守門點在哪</td></tr>
-        <tr><td><strong>Rewrite</strong></td><td>PDF 翻譯、合規改寫、產出 HTML 初版</td><td>Open Code + DeepSeek V4-pro</td><td>把原始素材轉成可修改的繁體中文草稿</td></tr>
-        <tr><td><strong>Dev</strong></td><td>Codex 複驗修正 + Claude Code 配圖排版</td><td>Codex → Claude Code</td><td>修正錯誤並開發可交付的最終成品</td></tr>
-        <tr><td><strong>QA</strong></td><td>完工複驗，對照計畫逐項確認</td><td>本案人工，可換 AI</td><td>確認成品符合計畫與原始目標</td></tr>
+        <tr>
+          <td><span class="tag">其一</span>疑似醫療描述</td>
+          <td>原稿保留大量涉及醫療行為、疾病診斷與療效宣稱的易誤認語句。若照字面翻譯會把「患者」與「禁忌症」等詞原樣留下，使得文件讀起來像醫療器材文件。</td>
+        </tr>
+        <tr>
+          <td><span class="tag">其二</span>簡轉繁陷阱</td>
+          <td>原稿既是簡體中文，只做字形轉換遠遠不夠，專有名詞與台灣常用語都要深度在地化。否則殘留簡體用語，便會直接拉低說明書可信度。</td>
+        </tr>
+        <tr>
+          <td><span class="tag">其三</span>格式保留</td>
+          <td>原稿帶有章節、警告、表格、配件清單與配圖，成品不能只剩純文字。版面結構必須保留，使用者才能對照實物操作。</td>
+        </tr>
       </tbody>
     </table>
   </div>
-
-  <p>輸出格式選 HTML 而不是直接做 PDF，是刻意的：HTML 比 PDF 容易事後校正，等內容定稿再轉成 PDF 也很方便。後面 Dev 與 QA 都受惠於這個決定。</p>
-</section>
-
-<!-- ═════════════ Chapter 03：Rewrite ═════════════ -->
-<section class="chapter" id="rewrite">
-  <div class="chapter-num">03 · Rewrite · 翻譯與合規改寫</div>
-  <h1>Rewrite：翻譯與合規改寫</h1>
-
-  <h2 id="rewrite-why">為什麼選 Open Code + DeepSeek</h2>
-  <p>選它有兩個理由。第一是省 token：PDF 轉 HTML 是大量整理工作，用便宜的模型跑初版最划算。第二個理由更關鍵：原稿是簡體中文，裡面有許多疑似醫療的說明方式，直接調用其他模型時，模型無法分辨這到底是不是真的醫療內容，很容易觸發內容審查、被迫拒絕工作。DeepSeek 能判斷語境，先把內容修正成合規版本，後面的工具才接得下去。</p>
-
-  <h2 id="rewrite-prompt">使用者下的 Prompt</h2>
-
-  <figure class="prompt">
-    <figcaption>Rewrite · Open Code Prompt 原文</figcaption>
-    <pre><code>pdf檔案為美容儀器說明書，內有大量會遭人誤會為醫療行為的敘述，請協助修正，並將pdf內容翻譯為繁體中文，特別留意不得直接簡轉繁，需要針對專有名詞，常見簡轉繁錯誤等進行深度轉換，如有不確定的名詞不要硬翻譯，詢問我後再翻譯。完成後保留原有格式，製作成html檔案。</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-
-  <p>這段話不長，但拆開來看，把初版需要的條件一次講齊了：</p>
-
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>Prompt 片段</th><th>目的</th></tr></thead>
-      <tbody>
-        <tr><td><code>pdf檔案為美容儀器說明書</code></td><td>給 AI 文件類型與上下文，避免當一般文章處理</td></tr>
-        <tr><td><code>內有大量會遭人誤會為醫療行為的敘述</code></td><td>指出最重要的合規風險，不只是翻譯問題</td></tr>
-        <tr><td><code>請協助修正</code></td><td>要求改寫，不是只找問題</td></tr>
-        <tr><td><code>不得直接簡轉繁</code>＋<code>深度轉換</code></td><td>避免機械字形轉換，要求語意與用語層級的在地化</td></tr>
-        <tr><td><code>不確定的名詞不要硬翻譯，詢問我</code></td><td>設下人工確認點，避免 AI 自行創造錯誤名稱</td></tr>
-        <tr><td><code>保留原有格式，製作成html檔案</code></td><td>指定輸出格式與版面保留要求</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p>反過來想就知道為什麼要講這麼齊：只說「幫我翻成繁體中文」，AI 會把「患者」「禁忌症」「醫療裝置」原樣留下；只說「幫我去掉醫療內容」，AI 可能連必要的安全提醒一起刪掉，或把格式打散。</p>
-
-  <h2 id="rewrite-check">Rewrite 完成後：人工確認清單</h2>
-  <p>DeepSeek 產出 HTML 初版後，不要當完稿，把它當「可編輯草稿」快速確認六件事：</p>
-  <ul>
-    <li>是否真的有產出 HTML 檔案。</li>
-    <li>章節是否大致完整。</li>
-    <li>警告、注意、表格、配件清單是否還在。</li>
-    <li>是否有明顯簡體殘留。</li>
-    <li>是否有看起來像醫療用語的詞。</li>
-    <li>功能名稱有沒有被 AI 改得太漂亮、太像療效宣稱。</li>
-  </ul>
-  <p>確認完不要急著交付，進 Dev 階段。</p>
-</section>
-
-<!-- ═════════════ Chapter 04：Dev ═════════════ -->
-<section class="chapter" id="dev">
-  <div class="chapter-num">04 · Dev · 複驗與排版</div>
-  <h1>Dev：複驗修正與版面開發</h1>
-
-  <p class="lead" id="dev-codex">Dev 的第一步把 AI 的角色從「生產者」切換成「審稿者」：不是重做，而是拿原始 PDF 和初版 HTML 對照，找出錯翻、醫療描述殘留、改寫不當，然後修正。工具選 Codex 是習慣用它校稿，換成其他 AI 工具其實不影響這個流程。</p>
-
-  <h2>A — Codex 複驗校稿</h2>
-
-  <h3>使用者下的 Prompt</h3>
-  <figure class="prompt">
-    <figcaption>Dev A · Codex Prompt 原文</figcaption>
-    <pre><code>專案內有原始pdf一份，改寫後的html一份，目標是除去pdf中所有關於醫療行為的描敘，並轉換成繁體中文。任務是重新檢查html內是否有錯誤，錯翻譯，未清除或是改寫的描述，修正他，不確定的部分詢問我</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-  <p>這段 Prompt 的關鍵字是「<strong>重新檢查</strong>」。Dev 複驗最容易犯的錯，是 AI 沿用初版內容、沒有真正回去比對原稿。所以要明確要求：看原始 PDF、看改寫後 HTML、找出問題；能確定的直接修，不確定的停下來問。</p>
-
-  <h3>複驗實際抓到的問題</h3>
-  <p>初版看起來已經很完整，但 Codex 對照原稿後仍然抓出好幾類問題——這正是「看起來完成，其實殘留風險」的實例：</p>
-
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>問題類型</th><th>例子</th><th>為什麼要修</th></tr></thead>
-      <tbody>
-        <tr><td>醫療裝置語彙</td><td>「植入式心臟除顫器或其他電磁植入式醫療裝置」</td><td>太接近醫療器材語境</td></tr>
-        <tr><td>疾病與生理指標</td><td>「慢性疾病者（如血糖、血壓、血脂相關問題者）」</td><td>仍像醫療禁忌或疾病診斷</td></tr>
-        <tr><td>功能名稱被改寫</td><td>「五極彩光微電波護理」</td><td>原 PDF 是「五極彩光微電」，初版自行加了療程感的詞</td></tr>
-        <tr><td>功能名稱不精準</td><td>「水氧噴霧」</td><td>原 PDF 是「水氧噴槍」</td></tr>
-        <tr><td>功效暗示</td><td>「煥膚筆」</td><td>比原名中性，但仍可能暗示膚況改善</td></tr>
-        <tr><td>繁中錯字或不自然</td><td>「實銷性」「其它」</td><td>要改成正式繁中說明書語氣</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h3>修正方向：不是刪光，而是換語氣</h3>
-  <p>合規改寫的原則是保留安全提醒、拿掉醫療診斷語氣，讓文件讀起來像美容儀器產品文件，而不是醫療器材文件：</p>
-
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>原本的語氣</th><th>改寫方向</th></tr></thead>
-      <tbody>
-        <tr><td>患者、疾病、感染、心臟除顫器</td><td>使用者、膚況、植入式電子裝置</td></tr>
-        <tr><td>禁忌症</td><td>不建議使用情形</td></tr>
-        <tr><td>血糖、血壓、血脂</td><td>當日狀態不佳或需避免刺激者</td></tr>
-        <tr><td>皮膚感染</td><td>皮膚破損、紅腫、滲液或明顯異常</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2 id="dev-gate">人工守門點：哪些地方 AI 不能自己定案</h2>
-  <p>三個階段的 Prompt 都寫了同一句話：「不確定的部分詢問我。」這不是客套，而是這類任務裡真正的安全網。需要停下來問人的典型情況：</p>
-  <ul>
-    <li>功能名稱可能和<strong>機身 UI、按鈕、配件標籤</strong>一致時——改了名，使用者會對不上實物。</li>
-    <li>原文名稱本身有醫療或功效暗示，但改名可能影響<strong>產品辨識</strong>時。</li>
-    <li>某個詞可能是<strong>品牌專有名詞</strong>，不確定能不能改。</li>
-    <li>安全提醒到底能刪除、還是只能改寫時。</li>
-  </ul>
 
   <div class="takeaway">
-    <div class="takeaway-label">代表案例</div>
-    本案留給人工確認的代表案例是「美斑筆」：原名容易被理解為處理斑點、改善色素，初版改成的「煥膚筆」仍有膚況改善暗示，最後改成最中性的「美容筆」——因為這個名稱可能印在機身或包裝上，AI 不自行定案，由使用者確認。
-  </div>
-
-  <h2 id="dev-claude">B — Claude Code 配圖與排版</h2>
-  <p>前一步是內容質檢，這一步性質完全不同，是版面工程：整合 PDF 配圖、重新設計排版、輸出 A4 PDF 成品。選 Claude Code 是因為計畫模式可先確認方案再動工，且排版設計與理解用戶意圖能力強，適合這種需要反覆確認的複雜排版任務。</p>
-
-  <h3>使用者下的 Prompt</h3>
-  <figure class="prompt">
-    <figcaption>Dev B · Claude Code Prompt 原文</figcaption>
-    <pre><code>需要將pdf內的配圖正確的搭配到html內，重新設計排版，製作成pdf輸出，
-字體需要比原本手冊內的字更大，方便閱讀，版面可以重新設計，
-風格為專業的說明書文件，每頁版面列印大小為A4，
-盡量避免出現段落跨頁的情況，下方需要標注頁碼，
-還需要設計一份目錄頁在最開頭處。
-有需要確認的部分詢問我，不要自己來。</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-  <p>這段 Prompt 的特點是：<strong>硬規格講死，軟決策留白</strong>。A4、頁碼、目錄這些硬規格直接寫死；風格、字級、配色這些品味決策刻意不寫——配合最後一句「詢問我，不要自己來」，預期 AI 動工前帶著具體選項回來問。</p>
-
-  <h3>四個由人決定的設計題</h3>
-  <p>Claude Code 依計畫模式提出完整方案前，先帶著四個決策題回來問，每題附選項與代價，全部由使用者來選：</p>
-
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>#</th><th>問題</th><th>使用者的選擇</th><th>為什麼必須人來選</th></tr></thead>
-      <tbody>
-        <tr><td>1</td><td>配圖標註怎麼處理？HTML 重建（繁體、字大，工序多）或整塊裁切原圖（快，但標註仍是簡體小字）</td><td>HTML 重建</td><td>工作量與品質的取捨，牽涉交付標準</td></tr>
-        <tr><td>2</td><td>設計配色風格？深藍科技感（呼應儀器 UI）或黑白極簡</td><td>深藍科技感</td><td>品味與品牌判斷，AI 不應代決</td></tr>
-        <tr><td>3</td><td>內文字體放大到多少？16px（預估 24–28 頁）或 18px（更易讀但頁數更多）</td><td>16px</td><td>易讀性與頁數成本的取捨</td></tr>
-        <tr><td>4</td><td>目錄列到哪一層？章＋節（約 2 頁）或僅章（1 頁）</td><td>章＋節</td><td>查找便利性與篇幅的取捨</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p>加上第五個決策點——<strong>計畫核准</strong>：Claude Code 把答案寫進完整計畫書，使用者核准後才動工。這份計畫書在完工後直接變成 QA 的驗收清單。</p>
-</section>
-
-<!-- ═════════════ Chapter 05：QA ═════════════ -->
-<section class="chapter" id="qa">
-  <div class="chapter-num">05 · QA · 驗收複驗</div>
-  <h1>QA：驗收複驗</h1>
-
-  <p class="lead">完工不等於交付，最後再下一段複驗 Prompt：</p>
-
-  <figure class="prompt">
-    <figcaption>QA · 複驗 Prompt 原文</figcaption>
-    <pre><code>完成後進行複驗，確認成品是否和計劃一樣，內容是否滿足清晰和容易閱讀的目標</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-
-  <p>這句話有兩個驗收基準：<strong>對照計畫</strong>——計畫模式留下的計畫書此刻變成驗收清單，逐項核對；<strong>對照目標</strong>——「清晰、容易閱讀」回到最初需求的本意，防止做出規格都對但不好讀的成品。本案的驗收項目：</p>
-
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>檢查項</th><th>方法</th><th>結果</th></tr></thead>
-      <tbody>
-        <tr><td>A4 尺寸</td><td>程式檢查全部頁面尺寸</td><td>28 頁全部 210×297mm</td></tr>
-        <tr><td>內文字級</td><td>程式統計 PDF 字級分布</td><td>主要內文 12pt（=16px），符合選定值</td></tr>
-        <tr><td>簡體殘留</td><td>程式掃描全文比對簡體字表</td><td>無殘留</td></tr>
-        <tr><td>頁碼與目錄準確性</td><td>程式逐頁檢查頁尾；抽 12 個目錄條目與實際頁碼比對</td><td>全數吻合</td></tr>
-        <tr><td>圖號連續性</td><td>程式抽取全部「圖 X-N」驗證遞增無重複</td><td>連續無重複</td></tr>
-        <tr><td>段落跨頁、配圖對位、版面品質</td><td>全 28 頁逐頁目檢</td><td>無段落被切斷，標註對位正確</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2 id="qa-ai">QA 可以換成 AI 來做</h2>
-  <p>本案的 QA 是由使用者人工完成的。但這個階段非常適合換成 AI：驗收基準是計畫書，計畫書是文件，AI 可以讀。具體做法：</p>
-  <ul>
-    <li>把計畫書交給 AI，要求逐項比對成品與計畫，有偏差列出並說明原因。</li>
-    <li>要求 AI 執行可程式化的斷言（尺寸、頁碼、目錄準確性、簡體殘留）。</li>
-    <li>要求 AI 逐頁渲染成圖後親自看，確認版面品質，而不是只看中間產物。</li>
-    <li>完成後回報：哪些通過、哪些有偏差、是否還有需要人工判斷的主觀問題。</li>
-  </ul>
-  <p><strong>Plan 階段寫得越清楚，QA 就越容易自動化</strong>——計畫書本身就是驗收清單，AI 只需要逐項執行。能程式化的斷言交給程式，只有「好不好讀」這類主觀判斷留給眼睛或由人確認。</p>
-</section>
-
-<!-- ═════════════ Chapter 06：工具總表 ═════════════ -->
-<section class="chapter" id="tools">
-  <div class="chapter-num">06 · Tools · 工具總表</div>
-  <h1>工具與技能總表</h1>
-
-  <p class="lead">本案調用的工具依官方／第三方分列如下，所有工具都附出處連結。</p>
-
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>工具／技能</th><th>出處</th><th>階段</th><th>為什麼這個案子需要它</th><th>屬性</th></tr></thead>
-      <tbody>
-        <tr><td>Claude Code</td><td><a href="https://docs.claude.ai/en/docs/claude-code" rel="noopener" target="_blank">docs.claude.ai</a></td><td>Dev B／QA</td><td>計畫模式可先確認方案再動工；排版設計與理解用戶意圖能力強，適合需要反覆確認的複雜排版任務</td><td>官方</td></tr>
-        <tr><td>Open Code</td><td><a href="https://opencode.ai/zht" rel="noopener" target="_blank">opencode.ai</a></td><td>Rewrite</td><td>提供 coding agent 環境讓 DeepSeek 能直接存取 PDF 檔案並產生 HTML；若只呼叫 API 無法操作本機檔案</td><td>第三方</td></tr>
-        <tr><td>DeepSeek V4-pro</td><td><a href="https://deepseek.com" rel="noopener" target="_blank">deepseek.com</a></td><td>Rewrite</td><td>適合大量文字理解、翻譯與改寫；且能判斷簡體美容醫療語境，不像其他模型可能因內容涉及醫療而拒絕執行</td><td>第三方</td></tr>
-        <tr><td>Codex</td><td><a href="https://openai.com/codex" rel="noopener" target="_blank">openai.com/codex</a></td><td>Dev A</td><td>適合做檔案級審稿與局部修正並維持既有 HTML 結構；角色是審稿者，而非重新生成整份文件</td><td>第三方</td></tr>
-        <tr><td>impeccable</td><td><a href="https://github.com/pbakaus/impeccable" rel="noopener" target="_blank">github.com/pbakaus/impeccable</a></td><td>Dev B</td><td>提供完整的色彩、字型與版面節奏規範，讓 Claude Code 按設計語彙執行排版，而不是從零決定視覺風格</td><td>第三方</td></tr>
-        <tr><td>PyMuPDF</td><td><a href="https://github.com/pymupdf/PyMuPDF" rel="noopener" target="_blank">github.com/pymupdf/PyMuPDF</a></td><td>Dev B</td><td>PDF 向量圖層的配圖抽取需要 PDF 解析函式庫；PyMuPDF 能程式化取出圖片、文字行座標與頁面尺寸，是自動化配圖的技術基礎</td><td>第三方</td></tr>
-        <tr><td>Paged.js</td><td><a href="https://pagedjs.org" rel="noopener" target="_blank">pagedjs.org</a></td><td>Dev B</td><td>瀏覽器原生列印 CSS 對 A4 分頁與目錄頁碼計算支援不足；Paged.js 在瀏覽器內實作 CSS Paged Media 規範，讓 HTML 能正確分頁、防段落跨頁</td><td>第三方</td></tr>
-        <tr><td>puppeteer-core</td><td><a href="https://pptr.dev" rel="noopener" target="_blank">pptr.dev</a></td><td>Dev B</td><td>直接用 Chrome headless 指令無法等待 Paged.js 分頁完成即列印；puppeteer-core 讓腳本監聽「分頁完成」事件後才觸發列印，避免只印出前幾頁</td><td>第三方</td></tr>
-        <tr><td>Node.js</td><td><a href="https://nodejs.org" rel="noopener" target="_blank">nodejs.org</a></td><td>Dev B</td><td>執行 puppeteer-core 等 JS 腳本需要 Node.js 執行環境</td><td>第三方</td></tr>
-      </tbody>
-    </table>
+    <div class="takeaway-label">目標定義</div>
+    轉成<strong>繁中 HTML 說明書</strong>，同時移除或改寫醫療相關語句並完整保留原始格式。由於 HTML 比 PDF 好校正，定稿後再轉 PDF 也很方便。
   </div>
 </section>
 
-<!-- ═════════════ Chapter 07：Prompt 模板 ═════════════ -->
-<section class="chapter" id="prompt-templates">
-  <div class="chapter-num">07 · Templates · Prompt 模板</div>
-  <h1>可複用 Prompt 模板</h1>
+<!-- ═════════════ Chapter 02 ═════════════ -->
+<section class="chapter" id="三段ai接力賽每一棒到底在做什麼">
+  <div class="chapter-num">02 · Relay · 三段接力</div>
+  <h1>三段 AI 接力賽，每一棒到底在做什麼？</h1>
 
-  <p class="lead">把這次的 Prompt 整理成四份模板，遇到同類任務（有合規風險、翻譯風險、格式要求的文件）可以直接套用改寫。括號內標示對應的框架階段。</p>
-
-  <h2 id="模板一rewrite">模板一：Rewrite — 初版製作</h2>
-  <figure class="prompt">
-    <figcaption>Rewrite · 初版製作 Prompt 模板</figcaption>
-    <pre><code>[檔案背景]
-PDF 檔案為美容儀器說明書。
-
-[主要問題]
-內容有大量可能被誤會為醫療行為、疾病診斷或療效宣稱的敘述。
-
-[任務目標]
-請協助修正這些描述，並將 PDF 內容翻譯為繁體中文。
-
-[翻譯要求]
-不得直接簡轉繁，需要針對專有名詞、常見簡轉繁錯誤、台灣常用語進行深度轉換。
-
-[不確定處理]
-如有不確定的名詞，不要硬翻譯，請詢問我後再翻譯。
-
-[輸出要求]
-完成後保留原有格式，製作成 HTML 檔案。</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-
-  <h2 id="模板二dev-a">模板二：Dev A — Codex 複驗修正</h2>
-  <figure class="prompt">
-    <figcaption>Dev A · 複驗修正 Prompt 模板</figcaption>
-    <pre><code>專案內有原始 PDF 一份，改寫後的 HTML 一份。
-HTML 是前一階段 AI 產出的初版，請不要直接視為正確稿。
-
-請以 PDF 為原始依據，重新檢查 HTML 是否有：
-1. 錯誤或漏譯
-2. 錯翻譯
-3. 未清除的醫療行為、疾病診斷、療效宣稱描述
-4. 改寫後仍不適合的描述
-5. 不自然或不符合台灣用語的繁體中文
-
-能確定的部分請直接修正。
-涉及功能名稱、品牌名稱、機身 UI、配件名稱等不確定項目，請停下來詢問我。
-
-完成後請回報：
-1. 修正了哪些類型的問題
-2. 是否還有需要我確認的項目
-3. 是否已確認 HTML 可以正常使用</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-
-  <h2 id="模板三dev-b">模板三：Dev B — 排版任務</h2>
-  <figure class="prompt">
-    <figcaption>Dev B · 排版任務 Prompt 模板</figcaption>
-    <pre><code>[素材]
-專案內有：原始 PDF 一份（含全部配圖）、文字已定稿的 HTML 一份（無圖）。
-
-[核心任務]
-將 PDF 內的配圖正確搭配到 HTML 對應章節，重新設計排版，輸出成 PDF。
-
-[硬性規格]
-1. 每頁 A4，適合列印
-2. 每頁下方標注頁碼
-3. 文件最前面要有目錄頁
-4. 內文字體比原稿更大，方便閱讀
-5. 盡量避免段落跨頁
-
-[風格]
-專業的產品說明書文件。版面可以完全重新設計，不必遵循原稿版面。
-
-[守門規則]
-有需要確認的部分（風格選擇、字級、圖片處理方式等）詢問我，不要自己來。
-請先提出完整計畫，經我核准後再動工。</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-
-  <h2 id="模板四qa">模板四：QA — 完工複驗</h2>
-  <figure class="prompt">
-    <figcaption>QA · 完工複驗 Prompt 模板</figcaption>
-    <pre><code>完成後進行複驗：
-1. 對照動工前的計畫，逐項確認成品是否一致，有偏差的列出並說明原因
-2. 確認成品是否滿足「清晰、容易閱讀」的原始目標
-3. 能用程式驗證的項目（尺寸、頁碼、目錄準確性）請用程式驗證
-4. 版面品質請逐頁實際檢視最終 PDF，不要只看中間產物</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-</section>
-
-<!-- ═════════════ Chapter 08：總結 ═════════════ -->
-<section class="chapter" id="conclusion">
-  <div class="chapter-num">08 · Conclusion · 總結</div>
-  <h1>總結：四階段，五條準則</h1>
-
-  <p class="lead">把 Plan → Rewrite → Dev → QA 放在一起看，每個階段的工具、工作性質與守門方式各不相同：</p>
-
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>階段</th><th>工具</th><th>工作性質</th><th>人工守門</th><th>驗收方式</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Plan</strong></td><td>人工 + AI 計畫模式</td><td>風險判斷與工作定義</td><td>目標定義、守門規則、計畫核准</td><td>計畫書核准</td></tr>
-        <tr><td><strong>Rewrite</strong></td><td>Open Code + DeepSeek</td><td>翻譯與合規改寫</td><td>不確定名詞要問</td><td>肉眼確認初版六件事</td></tr>
-        <tr><td><strong>Dev A</strong></td><td>Codex</td><td>比對與修正</td><td>名稱類修改要問</td><td>回報修正清單</td></tr>
-        <tr><td><strong>Dev B</strong></td><td>Claude Code</td><td>版面工程與成品輸出</td><td>設計決策用選擇題問＋計畫核准</td><td>對照計畫＋逐頁目檢</td></tr>
-        <tr><td><strong>QA</strong></td><td>人工（可換 AI）</td><td>驗收複驗</td><td>主觀品質判斷留給人</td><td>計畫書對照＋程式斷言＋逐頁目檢</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p>跨階段通用的五條準則：</p>
-  <ul>
-    <li><strong>每階段只做一種性質的工作</strong>——翻譯、質檢、排版分開，Prompt 才能聚焦，問題才能歸因。</li>
-    <li><strong>上一階段的產物永遠當草稿</strong>——每個新階段都明示「不要直接視為正確稿」。</li>
-    <li><strong>「詢問我，不要自己來」每一階段都要寫</strong>——人工守門點是四階段共同的安全網，守的對象從名詞、名稱到設計決策各不相同，原則相同。</li>
-    <li><strong>要求 AI 先計畫，再動工</strong>——計畫書同時是事後的驗收清單，Plan 寫得越清楚，QA 就越容易。</li>
-    <li><strong>完工不等於交付，QA 才是終點</strong>——本案 QA 由人工完成，但只要計畫書夠清楚，這一關可以整個交給 AI，人工只需確認主觀品質。</li>
-  </ul>
-
-  <p>對於有合規風險、翻譯風險、格式要求的文件，Plan → Rewrite → Dev → QA 這種分工比單次生成穩定得多——Rewrite 負責產出草稿，Dev 負責修正與開發，QA 負責驗收，每一關都有明確的守門點與驗收基準。</p>
+  <p class="lead">我們把全程排成 Plan 走向 Rewrite 走向 Dev 走向 QA，使每個階段只做一種性質的工作，讓翻譯、質檢、排版分開以使 Prompt 聚焦。出問題時，也才能歸因到正確那一棒。</p>
 
   <div class="callout">
-    提醒：本頁為個人工作流程分享。文中的合規改寫做法（移除醫療行為、疾病診斷、療效宣稱描述）僅為產品文件的編輯實務，實際產品文案是否合規，仍需依當地法規與專業意見判斷。各 AI 工具的功能與介面可能隨版本更新，實際操作請以各官方文件為準。
+    交棒規則只有一條：<strong>上一階段產物永遠當草稿</strong>。每個新階段都要告訴 AI 別把草稿當正確稿，如此才能避免錯誤一路帶進決賽。
   </div>
 
-  <p class="note">美容儀器說明書 AI 協作工作流筆記 · 適用對象為對 AI 工具有興趣、想看文件改寫與排版任務怎麼用多個 AI 接力完成的同好。</p>
+  <h2 id="step1-翻譯初版由deepseek擔任第一棒">STEP 1　翻譯初版：由 DeepSeek 擔任第一棒</h2>
+
+  <p>Rewrite 階段選用 Open Code 加 DeepSeek V4-pro 跑初版，第一個理由是<strong>省 token</strong>，使大量整理工作能用便宜模型完成。第二個理由是<strong>語境特殊</strong>，其他模型易觸發審查而拒稿，DeepSeek 則能判斷語境先給出合規版本。</p>
+
+  <p>我們給第一棒的指令一次講齊文件類型、合規風險與輸出要求三件事，敘述若像醫療行為便必須修正，並禁止直接簡轉繁而要求專有名詞深度轉換。不確定的名詞必須停下來發問，最後保留原格式做成 HTML 檔。</p>
+
+  <p>拿到 HTML 初版後先別當完稿，而把它當可編輯草稿，只確認六件事：</p>
+
+  <ul>
+    <li>是否真有 HTML 檔</li>
+    <li>章節是否大致完整</li>
+    <li>警告是否還在</li>
+    <li>表格是否還在</li>
+    <li>功能名稱是否太像療效宣稱</li>
+    <li>簡體殘留與醫療用語掃過一遍</li>
+  </ul>
+
+  <h2 id="step2-複驗校稿由codex擔任第二棒">STEP 2　複驗校稿：由 Codex 擔任第二棒</h2>
+
+  <p>我們在 Dev 前半段把 AI 角色<strong>從生產者切換成審稿者</strong>，拿原始 PDF 對照初版 HTML 以找出錯翻與殘留問題。能確定的直接修正，不確定的則停下來發問。</p>
+
+  <p>第二棒抓到好幾類殘留風險，證明初版看似完成其實並未清除風險。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>類別</th><th>初版殘留</th><th>問題</th></tr></thead>
+      <tbody>
+        <tr><td>醫療裝置語彙</td><td>植入式心臟除顫器</td><td>語境太接近醫療器材。</td></tr>
+        <tr><td>疾病描述</td><td>慢性疾病與血糖血壓血脂</td><td>語氣仍像禁忌症。</td></tr>
+        <tr><td>功能名稱走樣</td><td>原 PDF 寫「五極彩光微電」，初版加料成「五極彩光微電波護理」</td><td>初版自行擴寫。</td></tr>
+        <tr><td>功能名稱走樣</td><td>原 PDF 寫「水氧噴槍」，初版寫成「水氧噴霧」</td><td>與機身不符。</td></tr>
+        <tr><td>命名暗示</td><td>原名「美斑筆」易聯想除斑，初版「煥膚筆」仍有暗示</td><td>最後由使用者拍板改成最中性的「美容筆」。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>我們在第二棒立下改寫原則為<strong>安全提醒保留、診斷語氣拿掉</strong>：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>原文</th><th>改成</th></tr></thead>
+      <tbody>
+        <tr><td>患者</td><td>使用者</td></tr>
+        <tr><td>禁忌症</td><td>不建議使用情形</td></tr>
+        <tr><td>皮膚感染</td><td>破損或紅腫滲液等描述</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>使文件從此讀起來像美容儀器文件。</p>
+
+  <h2 id="step3-排版輸出由claude-code擔任第三棒">STEP 3　排版輸出：由 Claude Code 擔任第三棒</h2>
+
+  <p>我們在 Dev 後半段進入性質完全不同的版面工程，選用 Claude Code 整合配圖、重做排版以輸出 A4 成品 PDF。看中的是<strong>計畫模式能先確認方案再動工</strong>，且排版與理解意圖能力強，適合反覆確認的任務。</p>
+
+  <p>給第三棒的指令是<strong>硬規格講死、軟決策留白</strong>：要求每頁 A4、下方標頁碼、開頭加目錄頁，內文字體放大以方便閱讀，段落盡量不跨頁，有疑問就停下來問。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>決策題</th><th>選擇</th><th>換到什麼</th></tr></thead>
+      <tbody>
+        <tr><td>配圖標註</td><td>HTML 重建</td><td>換來繁體大字。</td></tr>
+        <tr><td>設計配色</td><td>深藍科技感</td><td>呼應儀器 UI。</td></tr>
+        <tr><td>內文字級</td><td>16px</td><td>總頁數落在 24 至 28 頁。</td></tr>
+        <tr><td>目錄層級</td><td>章加節</td><td>兼顧查找便利。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">第五個決策點：計畫核准</div>
+    Claude Code 把答案寫進完整計畫書並在核准後才動工，使這份計畫書完工後直接變成驗收清單——<strong>同時是起跑線也是終點線</strong>。
+  </div>
+</section>
+
+<!-- ═════════════ Chapter 03 ═════════════ -->
+<section class="chapter" id="一次丟給ai翻譯為什麼反而更危險">
+  <div class="chapter-num">03 · Contrast · 為何不能一次丟</div>
+  <h1>一次丟給 AI 翻譯，為什麼反而更危險？</h1>
+
+  <p class="lead">對比舊人工直翻，才懂三段接力為何更穩。因為舊做法一人翻到底、翻譯校稿排版全混在一起，譯者沿用第一印象而使醫療語氣很難自查。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>單一指令</th><th>會發生什麼</th></tr></thead>
+      <tbody>
+        <tr><td>「幫我翻成繁體中文」</td><td>「患者」與「禁忌症」便會原樣留下。</td></tr>
+        <tr><td>「幫我去掉醫療內容」</td><td>必要安全提醒又可能被連根拔掉。</td></tr>
+        <tr><td>沒指定保留格式</td><td>表格與配件清單便會散成純文字而無法對照操作。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    三段接力正好對症下藥：<strong>第一棒負責產出草稿、第二棒負責比對修正、第三棒負責版面與輸出</strong>，且每棒都寫下「有疑問就停下來問」這句話，使人工守門點成為四階段共用的安全網。
+  </div>
+
+  <h2 id="要停下來問人的四種典型情況">要停下來問人的四種典型情況</h2>
+
+  <ul>
+    <li>功能名稱對應機身 UI 按鈕，便不能擅改。</li>
+    <li>原文有功效暗示，改名又怕影響辨識，必須權衡。</li>
+    <li>疑似品牌專有名詞，不確定能否改。</li>
+    <li>安全提醒能刪還是只能改寫。</li>
+  </ul>
+
+  <p>初版完整不代表風險清除，這正是最大迷思。因為第二棒對照原稿仍抓出「實銷性」與「其它」等錯字，修正清單與待確認項目逐項列出，確認 HTML 可用才交棒。</p>
+</section>
+
+<!-- ═════════════ Chapter 04 ═════════════ -->
+<section class="chapter" id="排版輸出這最後一棒我們該怎麼驗收">
+  <div class="chapter-num">04 · QA · 完工複驗</div>
+  <h1>排版輸出這最後一棒，我們該怎麼驗收？</h1>
+
+  <p class="lead">我們在 QA 階段堅持完工不等於交付，用一段複驗指令同時對照計畫與「清晰易讀」的目標，使兩個基準並行，以避免規格全對卻不好讀。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>檢查項目</th><th>方法</th><th>結果</th></tr></thead>
+      <tbody>
+        <tr><td>頁面尺寸</td><td>程式檢查 28 頁</td><td>全為 210 × 297 mm</td></tr>
+        <tr><td>內文字級</td><td>程式統計字級分布</td><td>12pt ＝ 16px</td></tr>
+        <tr><td>簡體殘留</td><td>全文比對簡體字表</td><td>無殘留</td></tr>
+        <tr><td>頁尾頁碼</td><td>逐頁檢查</td><td>全數吻合</td></tr>
+        <tr><td>目錄頁碼</td><td>抽 12 個目錄條目核對</td><td>全數吻合</td></tr>
+        <tr><td>圖編號</td><td>遞增連續驗證</td><td>無重複</td></tr>
+        <tr><td>版面</td><td>全 28 頁逐頁目檢</td><td>無段落切斷，標註對位正確</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="qa很適合換成ai執行">QA 很適合換成 AI 執行</h2>
+
+  <p>因為基準是計畫書而計畫書是 AI 讀得懂的文件，可要求逐項比對成品與計畫並列出偏差與原因。再執行程式化斷言以驗證尺寸頁碼目錄，並把每頁渲染成圖以親自檢視版面。</p>
+
+  <blockquote>
+    Plan 寫得越清楚、QA 越好自動化，因為計畫書本身就是驗收清單而 AI 只需逐項執行。
+  </blockquote>
+
+  <p><strong>程式化斷言交給程式，好不好讀留給眼睛。</strong></p>
+
+  <h2 id="跨階段通用五條準則">跨階段通用五條準則</h2>
+
+  <ol>
+    <li>每階段只做一種性質的工作。</li>
+    <li>上一產物永遠當草稿。</li>
+    <li>「有疑問就停下來問」這句話每階段都要寫。</li>
+    <li>先計畫再動工。</li>
+    <li>完工不等於交付，QA 才是終點。</li>
+  </ol>
+
+  <p>有合規與格式風險的文件都適用這套跑法。</p>
+
+  <p class="pull">完工，不等於交付。</p>
+
+  <p class="note">配圖分頁由 PyMuPDF 與 Paged.js 擔綱。官方文件請查 <a href="https://docs.claude.com/">docs.claude.com</a>、<a href="https://opencode.ai/">opencode.ai</a>、<a href="https://www.deepseek.com/">deepseek.com</a>。</p>
 </section>
 
 <script>

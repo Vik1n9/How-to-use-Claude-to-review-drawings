@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <!-- ==================================================================
      LONG DOCUMENT · parchment design system · zh-TW
-     製作幕後：用 AI 從零打造一份一頁式指南並推上 GitHub
+     用 AI 從零到上線：9 份指南背後的 103 個 commits
      ================================================================== -->
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<title>製作幕後：用 AI 從零打造一份一頁式指南並推上 GitHub</title>
-<meta name="description" content="製作幕後：用 AI 打造一頁式指南並推上 GitHub 的流程教學。">
-<meta name="keywords" content="Claude Code, GitHub Pages, 計畫模式, 技能外掛, AI 協作">
+<title>用 AI 從零到上線：9 份指南背後的 103 個 commits</title>
+<meta name="description" content="103 個 commits 與 9 份指南背後的生產系統：計畫模式、誠實的工具揭露、可驗證的修正循環，以及推上 GitHub Pages。">
+<meta name="keywords" content="Claude Code, GitHub Pages, 計畫模式, 技能外掛, AI 協作, commits, 一頁式指南">
 <meta name="generator" content="Kami">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -44,7 +44,7 @@
     }
 
     @bottom-center {
-      content: counter(page) "  ·  製作幕後：用 AI 打造一頁式指南";
+      content: counter(page) "  ·  用 AI 從零到上線";
       font-family: "Iansui", "TsangerJinKai02", "Source Han Serif SC",
                    "Noto Serif CJK SC", "Songti TC", "Songti SC", Georgia, serif;
       font-size: 9pt;
@@ -468,6 +468,42 @@
     #paneGood[hidden] { display: block !important; }
   }
 
+  /* ========== FIGURE / QUOTE / PULL ========== */
+  figure { margin: 14pt 0; break-inside: avoid; }
+  figure > figcaption {
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: var(--stone);
+    text-align: center;
+    margin-top: 6pt;
+    line-height: 1.45;
+  }
+  .prompt > figcaption { text-align: left; margin-top: 0; }
+  blockquote {
+    margin: 14pt 0;
+    padding: 0 18pt;
+    font-size: 12.5pt;
+    line-height: 1.5;
+    color: var(--olive);
+    break-inside: avoid;
+  }
+  blockquote .cite {
+    display: block;
+    font-size: 9pt;
+    color: var(--stone);
+    margin-top: 5pt;
+  }
+  .pull {
+    font-size: 15pt;
+    line-height: 1.4;
+    color: var(--brand);
+    margin: 18pt 0;
+  }
+  .diagram-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .diagram { width: 100%; height: auto; display: block; }
+  @media screen and (max-width: 640px) { .diagram { min-width: 440px; } }
+  @media print { .diagram { min-width: 0; } }
+
   /* ========== CHAPTER BREAK ========== */
   .chapter { break-before: page; }
 
@@ -505,11 +541,11 @@
 <section class="cover">
   <div>
     <div class="cover-eyebrow">Making Of · 製作幕後</div>
-    <div class="cover-title">用 AI 打造<br>一頁式指南</div>
-    <div class="cover-sub">從一句話需求，到規劃、技能外掛、瀏覽器驗證、修正、推上 GitHub Pages 的完整流程。</div>
+    <div class="cover-title">用 AI<br>從零到上線</div>
+    <div class="cover-sub">9 份指南背後的 103 個 commits：先寫計畫、誠實揭露工具、用「驗證」代替想像，最後把成果推到人人可及的網址。</div>
   </div>
   <div class="cover-meta">
-    <strong>建立倉庫 · 設計計畫 · 技能外掛 · 推送展示</strong><br>
+    <strong>計畫模式 · 工具揭露 · 驗證循環 · 推送展示</strong><br>
     指南 03 · One-Page Beginners Guide<br>
     2026-06-09
   </div>
@@ -518,115 +554,188 @@
 <!-- ═════════════ TOC ═════════════ -->
 <section class="toc">
   <h2>目錄</h2>
-  <div class="toc-item"><span class="toc-num">01</span><a class="toc-title" href="#github-註冊與創建倉庫">GitHub 註冊與創建倉庫</a></div>
-  <div class="toc-item"><span class="toc-num">02</span><a class="toc-title" href="#先想清楚先寫計畫-確認後才動工">先想清楚、先寫計畫，確認後才動工</a></div>
-  <div class="toc-item"><span class="toc-num">03</span><a class="toc-title" href="#實際調用了哪些技能與外掛">實際調用了哪些技能與外掛</a></div>
-  <div class="toc-item"><span class="toc-num">04</span><a class="toc-title" href="#如何和-ai-來回修正">如何和 AI 來回修正</a></div>
-  <div class="toc-item"><span class="toc-num">05</span><a class="toc-title" href="#推送到-github-並用-pages-展示成線上網址">推送到 GitHub，並用 Pages 展示成線上網址</a></div>
-  <div class="toc-item"><span class="toc-num">06</span><a class="toc-title" href="#六步走完-一份指南就上線了">六步走完，一份指南就上線了</a></div>
+  <div class="toc-item"><span class="toc-num">01</span><a class="toc-title" href="#為何要做一頁式指南">為何要做一頁式指南</a></div>
+  <div class="toc-item"><span class="toc-num">02</span><a class="toc-title" href="#模板不會替你想內容">模板不會替你想內容</a></div>
+  <div class="toc-item"><span class="toc-num">03</span><a class="toc-title" href="#工具誠實揭露才可信任">工具誠實揭露才可信任</a></div>
+  <div class="toc-item"><span class="toc-num">04</span><a class="toc-title" href="#顏色壞掉才學會驗證">顏色壞掉才學會驗證</a></div>
+  <div class="toc-item"><span class="toc-num">05</span><a class="toc-title" href="#推上線才是真的做完">推上線才是真的做完</a></div>
 </section>
 
 <!-- ═════════════ Chapter 01 ═════════════ -->
-<section class="chapter" id="github-註冊與創建倉庫">
-  <div class="chapter-num">01 · Repo · 建立倉庫</div>
-  <h1>GitHub 註冊與創建倉庫</h1>
+<section class="chapter" id="為何要做一頁式指南">
+  <div class="chapter-num">01 · Why · 為何是一頁式</div>
+  <h1>為何要做一頁式指南</h1>
 
-  <p class="lead">GitHub 是放程式碼與網頁的雲端倉庫。一個倉庫（repository）就是「一個專案的家」，這份指南合集就住在裡面。</p>
+  <blockquote>
+    「你定義想要什麼，AI 把它變成能上線的東西。」
+    <span class="cite">— 製作幕後頁留下的一句話</span>
+  </blockquote>
 
-  <h2>1. 註冊帳號</h2>
-  <p>到 github.com 用 Email 註冊、設定使用者名稱（會出現在網址裡，例如本專案的 <code>Vik1n9</code>）、驗證信箱。</p>
+  <p class="lead">數字是 103 個 commits 與 9 份獨立指南。每一份都是可直接開啟的超文件標示語言（HyperText Markup Language，簡稱 HTML）檔案。它們都經歷過規劃與實作、驗證與修正，才推上 GitHub Pages（GitHub 提供的靜態網頁託管服務）。好奇的是，這樣的產量究竟是 AI 自動生成，還是把 AI 放進一個可驗證的生產系統所致。</p>
 
-  <h2>2. 建立新倉庫</h2>
-  <p>右上角「＋ → New repository」，填名稱（<code>One-Page-Beginners-Guide</code>）、選 <strong>Public</strong>（公開才能用 Pages 展示）、勾選「Add a README file」。</p>
-  <p class="note">README 是倉庫首頁說明文件；之後每新增一份指南，就更新它的索引。</p>
-
-  <h2>3. 把網頁放進去</h2>
-  <p>可用網頁介面「Add file → Upload」，或用指令。本次是用指令完成（見第 5 步）。一個 <code>.html</code> 檔就是一份可獨立開啟的指南。</p>
-
-  <p>熟悉指令的人，也可以一行建倉（需先安裝 GitHub CLI，見第三步）：</p>
-  <figure class="prompt">
-    <figcaption>建立倉庫（GitHub CLI）</figcaption>
-    <pre><code>gh repo create One-Page-Beginners-Guide --public --add-readme</code></pre>
-    <button class="copy-button" type="button">複製</button>
+  <figure>
+    <div class="diagram-wrap">
+    <svg class="diagram" viewBox="0 0 560 112" role="img" aria-label="製作流程總覽，從一句話需求到 GitHub Pages 上線的五個節點">
+      <defs>
+        <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+          <path d="M0 1.2 L6.5 4 L0 6.8 z" fill="#6b6a64"></path>
+        </marker>
+      </defs>
+      <g fill="none" stroke="#6b6a64" stroke-width="1" marker-end="url(#ar)">
+        <line x1="98" y1="52" x2="113" y2="52"></line>
+        <line x1="214" y1="52" x2="229" y2="52"></line>
+        <line x1="330" y1="52" x2="345" y2="52"></line>
+        <line x1="446" y1="52" x2="461" y2="52"></line>
+      </g>
+      <g stroke="#e8e6dc" stroke-width="1" fill="#faf9f5">
+        <rect x="0" y="26" width="96" height="52" rx="3"></rect>
+        <rect x="116" y="26" width="96" height="52" rx="3"></rect>
+        <rect x="232" y="26" width="96" height="52" rx="3"></rect>
+        <rect x="348" y="26" width="96" height="52" rx="3"></rect>
+        <rect x="464" y="26" width="96" height="52" rx="3"></rect>
+      </g>
+      <g text-anchor="middle" fill="#1B365D" font-size="8" letter-spacing="0.8">
+        <text x="48" y="44">01</text>
+        <text x="164" y="44">02</text>
+        <text x="280" y="44">03</text>
+        <text x="396" y="44">04</text>
+        <text x="512" y="44">05</text>
+      </g>
+      <g text-anchor="middle" fill="#141413" font-size="11">
+        <text x="48" y="62">一句話需求</text>
+        <text x="164" y="62">計畫模式</text>
+        <text x="280" y="62">實作</text>
+        <text x="396" y="62">驗證修正</text>
+        <text x="512" y="62">推上 Pages</text>
+      </g>
+      <g text-anchor="middle" fill="#6b6a64" font-size="8.5">
+        <text x="48" y="94">給材料、講對象</text>
+        <text x="164" y="94">看過再確認</text>
+        <text x="280" y="94">技能與外掛</text>
+        <text x="396" y="94">實際打開來看</text>
+        <text x="512" y="94">取得網址</text>
+      </g>
+    </svg>
+    </div>
+    <figcaption>製作流程總覽：從一句話需求到 GitHub Pages 上線的五個節點。</figcaption>
   </figure>
+
+  <p>同樣的困境很常見，熟悉台股的社會人士第一次接觸美股時，會被交易制度、稅務扣繳與券商流程同時淹沒。而傳統投影片只能線性播放。它無法讓讀者自行展開問答、切換漲跌顏色或列印成冊。需要的是一種載體，它在手機與桌機都能閱讀。它能把複雜制度收進可展開的區塊，並直接匯出為可攜式文件格式（Portable Document Format，簡稱 PDF）方便留存。</p>
+
+  <div class="callout">
+    答案是<strong>一頁式互動網頁</strong>：把單一主題的全部知識收斂在同一個網址，讀者用捲動就能走完學習路徑，製作者則用同一個檔案完成維護。
+  </div>
+
+  <p>為了讓這種載體可以量產，製作端引入驅動視覺設計的第三方工具 impeccable。它負責配色與字級、版面節奏等視覺細節，不必每次從空白畫布重新摸索美感。</p>
+
+  <h2 id="背景數字先說清楚">背景數字先說清楚</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>項目</th><th>數字</th></tr></thead>
+      <tbody>
+        <tr><td>公開倉庫累計 commits（每次變更留下的版本紀錄）</td><td>超過 <strong class="hl">103</strong> 個</td></tr>
+        <tr><td>已收錄指南</td><td><strong class="hl">9</strong> 份，含美股入門、AI 審圖、PCShop 與美容說明書</td></tr>
+        <tr><td>製作幕後頁本身</td><td>第 <strong class="hl">3</strong> 號指南</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>製作幕後頁把建倉、發想計畫、調用技能外掛、來回修正到推上 GitHub 的完整流程全部攤開。這種透明揭露非常重要，因為好科學等於可量產的科學，論文只是從 0 到 1，出貨與長期維護才是從 1 到 100。</p>
 </section>
 
 <!-- ═════════════ Chapter 02 ═════════════ -->
-<section class="chapter" id="先想清楚先寫計畫-確認後才動工">
-  <div class="chapter-num">02 · Plan · 發想與計畫</div>
-  <h1>先想清楚、先寫計畫，確認後才動工。</h1>
+<section class="chapter" id="模板不會替你想內容">
+  <div class="chapter-num">02 · Plan · 計畫模式</div>
+  <h1>模板不會替你想內容</h1>
 
-  <p class="lead">這是整個流程最關鍵的紀律：不要一開口就叫 AI 寫程式。先讓它讀懂需求、盤點現況，把「要做什麼、怎麼做」寫成計畫，等你點頭再執行，能省下大量來回。</p>
+  <p class="lead">最常被問的問題是，AI 是否只要一句話就能交出成品。回答非常明確，<strong>「計畫模式」才是整條產線真正的起點</strong>。做法是先把草稿丟給它，並說清楚讀者是誰，例如熟悉台股且第一次接觸美股的社會人士。因為對象決定了用字深淺與內容取捨，也決定了後續查證的嚴謹程度。</p>
 
-  <h2>A — 給材料、講對象</h2>
-  <p>把草稿丟給 AI，並說清楚讀者是誰（「熟悉台股、第一次接觸美股的社會人士」）。對象決定了用字深淺與內容取捨。</p>
+  <p>計畫模式要求 AI 先探索現況，把要做什麼與怎麼做寫成一份計畫，並在關鍵分岔點反問。</p>
 
-  <h2>B — 讓 AI 進入「計畫模式」</h2>
-  <p>請 AI 先探索現況、提出做法而<strong>不要急著動手</strong>。它會把方案寫成一份計畫，並在關鍵分岔點反問你。</p>
-  <p class="note">本次的分岔提問：要 PPTX 還是互動網頁？投資組合要不要寫具體標的？要不要順便啟用線上展示？</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>這次的分岔提問</th><th>由誰決定</th></tr></thead>
+      <tbody>
+        <tr><td>要投影片還是互動網頁？</td><td>人</td></tr>
+        <tr><td>投資組合要不要寫具體標的？</td><td>人</td></tr>
+        <tr><td>要不要順便啟用線上展示？</td><td>人</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-  <h2>C — 看過計畫，按下確認</h2>
-  <p>計畫寫成文件後，你逐項確認或修改，AI 才開始實作。中途要追加要求（例如「第三方工具要附出處連結」）也是在這個關卡補上。</p>
+  <p>看過計畫文件後逐項確認或修改，中途追加的要求例如第三方工具要附出處連結也在這個關卡補上，確認後 AI 才開始實作。</p>
+
+  <p class="pull">描述意圖，不是下指令。</p>
+
+  <p>這句心法貫穿了全部 9 份指南的製作過程。想要什麼、給誰看與底線在哪由人定義，把它變成可執行的計畫與程式由 AI 執行。這個環節省下來的時間，會在後面以十倍的規模回報。</p>
 
   <div class="takeaway">
-    <div class="takeaway-label">一句話心法</div>
-    「描述意圖，不是下指令。」你負責定義<strong>想要什麼、給誰看、底線在哪</strong>；AI 負責把它變成可執行的計畫與程式。計畫這一關省下來的，是後面十倍的返工。
+    <div class="takeaway-label">計畫這一關的利息</div>
+    因為計畫這一關沒有想清楚，後面每一次修正都是在為最初的模糊付出利息。AI 給答案不負責，<strong>負責的永遠是按下確認的我們</strong>。
   </div>
 </section>
 
 <!-- ═════════════ Chapter 03 ═════════════ -->
-<section class="chapter" id="實際調用了哪些技能與外掛">
-  <div class="chapter-num">03 · Tools · 技能與外掛</div>
-  <h1>實際調用了哪些技能與外掛</h1>
+<section class="chapter" id="工具誠實揭露才可信任">
+  <div class="chapter-num">03 · Tools · 工具揭露</div>
+  <h1>工具誠實揭露才可信任</h1>
 
-  <p class="lead">AI 不是憑空生成，而是調用了一組工具。以下誠實列出本次用到的每一項，並標示「官方／第三方」。<strong>所有第三方工具都附上出處連結</strong>，你可以自己找到並安裝。</p>
+  <p class="lead">第二個堅持是誠實列出每一次調用的技能與外掛，並標示官方或第三方。所有第三方工具都附上出處連結，讀者可以自己找到並安裝。</p>
 
-  <p><span class="tag">第三方</span>社群／個人開發，需自行安裝　<span class="tag">官方</span>Anthropic／Claude Code 內建</p>
+  <figure>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>分工</th><th>工具</th><th>負責什麼</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="6"><span class="tag">第三方</span>社群工具</td><td><a href="https://github.com/tw93/Kami">impeccable</a></td><td>視覺設計：配色、字級、版面節奏。</td></tr>
+          <tr><td><a href="https://pymupdf.readthedocs.io/">PyMuPDF</a></td><td>把 PDF 逐頁渲染成圖片以利檢查。</td></tr>
+          <tr><td><a href="https://cli.github.com/">gh</a></td><td>命令列操作 GitHub（GitHub Command Line Interface）。</td></tr>
+          <tr><td><a href="https://git-scm.com/">Git</a></td><td>版本控制。</td></tr>
+          <tr><td><a href="https://www.google.com/chrome/">Google Chrome</a></td><td>無視窗列印，網頁轉 PDF。</td></tr>
+          <tr><td><a href="https://nodejs.org/">Node.js</a></td><td>執行小腳本。</td></tr>
+          <tr><td rowspan="2"><span class="tag">官方</span>內建能力</td><td><a href="https://github.com/anthropics/skills">anthropic-skills</a></td><td>Anthropic 官方技能集。</td></tr>
+          <tr><td>Claude Code 內建</td><td>預覽面板、網路搜尋與抓取、終端機、檔案讀寫與計畫模式。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figcaption>官方與第三方工具分工表：預覽面板負責截圖驗證，終端機負責轉檔與推送。</figcaption>
+  </figure>
 
-  <h2 id="第三方社群工具">第三方（社群）工具</h2>
+  <h2 id="查證了哪些數據">用網路搜尋查證了哪些數據</h2>
+
   <div class="table-wrap">
     <table>
-      <thead><tr><th>工具</th><th>本次用途</th><th>出處</th></tr></thead>
+      <thead><tr><th>類別</th><th>查證項目</th></tr></thead>
       <tbody>
-        <tr><td>impeccable</td><td>驅動整份網頁的視覺設計：配色、字級階層、版面節奏與互動細節。本次的設計品質主要靠它。作者 Paul Bakaus，授權 Apache-2.0。</td><td><a href="https://github.com/pbakaus/impeccable" rel="noopener" target="_blank">github.com/pbakaus/impeccable</a></td></tr>
-        <tr><td>PyMuPDF</td><td>把匯出的 PDF 逐頁渲染成圖片，用來「逐頁檢查」深色背景、圖表與展開的問答有沒有正確印出。以 <code>pip</code> 安裝。</td><td><a href="https://github.com/pymupdf/PyMuPDF" rel="noopener" target="_blank">github.com/pymupdf/PyMuPDF</a></td></tr>
-        <tr><td>GitHub CLI（gh）</td><td>命令列操作 GitHub：建倉、查倉庫狀態、啟用 Pages、查 commit。比點網頁介面快很多。由 GitHub 維護。</td><td><a href="https://cli.github.com" rel="noopener" target="_blank">cli.github.com</a></td></tr>
-        <tr><td>Git</td><td>版本控制工具，負責 clone（複製倉庫）、commit（記錄變更）、push（推上遠端）。</td><td><a href="https://git-scm.com" rel="noopener" target="_blank">git-scm.com</a></td></tr>
-        <tr><td>Google Chrome（headless）</td><td>用無視窗模式把網頁「列印成 PDF」，背景、圖表、字型一併保留。由 Google 提供。</td><td><a href="https://www.google.com/chrome/" rel="noopener" target="_blank">google.com/chrome</a></td></tr>
-        <tr><td>Node.js</td><td>執行 impeccable 隨附的小腳本（取得品牌色種子、偵測既有設計）。</td><td><a href="https://nodejs.org" rel="noopener" target="_blank">nodejs.org</a></td></tr>
+        <tr><td>行情</td><td>柏克希爾海瑟威 B 股（Berkshire Hathaway Class B，簡稱 BRK.B）、VOO 與 QQQM 股價、美元兌台幣匯率。</td></tr>
+        <tr><td>制度</td><td>美國證券交易委員會（Securities and Exchange Commission，簡稱 SEC）T+1 制度。</td></tr>
+        <tr><td>稅務</td><td>國稅局（Internal Revenue Service，簡稱 IRS）30% 股息預扣與遺產稅 706-NA 表格。</td></tr>
+        <tr><td>保障</td><td>證券投資者保護公司（Securities Investor Protection Corporation，簡稱 SIPC）。</td></tr>
       </tbody>
     </table>
   </div>
 
-  <h2 id="官方anthropicclaude-code-內建">官方（Anthropic／Claude Code 內建）</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>工具</th><th>本次用途</th><th>出處</th></tr></thead>
-      <tbody>
-        <tr><td>anthropic-skills（pptx…）</td><td>Anthropic 官方技能集。初版曾用 <code>pptx</code> 技能做投影片，後來依需求改為互動網頁而未採用。source-available。</td><td><a href="https://github.com/anthropics/skills" rel="noopener" target="_blank">github.com/anthropics/skills</a></td></tr>
-        <tr><td>Claude Code 內建工具</td><td>預覽面板（開啟網頁、截圖、跑 JS、切換手機/桌機檢查）、網路搜尋與抓取、終端機、檔案讀寫、計畫模式與向使用者提問，都是內建能力。</td><td><a href="https://docs.claude.com/en/docs/claude-code" rel="noopener" target="_blank">docs.claude.com/en/docs/claude-code</a></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="callout">
-    <strong>內建工具具體做了什麼：</strong><strong>預覽面板</strong>逐段截圖驗證版面、抓出顏色 bug；<strong>網路搜尋／抓取</strong>查證了 BRK.B、VOO、QQQM 股價、美元兌台幣匯率，以及 SEC（T+1）、IRS（30% 股息預扣、遺產稅 706-NA）、SIPC、SIFMA 等制度數據；<strong>終端機</strong>跑 Chrome 轉 PDF、PyMuPDF 驗證、git 與 gh。
+  <div class="takeaway">
+    <div class="takeaway-label">為什麼工具清單要寫這麼細</div>
+    可量產的關鍵，在於<strong>清楚知道每一個環節由誰負責</strong>。當讀者知道顏色由 impeccable 驅動、查證由搜尋完成、轉檔由 Chrome 與 PyMuPDF 把關，信任就有具體的落點。
   </div>
 </section>
 
 <!-- ═════════════ Chapter 04 ═════════════ -->
-<section class="chapter" id="如何和-ai-來回修正">
-  <div class="chapter-num">04 · Iterate · 溝通與修正</div>
-  <h1>如何和 AI 來回修正</h1>
+<section class="chapter" id="顏色壞掉才學會驗證">
+  <div class="chapter-num">04 · Verify · 修正循環</div>
+  <h1>顏色壞掉才學會驗證</h1>
 
-  <p class="lead">第一版不會完美。重點是建立一個可驗證的循環：你描述問題，AI 改，並用工具<strong>實際打開來看</strong>，確認真的修好，而不是「看起來像修好」。</p>
+  <p class="lead">第三個要談的是修正循環，公式非常簡單：你描述需求後由 AI 實作，再用工具<strong>實際打開來看</strong>。確認的是真的修好，而不是看起來像修好。第一版不會完美，重點是建立可驗證的循環。</p>
 
   <div class="callout">
     <strong>修正循環：</strong>你描述需求 → AI 實作 → 截圖／驗證 → 抓問題 → 修正
   </div>
 
-  <h2>案例 1 — 抓到一個真實的 bug：顏色不會切換</h2>
-  <p>「綠漲紅跌 ↔ 紅漲綠跌」的切換鈕點了沒反應。AI 用預覽面板讀取網頁的實際計算樣式，發現少寫了一段 CSS 變數覆寫規則，補上後綠／紅就正確互換了。點下面切換看差在哪：</p>
+  <h2 id="案例1-顏色不會切換">案例 1　抓到一個真實的 bug：顏色不會切換</h2>
+
+  <p>綠漲紅跌與紅漲綠跌的切換鈕點了沒反應。AI 用預覽面板讀取網頁的實際計算樣式後，發現少寫了一段層疊樣式表（Cascading Style Sheets，簡稱 CSS）變數覆寫規則。它補上針對美國市場與台灣市場的兩行覆寫後，綠與紅正確互換了。點下面切換看差在哪：</p>
 
   <div class="seg" role="group" aria-label="修正前後">
     <button type="button" id="baBad" aria-pressed="true">修正前（壞掉）</button>
@@ -651,100 +760,44 @@
     </div>
   </div>
 
-  <h2>案例 2 — 一句話就能調整內容</h2>
-  <p>「下方給講者的備忘可以去除」，AI 直接刪掉那個區塊，並重新載入預覽確認頁尾沒有留下空白。簡短、明確的指令最有效。</p>
+  <h2 id="案例2-一句話就能調整">案例 2　一句話就能調整的內容</h2>
 
-  <h2>案例 3 — 換格式時，連「會出包的細節」一起顧</h2>
-  <p>「整份匯出成 PDF」。網頁轉 PDF 常見三個雷：深色背景變白、互動問答收合後看不到答案、靠捲動才出現的圖表沒被畫出來。AI 加上列印樣式（強制印背景、自動展開所有問答、補滿圖表），再用 PyMuPDF 逐頁檢查 13 頁都正確。</p>
+  <p>「下方給講者的備忘可以去除」，AI 直接刪掉該區塊，並重新載入預覽確認頁尾沒有留下空白。簡短而明確的指令在這裡最有效。</p>
+
+  <h2 id="案例3-換格式時的地雷">案例 3　更複雜的是整份匯出成 PDF</h2>
+
+  <p>網頁轉 PDF 常見三個地雷：深色背景變白、互動問答收合後看不到答案、靠捲動才出現的圖表沒被畫出來。做法是加上列印樣式，強制印出背景並自動展開所有問答與補滿圖表，再用 PyMuPDF 逐頁檢查 13 頁是否都正確。</p>
 
   <div class="takeaway">
     <div class="takeaway-label">溝通三個訣竅</div>
-    ① <strong>具體</strong>：說「頁尾備忘移除」比「再簡化一點」好下手。② <strong>要求驗證</strong>：請 AI 截圖或實測，不要只憑想像。③ <strong>分批</strong>：一次一個明確改動，容易確認、容易回退。
+    ① <strong>具體描述勝過模糊感受</strong>：說「頁尾備忘移除」比「再簡化一點」好下手。② <strong>要求截圖或實測勝過想像</strong>：請 AI 實際打開來看。③ <strong>分批一次改一處</strong>：讓每次變更都容易確認與回退。
   </div>
 </section>
 
 <!-- ═════════════ Chapter 05 ═════════════ -->
-<section class="chapter" id="推送到-github-並用-pages-展示成線上網址">
+<section class="chapter" id="推上線才是真的做完">
   <div class="chapter-num">05 · Ship · 推送與展示</div>
-  <h1>推送到 GitHub，並用 Pages 展示成線上網址。</h1>
+  <h1>推上線才是真的做完</h1>
 
-  <p class="lead">檔案做好後，把它推上倉庫，再開啟 GitHub Pages，任何人就能用網址直接打開，不必下載檔案。</p>
+  <p class="lead">檔案做好不等於別人打得開，只有推上 main 分支並啟用 Pages，任何人才能用網址直接開啟而不必下載檔案。</p>
 
-  <h2 id="①-複製倉庫到本機">① 複製倉庫到本機</h2>
-  <figure class="prompt">
-    <figcaption>clone</figcaption>
-    <pre><code>git clone https://github.com/Vik1n9/One-Page-Beginners-Guide.git
-cd One-Page-Beginners-Guide</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
+  <h2 id="三步推上線">三步推上線</h2>
 
-  <h2 id="②-加入檔案記錄變更推上-main">② 加入檔案、記錄變更、推上 main</h2>
-  <figure class="prompt">
-    <figcaption>add → commit → push</figcaption>
-    <pre><code>git add making-of.html README.md
-git commit -m "Add making-of tutorial; fix README preview links"
-git push origin main</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-  <p class="note">commit 是「為這次變更留一筆紀錄」，push 是「把紀錄上傳到雲端」。本次依需求直接推上 main 分支。</p>
+  <ol>
+    <li><strong>複製到本機</strong>——先把倉庫複製到本機。</li>
+    <li><strong>推送變更</strong>——把檔案加入暫存、留下 commit 訊息並推送到遠端。本次依需求直接推上 main 分支，全程用 Git 完成版本紀錄。</li>
+    <li><strong>啟用 Pages</strong>——用命令列工具一行完成，指定來源分支為 main 且路徑為根目錄；也可在倉庫網頁的設定頁點選分支後儲存。</li>
+  </ol>
 
-  <h2 id="③-啟用-github-pages取得線上網址">③ 啟用 GitHub Pages（取得線上網址）</h2>
-  <figure class="prompt">
-    <figcaption>啟用 Pages（GitHub CLI）</figcaption>
-    <pre><code>gh api -X POST repos/Vik1n9/One-Page-Beginners-Guide/pages \
-  -f source.branch=main -f source.path=/</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-  <p class="note">也可在倉庫網頁的 <strong>Settings → Pages</strong> 點選 Branch <code>main</code> / <code>/ (root)</code> 儲存。啟用後，網址格式為：</p>
-  <figure class="prompt">
-    <figcaption>線上網址</figcaption>
-    <pre><code>https://vik1n9.github.io/One-Page-Beginners-Guide/making-of.html</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-
-  <div class="callout">
-    <strong>備援：htmlpreview</strong>　若還沒開 Pages，也可用 <a href="https://htmlpreview.github.io" rel="noopener" target="_blank">htmlpreview.github.io</a> 直接預覽倉庫裡的 HTML：在它後面接上檔案的 GitHub 連結即可。
-  </div>
-</section>
-
-<!-- ═════════════ Chapter 06 ═════════════ -->
-<section class="chapter" id="六步走完-一份指南就上線了">
-  <div class="chapter-num">06 · Done · 完成</div>
-  <h1>六步走完，一份指南就上線了。</h1>
-
-  <p class="lead">整個流程收斂成五個可勾選的節點，每一個都對應前面一章。</p>
-
-  <ul>
-    <li>建立 GitHub 帳號與公開倉庫，放入 README</li>
-    <li>讓 AI 先寫計畫、在分岔點提問，確認後才動工</li>
-    <li>清楚知道調用了哪些技能與外掛，第三方都附出處</li>
-    <li>用「描述 → 實作 → 驗證 → 修正」循環來回打磨</li>
-    <li>push 到 main、啟用 Pages，取得可分享的網址</li>
-  </ul>
+  <p>啟用後的網址格式為 <code>https://vik1n9.github.io/One-Page-Beginners-Guide/making-of.html</code>。若還沒開啟 Pages，也可用 htmlpreview 直接預覽倉庫裡的 HTML 檔案，在它後面接上檔案的 GitHub 連結即可作為備援。</p>
 
   <blockquote>
-    「你定義想要什麼，AI 把它變成能上線的東西。」
-    <span class="cite">— 本次製作流程的一句話總結</span>
+    回頭看這 103 個 commits：它們是把從 0 到 1 的創意走進從 1 到 100 的量產時留下的腳印。
   </blockquote>
 
-  <div class="callout">
-    <a href="https://github.com/Vik1n9/One-Page-Beginners-Guide" rel="noopener" target="_blank">看這個倉庫 ↗</a>
-  </div>
+  <p>世界是可調參的系統，熱與碳與知識落差皆然，沒有必須忍受的權衡，只有還沒找到的參數。找到的參數就是<strong>先寫計畫、誠實揭露工具、用「驗證」代替想像</strong>，最後把成果推到人人可及的網址。</p>
 
-  <h2>說明</h2>
-  <p>本頁為「製作過程」教學示意，還原本次用 AI 打造一頁式指南的流程。GitHub、Git、各工具的介面與指令可能隨版本更新，實際操作請以各<strong>官方文件</strong>為準。文中第三方工具的連結僅為方便讀者查找，與本專案無從屬關係。</p>
-
-  <h2>本頁提到的第三方工具</h2>
-  <p>impeccable（<a href="https://github.com/pbakaus/impeccable" rel="noopener" target="_blank">github.com/pbakaus/impeccable</a>）｜
-    PyMuPDF（<a href="https://github.com/pymupdf/PyMuPDF" rel="noopener" target="_blank">github.com/pymupdf/PyMuPDF</a>）｜
-    GitHub CLI（<a href="https://cli.github.com" rel="noopener" target="_blank">cli.github.com</a>）｜
-    Git（<a href="https://git-scm.com" rel="noopener" target="_blank">git-scm.com</a>）｜
-    Node.js（<a href="https://nodejs.org" rel="noopener" target="_blank">nodejs.org</a>）｜
-    Chrome（<a href="https://www.google.com/chrome/" rel="noopener" target="_blank">google.com/chrome</a>）｜
-    Anthropic Skills（<a href="https://github.com/anthropics/skills" rel="noopener" target="_blank">github.com/anthropics/skills</a>）｜
-    Claude Code（<a href="https://docs.claude.com/en/docs/claude-code" rel="noopener" target="_blank">docs.claude.com</a>）</p>
-
-  <p class="note">One-Page-Beginners-Guide ｜ 製作幕後 · 2026-06-09</p>
+  <p class="note">指南合集：<a href="https://github.com/Vik1n9/One-Page-Beginners-Guide">github.com/Vik1n9/One-Page-Beginners-Guide</a>　｜　GitHub、Git 與各工具介面可能隨版本更新，實際操作請以官方文件為準。</p>
 </section>
 
 <script>

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <!-- ==================================================================
      LONG DOCUMENT · parchment design system · zh-TW
-     消防製圖人員的 Codex GUI 輔助審圖工作流手冊
+     審圖總被退件？消防製圖人員的術前檢查
      ================================================================== -->
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<title>消防製圖人員的 Codex GUI 輔助審圖工作流手冊</title>
-<meta name="description" content="消防專業人員用 Codex Windows App 建立案件資料夾、工作日誌、本機 Git 版本與 AI 輔助初審流程的入門工作流手冊。">
-<meta name="keywords" content="Codex, 消防審圖, AI 輔助初審, AGENTS.md, 工作日誌, Git">
+<title>審圖總被退件？消防製圖人員的術前檢查，用 Codex 整理案件與初審流程</title>
+<meta name="description" content="把消防審圖當成一場術前檢查：用 Codex 替每個案件建立病歷夾、工作守則、日誌與本機版本，讓 AI 初審與人工複核分工把關。">
+<meta name="keywords" content="Codex, 消防審圖, AI 輔助初審, AGENTS.md, 工作日誌, Git, 退件, 人工複核">
 <meta name="generator" content="Kami">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -44,7 +44,7 @@
     }
 
     @bottom-center {
-      content: counter(page) "  ·  Codex 輔助審圖工作流";
+      content: counter(page) "  ·  消防審圖術前檢查";
       font-family: "Iansui", "TsangerJinKai02", "Source Han Serif SC",
                    "Noto Serif CJK SC", "Songti TC", "Songti SC", Georgia, serif;
       font-size: 9pt;
@@ -438,6 +438,42 @@
   details > div { margin-top: 6pt; }
   @media print { details > div { display: block !important; } }
 
+  /* ========== FIGURE / QUOTE / PULL ========== */
+  figure { margin: 14pt 0; break-inside: avoid; }
+  figure > figcaption {
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: var(--stone);
+    text-align: center;
+    margin-top: 6pt;
+    line-height: 1.45;
+  }
+  .prompt > figcaption { text-align: left; margin-top: 0; }
+  blockquote {
+    margin: 14pt 0;
+    padding: 0 18pt;
+    font-size: 12.5pt;
+    line-height: 1.5;
+    color: var(--olive);
+    break-inside: avoid;
+  }
+  blockquote .cite {
+    display: block;
+    font-size: 9pt;
+    color: var(--stone);
+    margin-top: 5pt;
+  }
+  .pull {
+    font-size: 15pt;
+    line-height: 1.4;
+    color: var(--brand);
+    margin: 18pt 0;
+  }
+  .diagram-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .diagram { width: 100%; height: auto; display: block; }
+  @media screen and (max-width: 640px) { .diagram { min-width: 440px; } }
+  @media print { .diagram { min-width: 0; } }
+
   /* ========== CHAPTER BREAK ========== */
   .chapter { break-before: page; }
 
@@ -474,645 +510,329 @@
 <!-- ═════════════ COVER ═════════════ -->
 <section class="cover">
   <div>
-    <div class="cover-eyebrow">Fire Review AI · 審圖工作流手冊</div>
-    <div class="cover-title">Codex 輔助審圖工作流</div>
-    <div class="cover-sub">給第一次接觸 AI 工具的消防專業人員：用 Windows 圖形介面建立案件資料夾、讓 Codex 協助初審、同步留下工作日誌與本機版本紀錄。</div>
+    <div class="cover-eyebrow">Fire Review AI · 消防審圖術前檢查</div>
+    <div class="cover-title">審圖總被退件？<br>先做術前檢查</div>
+    <div class="cover-sub">消防製圖人員用 Codex 整理案件與初審流程：把散落的檔案變成病歷夾，把守則、日誌與版本變成可追溯的檢查單。</div>
   </div>
   <div class="cover-meta">
-    <strong>GUI 優先 · 案件資料夾 · 工作日誌 · 人工複核</strong><br>
+    <strong>GUI 優先 · 案件病歷夾 · 工作日誌 · 人工複核</strong><br>
     指南 02 · One-Page Beginners Guide<br>
-    本手冊所稱「審圖」為 AI 輔助初步檢查，不等同正式審查或簽證
+    AI 只協助初步檢查，正式結論保留給具資格的專業人員
   </div>
 </section>
 
 <!-- ═════════════ TOC ═════════════ -->
 <section class="toc">
   <h2>目錄</h2>
-  <div class="toc-item"><span class="toc-num">01</span><a class="toc-title" href="#重要聲明">重要聲明</a></div>
-  <div class="toc-item"><span class="toc-num">02</span><a class="toc-title" href="#整體流程一覽">整體流程一覽</a></div>
-  <div class="toc-item"><span class="toc-num">03</span><a class="toc-title" href="#第一章認識-codex-gui-工作方式">第一章：認識 Codex GUI 工作方式</a></div>
-  <div class="toc-item"><span class="toc-num">04</span><a class="toc-title" href="#第二章建立案件資料管理架構">第二章：建立案件資料管理架構</a></div>
-  <div class="toc-item"><span class="toc-num">05</span><a class="toc-title" href="#第三章建立-codex-工作設定">第三章：建立 Codex 工作設定</a></div>
-  <div class="toc-item"><span class="toc-num">06</span><a class="toc-title" href="#第四章建立版本與日誌習慣">第四章：建立版本與日誌習慣</a></div>
-  <div class="toc-item"><span class="toc-num">07</span><a class="toc-title" href="#第五章審圖實戰工作流">第五章：審圖實戰工作流</a></div>
-  <div class="toc-item"><span class="toc-num">08</span><a class="toc-title" href="#第六章人工複核與交付">第六章：人工複核與交付</a></div>
-  <div class="toc-item"><span class="toc-num">09</span><a class="toc-title" href="#第七章常見問題">第七章：常見問題</a></div>
-  <div class="toc-item"><span class="toc-num">10</span><a class="toc-title" href="#審圖工作流程總結">審圖工作流程總結</a></div>
+  <div class="toc-item"><span class="toc-num">01</span><a class="toc-title" href="#審圖為何總像沒做術前檢查就送開刀">審圖為何總像沒做術前檢查就送開刀？</a></div>
+  <div class="toc-item"><span class="toc-num">02</span><a class="toc-title" href="#step1-同一套命名如何管住每個案件">STEP 1　同一套命名如何管住每個案件？</a></div>
+  <div class="toc-item"><span class="toc-num">03</span><a class="toc-title" href="#step2-agents-md-如何寫下工作守則">STEP 2　AGENTS.md 如何寫下工作守則？</a></div>
+  <div class="toc-item"><span class="toc-num">04</span><a class="toc-title" href="#step3-日誌與本機版本如何留下病程紀錄">STEP 3　日誌與本機版本如何留下病程紀錄？</a></div>
+  <div class="toc-item"><span class="toc-num">05</span><a class="toc-title" href="#step4-ai初審與人工複核如何分工把關">STEP 4　AI 初審與人工複核如何分工把關？</a></div>
+  <div class="toc-item"><span class="toc-num">06</span><a class="toc-title" href="#這套術前檢查能替我們換回什麼">這套術前檢查能替我們換回什麼？</a></div>
 </section>
 
 <!-- ═════════════ Chapter 01 ═════════════ -->
-<section class="chapter" id="重要聲明">
-  <div class="chapter-num">01 · Scope · 重要聲明</div>
-  <h1>重要聲明</h1>
+<section class="chapter" id="審圖為何總像沒做術前檢查就送開刀">
+  <div class="chapter-num">01 · Diagnosis · 為什麼會退件</div>
+  <h1>審圖為何總像沒做術前檢查就送開刀？</h1>
 
-  <p class="lead">本手冊中的 AI 工具只能作為輔助初審工具，最終判斷仍需由具備資格與責任的消防設備師或相關專業人員確認。Codex 可以協助整理圖面、建立索引、讀取可見資訊、產出草稿與日誌，但法規條文、距離計算、設備配置意見，都必須回到原圖、正式法規與專業判斷進行人工複核。本手冊所稱「審圖」是指「AI 輔助初步檢查」，不等同於正式審查、簽證或任何法定審核程序。</p>
+  <p class="lead">圖面送審後才發現版本拿錯、圖例對不上，因為審查意見回來又要花幾個晚上比對圖面與法規，進而拖住整體送審進度。現場抱怨集中在一件事：案件資料散落桌面、下載資料夾與通訊軟體暫存，圖面細節反而在其次。</p>
 
-  <div class="takeaway">
-    <div class="takeaway-label">使用原則</div>
-    新手不要先學一堆指令。先學會把案件資料整理好、用 Codex App 打開正確資料夾、看懂它改了什麼、留下日誌與版本，才是能長期使用的工作流。
+  <p class="pull">沒有病歷就開刀，退件只是剛好。</p>
+
+  <p>消防審圖可理解為一場完整的「術前檢查」，其中圖面是等待評估的身體，法規是臨床指引，審查委員則像備審面試的醫師團隊。因為術前若沒有整理病歷、確認檢查項目並留下評估紀錄，手術檯上出狀況並不讓人意外。這套工作流正是替每個案件建立「病歷夾」與檢查單的方法。</p>
+
+  <figure>
+    <div class="diagram-wrap">
+    <svg class="diagram" viewBox="0 0 560 112" role="img" aria-label="消防審圖術前檢查流程總覽，從開案病歷到人工複核">
+      <defs>
+        <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+          <path d="M0 1.2 L6.5 4 L0 6.8 z" fill="#6b6a64"></path>
+        </marker>
+      </defs>
+      <g fill="none" stroke="#6b6a64" stroke-width="1" marker-end="url(#ar)">
+        <line x1="98" y1="52" x2="113" y2="52"></line>
+        <line x1="214" y1="52" x2="229" y2="52"></line>
+        <line x1="330" y1="52" x2="345" y2="52"></line>
+        <line x1="446" y1="52" x2="461" y2="52"></line>
+      </g>
+      <g stroke="#e8e6dc" stroke-width="1" fill="#faf9f5">
+        <rect x="0" y="26" width="96" height="52" rx="3"></rect>
+        <rect x="116" y="26" width="96" height="52" rx="3"></rect>
+        <rect x="232" y="26" width="96" height="52" rx="3"></rect>
+        <rect x="348" y="26" width="96" height="52" rx="3"></rect>
+        <rect x="464" y="26" width="96" height="52" rx="3"></rect>
+      </g>
+      <g text-anchor="middle" fill="#1B365D" font-size="8" letter-spacing="0.8">
+        <text x="48" y="44">STEP 1</text>
+        <text x="164" y="44">STEP 2</text>
+        <text x="280" y="44">STEP 3</text>
+        <text x="396" y="44">STEP 4</text>
+        <text x="512" y="44">GATE</text>
+      </g>
+      <g text-anchor="middle" fill="#141413" font-size="11">
+        <text x="48" y="62">開案病歷</text>
+        <text x="164" y="62">檢查同意書</text>
+        <text x="280" y="62">病程紀錄</text>
+        <text x="396" y="62">理學檢查</text>
+        <text x="512" y="62">主治覆核</text>
+      </g>
+      <g text-anchor="middle" fill="#6b6a64" font-size="8.5">
+        <text x="48" y="94">資料夾與命名</text>
+        <text x="164" y="94">AGENTS.md</text>
+        <text x="280" y="94">日誌與版本</text>
+        <text x="396" y="94">索引與初審</text>
+        <text x="512" y="94">正式意見</text>
+      </g>
+    </svg>
+    </div>
+    <figcaption>術前檢查流程總覽：從開案病歷一路走到人工複核，每一段都留下可回查的紀錄。</figcaption>
+  </figure>
+
+  <h2 id="codex-是協調員不是簽證者">Codex 是協調員，不是簽證者</h2>
+
+  <p>人工智慧（Artificial Intelligence，簡稱 AI）助手 Codex 是負責整理病歷與安排檢查的協調員，職責是協調而不負責簽證。操作優先用圖形使用者介面（Graphical User Interface，簡稱 GUI）版 Windows 應用程式開啟單一案件資料夾，在同一視窗對話並以內建版本功能留下每次處置紀錄。</p>
+
+  <div class="callout">
+    Codex 擅長整理大量檔案、建立索引並產出表格與草稿，但<strong>圖面版本、設備圖例與法規適用性仍要回到原圖與正式法規做專業判斷</strong>。
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>適合誰</th><th>為什麼適合</th></tr></thead>
+      <tbody>
+        <tr><td>每天與圖面為伍的消防製圖人員</td><td>辦公室、地下停車場與百貨商場等多用途案件可共用同一套流程。</td></tr>
+        <tr><td>剛接觸 AI 工具的消防設備師與審圖協辦人員</td><td>不必先背指令，先學會整理案件資料並用正確姿勢開啟資料夾即可。</td></tr>
+        <tr><td>小型事務所與工程團隊</td><td>更需要長期追蹤，每完成一段工作就留下可回查的日誌與版本，進而讓交接與複查不必再依賴個人記憶。</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
 <!-- ═════════════ Chapter 02 ═════════════ -->
-<section class="chapter" id="整體流程一覽">
-  <div class="chapter-num">02 · Overview · 整體流程一覽</div>
-  <h1>整體流程一覽</h1>
+<section class="chapter" id="step1-同一套命名如何管住每個案件">
+  <div class="chapter-num">02 · Step 1 · 開案病歷</div>
+  <h1>STEP 1　同一套命名如何管住每個案件？</h1>
 
-  <p class="lead">四個階段各自要做什麼、Codex 幫得上什麼、留下什麼產出。</p>
+  <p class="lead">替每個案件建立「病歷夾」，第一步是在檔案總管固定總資料夾位置 <code>C:\消防審圖案件\</code>，讓所有案件住在同一棟病房大樓。因為案件不再散放桌面、下載資料夾與通訊軟體暫存，透過固定住院位置，後續檢查才找得到病歷。</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">一次只推一位病人進診間</div>
+    每次只讓 Codex 開啟單一案件資料夾，等於每次只推一位病人的病歷入診間。
+  </div>
+
+  <h2 id="單案命名格式">單案命名格式</h2>
+
+  <p>單案命名格式是<strong>年月日 ＋ 案件名稱 ＋ 場所用途</strong>。因為同一種命名維持排序與搜尋穩定，案件量增加後仍可分辨收案時間與場所特性。透過寫死命名規則，後續索引與版本才不會對錯病人。</p>
+
+  <figure class="prompt">
+    <figcaption>三個命名範例</figcaption>
+    <button class="copy-button" type="button">複製</button>
+    <pre><code>20260615_忠孝辦公室案
+20260710_中山地下停車場案
+20260822_信義百貨商場案</code></pre>
+  </figure>
+
+  <h2 id="單案底下的五個子資料夾">單案底下的五個子資料夾</h2>
 
   <div class="table-wrap">
     <table>
-      <thead><tr><th>階段</th><th>你要做的事</th><th>Codex 協助的事</th><th>產出</th></tr></thead>
+      <thead><tr><th>子資料夾</th><th>放什麼</th></tr></thead>
       <tbody>
-        <tr><td>1. 工具準備</td><td>安裝 Codex Windows App，登入 OpenAI / ChatGPT 帳號</td><td>提供 GUI 對話、檔案預覽、差異審閱與 Git 功能</td><td>可開啟本機案件資料夾</td></tr>
-        <tr><td>2. 案件開案</td><td>用檔案總管建立總資料夾與單案資料夾</td><td>檢查資料夾是否完整、補齊模板檔</td><td><code>案件說明.md</code>、<code>AGENTS.md</code>、<code>案件進度.md</code></td></tr>
-        <tr><td>3. 版本與日誌</td><td>每完成一段工作就要求建立版本存檔</td><td>初始化本機 Git、顯示變更、提交版本、更新工作日誌</td><td>可回查的版本與每日誌</td></tr>
-        <tr><td>4. 輔助初審</td><td>提供圖面、確認圖層、查證法規、決定正式意見</td><td>建立索引、分析可見圖面、整理疑點、輸出草稿</td><td>AI 輔助審查意見草稿</td></tr>
+        <tr><td><code>01_圖面輸入</code></td><td>原始圖面。</td></tr>
+        <tr><td><code>02_法規參考</code></td><td>願意讓 AI 參考的法規。</td></tr>
+        <tr><td><code>03_AI分析暫存</code></td><td>中間表格與座標整理。</td></tr>
+        <tr><td><code>04_審查報告輸出</code></td><td>標示 AI 輔助與日期的草稿。</td></tr>
+        <tr><td><code>05_工作日誌</code></td><td>每日紀錄。</td></tr>
       </tbody>
     </table>
+  </div>
+
+  <p>透過分區存放，避免正式報告與原始圖面混用舊版。</p>
+
+  <h2 id="最上層的三份關鍵文件">最上層的三份關鍵文件</h2>
+
+  <p>單案最上層另放<strong>案件說明、工作守則與案件進度總表</strong>，讓 Codex 一進入病房就能讀到病人主訴。案件說明必填圖面單位、圖面比例與樓層範圍，例如地下一層到地上十層、比例一比一百，不確定就寫「需確認」。</p>
+
+  <div class="callout">
+    因為已知限制也要寫清楚：<strong>本次只做 AI 輔助初審，法規條文、距離計算與正式缺失都需要人工複核</strong>，推測不會被寫成診斷書。
   </div>
 </section>
 
 <!-- ═════════════ Chapter 03 ═════════════ -->
-<section class="chapter" id="第一章認識-codex-gui-工作方式">
-  <div class="chapter-num">03 · Setup · 認識 Codex GUI</div>
-  <h1>第一章：認識 Codex GUI 工作方式</h1>
+<section class="chapter" id="step2-agents-md-如何寫下工作守則">
+  <div class="chapter-num">03 · Step 2 · 檢查同意書</div>
+  <h1>STEP 2　AGENTS.md 如何寫下工作守則？</h1>
 
-  <p class="lead">Codex 是 OpenAI 的 AI 工作代理。對新手來說，建議優先使用 Windows App：它可以用圖形介面開啟專案資料夾、在同一個視窗裡和 Codex 對話、檢查它產生或修改的檔案，並透過內建 Git 功能留下版本紀錄。</p>
+  <p class="lead">AGENTS.md 是交給 Codex 的術前檢查同意書，每次進入案件資料夾，系統都會先讀取這份文件。新手用記事本新增並存在單案最上層，副檔名必須是 <code>.md</code> 而不能存成 <code>.txt</code>，因為格式存錯就等於把同意書放錯抽屜。</p>
 
-  <h2 id="step-1安裝-codex-windows-app">Step 1：安裝 Codex Windows App</h2>
-  <p>操作方式盡量用圖形介面完成：</p>
-  <ol>
-    <li>打開瀏覽器，前往 OpenAI Codex 官方頁面或 Microsoft Store 的 Codex App 頁面。</li>
-    <li>點擊 Windows 版本下載或安裝按鈕。</li>
-    <li>安裝完成後，從 Windows 開始功能表搜尋「Codex」並開啟。</li>
-    <li>依畫面提示登入你的 OpenAI / ChatGPT 帳號。</li>
-  </ol>
-  <p><strong>確認成功：</strong>畫面出現 Codex App 主視窗，可以新增或開啟專案，並看到對話輸入區。</p>
+  <p>檔案以繁體中文寫下角色定位：AI 只協助整理圖面、建立索引、找出疑點與產生草稿，<strong>正式結論永遠保留給具資格的專業人員</strong>。</p>
 
-  <h2 id="step-2先理解-codex-不是正式審查者">Step 2：先理解 Codex 不是正式審查者</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>分工</th><th>內容</th></tr></thead>
-      <tbody>
-        <tr><td>Codex 擅長</td><td>整理大量檔案、建立索引、比對文字、產生表格、協助寫日誌與草稿。</td></tr>
-        <tr><td>你必須決定</td><td>圖面版本是否正確、設備圖例是否對應、法規條文是否適用、正式缺失是否成立。</td></tr>
-        <tr><td>禁止交給 AI 決定</td><td>正式審查結論、簽證責任、法律效果、未查證的條號與無圖面依據的推定。</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <blockquote>
+    「資料夾整理得好，Codex 才知道哪裡是圖面、哪裡是法規、哪裡放報告、哪裡記錄進度。」
+    <span class="cite">— 工作守則裡寫下的原則</span>
+  </blockquote>
 
-  <h2 id="step-3用-codex-app-開啟資料夾">Step 3：用 Codex App 開啟資料夾</h2>
-  <p>每次工作都要讓 Codex 站在正確的案件資料夾裡。不要把整個 C 槽或雜亂的下載資料夾交給 Codex。</p>
-  <ol>
-    <li>在 Codex App 首頁選擇「Add project」、「Open folder」或類似的開啟資料夾按鈕。</li>
-    <li>選擇本案資料夾，例如 <code>C:\消防審圖案件\2026-0615_忠孝案_辦公室</code>。</li>
-    <li>新開一個 Local thread。新手先使用 Local，不要一開始就使用多個背景工作。</li>
-    <li>保持預設沙盒與審核權限；若 Codex 要修改或執行動作，先看清楚它要做什麼再核准。</li>
-  </ol>
+  <p>因為守則先把位置寫死，後面才不會亂。</p>
 
-  <div class="callout">
-    <strong>Codex GUI 工作循環：</strong>開啟資料夾 → 輸入 Prompt → 審閱變更 → 人工確認 → 輸出報告／日誌
+  <figure>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>守則段落</th><th>要寫進去的內容</th></tr></thead>
+        <tbody>
+          <tr><td>角色定位</td><td>AI 只整理、索引、找疑點、產草稿；正式結論保留給具資格的專業人員。</td></tr>
+          <tr><td>資料夾對應</td><td>五個子資料夾與兩份說明文件的對應關係，讓 AI 知道「病歷夾」每一格的用途與邊界。</td></tr>
+          <tr><td>工作順序</td><td>先建檔案索引再分析圖面，而不要一開始就下結論。</td></tr>
+          <tr><td>判斷依據</td><td>只能依據可見圖面、使用者提供資料與 <code>02_法規參考</code> 內容，不確定一律標「需確認」。</td></tr>
+          <tr><td>引註規則</td><td>法規條文標來源或條號；數值計算列出資料來源、單位、公式、代入值與結果。</td></tr>
+          <tr><td>輸出標籤</td><td>只能用<strong>符合</strong>、<strong>不符合</strong>與<strong>需確認</strong>三種狀態。</td></tr>
+          <tr><td>紀錄義務</td><td>每次完成重要工作就更新案件進度總表與當日工作日誌。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figcaption>AGENTS.md 工作守則示意：角色定位、資料夾對應與日誌規則一次寫死。</figcaption>
+  </figure>
+
+  <p>日誌只記時間、工作內容、輸入檔案、產出檔案、AI 判斷、人工確認、待確認事項與下一步，<strong>不記內部推理過程</strong>，只留日後看得懂、可追溯的工作事實。</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">麻醉前評估</div>
+    確認環境時，先請 Codex 讀取資料夾結構，以繁體中文回覆看到的檔案、理解的工作規則與缺少的必要資料。這個階段<strong>先不要審圖，也不要修改檔案</strong>——重點是確認位置正確、底線清楚，不確定就標「需確認」並每次更新日誌、不得直接下正式結論。
   </div>
 </section>
 
 <!-- ═════════════ Chapter 04 ═════════════ -->
-<section class="chapter" id="第二章建立案件資料管理架構">
-  <div class="chapter-num">04 · Structure · 案件資料管理</div>
-  <h1>第二章：建立案件資料管理架構</h1>
+<section class="chapter" id="step3-日誌與本機版本如何留下病程紀錄">
+  <div class="chapter-num">04 · Step 3 · 病程紀錄</div>
+  <h1>STEP 3　日誌與本機版本如何留下病程紀錄？</h1>
 
-  <p class="lead">審圖工作流最重要的不是第一句 Prompt，而是資料夾。資料夾整理得好，Codex 才知道哪裡是圖面、哪裡是法規、哪裡放報告、哪裡記錄進度。</p>
-
-  <h2 id="step-4建立總資料夾">Step 4：建立總資料夾</h2>
-  <p>用 Windows 檔案總管建立固定位置：</p>
-  <figure class="prompt">
-    <figcaption>總資料夾位置</figcaption>
-    <pre><code>C:\消防審圖案件\</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-  <p>所有案件都放在這個總資料夾底下。不要把案件散在桌面、下載、Line 暫存或不同硬碟裡。</p>
-
-  <h2 id="step-5建立單案資料夾命名規則">Step 5：建立單案資料夾命名規則</h2>
-  <p>每個案件用同一種命名格式，日後搜尋與排序會清楚很多。</p>
-  <figure class="prompt">
-    <figcaption>單案資料夾命名</figcaption>
-    <pre><code>YYYY-MMDD_案件名稱_場所用途
-
-範例：
-2026-0615_忠孝案_辦公室
-2026-0710_中山案_地下停車場
-2026-0822_信義案_百貨商場</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-
-  <h2 id="step-6建立每案固定結構">Step 6：建立每案固定結構</h2>
-  <figure class="prompt">
-    <figcaption>案件資料夾模板</figcaption>
-    <pre><code>C:\消防審圖案件\
-  2026-0615_案件名稱_場所用途\
-    01_圖面輸入\
-    02_法規參考\
-    03_AI分析暫存\
-    04_審查報告輸出\
-    05_工作日誌\
-    AGENTS.md
-    案件說明.md
-    案件進度.md</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
+  <p class="lead">案件進度總表是病人的「病程總覽」，記錄目前階段、最後更新日期與負責人工複核的人員。因為設備對應與適用標準由人決定並留下簽名、AI 不自行定案，透過維持總表永遠是最新狀態，接手的人立刻知道手術做到哪一步。</p>
 
   <div class="table-wrap">
     <table>
-      <thead><tr><th>層級</th><th>說明</th></tr></thead>
+      <thead><tr><th>紀錄層</th><th>形式</th><th>內容</th></tr></thead>
       <tbody>
-        <tr><td><code>C:\消防審圖案件</code></td><td>總資料夾。只放審圖案件，不放雜項下載。</td></tr>
-        <tr><td><code>2026-0615_案件名稱_場所用途</code></td><td>單案資料夾。Codex 每次只開啟這一層。</td></tr>
-        <tr><td>固定子資料夾</td><td>輸入、參考、暫存、輸出、日誌各有位置，避免報告與原圖混在一起。</td></tr>
+        <tr>
+          <td>案件進度總表</td>
+          <td>勾選清單</td>
+          <td>追蹤開案、索引、圖面初審、圖層確認、距離檢查、法規對照、報告草稿與人工複核；待確認事項與重要人工決策各獨立一區。</td>
+        </tr>
+        <tr>
+          <td>每日工作日誌</td>
+          <td>每天一檔，檔名以日期開頭</td>
+          <td>本日摘要、使用資料、Codex 協助事項、人工確認內容、待確認事項、產出檔案與下一步。</td>
+        </tr>
+        <tr>
+          <td>本機版本</td>
+          <td>Git 版本存檔</td>
+          <td>四個關鍵版本：開案、索引、分析、報告。</td>
+        </tr>
       </tbody>
     </table>
   </div>
 
+  <p>每日工作日誌放在 <code>05_工作日誌</code> 資料夾，檔名用日期開頭，例如 <code>20260615_工作日誌</code>，時間序列本身就是檢索鍵。每天一檔，回查爭議時可直接定位當天版本與決定。因為每完成一段工作就更新日誌，病程紀錄不會因忙碌中斷。</p>
+
+  <h2 id="本機版本的四個存檔點">本機版本的四個存檔點</h2>
+
+  <p>分散式版本控制系統（Distributed Version Control System，簡稱 Git）在本機留下四個關鍵版本：</p>
+
   <div class="table-wrap">
     <table>
-      <thead><tr><th>項目</th><th>放什麼</th><th>注意事項</th></tr></thead>
+      <thead><tr><th>版本</th><th>保存內容</th></tr></thead>
       <tbody>
-        <tr><td><code>01_圖面輸入</code></td><td>PDF、DXF、DWG 轉檔、PNG/JPG 截圖、局部放大圖</td><td>保留原始檔名，若有版次請不要刪掉版次資訊</td></tr>
-        <tr><td><code>02_法規參考</code></td><td>本案適用法規、內部審圖規則、常見缺失清單</td><td>只放你願意讓 Codex 參考的資料；過期法規要標註</td></tr>
-        <tr><td><code>03_AI分析暫存</code></td><td>Codex 產出的中間表格、座標整理、轉檔結果、臨時分析</td><td>暫存不等於正式成果，交付前要重新確認</td></tr>
-        <tr><td><code>04_審查報告輸出</code></td><td>AI 輔助審查意見草稿、人工修正版、最終附件</td><td>草稿檔名要清楚標示「AI輔助」與日期</td></tr>
-        <tr><td><code>05_工作日誌</code></td><td>每日工作紀錄、人工決策、待確認事項、會議或電話補充</td><td>每天一檔，日後回查最快</td></tr>
+        <tr><td><code>01 開案版本</code></td><td>資料夾、案件說明、守則、進度總表與第一篇日誌。</td></tr>
+        <tr><td><code>02 索引版本</code></td><td>檔案索引與缺資料清單。</td></tr>
+        <tr><td><code>03 分析版本</code></td><td>圖面初步分析與人工確認過的圖層單位。</td></tr>
+        <tr><td><code>04 報告版本</code></td><td>審查意見草稿與待複核事項。</td></tr>
       </tbody>
     </table>
   </div>
 
-  <h2 id="step-7建立案件說明">Step 7：建立案件說明</h2>
-  <p>用記事本新增 <code>案件說明.md</code>，這是 Codex 理解本案背景的第一份文件。</p>
-  <figure class="prompt">
-    <figcaption>案件說明.md 範本</figcaption>
-    <pre><code># 案件說明
+  <p>因為每完成一個階段就請 Codex 檢查是否已建立版本庫並整理新手看得懂的變更摘要，透過接著建立版本存檔，進而同步更新進度與日誌。</p>
 
-## 基本資料
-- 案件名稱：（填寫）
-- 建築用途：（例如：辦公室、百貨公司、地下停車場）
-- 樓層範圍：（例如：B2F 至 10F）
-- 本次審查範圍：（例如：自動撒水、火警警報、室內消防栓）
-- 圖面單位：（公尺 或 毫米；必填）
-- 圖面比例：（例如：1:100；若不確定請寫需確認）
-- 圖面版次或日期：（填寫）
-
-## 已知限制
-- 本次只做 AI 輔助初審。
-- 法規條文、距離計算與正式缺失需人工複核。
-- 圖面標註模糊、比例不清、圖例不明處，一律列入需確認事項。
-
-## 人工已確認事項
-- （例如：撒水頭圖塊為 SP）
-- （例如：本案圖面單位為 mm）</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
+  <p>操作不需手打指令，但要看懂五個動作：<strong>初始化、查看狀態、加入暫存、提交版本與查看紀錄</strong>。流程是先檢查再摘要再存檔。審閱面板要確認準備保存哪些變更，避免無關檔案一起推進病歷。版本訊息用清楚中文，例如「初始化案件資料夾與審圖工作流」。</p>
 </section>
 
 <!-- ═════════════ Chapter 05 ═════════════ -->
-<section class="chapter" id="第三章建立-codex-工作設定">
-  <div class="chapter-num">05 · Config · Codex 工作設定</div>
-  <h1>第三章：建立 Codex 工作設定</h1>
+<section class="chapter" id="step4-ai初審與人工複核如何分工把關">
+  <div class="chapter-num">05 · Step 4 · 初審與覆核</div>
+  <h1>STEP 4　AI 初審與人工複核如何分工把關？</h1>
 
-  <p class="lead">Codex 會讀取專案資料夾中的 <code>AGENTS.md</code>，把它當成這個案件的工作規則。你可以把它想成「交代給 Codex 的審圖工作守則」。</p>
+  <p class="lead">實戰先請 Codex 建立案件檔案索引，表格欄位含檔名、所在資料夾、檔案格式、可能用途與需人工確認處。這一步<strong>不產生審查結論</strong>，先確認圖面版本、檔案格式、樓層範圍與圖面單位，缺資料列入待確認，等於術前先確認報告齊全再排開刀時間。</p>
 
-  <h2 id="step-8建立-agents-md">Step 8：建立 AGENTS.md</h2>
-  <p>用記事本新增 <code>AGENTS.md</code>，存到單案資料夾最上層。注意副檔名是 <code>.md</code>，不是 <code>.txt</code>。</p>
-  <figure class="prompt">
-    <figcaption>AGENTS.md 範本</figcaption>
-    <pre><code># 消防圖面輔助初審工作設定
+  <p>因為完成後更新進度與日誌並建立索引階段版本，後續判斷都有清楚的輸入基礎。</p>
 
-## 角色
-- 你是協助消防專業人員整理圖面、建立索引、找出疑點、產生審查意見草稿的 AI 助手。
-- 使用者是具備消防圖說與審圖專業的人員，但可能是 AI 工具新手。
-- 你只能做輔助初審，不得把輸出寫成正式審查結論。
+  <h2 id="圖面初審是理學檢查">圖面初審：先建立空間理解的理學檢查</h2>
 
-## 資料夾
-- 圖面輸入：01_圖面輸入
-- 法規參考：02_法規參考
-- 分析暫存：03_AI分析暫存
-- 報告輸出：04_審查報告輸出
-- 工作日誌：05_工作日誌
-- 案件背景：案件說明.md
-- 進度總覽：案件進度.md
+  <p>接著閱讀 <code>01_圖面輸入</code> 裡的可攜式文件格式（Portable Document Format，簡稱 PDF）與圖片截圖，只根據可見內容初步描述。輸出含圖面整體說明、已確認設備區域、明顯疑點、需放大補圖區域與下一步建議。除非圖面已標尺寸，否則<strong>不做精確距離判斷</strong>。</p>
 
-## 工作規則
-- 全程使用繁體中文。
-- 先建立檔案索引，再分析圖面，不要一開始就下結論。
-- 只根據可見圖面、使用者提供的資料、以及 02_法規參考 中的內容判斷。
-- 不確定時標示為「需確認」，不要自行推定。
-- 法規條文需標示來源或條號；若無法確認，請列入待人工查證。
-- 數值計算需列出資料來源、單位、公式、代入值與結果。
-- 審查狀態一律使用「符合」「不符合」「需確認」。
-- 每次完成重要工作後，更新 案件進度.md 與當日工作日誌。
+  <p>因為看不清楚處以放大截圖解決，例如檔名標示三樓東側撒水頭局部放大的圖片，透過只針對補圖重查，這一步就是先建立空間理解的理學檢查。</p>
 
-## 日誌規則
-- 若 05_工作日誌 中沒有今天的日誌，請建立 YYYY-MM-DD_工作日誌.md。
-- 日誌需記錄：時間、工作內容、輸入檔案、產出檔案、AI 判斷、人工確認、待確認事項、下一步。
-- 不要記錄內部推理過程；只記錄使用者看得懂、日後能追溯的工作事實。
+  <h2 id="圖層對應只能是需人工確認的推測">圖層對應：只能是「需人工確認」的推測</h2>
 
-## 限制
-- AI 結果僅供輔助初審。
-- 不得將 AI 結果視為正式審查、簽證或法定審核。
-- 不得捏造法規條文、圖面尺寸、設備數量或人工未確認事項。</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
+  <p>拿到電腦輔助設計（Computer-Aided Design，簡稱 CAD）轉出的交換圖檔，先請 Codex 列出圖層名稱、圖塊名稱與文字標註，再整理可能代表消防設備的對應推測。</p>
 
-  <h2 id="step-9確認-codex-讀到設定">Step 9：確認 Codex 讀到設定</h2>
-  <p>在 Codex App 開啟本案資料夾後，貼上這段提示詞。這一步只確認環境，不做審圖。</p>
-  <figure class="prompt">
-    <figcaption>Prompt：確認工作設定</figcaption>
-    <pre><code>請先讀取目前案件資料夾的檔案與資料夾結構，確認你是否看到 AGENTS.md、案件說明.md、案件進度.md、01_圖面輸入、02_法規參考、03_AI分析暫存、04_審查報告輸出、05_工作日誌。
+  <div class="callout">
+    SP 可能是撒水頭、FD 可能是火警探測器等推測，<strong>全部整理成需人工確認的對應清單，不直接當成正式辨識</strong>。
+  </div>
 
-請用繁體中文回覆：
-1. 你看到的資料夾與檔案。
-2. 你從 AGENTS.md 理解到的工作規則。
-3. 目前缺少哪些必要資料。
+  <p>人工確認圖層對應與圖面單位後，再請 AI 做距離或數量檢查，輸出要求使用檔案、使用圖層、單位判斷、計算方式、結果表格、疑似超距位置與建議複核方式。因為拿到計算後抽樣手算一到兩組距離以確認倍率正確，這一步是主治醫師覆核檢驗數值，而非直接採信機器報表。</p>
 
-先不要審圖，也不要修改任何檔案。</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-  <p><strong>為什麼這樣問：</strong>先確認 Codex 站在正確資料夾，也確認它理解「不確定就需確認」「每次要更新日誌」「不得直接下正式結論」這些底線。</p>
+  <h2 id="法規對照與審查意見草稿">法規對照與審查意見草稿</h2>
+
+  <p>法規對照只用 <code>02_法規參考</code> 的資料，不引用無法確認來源的條文，資料不足就列出需人工查證的條文名稱、問題與查證方向。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>審查意見草稿必含</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td>案件摘要、使用檔案清單</td><td>這份草稿讀了哪些東西。</td></tr>
+        <tr><td>審查方法與結果總表</td><td>怎麼查的、查出什麼。</td></tr>
+        <tr><td>不符合細節、「需確認」細節</td><td>每項不符合要有明確圖面依據。</td></tr>
+        <tr><td>補圖建議、法規待查清單</td><td>下一步要補什麼、要查什麼。</td></tr>
+        <tr><td>AI 限制聲明與人工複核清單</td><td>哪些地方 AI 不能定案。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>檔名寫成<strong>日期 ＋ 案件名稱 ＋ AI 輔助審查意見草稿</strong>，一看就知道不是正式診斷書，最後回到正式法規與主管機關解釋逐條查證。每項不符合要有明確圖面依據，每項「需確認」都要進入進度與日誌追蹤。</p>
 </section>
 
 <!-- ═════════════ Chapter 06 ═════════════ -->
-<section class="chapter" id="第四章建立版本與日誌習慣">
-  <div class="chapter-num">06 · Versioning · 版本與日誌</div>
-  <h1>第四章：建立版本與日誌習慣</h1>
+<section class="chapter" id="這套術前檢查能替我們換回什麼">
+  <div class="chapter-num">06 · Payoff · 換回什麼</div>
+  <h1>這套術前檢查能替我們換回什麼？</h1>
 
-  <p class="lead">審圖不是一次問完就結束。你需要知道每一天做了什麼、AI 改了什麼、人工確認了什麼、下一步卡在哪裡。這一章建立兩個習慣：本機 Git 版本存檔，以及工作日誌。</p>
+  <p class="lead">最直接換回的是退件風險可控，因為過去仰賴記憶的流程已轉成同一套資料夾、同一份守則與同一個日誌節奏。開案、索引、圖面初審、圖層確認、法規對照與報告交付按 A 到 F 六段清單執行，新案件不必重新發明流程。</p>
 
-  <h2 id="step-10建立案件進度總覽">Step 10：建立案件進度總覽</h2>
-  <p>在單案資料夾建立 <code>案件進度.md</code>，它是整個案件的狀態總表。</p>
-  <figure class="prompt">
-    <figcaption>案件進度.md 範本</figcaption>
-    <pre><code># 案件進度
+  <p>因為 01 到 05 分區搭配 01 到 04 版本，透過可隨時回到任何一天的狀態，進而比在通訊軟體翻找舊圖更可靠。<strong>符合、不符合與「需確認」</strong>三態標籤優先處理真正可疑項目，不把所有 AI 文字當成正式缺失。</p>
 
-## 目前狀態
-- 案件名稱：
-- 目前階段：開案 / 索引 / 圖面初審 / DXF 分析 / 法規對照 / 報告草稿 / 人工複核 / 完成
-- 最後更新日期：
-- 負責人工複核人員：
-
-## 已完成
-- [ ] 建立案件資料夾
-- [ ] 放入圖面與法規資料
-- [ ] 建立檔案索引
-- [ ] PDF / 圖片初審
-- [ ] DXF 圖層確認
-- [ ] 距離或數量檢查
-- [ ] 法規對照
-- [ ] 輸出 AI 輔助審查意見草稿
-- [ ] 人工複核
-
-## 待確認
-- （列出圖面、法規、單位、設備圖例、人工決策等待確認事項）
-
-## 重要人工決策
-- （記錄由人決定的事項，不讓 AI 自行定案）</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-
-  <h2 id="step-11建立每日工作日誌">Step 11：建立每日工作日誌</h2>
-  <p>每日誌放在 <code>05_工作日誌</code>，檔名用日期開頭。Codex 每次完成一段工作後都要更新。</p>
-  <figure class="prompt">
-    <figcaption>每日工作日誌範本</figcaption>
-    <pre><code># 2026-06-15 工作日誌
-
-## 本日工作摘要
--
-
-## 使用資料
--
-
-## Codex 協助完成
--
-
-## 人工確認
--
-
-## 待確認事項
--
-
-## 產出檔案
--
-
-## 下一步
--</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-
-  <h2 id="step-12用-codex-建立本機-git-版本">Step 12：用 Codex 建立本機 Git 版本</h2>
-  <p>Git 是版本存檔系統。你不需要一開始就學會指令，只要先建立習慣：每完成一個階段，就請 Codex 幫你建立一個本機版本，並在 Codex 的 review pane 檢查有哪些變更。</p>
-  <figure class="prompt">
-    <figcaption>Prompt：請 Codex 建立第一個版本</figcaption>
-    <pre><code>請協助我把這個案件資料夾建立成本機 Git 版本管理。
-
-請先檢查目前是否已經是 Git repository。
-如果還不是，請建立本機 Git repository。
-接著請檢查目前檔案變更，整理一段給新手看得懂的變更摘要。
-如果只有案件模板、AGENTS.md、案件說明.md、案件進度.md、工作日誌等開案資料，請建立第一次版本存檔，版本訊息使用：
-初始化案件資料夾與 Codex 審圖工作流
-
-完成後請更新案件進度.md 與今天的工作日誌。</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-  <p><strong>為什麼這樣問：</strong>你不需要直接打指令，但要要求 Codex 先檢查、摘要、再建立版本。這樣每次存檔前你都知道它準備保存哪些變更。</p>
-
-  <figure class="prompt">
-    <figcaption>Codex 可能會執行的版本指令（不用手打）</figcaption>
-    <pre><code>git init
-git status
-git add .
-git commit -m "初始化案件資料夾與 Codex 審圖工作流"
-git log --oneline</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
+  <h2 id="實務常見的六類卡點">實務常見的六類卡點</h2>
 
   <div class="table-wrap">
     <table>
-      <thead><tr><th>版本</th><th>階段</th><th>內容</th></tr></thead>
+      <thead><tr><th>卡點</th><th>被哪一層防護攔下</th></tr></thead>
       <tbody>
-        <tr><td>01</td><td>開案版本</td><td>建立資料夾、案件說明、AGENTS.md、案件進度與第一篇日誌。</td></tr>
-        <tr><td>02</td><td>索引版本</td><td>完成檔案索引與缺資料清單，日誌記錄輸入檔案。</td></tr>
-        <tr><td>03</td><td>分析版本</td><td>完成 PDF / 圖片 / DXF 初步分析，人工確認圖層與單位。</td></tr>
-        <tr><td>04</td><td>報告版本</td><td>輸出審查意見草稿，日誌記錄待人工複核事項。</td></tr>
+        <tr><td>找不到圖面</td><td>索引</td></tr>
+        <tr><td>守則未生效</td><td>索引</td></tr>
+        <tr><td>圖片模糊</td><td>日誌</td></tr>
+        <tr><td>距離算錯</td><td>日誌</td></tr>
+        <tr><td>檔案異動未審</td><td>版本</td></tr>
+        <tr><td>版本觀念不清</td><td>版本</td></tr>
       </tbody>
     </table>
   </div>
-</section>
 
-<!-- ═════════════ Chapter 07 ═════════════ -->
-<section class="chapter" id="第五章審圖實戰工作流">
-  <div class="chapter-num">07 · Workflow · 審圖實戰</div>
-  <h1>第五章：審圖實戰工作流</h1>
+  <p>換回的時間來自減少重工與尋檔，因為版本、單位與圖例問題在索引階段就攔下來。不再整晚比對哪份是最新圖，因為進度總表與當日日誌已寫下輸入檔案與產出檔案，<strong>人工心力保留給確認設備對應、查證適用條文與決定正式意見</strong>。</p>
 
-  <p class="lead">這一章的 Prompt 可以直接貼到 Codex App。每段 Prompt 都要求 Codex 更新案件進度與每日誌，讓案件不只產出報告，也留下可追溯紀錄。</p>
-
-  <h2 id="step-13建立檔案索引">Step 13：建立檔案索引</h2>
-  <figure class="prompt">
-    <figcaption>Prompt：建立案件檔案索引</figcaption>
-    <pre><code>請讀取目前案件資料夾，包含 AGENTS.md、案件說明.md、案件進度.md、01_圖面輸入、02_法規參考。
-
-請建立本案檔案索引，輸出表格欄位：
-1. 檔名
-2. 所在資料夾
-3. 檔案格式
-4. 可能用途
-5. 需要人工確認的地方
-
-請先不要產生審查結論。完成後請更新 案件進度.md 與今天的工作日誌，記錄本次建立了檔案索引，以及目前缺少或需確認的資料。</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-  <p><strong>目的：</strong>先確認有哪些資料，不要讓 AI 還沒弄清楚圖面版本、格式、單位就開始判斷。</p>
-
-  <h2 id="step-14pdf-圖片初審">Step 14：PDF / 圖片初審</h2>
-  <figure class="prompt">
-    <figcaption>Prompt：PDF 與截圖初審</figcaption>
-    <pre><code>請先閱讀 01_圖面輸入 中的 PDF 與圖片截圖。
-
-請只根據可見內容進行消防圖面輔助初審，不要猜測看不清楚的部分。
-
-輸出格式：
-1. 圖面整體說明
-2. 已能確認的設備與區域
-3. 明顯疑點（標示符合／不符合／需確認）
-4. 需要放大或補圖的區域
-5. 下一步建議檢查項目
-
-請不要在這一步做精確距離判斷，除非圖面上已清楚標示尺寸。
-完成後請更新 案件進度.md 與今天的工作日誌。</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-  <p><strong>目的：</strong>PDF 與截圖適合建立空間理解，但不一定適合精準量測。先看懂圖面，再決定要補哪些局部圖或 DXF 分析。</p>
-
-  <h2 id="step-15dxf-圖層與座標分析">Step 15：DXF 圖層與座標分析</h2>
   <div class="takeaway">
-    <div class="takeaway-label">人工守門點</div>
-    圖層與圖塊對應一定要由人確認。Codex 可以推測「SP 可能是撒水頭」，但不能把推測直接當成正式設備辨識。
-  </div>
-  <figure class="prompt">
-    <figcaption>Prompt：DXF 圖層與圖塊辨識</figcaption>
-    <pre><code>請讀取 01_圖面輸入 中的 DXF 檔案。
-
-請先列出：
-1. 圖層名稱
-2. 圖塊名稱
-3. 文字標註
-4. 可能代表撒水頭、探測器、消防栓、揚聲器或其他消防設備的圖層／圖塊
-5. 你判斷的依據
-
-請先不要做距離計算，也不要下正式結論。
-請整理一份「需要人工確認的圖層對應清單」。
-完成後請更新 案件進度.md 與今天的工作日誌。</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-  <p><strong>目的：</strong>先讓 Codex 把可能的圖層與圖塊列出來，再由消防專業人員確認。這一步可以避免後面用錯圖塊做距離計算。</p>
-
-  <h2 id="step-16人工確認後再計算">Step 16：人工確認後再計算</h2>
-  <figure class="prompt">
-    <figcaption>Prompt：距離或數量檢查</figcaption>
-    <pre><code>我已人工確認以下圖層／圖塊對應：
-- （填寫：例如 SP = 撒水頭）
-- （填寫：例如 FD = 火警探測器）
-
-案件說明.md 中的圖面單位為：（填寫：公尺或毫米）
-
-請根據已確認的圖層／圖塊與圖面單位，進行本次範圍內的距離或數量檢查。
-
-請輸出：
-1. 使用的檔案
-2. 使用的圖層／圖塊
-3. 單位判斷
-4. 計算方式
-5. 檢查結果表格
-6. 疑似超距或需確認位置
-7. 建議人工複核方式
-
-若單位、座標或圖層有任何疑問，請停止計算並列入需確認。
-完成後請更新 案件進度.md 與今天的工作日誌。</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-  <p><strong>目的：</strong>這段 Prompt 把「人工確認」放在最前面，避免 AI 自己認定設備圖塊。計算結果仍要抽樣手算或用熟悉的 CAD 工具交叉確認。</p>
-
-  <h2 id="step-17法規對照">Step 17：法規對照</h2>
-  <figure class="prompt">
-    <figcaption>Prompt：法規對照</figcaption>
-    <pre><code>請根據 02_法規參考 中的資料，對照目前圖面分析結果進行法規對照。
-
-請不要引用你無法確認來源的條文。
-若參考資料不足以判斷，請明確列出需要人工查證的條文名稱、問題與建議查證方向。
-
-輸出欄位：
-- 審查項目
-- 圖面依據
-- 參考法規或內部規則來源
-- 判斷狀態（符合／不符合／需確認）
-- 疑義說明
-- 建議處理
-- 人工複核重點
-
-完成後請更新 案件進度.md 與今天的工作日誌。</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-  <p><strong>目的：</strong>Codex 只能對照你提供的資料。正式條文仍要由人回到官方法規、主管機關解釋或內部審查標準確認。</p>
-
-  <h2 id="step-18輸出審查意見草稿">Step 18：輸出審查意見草稿</h2>
-  <figure class="prompt">
-    <figcaption>Prompt：輸出 AI 輔助審查意見草稿</figcaption>
-    <pre><code>請將目前審圖結果整理成 AI 輔助審查意見草稿，儲存到 04_審查報告輸出。
-
-檔名格式：
-YYYY-MM-DD_案件名稱_AI輔助審查意見草稿.md
-
-報告結構：
-1. 案件摘要
-2. 使用檔案清單
-3. 審查方法
-4. 審查結果總表（符合／不符合／需確認）
-5. 不符合項目詳細說明
-6. 需確認項目詳細說明
-7. 建議補圖或補標註事項
-8. 法規條文待人工查證清單
-9. AI 限制聲明
-10. 人工複核清單
-
-請同時更新 案件進度.md 與今天的工作日誌，並請建立一個本機版本存檔。版本訊息建議為：
-輸出 AI 輔助審查意見草稿</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-</section>
-
-<!-- ═════════════ Chapter 08 ═════════════ -->
-<section class="chapter" id="第六章人工複核與交付">
-  <div class="chapter-num">08 · Review · 人工複核與交付</div>
-  <h1>第六章：人工複核與交付</h1>
-
-  <p class="lead">Codex 輸出的每個項目都帶一個狀態標籤，三種狀態各自對應不同的人工動作。</p>
-
-  <h2 id="看懂三種狀態">看懂三種狀態</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>標籤</th><th>意思</th><th>你應該怎麼做</th></tr></thead>
-      <tbody>
-        <tr><td>符合</td><td>Codex 根據可見圖面與參考資料，判斷此項目看起來符合</td><td>仍需人工複核，確認圖面版本、設備對應與標準都正確</td></tr>
-        <tr><td>不符合</td><td>Codex 發現明顯疑點，判斷可能不符合</td><td>優先查證圖面依據，不要未確認就列為正式缺失</td></tr>
-        <tr><td>需確認</td><td>現有資料不足，或 AI 無法可靠判斷</td><td>列入追蹤清單，補圖、查法規或由專業人員決定</td></tr>
-      </tbody>
-    </table>
+    <div class="takeaway-label">從下一個新案就能試行</div>
+    消防製圖團隊、設備師事務所與工程顧問可用同一種病歷語言協作：先建總資料夾與單案命名，先寫守則與說明，先留第一個版本與第一篇日誌。
   </div>
 
-  <h2 id="人工複核清單">人工複核清單</h2>
-  <ol>
-    <li>確認 Codex 讀取的是正確版本圖面，不是舊版、截圖草稿或錯案資料。</li>
-    <li>確認 DXF 單位、比例與座標倍率，必要時抽樣手算一到兩組距離。</li>
-    <li>確認設備圖塊辨識正確，尤其是撒水頭、探測器、消防栓、揚聲器與圖例對應。</li>
-    <li>逐條查證報告中引用的法規來源、條號與適用條件。</li>
-    <li>確認「不符合」都有明確圖面依據，不是 AI 的猜測或過度延伸。</li>
-    <li>確認「需確認」全部進入案件進度與日誌，不要在正式交付前遺漏。</li>
-  </ol>
-
-  <h2 id="交付前版本存檔">交付前版本存檔</h2>
-  <figure class="prompt">
-    <figcaption>Prompt：交付前整理</figcaption>
-    <pre><code>請協助我進行交付前整理。
-
-請檢查：
-1. 案件進度.md 是否更新到最新狀態。
-2. 今天的工作日誌是否記錄本次輸出與人工待確認事項。
-3. 04_審查報告輸出 是否有最新 AI 輔助審查意見草稿。
-4. 是否還有未存檔的本機 Git 變更。
-
-請先用新手看得懂的方式摘要目前變更。
-如果我確認後，請建立本機版本存檔，版本訊息使用：
-完成 AI 輔助審查草稿與交付前整理</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-</section>
-
-<!-- ═════════════ Chapter 09 ═════════════ -->
-<section class="chapter" id="第七章常見問題">
-  <div class="chapter-num">09 · FAQ · 常見問題</div>
-  <h1>第七章：常見問題</h1>
-
-  <p class="lead">新手最常卡住的六件事，以及對應的處理方式。</p>
-
-  <details><summary>問題一：Codex 找不到我的圖面檔案</summary><div><p>先確認你在 Codex App 開啟的是單案資料夾，不是總資料夾、桌面或下載資料夾。再用檔案總管確認圖面是否放在 <code>01_圖面輸入</code>。必要時請 Codex 重新列出資料夾結構，不要直接重問審圖問題。</p></div></details>
-  <details><summary>問題二：Codex 沒有照 AGENTS.md 的規則做</summary><div><p>請先確認 <code>AGENTS.md</code> 放在單案資料夾最上層，而且不是 <code>AGENTS.md.txt</code>。若剛修改過設定，重新開啟該案件資料夾或新開 thread，並要求 Codex 先摘要它讀到的工作規則。</p></div></details>
-  <details><summary>問題三：PDF 或截圖看不清楚</summary><div><p>不要要求 Codex 猜。請把該區域從 CAD 或 PDF 放大截圖，放到 <code>01_圖面輸入</code>，檔名加上樓層與區域，例如 <code>3F_東側撒水頭局部放大.png</code>，再請 Codex 只針對補圖重新檢查。</p></div></details>
-  <details><summary>問題四：DXF 距離計算看起來不對</summary><div><p>最常見原因是單位、比例或圖層對應錯誤。先在 <code>案件說明.md</code> 確認單位，再請 Codex 說明它使用的單位、圖層、公式與代入值。人工抽樣用 CAD 或手算比對，確認倍率正確後再繼續。</p></div></details>
-  <details><summary>問題五：Codex 要修改或建立很多檔案，我該怎麼辦？</summary><div><p>不要盲目核准。先要求 Codex 說明它準備修改哪些檔案、為什麼要修改、修改後會產生什麼。使用 review pane 檢查變更；只接受和本次工作相關的檔案。若不確定，請它先不要修改，只輸出計畫。</p></div></details>
-  <details><summary>問題六：我需要學會所有 Git 指令嗎？</summary><div><p>不需要。新手先學會三件事：請 Codex 建立版本、看懂變更摘要、在重要階段存檔。指令可以當作背景知識，真正操作由 Codex App 與 review pane 協助完成。</p></div></details>
-</section>
-
-<!-- ═════════════ Chapter 10 ═════════════ -->
-<section class="chapter" id="審圖工作流程總結">
-  <div class="chapter-num">10 · Checklist · 流程總結</div>
-  <h1>審圖工作流程總結</h1>
-
-  <p class="lead">每次開始新案件，可以直接照這份清單執行。這份總結刻意寫成操作順序，不需要重新閱讀整份教學也能使用。</p>
-
-  <figure class="prompt">
-    <figcaption>每次審圖參照清單</figcaption>
-    <pre><code># Codex 輔助消防審圖工作流程
-
-## A. 開案
-1. 在 C:\消防審圖案件\ 建立單案資料夾。
-2. 使用 YYYY-MMDD_案件名稱_場所用途 命名。
-3. 建立 01_圖面輸入、02_法規參考、03_AI分析暫存、04_審查報告輸出、05_工作日誌。
-4. 建立 AGENTS.md、案件說明.md、案件進度.md。
-5. 放入圖面、法規參考與已知案件資料。
-6. 用 Codex App 開啟單案資料夾。
-7. 請 Codex 確認資料夾結構與工作設定。
-8. 請 Codex 建立第一個本機版本存檔。
-
-## B. 收件與索引
-1. 請 Codex 建立檔案索引。
-2. 檢查圖面版本、檔案格式、樓層範圍與圖面單位。
-3. 缺資料或不清楚的地方，列入 案件進度.md 的待確認。
-4. 更新每日工作日誌。
-5. 建立索引階段版本存檔。
-
-## C. 圖面初審
-1. 請 Codex 先看 PDF 與圖片截圖。
-2. 只做可見內容初審，不做猜測。
-3. 需要補圖、放大、重新匯出的區域列為需確認。
-4. 更新案件進度與每日工作日誌。
-
-## D. DXF 分析與人工確認
-1. 請 Codex 列出 DXF 圖層、圖塊、文字標註。
-2. 由人工確認設備圖層與圖塊對應。
-3. 人工確認圖面單位。
-4. 確認後再請 Codex 做距離或數量檢查。
-5. 抽樣手算或用 CAD 交叉確認。
-6. 更新案件進度與每日工作日誌。
-7. 建立分析階段版本存檔。
-
-## E. 法規對照
-1. 確認 02_法規參考 內放的是本案適用資料。
-2. 請 Codex 只根據已提供資料做對照。
-3. 無法確認來源或條號的項目，一律列為需確認。
-4. 人工回到正式法規或內部標準查證。
-5. 更新案件進度與每日工作日誌。
-
-## F. 報告與交付
-1. 請 Codex 輸出 AI 輔助審查意見草稿到 04_審查報告輸出。
-2. 人工逐項複核符合、不符合、需確認。
-3. 檢查報告語氣，不得寫成 AI 已完成正式審查。
-4. 更新案件進度與每日工作日誌。
-5. 建立報告階段版本存檔。
-6. 由具備資格的人員確認正式審查意見。</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-
-  <div class="callout">
-    <strong>最後提醒：</strong>可重複的工作流比一次漂亮的 AI 回答更重要。每個案件都用同一套資料夾、同一份 AGENTS.md、同一個日誌規則、同一個版本節奏，日後才查得到進度、判斷依據與人工決策。
-  </div>
-
-  <p class="note">Codex 輔助初審結果僅供內部檢查與討論，正式判斷仍需人工複核。本手冊適用對象為消防設備製圖與審圖相關人員。</p>
+  <p class="note">進一步查詢可回內政部消防署法規系統與各縣市消防審查須知，讓每次 AI 輔助都有正式依據可對照。</p>
 </section>
 
 <script>

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <!-- ==================================================================
      LONG DOCUMENT · parchment design system · zh-TW
-     PCShop 專案製作流程
+     組電腦最貴的不是顯卡，是選錯：PCShop 相容性過濾筆記
      ================================================================== -->
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<title>PCShop 專案製作流程：過濾、版面、後台與維護紀律</title>
-<meta name="description" content="PCShop 電腦組裝估價系統的製作筆記：從發想到過濾、版面、後台與部署。">
-<meta name="keywords" content="PCShop, 電腦估價, 相容性過濾, 手機優先, DeepSeek, Codex">
+<title>組電腦最貴的不是顯卡，是選錯：我們如何開出一張不會配錯藥的估價單？</title>
+<meta name="description" content="把師傅腦中的配伍禁忌表搬進資料欄位：PCShop 如何用規格標籤與四條約束規則，擋下腳位、世代、長度與瓦數的硬體衝突。">
+<meta name="keywords" content="PCShop, 電腦估價, 相容性過濾, 規格標籤, 手機優先, DeepSeek, Codex, 組裝電腦">
 <meta name="generator" content="Kami">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -44,7 +44,7 @@
     }
 
     @bottom-center {
-      content: counter(page) "  ·  PCShop 專案製作流程";
+      content: counter(page) "  ·  組電腦最貴的不是顯卡，是選錯";
       font-family: "Iansui", "TsangerJinKai02", "Source Han Serif SC",
                    "Noto Serif CJK SC", "Songti TC", "Songti SC", Georgia, serif;
       font-size: 9pt;
@@ -499,6 +499,42 @@
   .wire-nav span { flex: 1; text-align: center; padding: 5pt 0; }
   .wire-nav span + span { border-left: 0.25pt solid var(--border); }
 
+  /* ========== FIGURE / QUOTE / PULL ========== */
+  figure { margin: 14pt 0; break-inside: avoid; }
+  figure > figcaption {
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: var(--stone);
+    text-align: center;
+    margin-top: 6pt;
+    line-height: 1.45;
+  }
+  .prompt > figcaption { text-align: left; margin-top: 0; }
+  blockquote {
+    margin: 14pt 0;
+    padding: 0 18pt;
+    font-size: 12.5pt;
+    line-height: 1.5;
+    color: var(--olive);
+    break-inside: avoid;
+  }
+  blockquote .cite {
+    display: block;
+    font-size: 9pt;
+    color: var(--stone);
+    margin-top: 5pt;
+  }
+  .pull {
+    font-size: 15pt;
+    line-height: 1.4;
+    color: var(--brand);
+    margin: 18pt 0;
+  }
+  .diagram-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .diagram { width: 100%; height: auto; display: block; }
+  @media screen and (max-width: 640px) { .diagram { min-width: 440px; } }
+  @media print { .diagram { min-width: 0; } }
+
   /* ========== CHAPTER BREAK ========== */
   .chapter { break-before: page; }
 
@@ -535,12 +571,12 @@
 <!-- ═════════════ COVER ═════════════ -->
 <section class="cover">
   <div>
-    <div class="cover-eyebrow">PCShop Build · 製作筆記</div>
-    <div class="cover-title">PCShop<br>專案製作流程</div>
-    <div class="cover-sub">把「組裝電腦不知道怎麼搭」這個痛點，推進成手機優先、可上線的估價系統。</div>
+    <div class="cover-eyebrow">PCShop Build · 相容性過濾筆記</div>
+    <div class="cover-title">組電腦最貴的<br>不是顯卡，是選錯</div>
+    <div class="cover-sub">我們如何開出一張不會配錯藥的估價單：把師傅腦中的「配伍禁忌」表搬進資料欄位，讓過濾在伸手拿錯藥瓶時把手擋下來。</div>
   </div>
   <div class="cover-meta">
-    <strong>產品定位 · 相容過濾 · 手機版面 · 後台維護</strong><br>
+    <strong>保護式過濾 · 規格標籤 · 手機優先 · 前後台分流</strong><br>
     指南 04 · One-Page Beginners Guide<br>
     2026-06-10
   </div>
@@ -549,416 +585,255 @@
 <!-- ═════════════ TOC ═════════════ -->
 <section class="toc">
   <h2>目錄</h2>
-  <div class="toc-item"><span class="toc-num">01</span><a class="toc-title" href="#先把不滿翻譯成產品任務">先把「不滿」翻譯成產品任務</a></div>
-  <div class="toc-item"><span class="toc-num">02</span><a class="toc-title" href="#先讓-ai-做計畫確認後才動手">先讓 AI 做計畫，確認後才動手</a></div>
-  <div class="toc-item"><span class="toc-num">03</span><a class="toc-title" href="#相容性不是寫死-而是先把規則資料化">相容性不是寫死，而是先把規則資料化</a></div>
-  <div class="toc-item"><span class="toc-num">04</span><a class="toc-title" href="#版面從使用姿勢開始-不是從漂亮卡片開始">版面從使用姿勢開始，不是從漂亮卡片開始</a></div>
-  <div class="toc-item"><span class="toc-num">05</span><a class="toc-title" href="#前台給客人用-後台給店家維護資料">前台給客人用，後台給店家維護資料</a></div>
-  <div class="toc-item"><span class="toc-num">06</span><a class="toc-title" href="#每次改功能文件也要跟著升版">每次改功能，文件也要跟著升版</a></div>
-  <div class="toc-item"><span class="toc-num">07</span><a class="toc-title" href="#這次實際用到哪些工具">這次實際用到哪些工具</a></div>
-  <div class="toc-item"><span class="toc-num">08</span><a class="toc-title" href="#把-ai-當成同事不是許願池">把 AI 當成同事，不是許願池</a></div>
-  <div class="toc-item"><span class="toc-num">09</span><a class="toc-title" href="#從本機檔案變成可分享網址">從本機檔案，變成可分享網址</a></div>
-  <div class="toc-item"><span class="toc-num">10</span><a class="toc-title" href="#完成不是寫完">完成不是「寫完」，而是可閱讀、可驗證、可追蹤</a></div>
+  <div class="toc-item"><span class="toc-num">01</span><a class="toc-title" href="#傳統估價單為何讓我們越看越不敢買">傳統估價單為何讓我們越看越不敢買？</a></div>
+  <div class="toc-item"><span class="toc-num">02</span><a class="toc-title" href="#保護式過濾如何擋下硬體的配伍禁忌">保護式過濾如何擋下硬體的配伍禁忌？</a></div>
+  <div class="toc-item"><span class="toc-num">03</span><a class="toc-title" href="#配藥單式過濾規格標籤就是處方箋">「配藥單式」過濾：規格標籤就是處方箋</a></div>
+  <div class="toc-item"><span class="toc-num">04</span><a class="toc-title" href="#手機版面先排工作流再排元件">手機版面：先排工作流再排元件</a></div>
+  <div class="toc-item"><span class="toc-num">05</span><a class="toc-title" href="#前台配藥後台管藥櫃店家如何維護">前台配藥，後台管藥櫃：店家如何維護？</a></div>
 </section>
 
 <!-- ═════════════ Chapter 01 ═════════════ -->
-<section class="chapter" id="先把不滿翻譯成產品任務">
-  <div class="chapter-num">01 · Idea · 發想與定位</div>
-  <h1>先把「不滿」翻譯成產品任務。</h1>
+<section class="chapter" id="傳統估價單為何讓我們越看越不敢買">
+  <div class="chapter-num">01 · Pain · 最貴的一味是選錯</div>
+  <h1>傳統估價單為何讓我們越看越不敢買？</h1>
 
-  <p class="lead">買組裝電腦最頭痛的，往往不是預算或用途，而是不知道怎麼搭：要做一堆功課、到處比價找心得，最後還得去論壇貼配單請人指教。雖然現在有原價屋、欣亞這類線上估價單，但風格像二十年前的產物，找產品慢、不知道搭出來有沒有問題，用手機更是難操作。於是我想：能不能做一個會自動篩掉不相容零件、自動擋掉常見錯誤、還能直接秀出效能等級的線上估價單？PCShop 就是這樣開始的。</p>
+  <p class="lead">都聽過這種說法：預算夠高，中央處理器（Central Processing Unit，簡稱 CPU）與圖形處理器（Graphics Processing Unit，簡稱 GPU）買到頂規就會順利開機。電腦店現場與手機螢幕前的結局卻往往相反，因為錢花得最多的人，反而最先卡在黑畫面前面發呆。</p>
 
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>面向</th><th>內容</th></tr></thead>
-      <tbody>
-        <tr><td>原始痛點</td><td>使用者懂預算與用途，卻不一定懂 socket、瓦數、DDR4/DDR5 或顯示卡長度。傳統清單把所有判斷丟回給使用者，結果「看得到零件，卻不確定能不能買」。</td></tr>
-        <tr><td>產品任務</td><td>做一個手機優先的本地電腦店估價工具：八大零件逐步選、硬衝突當場擋、軟警告講清楚、選好 CPU+GPU 後直接顯示 3DMark Time Spy 預估等級。</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <p>把組電腦理解成上街買菜、挑貴的就對了，然而換成配藥的比喻就會立刻明白：藥材再貴都不能亂抓，配錯一味就可能整帖報廢，進而證明<strong>最貴的一味是選錯，而非顯卡</strong>。</p>
 
-  <h2 id="目標使用者">目標使用者</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>使用者</th><th>核心痛點</th><th>需要什麼</th></tr></thead>
-      <tbody>
-        <tr><td>電腦新手</td><td>不懂 socket 腳位、DDR 世代差異，怕買到不相容零件</td><td>保護式引導：預設只顯示相容選項，衝突時說明原因</td></tr>
-        <tr><td>DIY 玩家</td><td>懂自己要什麼，卻苦於傳統表格速度慢、手機更難操作</td><td>快速過濾 + 本地庫存即時查詢 + 相容性警告</td></tr>
-        <tr><td>電腦店店家</td><td>估價靠人工核對，缺乏讓客人自助挑選的工具</td><td>可維護的商品後台與可分享的估價單連結</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <p>要花多少功課才能避免選錯，難道只能把配好的菜單貼到論壇求人指教嗎？能不能擁有一位隨身藥師，在伸手拿錯藥瓶的瞬間把手輕輕擋下來——而這正是電腦組裝估價系統（Personal Computer Shop，簡稱 PCShop）想回答的問題。</p>
 
-  <h2>從想法到規格的三步</h2>
-  <ol>
-    <li><strong>寫下真實情境</strong>——「手機上挑電腦」「怕買錯」「店家要能給可分享估價單」，比抽象的「做購物網站」更有方向。</li>
-    <li><strong>定義使用者</strong>——新手要保護式引導；DIY 玩家要快速篩選、本地庫存與即時相容性判斷。兩種人都不想讀一整本硬體百科。</li>
-    <li><strong>先聊出大綱</strong>——用 DeepSeek 的聊天功能把想法討論成整體大綱，再整理成初版 <code>規格書.txt</code> 與 <code>PRODUCT.md</code>，當作後續開發的依據。</li>
-  </ol>
-</section>
+  <p class="pull">簡而言之。</p>
 
-<!-- ═════════════ Chapter 02 ═════════════ -->
-<section class="chapter" id="先讓-ai-做計畫確認後才動手">
-  <div class="chapter-num">02 · Plan · 協作規劃</div>
-  <h1>先讓 AI 做計畫，確認後才動手。</h1>
+  <h2 id="兩張估價單的差別">兩張估價單的差別</h2>
 
-  <p class="lead">我的做法不是丟一句「幫我做個網站」就等結果，而是分兩棒：DeepSeek 負責把模糊想法聊成大綱、產出初版規格書；Codex 拿到規格書後，先規劃整個設計流程讓我審閱，我改過一輪，再請它把網站雛型補完。計畫是專案的安全帶——讓人知道現在在做什麼，也讓 AI 知道哪些事不能亂猜。</p>
+  <p>我們先回到最日常的畫面：在手機前面想組一台八大零件齊全的主機，雖然預算是三萬還是五萬、想打遊戲還是剪影片，心裡都有數，難的其實是規格語言。插槽分成英特爾（Intel）與超微（Advanced Micro Devices，簡稱 AMD）兩套，而隨機存取記憶體（Random Access Memory，簡稱 RAM）還要區分第四代雙倍資料率（Double Data Rate 4，簡稱 DDR4）與第五代雙倍資料率（Double Data Rate 5，簡稱 DDR5）。更別提顯示卡長度能不能塞進機殼，因為熱設計功耗（Thermal Design Power，簡稱 TDP）加總之後，電源供應器（Power Supply Unit，簡稱 PSU）要留多少瓦數才不會顧路，皆需逐一核對。</p>
 
-  <h2>A — 交付材料</h2>
-  <p>把產品概念、初版規格書、既有網頁風格參考交給 AI，先讓它讀懂「內容」和「想要的形式」。</p>
-
-  <h2>B — 先停在計畫</h2>
-  <p>明確要求「先把執行計劃做出來，確認後再動手」，讓 AI 先講假設與取捨，目標一致了才改檔案。</p>
-
-  <h2>C — 確認約束</h2>
-  <p>這次先講好檔名、工具要明確列出、非官方技能和外掛要附來源連結、風格參考既有 <code>making-of.html</code>。</p>
-
-  <h2>模糊說法 vs 具體說法</h2>
-  <div class="seg" role="group" aria-label="Prompt 對照">
-    <button type="button" id="promptBad" aria-pressed="true">模糊說法</button>
-    <button type="button" id="promptGood" aria-pressed="false">具體說法</button>
+  <div class="seg" role="group" aria-label="估價單對照">
+    <button type="button" id="promptBad" aria-pressed="true">傳統估價單</button>
+    <button type="button" id="promptGood" aria-pressed="false">配藥單式估價單</button>
   </div>
   <div>
     <div id="promptPaneBad">
-      <pre><code>幫我做一個 PCShop 估價網站。</code></pre>
-      <div class="verdict bad">問題：沒有讀者、沒有素材、沒有驗收標準，AI 只能猜。</div>
+      <pre><code>品名                              價格      庫存
+Intel Core i5 · LGA1700          $5,690     3
+主機板 A · AMD AM5                $3,290     5
+主機板 B · Intel LGA1700          $3,590     2
+記憶體 · DDR4-3200 32G            $2,190    12
+記憶體 · DDR5-6000 32G            $3,190     8
+顯示卡 · 長 336mm                 $21,900    2
+機殼 · 最大顯卡長度 320mm          $2,090     6
+電源 · 550W                       $1,890     9
+<span class="tok-com">…（品名、價格、庫存全部一次倒出來）</span></code></pre>
+      <div class="verdict bad">✕ 把能不能吃的判斷全部丟回給顧客自己承擔：看得到每一味藥，卻沒人說這帖藥能不能煎來喝。</div>
     </div>
     <div id="promptPaneGood" hidden>
-      <pre><code>你是一位資深全端工程師，先設計執行計劃，確認後再動手。
-請讀 PRODUCT.md、規格書.txt 與既有網頁風格參考，
-把 PCShop 製作流程做成單檔動態 HTML。
-明確列出使用的工具、技能與外掛；
-非官方項目請附來源連結。
-風格參考 making-of.html，完成後推送到 GitHub Pages。</code></pre>
-      <div class="verdict good">差別：角色、流程、素材、格式、工具揭露、風格與交付方式都講清楚，回來的東西才接近想要的。</div>
+      <pre><code>已選　CPU　Intel Core i5 <span class="tok-add">· LGA1700 · TDP 65W · DDR5</span>
+
+主機板  <span class="tok-add">只顯示 LGA1700</span>　　主機板 A（AM5）已擋下：腳位不符
+記憶體  <span class="tok-add">只顯示 DDR5</span>　　　 DDR4 已擋下：不符合主機板
+顯示卡  <span class="tok-add">長度 ≤ 320mm</span>　　　336mm 已擋下：超出機殼限制
+電源　  <span class="tok-add">≥ TDP 總和 + 150W</span>　550W 軟警告：餘裕偏低，建議升級
+
+進度　  CPU ✓　主機板 待選　顯示卡 ✓　散熱器 缺</code></pre>
+      <div class="verdict good">✓ 先過濾再顯示，衝突當場說清楚被哪條規則擋下，新手根本沒有機會誤選。</div>
     </div>
+  </div>
+
+  <p>傳統估價單的作法，是把原價屋與欣亞那種二十年前風格的密集表格直接攤開，將品名價格庫存全部一次倒出來。新手最怕買到腳位不合的中央處理器與主機板，也怕買到世代不合的主機板與記憶體，更怕機殼漂亮、顯卡卻長了兩公分塞不進去。資深玩家即便看得懂規格，也要在手機小螢幕上左右捲動表格，反覆比價找心得，速度慢到讓人想直接放棄。</p>
+
+  <h2 id="三張藥籤">三張藥籤：三種人各要什麼</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>使用者</th><th>要的是</th><th>具體需求</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag">新手</span></td><td>保護式引導</td><td>預設只顯示相容選項，衝突時說清楚原因。</td></tr>
+        <tr><td><span class="tag">DIY 玩家</span>動手組裝（Do It Yourself）</td><td>快速過濾</td><td>加上本地庫存即時查詢與相容性警告。</td></tr>
+        <tr><td><span class="tag">電腦店店家</span></td><td>免去人工核對</td><td>每天靠人工核對估價單，缺一套能讓客人自助挑選、又能分享連結的工具。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">三種人都不想再讀一整本硬體百科全書</div>
+    傳統估價單缺的不是資訊、是藥師。藥櫃全部打開卻不給「處方箋」，難怪越看越不敢買。
   </div>
 </section>
 
-<!-- ═════════════ Chapter 03 ═════════════ -->
-<section class="chapter" id="相容性不是寫死-而是先把規則資料化">
-  <div class="chapter-num">03 · Filter · 過濾建構</div>
-  <h1>相容性不是寫死，而是先把規則資料化。</h1>
+<!-- ═════════════ Chapter 02 ═════════════ -->
+<section class="chapter" id="保護式過濾如何擋下硬體的配伍禁忌">
+  <div class="chapter-num">02 · Filter · 配伍禁忌表</div>
+  <h1>保護式過濾如何擋下硬體的配伍禁忌？</h1>
 
-  <p class="lead">PCShop 的核心不是商品清單，而是「保護新手不要選錯」。我採用的方式是：每個零件建檔時就輸入規格標籤——CPU 的插槽類型、顯卡的瓦數與長度、機殼能容納的顯卡長度與散熱器高度等等。選單再依這些標籤過濾，讓不相符的產品不會被選進來，避免 AMD 的 CPU 配到 Intel 主機板，或買了機殼結果顯卡裝不下這種事。</p>
+  <p class="lead">把相容性問題翻譯成配藥語言，答案就很直白，因為中藥房靠的不是背下藥材名稱，而是藥師腦中那張「配伍禁忌」表：什麼藥不能跟什麼藥同煎、什麼體質要避開什麼劑量，而這張表才是藥房真正的資產。</p>
 
-  <h2 id="①-先決定每個類別需要哪些欄位">① 先決定每個類別需要哪些欄位</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>類別</th><th>過濾需要看的欄位</th><th>用途</th></tr></thead>
-      <tbody>
-        <tr><td>CPU</td><td><code>socket</code>、<code>tdp</code>、<code>memory_type</code></td><td>決定主機板腳位、記憶體類型與電源瓦數餘裕。</td></tr>
-        <tr><td>主機板</td><td><code>socket</code>、<code>memory_type</code>、<code>form_factor</code></td><td>對齊 CPU、RAM，並檢查機殼支援尺寸。</td></tr>
-        <tr><td>顯示卡</td><td><code>length_mm</code>、<code>tdp</code>、<code>power_connector</code></td><td>檢查機殼能不能裝、電源是否足夠。</td></tr>
-        <tr><td>機殼 / 電源</td><td><code>max_gpu_length_mm</code>、<code>wattage</code></td><td>把尺寸和瓦數變成可計算條件。</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <p>電腦組裝估價系統裡做的第一件事，就是把這張禁忌表從師傅腦袋搬進資料欄位，做法很直接：<strong>每個零件建檔時就輸入規格標籤，透過標籤把關取代寫死程式</strong>。</p>
 
-  <h2 id="②-把相容性規則做成約束表">② 把相容性規則做成約束表</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>source</th><th>target</th><th>條件</th><th>類型</th><th>提示</th></tr></thead>
-      <tbody>
-        <tr><td>CPU</td><td>主機板</td><td><code>CPU.socket = MB.socket</code></td><td>硬衝突</td><td>CPU 與主機板腳位不符。</td></tr>
-        <tr><td>主機板</td><td>記憶體</td><td><code>MB.memory_type = RAM.memory_type</code></td><td>硬衝突</td><td>記憶體規格不符合主機板。</td></tr>
-        <tr><td>顯示卡</td><td>機殼</td><td><code>GPU.length_mm &lt;= Case.max_gpu_length_mm</code></td><td>硬衝突</td><td>顯示卡長度超出機殼限制。</td></tr>
-        <tr><td>CPU + GPU</td><td>電源</td><td><code>PSU.wattage &gt;= tdp_sum + 150</code></td><td>軟警告</td><td>電源餘裕偏低，建議升級。</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2>過濾引擎的五個步驟</h2>
-  <ol>
-    <li><strong>讀取已選零件</strong>——例如使用者已選 LGA1700 CPU，就把 <code>socket=LGA1700</code> 當成條件來源。</li>
-    <li><strong>找目標類別規則</strong>——切到主機板頁時，只拿「目標是主機板」的規則，不掃全部資料。</li>
-    <li><strong>產生可買清單</strong>——智慧過濾開啟時，只顯示可直接加入的零件；新手不會誤選。</li>
-    <li><strong>回報不可買原因</strong>——智慧過濾關閉時，不相容品保留但灰階，並顯示被哪條規則擋住。</li>
-    <li><strong>列出必需種類</strong>——把組裝必需的種類都列在進度區，使用者一眼看到還缺什麼，少了散熱器開不了機這種事就不會發生。</li>
-  </ol>
-
-  <figure class="prompt">
-    <figcaption>篩選邏輯大致長這樣</figcaption>
-    <pre><code>function filterProducts(category, selectedParts, smartFiltering) {
-  const rules = constraints.filter(rule =&gt; rule.target === category);
-  return products
-    .filter(product =&gt; product.category === category)
-    .map(product =&gt; ({ product, conflicts: checkRules(product, selectedParts, rules) }))
-    .filter(row =&gt; !smartFiltering || row.conflicts.every(c =&gt; !c.isHard));
-}</code></pre>
-    <button class="copy-button" type="button">複製</button>
+  <figure>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>零件類別</th><th>建檔時要輸入的規格標籤</th></tr></thead>
+        <tbody>
+          <tr><td>中央處理器</td><td>插槽類型、熱設計功耗、記憶體類型</td></tr>
+          <tr><td>主機板</td><td>插槽類型、記憶體類型、板型尺寸</td></tr>
+          <tr><td>顯示卡</td><td>長度、熱設計功耗、電源接頭</td></tr>
+          <tr><td>機殼與電源</td><td>最大顯卡容納長度、額定瓦數</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figcaption>四類零件規格標籤與約束對照表：標籤先標準化，過濾才有依據。</figcaption>
   </figure>
 
+  <h2 id="四條可以計算的處方規則">四條可以計算的處方規則</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>#</th><th>對象</th><th>條件</th><th>違反</th><th>提示</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>中央處理器 → 主機板</td><td>中央處理器插槽 ＝ 主機板插槽</td><td>硬衝突</td><td>中央處理器與主機板腳位不符</td></tr>
+        <tr><td>2</td><td>主機板 → 記憶體</td><td>主機板記憶體類型 ＝ 記憶體類型</td><td>硬衝突</td><td>記憶體規格不符合主機板</td></tr>
+        <tr><td>3</td><td>顯示卡 → 機殼</td><td>顯示卡長度 ≤ 機殼最大顯卡長度</td><td>硬衝突</td><td>顯示卡長度超出機殼限制</td></tr>
+        <tr><td>4</td><td>中央處理器＋顯示卡 → 電源</td><td>電源瓦數 ≥ 熱設計功耗總和 ＋ 150</td><td>軟警告</td><td>電源餘裕偏低，建議升級</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="用一個具體情境驗算">用一個具體情境驗算這帖藥方</h2>
+
+  <p>假設已選了一顆插槽為 <code>LGA1700</code> 的中央處理器，系統便把「插槽等於 LGA1700」當成條件來源，切到主機板分類後，只拿目標是主機板的規則出來比對。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>「智慧過濾」</th><th>行為</th><th>服務誰</th></tr></thead>
+      <tbody>
+        <tr><td>開啟</td><td>只顯示可以直接加入的零件。</td><td>新手根本沒有機會誤選超微腳位的主機板。</td></tr>
+        <tr><td>關閉</td><td>不相容品保留但灰階呈現，並標示被哪條規則擋下。</td><td>進階玩家仍然可以自行判斷是否要換帖。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>組裝必需的種類全部列在進度區，我們一眼就能看到還缺散熱器或電源。</p>
+</section>
+
+<!-- ═════════════ Chapter 03 ═════════════ -->
+<section class="chapter" id="配藥單式過濾規格標籤就是處方箋">
+  <div class="chapter-num">03 · Data · 資料設計才是重量</div>
+  <h1>「配藥單式」過濾：規格標籤就是處方箋</h1>
+
+  <p class="lead">要特別強調一個觀念：<strong>過濾引擎真正的重量在資料設計、不在語法</strong>，因此須先想清楚資料要長成什麼樣子，再想程式要怎麼寫。規格標籤沒有先標準化，任何聰明的程式都只是比較會猜的學徒。</p>
+
+  <h2 id="五個固定動作">五個固定動作</h2>
+
+  <ol>
+    <li>讀取已選零件</li>
+    <li>尋找目標類別規則</li>
+    <li>產生可買清單</li>
+    <li>回報不可買原因</li>
+    <li>列出必需種類</li>
+  </ol>
+
+  <div class="callout">
+    這五步看起來平淡，卻讓每一次阻擋都有憑有據，而<strong>程式碼本身不到十行</strong>，真正的重量全部壓在前面的欄位設計與約束表上。
+  </div>
+
+  <h2 id="規劃階段的兩棒分工">規劃階段，也用同樣的配藥邏輯對付 AI</h2>
+
+  <p>我們在規劃階段也用了同樣的配藥邏輯來對付人工智慧（Artificial Intelligence，簡稱 AI）。做法是分兩棒：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>棒次</th><th>工具</th><th>負責什麼</th></tr></thead>
+      <tbody>
+        <tr><td>第一棒</td><td>深度求索（DeepSeek）</td><td>先把模糊想法聊成大綱、產出初版規格書與產品概念文件。</td></tr>
+        <tr><td>第二棒</td><td>程式碼助手（Codex）</td><td>拿這些材料先做執行計畫送審，改過一輪才讓它補完網站雛型。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
   <div class="takeaway">
-    <div class="takeaway-label">一個小心得</div>
-    先想清楚「資料怎麼長」，再想「程式怎麼寫」。過濾引擎難的不是語法，而是有沒有把真實世界的相容性，變成穩定的欄位與可追蹤的規則。
+    <div class="takeaway-label">計畫就是專案的安全帶</div>
+    讓人知道現在煎到第幾碗，也讓機器知道哪些藥不能亂猜。
   </div>
 </section>
 
 <!-- ═════════════ Chapter 04 ═════════════ -->
-<section class="chapter" id="版面從使用姿勢開始-不是從漂亮卡片開始">
-  <div class="chapter-num">04 · Layout · 版面設計</div>
-  <h1>版面從使用姿勢開始，不是從漂亮卡片開始。</h1>
+<section class="chapter" id="手機版面先排工作流再排元件">
+  <div class="chapter-num">04 · Mobile · 從使用姿勢開始</div>
+  <h1>手機版面：先排工作流再排元件</h1>
 
-  <p class="lead">PCShop 是手機優先的工具，所以我更在意 UX 而不是 UI。手機頁面小，我把資訊拆成三個頁簽，把不必占用畫面的東西移到別處，讓使用者專心挑零件。版面圍繞單手使用最常做的四件事：看進度、切類別、加入零件、修正錯誤——而不是把桌機表格硬縮成手機版。</p>
+  <p class="lead">把版面問題放回配藥櫃檯來看，病人站在櫃檯前最常做四件事：看進度與切藥材、把藥放進籃子或拿錯時修正，而不是欣賞藥櫃的木紋有多漂亮。所以版面堅持<strong>從使用姿勢開始、而不是從漂亮卡片開始</strong>。</p>
 
-  <h2 id="手機主流程線框">手機主流程線框</h2>
+  <p>因為電腦組裝估價系統是手機優先的工具，手機頁面小，資訊拆成三個頁籤。不必占用畫面的東西移到別處，讓我們可以專心挑零件，而底部導覽放在拇指最容易碰到的位置，分別對應組裝進度、零件挑選與我的估價單三個主工作。桌面版只是把同樣的資訊排得更密，而不是把手機版硬拉寬。</p>
+
   <figure>
     <div class="wire" aria-label="PCShop 手機版線框示意">
       <div class="wire-bar">PCShop Quote</div>
-      <div class="wire-row"><strong>組裝進度</strong><small>CPU ✓　主機板待選　GPU ✓　PSU 警告</small></div>
-      <div class="wire-row"><strong>3DMark Time Spy</strong><small>CPU + GPU 選定後顯示效能等級</small></div>
-      <div class="wire-row"><strong>零件挑選列</strong><small>產品名稱、價格、庫存、相容性提示</small></div>
+      <div class="wire-row"><strong>組裝進度</strong><small>中央處理器 ✓　主機板 待選　圖形處理器 ✓　電源 警告</small></div>
+      <div class="wire-row"><strong>3DMark Time Spy</strong><small>選定中央處理器加圖形處理器後，直接顯示預估等級</small></div>
+      <div class="wire-row"><strong>零件挑選列</strong><small>名稱、價格、庫存與重點規格，其餘刻意收起</small></div>
       <div class="wire-nav"><span>進度</span><span>挑零件</span><span>估價單</span></div>
     </div>
     <figcaption>手機版把三個主工作放在拇指容易碰到的底部導覽。</figcaption>
   </figure>
 
-  <ol>
-    <li><strong>底部導覽</strong>——手機拇指容易碰到的位置放三個主工作：組裝進度、零件挑選、我的估價單。</li>
-    <li><strong>進度總覽優先</strong>——新手最怕忘記還缺什麼，所以進度區要能顯示完成、待選、警告，並能直接替換或移除。</li>
-    <li><strong>產品列取代密集表格</strong>——每個零件先露出名稱、價格、庫存與重點規格；其餘刻意收起，只留關鍵訊息，並附官方頁面連結，讓人用最少力氣挑到適合的產品，完整規格用展開層承接。</li>
-  </ol>
-
-  <h2 id="設計決策對照">設計決策對照</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>設計問題</th><th>PCShop 的做法</th><th>原因</th></tr></thead>
-      <tbody>
-        <tr><td>如何降低新手焦慮？</td><td>預設智慧過濾，只顯示可加入零件。</td><td>少看不相關選項，比一次給完整表格更友善。</td></tr>
-        <tr><td>如何讓 DIY 玩家保有自由？</td><td>提供「智慧過濾關閉」狀態，不相容品仍可看見。</td><td>進階使用者可以理解原因並自行判斷。</td></tr>
-        <tr><td>如何避免手機擁擠？</td><td>列表只放決策資訊，詳細規格點開才看。</td><td>行動版重點是快速判斷，不是展示所有資料。</td></tr>
-        <tr><td>如何讓估價更像店員？</td><td>用平實文字說明硬衝突與軟警告。</td><td>提示應該解決問題，不應丟出硬體術語考使用者。</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <p>進度區下了最多功夫，因為新手最怕忘記還缺什麼，所以進度區要能同時顯示<strong>完成、待選與警告</strong>，例如中央處理器打勾與主機板待選、圖形處理器打勾與電源警告。選定中央處理器加圖形處理器之後，直接顯示三維標記火力偵察（3DMark Time Spy）預估等級，讓我們在付錢之前就知道這帖藥大概有幾分力。</p>
 
   <div class="callout">
-    <strong>關於配色：</strong>產品本身的配色，我參考了華碩、蘋果這類大廠購物頁的調性——沉穩靛藍當品牌色、青藍當「相容／通過」的輔助色，想給人簡約、專業、不複雜的感覺，符合 <code>PRODUCT.md</code> 定的「沉穩、精準、守護」。整體原則就一句：先排工作流再排元件，先保護新手再給進階自由，先讓手機好用、桌機只是把資訊變得更密。
+    產品列取代傳統密集表格：每個零件先露出<strong>名稱、價格、庫存與重點規格</strong>，其餘刻意收起，只留關鍵訊息並附官方頁面連結。完整規格用展開層承接，因為行動版重點是快速判斷，而不是一次展示所有資料。
   </div>
 </section>
 
 <!-- ═════════════ Chapter 05 ═════════════ -->
-<section class="chapter" id="前台給客人用-後台給店家維護資料">
-  <div class="chapter-num">05 · Admin · 店家後台</div>
-  <h1>前台給客人用，後台給店家維護資料。</h1>
+<section class="chapter" id="前台配藥後台管藥櫃店家如何維護">
+  <div class="chapter-num">05 · Ops · 前後台與上線</div>
+  <h1>前台配藥，後台管藥櫃：店家如何維護？</h1>
 
-  <p class="lead">PCShop 不只是一個展示頁，它要讓店家能維護商品。後台的原則很清楚：不要把管理入口放在顧客商店頁；入口只寫在 README 或維護文件裡，前台維持乾淨的估價流程。</p>
+  <p class="lead">走到最後一個問題：藥煎得再好，藥櫃沒人補貨，藥房遲早開不下去，因此電腦組裝估價系統前台給客人配藥用、後台給店家管藥櫃用，<strong>兩條路徑一定要分開</strong>。</p>
+
+  <p>我們把管理入口藏起來，不在顧客商店頁放任何後台按鈕，入口只寫在說明文件裡，進而讓前台維持乾淨的估價流程。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>後台最小架構</th><th>負責什麼</th></tr></thead>
+      <tbody>
+        <tr><td>伺服器程式</td><td>提供登入階段與產品應用程式介面的新增、讀取、更新與刪除。</td></tr>
+        <tr><td>維護畫面</td><td>負責呈現。</td></tr>
+        <tr><td>維護邏輯</td><td>處理搜尋與表單。</td></tr>
+        <tr><td>維護樣式</td><td>維持介面清楚。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>我們要求後台不是假的表單，因為新增、編輯、刪除產品後<strong>真正寫回逗號分隔值（Comma-Separated Values，簡稱 CSV）檔案路徑</strong>，前台下次讀到同一份資料。最小可行產品（Minimum Viable Product，簡稱 MVP）階段可以暫時不要求帳密，但仍保留登入與階段應用程式介面，未來接真實帳密時，不需要重做整個管理流程。</p>
+
+  <h2 id="兩份文件守住長期維護的紀律">兩份文件守住長期維護的紀律</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>文件</th><th>說明什麼</th></tr></thead>
+      <tbody>
+        <tr><td>產品概念文件</td><td>產品意圖與體驗原則。</td></tr>
+        <tr><td>規格書純文字檔</td><td>功能、資料、相容性、介面與後台規則。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>因為只改程式不改文件，幾次之後專案就會失去方向。</p>
+
+  <h2 id="從本機檔案變成可分享網址">從本機檔案，變成可分享網址</h2>
 
   <ol>
-    <li><strong>保留登入接口</strong>——MVP 階段可以暫時不要求帳密，但仍保留 login / session API。未來要接真實帳密時，不需要重做整個管理流程。</li>
-    <li><strong>搜尋、修改、寫回 CSV</strong>——後台不是假的表單。新增、編輯、刪除產品後，要真正寫回 <code>data/products.csv</code>，讓前台下次讀到同一份資料。</li>
-    <li><strong>入口只給維護者</strong>——顧客不需要看到「管理後台」。把 <code>admin.html</code> 的使用方式放在 README，商店頁不放按鈕。</li>
+    <li><strong>本機預覽</strong>——先用指令在本機預覽，驗證重點是相容性過濾、進度總覽、三維標記預覽、手機單欄與桌面雙欄。</li>
+    <li><strong>推送主分支</strong>——把變更推送到主分支。</li>
+    <li><strong>自動發佈</strong>——再由動作自動把整個站台重新發佈。</li>
   </ol>
 
-  <div class="callout">
-    <strong>後台最小架構：</strong><code>server.js</code> 提供 session 與 <code>/api/products</code> CRUD；<code>admin.html</code> 是維護畫面；<code>admin.js</code> 處理搜尋與表單；<code>admin.css</code> 維持後台介面清楚。<br>
-    <span class="note">搜尋欄位應包含 ID、品名、分類、庫存、價格、tags、badges、restriction、tone，讓店家可以快速找到要改的資料列。</span>
-  </div>
+  <p class="pull">少一味，就煎不成湯。</p>
 
-  <figure class="prompt">
-    <figcaption>後台資料流</figcaption>
-    <pre><code>admin.html → admin.js → /api/products → server.js
-                                      ↓
-                              data/products.csv
-                                      ↓
-                              index.html 前台重新讀取</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
+  <p>那麼，我們手上的這帖藥方，你會先拿哪八味藥來試煎呢？</p>
 
-  <div class="takeaway">
-    <div class="takeaway-label">一個營運上的分界</div>
-    後台不是「多做一頁」而已，它是營運入口。這裡的關鍵是把顧客路徑和維護者路徑分開：顧客只看到估價；店家才看到資料管理。
-  </div>
-</section>
-
-<!-- ═════════════ Chapter 06 ═════════════ -->
-<section class="chapter" id="每次改功能文件也要跟著升版">
-  <div class="chapter-num">06 · Maintain · 維護紀律</div>
-  <h1>每次改功能，文件也要跟著升版。</h1>
-
-  <p class="lead">PCShop 的長期維護靠兩份文件撐住：<code>PRODUCT.md</code> 說明產品意圖與體驗原則；<code>規格書.txt</code> 說明功能、資料、相容性、UI 與後台規則。只改程式不改文件，幾次之後專案就會失去方向。</p>
-
-  <h2>什麼變更要同步文件？</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>變更類型</th><th>同步位置</th><th>原因</th></tr></thead>
-      <tbody>
-        <tr><td>產品目的、使用者體驗、設計原則</td><td><code>PRODUCT.md</code></td><td>讓後續設計知道產品為誰服務、哪些體驗不能破壞。</td></tr>
-        <tr><td>相容性、過濾、資料結構、後台行為</td><td><code>規格書.txt</code></td><td>讓功能邏輯有可追蹤的規格來源。</td></tr>
-        <tr><td>功能同時影響體驗與邏輯</td><td>兩份都更新</td><td>例如 3DMark 預覽、估價單輸出、後台 CRUD，都同時影響產品與實作。</td></tr>
-        <tr><td>維護者入口或操作方式</td><td><code>README.md</code></td><td>讓維護者知道怎麼啟動、測試、進入後台，但不打擾顧客前台。</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2>四個維護節點</h2>
-  <ol>
-    <li><strong>改功能前</strong>——先讀 <code>PRODUCT.md</code>、<code>規格書.txt</code>、<code>AGENTS.md</code>，確認約束。</li>
-    <li><strong>改功能時</strong>——程式與文件同一批處理，不把規格更新留到「之後再補」。</li>
-    <li><strong>驗證時</strong>——用本機頁面、CSV 檢查、Node 語法檢查或瀏覽器測試留下證據。</li>
-    <li><strong>推送時</strong>——只提交本次相關檔案，避免把別人的未完成修改一起包進 commit。</li>
-  </ol>
-
-  <div class="takeaway">
-    <div class="takeaway-label">版本號的作用</div>
-    版本與日期不是形式主義。它讓維護者知道：現在這份程式碼對應哪一版產品概念、哪一版功能規格。當未來出現衝突，就能回頭查「這個行為是在哪次決策被寫進去的」。
-  </div>
-</section>
-
-<!-- ═════════════ Chapter 07 ═════════════ -->
-<section class="chapter" id="這次實際用到哪些工具">
-  <div class="chapter-num">07 · Tools · 技能與外掛</div>
-  <h1>這次實際用到哪些工具。</h1>
-
-  <p class="lead">以下區分「官方」、「本地專案規則」與「第三方」。第三方或非 OpenAI 官方項目都附出處，方便同好自己找到工具，而不是只看到一串神祕名詞。整個流程其實是雙工具接力：DeepSeek 負責聊出規格，Codex 負責規劃與實作。</p>
-
-  <p><span class="tag">官方</span>OpenAI / GitHub / Microsoft 等官方文件　<span class="tag">本地</span>專案或使用者環境規則　<span class="tag">第三方</span>社群或非官方技能</p>
-
-  <h2>AI 工具與平台</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>工具</th><th>屬性</th><th>本次用途</th><th>出處</th></tr></thead>
-      <tbody>
-        <tr><td>DeepSeek</td><td>第三方</td><td>規劃階段的主要對談對象：用聊天功能討論產品大綱、釐清目標客群，並產出初版規格書與產品概念，作為交給 Codex 的依據。</td><td><a href="https://www.deepseek.com/" rel="noopener" target="_blank">deepseek.com</a></td></tr>
-        <tr><td>OpenAI Codex</td><td>官方</td><td>實作階段的主體：拿到規格書後規劃設計流程、做出網站雛型、改 HTML、跑終端機、檢查 Git 狀態，並在完成後提交與推送。</td><td><a href="https://developers.openai.com/codex/cloud" rel="noopener" target="_blank">developers.openai.com/codex/cloud</a></td></tr>
-        <tr><td>Codex Skills</td><td>官方</td><td>本次使用前端製作相關技能，確認單檔靜態頁也要有設計系統、互動狀態與瀏覽器驗證。</td><td><a href="https://developers.openai.com/codex/skills" rel="noopener" target="_blank">developers.openai.com/codex/skills</a></td></tr>
-        <tr><td>Build Web Apps: frontend-app-builder</td><td>官方</td><td>本次製作 HTML 頁面時啟用的前端技能：要求先建立設計系統、落實響應式排版，並用瀏覽器實際驗證互動與版面。</td><td><a href="https://developers.openai.com/codex/skills" rel="noopener" target="_blank">developers.openai.com/codex/skills</a></td></tr>
-        <tr><td>Browser: control-in-app-browser</td><td>官方</td><td>本次驗證頁面的瀏覽器外掛：開啟本機頁面、檢查桌面與手機尺寸、測試 Prompt 切換與複製按鈕。</td><td><a href="https://playwright.dev/" rel="noopener" target="_blank">playwright.dev</a></td></tr>
-        <tr><td>GitHub Pages</td><td>官方</td><td>用來把倉庫裡的 HTML 直接變成可分享的線上網址，適合這種無後端的一頁式頁面。</td><td><a href="https://pages.github.com/" rel="noopener" target="_blank">pages.github.com</a></td></tr>
-        <tr><td>Playwright</td><td>官方</td><td>用瀏覽器自動化檢查頁面、截圖、測試按鈕與手機尺寸。這類工具能避免「程式有寫，但畫面其實壞掉」。</td><td><a href="https://playwright.dev/" rel="noopener" target="_blank">playwright.dev</a></td></tr>
-        <tr><td>Git</td><td>官方</td><td>版本控制：檢查差異、建立 commit、推送到遠端。每次上線都應該留下可追蹤紀錄。</td><td><a href="https://git-scm.com/" rel="noopener" target="_blank">git-scm.com</a></td></tr>
-        <tr><td>GitHub CLI</td><td>官方</td><td>命令列操作 GitHub，適合確認遠端、推送與管理倉庫工作流。</td><td><a href="https://cli.github.com/" rel="noopener" target="_blank">cli.github.com</a></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2>本地規則與非官方技能</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>項目</th><th>屬性</th><th>說明</th><th>出處</th></tr></thead>
-      <tbody>
-        <tr><td>AGENTS.md / CLAUDE.md</td><td>本地</td><td><code>AGENTS.md</code> 規定 PCShop 的文件維護與 RTK 指令；目標倉庫的 <code>CLAUDE.md</code> 規定協作工作法：先列假設、簡化、確認再動手。</td><td>本機專案檔案，非公開套件。</td></tr>
-        <tr><td>RTK</td><td>第三方</td><td>一套命令列工具，把終端輸出整理得更精簡、節省上下文；專案中以 <code>rtk</code> 前綴呼叫，那條本機規則只是這套工具的使用方式。</td><td><a href="https://github.com/rtk-ai/rtk" rel="noopener" target="_blank">github.com/rtk-ai/rtk</a></td></tr>
-        <tr><td>impeccable</td><td>第三方</td><td>PCShop 先前視覺打磨與設計語彙曾用到的非官方技能來源；讀者若想建立更嚴格的前端設計審查語言，可從原始倉庫查看。</td><td><a href="https://github.com/pbakaus/impeccable" rel="noopener" target="_blank">github.com/pbakaus/impeccable</a></td></tr>
-        <tr><td>本倉庫既有風格頁</td><td>本地</td><td>這份頁面參考 <code>making-of.html</code> 的出版感：深色 hero、暖金重點色、分段時間線、工具卡與 copy 按鈕。</td><td>同一倉庫內既有 HTML。</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ═════════════ Chapter 08 ═════════════ -->
-<section class="chapter" id="把-ai-當成同事不是許願池">
-  <div class="chapter-num">08 · Iterate · 溝通與修正</div>
-  <h1>把 AI 當成同事，不是許願池。</h1>
-
-  <p class="lead">整個專案最難的地方，其實是「改進消費體驗」：購物按鈕怎麼點、選錯了怎麼修正、當下該顯示什麼、又有哪些不必顯示。好設計不是資訊堆滿或畫面花俏，而是讓人用最快、最輕鬆的方式，迎接屬於自己的新電腦。改 AI 的產出時也一樣——把問題描述成可觀察的狀態，再要求它實測。不要只說「幫我美化」，而是說「手機版工具卡太擠，請縮小內距並用瀏覽器確認沒有橫向溢位」。</p>
-
-  <div class="callout">
-    <strong>修正循環：</strong>描述問題 → 指定驗證 → AI 修改 → 瀏覽器檢查 → 推送
-  </div>
-
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>類型</th><th>範例</th></tr></thead>
-      <tbody>
-        <tr><td>好修正</td><td>「工具卡的官方/第三方標籤要更醒目，手機版不能換行到壓住文字。請改完後用 390px 寬度驗證。」</td></tr>
-        <tr><td>難修正</td><td>「整體再高級一點。」這句沒有錯，但它不是可驗證指令。AI 只能猜你的美感方向，最後容易越改越遠。</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="takeaway">
-    <div class="takeaway-label">我每次改之前會先問自己</div>
-    每次要求修正，先問三件事：使用者會不會更容易理解？修改是否符合原本風格？有沒有用實際頁面驗證？這三題比「多加一點動畫」更重要。
-  </div>
-</section>
-
-<!-- ═════════════ Chapter 09 ═════════════ -->
-<section class="chapter" id="從本機檔案變成可分享網址">
-  <div class="chapter-num">09 · Ship · 推送與展示</div>
-  <h1>從本機檔案，變成可分享網址。</h1>
-
-  <p class="lead">PCShop 是純前端的靜態站，部署很單純：本機先驗一輪，推到 <code>main</code> 就由 GitHub Actions 自動把整個站台重新發佈，不必手動上傳。</p>
-
-  <h2>① 本機預覽</h2>
-  <figure class="prompt">
-    <figcaption>local preview</figcaption>
-    <pre><code>python3 -m http.server 4173
-# open http://localhost:4173/</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-  <p class="note">因為前端要用 <code>fetch()</code> 讀 CSV，必須透過 HTTP 開啟，直接點開檔案會載不到資料。驗證重點：相容性過濾、進度總覽、3DMark 預覽、手機單欄與桌面雙欄。</p>
-
-  <h2>② 推送到 main</h2>
-  <figure class="prompt">
-    <figcaption>ship</figcaption>
-    <pre><code>git status --short --branch
-git add -A
-git commit -m "Update PCShop quotation flow"
-git push origin main</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-
-  <h2>③ GitHub Actions 自動發佈</h2>
-  <p class="note">倉庫的 Pages 來源設為 GitHub Actions（<code>.github/workflows/pages.yml</code>），每次推到 <code>main</code> 就自動重新發佈；也能在 Actions 手動觸發。發佈完成後直接用網址開啟：</p>
-  <figure class="prompt">
-    <figcaption>Pages URL</figcaption>
-    <pre><code>https://vik1n9.github.io/PCShop/</code></pre>
-    <button class="copy-button" type="button">複製</button>
-  </figure>
-</section>
-
-<!-- ═════════════ Chapter 10 ═════════════ -->
-<section class="chapter" id="完成不是寫完">
-  <div class="chapter-num">10 · Done · 完成與下一步</div>
-  <h1>完成不是「寫完」，而是可閱讀、可驗證、可追蹤。</h1>
-
-  <p class="lead">九個章節收斂成一份完成清單，每一條都對應前面一段實際做過的事。</p>
-
-  <ul>
-    <li>產品起點清楚：手機優先、避免相容性錯誤、本地店家可用。</li>
-    <li>協作分工清楚：DeepSeek 聊出規格、Codex 規劃與實作，先確認再動手。</li>
-    <li>相容性用欄位＋約束表處理，智慧過濾與衝突回報都說得清楚。</li>
-    <li>版面從手機使用姿勢出發，收斂成進度、挑選與估價單三個主區。</li>
-    <li>店家後台分界清楚：管理入口不放前台，CRUD 真正寫回產品資料。</li>
-    <li>維護有紀律：功能變更同步 PRODUCT.md、規格書.txt、README 與版本日期。</li>
-    <li>工具有揭露：官方、本地、第三方來源分清楚。</li>
-    <li>互動有設計：Prompt 對照、流程步驟、複製指令、完成清單。</li>
-    <li>上線有流程：本機驗證、推到 main、GitHub Actions 自動發佈。</li>
-  </ul>
-
-  <div class="takeaway">
-    <div class="takeaway-label">下一步想做的</div>
-    加一個留言板，讓每個人把自己設計好的菜單貼上去，可以按讚、可以留言；看到喜歡的還能一鍵跟單，直接照抄整份配置。把單機的估價工具，變成大家可以互相參考的社群。
-  </div>
-
-  <blockquote>
-    真正的 AI 協作，是把想法變成可維護的流程。
-    <span class="cite">— PCShop 製作筆記</span>
-  </blockquote>
-
-  <div class="callout">
-    <a href="https://github.com/Vik1n9/One-Page-Beginners-Guide" rel="noopener" target="_blank">看 GitHub 倉庫</a>
-  </div>
-
-  <h2>工具出處說明</h2>
-  <p>本頁明確標示這次製作提到的工具來源。OpenAI Codex、Codex Skills、Build Web Apps、Browser、GitHub Pages、GitHub CLI、Git、Playwright 皆附官方文件或相鄰官方文件；第三方的 DeepSeek、RTK、非官方技能 impeccable 附原始網站或倉庫。PCShop 的 <code>AGENTS.md</code>、<code>CLAUDE.md</code> 為本機專案或使用者環境規則，不視為公開外掛。</p>
-
-  <h2>主要連結</h2>
-  <p>DeepSeek（<a href="https://www.deepseek.com/" rel="noopener" target="_blank">deepseek.com</a>）｜
-    OpenAI Codex（<a href="https://developers.openai.com/codex/cloud" rel="noopener" target="_blank">developers.openai.com/codex/cloud</a>）｜
-    Codex Skills（<a href="https://developers.openai.com/codex/skills" rel="noopener" target="_blank">developers.openai.com/codex/skills</a>）｜
-    Build Web Apps（<a href="https://developers.openai.com/codex/skills" rel="noopener" target="_blank">developers.openai.com/codex/skills</a>）｜
-    Browser / Playwright（<a href="https://playwright.dev/" rel="noopener" target="_blank">playwright.dev</a>）｜
-    GitHub Pages（<a href="https://pages.github.com/" rel="noopener" target="_blank">pages.github.com</a>）｜
-    GitHub CLI（<a href="https://cli.github.com/" rel="noopener" target="_blank">cli.github.com</a>）｜
-    Git（<a href="https://git-scm.com/" rel="noopener" target="_blank">git-scm.com</a>）｜
-    RTK（<a href="https://github.com/rtk-ai/rtk" rel="noopener" target="_blank">github.com/rtk-ai/rtk</a>）｜
-    impeccable（<a href="https://github.com/pbakaus/impeccable" rel="noopener" target="_blank">github.com/pbakaus/impeccable</a>）</p>
-
-  <p class="note">One-Page-Beginners-Guide ｜ PCShop AI Build Guide · 2026-06-10</p>
+  <p class="note">完整互動版：<a href="https://vik1n9.github.io/PCShop/">vik1n9.github.io/PCShop</a>　｜　規格數字均保留原始筆記，未新增型號與價格。</p>
 </section>
 
 <script>
