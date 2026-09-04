@@ -1,587 +1,1130 @@
 <!DOCTYPE html>
-
-<html lang="zh-Hant">
+<!-- ==================================================================
+     LONG DOCUMENT · parchment design system · zh-TW
+     從零開始前進美股：複委託入門手冊
+     ================================================================== -->
+<html lang="zh-TW">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="從零開始前進美股：給熟悉台股、第一次接觸美股的社會人士。複委託流程、台美制度差異、稅務成本與風險控制，一頁讀懂。" name="description"/>
-<title>從零開始前進美股 ｜ 台灣投資人的複委託入門手冊</title>
-<link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
-<link href="favicon.ico" rel="alternate icon"/>
-<link href="assets/tokens.css" rel="stylesheet"/>
-<link href="assets/style.css" rel="stylesheet"/>
+<meta charset="UTF-8">
+<title>從零開始前進美股：台灣投資人的複委託入門手冊</title>
+<meta name="description" content="台灣投資人用複委託買美股的入門手冊：台美股差異、扣款與交割、換匯、碎股、稅務、成本與停損。">
+<meta name="keywords" content="美股, 複委託, 碎股, 停損單, T+1 交割, 股息預扣">
+<meta name="generator" content="Kami">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="alternate icon" href="favicon.ico">
+<style>
+  /* Regular weight */
+  @font-face {
+    font-family: "TsangerJinKai02";
+    src: url("https://cdn.jsdelivr.net/gh/tw93/Kami@main/assets/fonts/TsangerJinKai02-W04.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  /* Bold weight - W05 for all bold variants */
+  @font-face {
+    font-family: "TsangerJinKai02";
+    src: url("https://cdn.jsdelivr.net/gh/tw93/Kami@main/assets/fonts/TsangerJinKai02-W05.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @page {
+    size: A4;
+    margin: 20mm 22mm 22mm 22mm;
+    background: #f5f4ed;
+
+    @top-right {
+      content: string(section-title);
+      font-family: "Iansui", "TsangerJinKai02", "Source Han Serif SC",
+                   "Noto Serif CJK SC", "Songti TC", "Songti SC", Georgia, serif;
+      font-size: 8pt;
+      color: #6b6a64;
+    }
+
+    @bottom-center {
+      content: counter(page) "  ·  從零開始前進美股";
+      font-family: "Iansui", "TsangerJinKai02", "Source Han Serif SC",
+                   "Noto Serif CJK SC", "Songti TC", "Songti SC", Georgia, serif;
+      font-size: 9pt;
+      color: #6b6a64;
+    }
+  }
+
+  @page:first {
+    @top-right { content: ""; }
+    @bottom-center { content: ""; }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --parchment: #f5f4ed;
+    --ivory:     #faf9f5;
+    --inline-code-bg: #f0eee6;
+    --near-black:#141413;
+    --dark-warm: #3d3d3a;
+    --olive:     #504e49;
+    --stone:     #6b6a64;
+    --brand:     #1B365D;
+    --border:    #e8e6dc;
+    --border-soft:#e5e3d8;
+    --tag-bg:    #E4ECF5;
+    --serif: "Iansui", "TsangerJinKai02", "Source Han Serif SC", "Source Han Serif CN", "Noto Serif CJK SC", "Noto Serif SC", "Songti TC", "Songti SC", "STSong", Georgia, serif;
+    --sans: var(--serif);
+
+    --rhythm-module:  14pt;
+    --rhythm-section: 18pt;
+  }
+
+  html, body { background: var(--parchment); }
+
+  @media screen {
+    body { max-width: 210mm; margin: 0 auto; padding: 20mm 22mm 22mm 22mm; }
+  }
+
+  body {
+    color: var(--near-black);
+    font-family: var(--serif);
+    font-size: 10.5pt;
+    line-height: 1.55;
+    letter-spacing: 0.3pt;
+    widows: 3;
+    orphans: 3;
+  }
+
+  .sans {
+    font-family: var(--sans);
+  }
+
+  /* ========== SITE NAV（螢幕限定，列印時隱藏） ========== */
+  .site-nav {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10pt 18pt;
+    flex-wrap: wrap;
+    padding-bottom: 8pt;
+    border-bottom: 0.6pt solid var(--border);
+    font-size: 9pt;
+    letter-spacing: 0.3pt;
+  }
+  .site-nav-brand { color: var(--brand); font-weight: 500; }
+  .site-nav-links { display: flex; flex-wrap: wrap; gap: 6pt 14pt; }
+  .site-nav-links a { color: var(--stone); text-decoration: none; }
+  .site-nav-links a:hover { color: var(--brand); }
+  .site-nav-links a[aria-current="page"] { color: var(--near-black); }
+  @media print { .site-nav { display: none; } }
+
+  /* ========== COVER ========== */
+  .cover {
+    min-height: 240mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40mm 0 0 0;
+    break-after: page;
+  }
+  .cover-eyebrow {
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--brand);
+    letter-spacing: 1.5pt;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 18pt;
+  }
+  .cover-title {
+    font-size: 36pt;
+    font-weight: 500;
+    color: var(--near-black);
+    line-height: 1.15;
+    letter-spacing: 0.3pt;
+    margin-bottom: 16pt;
+  }
+  .cover-sub {
+    font-family: var(--sans);
+    font-size: 14pt;
+    color: var(--olive);
+    line-height: 1.5;
+    max-width: 85%;
+    margin-bottom: 30pt;
+  }
+  .cover-meta {
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--stone);
+    line-height: 1.5;
+  }
+  .cover-meta strong {
+    color: var(--dark-warm);
+    font-weight: 500;
+  }
+
+  /* ========== TOC ========== */
+  .toc { break-after: page; }
+  .toc h2 {
+    font-size: 22pt;
+    font-weight: 500;
+    margin-bottom: var(--rhythm-module);
+  }
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6pt 0;
+    border-bottom: 0.3pt dotted var(--border);
+    font-size: 11pt;
+  }
+  .toc-item:last-of-type { border-bottom: none; }
+  .toc-num {
+    color: var(--brand);
+    font-weight: 500;
+    min-width: 30pt;
+  }
+  .toc-title {
+    flex: 1;
+    color: var(--near-black);
+    padding-left: 6pt;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 12pt;
+  }
+  .toc-title[href]::after {
+    content: target-counter(attr(href), page);
+    color: var(--stone);
+    font-variant-numeric: tabular-nums;
+    margin-left: auto;
+  }
+
+  /* ========== HEADINGS ========== */
+  h1 {
+    font-size: 22pt;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0 0 10pt 0;
+    color: var(--near-black);
+    break-after: avoid;
+    string-set: section-title content();
+  }
+
+  h2 {
+    font-size: 16pt;
+    font-weight: 500;
+    line-height: 1.25;
+    margin: 24pt 0 8pt 0;
+    color: var(--near-black);
+    break-after: avoid;
+  }
+
+  h3 {
+    font-size: 13pt;
+    font-weight: 500;
+    line-height: 1.3;
+    margin: 18pt 0 6pt 0;
+    color: var(--dark-warm);
+    break-after: avoid;
+  }
+
+  h4 {
+    font-size: 11pt;
+    font-weight: 500;
+    line-height: 1.35;
+    margin: 14pt 0 5pt 0;
+    color: var(--olive);
+    break-after: avoid;
+  }
+
+  .chapter-num {
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--brand);
+    letter-spacing: 1pt;
+    text-transform: uppercase;
+    margin-bottom: 6pt;
+  }
+
+  /* ========== PARAGRAPHS ========== */
+  p {
+    margin: 0 0 10pt 0;
+    line-height: 1.55;
+    color: var(--near-black);
+    widows: 2;
+    orphans: 2;
+  }
+
+  .lead {
+    font-size: 12pt;
+    line-height: 1.55;
+    color: var(--dark-warm);
+    margin-bottom: var(--rhythm-module);
+  }
+
+  .hl { color: var(--brand); font-weight: 500; }
+  strong { font-weight: 500; }
+
+  .note {
+    font-size: 9pt;
+    color: var(--stone);
+    margin-bottom: var(--rhythm-module);
+  }
+
+  a { color: var(--brand); }
+
+  /* ========== LISTS ========== */
+  ul, ol {
+    margin: 6pt 0 10pt 0;
+    padding-left: 20pt;
+    line-height: 1.55;
+  }
+  ul li::marker { color: var(--brand); }
+  ol li::marker { color: var(--brand); font-weight: 500; }
+
+  /* ========== CODE / PROMPT ========== */
+  code {
+    font-family: "JetBrains Mono", "SF Mono", Consolas,
+                 "Iansui", "TsangerJinKai02", "Source Han Serif SC",
+                 "Noto Serif CJK SC", "Songti SC", monospace;
+    font-size: 9pt;
+    background: var(--inline-code-bg);
+    padding: 1pt 4pt;
+    border-radius: 2pt;
+    color: var(--dark-warm);
+  }
+  pre {
+    font-family: "JetBrains Mono", "SF Mono", Consolas,
+                 "Iansui", "TsangerJinKai02", "Source Han Serif SC",
+                 "Noto Serif CJK SC", "Songti SC", monospace;
+    font-size: 9pt;
+    line-height: 1.5;
+    background: var(--ivory);
+    border-radius: 4pt;
+    padding: 10pt 14pt;
+    margin: 0;
+    white-space: pre-wrap;
+    color: var(--near-black);
+    break-inside: avoid;
+  }
+  pre code { background: transparent; padding: 0; font-size: inherit; }
+
+  .prompt {
+    position: relative;
+    margin: 12pt 0;
+    break-inside: avoid;
+  }
+  .prompt figcaption {
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: var(--stone);
+    text-align: left;
+    margin: 0 0 4pt 0;
+    padding-right: 52pt;
+  }
+  .copy-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-family: var(--sans);
+    font-size: 8.5pt;
+    color: var(--brand);
+    background: var(--ivory);
+    border: 0.5pt solid var(--border);
+    border-radius: 3pt;
+    padding: 2pt 8pt;
+    cursor: pointer;
+  }
+  .copy-button:hover { background: var(--tag-bg); }
+  @media print { .copy-button { display: none; } }
+
+  /* ========== TABLE ========== */
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 12pt 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+    break-inside: avoid;
+  }
+  table th {
+    text-align: left;
+    font-weight: 500;
+    color: var(--dark-warm);
+    padding: 6pt 8pt;
+    border-bottom: 0.6pt solid var(--border);
+    background: transparent;
+  }
+  table td {
+    padding: 5pt 8pt;
+    border-bottom: 0.25pt solid var(--border);
+    vertical-align: top;
+  }
+
+  /* ========== CALLOUT ========== */
+  .callout {
+    background: var(--ivory);
+    padding: 10pt 14pt;
+    border-radius: 3pt;
+    margin: 12pt 0;
+    line-height: 1.55;
+    break-inside: avoid;
+  }
+
+  .takeaway {
+    background: var(--ivory);
+    border-radius: 4pt;
+    padding: 10pt 14pt;
+    margin: 14pt 0;
+    break-inside: avoid;
+  }
+  .takeaway-label {
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: var(--brand);
+    letter-spacing: 0.5pt;
+    text-transform: uppercase;
+    margin-bottom: 4pt;
+  }
+
+  /* ========== TAG ========== */
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--brand);
+    font-family: var(--sans);
+    font-size: 9pt;
+    font-weight: 500;
+    padding: 1pt 6pt;
+    border-radius: 3pt;
+    margin-right: 4pt;
+  }
+
+  /* ========== EXECUTIVE SUMMARY ========== */
+  .exec-summary {
+    background: var(--ivory);
+    border-radius: 6pt;
+    padding: 16pt 20pt;
+    margin: 14pt 0;
+    break-inside: avoid;
+  }
+  .exec-summary h2 {
+    margin-top: 0;
+    font-size: 13pt;
+  }
+
+  /* ========== FAQ / DETAILS ========== */
+  details {
+    border-bottom: 0.25pt solid var(--border);
+    padding: 7pt 0;
+    break-inside: avoid;
+  }
+  details summary {
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--dark-warm);
+    list-style: none;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before {
+    content: "＋";
+    color: var(--brand);
+    margin-right: 6pt;
+  }
+  details[open] summary::before { content: "－"; }
+  details > div { margin-top: 6pt; }
+  @media print { details > div { display: block !important; } }
+
+  /* ========== 修正前後切換（本頁互動元件） ========== */
+  .seg {
+    display: inline-flex;
+    gap: 0;
+    margin: 10pt 0 8pt;
+    border: 0.5pt solid var(--border);
+    border-radius: 3pt;
+    overflow: hidden;
+  }
+  .seg button {
+    font-family: var(--sans);
+    font-size: 9.5pt;
+    color: var(--olive);
+    background: var(--ivory);
+    border: 0;
+    padding: 4pt 12pt;
+    cursor: pointer;
+  }
+  .seg button + button { border-left: 0.5pt solid var(--border); }
+  .seg button[aria-pressed="true"] { background: var(--tag-bg); color: var(--brand); font-weight: 500; }
+  .verdict { font-size: 9pt; margin-top: 5pt; }
+  .verdict.bad { color: var(--olive); }
+  .verdict.good { color: var(--brand); }
+  .tok-com { color: var(--stone); }
+  .tok-add { color: var(--brand); }
+  @media print {
+    .seg { display: none; }
+    #paneGood[hidden] { display: block !important; }
+  }
+
+  /* ========== 互動工具面板（本頁） ========== */
+  .panel {
+    background: var(--ivory);
+    border-radius: 4pt;
+    padding: 14pt 16pt;
+    margin: 12pt 0;
+    break-inside: avoid;
+  }
+  .panel-title {
+    font-family: var(--sans);
+    font-size: 11pt;
+    font-weight: 500;
+    color: var(--brand);
+    margin-bottom: 4pt;
+  }
+  .panel-note { font-size: 9pt; color: var(--stone); margin-bottom: 10pt; }
+
+  .ctrl { margin: 10pt 0; }
+  .ctrl .lab {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 9.5pt;
+    color: var(--olive);
+    margin-bottom: 3pt;
+  }
+  .ctrl .val { color: var(--brand); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .ctrl input[type="range"] { width: 100%; accent-color: #1B365D; }
+
+  .readout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10pt;
+    margin-top: 10pt;
+  }
+  .readout .cell {
+    border-top: 0.5pt solid var(--border);
+    padding-top: 5pt;
+  }
+  .readout .rk { font-size: 8.5pt; color: var(--stone); }
+  .readout .rv { font-size: 13pt; color: var(--near-black); font-variant-numeric: tabular-nums; }
+  .readout .cell.hi .rv { color: var(--brand); font-weight: 500; }
+
+  .footnote-box {
+    margin-top: 10pt;
+    padding-top: 8pt;
+    border-top: 0.5pt solid var(--border);
+    font-size: 9pt;
+    color: var(--olive);
+  }
+
+  /* 漲跌顏色對照：綠/紅為內容語意，非裝飾 */
+  .flip-cards { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10pt; margin-top: 8pt; }
+  .flip-cards .tick {
+    border: 0.5pt solid var(--border);
+    border-radius: 3pt;
+    padding: 8pt 10pt;
+    background: #fff;
+  }
+  .flip-cards .sym { font-size: 9pt; color: var(--stone); }
+  .flip-cards .pct { font-size: 15pt; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .flip-cards .st { font-size: 8.5pt; color: var(--stone); }
+  #colorDemo[data-market="us"] .rise .pct { color: #1f7a4d; }
+  #colorDemo[data-market="us"] .fall .pct { color: #b3382c; }
+  #colorDemo[data-market="tw"] .rise .pct { color: #b3382c; }
+  #colorDemo[data-market="tw"] .fall .pct { color: #1f7a4d; }
+
+  /* 交割時間軸 */
+  .tl { margin-top: 6pt; }
+  .tl .track { position: relative; height: 2pt; background: var(--border); margin: 14pt 0 8pt; }
+  .tl .fill { position: absolute; left: 0; top: 0; height: 100%; background: var(--brand); width: 0; }
+  .tl .nodes { position: absolute; inset: 0; display: flex; justify-content: space-between; align-items: center; }
+  .tl .node {
+    width: 11pt; height: 11pt; border-radius: 50%;
+    background: var(--ivory);
+    border: 1pt solid var(--border);
+    cursor: pointer;
+  }
+  .tl .node.active { background: var(--brand); border-color: var(--brand); }
+  .tl .labels { display: flex; justify-content: space-between; font-size: 8.5pt; }
+  .tl .labels .lb { text-align: center; flex: 1; }
+  .tl .labels .d { color: var(--brand); font-weight: 500; }
+  .tl .labels .t { color: var(--stone); }
+  .tl-detail { margin-top: 10pt; padding-top: 8pt; border-top: 0.5pt solid var(--border); }
+  .tl-detail .dk { font-size: 9.5pt; color: var(--brand); font-weight: 500; }
+  .tl-detail .dv { font-size: 9.5pt; color: var(--near-black); }
+
+  /* 碎股試算器 */
+  .pickrow { display: flex; flex-wrap: wrap; gap: 6pt; margin-bottom: 10pt; }
+  .pickrow button {
+    font-family: var(--sans);
+    font-size: 9pt;
+    text-align: left;
+    color: var(--olive);
+    background: #fff;
+    border: 0.5pt solid var(--border);
+    border-radius: 3pt;
+    padding: 5pt 9pt;
+    cursor: pointer;
+  }
+  .pickrow button[aria-pressed="true"] { background: var(--tag-bg); border-color: var(--brand); color: var(--brand); }
+  .pickrow .pp { display: block; font-size: 8pt; color: var(--stone); }
+  .pickrow button[aria-pressed="true"] .pp { color: var(--brand); }
+  .frac-hero { margin-top: 8pt; }
+  .frac-hero .small { font-size: 9pt; color: var(--stone); }
+  .frac-hero .big { font-size: 20pt; color: var(--brand); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .frac-hero .sub { font-size: 9.5pt; color: var(--olive); }
+
+  /* 成本結構長條 */
+  .bars { display: grid; gap: 7pt; }
+  .bars .bar { display: grid; grid-template-columns: minmax(90pt, 130pt) 1fr; gap: 8pt; align-items: center; font-size: 9pt; }
+  .bars .bl { color: var(--olive); }
+  .bars .bt { height: 9pt; background: #fff; border: 0.5pt solid var(--border); border-radius: 2pt; overflow: hidden; }
+  .bars .bf { display: block; height: 100%; background: var(--brand); }
+
+  /* 停損工具 */
+  .sl-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 14pt; align-items: center; }
+  .sl-readout { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10pt; margin-top: 10pt; }
+  .sl-readout .k { font-size: 8.5pt; color: var(--stone); }
+  .sl-readout .v { font-size: 13pt; font-variant-numeric: tabular-nums; }
+  .sl-readout .trig .v { color: #8b4513; font-weight: 500; }
+
+  .badge-warn {
+    display: inline-block;
+    background: #f0e0d8;
+    color: #8b4513;
+    font-family: var(--sans);
+    font-size: 9pt;
+    font-weight: 500;
+    padding: 1pt 6pt;
+    border-radius: 3pt;
+    margin-bottom: 6pt;
+  }
+
+  @media screen and (max-width: 640px) {
+    .sl-grid { grid-template-columns: minmax(0, 1fr); }
+    .flip-cards { grid-template-columns: minmax(0, 1fr); }
+    .readout { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  /* ========== CHAPTER BREAK ========== */
+  .chapter { break-before: page; }
+
+  /* ========== 手機（Kami 版面預設模擬 A4，需另補窄螢幕規則） ========== */
+  @media screen and (max-width: 640px) {
+    body { padding: 16px 18px 32px; font-size: 11pt; }
+    .cover { min-height: auto; padding-top: 14mm; }
+    .cover-title { font-size: 26pt; }
+    .cover-sub { font-size: 12pt; max-width: 100%; }
+    .cover-eyebrow { margin-bottom: 12pt; }
+    h1 { font-size: 19pt; }
+    h2 { font-size: 14pt; }
+    .lead { font-size: 11.5pt; }
+    .table-wrap table { min-width: 480px; }
+  }
+</style>
 </head>
 <body>
-<div aria-hidden="true" class="progress" id="progress"></div>
-<header aria-label="全站導覽" class="site-header">
-<div aria-label="One-Page Beginners Guide" class="brand"><span aria-hidden="true" class="brand-mark"></span><span>One-Page Beginners Guide</span></div>
-<nav aria-label="指南列表" class="site-nav"><a class="nav-link" href="us-stocks-guide.html">美股入門</a><a class="nav-link" href="guide.html">AI 審圖</a><a class="nav-link" href="making-of.html">製作幕後</a><a class="nav-link" href="pcshop-ai-build-guide.html">PCShop</a><a class="nav-link" href="beauty-manual-ai-guide.html">美容說明書</a><a class="nav-link" href="deeptutor-guide.html">DeepTutor</a><a class="nav-link" href="usj-vip-guide.html">USJ VIP</a></nav>
-</header>
-<section class="mission-hero" id="top">
-<div aria-hidden="true" class="hero-media" data-hero-media=""></div>
-<div class="hero-inner">
-<p class="mission-kicker">GUIDE 01 / US MARKET</p>
-<h1><span class="line">從零開始前進美股</span></h1>
-<p class="hero-lead">給熟悉台股、第一次接觸美股的台灣投資人。一頁看懂複委託、制度差異、成本、稅務與風險控制。</p>
-<a class="btn" href="#不是去玩美股-是成為全球經濟的股東">開始閱讀</a>
-<div aria-label="指南摘要" class="hero-telemetry"><span>複委託流程</span><span>台美制度差異</span><span>稅務與成本</span><span>風險控制</span></div>
-</div>
-<div aria-hidden="true" class="scrollcue">Scroll</div>
-</section>
-<main class="mission-layout">
-<aside aria-label="章節導覽" class="chapter-rail">
-<div class="chapter-title">Mission Index</div>
-<div aria-hidden="true" class="chapter-progress"><span></span></div>
-<ol class="chapter-list"><li><a class="chapter-link" href="#不是去玩美股-是成為全球經濟的股東">不是去「玩美股」， 是成為全球經濟的股東。</a></li><li><a class="chapter-link" href="#先把習慣翻譯成規則-才不會把台股直覺帶進美股">先把習慣翻譯成規則， 才不會把台股直覺帶進美股。</a></li><li><a class="chapter-link" href="#用台幣帳戶買美股-把海外交易變回熟悉的流程">用台幣帳戶買美股， 把海外交易變回熟悉的流程。</a></li><li><a class="chapter-link" href="#扣款用台幣還是美元">扣款用台幣，還是美元？</a></li><li><a class="chapter-link" href="#賣掉美股後錢什麼時候回來">賣掉美股後，錢什麼時候回來？</a></li><li><a class="chapter-link" href="#換匯怎麼設定要賭匯率低點嗎">換匯怎麼設定？要賭匯率低點嗎？</a></li><li><a class="chapter-link" href="#降低稅損控制風險-比選到飆股更實際">降低稅損、控制風險， 比選到飆股更實際。</a></li><li><a class="chapter-link" href="#新手最常問的五個問題">新手最常問的五個問題</a></li></ol>
-</aside>
-<article class="guide-article" id="guide-content">
-<!-- PART 1 WHY -->
-<section class="section-light" id="why">
-<div class="wrap">
-<div class="eyebrow-part" data-reveal=""><span class="pnum">01</span><span class="pname">為什麼投資美股</span></div>
-<h2 class="h2" data-reveal="mask" id="不是去玩美股-是成為全球經濟的股東">不是去「玩美股」，<br/>是成為全球經濟的股東。</h2>
-<p class="lead prose" data-d="1" data-reveal="">全球市值最大的企業，多數在美國掛牌：蘋果、微軟、輝達、Google、麥當勞、Nike。買進美股，等於讓資產跟著全球科技、醫療、金融與消費一起成長，而不只押注台灣一地。</p>
-<div class="block grid-tool">
-<div data-reveal="">
-<div class="bignum-row">
-<div class="bignum"><span data-count="47.4" data-suffix="%">47.4%</span></div>
-<p class="muted" style="max-width:18ch">的全球股市市值集中在美國。只看台股，等於忽略了世界的另一半。</p>
-</div>
-</div>
-<div class="panel" data-d="1" data-reveal="">
-<div class="tool-title">時間是你最強的工具</div>
-<p class="tool-note" style="margin-bottom:18px">拖動看看定期定額的複利效果。標普 500 長期年化約 7%～10%（含波動，過去績效不代表未來）。</p>
-<div class="ctrl">
-<div class="lab"><span>每月投入</span><span class="val" id="cmpAmtLab">NT$ 5,000</span></div>
-<input id="cmpAmt" max="30000" min="1000" step="1000" type="range" value="5000"/>
-</div>
-<div class="ctrl">
-<div class="lab"><span>投資年數</span><span class="val" id="cmpYrLab">20 年</span></div>
-<input id="cmpYr" max="40" min="5" step="1" type="range" value="20"/>
-</div>
-<div class="ctrl">
-<div class="lab"><span>年化報酬率</span><span class="val" id="cmpRateLab">8%</span></div>
-<input id="cmpRate" max="12" min="2" step="0.5" type="range" value="8"/>
-</div>
-<svg aria-hidden="true" class="growth-svg" id="growthSvg" preserveaspectratio="none" viewbox="0 0 400 130"></svg>
-<div class="result-grid">
-<div class="cell"><div class="rk">累積投入本金</div><div class="rv" id="cmpPrin">NT$ 1,200,000</div></div>
-<div class="cell hi"><div class="rk">期末總值</div><div class="rv" id="cmpFv">NT$ 2,945,000</div></div>
-</div>
-<div class="rule72"><b>72 法則</b>：用 72 ÷ 年化報酬率，約略得到資產翻倍年數。以目前 <span id="r72rate">8</span>%，約 <b id="r72">9.0</b> 年翻一倍。</div>
-</div>
-</div>
-</div>
-</section>
-<!-- PART 2 DIFFERENCES -->
-<section class="section-tint" id="diff">
-<div class="wrap">
-<div class="eyebrow-part" data-reveal=""><span class="pnum">02</span><span class="pname">台美股大不同</span></div>
-<h2 class="h2" data-reveal="mask" id="先把習慣翻譯成規則-才不會把台股直覺帶進美股">先把習慣翻譯成規則，<br/>才不會把台股直覺帶進美股。</h2>
-<p class="lead prose" data-d="1" data-reveal="">顏色、漲跌幅、交易單位、交易時間與交割週期，是第一天就要記住的差異。其中最容易讓人按錯鍵的，是顏色。</p>
-<div class="block flip-wrap" data-reveal="">
-<div class="flip-bar">
-<div aria-label="切換市場規則" class="seg" role="group">
-<button aria-pressed="false" id="mTw">台股規則</button>
-<button aria-pressed="true" id="mUs">美股規則</button>
-</div>
-</div>
-<p class="flip-cap" id="flipCap" style="text-align:center">目前顯示 <b>美股規則</b>：<b>綠色代表上漲</b>、紅色代表下跌，和台股相反。</p>
-<div class="flip-cards" data-market="us" id="colorDemo">
-<div class="tick rise">
-<div class="sym">AAPL · 蘋果</div>
-<div class="pct">▲ +2.4%</div>
-<div class="st">今天上漲</div>
-</div>
-<div class="tick fall">
-<div class="sym">TSLA · 特斯拉</div>
-<div class="pct">▼ -1.8%</div>
-<div class="st">今天下跌</div>
-</div>
-</div>
-</div>
-<div class="block cmp">
-<div class="item" data-reveal="">
-<div class="top"><span aria-hidden="true" class="ico">01</span><h4>漲跌顏色</h4></div>
-<div class="body">
-<div class="side tw"><div class="tag">台股習慣</div><div class="txt">紅漲綠跌</div></div>
-<div class="side us"><div class="tag">美股規則</div><div class="txt">綠漲紅跌（相反！）</div></div>
-</div>
-</div>
-<div class="item" data-d="1" data-reveal="">
-<div class="top"><span aria-hidden="true" class="ico">02</span><h4>漲跌幅限制</h4></div>
-<div class="body">
-<div class="side tw"><div class="tag">台股習慣</div><div class="txt">10% 漲跌停</div></div>
-<div class="side us"><div class="tag">美股規則</div><div class="txt">無限制，單日跌 30% 也可能</div></div>
-</div>
-</div>
-<div class="item" data-reveal="">
-<div class="top"><span aria-hidden="true" class="ico">03</span><h4>交易單位</h4></div>
-<div class="body">
-<div class="side tw"><div class="tag">台股習慣</div><div class="txt">1 張 = 1,000 股</div></div>
-<div class="side us"><div class="tag">美股規則</div><div class="txt">1 股即可，複委託多可買碎股</div></div>
-</div>
-</div>
-<div class="item" data-d="1" data-reveal="">
-<div class="top"><span aria-hidden="true" class="ico">04</span><h4>交易時間（台灣時間）</h4></div>
-<div class="body">
-<div class="side tw"><div class="tag">台股習慣</div><div class="txt">09:00–13:30</div></div>
-<div class="side us"><div class="tag">美股規則</div><div class="txt">夏令 21:30–04:00／冬令 22:30–05:00</div></div>
-</div>
-</div>
-<div class="item" data-reveal="">
-<div class="top"><span aria-hidden="true" class="ico">05</span><h4>交割制度</h4></div>
-<div class="body">
-<div class="side tw"><div class="tag">台股習慣</div><div class="txt">T+2 撥券</div></div>
-<div class="side us"><div class="tag">美股規則</div><div class="txt">T+1 交割（2024/05/28 起）</div></div>
-</div>
-</div>
-<div class="item" data-d="1" data-reveal="">
-<div class="top"><span aria-hidden="true" class="ico">06</span><h4>配息稅務</h4></div>
-<div class="body">
-<div class="side tw"><div class="tag">台股習慣</div><div class="txt">併入綜合所得</div></div>
-<div class="side us"><div class="tag">美股規則</div><div class="txt">股息預扣 30%（非居民）</div></div>
-</div>
-</div>
-</div>
-<div class="callout" data-reveal="">
-<h4>兩個一定要先記住的提醒</h4>
-<ul>
-<li>「綠漲紅跌」是新手最常按錯鍵的地方。先在小額或模擬環境練習，確認方向再加碼。</li>
-<li>美股沒有漲跌幅限制，跌起來不會自動停。所以下一段的「停損單」，是必學的保命技能。</li>
-</ul>
-</div>
-</div>
-</section>
-<!-- PART 3 SUB-BROKERAGE -->
-<section class="section-light" id="broker">
-<div class="wrap">
-<div class="eyebrow-part" data-reveal=""><span class="pnum">03</span><span class="pname">複委託完全解析</span></div>
-<h2 class="h2" data-reveal="mask" id="用台幣帳戶買美股-把海外交易變回熟悉的流程">用台幣帳戶買美股，<br/>把海外交易變回熟悉的流程。</h2>
-<p class="lead prose" data-d="1" data-reveal="">複委託，就是委託國內券商（富邦、永豐、國泰等）幫你下單到美國。你不必自己開海外券商、不必自己換匯匯出，用原本的台幣帳戶就能管理。</p>
-<div class="two block">
-<div class="card" data-reveal="">
-<div class="ch"><h4>適合誰</h4></div>
-<p>小資族、想用台幣統一管理、不想處理複雜跨境金流、希望流程單純的人。每月定期定額尤其適合。</p>
-</div>
-<div class="card" data-d="1" data-reveal="">
-<div class="ch"><h4>要先弄清楚的事（誠實版）</h4></div>
-<p>複委託一樣會被預扣 30% 股息稅。能不能買碎股、能不能設停損、能不能當日換股，<b>各券商規定不同</b>，開戶前先逐項問清楚，不要假設「都支援」。</p>
-</div>
-</div>
-<!-- 扣款 -->
-<div class="block">
-<h3 class="subhead" data-reveal="" id="扣款用台幣還是美元">扣款用台幣，還是美元？</h3>
-<div class="two">
-<div class="card" data-reveal="">
-<div class="ch"><span class="pill twd">台幣交割</span></div>
-<h4>存台幣，券商自動換匯</h4>
-<p>你只存新台幣，下單時選「台幣扣款」，券商依當下公告匯率自動換匯。最省事，最適合定期定額，不必盯匯率。</p>
-</div>
-<div class="card" data-d="1" data-reveal="">
-<div class="ch"><span class="pill usd">外幣交割</span></div>
-<h4>自己換好美元再扣款</h4>
-<p>先自行換好美元存入，再以美元扣款。好處是可以自己挑換匯時機；代價是要多管一個外幣帳戶。</p>
-</div>
-</div>
-</div>
-<!-- 入帳時間軸 -->
-<div class="block">
-<h3 class="subhead" data-reveal="" id="賣掉美股後錢什麼時候回來">賣掉美股後，錢什麼時候回來？</h3>
-<div class="panel" data-d="1" data-reveal="">
-<p class="tool-note" style="margin-bottom:8px">點時間軸上的每一站看細節。重點：賣股不會馬上有錢可用。</p>
-<div class="tl">
-<div class="track"><div class="fill" id="tlFill"></div>
-<div class="nodes">
-<div class="node active" data-step="0"></div>
-<div class="node" data-step="1"></div>
-<div class="node" data-step="2"></div>
-</div>
-</div>
-<div class="labels">
-<div class="lb"><div class="d">T 日</div><div class="t">交易日</div></div>
-<div class="lb"><div class="d">T+1 日</div><div class="t">隔一個工作日</div></div>
-<div class="lb"><div class="d">T+2 日</div><div class="t">款項可動用</div></div>
-</div>
-</div>
-<div class="tl-detail">
-<div class="dk" id="tlKey">T 日 · 交易日</div>
-<div class="dv" id="tlVal">你在美股盤中賣出股票，成交。這天還拿不到可動用的現金。</div>
-</div>
-<p class="tool-note" style="margin-top:16px">美股本身是 T+1（2024/05/28 起）。但台灣券商把款項入帳、轉成可動用或可提領的時間，可能再多一兩個工作日，依券商而定。想當日賣 A 買 B，要先確認是否有足夠額度或圈存。</p>
-</div>
-</div>
-<!-- 換匯 -->
-<div class="block">
-<h3 class="subhead" data-reveal="" id="換匯怎麼設定要賭匯率低點嗎">換匯怎麼設定？要賭匯率低點嗎？</h3>
-<div class="two">
-<div class="card" data-reveal="">
-<h4>領回台幣 vs 留著美元</h4>
-<p>選「台幣交割」，賣股後券商自動換回台幣入帳（會有匯差）；選「外幣交割」，款項留美元，下次可直接再投入。多數券商可事後變更。</p>
-</div>
-<div class="card" data-d="1" data-reveal="">
-<h4>不必賭匯率</h4>
-<p>定期定額長期下來會自然平均成本（含匯率），不需要押在某個低點。把心力放在「持續投入」，比猜匯率更重要。</p>
-</div>
-</div>
-</div>
-<!-- 碎股試算 -->
-<div class="block">
-<h3 class="subhead" data-reveal="" id="每月只想投一點點買得起嗎">每月只想投一點點，買得起嗎？</h3>
-<div class="panel" data-d="1" data-reveal="">
-<div class="tool-title">碎股試算器</div>
-<p class="tool-note" style="margin-bottom:18px">BRK.B 一股要 US$487？沒關係。複委託的定期定額支援碎股，買「零點幾股」一樣享有漲跌權益，資金 100% 投入。</p>
-<div class="ctrl">
-<div class="lab"><span>每月投入</span><span class="val" id="fracAmtLab">NT$ 3,000</span></div>
-<input id="fracAmt" max="30000" min="300" step="300" type="range" value="3000"/>
-</div>
-<div class="pickrow" id="fracPick" style="margin-bottom:20px">
-<button aria-pressed="true" data-price="487" data-tk="BRKB">BRK.B 波克夏<span class="pp">US$487 · 不配息</span></button>
-<button aria-pressed="false" data-price="685" data-tk="VOO">VOO 標普500<span class="pp">US$685 · 殖利率約 1.1%</span></button>
-<button aria-pressed="false" data-price="294" data-tk="QQQM">QQQM 那斯達克100<span class="pp">US$294 · 殖利率約 0.5%</span></button>
-</div>
-<div class="frac-out">
-<div class="frac-hero">
-<div class="small">每月 <span id="fracTwd">NT$3,000</span> ≈ <span id="fracUsd">US$95</span>（匯率約 31.6）可買</div>
-<div class="big" id="fracShares">約 0.195 股</div>
-<div class="sub" id="fracMonths">大約 <b>5</b> 個月，可以湊滿 1 股 BRK.B。</div>
-</div>
-</div>
-<p class="tool-note" style="margin-top:14px">股價與匯率每天變動，此處為示意，實際以下單當下為準。</p>
-</div>
-</div>
-<!-- 稅務 -->
-<div class="block">
-<h3 class="subhead" data-reveal="" id="稅務怎麼辦要自己報稅嗎">稅務怎麼辦？要自己報稅嗎？</h3>
-<div class="notes">
-<div class="note" data-reveal="">
-<div class="nx">30%</div>
-<div><h4>股息預扣，券商自動處理</h4><p>配息時券商會自動預扣 30%，你拿到的就是稅後金額，不必為了美股股息自己向美國報稅。台灣人此稅通常無法退。</p></div>
-</div>
-<div class="note" data-d="1" data-reveal="">
-<div class="nx">海外</div>
-<div><h4>海外所得與最低稅負</h4><p>台灣的海外所得要到一定金額才會計入基本所得額（最低稅負），多數小資族不會觸及。金額較大或不確定時，請洽會計師，別自己亂猜。</p></div>
-</div>
-<div class="note warn" data-d="2" data-reveal="">
-<div class="nx">遺產</div>
-<div><h4>遺產稅：金額變大時要留意</h4><p>美國境內資產（含美股）若超過 US$60,000，繼承時可能須申報 <span class="mono">Form 706-NA</span>。複委託能簡化操作，但不會讓這件事消失，資產變大時務必諮詢專業人士。</p></div>
-</div>
-</div>
-</div>
-<!-- 成本 -->
-<div class="block">
-<h3 class="subhead" data-reveal="" id="成本不只手續費">成本不只手續費</h3>
-<div class="panel" data-d="1" data-reveal="">
-<p class="tool-note" style="margin-bottom:20px">比較券商時，別只看一個漂亮的費率。真正影響小額投資的，常是低消與匯差。（下列為相對示意，非實際比例）</p>
-<div class="bars" id="costBars">
-<div class="bar"><div class="bl">券商手續費</div><div class="bt"><div class="bf" data-w="70"></div></div></div>
-<div class="bar"><div class="bl">單筆低消</div><div class="bt"><div class="bf" data-w="58"></div></div></div>
-<div class="bar"><div class="bl">換匯價差</div><div class="bt"><div class="bf" data-w="64"></div></div></div>
-<div class="bar"><div class="bl">美國規費 SEC・TAF</div><div class="bt"><div class="bf" data-w="22"></div></div></div>
-<div class="bar"><div class="bl">ETF 內扣費用</div><div class="bt"><div class="bf" data-w="40"></div></div></div>
-</div>
-<div class="rule72" style="margin-top:22px">
-<b>小額原則</b>：每月金額不大，就用定期定額（常免低消，例如富邦定期定額最低 US$10／NT$300，買進 0.1% 優惠，2025/11/01–2026/12/31 無低消）；單筆金額較大，再去比成交價、匯率與委託彈性。費率與優惠會變動，下單前以券商公告為準。
-        </div>
-</div>
-</div>
-</div>
-</section>
-<!-- PART 4 STRATEGY -->
-<section class="section-tint" id="strategy">
-<div class="wrap">
-<div class="eyebrow-part" data-reveal=""><span class="pnum">04</span><span class="pname">新手策略與風險控制</span></div>
-<h2 class="h2" data-reveal="mask" id="降低稅損控制風險-比選到飆股更實際">降低稅損、控制風險，<br/>比選到飆股更實際。</h2>
-<div class="block">
-<span class="disclaimer-badge" data-reveal="">⚠ 教育示例，非投資建議</span>
-<h3 class="subhead" data-reveal="" id="一個節稅成長思路">一個「節稅成長」思路</h3>
-<p class="lead prose" data-d="1" data-reveal="">原則：避開高配息（減少 30% 股息稅損），把重心放在股價成長。以下標的僅為說明此思路的示例，不是推薦。</p>
-<div class="alloc block">
-<div class="slot core" data-reveal="">
-<div class="pctbar"><i></i></div>
-<div class="role"><span class="rn">核心</span><span class="rp">60%</span></div>
-<div class="tk">BRK.B</div>
-<p>波克夏海瑟威 B 股，不配息，等於 0 股息稅成本。長期由波克夏團隊操盤，風格穩健。</p>
-</div>
-<div class="slot sat" data-d="1" data-reveal="">
-<div class="pctbar"><i></i></div>
-<div class="role"><span class="rn">輔助</span><span class="rp">30%</span></div>
-<div class="tk">VOO / QQQM</div>
-<p>低股息的大盤型 ETF。VOO 內扣 0.03%、殖利率約 1.1%；QQQM 內扣 0.15%、殖利率約 0.5%，稅務影響小。</p>
-</div>
-<div class="slot cash" data-d="2" data-reveal="">
-<div class="pctbar"><i></i></div>
-<div class="role"><span class="rn">現金 / 避險</span><span class="rp">10%</span></div>
-<div class="tk">美元定存 / 短債</div>
-<p>美元定存或短期公債（如 SHV）。債息一樣預扣，主要功能是保值與保留銀彈，不是賺利差。</p>
-</div>
-</div>
-<div class="avoid" data-reveal="">
-<b>較不偏好</b>：高股息 ETF（如 SCHD）、REITs。配息率高，但對非居民被預扣 30% 後只剩約 7 成，稅後不划算。同樣的錢，成長型更能讓複利發揮。
-      </div>
-</div>
-<!-- stop loss -->
-<div class="block">
-<h3 class="subhead" data-reveal="" id="因為美股沒有漲跌幅停損單是保命符">因為美股沒有漲跌幅，停損單是保命符</h3>
-<div class="panel" data-d="1" data-reveal="">
-<div class="sl-grid">
-<div>
-<div class="tool-title">停損單示意</div>
-<p class="tool-note">買進後設定一個停損價，股價觸及就自動以市價賣出，避免一次大跌套牢。拖動看看不同停損幅度的觸發價。</p>
-<div class="ctrl" style="margin-top:22px">
-<div class="lab"><span>停損幅度</span><span class="val" id="slPctLab">10%</span></div>
-<input id="slPct" max="25" min="3" step="1" type="range" value="10"/>
-</div>
-<div class="sl-readout">
-<div class="ro"><div class="k">買進價</div><div class="v">$100</div></div>
-<div class="ro trig"><div class="k">停損觸發價</div><div class="v" id="slTrig">$90</div></div>
-</div>
-</div>
-<div>
-<svg aria-hidden="true" id="slSvg" preserveaspectratio="xMidYMid meet" style="width:100%;height:auto" viewbox="0 0 360 200"></svg>
-</div>
-</div>
-</div>
-</div>
-<div class="block two">
-<div class="card" data-reveal="">
-<h4>匯率風險</h4>
-<p>台幣升值時，同樣的美股換回台幣會變少。這是持有外幣資產的自然成本，長期定期定額可把它平滑掉，不必過度擔心。</p>
-</div>
-<div class="card" data-d="1" data-reveal="">
-<h4>過去績效 ≠ 未來</h4>
-<p>所有歷史報酬都不保證未來。把策略建立在「分散、低成本、長期、有停損」上，而不是建立在某一檔的故事上。</p>
-</div>
-</div>
-</div>
-</section>
-<!-- QA -->
-<section class="section-light" id="qa">
-<div class="wrap">
-<div class="eyebrow-part" data-reveal=""><span class="pnum">05</span><span class="pname">常見問題</span></div>
-<h2 class="h2" data-reveal="mask" id="新手最常問的五個問題">新手最常問的五個問題</h2>
-<div class="qa block" style="margin-top:30px">
-<details class="q" data-reveal="" open="">
-<summary><span class="qmark">Q1</span>複委託手續費會不會很貴？<span class="plus"></span></summary>
-<div class="ans">定期定額常有優惠（例如富邦買進 0.1%、無低消）；單筆買賣則有低消（約 US$20～30）。所以小額交易建議用定期定額。費率會變動，請以券商最新公告為準。</div>
-</details>
-<details class="q" data-reveal="">
-<summary><span class="qmark">Q2</span>可以當沖美股嗎？<span class="plus"></span></summary>
-<div class="ans">複委託一般不支援當沖，交割制度也限制當日反覆交易。建議以長期持有為主。各券商規定不同，想做特定操作前先確認。</div>
-</details>
-<details class="q" data-reveal="">
-<summary><span class="qmark">Q3</span>下單時間有限制嗎？<span class="plus"></span></summary>
-<div class="ans">多數券商可在美股開盤時段（台灣晚上）下單，通常也支援預約單，讓你白天先設定、晚上自動送出。</div>
-</details>
-<details class="q" data-reveal="">
-<summary><span class="qmark">Q4</span>我需要每天盯盤嗎？<span class="plus"></span></summary>
-<div class="ans">不用。設定好定期定額加上停損單之後，每月看一次、做必要調整即可。紀律比盯盤重要。</div>
-</details>
-<details class="q" data-reveal="">
-<summary><span class="qmark">Q5</span>如果券商倒閉，我的美股還在嗎？<span class="plus"></span></summary>
-<div class="ans">美股登記在美國保管機構，與券商自有資產分離。美國有 SIPC 保障（上限 US$500,000，含現金 US$250,000），保的是保管短缺，不是市場下跌造成的虧損。</div>
-</details>
-</div>
-</div>
-</section>
-<!-- PART 5 FINALE -->
-<section class="finale" id="start">
-<div class="wrap">
-<div class="eyebrow-part" data-reveal=""><span class="pnum">06</span><span class="pname">開始行動</span></div>
-<h2 class="h2" data-reveal="mask">建立你的美股系統，<br/>從三個步驟開始。</h2>
-<div class="steps">
-<div class="step" data-reveal="">
-<div class="sn">01</div>
-<h4>開戶</h4>
-<p>找一家手續費友善的券商（富邦、永豐、國泰等），開通複委託功能，並設定好台幣或外幣交割。</p>
-</div>
-<div class="step" data-d="1" data-reveal="">
-<div class="sn">02</div>
-<h4>設定</h4>
-<p>每月發薪後固定扣款，自動買進你的核心標的（例如大盤型 ETF）。讓投資變成不需要意志力的習慣。</p>
-</div>
-<div class="step" data-d="2" data-reveal="">
-<div class="sn">03</div>
-<h4>保護</h4>
-<p>替持股設定停損（例如 10%～15%，可隨獲利上移）。因為美股沒有漲跌幅，這一步不能省。</p>
-</div>
-</div>
-<p class="pull" data-reveal="">「不用成為選股高手，<br/>只要成為<span>紀律的執行者</span>。」</p>
-</div>
-</section>
-<!-- FOOTER -->
-<footer>
-<div class="wrap">
-<div class="disc">
-<h4>免責聲明</h4>
-      本內容僅供教育與資訊參考，<b>不構成任何投資、稅務或法律建議</b>。文中所有標的（BRK.B、VOO、QQQM、SHV、SCHD 等）僅為說明示例，並非推薦。投資有賺有賠，過去績效不代表未來表現。費率、稅率、交易規則與行情可能隨時變動，請以主管機關與券商最新公告為準；重大決策請先諮詢合格專業人士。
-    </div>
-<div class="src">
-<h4>資料來源</h4>
-      SEC Investor.gov（T+1 交割，2024/05/28 起）｜ Nasdaq（美股交易時間）｜ IRS（非居民 FDAP 股息預扣 30%、遺產稅 Form 706-NA、US$60,000 門檻）｜ SIPC（保障上限 US$500,000／現金 US$250,000）｜ SIFMA 2025 Capital Markets Outlook（美股佔全球 47.4%，FY24）｜ 富邦證券、國泰證券（複委託費率與規則）。行情數據為 2026/06/08 收盤附近：BRK.B ≈ US$487、VOO ≈ US$685、QQQM ≈ US$294、USD/TWD ≈ 31.6。
-    </div>
-<div class="colophon">
-<span>美股須知 ｜ 出版型入門手冊</span>
-<span>資料日期 2026-06-09</span>
-</div>
-</div>
-</footer>
-</article>
-</main>
-<script defer="" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script defer="" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script defer="" src="assets/deck.js"></script>
-<script>
-(function(){
-  "use strict";
-  /* 本頁專屬互動：複利／顏色翻轉／交割時間軸／碎股／停損計算器。
-     進場動畫、進度條、count-up、cost-bar 填充、列印 finalize 由 assets/deck.js 統一處理。 */
-  var fmtNT = function(n){ return 'NT$ ' + Math.round(n).toLocaleString('en-US'); };
 
-  /* ---------- compound calculator ---------- */
-  var cmpAmt=document.getElementById('cmpAmt'), cmpYr=document.getElementById('cmpYr'), cmpRate=document.getElementById('cmpRate');
-  if(cmpAmt){
-    var growthSvg=document.getElementById('growthSvg');
-    function compound(){
-      var m=+cmpAmt.value, y=+cmpYr.value, rate=+cmpRate.value;
-      document.getElementById('cmpAmtLab').textContent='NT$ '+m.toLocaleString('en-US');
-      document.getElementById('cmpYrLab').textContent=y+' 年';
-      document.getElementById('cmpRateLab').textContent=rate+'%';
-      var n=y*12, r=rate/100/12;
-      var fv = r>0 ? m*((Math.pow(1+r,n)-1)/r) : m*n;
-      var prin=m*n;
-      document.getElementById('cmpPrin').textContent=fmtNT(prin);
-      document.getElementById('cmpFv').textContent=fmtNT(fv);
-      document.getElementById('r72rate').textContent=rate;
-      document.getElementById('r72').textContent=(72/rate).toFixed(1);
-      // draw curve: principal (linear) + value (compound) over years
-      var W=400,H=130,pad=4, pts=[], pps=[], maxV=fv;
-      for(var i=0;i<=y;i++){
-        var nn=i*12;
-        var v = r>0 ? m*((Math.pow(1+r,nn)-1)/r) : m*nn;
-        var pr = m*nn;
-        var x = pad + (W-2*pad)*(y>0? i/y : 0);
-        pts.push([x, H-pad-(H-2*pad)*(maxV>0? v/maxV:0)]);
-        pps.push([x, H-pad-(H-2*pad)*(maxV>0? pr/maxV:0)]);
+<!-- ═════════════ SITE NAV ═════════════ -->
+<nav class="site-nav" aria-label="全站導覽">
+  <span class="site-nav-brand">One-Page Beginners Guide</span>
+  <span class="site-nav-links">
+    <a href="us-stocks-guide.html" aria-current="page">美股入門</a>
+    <a href="guide.html">AI 審圖</a>
+    <a href="making-of.html">製作幕後</a>
+    <a href="pcshop-ai-build-guide.html">PCShop</a>
+    <a href="beauty-manual-ai-guide.html">美容說明書</a>
+    <a href="deeptutor-guide.html">DeepTutor</a>
+    <a href="usj-vip-guide.html">USJ VIP</a>
+  </span>
+</nav>
+
+<!-- ═════════════ COVER ═════════════ -->
+<section class="cover">
+  <div>
+    <div class="cover-eyebrow">US Equities · 複委託入門手冊</div>
+    <div class="cover-title">從零開始<br>前進美股</div>
+    <div class="cover-sub">台灣投資人用複委託買美股：先把台股直覺翻譯成美股規則，再把扣款、交割、換匯、稅務與停損一次搞懂。</div>
+  </div>
+  <div class="cover-meta">
+    <strong>教育與資訊參考，不構成投資建議</strong><br>
+    指南 01 · One-Page Beginners Guide<br>
+    資料日期 2026-06-09
+  </div>
+</section>
+
+<!-- ═════════════ TOC ═════════════ -->
+<section class="toc">
+  <h2>目錄</h2>
+  <div class="toc-item"><span class="toc-num">01</span><a class="toc-title" href="#不是去玩美股-是成為全球經濟的股東">不是去「玩美股」，是成為全球經濟的股東</a></div>
+  <div class="toc-item"><span class="toc-num">02</span><a class="toc-title" href="#先把習慣翻譯成規則-才不會把台股直覺帶進美股">先把習慣翻譯成規則，才不會把台股直覺帶進美股</a></div>
+  <div class="toc-item"><span class="toc-num">03</span><a class="toc-title" href="#用台幣帳戶買美股-把海外交易變回熟悉的流程">用台幣帳戶買美股，把海外交易變回熟悉的流程</a></div>
+  <div class="toc-item"><span class="toc-num">04</span><a class="toc-title" href="#降低稅損控制風險-比選到飆股更實際">降低稅損、控制風險，比選到飆股更實際</a></div>
+  <div class="toc-item"><span class="toc-num">05</span><a class="toc-title" href="#新手最常問的五個問題">新手最常問的五個問題</a></div>
+  <div class="toc-item"><span class="toc-num">06</span><a class="toc-title" href="#建立你的美股系統">建立你的美股系統，從三個步驟開始</a></div>
+</section>
+
+<!-- ═════════════ Chapter 01 ═════════════ -->
+<section class="chapter" id="不是去玩美股-是成為全球經濟的股東">
+  <div class="chapter-num">01 · Why · 為什麼投資美股</div>
+  <h1>不是去「玩美股」，是成為全球經濟的股東。</h1>
+
+  <p class="lead">全球市值最大的企業，多數在美國掛牌：蘋果、微軟、輝達、Google、麥當勞、Nike。買進美股，等於讓資產跟著全球科技、醫療、金融與消費一起成長，而不只押注台灣一地。</p>
+
+  <div class="callout">
+    <strong class="hl" style="font-size:15pt">47.4%</strong> 的全球股市市值集中在美國。只看台股，等於忽略了世界的另一半。
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">時間是你最強的工具</div>
+    <p class="panel-note">拖動看看定期定額的複利效果。標普 500 長期年化約 7%～10%（含波動，過去績效不代表未來）。</p>
+
+    <div class="ctrl">
+      <div class="lab"><span>每月投入</span><span class="val" id="cmpAmtLab">NT$ 5,000</span></div>
+      <input id="cmpAmt" max="30000" min="1000" step="1000" type="range" value="5000">
+    </div>
+    <div class="ctrl">
+      <div class="lab"><span>投資年數</span><span class="val" id="cmpYrLab">20 年</span></div>
+      <input id="cmpYr" max="40" min="5" step="1" type="range" value="20">
+    </div>
+    <div class="ctrl">
+      <div class="lab"><span>年化報酬率</span><span class="val" id="cmpRateLab">8%</span></div>
+      <input id="cmpRate" max="12" min="2" step="0.5" type="range" value="8">
+    </div>
+
+    <svg aria-hidden="true" id="growthSvg" preserveAspectRatio="none" viewBox="0 0 400 130" style="width:100%;height:90pt"></svg>
+
+    <div class="readout">
+      <div class="cell"><div class="rk">累積投入本金</div><div class="rv" id="cmpPrin">NT$ 1,200,000</div></div>
+      <div class="cell hi"><div class="rk">期末總值</div><div class="rv" id="cmpFv">NT$ 2,945,000</div></div>
+    </div>
+
+    <div class="footnote-box"><strong>72 法則</strong>：用 72 ÷ 年化報酬率，約略得到資產翻倍年數。以目前 <span id="r72rate">8</span>%，約 <strong id="r72">9.0</strong> 年翻一倍。</div>
+  </div>
+</section>
+
+<!-- ═════════════ Chapter 02 ═════════════ -->
+<section class="chapter" id="先把習慣翻譯成規則-才不會把台股直覺帶進美股">
+  <div class="chapter-num">02 · Differences · 台美股大不同</div>
+  <h1>先把習慣翻譯成規則，才不會把台股直覺帶進美股。</h1>
+
+  <p class="lead">顏色、漲跌幅、交易單位、交易時間與交割週期，是第一天就要記住的差異。其中最容易讓人按錯鍵的，是顏色。</p>
+
+  <div class="panel">
+    <div class="seg" role="group" aria-label="切換市場規則">
+      <button type="button" id="mTw" aria-pressed="false">台股規則</button>
+      <button type="button" id="mUs" aria-pressed="true">美股規則</button>
+    </div>
+    <p class="panel-note" id="flipCap">目前顯示 <strong>美股規則</strong>：<strong>綠色代表上漲</strong>、紅色代表下跌，和台股相反。</p>
+    <div class="flip-cards" data-market="us" id="colorDemo">
+      <div class="tick rise">
+        <div class="sym">AAPL · 蘋果</div>
+        <div class="pct">▲ +2.4%</div>
+        <div class="st">今天上漲</div>
+      </div>
+      <div class="tick fall">
+        <div class="sym">TSLA · 特斯拉</div>
+        <div class="pct">▼ -1.8%</div>
+        <div class="st">今天下跌</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>項目</th><th>台股習慣</th><th>美股規則</th></tr></thead>
+      <tbody>
+        <tr><td>漲跌顏色</td><td>紅漲綠跌</td><td>綠漲紅跌（相反！）</td></tr>
+        <tr><td>漲跌幅限制</td><td>10% 漲跌停</td><td>無限制，單日跌 30% 也可能</td></tr>
+        <tr><td>交易單位</td><td>1 張 = 1,000 股</td><td>1 股即可，複委託多可買碎股</td></tr>
+        <tr><td>交易時間（台灣時間）</td><td>09:00–13:30</td><td>夏令 21:30–04:00／冬令 22:30–05:00</td></tr>
+        <tr><td>交割制度</td><td>T+2 撥券</td><td>T+1 交割（2024/05/28 起）</td></tr>
+        <tr><td>配息稅務</td><td>併入綜合所得</td><td>股息預扣 30%（非居民）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">兩個一定要先記住的提醒</div>
+    <ul>
+      <li>「綠漲紅跌」是新手最常按錯鍵的地方。先在小額或模擬環境練習，確認方向再加碼。</li>
+      <li>美股沒有漲跌幅限制，跌起來不會自動停。所以下一段的「停損單」，是必學的保命技能。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═════════════ Chapter 03 ═════════════ -->
+<section class="chapter" id="用台幣帳戶買美股-把海外交易變回熟悉的流程">
+  <div class="chapter-num">03 · Sub-brokerage · 複委託完全解析</div>
+  <h1>用台幣帳戶買美股，把海外交易變回熟悉的流程。</h1>
+
+  <p class="lead">複委託，就是委託國內券商（富邦、永豐、國泰等）幫你下單到美國。你不必自己開海外券商、不必自己換匯匯出，用原本的台幣帳戶就能管理。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>面向</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td>適合誰</td><td>小資族、想用台幣統一管理、不想處理複雜跨境金流、希望流程單純的人。每月定期定額尤其適合。</td></tr>
+        <tr><td>要先弄清楚的事（誠實版）</td><td>複委託一樣會被預扣 30% 股息稅。能不能買碎股、能不能設停損、能不能當日換股，<strong>各券商規定不同</strong>，開戶前先逐項問清楚，不要假設「都支援」。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="扣款用台幣還是美元">扣款用台幣，還是美元？</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>方式</th><th>做法</th><th>取捨</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag">台幣交割</span>存台幣，券商自動換匯</td><td>你只存新台幣，下單時選「台幣扣款」，券商依當下公告匯率自動換匯。</td><td>最省事，最適合定期定額，不必盯匯率。</td></tr>
+        <tr><td><span class="tag">外幣交割</span>自己換好美元再扣款</td><td>先自行換好美元存入，再以美元扣款。</td><td>好處是可以自己挑換匯時機；代價是要多管一個外幣帳戶。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="賣掉美股後錢什麼時候回來">賣掉美股後，錢什麼時候回來？</h2>
+  <div class="panel">
+    <p class="panel-note">點時間軸上的每一站看細節。重點：賣股不會馬上有錢可用。</p>
+    <div class="tl">
+      <div class="track">
+        <div class="fill" id="tlFill"></div>
+        <div class="nodes">
+          <div class="node active" data-step="0"></div>
+          <div class="node" data-step="1"></div>
+          <div class="node" data-step="2"></div>
+        </div>
+      </div>
+      <div class="labels">
+        <div class="lb"><div class="d">T 日</div><div class="t">交易日</div></div>
+        <div class="lb"><div class="d">T+1 日</div><div class="t">隔一個工作日</div></div>
+        <div class="lb"><div class="d">T+2 日</div><div class="t">款項可動用</div></div>
+      </div>
+    </div>
+    <div class="tl-detail">
+      <div class="dk" id="tlKey">T 日 · 交易日</div>
+      <div class="dv" id="tlVal">你在美股盤中賣出股票，成交。這天還拿不到可動用的現金。</div>
+    </div>
+    <p class="footnote-box">美股本身是 T+1（2024/05/28 起）。但台灣券商把款項入帳、轉成可動用或可提領的時間，可能再多一兩個工作日，依券商而定。想當日賣 A 買 B，要先確認是否有足夠額度或圈存。</p>
+  </div>
+
+  <h2 id="換匯怎麼設定要賭匯率低點嗎">換匯怎麼設定？要賭匯率低點嗎？</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>問題</th><th>做法</th></tr></thead>
+      <tbody>
+        <tr><td>領回台幣 vs 留著美元</td><td>選「台幣交割」，賣股後券商自動換回台幣入帳（會有匯差）；選「外幣交割」，款項留美元，下次可直接再投入。多數券商可事後變更。</td></tr>
+        <tr><td>不必賭匯率</td><td>定期定額長期下來會自然平均成本（含匯率），不需要押在某個低點。把心力放在「持續投入」，比猜匯率更重要。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="每月只想投一點點買得起嗎">每月只想投一點點，買得起嗎？</h2>
+  <div class="panel">
+    <div class="panel-title">碎股試算器</div>
+    <p class="panel-note">BRK.B 一股要 US$487？沒關係。複委託的定期定額支援碎股，買「零點幾股」一樣享有漲跌權益，資金 100% 投入。</p>
+
+    <div class="ctrl">
+      <div class="lab"><span>每月投入</span><span class="val" id="fracAmtLab">NT$ 3,000</span></div>
+      <input id="fracAmt" max="30000" min="300" step="300" type="range" value="3000">
+    </div>
+
+    <div class="pickrow" id="fracPick">
+      <button type="button" aria-pressed="true" data-price="487" data-tk="BRKB">BRK.B 波克夏<span class="pp">US$487 · 不配息</span></button>
+      <button type="button" aria-pressed="false" data-price="685" data-tk="VOO">VOO 標普500<span class="pp">US$685 · 殖利率約 1.1%</span></button>
+      <button type="button" aria-pressed="false" data-price="294" data-tk="QQQM">QQQM 那斯達克100<span class="pp">US$294 · 殖利率約 0.5%</span></button>
+    </div>
+
+    <div class="frac-hero">
+      <div class="small">每月 <span id="fracTwd">NT$3,000</span> ≈ <span id="fracUsd">US$95</span>（匯率約 31.6）可買</div>
+      <div class="big" id="fracShares">約 0.195 股</div>
+      <div class="sub" id="fracMonths">大約 <strong>5</strong> 個月，可以湊滿 1 股 BRK.B。</div>
+    </div>
+
+    <p class="footnote-box">股價與匯率每天變動，此處為示意，實際以下單當下為準。</p>
+  </div>
+
+  <h2 id="稅務怎麼辦要自己報稅嗎">稅務怎麼辦？要自己報稅嗎？</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>項目</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td><strong>30%</strong> 股息預扣，券商自動處理</td><td>配息時券商會自動預扣 30%，你拿到的就是稅後金額，不必為了美股股息自己向美國報稅。台灣人此稅通常無法退。</td></tr>
+        <tr><td><strong>海外</strong>所得與最低稅負</td><td>台灣的海外所得要到一定金額才會計入基本所得額（最低稅負），多數小資族不會觸及。金額較大或不確定時，請洽會計師，別自己亂猜。</td></tr>
+        <tr><td><strong>遺產</strong>稅：金額變大時要留意</td><td>美國境內資產（含美股）若超過 US$60,000，繼承時可能須申報 <code>Form 706-NA</code>。複委託能簡化操作，但不會讓這件事消失，資產變大時務必諮詢專業人士。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="成本不只手續費">成本不只手續費</h2>
+  <div class="panel">
+    <p class="panel-note">比較券商時，別只看一個漂亮的費率。真正影響小額投資的，常是低消與匯差。（下列為相對示意，非實際比例）</p>
+    <div class="bars">
+      <div class="bar"><div class="bl">券商手續費</div><div class="bt"><span class="bf" style="width:70%"></span></div></div>
+      <div class="bar"><div class="bl">單筆低消</div><div class="bt"><span class="bf" style="width:58%"></span></div></div>
+      <div class="bar"><div class="bl">換匯價差</div><div class="bt"><span class="bf" style="width:64%"></span></div></div>
+      <div class="bar"><div class="bl">美國規費 SEC・TAF</div><div class="bt"><span class="bf" style="width:22%"></span></div></div>
+      <div class="bar"><div class="bl">ETF 內扣費用</div><div class="bt"><span class="bf" style="width:40%"></span></div></div>
+    </div>
+    <div class="footnote-box"><strong>小額原則</strong>：每月金額不大，就用定期定額（常免低消，例如富邦定期定額最低 US$10／NT$300，買進 0.1% 優惠，2025/11/01–2026/12/31 無低消）；單筆金額較大，再去比成交價、匯率與委託彈性。費率與優惠會變動，下單前以券商公告為準。</div>
+  </div>
+</section>
+
+<!-- ═════════════ Chapter 04 ═════════════ -->
+<section class="chapter" id="降低稅損控制風險-比選到飆股更實際">
+  <div class="chapter-num">04 · Strategy · 新手策略與風險控制</div>
+  <h1>降低稅損、控制風險，比選到飆股更實際。</h1>
+
+  <p class="badge-warn">⚠ 教育示例，非投資建議</p>
+
+  <p class="lead" id="一個節稅成長思路">原則：避開高配息（減少 30% 股息稅損），把重心放在股價成長。以下標的僅為說明此思路的示例，不是推薦。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>角色</th><th>比重</th><th>標的</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td>核心</td><td>60%</td><td>BRK.B</td><td>波克夏海瑟威 B 股，不配息，等於 0 股息稅成本。長期由波克夏團隊操盤，風格穩健。</td></tr>
+        <tr><td>輔助</td><td>30%</td><td>VOO / QQQM</td><td>低股息的大盤型 ETF。VOO 內扣 0.03%、殖利率約 1.1%；QQQM 內扣 0.15%、殖利率約 0.5%，稅務影響小。</td></tr>
+        <tr><td>現金 / 避險</td><td>10%</td><td>美元定存 / 短債</td><td>美元定存或短期公債（如 SHV）。債息一樣預扣，主要功能是保值與保留銀彈，不是賺利差。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>較不偏好</strong>：高股息 ETF（如 SCHD）、REITs。配息率高，但對非居民被預扣 30% 後只剩約 7 成，稅後不划算。同樣的錢，成長型更能讓複利發揮。
+  </div>
+
+  <h2 id="因為美股沒有漲跌幅停損單是保命符">因為美股沒有漲跌幅，停損單是保命符</h2>
+  <div class="panel">
+    <div class="sl-grid">
+      <div>
+        <div class="panel-title">停損單示意</div>
+        <p class="panel-note">買進後設定一個停損價，股價觸及就自動以市價賣出，避免一次大跌套牢。拖動看看不同停損幅度的觸發價。</p>
+        <div class="ctrl">
+          <div class="lab"><span>停損幅度</span><span class="val" id="slPctLab">10%</span></div>
+          <input id="slPct" max="25" min="3" step="1" type="range" value="10">
+        </div>
+        <div class="sl-readout">
+          <div class="ro"><div class="k">買進價</div><div class="v">$100</div></div>
+          <div class="ro trig"><div class="k">停損觸發價</div><div class="v" id="slTrig">$90</div></div>
+        </div>
+      </div>
+      <div>
+        <svg aria-hidden="true" id="slSvg" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto" viewBox="0 0 360 200"></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>風險</th><th>怎麼看待</th></tr></thead>
+      <tbody>
+        <tr><td>匯率風險</td><td>台幣升值時，同樣的美股換回台幣會變少。這是持有外幣資產的自然成本，長期定期定額可把它平滑掉，不必過度擔心。</td></tr>
+        <tr><td>過去績效 ≠ 未來</td><td>所有歷史報酬都不保證未來。把策略建立在「分散、低成本、長期、有停損」上，而不是建立在某一檔的故事上。</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═════════════ Chapter 05 ═════════════ -->
+<section class="chapter" id="新手最常問的五個問題">
+  <div class="chapter-num">05 · FAQ · 常見問題</div>
+  <h1>新手最常問的五個問題</h1>
+
+  <p class="lead">開戶前後最常被問到的五題，一次講清楚。</p>
+
+  <details open><summary>Q1　複委託手續費會不會很貴？</summary><div><p>定期定額常有優惠（例如富邦買進 0.1%、無低消）；單筆買賣則有低消（約 US$20～30）。所以小額交易建議用定期定額。費率會變動，請以券商最新公告為準。</p></div></details>
+  <details><summary>Q2　可以當沖美股嗎？</summary><div><p>複委託一般不支援當沖，交割制度也限制當日反覆交易。建議以長期持有為主。各券商規定不同，想做特定操作前先確認。</p></div></details>
+  <details><summary>Q3　下單時間有限制嗎？</summary><div><p>多數券商可在美股開盤時段（台灣晚上）下單，通常也支援預約單，讓你白天先設定、晚上自動送出。</p></div></details>
+  <details><summary>Q4　我需要每天盯盤嗎？</summary><div><p>不用。設定好定期定額加上停損單之後，每月看一次、做必要調整即可。紀律比盯盤重要。</p></div></details>
+  <details><summary>Q5　如果券商倒閉，我的美股還在嗎？</summary><div><p>美股登記在美國保管機構，與券商自有資產分離。美國有 SIPC 保障（上限 US$500,000，含現金 US$250,000），保的是保管短缺，不是市場下跌造成的虧損。</p></div></details>
+</section>
+
+<!-- ═════════════ Chapter 06 ═════════════ -->
+<section class="chapter" id="建立你的美股系統">
+  <div class="chapter-num">06 · Start · 開始行動</div>
+  <h1>建立你的美股系統，從三個步驟開始。</h1>
+
+  <p class="lead">把前面五章收斂成可以今天就做的三個動作。</p>
+
+  <ol>
+    <li><strong>開戶</strong>——找一家手續費友善的券商（富邦、永豐、國泰等），開通複委託功能，並設定好台幣或外幣交割。</li>
+    <li><strong>設定</strong>——每月發薪後固定扣款，自動買進你的核心標的（例如大盤型 ETF）。讓投資變成不需要意志力的習慣。</li>
+    <li><strong>保護</strong>——替持股設定停損（例如 10%～15%，可隨獲利上移）。因為美股沒有漲跌幅，這一步不能省。</li>
+  </ol>
+
+  <blockquote>
+    「不用成為選股高手，只要成為紀律的執行者。」
+    <span class="cite">— 本手冊的一句話總結</span>
+  </blockquote>
+
+  <h2>免責聲明</h2>
+  <p>本內容僅供教育與資訊參考，<strong>不構成任何投資、稅務或法律建議</strong>。文中所有標的（BRK.B、VOO、QQQM、SHV、SCHD 等）僅為說明示例，並非推薦。投資有賺有賠，過去績效不代表未來表現。費率、稅率、交易規則與行情可能隨時變動，請以主管機關與券商最新公告為準；重大決策請先諮詢合格專業人士。</p>
+
+  <h2>資料來源</h2>
+  <p>SEC Investor.gov（T+1 交割，2024/05/28 起）｜ Nasdaq（美股交易時間）｜ IRS（非居民 FDAP 股息預扣 30%、遺產稅 Form 706-NA、US$60,000 門檻）｜ SIPC（保障上限 US$500,000／現金 US$250,000）｜ SIFMA 2025 Capital Markets Outlook（美股佔全球 47.4%，FY24）｜ 富邦證券、國泰證券（複委託費率與規則）。行情數據為 2026/06/08 收盤附近：BRK.B ≈ US$487、VOO ≈ US$685、QQQM ≈ US$294、USD/TWD ≈ 31.6。</p>
+
+  <p class="note">美股須知 ｜ 出版型入門手冊 · 資料日期 2026-06-09</p>
+</section>
+
+<script>
+(function () {
+  "use strict";
+  var fmtNT = function (n) { return 'NT$ ' + Math.round(n).toLocaleString('en-US'); };
+
+  /* ---------- 複利試算 ---------- */
+  var cmpAmt = document.getElementById('cmpAmt'),
+      cmpYr = document.getElementById('cmpYr'),
+      cmpRate = document.getElementById('cmpRate');
+  if (cmpAmt) {
+    var growthSvg = document.getElementById('growthSvg');
+    var compound = function () {
+      var m = +cmpAmt.value, y = +cmpYr.value, rate = +cmpRate.value;
+      document.getElementById('cmpAmtLab').textContent = 'NT$ ' + m.toLocaleString('en-US');
+      document.getElementById('cmpYrLab').textContent = y + ' 年';
+      document.getElementById('cmpRateLab').textContent = rate + '%';
+      var n = y * 12, r = rate / 100 / 12;
+      var fv = r > 0 ? m * ((Math.pow(1 + r, n) - 1) / r) : m * n;
+      var prin = m * n;
+      document.getElementById('cmpPrin').textContent = fmtNT(prin);
+      document.getElementById('cmpFv').textContent = fmtNT(fv);
+      document.getElementById('r72rate').textContent = rate;
+      document.getElementById('r72').textContent = (72 / rate).toFixed(1);
+      var W = 400, H = 130, pad = 4, pts = [], pps = [], maxV = fv;
+      for (var i = 0; i <= y; i++) {
+        var nn = i * 12;
+        var v = r > 0 ? m * ((Math.pow(1 + r, nn) - 1) / r) : m * nn;
+        var pr = m * nn;
+        var x = pad + (W - 2 * pad) * (y > 0 ? i / y : 0);
+        pts.push([x, H - pad - (H - 2 * pad) * (maxV > 0 ? v / maxV : 0)]);
+        pps.push([x, H - pad - (H - 2 * pad) * (maxV > 0 ? pr / maxV : 0)]);
       }
-      function path(arr){ return arr.map(function(p,idx){ return (idx===0?'M':'L')+p[0].toFixed(1)+' '+p[1].toFixed(1); }).join(' '); }
-      var area = path(pts)+' L '+pts[pts.length-1][0].toFixed(1)+' '+(H-pad)+' L '+pts[0][0].toFixed(1)+' '+(H-pad)+' Z';
+      function path(arr) {
+        return arr.map(function (p, idx) { return (idx === 0 ? 'M' : 'L') + p[0].toFixed(1) + ' ' + p[1].toFixed(1); }).join(' ');
+      }
+      var area = path(pts) + ' L ' + pts[pts.length - 1][0].toFixed(1) + ' ' + (H - pad) + ' L ' + pts[0][0].toFixed(1) + ' ' + (H - pad) + ' Z';
       growthSvg.innerHTML =
-        '<defs><linearGradient id="gg" x1="0" y1="0" x2="0" y2="1">'+
-        '<stop offset="0%" stop-color="oklch(0.82 0.075 88 / .42)"/><stop offset="100%" stop-color="oklch(0.82 0.075 88 / .03)"/></linearGradient></defs>'+
-        '<path d="'+area+'" fill="url(#gg)"/>'+
-        '<path d="'+path(pps)+'" fill="none" stroke="var(--ink-soft)" stroke-width="1.5" stroke-dasharray="4 4"/>'+
-        '<path d="'+path(pts)+'" fill="none" stroke="var(--accent)" stroke-width="2.5"/>';
-    }
-    [cmpAmt,cmpYr,cmpRate].forEach(function(el){ el.addEventListener('input', compound); });
+        '<defs><linearGradient id="gg" x1="0" y1="0" x2="0" y2="1">' +
+        '<stop offset="0%" stop-color="rgba(27,54,93,.20)"/><stop offset="100%" stop-color="rgba(27,54,93,.02)"/></linearGradient></defs>' +
+        '<path d="' + area + '" fill="url(#gg)"/>' +
+        '<path d="' + path(pps) + '" fill="none" stroke="#6b6a64" stroke-width="1.5" stroke-dasharray="4 4"/>' +
+        '<path d="' + path(pts) + '" fill="none" stroke="#1B365D" stroke-width="2.5"/>';
+    };
+    [cmpAmt, cmpYr, cmpRate].forEach(function (el) { el.addEventListener('input', compound); });
     compound();
   }
 
-  /* ---------- color flip ---------- */
-  var demo=document.getElementById('colorDemo'), cap=document.getElementById('flipCap');
-  var bUs=document.getElementById('mUs'), bTw=document.getElementById('mTw');
-  if(demo){
-    function setMarket(mkt){
+  /* ---------- 漲跌顏色切換 ---------- */
+  var demo = document.getElementById('colorDemo'), cap = document.getElementById('flipCap');
+  var bUs = document.getElementById('mUs'), bTw = document.getElementById('mTw');
+  if (demo) {
+    var setMarket = function (mkt) {
       demo.setAttribute('data-market', mkt);
-      var us = mkt==='us';
-      bUs.setAttribute('aria-pressed', us);
-      bTw.setAttribute('aria-pressed', !us);
+      var us = mkt === 'us';
+      bUs.setAttribute('aria-pressed', String(us));
+      bTw.setAttribute('aria-pressed', String(!us));
       cap.innerHTML = us
-        ? '目前顯示 <b>美股規則</b>：<b>綠色代表上漲</b>、紅色代表下跌，和台股相反。'
-        : '目前顯示 <b>台股規則</b>：<b>紅色代表上漲</b>、綠色代表下跌，這是你熟悉的習慣。';
-    }
-    bUs.addEventListener('click', function(){ setMarket('us'); });
-    bTw.addEventListener('click', function(){ setMarket('tw'); });
+        ? '目前顯示 <strong>美股規則</strong>：<strong>綠色代表上漲</strong>、紅色代表下跌，和台股相反。'
+        : '目前顯示 <strong>台股規則</strong>：<strong>紅色代表上漲</strong>、綠色代表下跌，這是你熟悉的習慣。';
+    };
+    bUs.addEventListener('click', function () { setMarket('us'); });
+    bTw.addEventListener('click', function () { setMarket('tw'); });
   }
 
-  /* ---------- settlement timeline ---------- */
-  var tlNodes=[].slice.call(document.querySelectorAll('.tl .node'));
-  if(tlNodes.length){
-    var tlFill=document.getElementById('tlFill'), tlKey=document.getElementById('tlKey'), tlVal=document.getElementById('tlVal');
-    var tlData=[
-      ['T 日 · 交易日','你在美股盤中賣出股票，成交。這天還拿不到可動用的現金。'],
-      ['T+1 日 · 美國完成交割','美股 2024/05/28 起為 T+1，款項在美國端完成交割，進入券商的國外帳戶。'],
-      ['T+2 日 · 款項可動用','款項轉入你的複委託交割帳戶（台幣或美元，視當初設定）。實際入帳與可提領時間，仍依各券商作業而定。']
+  /* ---------- 交割時間軸 ---------- */
+  var tlNodes = [].slice.call(document.querySelectorAll('.tl .node'));
+  if (tlNodes.length) {
+    var tlFill = document.getElementById('tlFill'),
+        tlKey = document.getElementById('tlKey'),
+        tlVal = document.getElementById('tlVal');
+    var tlData = [
+      ['T 日 · 交易日', '你在美股盤中賣出股票，成交。這天還拿不到可動用的現金。'],
+      ['T+1 日 · 美國完成交割', '美股 2024/05/28 起為 T+1，款項在美國端完成交割，進入券商的國外帳戶。'],
+      ['T+2 日 · 款項可動用', '款項轉入你的複委託交割帳戶（台幣或美元，視當初設定）。實際入帳與可提領時間，仍依各券商作業而定。']
     ];
-    function setStep(i){
-      tlNodes.forEach(function(n,idx){ n.classList.toggle('active', idx<=i); });
-      tlFill.style.width = (i/(tlNodes.length-1)*100)+'%';
-      tlKey.textContent=tlData[i][0]; tlVal.textContent=tlData[i][1];
-    }
-    tlNodes.forEach(function(n){ n.addEventListener('click', function(){ setStep(+n.getAttribute('data-step')); }); });
+    var setStep = function (i) {
+      tlNodes.forEach(function (n, idx) { n.classList.toggle('active', idx <= i); });
+      tlFill.style.width = (i / (tlNodes.length - 1) * 100) + '%';
+      tlKey.textContent = tlData[i][0];
+      tlVal.textContent = tlData[i][1];
+    };
+    tlNodes.forEach(function (n) {
+      n.addEventListener('click', function () { setStep(+n.getAttribute('data-step')); });
+    });
     setStep(0);
   }
 
-  /* ---------- fractional calculator ---------- */
-  var fracAmt=document.getElementById('fracAmt'), fracPick=document.getElementById('fracPick');
-  if(fracAmt){
-    var RATE=31.6, curTk={tk:'BRKB', price:487, name:'BRK.B'};
-    var names={BRKB:'BRK.B', VOO:'VOO', QQQM:'QQQM'};
-    function frac(){
-      var twd=+fracAmt.value, usd=twd/RATE, shares=usd/curTk.price;
-      document.getElementById('fracAmtLab').textContent='NT$ '+twd.toLocaleString('en-US');
-      document.getElementById('fracTwd').textContent='NT$'+twd.toLocaleString('en-US');
-      document.getElementById('fracUsd').textContent='US$'+usd.toFixed(0);
-      document.getElementById('fracShares').textContent='約 '+shares.toFixed(shares<1?3:2)+' 股';
-      var months=Math.max(1, Math.round(curTk.price/usd));
-      var mEl=document.getElementById('fracMonths');
-      if(shares>=1){ mEl.innerHTML='每月就能買進 <b>'+shares.toFixed(2)+'</b> 股 '+names[curTk.tk]+'。'; }
-      else { mEl.innerHTML='大約 <b>'+months+'</b> 個月，可以湊滿 1 股 '+names[curTk.tk]+'。'; }
-    }
+  /* ---------- 碎股試算 ---------- */
+  var fracAmt = document.getElementById('fracAmt'), fracPick = document.getElementById('fracPick');
+  if (fracAmt) {
+    var RATE = 31.6, curTk = { tk: 'BRKB', price: 487 };
+    var names = { BRKB: 'BRK.B', VOO: 'VOO', QQQM: 'QQQM' };
+    var frac = function () {
+      var twd = +fracAmt.value, usd = twd / RATE, shares = usd / curTk.price;
+      document.getElementById('fracAmtLab').textContent = 'NT$ ' + twd.toLocaleString('en-US');
+      document.getElementById('fracTwd').textContent = 'NT$' + twd.toLocaleString('en-US');
+      document.getElementById('fracUsd').textContent = 'US$' + usd.toFixed(0);
+      document.getElementById('fracShares').textContent = '約 ' + shares.toFixed(shares < 1 ? 3 : 2) + ' 股';
+      var months = Math.max(1, Math.round(curTk.price / usd));
+      var mEl = document.getElementById('fracMonths');
+      if (shares >= 1) {
+        mEl.innerHTML = '每月就能買進 <strong>' + shares.toFixed(2) + '</strong> 股 ' + names[curTk.tk] + '。';
+      } else {
+        mEl.innerHTML = '大約 <strong>' + months + '</strong> 個月，可以湊滿 1 股 ' + names[curTk.tk] + '。';
+      }
+    };
     fracAmt.addEventListener('input', frac);
-    [].slice.call(fracPick.querySelectorAll('button')).forEach(function(b){
-      b.addEventListener('click', function(){
-        [].slice.call(fracPick.querySelectorAll('button')).forEach(function(x){ x.setAttribute('aria-pressed','false'); });
-        b.setAttribute('aria-pressed','true');
-        curTk={tk:b.getAttribute('data-tk'), price:+b.getAttribute('data-price'), name:names[b.getAttribute('data-tk')]};
+    [].slice.call(fracPick.querySelectorAll('button')).forEach(function (b) {
+      b.addEventListener('click', function () {
+        [].slice.call(fracPick.querySelectorAll('button')).forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+        b.setAttribute('aria-pressed', 'true');
+        curTk = { tk: b.getAttribute('data-tk'), price: +b.getAttribute('data-price') };
         frac();
       });
     });
     frac();
   }
 
-  /* ---------- stop loss ---------- */
-  var slPct=document.getElementById('slPct');
-  if(slPct){
-    var slSvg=document.getElementById('slSvg');
-    // a fixed illustrative price path (buy at 100, wobble, then slide down)
-    var series=[100,103,101,105,99,96,92,88,83,78,72,68];
-    var W=360,H=200,pad=26, maxP=110, minP=60;
-    function X(i){ return pad + (W-2*pad)*(i/(series.length-1)); }
-    function Y(v){ return pad + (H-2*pad)*(1-(v-minP)/(maxP-minP)); }
-    function drawSL(){
-      var pct=+slPct.value, trig=100*(1-pct/100);
-      document.getElementById('slPctLab').textContent=pct+'%';
-      document.getElementById('slTrig').textContent='$'+trig.toFixed(0);
-      // find crossing index
-      var ci=-1;
-      for(var i=0;i<series.length;i++){ if(series[i]<=trig){ ci=i; break; } }
-      var line = series.map(function(v,i){ return (i===0?'M':'L')+X(i).toFixed(1)+' '+Y(v).toFixed(1); }).join(' ');
-      var trigY=Y(trig);
-      var marker='', shade='';
-      if(ci>=0){
-        var mx=X(ci), my=Y(series[ci]);
-        var labelX=Math.max(mx, 92);
-        marker='<circle cx="'+mx.toFixed(1)+'" cy="'+my.toFixed(1)+'" r="6" fill="#ff6b6b" stroke="#050505" stroke-width="2"/>'+
-          '<rect x="'+(labelX-36).toFixed(1)+'" y="'+(my-28).toFixed(1)+'" width="72" height="18" rx="3" fill="rgba(5,5,5,.82)" stroke="rgba(255,255,255,.22)"/>'+
-          '<text x="'+labelX.toFixed(1)+'" y="'+(my-15).toFixed(1)+'" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="#ffd6d6" font-weight="700">停損賣出</text>';
-        shade='<rect x="'+mx.toFixed(1)+'" y="'+pad+'" width="'+(W-pad-mx).toFixed(1)+'" height="'+(H-2*pad)+'" fill="rgba(239,68,68,.18)"/>';
+  /* ---------- 停損模擬 ---------- */
+  var slPct = document.getElementById('slPct');
+  if (slPct) {
+    var slSvg = document.getElementById('slSvg');
+    var series = [100, 103, 101, 105, 99, 96, 92, 88, 83, 78, 72, 68];
+    var W = 360, H = 200, pad = 26, maxP = 110, minP = 60;
+    var X = function (i) { return pad + (W - 2 * pad) * (i / (series.length - 1)); };
+    var Y = function (v) { return pad + (H - 2 * pad) * (1 - (v - minP) / (maxP - minP)); };
+    var drawSL = function () {
+      var pct = +slPct.value, trig = 100 * (1 - pct / 100);
+      document.getElementById('slPctLab').textContent = pct + '%';
+      document.getElementById('slTrig').textContent = '$' + trig.toFixed(0);
+      var ci = -1;
+      for (var i = 0; i < series.length; i++) { if (series[i] <= trig) { ci = i; break; } }
+      var line = series.map(function (v, i) { return (i === 0 ? 'M' : 'L') + X(i).toFixed(1) + ' ' + Y(v).toFixed(1); }).join(' ');
+      var trigY = Y(trig);
+      var marker = '', shade = '';
+      if (ci >= 0) {
+        var mx = X(ci), my = Y(series[ci]);
+        var labelX = Math.max(mx, 92);
+        marker = '<circle cx="' + mx.toFixed(1) + '" cy="' + my.toFixed(1) + '" r="5" fill="#8b4513"/>' +
+          '<rect x="' + (labelX - 30).toFixed(1) + '" y="' + (my - 26).toFixed(1) + '" width="60" height="16" rx="3" fill="#f0e0d8"/>' +
+          '<text x="' + labelX.toFixed(1) + '" y="' + (my - 14).toFixed(1) + '" text-anchor="middle" font-size="9" fill="#8b4513">停損賣出</text>';
+        shade = '<rect x="' + mx.toFixed(1) + '" y="' + pad + '" width="' + (W - pad - mx).toFixed(1) + '" height="' + (H - 2 * pad) + '" fill="#f0e0d8" opacity="0.55"/>';
       }
       slSvg.innerHTML =
         shade +
-        '<rect x="'+pad+'" y="'+pad+'" width="'+(W-2*pad)+'" height="'+(H-2*pad)+'" fill="rgba(255,255,255,.025)" stroke="rgba(255,255,255,.08)"/>'+
-        '<line x1="'+pad+'" y1="'+Y(100).toFixed(1)+'" x2="'+(W-pad)+'" y2="'+Y(100).toFixed(1)+'" stroke="rgba(255,255,255,.34)" stroke-width="1" stroke-dasharray="2 3"/>'+
-        '<text x="'+pad+'" y="'+(Y(100)-7).toFixed(1)+'" font-family="var(--font-mono)" font-size="10" fill="#f8fafc">買進 $100</text>'+
-        '<line x1="'+pad+'" y1="'+trigY.toFixed(1)+'" x2="'+(W-pad)+'" y2="'+trigY.toFixed(1)+'" stroke="#ff6b6b" stroke-width="1.6" stroke-dasharray="5 4"/>'+
-        '<rect x="'+(W-pad-70)+'" y="'+(trigY-21).toFixed(1)+'" width="70" height="18" rx="3" fill="rgba(5,5,5,.82)" stroke="rgba(255,107,107,.42)"/>'+
-        '<text x="'+(W-pad-6)+'" y="'+(trigY-8).toFixed(1)+'" text-anchor="end" font-family="var(--font-mono)" font-size="10" fill="#ffd6d6" font-weight="700">停損 $'+trig.toFixed(0)+'</text>'+
-        '<path d="'+line+'" fill="none" stroke="#f8fafc" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>'+
+        '<rect x="' + pad + '" y="' + pad + '" width="' + (W - 2 * pad) + '" height="' + (H - 2 * pad) + '" fill="#ffffff" stroke="#e8e6dc"/>' +
+        '<line x1="' + pad + '" y1="' + Y(100).toFixed(1) + '" x2="' + (W - pad) + '" y2="' + Y(100).toFixed(1) + '" stroke="#6b6a64" stroke-width="1" stroke-dasharray="2 3"/>' +
+        '<text x="' + pad + '" y="' + (Y(100) - 6).toFixed(1) + '" font-size="9" fill="#504e49">買進 $100</text>' +
+        '<line x1="' + pad + '" y1="' + trigY.toFixed(1) + '" x2="' + (W - pad) + '" y2="' + trigY.toFixed(1) + '" stroke="#8b4513" stroke-width="1.4" stroke-dasharray="5 4"/>' +
+        '<text x="' + (W - pad) + '" y="' + (trigY - 6).toFixed(1) + '" text-anchor="end" font-size="9" fill="#8b4513">停損 $' + trig.toFixed(0) + '</text>' +
+        '<path d="' + line + '" fill="none" stroke="#1B365D" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>' +
         marker;
-    }
+    };
     slPct.addEventListener('input', drawSL);
     drawSL();
   }
 })();
 </script>
+
 </body>
 </html>
