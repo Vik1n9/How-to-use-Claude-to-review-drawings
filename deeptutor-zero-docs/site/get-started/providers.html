@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepTutor 對接 36 個大模型服務商！OpenAI 本機 Ollama 全覆蓋，白拿本機模型，附設定教學！｜零度解說 · DeepTutor 零度版</title>
+<meta name="description" content="Agent-native, open-source personalized tutoring.">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="DeepTutor 對接 36 個大模型服務商！OpenAI 本機 Ollama 全覆蓋，白拿本機模型，附設定教學！｜零度解說 · DeepTutor 零度版">
+<meta property="og:site_name" content="DeepTutor 零度版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>零度版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html" aria-current="page">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">快速上手<span aria-hidden="true"> · </span>模型與搜尋提供商</p>
+      <h1 class="doc-title">DeepTutor 對接 36 個大模型服務商！OpenAI 本機 Ollama 全覆蓋，白拿本機模型，附設定教學！｜零度解說</h1>
+      <p class="doc-lede">Agent-native, open-source personalized tutoring.</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#一設定入口和優先順序">一、設定入口和優先順序</a>
+</li>
+<li class="d2"><a href="#二llm-服務商">二、LLM 服務商</a>
+<ul>
+<li class="d3"><a href="#設定">設定</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#三向量化模型服務商">三、向量化模型服務商</a>
+<ul>
+<li class="d3"><a href="#設定-1">設定</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#四搜尋服務商">四、搜尋服務商</a>
+<ul>
+<li class="d3"><a href="#設定-2">設定</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#五語音與生成服務商">五、語音與生成服務商</a>
+</li>
+<li class="d2"><a href="#六本機模型">六、本機模型</a>
+<ul>
+<li class="d3"><a href="#ollama">Ollama</a></li>
+<li class="d3"><a href="#lm-studio">LM Studio</a></li>
+<li class="d3"><a href="#vllm">vLLM</a></li>
+<li class="d3"><a href="#llama.cpp">llama.cpp</a></li>
+<li class="d3"><a href="#lemonade">Lemonade</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#deeptutor-相關下載點">DeepTutor 相關下載點</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/get-started/providers/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/get-started/providers/</a></p> <p>最近 DeepTutor 系列寫了好幾篇，後台被問得最多的問題只有一類：模型到底怎麼配？</p>
+<p>答案比想像中豪華。DeepTutor 的模型 catalog 一共覆蓋 8 類服務：大語言模型（LLM）、Task Models、向量化模型（Embedding）、搜尋、語音合成、語音識別、文生圖與文生影片。光 LLM 服務商（Provider）就收錄了 36 家，從 OpenAI、Anthropic 到本機 Ollama 全都排在選單裡。</p>
+<p>但是問題來了。36 家服務商怎麼選、怎麼填，舊的 <code>LLM_*</code> 環境變數為什麼突然不認了？接下來，我們就把設定面板徹底拆一遍。</p>
+<p>先記一個硬規矩：模型憑據和選擇只從 catalog 解析；舊的 <code>LLM_*</code>、<code>EMBEDDING_*</code>、<code>SEARCH_*</code> 環境變數寫法已不能設定它們。專案根目錄的 <code>.env</code> 檔案不會自動載入。</p>
+<h2 id="一設定入口和優先順序">一、設定入口和優先順序</h2>
+<p>日常設定請用 <strong>設定 → Models</strong>；它會寫入 <code>data/user/settings/model_catalog.json</code> 並 apply 變更。<code>deeptutor init</code> 只覆蓋首次啟動的 LLM、embedding 與 search 設定。</p>
+<p><strong>連線（Connections）。</strong> <strong>設定 → Models → Connections</strong> 儲存一份 vendor 憑據並關聯到支援的模型服務 profiles；未關聯的服務仍保留自己的憑據。</p>
+<p><strong>Task Models。</strong> 與 LLM 同形的 <code>task</code> service 負責會話標題和 Home 起始建議，可複用 LLM provider；留空時繼承 LLM。</p>
+<h2 id="二llm-服務商">二、LLM 服務商</h2>
+<p>36 家全在這張表裡，直接照抄：</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Binding</th>
+<th>預設 Base URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AiHubMix</td>
+<td>aihubmix</td>
+<td><a href="https://aihubmix.com/v1" target="_blank" rel="noopener" class="uri">https://aihubmix.com/v1</a></td>
+</tr>
+<tr>
+<td>Anthropic</td>
+<td>anthropic</td>
+<td><a href="https://api.anthropic.com/v1" target="_blank" rel="noopener" class="uri">https://api.anthropic.com/v1</a></td>
+</tr>
+<tr>
+<td>Atlas Cloud</td>
+<td>atlascloud</td>
+<td><a href="https://api.atlascloud.ai/v1" target="_blank" rel="noopener" class="uri">https://api.atlascloud.ai/v1</a></td>
+</tr>
+<tr>
+<td>Azure OpenAI</td>
+<td>azure_openai</td>
+<td>—</td>
+</tr>
+<tr>
+<td>BytePlus</td>
+<td>byteplus</td>
+<td><a href="https://ark.ap-southeast.bytepluses.com/api/v3" target="_blank" rel="noopener" class="uri">https://ark.ap-southeast.bytepluses.com/api/v3</a></td>
+</tr>
+<tr>
+<td>BytePlus Coding Plan</td>
+<td>byteplus_coding_plan</td>
+<td><a href="https://ark.ap-southeast.bytepluses.com/api/coding/v3" target="_blank" rel="noopener" class="uri">https://ark.ap-southeast.bytepluses.com/api/coding/v3</a></td>
+</tr>
+<tr>
+<td>Custom (OpenAI-compat)</td>
+<td>custom</td>
+<td>—</td>
+</tr>
+<tr>
+<td>CodeBuddy / WorkBuddy</td>
+<td>codebuddy</td>
+<td>—（SDK 登入）</td>
+</tr>
+<tr>
+<td>DashScope (Qwen)</td>
+<td>dashscope</td>
+<td><a href="https://dashscope.aliyuncs.com/compatible-mode/v1" target="_blank" rel="noopener" class="uri">https://dashscope.aliyuncs.com/compatible-mode/v1</a></td>
+</tr>
+<tr>
+<td>DeepSeek</td>
+<td>deepseek</td>
+<td><a href="https://api.deepseek.com" target="_blank" rel="noopener" class="uri">https://api.deepseek.com</a></td>
+</tr>
+<tr>
+<td>Eden AI</td>
+<td>edenai</td>
+<td><a href="https://api.edenai.run/v3" target="_blank" rel="noopener" class="uri">https://api.edenai.run/v3</a></td>
+</tr>
+<tr>
+<td>Gemini</td>
+<td>gemini</td>
+<td><a href="https://generativelanguage.googleapis.com/v1beta/openai/" target="_blank" rel="noopener" class="uri">https://generativelanguage.googleapis.com/v1beta/openai/</a></td>
+</tr>
+<tr>
+<td>GitHub Copilot</td>
+<td>github_copilot</td>
+<td><a href="https://api.githubcopilot.com" target="_blank" rel="noopener" class="uri">https://api.githubcopilot.com</a></td>
+</tr>
+<tr>
+<td>Groq</td>
+<td>groq</td>
+<td><a href="https://api.groq.com/openai/v1" target="_blank" rel="noopener" class="uri">https://api.groq.com/openai/v1</a></td>
+</tr>
+<tr>
+<td>Lemonade</td>
+<td>lemonade</td>
+<td><a href="http://localhost:13305/api/v1" target="_blank" rel="noopener" class="uri">http://localhost:13305/api/v1</a></td>
+</tr>
+<tr>
+<td>llama.cpp</td>
+<td>llama_cpp</td>
+<td><a href="http://localhost:8080/v1" target="_blank" rel="noopener" class="uri">http://localhost:8080/v1</a></td>
+</tr>
+<tr>
+<td>LM Studio</td>
+<td>lm_studio</td>
+<td><a href="http://localhost:1234/v1" target="_blank" rel="noopener" class="uri">http://localhost:1234/v1</a></td>
+</tr>
+<tr>
+<td>MiniMax</td>
+<td>minimax</td>
+<td><a href="https://api.minimax.io/v1" target="_blank" rel="noopener" class="uri">https://api.minimax.io/v1</a></td>
+</tr>
+<tr>
+<td>Mistral</td>
+<td>mistral</td>
+<td><a href="https://api.mistral.ai/v1" target="_blank" rel="noopener" class="uri">https://api.mistral.ai/v1</a></td>
+</tr>
+<tr>
+<td>Moonshot (Kimi)</td>
+<td>moonshot</td>
+<td><a href="https://api.moonshot.cn/v1" target="_blank" rel="noopener" class="uri">https://api.moonshot.cn/v1</a></td>
+</tr>
+<tr>
+<td>Novita AI</td>
+<td>novita</td>
+<td><a href="https://api.novita.ai/openai" target="_blank" rel="noopener" class="uri">https://api.novita.ai/openai</a></td>
+</tr>
+<tr>
+<td>Ollama</td>
+<td>ollama</td>
+<td><a href="http://localhost:11434/v1" target="_blank" rel="noopener" class="uri">http://localhost:11434/v1</a></td>
+</tr>
+<tr>
+<td>NVIDIA NIM</td>
+<td>nvidia_nim</td>
+<td><a href="https://integrate.api.nvidia.com/v1" target="_blank" rel="noopener" class="uri">https://integrate.api.nvidia.com/v1</a></td>
+</tr>
+<tr>
+<td>OpenAI</td>
+<td>openai</td>
+<td><a href="https://api.openai.com/v1" target="_blank" rel="noopener" class="uri">https://api.openai.com/v1</a></td>
+</tr>
+<tr>
+<td>OpenAI Codex</td>
+<td>openai_codex</td>
+<td><a href="https://chatgpt.com/backend-api" target="_blank" rel="noopener" class="uri">https://chatgpt.com/backend-api</a></td>
+</tr>
+<tr>
+<td>OpenRouter</td>
+<td>openrouter</td>
+<td><a href="https://openrouter.ai/api/v1" target="_blank" rel="noopener" class="uri">https://openrouter.ai/api/v1</a></td>
+</tr>
+<tr>
+<td>OrcaRouter</td>
+<td>orcarouter</td>
+<td><a href="https://api.orcarouter.ai/v1" target="_blank" rel="noopener" class="uri">https://api.orcarouter.ai/v1</a></td>
+</tr>
+<tr>
+<td>OpenVINO Model Server</td>
+<td>ovms</td>
+<td><a href="http://localhost:8000/v3" target="_blank" rel="noopener" class="uri">http://localhost:8000/v3</a></td>
+</tr>
+<tr>
+<td>Qianfan (Ernie)</td>
+<td>qianfan</td>
+<td><a href="https://qianfan.baidubce.com/v2" target="_blank" rel="noopener" class="uri">https://qianfan.baidubce.com/v2</a></td>
+</tr>
+<tr>
+<td>SiliconFlow</td>
+<td>siliconflow</td>
+<td><a href="https://api.siliconflow.cn/v1" target="_blank" rel="noopener" class="uri">https://api.siliconflow.cn/v1</a></td>
+</tr>
+<tr>
+<td>Step Fun</td>
+<td>stepfun</td>
+<td><a href="https://api.stepfun.com/v1" target="_blank" rel="noopener" class="uri">https://api.stepfun.com/v1</a></td>
+</tr>
+<tr>
+<td>vLLM</td>
+<td>vllm</td>
+<td>—（需顯式設定）</td>
+</tr>
+<tr>
+<td>VolcEngine</td>
+<td>volcengine</td>
+<td><a href="https://ark.cn-beijing.volces.com/api/v3" target="_blank" rel="noopener" class="uri">https://ark.cn-beijing.volces.com/api/v3</a></td>
+</tr>
+<tr>
+<td>VolcEngine Coding Plan</td>
+<td>volcengine_coding_plan</td>
+<td><a href="https://ark.cn-beijing.volces.com/api/coding/v3" target="_blank" rel="noopener" class="uri">https://ark.cn-beijing.volces.com/api/coding/v3</a></td>
+</tr>
+<tr>
+<td>Xiaomi MIMO</td>
+<td>xiaomi_mimo</td>
+<td><a href="https://api.xiaomimimo.com/v1" target="_blank" rel="noopener" class="uri">https://api.xiaomimimo.com/v1</a></td>
+</tr>
+<tr>
+<td>Zhipu AI (GLM)</td>
+<td>zhipu</td>
+<td><a href="https://open.bigmodel.cn/api/paas/v4" target="_blank" rel="noopener" class="uri">https://open.bigmodel.cn/api/paas/v4</a></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="設定">設定</h3>
+<div class="codeblock" data-lang="text"><pre><code>设置 → Models → LLM
+Provider: OpenAI
+Model: gpt-4o-mini
+API key: sk-xxx
+Base URL: https://api.openai.com/v1</code></pre></div>
+<p>提示 LLM/Task 可選擇 <strong>API format</strong> 或 <strong>Auto</strong>；<strong>List models</strong> 只追加模型，每模型能力可覆蓋。舊 Anthropic 綁定仍可載入。</p>
+<h2 id="三向量化模型服務商">三、向量化模型服務商</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Binding</th>
+<th>模型範例</th>
+<th>預設維度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenAI</td>
+<td>openai</td>
+<td>text-embedding-3-large</td>
+<td>3072</td>
+</tr>
+<tr>
+<td>Gemini</td>
+<td>gemini</td>
+<td>gemini-embedding-2</td>
+<td>3072</td>
+</tr>
+<tr>
+<td>Azure OpenAI</td>
+<td>azure_openai</td>
+<td>部署名稱</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Cohere</td>
+<td>cohere</td>
+<td>embed-v4.0</td>
+<td>1024</td>
+</tr>
+<tr>
+<td>Jina</td>
+<td>jina</td>
+<td>jina-embeddings-v3</td>
+<td>1024</td>
+</tr>
+<tr>
+<td>Ollama</td>
+<td>ollama</td>
+<td>nomic-embed-text</td>
+<td>768</td>
+</tr>
+<tr>
+<td>vLLM / LM Studio</td>
+<td>vllm</td>
+<td>任意 embedding 模型</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SiliconFlow</td>
+<td>siliconflow</td>
+<td>Qwen/Qwen3-Embedding-8B</td>
+<td>4096</td>
+</tr>
+<tr>
+<td>Aliyun DashScope</td>
+<td>aliyun</td>
+<td>qwen3-vl-embedding</td>
+<td>2560</td>
+</tr>
+<tr>
+<td>OpenRouter</td>
+<td>openrouter</td>
+<td>取決於 provider</td>
+<td>—</td>
+</tr>
+<tr>
+<td>OrcaRouter</td>
+<td>orcarouter</td>
+<td>取決於 provider</td>
+<td>—</td>
+</tr>
+<tr>
+<td>任意 OpenAI 相容</td>
+<td>custom</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Custom OpenAI SDK</td>
+<td>custom_openai_sdk</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="設定-1">設定</h3>
+<p>Embedding profile 的 <strong>Base URL</strong> 必須是完整 endpoint，不能只填 provider API root：</p>
+<div class="codeblock" data-lang="text"><pre><code>设置 → Models → Embedding
+Provider: OpenAI
+Model: text-embedding-3-large
+API key: sk-xxx
+Base URL: https://api.openai.com/v1/embeddings
+Dimension: 3072</code></pre></div>
+<p>警告：建好知識庫之後再換 embedding 模型會引發維度不匹配。DeepTutor 會檢測到並提醒你，換了模型就要把知識庫重建。</p>
+<h2 id="四搜尋服務商">四、搜尋服務商</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Profile 必填欄位</th>
+<th>備註</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Brave</td>
+<td>API key</td>
+<td>有免費額度</td>
+</tr>
+<tr>
+<td>Tavily</td>
+<td>API key</td>
+<td></td>
+</tr>
+<tr>
+<td>Serper</td>
+<td>API key</td>
+<td></td>
+</tr>
+<tr>
+<td>Serply</td>
+<td>API key</td>
+<td>Google SERP；支援 News 與 Scholar 模式</td>
+</tr>
+<tr>
+<td>Jina</td>
+<td>API key</td>
+<td></td>
+</tr>
+<tr>
+<td>SearXNG</td>
+<td>Base URL</td>
+<td>自部署，不需要 API key</td>
+</tr>
+<tr>
+<td>DuckDuckGo</td>
+<td>無</td>
+<td>不需要 API key</td>
+</tr>
+<tr>
+<td>Perplexity</td>
+<td>API key</td>
+<td>直接回傳答案</td>
+</tr>
+<tr>
+<td>Doubao 豆包</td>
+<td>API key</td>
+<td>直接回傳答案，不只是連結</td>
+</tr>
+<tr>
+<td>Bocha 博查</td>
+<td>API key</td>
+<td>國內託管</td>
+</tr>
+<tr>
+<td>Zhipu 智譜</td>
+<td>API key</td>
+<td>國內託管</td>
+</tr>
+<tr>
+<td>Firecrawl</td>
+<td>API key</td>
+<td>附帶整頁抽取</td>
+</tr>
+<tr>
+<td>百度千帆</td>
+<td>API key</td>
+<td>國內託管</td>
+</tr>
+<tr>
+<td>阿里雲 IQS</td>
+<td>API key</td>
+<td>國內託管</td>
+</tr>
+<tr>
+<td>None</td>
+<td>無</td>
+<td>顯式關閉網頁搜尋</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="設定-2">設定</h3>
+<div class="codeblock" data-lang="text"><pre><code>设置 → Models → Search
+Provider: Brave
+API key: your-api-key</code></pre></div>
+<p><code>web_search</code> 工具預設啟用。沒有設定 search profile 時，它使用無需憑據的 DuckDuckGo；只有想換 provider 時才需新增 profile，也可選擇 <code>none</code> 顯式關閉。舊的 <code>exa</code>、<code>baidu</code>、<code>openrouter</code> 值仍只是棄用的相容選項。</p>
+<p>Brave 還有免費額度，配合本機模型能把成本壓到零，免費到底。</p>
+<h2 id="五語音與生成服務商">五、語音與生成服務商</h2>
+<p>模型頁面上除了 LLM、嵌入和搜尋之外，還有四項服務。它們的設定方式相同（一個服務商連線加一份模型 id 目錄），各自解鎖一個具體的功能面：</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>服務</th>
+<th>提供商</th>
+<th>解鎖什麼</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>語音合成（TTS）</td>
+<td>openai 、 azure_openai 、 groq 、 siliconflow 、 openrouter 、 vllm 、 dashscope 、 custom</td>
+<td>助手回覆的朗讀。</td>
+</tr>
+<tr>
+<td>語音識別（STT）</td>
+<td>openai 、 azure_openai 、 groq 、 siliconflow 、 openrouter 、 vllm 、 dashscope 、 custom</td>
+<td>輸入框上的麥克風。</td>
+</tr>
+<tr>
+<td>文生圖</td>
+<td>openai 、 azure_openai 、 volcengine 、 siliconflow 、 openrouter 、 dashscope 、 custom 、 custom_chat</td>
+<td>imagegen 聊天工具。</td>
+</tr>
+<tr>
+<td>文生影片</td>
+<td>volcengine 、 dashscope 、 custom</td>
+<td>videogen 聊天工具。</td>
+</tr>
+</tbody>
+</table></div>
+<p>影像與影片生成是<strong>工具，不是模式</strong>：配好模型之後，用自然語言要一張圖，智慧代理就會呼叫工具，並把結果行內預覽、附上可下載的檔案。影片生成以非同步任務執行，所以這一輪會報告進度，而不是乾等著。</p>
+<p>警告：<code>custom_chat</code> 是給那些透過 <em>chat</em> 端點而非專門的 <code>images/generations</code> 端點提供影像生成的服務商用的。如果 profile 型別選錯，key 有效也可能無法出圖。</p>
+<h2 id="六本機模型">六、本機模型</h2>
+<p>可以說，對於經常折騰 AI 的朋友來說，這部分還非常香。DeepTutor 透過若干 provider 支援本機託管的模型。</p>
+<p>Docker 裡連線宿主機模型時，<code>localhost</code> 指容器自身；請用 <code>host.docker.internal</code> 或參考 <a href="../get-started/docker.html#五連本機-llmollama-lm-studio-llama.cpp-vllm">Docker 文件</a>。</p>
+<h3 id="ollama">Ollama</h3>
+<div class="codeblock" data-lang="text"><pre><code>LLM profile: Ollama | llama3.1 | http://localhost:11434/v1
+Embedding profile: Ollama | nomic-embed-text | http://localhost:11434/api/embed | 768
+API key: 留空</code></pre></div>
+<h3 id="lm-studio">LM Studio</h3>
+<div class="codeblock" data-lang="text"><pre><code>Provider: LM Studio
+Model: your-model-name
+Base URL: http://localhost:1234/v1
+API key: 留空</code></pre></div>
+<h3 id="vllm">vLLM</h3>
+<div class="codeblock" data-lang="text"><pre><code>Provider: vLLM
+Model: your-model-name
+Base URL: http://localhost:8000/v1
+API key: 留空；只有服务端要求时才填写</code></pre></div>
+<h3 id="llama.cpp">llama.cpp</h3>
+<div class="codeblock" data-lang="text"><pre><code>Provider: llama.cpp
+Model: your-model-name
+Base URL: http://localhost:8080/v1
+API key: 留空</code></pre></div>
+<h3 id="lemonade">Lemonade</h3>
+<div class="codeblock" data-lang="text"><pre><code>Provider: Lemonade
+Model: your-model-name
+Base URL: http://localhost:13305/api/v1
+API key: 留空</code></pre></div>
+<p>這五套設定全部照抄就能用，本機模型零 API 金鑰，填上地址就通。</p>
+<h2 id="deeptutor-相關下載點">DeepTutor 相關下載點</h2>
+<p>1、GitHub 儲存庫【點選前往】</p>
+<p>2、PyPI 官方源【點選前往】</p>
+<p>3、官方文件【點選前往】</p>
+<p>實際效果還會受到模型、提示詞以及具體使用場景的影響，建議大家結合自己的需求實際體驗評估。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../get-started/multi-user.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">多使用者部署</p></a>
+<a class="next" href="../get-started/troubleshooting.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">故障排查</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>零度版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件零度版改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

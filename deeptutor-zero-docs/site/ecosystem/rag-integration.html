@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10 種 RAG 方案任你挑！DeepTutor 不綁死向量庫，本機雲端通吃，附安裝教學！｜零度解說 · DeepTutor 零度版</title>
+<meta name="description" content="選擇 DeepTutor 如何從本機索引、智慧代理文件樹、遠端知識服務與即時學習資料庫中檢索。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="10 種 RAG 方案任你挑！DeepTutor 不綁死向量庫，本機雲端通吃，附安裝教學！｜零度解說 · DeepTutor 零度版">
+<meta property="og:site_name" content="DeepTutor 零度版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>零度版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html" aria-current="page">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">DeepTutor 生態<span aria-hidden="true"> · </span>RAG 整合</p>
+      <h1 class="doc-title">10 種 RAG 方案任你挑！DeepTutor 不綁死向量庫，本機雲端通吃，附安裝教學！｜零度解說</h1>
+      <p class="doc-lede">選擇 DeepTutor 如何從本機索引、智慧代理文件樹、遠端知識服務與即時學習資料庫中檢索。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#可用整合">可用整合</a>
+</li>
+<li class="d2"><a href="#三種整合契約">三種整合契約</a>
+</li>
+<li class="d2"><a href="#安裝與設定">安裝與設定</a>
+</li>
+<li class="d2"><a href="#按資料歸屬選擇">按資料歸屬選擇</a>
+</li>
+<li class="d2"><a href="#另見">另見</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/ecosystem/rag-integration/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/ecosystem/rag-integration/</a></p> <p>最近幫朋友搭 DeepTutor 的知識庫，他問了我一個很典型的問題：RAG（檢索增強生成）是不是只能綁死在某一個向量庫上？</p>
+<p>還真不是。</p>
+<p>DeepTutor 把檢索當成一條生態邊界，而不是寫死成某一種向量庫。在<a href="../explore/knowledge.html">知識空間</a>裡，知識庫是使用者看到的容器；背後的 <strong>RAG 整合</strong>，決定材料如何建索引、查詢、引用與同步。</p>
+<p>官方一口氣給出了 10 種整合，從本機索引、智慧代理文件樹，到遠端知識服務和即時學習資料庫，全都有。</p>
+<p>如果你當初跟我一樣，被"選了一個檢索方案就再也換不掉"的老架構折騰過，那這篇值得看完。下面一張表講明白 10 種方案，再看怎麼裝、怎麼選。</p>
+<h2 id="可用整合">可用整合</h2>
+<p>先上全家福：</p>
+<figure>
+<img src="../assets/screenshots/guide/ecosystem/rag/00-integrations.png" alt="顯示就緒與安裝狀態的知識引擎卡片" />
+<figcaption aria-hidden="true">顯示就緒與安裝狀態的知識引擎卡片</figcaption>
+</figure>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>整合</th>
+<th>檢索模型</th>
+<th>最適合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LlamaIndex</td>
+<td>本機向量檢索，混合 BM25/向量融合</td>
+<td>開箱即用的預設本機 RAG</td>
+</tr>
+<tr>
+<td>PageIndex OSS</td>
+<td>本機智慧代理遍歷無向量文件樹</td>
+<td>私有、帶頁面級引用的推理式檢索</td>
+</tr>
+<tr>
+<td>GraphRAG</td>
+<td>本機知識圖譜，支援 global/local/drift/basic</td>
+<td>跨文件關係與語料級問題</td>
+</tr>
+<tr>
+<td>LightRAG</td>
+<td>本機圖 + 向量，支援 naive/local/global/hybrid/mix</td>
+<td>輕量的圖感知檢索</td>
+</tr>
+<tr>
+<td>LightRAG Server</td>
+<td>透過 HTTP 查詢已有獨立伺服器</td>
+<td>不建本機索引，複用遠端 LightRAG 基礎設施</td>
+</tr>
+<tr>
+<td>WeKnora</td>
+<td>透過 HTTP 檢索已有的自託管知識庫</td>
+<td>不復制文件、不建本機索引，直接複用 WeKnora</td>
+</tr>
+<tr>
+<td>PageIndex Cloud</td>
+<td>託管上傳 + MCP 驅動的文件遍歷</td>
+<td>不在本機建置的託管式 agentic 檢索</td>
+</tr>
+<tr>
+<td>Tencent IMA</td>
+<td>透過 OpenAPI 訪問已有 IMA 資料庫</td>
+<td>複用雲端知識庫，並把網址或筆記寫回</td>
+</tr>
+<tr>
+<td>MarginNote 4</td>
+<td>配對裝置同步筆記、摘錄、卡片與腦圖</td>
+<td>從既有學習工作流中檢索</td>
+</tr>
+<tr>
+<td>Obsidian</td>
+<td>在 vault 內即時導航與寫筆記</td>
+<td>不上傳、不建索引，直接使用本機知識圖譜</td>
+</tr>
+</tbody>
+</table></div>
+<p>介面裡這 10 種是分組的：LlamaIndex、PageIndex OSS、GraphRAG、LightRAG 放在 <strong>Local</strong>，LightRAG Server 放在 <strong>Server</strong>，PageIndex Cloud、Tencent IMA 與 WeKnora 放在 <strong>Cloud</strong>，Obsidian 與 MarginNote 4 放在 <strong>External knowledge sources</strong>。</p>
+<p>每張卡片會顯示 <strong>Ready</strong>、<strong>Needs key</strong>、<strong>Needs setup</strong> 或 <strong>Not installed</strong>，建庫前就能看清依賴。</p>
+<h2 id="三種整合契約">三種整合契約</h2>
+<p>多數整合回應普通 <code>rag</code> 工具；有三種刻意使用了不同的契約。</p>
+<ul>
+<li><strong>PageIndex OSS</strong> 是智慧代理（Agent）式檢索：本機閱讀迴圈先檢查文件結構，再只開啟真正需要的頁面；PageIndex Cloud 透過託管儲存與 MCP（模型上下文協定）工具使用同類遍歷方式。</li>
+<li><strong>Obsidian</strong> 沒有檢索索引；專屬能力直接在即時 vault（Obsidian 的筆記儲存庫）中導航和寫入。</li>
+<li><strong>MarginNote 4</strong> 透過專用導航工具訪問同步進來的學習圖譜。</li>
+</ul>
+<p>表中其他整合（包括 LightRAG Server 與 Tencent IMA）連線為知識庫後，都可以回應普通 RAG 查詢。</p>
+<h2 id="安裝與設定">安裝與設定</h2>
+<p>LlamaIndex 是預設引擎，開箱即用；可選的本機引擎需要顯式安裝：</p>
+<div class="codeblock" data-lang="bash"><pre><code>pip install <span class="s">'deeptutor[graphrag]'</span>
+pip install <span class="s">'deeptutor[rag-lightrag]'</span></code></pre></div>
+<p>這兩行用的是 pip（Python 套件管理器），裝的是對應引擎的可選元件（extras）。</p>
+<p>LightRAG extra 只安裝受支援的 LightRAG 開發工具包（SDK）；文件解析仍是 <strong>Settings → Document Parsing</strong> 下的獨立選擇。</p>
+<p>遠端服務與即時資料庫，從知識引擎卡片或已連線知識庫中設定。</p>
+<h2 id="按資料歸屬選擇">按資料歸屬選擇</h2>
+<p>最後給一份決策清單，四句話對應四種情況：</p>
+<ul>
+<li>部署應同時擁有文件與檢索狀態時，選擇 <strong>本機索引</strong> 。</li>
+<li>頁面級結構比相似片段更重要時，選擇 <strong>智慧代理文件樹</strong> 。</li>
+<li>已有 RAG 部署應繼續做權威來源時，選擇 <strong>遠端服務</strong> 。</li>
+<li>DeepTutor 應進入學習者原有知識系統而不是複製它時，選擇 <strong>即時資料庫</strong> 。</li>
+</ul>
+<p>按資料歸屬來選，而不是按名氣來選，這是這一頁裡最值錢的建議。</p>
+<p>10 種方案擺在一起隨便挑，本機雲端通吃，對經常折騰知識庫的朋友來說，這個靈活度真的有點離譜。</p>
+<p>最後照例說一句：實際效果還會受到模型、提示詞以及具體使用場景的影響，建議大家結合自己的需求實際體驗評估。</p>
+<h2 id="另見">另見</h2>
+<ul>
+<li><a href="../explore/knowledge.html">知識空間</a> ——建立、版本化、同步和使用知識庫</li>
+<li><a href="../explore/reading.html">沉浸式閱讀</a> ——直接閱讀一個資料組，而不是給整個語料建索引</li>
+<li><a href="../explore/settings.html">設定</a> ——設定 embedding 提供商與文件解析</li>
+</ul>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../ecosystem/cli-apps.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">CLI-App 擴充</p></a>
+<a class="next" href="../ecosystem/eduhub.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">EduHub</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>零度版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件零度版改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

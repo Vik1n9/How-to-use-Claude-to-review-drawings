@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepTutor 藏了 101 個命令列神器！智慧代理直接呼叫真實工具，全程沙箱隔離，附使用教學！｜零度解說 · DeepTutor 零度版</title>
+<meta name="description" content="在每個部署中安裝一次經審查的命令列應用，再把每個獲准應用以沙箱工具形式提供給智慧代理。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="DeepTutor 藏了 101 個命令列神器！智慧代理直接呼叫真實工具，全程沙箱隔離，附使用教學！｜零度解說 · DeepTutor 零度版">
+<meta property="og:site_name" content="DeepTutor 零度版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>零度版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html" aria-current="page">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">DeepTutor 生態<span aria-hidden="true"> · </span>CLI-App 擴充</p>
+      <h1 class="doc-title">DeepTutor 藏了 101 個命令列神器！智慧代理直接呼叫真實工具，全程沙箱隔離，附使用教學！｜零度解說</h1>
+      <p class="doc-lede">在每個部署中安裝一次經審查的命令列應用，再把每個獲准應用以沙箱工具形式提供給智慧代理。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#瀏覽目錄">瀏覽目錄</a>
+</li>
+<li class="d2"><a href="#安裝僅限管理員">安裝僅限管理員</a>
+</li>
+<li class="d2"><a href="#執行仍在沙箱內">執行仍在沙箱內</a>
+</li>
+<li class="d2"><a href="#另見">另見</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/ecosystem/cli-apps/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/ecosystem/cli-apps/</a></p> <p>最近折騰 DeepTutor 的時候，我在生態板塊裡翻到了一個寶藏功能：CLI-App 擴充（命令列應用擴充）。</p>
+<p>數字先擺出來：商店裡一共收錄了 101 個命令列工具，全部從 CLI-Anything 註冊表的兩個快照精選而來，覆蓋媒體、文件、地理空間與 3D 應用。</p>
+<p>但是問題來了。讓智慧代理（Agent）去碰命令列，很多朋友第一反應就是慌：這不等於把整台主機的終端機權限直接交出去了嗎？</p>
+<p>DeepTutor 的思路其實很克制：讓智慧代理呼叫真實的命令列程式，卻不授予通用主機的完整終端機權限。每個應用都安裝在獨立環境中，以只讀方式掛載到沙箱執行器，最後只暴露一個程式固定、引數由模型生成的工具。</p>
+<p>接下來我們就把這個擴充從頭到尾梳理一遍，看看它是怎麼把"敢用"和"安全"同時做到的。</p>
+<h2 id="瀏覽目錄">瀏覽目錄</h2>
+<p>入口在<strong>學習空間 → CLI Apps</strong>。</p>
+<p>商店收錄了從兩個 CLI-Anything 註冊表快照下來的 101 個工具，涵蓋媒體、文件、地理空間與 3D 應用。</p>
+<figure>
+<img src="../assets/screenshots/guide/ecosystem/cli-apps/00-store.png" alt="帶分類、可用狀態與信任標籤的 CLI App 商店" />
+<figcaption aria-hidden="true">帶分類、可用狀態與信任標籤的 CLI App 商店</figcaption>
+</figure>
+<p>目錄隨軟體套件一起發布，所以離線也能瀏覽，部署對"當前可以安裝什麼"始終有穩定答案。</p>
+<p>勾上 <strong>Include unavailable</strong>，還能看到安裝器依賴當前執行環境所沒有的套件管理器的那些條目。</p>
+<p>每個條目都帶信任標籤，一共三檔：</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>信任標籤</th>
+<th>含義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pinned</td>
+<td>來自本版本審查並鎖定的 CLI-Anything 修訂。</td>
+</tr>
+<tr>
+<td>Third-party</td>
+<td>其他上游，使用註冊表記錄的修訂。</td>
+</tr>
+<tr>
+<td>Third-party, unpinned</td>
+<td>其他上游，使用其預設分支當前最新內容。</td>
+</tr>
+</tbody>
+</table></div>
+<p>簡單說，Pinned 最穩，Third-party, unpinned 最"活"，裝哪個自己權衡。</p>
+<h2 id="安裝僅限管理員">安裝僅限管理員</h2>
+<p>這裡劃個重點：安裝軟體套件這件事，只能管理員來。</p>
+<p>原因不復雜。安裝過程會以應用使用者身份執行第三方建置程式碼，這種事絕不能開放給帳號自助操作。</p>
+<p>DeepTutor 的處理也很講究：它會把註冊表中的安裝字串解析成計畫，而不是直接交給終端機執行；npm（Node.js 套件管理器）的 install 指令碼被禁用，更新失敗時則還原之前可用的環境。</p>
+<p>還有一點值得單獨拎出來說：安裝與授權是兩個決定。</p>
+<p>管理員可以先安裝應用，而不把執行權限自動授予所有帳號。給誰用，單獨開。</p>
+<h2 id="執行仍在沙箱內">執行仍在沙箱內</h2>
+<p>每個已安裝應用會成為一個名為 <code>cli_&lt;app id&gt;</code> 的工具。</p>
+<p>模型提供的是類似 <code>['scene', 'list']</code> 這樣的引數向量，可執行程式本身固定，因此下游不需要再用命令列去解析命令字串。</p>
+<p>使用指南按漸進披露載入。初始清單只為每個應用提供一行說明，只有 <code>load_tools</code> 選中該應用後，完整指南才會送入模型。</p>
+<p>多使用者部署裡，授權按 app id 設定 CLI App 白名單，非管理員帳號預設拒絕。</p>
+<p>可以說，對於既想讓智慧代理真正動手做事、又不想裸奔開權限的朋友來說，這套設計還是非常香的。</p>
+<p>最後照例提醒一句：部署過程遇到問題，歡迎在留言區留言，把報錯的完整日誌貼出來，我看到會回覆。</p>
+<h2 id="另見">另見</h2>
+<ul>
+<li><a href="../ecosystem/mcp.html">MCP 擴充</a> ——不安裝主機程式碼也能連線遠端工具</li>
+<li><a href="../explore/chat-workspace.html">主頁</a> ——獲准 CLI App 作為工具被呼叫的位置</li>
+<li><a href="../get-started/multi-user.html">多使用者部署</a> ——把應用授權給帳號</li>
+</ul>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../ecosystem/mcp.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">MCP 擴充</p></a>
+<a class="next" href="../ecosystem/rag-integration.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">RAG 整合</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>零度版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件零度版改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

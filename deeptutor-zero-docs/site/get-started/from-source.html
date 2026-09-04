@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepTutor 從原始碼安裝實測！Python 3.11–3.14 配 Node.js 22，改程式碼熱重載爽歪歪，附教學！｜零度解說 · DeepTutor 零度版</title>
+<meta name="description" content="選項 2 —— clone 儲存庫、editable 安裝、前端熱重載。適合貢獻者和高階使用者。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="DeepTutor 從原始碼安裝實測！Python 3.11–3.14 配 Node.js 22，改程式碼熱重載爽歪歪，附教學！｜零度解說 · DeepTutor 零度版">
+<meta property="og:site_name" content="DeepTutor 零度版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>零度版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html" aria-current="page">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">快速上手<span aria-hidden="true"> · </span>2 · 源碼安裝</p>
+      <h1 class="doc-title">DeepTutor 從原始碼安裝實測！Python 3.11–3.14 配 Node.js 22，改程式碼熱重載爽歪歪，附教學！｜零度解說</h1>
+      <p class="doc-lede">選項 2 —— clone 儲存庫、editable 安裝、前端熱重載。適合貢獻者和高階使用者。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#一安裝">一、安裝</a>
+</li>
+<li class="d2"><a href="#二用-conda-代替-venv">二、用 Conda 代替 venv</a>
+</li>
+<li class="d2"><a href="#三可選的安裝-extras">三、可選的安裝 extras</a>
+<ul>
+<li class="d3"><a href="#部分-extras-需要的系統依賴">部分 extras 需要的系統依賴</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#四前端依賴調整">四、前端依賴調整</a>
+</li>
+<li class="d2"><a href="#五dev-server-故障排查">五、Dev server 故障排查</a>
+</li>
+<li class="d2"><a href="#六熱重載">六、熱重載</a>
+</li>
+<li class="d2"><a href="#七升級">七、升級</a>
+</li>
+<li class="d2"><a href="#八常見錯誤">八、常見錯誤</a>
+<ul>
+<li class="d3"><a href="#error-microsoft-visual-c-14.0-is-required-windows">error: Microsoft Visual C++ 14.0 is required （Windows）</a></li>
+<li class="d3"><a href="#找不到-libolm-裝了-matrix-e2e-時">找不到 libolm （裝了 matrix-e2e 時）</a></li>
+<li class="d3"><a href="#npm-ci-慢或逾時">npm ci 慢或逾時</a></li>
+<li class="d3"><a href="#後端---reload-每次儲存都瘋狂重新啟動">後端 --reload 每次儲存都瘋狂重新啟動</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#deeptutor-相關下載點">DeepTutor 相關下載點</a>
+</li>
+<li class="d2"><a href="#下一步">下一步</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/get-started/from-source/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/get-started/from-source/</a></p> <p>最近幾篇把 PyPI 一鍵安裝和 Docker 容器部署都講過了，但總有一批朋友不滿足於此：想讀原始碼、想貢獻程式碼、想把 DeepTutor 改成自己的形狀。</p>
+<p>這就是今天的選項 2：從原始碼安裝，適合基於原始碼目錄做開發，對貢獻者和高階使用者來說就是標配。環境要求兩行數字記好：<strong>Python 3.11–3.14</strong> 和 <strong>Node.js 22 LTS</strong>，與官方 CI 和 Docker 保持一致，不會出現文件一套、實際一套的錯位。</p>
+<p>但是問題來了。原始碼安裝聽起來就勸退，裝完怎麼改、怎麼熱重載、那一堆可選元件又是什麼？接下來，我們一步步把它跑通。</p>
+<h2 id="一安裝">一、安裝</h2>
+<p>先上主流程，Git（版本管理工具）克隆儲存庫，然後 pip（Python 套件管理器）可編輯安裝（editable install）加上前端依賴，一氣呵成：</p>
+<div class="codeblock" data-lang="bash"><pre><code>git clone https://github.com/HKUDS/DeepTutor.git
+<span class="nb">cd</span> DeepTutor
+
+<span class="c"># 创建 venv（macOS / Linux）
+# Windows PowerShell：
+#   py -3.11 -m venv .venv ; .\.venv\Scripts\Activate.ps1
+</span>python3 -m venv .venv &amp;&amp; <span class="nb">source</span> .venv/bin/activate
+python -m pip install --upgrade pip
+
+<span class="c"># 安装后端 + 前端依赖
+</span>python -m pip install -e .
+( <span class="nb">cd</span> web &amp;&amp; npm ci --legacy-peer-deps )
+
+deeptutor init
+deeptutor start --dev</code></pre></div>
+<p>拆開看：venv 那段是建立並啟用 Python 虛擬環境，Windows 使用者用註解裡的 PowerShell 寫法；python -m pip install -e . 把後端以可編輯模式裝進環境；括號那行進 web 目錄用 npm 裝前端依賴；deeptutor init 初始化設定；deeptutor start --dev 啟動。</p>
+<p><code>deeptutor start</code> 會為本機 <code>web/</code> 前端建置一次生產版本並複用；<code>--dev</code> 則以熱重載（HMR）跑 Next.js。設定結構、連接埠、<code>Ctrl+C</code> 停止都和 <a href="../get-started/pypi.html"><strong>PyPI 安裝</strong></a> 一致。</p>
+<h2 id="二用-conda-代替-venv">二、用 Conda 代替 venv</h2>
+<p>如果你當初跟我一樣，環境管理一直是 conda 黨，也不必遷就 venv：</p>
+<div class="codeblock" data-lang="bash"><pre><code>conda create -n deeptutor python=<span class="m">3</span>.11
+conda activate deeptutor
+python -m pip install --upgrade pip
+# ...然后继续 <span class="s">`</span>pip install -e .<span class="s">`</span> 和 <span class="s">`</span>npm ci<span class="s">`</span></code></pre></div>
+<p>建一個獨立的 conda 環境指定 Python 3.11，之後步驟完全一樣。</p>
+<h2 id="三可選的安裝-extras">三、可選的安裝 extras</h2>
+<p><code>pyproject.toml</code> 暴露了分層的可選元件（extras），要什麼裝什麼：</p>
+<div class="codeblock" data-lang="bash"><pre><code>pip install -e <span class="s">".[dev]"</span>             <span class="c"># 测试 / lint 工具
+</span>pip install -e <span class="s">".[partners]"</span>        <span class="c"># 全部 Partner channel SDK（含 wecom-aibot-sdk）
+</span>pip install -e <span class="s">".[matrix]"</span>          <span class="c"># 不带 E2EE / libolm 的 Matrix channel
+</span>pip install -e <span class="s">".[matrix-e2e]"</span>      <span class="c"># 带 E2EE 的 Matrix；需要 libolm
+</span>pip install -e <span class="s">".[math-animator]"</span>   # Manim 插件；需要 LaTeX / ffmpeg / 系统库</code></pre></div>
+<p>也可以組合著裝：<code>pip install -e ".[dev,partners,math-animator]"</code>。</p>
+<p>遠端 MCP（模型上下文協定）使用者端已包含在完整版和 CLI-only 的 core 安裝中，不需要 <code>partners</code> extra。</p>
+<p>全集如下。其中七個 extra 有 <code>requirements/*.txt</code> 鏡像供 Docker/CI 建置使用，其餘直接從 <code>pyproject.toml</code> extras 安裝：</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Extra</th>
+<th>用途</th>
+<th>Requirements 鏡像</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cli</td>
+<td>相容性 extra —— CLI 依賴，預設安裝已包含</td>
+<td>requirements/cli.txt</td>
+</tr>
+<tr>
+<td>server</td>
+<td>相容性 extra —— FastAPI server 依賴，預設安裝已包含</td>
+<td>requirements/server.txt</td>
+</tr>
+<tr>
+<td>partners</td>
+<td>全部內建 Partner channel SDK（ wecom-aibot-sdk 、 qq-botpy 、 slack-sdk 、 lark-oapi 、 python-telegram-bot 、 dingtalk-stream 等）</td>
+<td>requirements/partners.txt</td>
+</tr>
+<tr>
+<td>tutorbot</td>
+<td>partners 的相容別名，保留一個版本週期</td>
+<td>—</td>
+</tr>
+<tr>
+<td>matrix</td>
+<td>Matrix（Element）channel，非 E2EE —— 不需要 libolm</td>
+<td>requirements/matrix.txt</td>
+</tr>
+<tr>
+<td>matrix-e2e</td>
+<td>Matrix E2EE 附加包 —— 需要系統級 libolm 庫</td>
+<td>requirements/matrix-e2e.txt</td>
+</tr>
+<tr>
+<td>math-animator</td>
+<td>Manim 外掛 —— 需要 LaTeX、pkg-config、cairo、cmake、ffmpeg</td>
+<td>requirements/math-animator.txt</td>
+</tr>
+<tr>
+<td>graphrag</td>
+<td>GraphRAG 檢索引擎——知識圖譜索引，LLM 開銷大；支援 Python 3.11–3.13</td>
+<td>——</td>
+</tr>
+<tr>
+<td>rag-lightrag</td>
+<td>LightRAG 檢索引擎——圖 + 向量；解析引擎單獨選</td>
+<td>——</td>
+</tr>
+<tr>
+<td>rag-rerank</td>
+<td>LlamaIndex 可選的 cross-encoder 重排；支援 Python 3.11–3.13</td>
+<td>——</td>
+</tr>
+<tr>
+<td>video-learning</td>
+<td>公共字幕轉接器的相容 extra；完整版與 CLI 安裝已自帶</td>
+<td>——</td>
+</tr>
+<tr>
+<td>parse</td>
+<td>一次裝上全部可選的文件解析引擎</td>
+<td>——</td>
+</tr>
+<tr>
+<td>parse-docling</td>
+<td>Docling 解析——結構化的版面/表格轉換</td>
+<td>——</td>
+</tr>
+<tr>
+<td>parse-markitdown</td>
+<td>markitdown 解析——輕量、格式覆蓋廣，輸出 Markdown</td>
+<td>——</td>
+</tr>
+<tr>
+<td>parse-pymupdf4llm</td>
+<td>PyMuPDF4LLM 解析——PDF / 電子書 / XPS / 圖片 / 文字 → Markdown，無需下載模型</td>
+<td>——</td>
+</tr>
+<tr>
+<td>parse-liteparse</td>
+<td>LiteParse 解析——輕量的結構化解析</td>
+<td>——</td>
+</tr>
+<tr>
+<td>codebuddy</td>
+<td>CodeBuddy / WorkBuddy 提供商 SDK</td>
+<td>——</td>
+</tr>
+<tr>
+<td>dev</td>
+<td>pytest / pre-commit / lint 與安全檢查工具</td>
+<td>requirements/dev.txt</td>
+</tr>
+<tr>
+<td>all</td>
+<td>partners + matrix + math-animator + dev + video-learning （不含 E2EE）</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="部分-extras-需要的系統依賴">部分 extras 需要的系統依賴</h3>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Extra</th>
+<th>系統庫</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>matrix-e2e</td>
+<td>libolm ： brew install libolm （macOS）/ sudo apt install libolm-dev （Debian）</td>
+</tr>
+<tr>
+<td>math-animator</td>
+<td>LaTeX + ffmpeg ： brew install --cask mactex &amp;&amp; brew install ffmpeg （macOS）/ sudo apt install texlive-full ffmpeg （Linux）</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="四前端依賴調整">四、前端依賴調整</h2>
+<p>新增或升級前端依賴時：</p>
+<div class="codeblock" data-lang="bash"><pre><code><span class="nb">cd</span> web
+npm install --legacy-peer-deps
+# 同时提交 web/package.json 和 web/package-lock.json</code></pre></div>
+<p>改動要連 package.json 和 package-lock.json 一起提交，別人拉下來才能復現。</p>
+<h2 id="五dev-server-故障排查">五、Dev server 故障排查</h2>
+<p><strong>dev server 卡住</strong>：如果 <code>deeptutor start --dev</code> 報告已有前端但實際無回應，先停掉它列印出的 PID。如果根本沒有 Next.js 處理程序在跑，那是 lock 檔案過期了，刪掉重試：</p>
+<div class="codeblock" data-lang="bash"><pre><code>rm -f web/.next/dev/lock web/.next/lock
+deeptutor start --dev</code></pre></div>
+<h2 id="六熱重載">六、熱重載</h2>
+<p>後端支援 <code>--reload</code>。在兩個獨立終端機裡分別啟後端和前端，開發體驗最好：</p>
+<div class="codeblock" data-lang="bash"><pre><code><span class="c"># 终端 A —— 带热重载的后端
+</span>python -m uvicorn deeptutor.api.main:app <span class="s">\
+</span>  --host <span class="m">0</span>.0.0.0 --port <span class="m">8001</span> <span class="s">\
+</span>  --reload --reload-exclude <span class="s">"web/*"</span> --reload-exclude <span class="s">"data/*"</span>
+
+<span class="c"># 终端 B —— 前端 dev server
+</span><span class="nb">cd</span> web &amp;&amp; npm run dev -- -p <span class="m">3782</span></code></pre></div>
+<p>終端機 A 起後端並監聽 8001 連接埠，改動時自動重載；終端機 B 起前端開發伺服器，固定在 3782 連接埠。</p>
+<p>這麼配完，改一行程式碼儲存即生效，前後端各自熱更新，寫起來爽歪歪。</p>
+<h2 id="七升級">七、升級</h2>
+<div class="codeblock" data-lang="bash"><pre><code>git pull
+pip install -e . --upgrade
+<span class="nb">cd</span> web &amp;&amp; npm ci --legacy-peer-deps</code></pre></div>
+<p>如果某次發布動了設定 schema，再跑一次 <code>deeptutor init</code> 把新增欄位補上。已有設定會保留。</p>
+<p><strong>設定 → 關於</strong> 會把當前環境識別為原始碼 checkout 並顯示 Git revision，但不會替你 pull、merge 或覆蓋工作樹。原始碼安裝需要顯式使用 Git 更新，讓本機分支和未提交修改始終由你掌控。</p>
+<h2 id="八常見錯誤">八、常見錯誤</h2>
+<h3 id="error-microsoft-visual-c-14.0-is-required-windows">error: Microsoft Visual C++ 14.0 is required （Windows）</h3>
+<p>部分 Python 依賴會編譯 C 擴充。裝 <a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/" target="_blank" rel="noopener"><strong>Build Tools for Visual Studio</strong></a>，勾選 “Desktop development with C++“。</p>
+<h3 id="找不到-libolm-裝了-matrix-e2e-時">找不到 libolm （裝了 matrix-e2e 時）</h3>
+<div class="codeblock" data-lang="bash"><pre><code>brew install libolm                   <span class="c"># macOS
+</span>sudo apt install libolm-dev           <span class="c"># Debian / Ubuntu
+</span>pip install -e <span class="s">".[matrix-e2e]"</span> --force-reinstall</code></pre></div>
+<h3 id="npm-ci-慢或逾時">npm ci 慢或逾時</h3>
+<div class="codeblock" data-lang="bash"><pre><code>npm config <span class="nb">set</span> fetch-timeout <span class="m">600000</span>
+<span class="nb">cd</span> web &amp;&amp; npm ci --legacy-peer-deps</code></pre></div>
+<p>把 npm 的網路逾時調大到 600 秒再重試即可。</p>
+<h3 id="後端---reload-每次儲存都瘋狂重新啟動">後端 --reload 每次儲存都瘋狂重新啟動</h3>
+<p><code>--reload-exclude</code> 漏了。用下面命令重新啟動：</p>
+<div class="codeblock" data-lang="bash"><pre><code>python -m uvicorn deeptutor.api.main:app <span class="s">\
+</span>  --host <span class="m">0</span>.0.0.0 --port <span class="m">8001</span> <span class="s">\
+</span>  --reload --reload-exclude <span class="s">"web/*"</span> --reload-exclude <span class="s">"data/*"</span></code></pre></div>
+<p>更多修復方法：<a href="../get-started/troubleshooting.html"><strong>故障排查</strong></a>。</p>
+<h2 id="deeptutor-相關下載點">DeepTutor 相關下載點</h2>
+<p>1、GitHub 儲存庫【點選前往】</p>
+<p>2、PyPI 官方源【點選前往】</p>
+<p>3、官方文件【點選前往】</p>
+<h2 id="下一步">下一步</h2>
+<ul>
+<li><a href="../cli/index.html"><strong>DeepTutor CLI</strong></a> —— 在同一個工作區裡使用 CLI</li>
+<li><a href="../explore/chat-workspace.html"><strong>探索 DeepTutor</strong></a> —— 看看跑起來的應用</li>
+</ul>
+<p>實際效果還會受到模型、提示詞以及具體使用場景的影響，建議大家結合自己的需求實際體驗評估。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../get-started/pypi.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">1 · PyPI 安裝</p></a>
+<a class="next" href="../get-started/docker.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">3 · Docker</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>零度版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件零度版改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

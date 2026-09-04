@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepTutor 本地部署最順滑姿勢！pip 一行命令安裝，無需 clone 儲存庫，選項 1 附完整教學！｜零度解說 · DeepTutor 零度版</title>
+<meta name="description" content="選項 1 —— 最順滑的安裝方式。pip install deeptutor，然後 init、start。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="DeepTutor 本地部署最順滑姿勢！pip 一行命令安裝，無需 clone 儲存庫，選項 1 附完整教學！｜零度解說 · DeepTutor 零度版">
+<meta property="og:site_name" content="DeepTutor 零度版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>零度版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html" aria-current="page">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">快速上手<span aria-hidden="true"> · </span>1 · PyPI 安裝</p>
+      <h1 class="doc-title">DeepTutor 本地部署最順滑姿勢！pip 一行命令安裝，無需 clone 儲存庫，選項 1 附完整教學！｜零度解說</h1>
+      <p class="doc-lede">選項 1 —— 最順滑的安裝方式。pip install deeptutor，然後 init、start。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#一安裝">一、安裝</a>
+</li>
+<li class="d2"><a href="#二試用預發布版本">二、試用預發布版本</a>
+</li>
+<li class="d2"><a href="#三可選-extras">三、可選 extras</a>
+</li>
+<li class="d2"><a href="#四檔案存在哪裡">四、檔案存在哪裡</a>
+</li>
+<li class="d2"><a href="#datausersettings-設定檔案">data/user/settings/ 設定檔案</a>
+</li>
+<li class="d2"><a href="#五安裝之後能直接用什麼">五、安裝之後能直接用什麼</a>
+</li>
+<li class="d2"><a href="#六升級">六、升級</a>
+</li>
+<li class="d2"><a href="#七常見錯誤">七、常見錯誤</a>
+<ul>
+<li class="d3"><a href="#macos-上-python-command-not-found">macOS 上 python: command not found</a></li>
+<li class="d3"><a href="#node.js-不在-path-上">Node.js 不在 PATH 上</a></li>
+<li class="d3"><a href="#連接埠-3782-或-8001-被佔用">連接埠 3782 或 8001 被佔用</a></li>
+<li class="d3"><a href="#llm-provider-401-unauthorized">LLM provider 401 Unauthorized</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#deeptutor-相關下載點">DeepTutor 相關下載點</a>
+</li>
+<li class="d2"><a href="#下一步">下一步</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/get-started/pypi/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/get-started/pypi/</a></p> <p>前面幾篇把 Docker 和原始碼安裝都講過了，相信不少朋友也是透過那個方法認識 DeepTutor 的。但如果你只想最快跑起來，今天這篇才是正主：選項 1，從 PyPI（Python 官方包儲存庫）安裝。</p>
+<p>這是官方定義裡最順滑的路徑：<strong>完整本機 Web 應用 + 命令列工具（CLI），無需 clone（克隆儲存庫）</strong>。環境要求就兩行數字：<strong>Python 3.11–3.14</strong>，以及 PATH 上的 <strong>Node.js 20+</strong>，<code>deeptutor start</code> 會拉起內建的 Next.js standalone 伺服器。</p>
+<p>但是問題來了。裝是簡單，init 精靈要問一堆連接埠和模型設定，第一次接觸容易懵？接下來，我們就從安裝到初始化完整走一遍，整個過程只能用兩個字形容：絕了。</p>
+<h2 id="一安裝">一、安裝</h2>
+<div class="codeblock" data-lang="bash"><pre><code>mkdir -p my-deeptutor &amp;&amp; <span class="nb">cd</span> my-deeptutor
+pip install -U deeptutor
+deeptutor init     <span class="c"># 提示输入端口 + LLM 提供商 + 可选 embedding/search
+</span>deeptutor start    # 同时启动后端 + 前端；保持终端开着</code></pre></div>
+<p>第一行建一個工作目錄並進去；第二行用 pip（Python 套件管理器）把 deeptutor 裝上；第三行跑初始化精靈；第四行同時啟動後端和前端。</p>
+<p><code>deeptutor init</code> 會詢問：</p>
+<ul>
+<li><strong>後端連接埠</strong> （預設 <code>8001</code> ）</li>
+<li><strong>前端連接埠</strong> （預設 <code>3782</code> ）</li>
+<li><strong>LLM 提供商</strong> / base URL / API key / 模型</li>
+<li><strong>可選 embedding 提供商</strong> （用於 RAG / 知識庫）</li>
+<li><strong>可選搜尋提供商</strong> （用於 Web Search）</li>
+</ul>
+<p><code>deeptutor start</code> 之後，開啟終端機裡列印的前端地址 —— 預設是 <a href="http://127.0.0.1:3782" target="_blank" rel="noopener">http://127.0.0.1:3782</a>。按 <code>Ctrl+C</code> 同時停掉後端和前端。</p>
+<blockquote>
+<p>跳過 <code>deeptutor init</code> 也行，應用會以預設連接埠和空設定啟動，之後可到 <strong>設定 → Models</strong> 設定 Connections、LLM、Task Models、Embedding、Search、TTS、STT、文生圖與文生影片。</p>
+</blockquote>
+<h2 id="二試用預發布版本">二、試用預發布版本</h2>
+<p>普通 <code>pip install -U deeptutor</code> 只會停在穩定版，PyPI 預設跳過預發布版本（如 <code>1.X.0b0</code> 這類 beta），除非顯式選擇：</p>
+<div class="codeblock" data-lang="bash"><pre><code>pip install --pre -U deeptutor
+<span class="c"># 或精确锁定某个版本：
+</span>pip install -U <span class="s">"deeptutor==&lt;version&gt;"</span></code></pre></div>
+<h2 id="三可選-extras">三、可選 extras</h2>
+<p>PyPI wheel 本身已包含完整 Web 應用 + CLI。附加能力按可選元件（extras）安裝，例如全部內建 Partner 管道開發工具包（SDK）（WeCom、QQ、Slack、飛書、Telegram、釘釘等）：</p>
+<div class="codeblock" data-lang="bash"><pre><code>pip install -U <span class="s">"deeptutor[partners]"</span></code></pre></div>
+<p>完整 extras 總表（<code>matrix</code>、<code>matrix-e2e</code>、<code>math-animator</code>、<code>dev</code>、<code>all</code>）見 <a href="../get-started/from-source.html#三可選的安裝-extras"><strong>從原始碼安裝</strong></a> —— 同樣的 extra 名對 PyPI 包同樣有效。</p>
+<h2 id="四檔案存在哪裡">四、檔案存在哪裡</h2>
+<p>工作區位於執行命令時所在的目錄（首次啟動會在那裡建立 <code>data/</code> 目錄）。想覆蓋位置：</p>
+<div class="codeblock" data-lang="bash"><pre><code>DEEPTUTOR_HOME=/opt/deeptutor deeptutor start
+<span class="c"># 或：
+</span>deeptutor start --home /opt/deeptutor</code></pre></div>
+<p>首次 init 後的目錄結構：</p>
+<div class="codeblock" data-lang="text"><pre><code>my-deeptutor/
+└── data/
+    ├── memory/
+    └── user/
+        ├── settings/
+        │   ├── system.json
+        │   ├── auth.json
+        │   ├── integrations.json
+        │   ├── interface.json
+        │   ├── model_catalog.json
+        │   ├── document_parsing.json
+        │   ├── pageindex.json
+        │   ├── ima.json
+        │   ├── llamaindex.json
+        │   ├── graphrag.json
+        │   ├── lightrag.json
+        │   ├── lightrag_server.json
+        │   ├── main.yaml
+        │   └── agents.yaml
+        └── workspace/</code></pre></div>
+<p>各設定檔案的含義在下面 <a href="#datausersettings-設定檔案"><strong>設定參考</strong></a> 一節。</p>
+<h2 id="datausersettings-設定檔案">data/user/settings/ 設定檔案</h2>
+<p><code>data/user/settings/</code> 下的所有檔案都是純 JSON / YAML。瀏覽器裡的 <strong>設定</strong> 頁是推薦的編輯入口。</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>檔案</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>model_catalog.json</td>
+<td>Connections，以及 LLM、task、embedding、search、TTS、STT、影像與影片服務的 profiles</td>
+</tr>
+<tr>
+<td>document_parsing.json 、 pageindex.json 、 ima.json 、 llamaindex.json 、 graphrag.json 、 lightrag.json 、 lightrag_server.json</td>
+<td>文件解析與知識庫引擎設定</td>
+</tr>
+<tr>
+<td>system.json</td>
+<td>後端 / 前端連接埠、對外 API base、CORS、SSL 驗證、附件目錄與上傳/提取上限</td>
+</tr>
+<tr>
+<td>auth.json</td>
+<td>可選的認證開關、使用者名、密碼雜湊、token / cookie 設定</td>
+</tr>
+<tr>
+<td>integrations.json</td>
+<td>可選的 PocketBase 與 sidecar 整合設定</td>
+</tr>
+<tr>
+<td>interface.json</td>
+<td>UI 語言與模型輸出語言 / 主題 / 側邊欄偏好</td>
+</tr>
+<tr>
+<td>main.yaml</td>
+<td>執行環境預設行為與路徑注入</td>
+</tr>
+<tr>
+<td>agents.yaml</td>
+<td>各 capability / 工具的溫度和 token 設定</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>專案根目錄的 <code>.env</code> <strong>不會</strong> 被當作應用設定載入。建議從瀏覽器裡的 <strong>設定 → Models</strong> 設定，或直接編輯 <code>model_catalog.json</code>。</p>
+</blockquote>
+<h2 id="五安裝之後能直接用什麼">五、安裝之後能直接用什麼</h2>
+<p>不用離開工作區，隨時進 CLI：</p>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor chat                                          <span class="c"># 交互式 REPL
+</span>deeptutor run chat <span class="s">"解释一下傅里叶变换"</span>                   <span class="c"># 单次执行
+</span>deeptutor kb create my-kb --doc textbook.pdf            <span class="c"># 建一个知识库
+</span>deeptutor memory show                                   <span class="c"># 查看记忆
+</span>deeptutor config show                                   # 查看当前配置</code></pre></div>
+<p>進互動式對話環境（REPL）聊天、單次提問、建知識庫、查記憶、看設定，全在終端機裡搞定。完整命令面：<a href="../cli/index.html"><strong>DeepTutor CLI</strong></a>。</p>
+<h2 id="六升級">六、升級</h2>
+<div class="codeblock" data-lang="bash"><pre><code>pip install --upgrade deeptutor
+deeptutor start</code></pre></div>
+<p>兩行命令原地升級，工作區會在升級中保留。</p>
+<p>瀏覽器裡的 <strong>設定 → 關於</strong> 會識別 PyPI 安裝、檢查最新版本，也可以替你執行同樣的包升級。你可以選擇自動檢查以及是否包含預發布版；更新完成後按頁面提示確認版本並重新啟動應用。</p>
+<h2 id="七常見錯誤">七、常見錯誤</h2>
+<h3 id="macos-上-python-command-not-found">macOS 上 python: command not found</h3>
+<div class="codeblock" data-lang="bash"><pre><code>python3 -m pip install -U deeptutor
+python3 -m deeptutor init   # 或者，如果 entry point 在 PATH 上，直接 <span class="s">`</span>deeptutor init<span class="s">`</span></code></pre></div>
+<h3 id="node.js-不在-path-上">Node.js 不在 PATH 上</h3>
+<p><code>deeptutor start</code> 會拉起內建 Next.js 伺服器，需要 PATH 上有 <code>node</code>。從 <a href="https://nodejs.org" target="_blank" rel="noopener">https://nodejs.org</a> 裝 Node 20+，或 <code>brew install node@22</code>。</p>
+<h3 id="連接埠-3782-或-8001-被佔用">連接埠 3782 或 8001 被佔用</h3>
+<div class="codeblock" data-lang="bash"><pre><code>lsof -i :3782          <span class="c"># macOS
+</span>ss -ltnp | grep :3782  # Linux</code></pre></div>
+<p>殺掉佔用的處理程序，或重跑 <code>deeptutor init</code> 改連接埠。</p>
+<h3 id="llm-provider-401-unauthorized">LLM provider 401 Unauthorized</h3>
+<p>API key 被服務商拒絕了。在 <strong>設定 → Models → LLM</strong> 重新輸入，或：</p>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor init   # 重跑向导，工作区会保留</code></pre></div>
+<p>更多問題：<a href="../get-started/troubleshooting.html"><strong>故障排查</strong></a>。</p>
+<h2 id="deeptutor-相關下載點">DeepTutor 相關下載點</h2>
+<p>1、GitHub 儲存庫【點選前往】</p>
+<p>2、PyPI 官方源【點選前往】</p>
+<p>3、官方文件【點選前往】</p>
+<h2 id="下一步">下一步</h2>
+<ul>
+<li><a href="../explore/chat-workspace.html"><strong>探索 DeepTutor</strong></a> —— 看看跑起來的應用</li>
+<li><a href="../get-started/multi-user.html"><strong>多使用者部署</strong></a> —— 部署成團隊伺服器</li>
+</ul>
+<p>部署過程遇到問題，歡迎在留言區留言，把報錯的完整日誌貼出來，我看到會回覆。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../get-started/index.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">概覽</p></a>
+<a class="next" href="../get-started/from-source.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">2 · 源碼安裝</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>零度版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件零度版改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

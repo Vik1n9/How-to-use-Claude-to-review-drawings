@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>聊天記錄、筆記本、題庫一站收納！DeepTutor 學習空間全體驗：45 個 MCP 服務+101 個命令列工具免費用！｜零度解說 · DeepTutor 零度版</title>
+<meta name="description" content="把組織化對話、材料與個人化集中到一處——聊天歷史、筆記本、題庫與人設。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="聊天記錄、筆記本、題庫一站收納！DeepTutor 學習空間全體驗：45 個 MCP 服務+101 個命令列工具免費用！｜零度解說 · DeepTutor 零度版">
+<meta property="og:site_name" content="DeepTutor 零度版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>零度版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html" aria-current="page">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">探索 DeepTutor<span aria-hidden="true"> · </span>學習空間</p>
+      <h1 class="doc-title">聊天記錄、筆記本、題庫一站收納！DeepTutor 學習空間全體驗：45 個 MCP 服務+101 個命令列工具免費用！｜零度解說</h1>
+      <p class="doc-lede">把組織化對話、材料與個人化集中到一處——聊天歷史、筆記本、題庫與人設。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#學習空間是什麼">學習空間是什麼</a>
+</li>
+<li class="d2"><a href="#在哪裡開啟">在哪裡開啟</a>
+</li>
+<li class="d2"><a href="#對話與材料四張卡片">對話與材料：四張卡片</a>
+</li>
+<li class="d2"><a href="#個人化塑造你的助手">個人化：塑造你的助手</a>
+</li>
+<li class="d2"><a href="#想繼續深挖">想繼續深挖</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/explore/space/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/explore/space/</a></p> <p>聊天記錄散落在各個會話裡，筆記東一份西一份，生成的題目做完就忘。你的學習資料，是不是也缺一個統一的「家」？</p>
+<p>這兩天我把 DeepTutor 的學習空間（Learning Space）從頭到尾翻了一遍。</p>
+<p>這個頁面就是那個「家」：聊天歷史、筆記本、題庫、人設、Skill，外加 45 個精選 MCP（模型上下文協定）服務和 101 個命令列工具，全收在一處。</p>
+<p>如果你當初跟我一樣，以為它只是個普通的「歷史記錄」頁面，那就低估它了，下面逐張卡片講清楚。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="學習空間是什麼">學習空間是什麼</h2>
+<p>學習空間是 DeepTutor 的<strong>資料庫、組織與個人化層</strong>。</p>
+<p>所有<em>會持續存在</em>的東西都在這裡：過往對話、儲存下來的材料，以及塑造助手行為的各種預設。</p>
+<p>之後會在支援對應型別的工作流裡提供這些資產與預設。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="在哪裡開啟">在哪裡開啟</h2>
+<p>從左側欄開啟 <strong>Learning Space</strong>：<strong>Conversations &amp; Materials</strong> 包含聊天歷史、筆記本和題庫，<strong>Personalization</strong> 包含人設、Skill、MCP 服務和 CLI App。</p>
+<p>精通之路現在是頂級側欄產品，不再佔用這裡的卡片。</p>
+<p>部分部署還會在 <strong>More Projects</strong> 下顯示雙席位 <strong>Whisper</strong> 練習房間；它依賴儲存庫外的 <code>whisper_visitor</code>，本開源建置不含該能力，因此多數自託管安裝看不到這張卡片或空分組。</p>
+<figure>
+<img src="../assets/screenshots/guide/learning-space/00-overview.png" alt="學習空間樞紐：聊天歷史、筆記本、題庫、人設、技能、MCP 服務與 CLI 應用" />
+<figcaption aria-hidden="true">學習空間樞紐：聊天歷史、筆記本、題庫、人設、技能、MCP 服務與 CLI 應用</figcaption>
+</figure>
+<p>每張卡片都帶一個即時計數，於是這個樞紐同時也是一塊狀態板：你有多少段對話、多少個筆記本、連上了多少個服務。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="對話與材料四張卡片">對話與材料：四張卡片</h2>
+<p><strong>課程學習（Course Study）</strong>——課程組織正在繼續打磨，暫時不出現在側欄與學習空間裡；已有課程資料與路由仍然保留。從已有課程頁啟動 <strong>Course Study</strong> 時，這項獨立能力會讀取綁定課程的整體狀態，推薦眼下最有用的下一步並說明理由，再把你交接到掌握路徑、沉浸式閱讀、題庫、筆記本或聊天。它負責課程編排，並不親自講授材料。</p>
+<p><strong>聊天歷史（Chat History）</strong>——每段對話都保留在這裡。可搜尋並按對話型別或封存狀態篩選，也可重新命名、釘選、封存、還原、刪除或<strong>重開</strong>；Little Tutor 嵌在來源對話下。還可從 <code>+</code> 選單引用會話。</p>
+<figure>
+<img src="../assets/screenshots/guide/learning-space/01-chat-history.png" alt="聊天歷史：可搜尋的過往對話列表" />
+<figcaption aria-hidden="true">聊天歷史：可搜尋的過往對話列表</figcaption>
+</figure>
+<p><strong>筆記本（Notebooks）</strong>——把一段答覆變成<strong>持久、可複用上下文</strong>最簡單的方式。新增一個筆記本，然後從聊天、研究、夥伴或 Co-Writer 把記錄存進去——每條記錄都保留來源與時間戳。記錄可在筆記本間移動或複製，整本也能匯出為 Markdown。之後可在聊天裡掛載某個筆記本，或把它編譯成一本書。</p>
+<figure>
+<img src="../assets/screenshots/guide/notebook/00-console.png" alt="筆記本控制台：左側是筆記本列表，右側是選中筆記本的記錄" />
+<figcaption aria-hidden="true">筆記本控制台：左側是筆記本列表，右側是選中筆記本的記錄</figcaption>
+</figure>
+<p>筆記本在 <code>/notebooks</code> 有一塊自己的整頁控制台，選中某本時使用 <code>/notebooks/&lt;notebookId&gt;</code>，而不再是學習空間佈局裡的面板。已退役的 <code>/notebook</code> 與 <code>/space/notebooks</code> 不再重新導向。</p>
+<p><strong>題庫（Question Bank）</strong>——你生成的測驗題會連同<strong>你的作答、參考答案、對錯與解析</strong>一起收集在這裡。可以收藏題目、歸類到分類、用 <em>Wrong Only（僅錯題）</em>篩選，並跳回原始對話結合上下文複習。</p>
+<figure>
+<img src="../assets/screenshots/guide/learning-space/03-question-bank.png" alt="題庫：一道儲存的題目，帶你的作答、參考答案與解析" />
+<figcaption aria-hidden="true">題庫：一道儲存的題目，帶你的作答、參考答案與解析</figcaption>
+</figure>
+<p>題庫這個設計要誇一句：錯題自動封存，還能跳回原對話複習，對學生黨屬實是免費到寶了。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="個人化塑造你的助手">個人化：塑造你的助手</h2>
+<p><strong>精通之路入口</strong>——精通之路不再佔用學習空間卡片；請從主側欄進入獨立的<a href="../explore/mastery-path.html">精通之路</a>產品。它把目標與來源材料變成帶硬門檻的路線，並把學習對話歸到主題下面；主題地圖、建立流程、專屬導師與間隔複習集中在自己的 Explore 頁面。</p>
+<p><strong>人設（Personas）</strong>——塑造助手語氣與立場的<strong>行為預設</strong>。從輸入框選擇後，它會作為會話偏好在後續輪次持續生效。內建的 <strong>peer</strong>（同伴）、<strong>research-assistant</strong>（研究助理）、<strong>teacher</strong>（老師）是很好的起點；用 <strong>New persona</strong> 建立你自己的，並在建立<a href="../explore/partners.html">夥伴</a>時複用其中任意一個。</p>
+<figure>
+<img src="../assets/screenshots/guide/learning-space/05-personas.png" alt="人設：peer、research-assistant、teacher 預設" />
+<figcaption aria-hidden="true">人設：peer、research-assistant、teacher 預設</figcaption>
+</figure>
+<p><strong>Skill 入口</strong>——Skill 卡片會開啟可搜尋的 <code>SKILL.md</code> 工作手冊庫與 EduHub 匯入器。創作方式、安全檢查、命令列工具（CLI）安裝和發布流程現在統一放在 <a href="../ecosystem/skills.html">DeepTutor 生態的 Skill 擴充</a>裡。</p>
+<p><strong>MCP 服務（MCP Services）</strong>——一個收錄 45 個精選 MCP 定義的商店，包括按帳號連線的託管服務與管理員管理的部署伺服器。見 <a href="../ecosystem/mcp.html">MCP 擴充</a>。</p>
+<p><strong>CLI 應用（CLI Apps）</strong>——來自 CLI-Anything 目錄的 101 個命令列工具，裝在伺服器上，可在獲准的回合中呼叫。見 <a href="../ecosystem/cli-apps.html">CLI-App 擴充</a>。</p>
+<p>45 個 MCP 服務加 101 個命令列工具，裝好就能直接用，這波屬實是免費。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="想繼續深挖">想繼續深挖</h2>
+<ul>
+<li><a href="../ecosystem/index.html">DeepTutor 生態</a> ——RAG 整合、Skill、MCP 服務、CLI App 與 EduHub</li>
+<li><a href="../explore/chat-workspace.html">主頁</a> ——把學習空間資產掛載到一輪裡</li>
+<li><a href="../explore/partners.html">夥伴</a> ——給夥伴分配技能、筆記本與人設</li>
+<li><a href="../explore/book.html">書籍</a> ——把筆記本與題庫編譯成一本書</li>
+<li><a href="../cli/commands.html">CLI 命令</a> ——從終端機管理技能與資產</li>
+</ul>
+<p>實際體驗還會受到模型能力、提示詞以及個人使用習慣的影響，建議大家按自己的學習流程實際上手感受一下。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../explore/knowledge.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">知識空間</p></a>
+<a class="next" href="../explore/memory.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">記憶</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>零度版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件零度版改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

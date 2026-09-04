@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepTutor 接入個人微信教學！5 步掃描 QR Code 搞定，普通微信帳號秒變 AI 助手，香到不行！｜零度解說 · DeepTutor 零度版</title>
+<meta name="description" content="使用掃描 QR Code 登入和 HTTP long-poll 為 Partner 設定個人微信管道。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="DeepTutor 接入個人微信教學！5 步掃描 QR Code 搞定，普通微信帳號秒變 AI 助手，香到不行！｜零度解說 · DeepTutor 零度版">
+<meta property="og:site_name" content="DeepTutor 零度版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>零度版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html" aria-current="page">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">夥伴與管道<span aria-hidden="true"> · </span>個人微信</p>
+      <h1 class="doc-title">DeepTutor 接入個人微信教學！5 步掃描 QR Code 搞定，普通微信帳號秒變 AI 助手，香到不行！｜零度解說</h1>
+      <p class="doc-lede">使用掃描 QR Code 登入和 HTTP long-poll 為 Partner 設定個人微信管道。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#一安裝依賴">一、安裝依賴</a>
+</li>
+<li class="d2"><a href="#二設定管道卡片channel-card">二、設定管道卡片（channel card）</a>
+</li>
+<li class="d2"><a href="#三登入流程">三、登入流程</a>
+</li>
+<li class="d2"><a href="#如何確認健康">如何確認健康</a>
+</li>
+<li class="d2"><a href="#訪問控制">訪問控制</a>
+</li>
+<li class="d2"><a href="#常見問題">常見問題</a>
+<ul>
+<li class="d3"><a href="#每次啟動都要求重新掃描-qr-code">每次啟動都要求重新掃描 QR Code</a></li>
+<li class="d3"><a href="#收得到訊息但回不了">收得到訊息但回不了</a></li>
+<li class="d3"><a href="#過程訊息太多">過程訊息太多</a></li>
+</ul>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/partners/weixin/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/partners/weixin/</a></p> <p>微信應該是大家用得最多的聊天工具，沒有之一。能不能把 DeepTutor 的學習夥伴（Partner）直接裝進個人微信？最近問這個的朋友特別多。</p>
+<p>答案是：能。DeepTutor 的 <code>weixin</code> 管道，用 iLink 長輪詢（long-poll）API 把 Partner 接到你的個人微信帳號上，瀏覽器裡生成 QR Code，掃描 QR Code 登入就能用，預設輪詢逾時 35 秒，多數網路環境直接可用。</p>
+<p>很多人一聽"個人微信沒有官方機器人（bot）後台"，基本就放棄了。</p>
+<p>但是別忘了，這條路 DeepTutor 已經幫你蹚平了：不用去任何開放平台申請憑證，掃描 QR Code 就行，普通微信帳號也能當 AI 入口，這體驗，絕了。</p>
+<p>接下來，我們用 5 步完成掃描 QR Code 登入，把它跑起來。</p>
+<p><img src="../assets/channel-icons/weixin.svg" /></p>
+<figure>
+<img src="../assets/screenshots/partners-channel-weixin.png" alt="WeChat 管道設定" />
+<figcaption aria-hidden="true">WeChat 管道設定</figcaption>
+</figure>
+<p>它和 <strong>WeCom 企業微信</strong>不是一回事：普通個人微信看本頁，企業微信 / WeChat Work 看 <a href="../partners/wecom.html">WeCom</a>。</p>
+<p>卡片同時負責設定與執行反饋：在其中生成並掃描 QR Code，觀察 <strong>Waiting for scan</strong> 變成 <strong>Connected</strong>，無需依賴終端機 QR Code。</p>
+<h2 id="一安裝依賴">一、安裝依賴</h2>
+<p>個人微信支援包含在 Partners 可選元件（extras）裡；瀏覽器 QR Code 渲染還會用到 <code>qrcode</code>。</p>
+<div class="codeblock" data-lang="bash"><pre><code>pip install -e <span class="s">".[partners]"</span>
+<span class="c"># 或发布包支持 extras 时：
+</span>pip install <span class="s">"deeptutor[partners]"</span></code></pre></div>
+<h2 id="二設定管道卡片channel-card">二、設定管道卡片（channel card）</h2>
+<p>開啟 <strong>Partners -&gt; 你的 partner -&gt; Channels -&gt; WeChat</strong>。</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>欄位</th>
+<th>怎麼填</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Send Progress</td>
+<td>測試時建議開啟。長任務會把過程解說（narration）發到微信。</td>
+</tr>
+<tr>
+<td>Send Tool Hints</td>
+<td>除錯時建議開啟；如果不想讓使用者看到一行工具呼叫，生產環境可關閉。</td>
+</tr>
+<tr>
+<td>Enabled</td>
+<td>準備登入/啟動時再開啟。</td>
+</tr>
+<tr>
+<td>Allow From</td>
+<td>一行一個值。測試可填 * 表示開放；上線後換成具體微信使用者 id。空列表通常表示拒絕所有人。</td>
+</tr>
+<tr>
+<td>Base Url</td>
+<td>預設 <a href="https://ilinkai.weixin.qq.com" target="_blank" rel="noopener" class="uri">https://ilinkai.weixin.qq.com</a> ，一般不用改。</td>
+</tr>
+<tr>
+<td>Cdn Base Url</td>
+<td>預設 <a href="https://novac2c.cdn.weixin.qq.com/c2c" target="_blank" rel="noopener" class="uri">https://novac2c.cdn.weixin.qq.com/c2c</a> ，用於媒體上傳/下載。</td>
+</tr>
+<tr>
+<td>Route Tag</td>
+<td>可選騰訊路由標籤。沒有特殊部署要求就留空。</td>
+</tr>
+<tr>
+<td>Token</td>
+<td>可選 bot token。掃描 QR Code 登入時留空；掃描 QR Code 成功後管道會儲存 token。</td>
+</tr>
+<tr>
+<td>State Dir</td>
+<td>可選狀態目錄。留空時使用 data/partners/<id>/channels/weixin/ 存 account.json 。</td>
+</tr>
+<tr>
+<td>Poll Timeout</td>
+<td>長輪詢逾時時間，單位秒。預設 35 ，多數網路可用。</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="三登入流程">三、登入流程</h2>
+<ol type="1">
+<li>先不要啟動 Partner，開啟它的 WeChat 管道卡片，並把 <strong>Token</strong> 留空。</li>
+<li>點 <strong>Scan to connect</strong> ，QR Code 會直接顯示在瀏覽器裡。</li>
+<li>用微信掃描 QR Code 並在手機上確認。這一步只把 bot token（以及伺服器端回傳的 base URL）寫進管道設定，不會啟動 Partner，也不會開始長輪詢。</li>
+<li>確認 <strong>Enabled</strong> 已開啟，再從 UI 或命令列工具（CLI）啟動 Partner。管道會載入剛儲存的 token，然後開始長輪詢。</li>
+<li>用允許的帳號發一條短訊息測試。無 token 時直接啟動管道仍會在終端機列印 QR Code 作為備援，但推薦先在瀏覽器完成掃描 QR Code，再啟動 Partner。</li>
+</ol>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor partner start &lt;partner-id&gt;</code></pre></div>
+<p>如果 QR Code 過期，點 <strong>New code</strong>（或重新啟動 partner）後掃新的那張。實現會自動重新整理幾次 QR Code，但登入必須人工掃描 QR Code 完成。</p>
+<h2 id="如何確認健康">如何確認健康</h2>
+<p>健康的 WeChat 管道通常有三個跡象：</p>
+<ul>
+<li>掃描 QR Code 結果提示 bot token 已儲存，並且帳號狀態已經寫入；</li>
+<li>掛載的 <code>data/</code> 目錄裡存在 <code>data/partners/&lt;partner-id&gt;/channels/weixin/account.json</code> ；</li>
+<li>允許的傳送者發一條短訊息後，Partner 能正常回復。</li>
+</ul>
+<p>Docker（容器部署工具）部署必須持久化 <code>data/partners/</code>，否則每次容器重新啟動都可能需要重新掃描 QR Code。</p>
+<h2 id="訪問控制">訪問控制</h2>
+<p>訊息進入 partner brain 之前會先檢查 <code>Allow From</code>。第一次測試填 <code>*</code> 可以；生產環境建議從日誌裡確認 sender id 後換成明確白名單（allowlist）。</p>
+<h2 id="常見問題">常見問題</h2>
+<h3 id="每次啟動都要求重新掃描-qr-code">每次啟動都要求重新掃描 QR Code</h3>
+<p>檢查 <code>State Dir</code> 是否可寫、是否持久化。留空時 DeepTutor 寫到 Partner 的 <code>channels/weixin/</code> 目錄；如果 Docker 沒掛載該目錄，重新啟動後 token 會丟失。</p>
+<h3 id="收得到訊息但回不了">收得到訊息但回不了</h3>
+<p>微信回覆依賴最近入站訊息帶來的 <code>context_token</code>。如果帳號空閒太久，先從微信發一條新訊息，讓 DeepTutor 重新整理 context 後再回復。</p>
+<h3 id="過程訊息太多">過程訊息太多</h3>
+<p>在管道卡片裡關閉 <strong>Send Progress</strong> 或 <strong>Send Tool Hints</strong>。這不會改變 partner 推理，只改變微信裡看到的投遞內容。</p>
+<p>部署過程遇到問題，歡迎在留言區留言，把報錯的完整日誌貼出來，我看到會回覆。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../partners/channels.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">管道矩陣</p></a>
+<a class="next" href="../partners/wecom.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">企業微信</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>零度版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件零度版改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

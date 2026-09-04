@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>7 種解析引擎免費挑！DeepTutor 知識中心實測：GitHub 儲存庫直接喂進知識庫，附 10 條命令！｜零度解說 · DeepTutor 零度版</title>
+<meta name="description" content="建立、版本化、同步、檢查並複用為主頁、夥伴、智慧寫作、書籍等學習介面提供依據的知識庫。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="7 種解析引擎免費挑！DeepTutor 知識中心實測：GitHub 儲存庫直接喂進知識庫，附 10 條命令！｜零度解說 · DeepTutor 零度版">
+<meta property="og:site_name" content="DeepTutor 零度版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>零度版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html" aria-current="page">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">探索 DeepTutor<span aria-hidden="true"> · </span>知識空間</p>
+      <h1 class="doc-title">7 種解析引擎免費挑！DeepTutor 知識中心實測：GitHub 儲存庫直接喂進知識庫，附 10 條命令！｜零度解說</h1>
+      <p class="doc-lede">建立、版本化、同步、檢查並複用為主頁、夥伴、智慧寫作、書籍等學習介面提供依據的知識庫。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#知識空間是什麼">知識空間是什麼</a>
+</li>
+<li class="d2"><a href="#它在哪裡">它在哪裡</a>
+</li>
+<li class="d2"><a href="#選擇-rag-整合">選擇 RAG 整合</a>
+</li>
+<li class="d2"><a href="#建立一個知識庫">建立一個知識庫</a>
+</li>
+<li class="d2"><a href="#知識庫內部">知識庫內部</a>
+</li>
+<li class="d2"><a href="#文件解析7-種引擎怎麼選">文件解析：7 種引擎怎麼選</a>
+</li>
+<li class="d2"><a href="#cli-對應命令">CLI 對應命令</a>
+</li>
+<li class="d2"><a href="#幾條實用提示">幾條實用提示</a>
+</li>
+<li class="d2"><a href="#相關閱讀">相關閱讀</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/explore/knowledge/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/explore/knowledge/</a></p> <p>知識庫建了這麼多，為什麼 AI 的回答還是不對味？</p>
+<p>如果你當初跟我一樣，手動給一堆 PDF 分章節、做摘要，再餵給聊天機器人，那大機率也被「解析不乾淨、重建就翻車」折磨過。</p>
+<p>最近我把 DeepTutor 的知識空間（Knowledge Center）完整折騰了一遍，發現它把這件事做得相當系統：內建 7 種文件解析引擎可選，還能把 GitHub 儲存庫、指定站點直接掛成知識來源，外加 10 條命令列維護命令。</p>
+<p>可引擎一多，新問題也跟著來：到底該選哪個？重建索引會不會把好不容易建好的庫搞壞？</p>
+<p>接下來我們就從入口、建庫、庫內管理、解析引擎一路講到命令列，把答案全部攤開。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="知識空間是什麼">知識空間是什麼</h2>
+<p>知識空間是你建置與管理 <strong>RAG</strong>（檢索增強生成）背後文件庫的地方；在網頁介面中，這個入口顯示為 <strong>Knowledge Center / 知識中心</strong>。</p>
+<p>一個知識庫（KB）可以為主頁對話、智慧寫作、書籍生成與夥伴對話提供依據。</p>
+<p>本頁聚焦知識庫生命週期；引擎架構與選型歸入 <a href="../ecosystem/rag-integration.html">RAG 整合</a>。</p>
+<h2 id="它在哪裡">它在哪裡</h2>
+<p>點選左側欄的 <strong>Knowledge Center</strong>（知識中心）。</p>
+<p>兩個標籤會把職責分開：<strong>Knowledge bases</strong> 管理你已建的資料庫生命週期，<strong>Knowledge engines</strong> 展示當前部署可用的全部檢索整合。</p>
+<figure>
+<img src="../assets/screenshots/guide/knowledge/00-overview.png" alt="知識中心的 Knowledge bases 標籤，旁邊可切換 Knowledge engines" />
+<figcaption aria-hidden="true">知識中心的 Knowledge bases 標籤，旁邊可切換 Knowledge engines</figcaption>
+</figure>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="選擇-rag-整合">選擇 RAG 整合</h2>
+<p>每個 KB 都綁定一個檢索整合。</p>
+<p>開啟 <strong>Knowledge engines</strong>，目錄會按 Local、Server、Cloud 與 External knowledge sources 分組；建庫前即可看到 <strong>Ready</strong>、<strong>Needs key</strong>、<strong>Needs setup</strong> 或 <strong>Not installed</strong> 狀態，能不能用一眼便知。</p>
+<p>完整比較見 <a href="../ecosystem/rag-integration.html">RAG 整合</a>，其中 PageIndex OSS 與 PageIndex Cloud 是兩個不同 contract（兩套不同的接入約定）。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="建立一個知識庫">建立一個知識庫</h2>
+<p>點選 <strong>New knowledge base</strong>。第一個選擇最關鍵：</p>
+<ul>
+<li><strong>Create new</strong> （新增）——上傳文件並建置一個全新索引。</li>
+<li><strong>Link existing</strong> （關聯已有）——複用你在別處已建好的索引；DeepTutor 就地讀取，不上傳、不重建索引。</li>
+</ul>
+<p>然後給 KB 命名、選擇<strong>索引引擎</strong>與初始檢索模式，再新增文件。</p>
+<p>PageIndex Cloud 與 PageIndex OSS 是兩個選項：前者上傳到託管服務，後者在本機建置。</p>
+<p>更香的是，KB 還能追蹤 <strong>GitHub 來源</strong>（儲存庫、分支、路徑、glob）或有界 <strong>Web 來源</strong>（文件 URL、深度、頁數），同步時會對新增、更新與刪除內容做差異對賬，程式碼儲存庫和文件站直接當資料庫用，這波免費相當舒服。</p>
+<figure>
+<img src="../assets/screenshots/guide/knowledge/01-create-knowledge-base.png" alt="建立知識庫彈窗：新增 vs 關聯已有、名稱、索引引擎與檔案" />
+<figcaption aria-hidden="true">建立知識庫彈窗：新增 vs 關聯已有、名稱、索引引擎與檔案</figcaption>
+</figure>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="知識庫內部">知識庫內部</h2>
+<p>開啟一個 KB 進行管理。面板把<strong>文件檢視器</strong>與自適應導航配在一起：</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>標籤頁</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Files</td>
+<td>原始文件及其抽取狀態，帶就地預覽；可在此刪除單個文件——即使 KB 處於 error 狀態——也無需重建整個庫。</td>
+</tr>
+<tr>
+<td>Add documents</td>
+<td>上傳更多 PDF、Office、Markdown、文字、程式碼或資料。</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>管理儲存庫來源並同步。</td>
+</tr>
+<tr>
+<td>Web</td>
+<td>管理有界站點抓取並同步。</td>
+</tr>
+<tr>
+<td>Index versions</td>
+<td>以 embedding 簽章為鍵的扁平 version-N 儲存目錄。</td>
+</tr>
+<tr>
+<td>Settings</td>
+<td>該 KB 的 embedding 模型、分塊與檢索參數。</td>
+</tr>
+</tbody>
+</table></div>
+<figure>
+<img src="../assets/screenshots/guide/knowledge/02-panel-for-each-knowledge-base.png" alt="知識庫面板：Files / Add documents / GitHub / Web / Index versions / Settings，帶 PDF 預覽" />
+<figcaption aria-hidden="true">知識庫面板：Files / Add documents / GitHub / Web / Index versions / Settings，帶 PDF 預覽</figcaption>
+</figure>
+<p>MarginNote 只顯示 <strong>Devices</strong> 與 <strong>Settings</strong>，資料由配對的 add-on 推送。</p>
+<p><strong>版本模型</strong>這一點特別穩：重新建索引會寫入一個新的 <code>version-N</code> 目錄，並保留之前的，因此重建途中絕不會毀掉一個可用索引。把舊版本當作保留的歷史與退回儲存。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="文件解析7-種引擎怎麼選">文件解析：7 種引擎怎麼選</h2>
+<p>文件在能被檢索之前，必須先被轉成文字。</p>
+<p><strong>Settings → Knowledge Base → Document Parsing</strong> 選擇做這件事的引擎。而且很關鍵的一點：<strong>本機模型下載預設關閉</strong>，只有當你明確允許時才會發生。</p>
+<figure>
+<img src="../assets/screenshots/guide/knowledge/03-config-document-parsing-engine-in-settings.png" alt="Settings → Document Parsing：Text-only、MinerU、Docling、Tika、markitdown、PyMuPDF4LLM 與 LiteParse 引擎及其安裝狀態" />
+<figcaption aria-hidden="true">Settings → Document Parsing：Text-only、MinerU、Docling、Tika、markitdown、PyMuPDF4LLM 與 LiteParse 引擎及其安裝狀態</figcaption>
+</figure>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>引擎</th>
+<th>權衡</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text-only （內建）</td>
+<td>對 PDF/Office/文字做純文字抽取。無需安裝套件、無下載、無版面結構。</td>
+</tr>
+<tr>
+<td>MinerU</td>
+<td>保真度最高的多模態解析（版面、表格、公式）。本機 CLI 下載模型，或用託管雲 API。支援 PDF；BMP、GIF、JP2、JPEG、JPG、PNG、TIFF、WebP 圖片；以及 DOCX、PPTX、XLSX。</td>
+</tr>
+<tr>
+<td>Docling</td>
+<td>結構化轉換（版面/表格）。首次執行下載本機模型，也可以 remote 模式連到 Docling Serve 伺服器（無需本機安裝與模型）。PDF/Office/HTML/圖片。</td>
+</tr>
+<tr>
+<td>Tika</td>
+<td>僅遠端：連線 Settings → Document Parsing 中設定的 Apache Tika 伺服器，無需本機安裝與模型。格式支援廣 → 輸出 Markdown。</td>
+</tr>
+<tr>
+<td>markitdown</td>
+<td>輕量、無下載、格式支援廣 → 輸出 Markdown。 pip install deeptutor[parse-markitdown] 。</td>
+</tr>
+<tr>
+<td>PyMuPDF4LLM</td>
+<td>輕量、無下載、無需 CUDA。轉換 PDF、電子書、XPS、圖片、文字與 Markdown，並可抽取圖片。 pip install deeptutor[parse-pymupdf4llm] 。</td>
+</tr>
+<tr>
+<td>LiteParse</td>
+<td>輕量結構化解析，無需下載本機模型。 pip install deeptutor[parse-liteparse] 。</td>
+</tr>
+</tbody>
+</table></div>
+<p>簡單說：要公式表格的保真度就上 MinerU，想零下載輕量跑就 markitdown / PyMuPDF4LLM / LiteParse，手頭有伺服器就用 Tika 或 Docling 的遠端模式，按需挑就行。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="cli-對應命令">CLI 對應命令</h2>
+<p>不想點介面的話，命令列一條龍也能管：</p>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor kb list
+deeptutor kb create physics --doc chapter1.pdf
+deeptutor kb create textbooks --docs-dir ./pdfs
+deeptutor kb add physics --doc chapter2.pdf
+deeptutor kb add-github-source physics --repo owner/repo --branch main --path docs --glob <span class="s">'*.md'</span>
+deeptutor kb add-web-source physics --url https://docs.example.com --max-depth <span class="m">3</span> --max-pages <span class="m">200</span>
+deeptutor kb list-sources physics
+deeptutor kb sync physics
+deeptutor kb search physics <span class="s">"What is angular momentum?"</span>
+deeptutor kb set-default physics</code></pre></div>
+<p>從建庫、加文件、掛 GitHub 與 Web 來源，到同步、檢索、設預設，10 條命令全覆蓋，指令碼黨狂喜。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="幾條實用提示">幾條實用提示</h2>
+<ul>
+<li>在建置正式 KB 前，先到 <strong>Settings → Models → Embedding</strong> 配好 embedding 提供商。</li>
+<li>若更換了向量化模型（embedding），請重建索引，而不要混用向量空間。</li>
+<li>重新啟動中斷任務時會報可重試錯誤，請重新執行。</li>
+<li>留一個小的測試 KB 用於夥伴/管道冒煙測試。</li>
+<li>用 Docker（容器部署工具）時，持久化整個 <code>data/</code> 目錄樹，讓 KB 版本能在容器重新啟動後存活。</li>
+</ul>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="相關閱讀">相關閱讀</h2>
+<ul>
+<li><a href="../ecosystem/rag-integration.html">RAG 整合</a> ——比較知識庫背後的知識引擎</li>
+<li><a href="../explore/chat-workspace.html">主頁</a> ——把 KB 掛到一輪裡</li>
+<li><a href="../explore/reading.html">沉浸式閱讀</a> ——讀一份文件，而不是給一整個語料庫建索引</li>
+<li><a href="../explore/book.html">書籍</a> ——從 KB 編譯學習材料</li>
+<li><a href="../explore/partners.html">夥伴</a> ——把 KB 複製進夥伴工作區</li>
+<li><a href="../explore/settings.html">設定</a> ——embedding 提供商與解析引擎</li>
+</ul>
+<div class="gap" aria-hidden="true"></div>
+<p>實際效果還會受到所選引擎、文件類型以及具體語料的影響，建議大家結合自己的資料實際體驗評估，選不準就先拿小庫跑一輪。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../explore/co-writer.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">智慧寫作</p></a>
+<a class="next" href="../explore/space.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">學習空間</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>零度版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件零度版改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

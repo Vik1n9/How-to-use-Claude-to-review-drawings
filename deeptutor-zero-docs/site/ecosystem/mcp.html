@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>38 個 MCP 服務一鍵接入！DeepTutor 工具生態的最強玩法，金鑰只貼一次，附完整教學！｜零度解說 · DeepTutor 零度版</title>
+<meta name="description" content="按帳號連線託管的 Model Context Protocol 服務，或由管理員透過部署註冊表管理全域伺服器。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="38 個 MCP 服務一鍵接入！DeepTutor 工具生態的最強玩法，金鑰只貼一次，附完整教學！｜零度解說 · DeepTutor 零度版">
+<meta property="og:site_name" content="DeepTutor 零度版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>零度版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html" aria-current="page">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">DeepTutor 生態<span aria-hidden="true"> · </span>MCP 擴充</p>
+      <h1 class="doc-title">38 個 MCP 服務一鍵接入！DeepTutor 工具生態的最強玩法，金鑰只貼一次，附完整教學！｜零度解說</h1>
+      <p class="doc-lede">按帳號連線託管的 Model Context Protocol 服務，或由管理員透過部署註冊表管理全域伺服器。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#瀏覽商店">瀏覽商店</a>
+</li>
+<li class="d2"><a href="#連線託管服務">連線託管服務</a>
+</li>
+<li class="d2"><a href="#新增商店外的服務">新增商店外的服務</a>
+</li>
+<li class="d2"><a href="#憑據與授權">憑據與授權</a>
+</li>
+<li class="d2"><a href="#另見">另見</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/ecosystem/mcp/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/ecosystem/mcp/</a></p> <p>最近給 DeepTutor 接外部工具，我把 MCP（模型上下文協定）擴充翻了個底朝天。</p>
+<p>數字先擺出來：商店裡現在有 38 個託管伺服器可以直接連，完整目錄裡還有 7 個僅管理員可用的 <code>stdio</code> 定義。</p>
+<p>它的作用一句話講清：把 DeepTutor 之外的工具，帶進和內建工具相同的智慧代理（Agent）迴圈。遠端服務連到個人帳號，部署級伺服器則由管理員統一管理。</p>
+<p>很多人看到這裡，基本就放棄了：又是金鑰又是授權，接個工具比裝軟體還麻煩。</p>
+<p>實際上 DeepTutor 把這套流程做得相當順滑，金鑰只貼一次，授權過期還會主動提醒你重連。接下來我們把商店、連線、全域註冊表三個部分一次講清楚。</p>
+<h2 id="瀏覽商店">瀏覽商店</h2>
+<p>開啟<strong>學習空間 → MCP 服務</strong>。</p>
+<p><strong>Installed</strong> 顯示當前帳號已連線的服務；<strong>Store</strong> 提供 38 個託管伺服器。</p>
+<p>完整目錄還有 7 個僅管理員可用的 <code>stdio</code> 定義，因此不會出現在自助商店裡。</p>
+<figure>
+<img src="../assets/screenshots/guide/ecosystem/mcp/00-store.png" alt="帶搜尋、分類、連線要求和信任標籤的 MCP 服務商店" />
+<figcaption aria-hidden="true">帶搜尋、分類、連線要求和信任標籤的 MCP 服務商店</figcaption>
+</figure>
+<p>卡片會標出分類、是否需要憑據，以及條目是本版本精選還是來自公共註冊表。</p>
+<p>連線後，服務工具透過正常的工具發現流程進入智慧代理；選擇器會先把工具摺疊在一個服務條目下，而不是一次甩出幾百份 schema（工具引數說明）。</p>
+<h2 id="連線託管服務">連線託管服務</h2>
+<p>流程取決於伺服器的要求，一共三種情況：</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>伺服器需要</th>
+<th>連線方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>無需憑據</td>
+<td>一鍵立即連線。</td>
+</tr>
+<tr>
+<td>API key</td>
+<td>只貼上一次；伺服器設定儲存 ${secret:…} 引用，而不是權杖本身。</td>
+</tr>
+<tr>
+<td>OAuth</td>
+<td>DeepTutor 執行帶 PKCE 和動態使用者端註冊的 OAuth 2.1，並儲存該帳號的授權。</td>
+</tr>
+</tbody>
+</table></div>
+<p>API 金鑰（API key）只需要貼上一次，伺服器設定裡儲存的是 <code>${secret:…}</code> 引用，而不是權杖本身，設定檔案裡不會留明文金鑰。</p>
+<p>OAuth（開放授權）這檔更省心：DeepTutor 執行帶 PKCE（授權碼交換證明金鑰）和動態使用者端註冊的 OAuth 2.1，並儲存該帳號的授權。</p>
+<p>後台重連不會卡在同意頁面。授權過期後，服務狀態變為 <strong>needs auth</strong>，介面會重新提供 Connect 操作，點一下就好。</p>
+<p>真能跑的關鍵就在這些細節上：不用每次都從頭走一遍授權。</p>
+<h2 id="新增商店外的服務">新增商店外的服務</h2>
+<p>商店不夠用？在 <strong>Installed</strong> 中選擇 <strong>Add a server by URL</strong>，可以連線任意遠端 MCP 端點。</p>
+<p>同一頁面裡的 <strong>Deployment registry</strong> 管理部署級 <code>mcp.json</code> 條目，所有帳號都會獲得這些伺服器。</p>
+<p>這裡有條硬規則：自助商店拒絕 <code>stdio</code>，因為命令列會以應用使用者身份執行；這類伺服器必須由管理員寫入部署註冊表。</p>
+<p>舊的 <code>/settings/mcp</code> 路徑會跳轉到這裡，老書籤不用慌。</p>
+<h2 id="憑據與授權">憑據與授權</h2>
+<p>按帳號儲存的 MCP 憑據位於程式碼沙箱永不掛載的 <code>data/system</code>。</p>
+<p>多使用者部署中，非管理員授權按工具名設定白名單，預設拒絕；執行時還會再次檢查權限，而不只是在展示 schema 時檢查。</p>
+<p>權限檢查發生在真正執行的那一刻，不是擺設。</p>
+<p>對於把 DeepTutor 部署給整個班級或團隊用的朋友來說，這一點可以放心不少。</p>
+<p>最後照例提醒一句：部署過程遇到問題，歡迎在留言區留言，把報錯的完整日誌貼出來，我看到會回覆。</p>
+<h2 id="另見">另見</h2>
+<ul>
+<li><a href="../ecosystem/skills.html">Skill 擴充</a> ——只包含指令的工作流擴充</li>
+<li><a href="../ecosystem/cli-apps.html">CLI-App 擴充</a> ——安裝在部署上的沙箱化命令列工具</li>
+<li><a href="../get-started/multi-user.html">多使用者部署</a> ——編輯帳號授權</li>
+</ul>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../ecosystem/skills.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">Skill 擴充</p></a>
+<a class="next" href="../ecosystem/cli-apps.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">CLI-App 擴充</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>零度版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件零度版改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

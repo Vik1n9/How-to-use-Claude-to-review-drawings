@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepTutor 接入 WhatsApp 教學！1 個 bridge 免費個人號，免企業認證免按條計費，斷線 5 秒自動重連！｜零度解說 · DeepTutor 零度版</title>
+<meta name="description" content="透過外部 Node.js bridge（WhatsApp Web 協定）把 Partner 接入 WhatsApp。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="DeepTutor 接入 WhatsApp 教學！1 個 bridge 免費個人號，免企業認證免按條計費，斷線 5 秒自動重連！｜零度解說 · DeepTutor 零度版">
+<meta property="og:site_name" content="DeepTutor 零度版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>零度版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html" aria-current="page">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">夥伴與管道<span aria-hidden="true"> · </span>WhatsApp</p>
+      <h1 class="doc-title">DeepTutor 接入 WhatsApp 教學！1 個 bridge 免費個人號，免企業認證免按條計費，斷線 5 秒自動重連！｜零度解說</h1>
+      <p class="doc-lede">透過外部 Node.js bridge（WhatsApp Web 協定）把 Partner 接入 WhatsApp。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#一安裝依賴">一、安裝依賴</a>
+</li>
+<li class="d2"><a href="#二執行-bridge">二、執行 bridge</a>
+<ul>
+<li class="d3"><a href="#bridge-協定">Bridge 協定</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#三設定管道卡片channel-card">三、設定管道卡片（channel card）</a>
+</li>
+<li class="d2"><a href="#四設定完成之後">四、設定完成之後</a>
+</li>
+<li class="d2"><a href="#如何確認健康">如何確認健康</a>
+</li>
+<li class="d2"><a href="#常見問題">常見問題</a>
+<ul>
+<li class="d3"><a href="#bridge-連不上-管道一直重連">Bridge 連不上 / 管道一直重連</a></li>
+<li class="d3"><a href="#bridge-反覆列印-qr-code">Bridge 反覆列印 QR Code</a></li>
+<li class="d3"><a href="#收得到訊息但回覆發不出去">收得到訊息但回覆發不出去</a></li>
+</ul>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/partners/whatsapp/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/partners/whatsapp/</a></p> <p>海外朋友多、團隊在 WhatsApp 上溝通的，這期別錯過。</p>
+<p>DeepTutor 的 <code>whatsapp</code> 管道，透過一個<strong>外部橋接程式（bridge）</strong>行程把學習夥伴（Partner）接到 WhatsApp 帳號：DeepTutor 和 bridge 之間走 WebSocket；bridge 負責登入 WhatsApp Web（掃一次碼）並雙向轉發訊息。</p>
+<p>這麼做最大的好處，是繞開了官方 WhatsApp Business API 的門檻：不需要企業認證、沒有按條計費，個人號直接免費；代價是多跑一個行程。</p>
+<p>但是問題來了。DeepTutor 本身不帶 bridge 實現，需要你自己跑一個基於 Node.js 18+ 的 bridge。</p>
+<p>別慌，官方文件直接給了一個最小實現，照抄就能跑。接下來，我們把它從零跑起來。</p>
+<p><img src="../assets/channel-icons/whatsapp.svg" /></p>
+<p>bridge 發布 QR/status 事件後，卡片會在瀏覽器渲染 QR Code 與即時狀態。在那裡掃描 QR Code 並觀察 <strong>Waiting for scan</strong> 進入 <strong>Connected</strong>；bridge 終端機只作為舊版本的後備。</p>
+<figure>
+<img src="../assets/screenshots/partners-channel-whatsapp.png" alt="WhatsApp 管道設定" />
+<figcaption aria-hidden="true">WhatsApp 管道設定</figcaption>
+</figure>
+<h2 id="一安裝依賴">一、安裝依賴</h2>
+<p>Python 側依賴在 Partners 可選元件（extras）裡。bridge 另外需要一台 Node.js 18+ 的機器，可以和 DeepTutor 同機。</p>
+<div class="codeblock" data-lang="bash"><pre><code>pip install -e <span class="s">".[partners]"</span>
+<span class="c"># 或发布包支持 extras 时：
+</span>pip install <span class="s">"deeptutor[partners]"</span></code></pre></div>
+<h2 id="二執行-bridge">二、執行 bridge</h2>
+<p>DeepTutor 本身不帶 bridge 實現。任何基於 <a href="https://github.com/WhiskeySockets/Baileys" target="_blank" rel="noopener"><span class="citation" data-cites="whiskeysockets/baileys">@whiskeysockets/baileys</span></a>、說下面這套 JSON 協定的 bridge 都可以用。一個最小實現：</p>
+<div class="codeblock" data-lang="javascript"><pre><code><span class="k">const</span> { <span class="k">default</span>: makeWASocket, useMultiFileAuthState } = require(<span class="s">'@whiskeysockets/baileys'</span>)
+<span class="k">const</span> WebSocket = require(<span class="s">'ws'</span>)
+
+<span class="k">const</span> wss = new WebSocket.Server({ port: <span class="m">3001</span> })
+<span class="k">let</span> waSocket = <span class="k">null</span>
+
+<span class="k">async</span> <span class="k">function</span> start() {
+  <span class="k">const</span> { state, saveCreds } = <span class="k">await</span> useMultiFileAuthState(<span class="s">'./auth'</span>)
+  waSocket = makeWASocket({ auth: state, printQRInTerminal: <span class="k">true</span> })
+  waSocket.ev.on(<span class="s">'creds.update'</span>, saveCreds)
+  waSocket.ev.on(<span class="s">'messages.upsert'</span>, ({ messages, type }) =&gt; {
+    <span class="k">if</span> (type !== <span class="s">'notify'</span>) <span class="k">return</span>
+    <span class="k">const</span> message = messages[<span class="m">0</span>]
+    <span class="k">if</span> (!message || message.key.fromMe) <span class="k">return</span>
+
+    <span class="k">const</span> chatJid = message.key.remoteJid || <span class="s">''</span>
+    <span class="k">const</span> senderJid = message.key.participant || chatJid
+    <span class="k">const</span> content = message.message?.conversation
+      || message.message?.extendedTextMessage?.text
+      || <span class="s">''</span>
+    <span class="k">if</span> (!chatJid || !senderJid || !content) <span class="k">return</span>
+
+    <span class="k">const</span> envelope = <span class="nb">JSON</span>.stringify({
+      type: <span class="s">'message'</span>,
+      id: message.key.id || <span class="s">''</span>,
+      sender: chatJid,
+      pn: senderJid,
+      content,
+      media: [],
+      timestamp: <span class="nb">Number</span>(message.messageTimestamp || <span class="nb">Math</span>.floor(<span class="nb">Date</span>.now() / <span class="m">1000</span>)),
+      isGroup: chatJid.endsWith(<span class="s">'@g.us'</span>),
+    })
+    wss.clients.forEach(client =&gt; {
+      <span class="k">if</span> (client.readyState === WebSocket.OPEN) client.send(envelope)
+    })
+  })
+}
+
+wss.on(<span class="s">'connection'</span>, (ws) =&gt; {
+  ws.on(<span class="s">'message'</span>, (raw) =&gt; {
+    <span class="k">const</span> message = <span class="nb">JSON</span>.parse(raw.toString())
+    <span class="k">if</span> (message.type !== <span class="s">'send'</span> || !message.to || !message.text) <span class="k">return</span>
+    waSocket?.sendMessage(message.to, { text: message.text })
+  })
+})
+
+start()</code></pre></div>
+<div class="codeblock" data-lang="bash"><pre><code>npm install @whiskeysockets/baileys ws
+node bridge.js</code></pre></div>
+<p>bridge 的 <code>qr</code> 事件會顯示在 DeepTutor 管道卡片中（範例 bridge 也可能同時列印）。手機上開啟 <strong>WhatsApp -&gt; 設定 -&gt; 已關聯的裝置 -&gt; 關聯新裝置</strong>，掃描瀏覽器卡片。建議用行程管理器（<code>pm2</code>、systemd）守護 bridge；DeepTutor 斷線後每 5 秒自動重連。</p>
+<h3 id="bridge-協定">Bridge 協定</h3>
+<ul>
+<li>連線建立時，如果設定了 <strong>Bridge Token</strong> ，DeepTutor 會先發 <code>{"type": "auth", "token": "..."}</code> 。</li>
+<li>bridge 發給 DeepTutor： <code>{"type": "message", "id": ..., "sender": ..., "pn": ..., "content": ..., "media": ["/path", ...], "timestamp": ..., "isGroup": ...}</code> 。媒體檔案由 bridge 下載到本機路徑後透過 <code>media</code> 傳入，DeepTutor 會作為圖片/檔案附件處理。</li>
+<li>DeepTutor 發給 bridge： <code>{"type": "send", "to": "&lt;jid&gt;", "text": "..."}</code> 。</li>
+<li>bridge 還可以發 <code>{"type": "status"}</code> 、 <code>{"type": "qr"}</code> 、 <code>{"type": "error"}</code> 事件。</li>
+</ul>
+<p>語音訊息暫不支援轉寫，會以佔位文字進入對話。</p>
+<h2 id="三設定管道卡片channel-card">三、設定管道卡片（channel card）</h2>
+<p>開啟 <strong>Partners -&gt; 你的 partner -&gt; Channels -&gt; WhatsApp</strong>。</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>欄位</th>
+<th>怎麼填</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Send Progress</td>
+<td>測試時建議開啟。長任務會把過程解說（narration）發到 WhatsApp。</td>
+</tr>
+<tr>
+<td>Send Tool Hints</td>
+<td>除錯時建議開啟；不想讓使用者看到一行工具呼叫就關掉。</td>
+</tr>
+<tr>
+<td>Enabled</td>
+<td>bridge 跑起來、準備啟動管道時再開啟。</td>
+</tr>
+<tr>
+<td>Bridge Url</td>
+<td>bridge 的 WebSocket 地址，預設 <a href="ws://localhost:3001" class="uri">ws://localhost:3001</a> 。</td>
+</tr>
+<tr>
+<td>Bridge Token</td>
+<td>可選共享金鑰。只有你的 bridge 驗證 auth 訊息時才需要填。</td>
+</tr>
+<tr>
+<td>Allow From</td>
+<td>一行一個值。測試可填 * 表示開放；上線後換成具體 sender id（WhatsApp id 裡 @ 前面那段，通常是手機號）。空列表拒絕所有人。</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="四設定完成之後">四、設定完成之後</h2>
+<ol type="1">
+<li>儲存卡片， <strong>Enabled</strong> 開啟。</li>
+<li>從 UI 或命令列工具（CLI）啟動（或重新啟動）partner，讓管道載入新設定。</li>
+<li>觀察伺服器端日誌出現 <code>Connected to WhatsApp bridge</code> 。</li>
+<li>給登入在 bridge 上的 WhatsApp 號碼發一條短訊息。</li>
+<li>在日誌裡看到真實 sender id 之後，把 <strong>Allow From</strong> 的 <code>*</code> 換成明確值。</li>
+</ol>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor partner start &lt;partner-id&gt;</code></pre></div>
+<h2 id="如何確認健康">如何確認健康</h2>
+<p>健康的 WhatsApp 管道通常有三個跡象：</p>
+<ul>
+<li>DeepTutor 管道卡片進入 <strong>Connected</strong> ，不再重新整理 QR Code；</li>
+<li>DeepTutor 日誌出現 <code>Connected to WhatsApp bridge</code> ；</li>
+<li>允許的傳送者發一條短訊息後，Partner 能正常回復。</li>
+</ul>
+<h2 id="常見問題">常見問題</h2>
+<h3 id="bridge-連不上-管道一直重連">Bridge 連不上 / 管道一直重連</h3>
+<p>日誌反覆出現 <code>WhatsApp bridge connection error</code> 和 <code>Reconnecting in 5 seconds...</code>。檢查 bridge 行程是否在跑、<strong>Bridge Url</strong> 的主機和連接埠是否正確。DeepTutor 會一直重試，bridge 恢復後管道自動復原。</p>
+<h3 id="bridge-反覆列印-qr-code">Bridge 反覆列印 QR Code</h3>
+<p>bridge 的登入狀態沒有持久化。確認它的 auth 目錄（範例裡是 <code>./auth</code>）可寫且重新啟動後還在。另外手機離線約兩週後 WhatsApp Web 會話會過期，重新掃描 QR Code 即可恢復。</p>
+<h3 id="收得到訊息但回覆發不出去">收得到訊息但回覆發不出去</h3>
+<p>如果 bridge 在回合中途斷線，DeepTutor 回覆時日誌會出現 <code>WhatsApp bridge not connected</code>。等 bridge 恢復連線後再發一條新訊息。入站訊息按 id 去重，bridge 重連不會產生重複回答。</p>
+<p>實際效果還會受到模型、提示詞以及具體使用場景的影響，建議大家結合自己的需求實際體驗評估。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../partners/mattermost.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">Mattermost</p></a>
+<a class="next" href="../partners/email.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">郵件</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>零度版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件零度版改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

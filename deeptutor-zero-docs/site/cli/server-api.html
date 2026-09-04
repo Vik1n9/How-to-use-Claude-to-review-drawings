@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>近 180 個 API 一次看懂！DeepTutor 伺服器端 API 全景圖，8001 連接埠自帶完整後端！｜零度解說 · DeepTutor 零度版</title>
+<meta name="description" content="deeptutor serve 暴露的 HTTP 和 WebSocket 表面，用於自訂前端和整合。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="近 180 個 API 一次看懂！DeepTutor 伺服器端 API 全景圖，8001 連接埠自帶完整後端！｜零度解說 · DeepTutor 零度版">
+<meta property="og:site_name" content="DeepTutor 零度版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>零度版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html" aria-current="page">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">DeepTutor CLI<span aria-hidden="true"> · </span>伺服器端 API</p>
+      <h1 class="doc-title">近 180 個 API 一次看懂！DeepTutor 伺服器端 API 全景圖，8001 連接埠自帶完整後端！｜零度解說</h1>
+      <p class="doc-lede">deeptutor serve 暴露的 HTTP 和 WebSocket 表面，用於自訂前端和整合。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#啟動服務">啟動服務</a>
+</li>
+<li class="d2"><a href="#驗證">驗證</a>
+</li>
+<li class="d2"><a href="#turn-執行-websocket">Turn 執行 WebSocket</a>
+</li>
+<li class="d2"><a href="#websocket-api">WebSocket API</a>
+</li>
+<li class="d2"><a href="#session">Session</a>
+</li>
+<li class="d2"><a href="#知識庫">知識庫</a>
+</li>
+<li class="d2"><a href="#notebook">Notebook</a>
+</li>
+<li class="d2"><a href="#memory">Memory</a>
+</li>
+<li class="d2"><a href="#settingstoolsvisualizers-和-system">Settings、tools、visualizers 和 system</a>
+</li>
+<li class="d2"><a href="#partners-manager">Partners Manager</a>
+</li>
+<li class="d2"><a href="#book-engine">Book Engine</a>
+</li>
+<li class="d2"><a href="#沉浸式閱讀">沉浸式閱讀</a>
+</li>
+<li class="d2"><a href="#沉浸式觀看">沉浸式觀看</a>
+</li>
+<li class="d2"><a href="#其餘路由">其餘路由</a>
+</li>
+<li class="d2"><a href="#輸出和附件">輸出和附件</a>
+</li>
+<li class="d2"><a href="#生成-typed-client">生成 typed client</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/cli/server-api/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/cli/server-api/</a></p> <p>相信不少朋友也是透過網頁介面認識的 DeepTutor，但很多人不知道，它的後端是完全攤開給你看的。</p>
+<p>只要 <code>deeptutor serve</code> 一條命令，本機 <code>http://localhost:8001/</code> 上就會起一個 FastAPI 後端（除非你改了後端連接埠），近 180 個 API 隨便調，這資訊密度第一次看真的太狂了。</p>
+<p>這套 API 是給誰準備的？自訂前端、移動 App、服務之間的整合，全靠它。官方網頁介面本身，用的也是同一套通道（API）。</p>
+<p>要看窮盡且永遠最新的結構定義（schema），啟動服務後開啟下面三個入口：</p>
+<div class="codeblock" data-lang="text"><pre><code>GET /openapi.json     # 完整 OpenAPI 3.1 spec
+GET /docs             # 交互式 Swagger UI
+GET /redoc            # 备选的 ReDoc UI</code></pre></div>
+<p>老規矩，本頁所有 API 路徑、程式碼我一個字元沒動，直接對照官方文件用就行。</p>
+<h2 id="啟動服務">啟動服務</h2>
+<div class="codeblock" data-lang="bash"><pre><code><span class="c"># 仅后端。端口取自 data/user/settings/system.json，默认 8001。
+</span>deeptutor serve
+
+<span class="c"># 给本次进程指定自定义 host/port
+</span>deeptutor serve --host <span class="m">127</span>.0.0.1 --port <span class="m">18001</span>
+
+<span class="c"># 开发模式：Python 文件变动时热重载
+</span>deeptutor serve --reload</code></pre></div>
+<h2 id="驗證">驗證</h2>
+<p>開啟驗證後，多數路由要求 Bearer JWT（一種權杖憑證）或 <code>dt_token</code> cookie。登入/初始化可公開，資料/管理受保護；<code>GET /api/settings/ui</code> 公開。MarginNote 的 <code>/sync</code>、<code>/heartbeat</code> 使用 <code>Authorization: MarginNote &lt;device_id&gt;:&lt;token&gt;</code>。</p>
+<div class="codeblock" data-lang="bash"><pre><code><span class="c"># 登录
+</span>curl -X POST http://localhost:8001/api/auth/login <span class="s">\
+</span>  -c cookies.txt <span class="s">\
+</span>  -H <span class="s">"Content-Type: application/json"</span> <span class="s">\
+</span>  -d <span class="s">'{"username":"alice","password":"..."}'</span>
+
+<span class="c"># 响应是用户元数据；JWT 写入 dt_token cookie。
+</span>
+<span class="c"># 复用 cookie
+</span>curl -b cookies.txt http://localhost:8001/api/sessions</code></pre></div>
+<p>如果驗證沒開，認證依賴就是 no-op，本機單使用者請求不需要帶權杖。</p>
+<h2 id="turn-執行-websocket">Turn 執行 WebSocket</h2>
+<div class="codeblock" data-lang="text"><pre><code>WS /ws</code></pre></div>
+<p>這是網頁介面在用的統一回合 WebSocket（長連線通道）。它對所有能力（capability）一視同仁，輸出的事件和 <code>deeptutor run --format json</code> 列印的是同一族。</p>
+<p>發一個 <code>type: "start_turn"</code> 或 <code>type: "message"</code> 載荷啟動回合：</p>
+<div class="codeblock" data-lang="json"><pre><code>{
+  <span class="nt">"type"</span>: <span class="s">"start_turn"</span>,
+  <span class="nt">"content"</span>: <span class="s">"Find d/dx [sin(x^2)]"</span>,
+  <span class="nt">"capability"</span>: <span class="s">"deep_solve"</span>,
+  <span class="nt">"session_id"</span>: <span class="k">null</span>,
+  <span class="nt">"tools"</span>: [<span class="s">"reason"</span>],
+  <span class="nt">"knowledge_bases"</span>: [<span class="s">"math"</span>],
+  <span class="nt">"language"</span>: <span class="s">"en"</span>,
+  <span class="nt">"config"</span>: {},
+  <span class="nt">"notebook_references"</span>: [],
+  <span class="nt">"history_references"</span>: [],
+  <span class="nt">"partner_group_references"</span>: [],
+  <span class="nt">"attachments"</span>: []
+}</code></pre></div>
+<p><code>skills</code> 無效；<code>read_skill</code> 暴露可見技能。</p>
+<p>其他使用者端型別包括 <code>subscribe_turn</code>、<code>resume_from</code>、<code>cancel_turn</code>、<code>submit_user_reply</code>、<code>regenerate</code> 等；訂閱按 <code>after_seq</code> 補幀，終態必收 <code>done</code>（失敗先 <code>error</code>）。</p>
+<p>典型收到的事件：</p>
+<div class="codeblock" data-lang="json"><pre><code>{<span class="nt">"type"</span>:<span class="s">"stage_start"</span>,<span class="nt">"stage"</span>:<span class="s">"responding"</span>}
+{<span class="nt">"type"</span>:<span class="s">"tool_call"</span>,<span class="nt">"content"</span>:<span class="s">"rag"</span>,<span class="nt">"metadata"</span>:{<span class="nt">"args"</span>:{<span class="nt">"query"</span>:<span class="s">"chain rule"</span>,<span class="nt">"kb_name"</span>:<span class="s">"math"</span>}}}
+{<span class="nt">"type"</span>:<span class="s">"tool_result"</span>,<span class="nt">"content"</span>:<span class="s">"..."</span>,<span class="nt">"metadata"</span>:{<span class="nt">"tool"</span>:<span class="s">"rag"</span>}}
+{<span class="nt">"type"</span>:<span class="s">"content"</span>,<span class="nt">"content"</span>:<span class="s">"## Solution\n\nThe derivative..."</span>}
+{<span class="nt">"type"</span>:<span class="s">"stage_end"</span>,<span class="nt">"stage"</span>:<span class="s">"responding"</span>}
+{<span class="nt">"type"</span>:<span class="s">"done"</span>,<span class="nt">"session_id"</span>:<span class="s">"sess_abc123"</span>,<span class="nt">"turn_id"</span>:<span class="s">"turn_xyz789"</span>,<span class="nt">"metadata"</span>:{<span class="nt">"status"</span>:<span class="s">"completed"</span>}}</code></pre></div>
+<h2 id="websocket-api">WebSocket API</h2>
+<div class="codeblock" data-lang="text"><pre><code>WS /ws
+WS /ws/books
+WS /ws/questions/mimic
+WS /ws/questions/generate
+WS /ws/questions/judge
+WS /ws/knowledge-bases/{kb_name}/progress
+WS /ws/mastery-paths
+WS /ws/partners/{partner_id}
+WS /ws/partner-groups/{group_id}</code></pre></div>
+<p>舊的 <code>/api/v1/chat</code>、<code>/api/v1/ws</code> 與各功能的 API 字首套接字均已移除。上面就是完整的規範 WebSocket 名稱空間；<code>/ws</code> 統一處理所有回合能力、回放、取消、重新生成與 <code>ask_user</code> 回覆。</p>
+<h2 id="session">Session</h2>
+<div class="codeblock" data-lang="text"><pre><code>GET    /api/sessions                              列 session
+GET    /api/sessions/{session_id}                 拿到一个 session + 消息
+PATCH  /api/sessions/{session_id}                 重命名（body: {"title":"..."}）
+DELETE /api/sessions/{session_id}                 删除
+PUT    /api/sessions/{session_id}/branch-selection
+DELETE /api/sessions/{session_id}/messages/{message_id}
+POST   /api/sessions/{session_id}/quiz-results</code></pre></div>
+<p>其他會話狀態 API：</p>
+<div class="codeblock" data-lang="text"><pre><code>GET   /api/sessions/{session_id}/ask-hint
+PATCH /api/sessions/{session_id}/organization</code></pre></div>
+<h2 id="知識庫">知識庫</h2>
+<div class="codeblock" data-lang="text"><pre><code>GET    /api/knowledge-bases                           列 KB
+GET    /api/knowledge-bases/{kb_name}                 KB 信息
+DELETE /api/knowledge-bases/{kb_name}                 删除
+POST   /api/knowledge-bases                           创建 KB
+POST   /api/knowledge-bases/{kb_name}/upload          添加文档
+POST   /api/knowledge-bases/{kb_name}/reindex         重新 embed 文档
+GET    /api/knowledge-bases/default                   获取默认 KB
+PUT    /api/knowledge-bases/default/{kb_name}         设置默认 KB
+GET    /api/knowledge-bases/supported-file-types      支持的上传格式
+GET    /api/knowledge-bases/{kb_name}/files           列源文件
+GET    /api/knowledge-bases/{kb_name}/files/{filename}  取单个源文件（预览/下载）
+GET    /api/knowledge-bases/{kb_name}/file-preview-text/{filename}  提取的纯文本预览
+GET    /api/knowledge-bases/{kb_name}/progress        索引进度
+WS     /ws/knowledge-bases/{kb_name}/progress         `task_id` 回放终态；孤立任务 → `knowledge_task_interrupted`</code></pre></div>
+<p>臨時的知識庫搜尋目前是透過 RAG（檢索增強生成）執行環境 / 工具路徑暴露的，當前 API 裡沒有專門的 <code>POST /knowledge/{name}/search</code> 路由。要從命令列走，用 <code>deeptutor kb search &lt;name&gt; &lt;query&gt;</code>。</p>
+<h2 id="notebook">Notebook</h2>
+<div class="codeblock" data-lang="text"><pre><code>GET    /api/notebooks
+GET    /api/notebooks/statistics
+POST   /api/notebooks
+GET    /api/notebooks/{notebook_id}
+PUT    /api/notebooks/{notebook_id}
+DELETE /api/notebooks/{notebook_id}
+POST   /api/notebooks/actions/add-record
+POST   /api/notebooks/actions/add-record-with-summary
+DELETE /api/notebooks/{notebook_id}/records/{record_id}
+PUT    /api/notebooks/{notebook_id}/records/{record_id}
+POST   /api/notebooks/{notebook_id}/records/{record_id}/actions/copy
+POST   /api/notebooks/{notebook_id}/records/{record_id}/actions/move
+GET    /api/notebooks/{notebook_id}/export</code></pre></div>
+<h2 id="memory">Memory</h2>
+<div class="codeblock" data-lang="text"><pre><code>GET    /api/memory/overview
+GET    /api/memory/doc/{layer}/{key}
+PUT    /api/memory/doc/{layer}/{key}
+POST   /api/memory/doc/{layer}/{key}/reset
+POST   /api/memory/doc/{layer}/{key}/update
+POST   /api/memory/doc/{layer}/{key}/audit
+POST   /api/memory/doc/{layer}/{key}/dedup
+POST   /api/memory/runs/start
+GET    /api/memory/runs
+GET    /api/memory/runs/{run_id}
+GET    /api/memory/runs/{run_id}/events?since=N    绝对 N = last_seen_seq + 1
+POST   /api/memory/runs/{run_id}/cancel
+POST   /api/memory/runs/{run_id}/undo
+GET    /api/memory/trace/{surface}
+DELETE /api/memory/trace/{surface}
+GET    /api/memory/settings
+PUT    /api/memory/settings</code></pre></div>
+<p>層級是 <code>L2</code> 和 <code>L3</code>；例：<code>/api/memory/doc/L3/profile</code> 和 <code>/api/memory/doc/L2/chat</code>。</p>
+<h2 id="settingstoolsvisualizers-和-system">Settings、tools、visualizers 和 system</h2>
+<div class="codeblock" data-lang="text"><pre><code>GET  /api/settings
+GET  /api/settings/catalog
+PUT  /api/settings/catalog
+POST /api/settings/apply
+POST /api/settings/model-capabilities
+PUT  /api/settings/enabled-tools
+GET  /api/tools
+GET  /api/system/status
+GET  /api/system/memory
+GET  /api/system/runtime
+GET  /api/system/update
+POST /api/system/update/check
+PUT  /api/system/update/settings
+GET  /api/system/update/job
+POST /api/system/update
+POST /api/system/test/llm
+POST /api/system/test/embeddings
+POST /api/system/test/search
+GET    /api/visualizers/list
+POST   /api/visualizers/bundled/{visualizer_id}/install
+POST   /api/visualizers/{visualizer_id}/enable
+POST   /api/visualizers/{visualizer_id}/disable
+DELETE /api/visualizers/{visualizer_id}
+POST   /api/visualizers/import
+GET    /api/visualizers/{visualizer_id}/assets/{asset_path}</code></pre></div>
+<p>服務商（Provider）設定透過目錄（catalog）端點編輯；當前 API 裡沒有單獨的 <code>/settings/llm</code> 或 <code>/settings/embedding</code> 路由。能力走統一的 WebSocket / 命令列合約。視覺化元件（visualizer）匯入的是宣告式瀏覽器包，不是可執行的後端外掛。</p>
+<h2 id="partners-manager">Partners Manager</h2>
+<div class="codeblock" data-lang="text"><pre><code>GET    /api/partners
+POST   /api/partners
+GET    /api/partners/recent
+GET    /api/partners/channels/schema
+GET    /api/partners/tool-options
+GET    /api/partners/souls
+POST   /api/partners/souls
+GET    /api/partners/soul-sources
+GET    /api/partners/{partner_id}
+PATCH  /api/partners/{partner_id}
+POST   /api/partners/{partner_id}/start
+POST   /api/partners/{partner_id}/stop
+DELETE /api/partners/{partner_id}
+POST   /api/partners/{partner_id}/channels/reload
+GET    /api/partners/{partner_id}/channels/status
+POST   /api/partners/{partner_id}/channel-onboarding/start
+GET    /api/partners/{partner_id}/channel-onboarding/{session_id}
+DELETE /api/partners/{partner_id}/channel-onboarding/{session_id}
+POST   /api/partners/{partner_id}/channel-onboarding/{session_id}/apply
+GET    /api/partners/{partner_id}/soul
+PUT    /api/partners/{partner_id}/soul
+GET    /api/partners/{partner_id}/assets
+POST   /api/partners/{partner_id}/assets
+DELETE /api/partners/{partner_id}/assets/{asset_type}/{name}
+GET    /api/partners/{partner_id}/history
+GET    /api/partners/{partner_id}/sessions
+POST   /api/partners/{partner_id}/sessions/archive
+POST   /api/partners/{partner_id}/sessions/resume
+POST   /api/partners/{partner_id}/sessions/delete
+POST   /api/partners/{partner_id}/sessions/branch
+POST   /api/partners/{partner_id}/chat
+POST   /api/partners/{partner_id}/chat/execute-stream
+WS     /ws/partners/{partner_id}</code></pre></div>
+<p>已認證使用者可建立學習夥伴（Partner）。資源路由檢查 <strong>use</strong> 或 <strong>manage</strong> 權限；owner/admin 可管理，grant 可僅允許對話。金鑰預設遮罩顯示，除非可管理的呼叫方請求 <code>include_secrets=true</code>。</p>
+<h2 id="book-engine">Book Engine</h2>
+<div class="codeblock" data-lang="text"><pre><code>GET    /api/books
+POST   /api/books
+GET    /api/books/block-types                         可生成的内容类型
+GET    /api/books/{book_id}
+GET    /api/books/{book_id}/spine
+GET    /api/books/{book_id}/pages/{page_id}
+DELETE /api/books/{book_id}
+POST   /api/books/confirm-proposal
+POST   /api/books/confirm-spine
+POST   /api/books/compile-page
+POST   /api/books/pause                               先持久化、取消工作、保留已完成页
+POST   /api/books/resume                              只排入未完成页
+POST   /api/books/{book_id}/refresh-fingerprints
+WS     /ws/books                                      订阅传 `after_seq`；可能先确认 reset</code></pre></div>
+<h2 id="沉浸式閱讀">沉浸式閱讀</h2>
+<div class="codeblock" data-lang="text"><pre><code>GET    /api/reading/supported-formats          支持的扩展名、体积上限、可原样查看的格式
+GET    /api/reading/materials                  列出本账号的素材
+POST   /api/reading/materials                  上传文档（multipart）
+GET    /api/reading/materials/{material_id}    清单：单元类型、单元数量、大纲
+DELETE /api/reading/materials/{material_id}    忘掉某份素材
+GET    /api/reading/materials/{material_id}/units/{locator}      单个单元的文本
+GET    /api/reading/materials/{material_id}/revisions             之前不可变的 URL 快照
+GET    /api/reading/materials/{material_id}/revisions/{revision}/units/{locator}
+GET    /api/reading/materials/{material_id}/raw                  原始字节（PDF）
+GET    /api/reading/materials/{material_id}/assets/{asset_name}  经鉴权的快照图片
+GET    /api/reading/materials/{material_id}/bookmarks            列出书签
+POST   /api/reading/materials/{material_id}/bookmarks            保存书签
+DELETE /api/reading/materials/{material_id}/bookmarks/{bookmark_id}
+GET    /api/reading/materials/{material_id}/annotations          列出批注
+PUT    /api/reading/materials/{material_id}/annotations          创建或更新一条；返回 AnnotationInfo
+DELETE /api/reading/materials/{material_id}/annotations/{id}     删除一条
+GET    /api/reading/materials/{material_id}/export?fmt=auto|pdf|markdown</code></pre></div>
+<p>素材以內容定址：同樣的位元組上傳兩次會拿到同一個 <code>material_id</code>，上面已有的註解也都還在。<code>export?fmt=pdf</code> 回傳寫入了真正 PDF 註解的原檔案，僅對保留了原始位元組的素材可用。</p>
+<p>URL 重新整理會保留不可變的舊 revision。快照資源需要驗證、經過 MIME 嗅探，並帶 <code>nosniff</code> 回傳，不會在閱讀器中直接暴露即時第三方頁面。</p>
+<h2 id="沉浸式觀看">沉浸式觀看</h2>
+<div class="codeblock" data-lang="text"><pre><code>GET  /api/settings/video-learning
+PUT  /api/settings/video-learning
+POST /api/settings/video-learning/test-invidious
+POST /api/video-learning/materials/resolve
+GET  /api/video-learning/materials/{material_id}
+PUT  /api/video-learning/materials/{material_id}/progress
+GET  /api/video-learning/materials/{material_id}/subtitles.vtt
+GET|HEAD /api/video-learning/materials/{material_id}/stream/{format_id}</code></pre></div>
+<p>Resolve 接收 YouTube URL，以及可選的語言 / 服務商覆蓋，回傳帶播放與轉錄中繼資料的穩定素材。學習進度獨立於當前服務商儲存；VTT 路由向播放器提供歸一化時間軸字幕。</p>
+<h2 id="其餘路由">其餘路由</h2>
+<p>上面並未逐一展開所有 API。以下這些同樣存在、遵循同樣的約定，其結構定義請查 <code>/openapi.json</code>：</p>
+<div class="codeblock" data-lang="text"><pre><code>/api/skills          技能库与 hub 安装
+/api/personas        人设预设
+/api/documents       协同写作文档与编辑流
+/api/mastery-paths   掌握路径、目标与进度
+/api/subagents       已连接智能体的配置
+/api/imports         Claude Code / Codex 对话导入
+/api/space/mcp       按账号的 MCP 服务与精选目录
+/api/space/cli-apps  CLI 应用目录、安装与授权
+/api/voice           语音合成与语音识别
+/api/dashboard       最近活动、起始建议/刷新与活动详情</code></pre></div>
+<h2 id="輸出和附件">輸出和附件</h2>
+<p>產物透過認證路由提供：</p>
+<div class="codeblock" data-lang="text"><pre><code>GET /files/outputs/&lt;path&gt;</code></pre></div>
+<p>僅解析呼叫者或單個可見學習夥伴的白名單檔案；非法、私有、穿越路徑均失敗。附件掛在：</p>
+<div class="codeblock" data-lang="text"><pre><code>GET /files/attachments/{session_id}/{attachment_id}/{filename}</code></pre></div>
+<h2 id="生成-typed-client">生成 typed client</h2>
+<div class="codeblock" data-lang="bash"><pre><code>curl http://localhost:8001/openapi.json &gt; deeptutor.openapi.json
+
+<span class="c"># TypeScript client
+</span>npx openapi-typescript deeptutor.openapi.json -o deeptutor.d.ts
+
+<span class="c"># Python client
+</span>pip install openapi-python-client
+openapi-python-client generate --path deeptutor.openapi.json</code></pre></div>
+<p>整合過程遇到問題，歡迎在留言區留言，把報錯的完整日誌貼出來，我看到會回覆。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../cli/python-sdk.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">Python SDK</p></a>
+<span></span></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>零度版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件零度版改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

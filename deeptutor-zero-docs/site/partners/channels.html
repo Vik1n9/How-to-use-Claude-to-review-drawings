@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepTutor 管道矩陣全解析！16 個聊天管道一張表看懂，微信 QQ Telegram 都能當 AI 入口！｜零度解說 · DeepTutor 零度版</title>
+<meta name="description" content="所有內建 Partner channels 的連線模型、關鍵欄位和適用場景。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="DeepTutor 管道矩陣全解析！16 個聊天管道一張表看懂，微信 QQ Telegram 都能當 AI 入口！｜零度解說 · DeepTutor 零度版">
+<meta property="og:site_name" content="DeepTutor 零度版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>零度版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html" aria-current="page">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">夥伴與管道<span aria-hidden="true"> · </span>管道矩陣</p>
+      <h1 class="doc-title">DeepTutor 管道矩陣全解析！16 個聊天管道一張表看懂，微信 QQ Telegram 都能當 AI 入口！｜零度解說</h1>
+      <p class="doc-lede">所有內建 Partner channels 的連線模型、關鍵欄位和適用場景。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#內建管道">內建管道</a>
+</li>
+<li class="d2"><a href="#安裝依賴">安裝依賴</a>
+</li>
+<li class="d2"><a href="#共享投遞開關">共享投遞開關</a>
+</li>
+<li class="d2"><a href="#設定流程">設定流程</a>
+</li>
+<li class="d2"><a href="#怎麼選">怎麼選</a>
+</li>
+<li class="d2"><a href="#狀態存在哪裡">狀態存在哪裡</a>
+</li>
+<li class="d2"><a href="#詳細頁面">詳細頁面</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/partners/channels/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/partners/channels/</a></p> <p>最近不少朋友在後台問我：DeepTutor 的 AI 學習夥伴（Partner），能不能直接接到微信、QQ、Telegram 這些聊天軟體裡用？</p>
+<p>答案是：能，而且官方一次性內建了 16 個管道（channel），微信、企業微信、QQ、Telegram、Discord、Slack、飛書、釘釘、Matrix、Email……全都在列表裡。</p>
+<p>這 16 個管道，本質上都是同一個 Partner 大腦外面的投遞轉接器：一條即時通訊（IM）軟體裡進來的訊息，會變成作用域內的一輪對話（chat turn），處理完的回覆再透過原管道發回去。</p>
+<p>也就是說，不管你接幾個軟體，背後做事的始終是同一個大腦，它不會建立第二套執行環境（agent runtime），資源一點不浪費。</p>
+<p>但是問題來了。</p>
+<p>16 個管道，連線模型各不相同，關鍵欄位也五花八門，該怎麼選、怎麼配？很多人看到這裡，基本就放棄了。</p>
+<p>好訊息是，絕大多數設定都能在網頁介面（Web UI）裡點點滑鼠完成：<strong>Partners -&gt; 你的 partner -&gt; Channels</strong> 頁面會從 <code>/api/v1/partners/channels/schema</code> 讀取即時設定範本（schema），自動把金鑰欄位遮罩顯示，輪詢 <code>/channels/status</code>，還允許你直接 reload channels，全程不需要手寫 YAML。</p>
+<figure>
+<img src="../assets/screenshots/guide/partners/02-im-config-for-each-partner.png" alt="夥伴的 Channels 標籤頁——左側 IM 應用列表，右側所選管道的設定" />
+<figcaption aria-hidden="true">夥伴的 Channels 標籤頁——左側 IM 應用列表，右側所選管道的設定</figcaption>
+</figure>
+<p>下面這張總表，建議先收藏再看。</p>
+<h2 id="內建管道">內建管道</h2>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>管道</th>
+<th>Key</th>
+<th>連線模型</th>
+<th>適合場景</th>
+<th>核心欄位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WeChat</td>
+<td>weixin</td>
+<td>HTTP long-poll + 掃描 QR Code 登入</td>
+<td>個人微信助手</td>
+<td>allow_from ；可選 token 、 state_dir 、 route_tag 、 poll_timeout</td>
+</tr>
+<tr>
+<td>WeCom</td>
+<td>wecom</td>
+<td>企業微信 AI Bot WebSocket</td>
+<td>企業微信 / WeChat Work</td>
+<td>bot_id 、 secret 、 allow_from</td>
+</tr>
+<tr>
+<td>QQ</td>
+<td>qq</td>
+<td>騰訊 botpy WebSocket</td>
+<td>官方 QQ Bot 部署</td>
+<td>app_id 、 secret 、 allow_from 、 msg_format</td>
+</tr>
+<tr>
+<td>QQ (NapCat)</td>
+<td>napcat</td>
+<td>OneBot v11 WebSocket</td>
+<td>透過 NapCat 接個人 QQ</td>
+<td>ws_url 、可選 access_token 、 allow_from 、 group_policy</td>
+</tr>
+<tr>
+<td>Telegram</td>
+<td>telegram</td>
+<td>Bot API polling</td>
+<td>簡單個人/群 bot</td>
+<td>token 、 allow_from</td>
+</tr>
+<tr>
+<td>Discord</td>
+<td>discord</td>
+<td>Gateway WebSocket</td>
+<td>Discord server 和 DM</td>
+<td>token 、 allow_from 、群策略欄位</td>
+</tr>
+<tr>
+<td>Slack</td>
+<td>slack</td>
+<td>Socket Mode</td>
+<td>Slack team、DM、threaded channel help</td>
+<td>bot_token 、 app_token 、 allow_from 、 group_policy</td>
+</tr>
+<tr>
+<td>Feishu / Lark</td>
+<td>feishu</td>
+<td>Lark SDK WebSocket</td>
+<td>飛書 / Lark 企業聊天</td>
+<td>app_id 、 app_secret ，以及 verification/encryption 欄位</td>
+</tr>
+<tr>
+<td>DingTalk</td>
+<td>dingtalk</td>
+<td>Stream Mode</td>
+<td>釘釘企業聊天</td>
+<td>client_id 、 client_secret 、 allow_from</td>
+</tr>
+<tr>
+<td>Matrix</td>
+<td>matrix</td>
+<td>Matrix sync loop</td>
+<td>去中心化房間，可選 E2EE</td>
+<td>homeserver 、使用者憑證或 access_token 、 allow_from 、 group_policy</td>
+</tr>
+<tr>
+<td>Zulip</td>
+<td>zulip</td>
+<td>Event queue</td>
+<td>stream + topic 工作流</td>
+<td>email 、 api_key 、 site 、 allow_from 、 group_policy</td>
+</tr>
+<tr>
+<td>Mattermost</td>
+<td>mattermost</td>
+<td>原生 v4 WebSocket + REST</td>
+<td>自託管開源團隊聊天</td>
+<td>server_url 、 bot_token 、 allow_from 、可選 group_policy 、 reply_in_thread 、 verify_ssl</td>
+</tr>
+<tr>
+<td>WhatsApp</td>
+<td>whatsapp</td>
+<td>Bridge WebSocket</td>
+<td>透過橋接執行環境接 WhatsApp</td>
+<td>bridge URL/token、 allow_from</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>email</td>
+<td>IMAP poll + SMTP send</td>
+<td>非同步郵件答疑 / helpdesk</td>
+<td>IMAP host/user/password、SMTP host/user/password、 allow_from</td>
+</tr>
+<tr>
+<td>Mochat</td>
+<td>mochat</td>
+<td>Socket.IO 或 HTTP polling</td>
+<td>客服式聊天面板</td>
+<td>base_url / socket URL、 claw_token 、 allow_from</td>
+</tr>
+<tr>
+<td>Microsoft Teams</td>
+<td>msteams</td>
+<td>內建 HTTP webhook listener</td>
+<td>Teams DM-first Bot Framework 整合</td>
+<td>app_id 、 app_password 、 tenant_id 、host/port/path</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="安裝依賴">安裝依賴</h2>
+<p>除了 Matrix，所有內建管道都包含在 Partners 可選元件（extras）裡，一條命令就能裝齊：</p>
+<div class="codeblock" data-lang="bash"><pre><code>pip install -e <span class="s">".[partners]"</span>
+<span class="c"># 或发布包支持 extras 时：
+</span>pip install <span class="s">"deeptutor[partners]"</span></code></pre></div>
+<p>這一條命令會裝齊全部管道的開發工具包（SDK）：<code>python-telegram-bot</code>、<code>slack-sdk</code>、<code>lark-oapi</code>、<code>dingtalk-stream</code>、<code>qq-botpy</code>、<code>wecom-aibot-sdk</code>、<code>python-socketio</code> 等（完整清單見 <code>requirements/partners.txt</code>）。</p>
+<p>更香的是，Email 管道只用 Python 標準庫，連額外的包都不用裝。</p>
+<p>Matrix 單獨成 extra：因為加密房間依賴原生 <code>libolm</code> 庫：普通房間裝 <code>".[matrix]"</code>，要玩端對端加密（E2EE）房間就裝 <code>".[matrix-e2e]"</code>。</p>
+<p>如果伺服器上缺某個管道的依賴，Channels 面板會把它置灰並顯示 import 錯誤（如 <code>No module named 'lark_oapi'</code>）。</p>
+<p>已安裝的卡片會用狀態區分：<strong>Connected</strong>、<strong>Connecting</strong>、<strong>Listener running</strong>、<strong>Waiting for scan</strong>、<strong>Configuration required</strong>、<strong>Connection failed</strong> 與 <strong>Not connected</strong>，按提示補依賴或設定，再重新啟動/reload Partner 就行。</p>
+<h2 id="共享投遞開關">共享投遞開關</h2>
+<p>大多數管道都繼承同一組投遞開關（delivery controls）：</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>欄位</th>
+<th>含義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enabled</td>
+<td>是否啟動這個管道。</td>
+</tr>
+<tr>
+<td>send_progress</td>
+<td>長回合期間是否投遞過程解說（narration）/進度。</td>
+</tr>
+<tr>
+<td>send_tool_hints</td>
+<td>是否投遞一行工具呼叫提示。除錯時有用，生產環境可能太吵。</td>
+</tr>
+<tr>
+<td>streaming</td>
+<td>僅 Telegram、Discord、Feishu：回覆即時串流輸出，靠原地編輯訊息逐步長出（Feishu 走 CardKit 串流卡片）。需要 send_progress 開啟。預設關閉。</td>
+</tr>
+<tr>
+<td>allow_from</td>
+<td>使用者/會話白名單。 * 適合測試；部署時更建議明確 id。</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="設定流程">設定流程</h2>
+<ol type="1">
+<li>先在網頁介面裡建立並測試 Partner，不要一開始就開 IM 管道。</li>
+<li>第一次只啟用一個管道。</li>
+<li>除錯階段保持 <code>send_progress</code> 和 <code>send_tool_hints</code> 開啟。</li>
+<li><code>allow_from: ["*"]</code> 只用於本機/私有測試。</li>
+<li>先確認即時卡片進入 connected/listening 狀態，再發一條短訊息並把 <code>*</code> 換成真實的傳送者 id；只有狀態詳情不夠時才查日誌。</li>
+<li>第一個管道穩定後，再新增其它管道。</li>
+</ol>
+<h2 id="怎麼選">怎麼選</h2>
+<ul>
+<li>個人微信用 <strong>WeChat</strong> ，需要人工掃描 QR Code 和持久化 state。</li>
+<li>企業/團隊部署用 <strong>WeCom</strong> 、 <strong>Feishu</strong> 、 <strong>DingTalk</strong> 、 <strong>Slack</strong> 或 <strong>Teams</strong> 。</li>
+<li>官方 QQ Bot 用 <strong>QQ</strong> ；只有在明確操作個人 QQ bridge 時才用 <strong>NapCat</strong> 。</li>
+<li>非同步收件匣工作流用 <strong>Email</strong> 。</li>
+<li>需要房間/話題結構時，用 <strong>Matrix</strong> 或 <strong>Zulip</strong> 。</li>
+<li>想要自己維運的自託管開源團隊聊天，用 <strong>Mattermost</strong> 。</li>
+</ul>
+<h2 id="狀態存在哪裡">狀態存在哪裡</h2>
+<p>管道狀態存在 Partner 的 <code>channels/</code> 目錄下，例如：</p>
+<div class="codeblock" data-lang="text"><pre><code>data/partners/&lt;partner_id&gt;/channels/weixin/account.json
+data/partners/&lt;partner_id&gt;/channels/msteams/msteams_conversations.json</code></pre></div>
+<p>Docker（容器部署工具）或生產部署要持久化整個 <code>data/partners/</code>。</p>
+<p>丟失管道狀態可能導致重新掃描 QR Code，或重新收集會話引用。</p>
+<h2 id="詳細頁面">詳細頁面</h2>
+<p>每個內建管道都有專屬設定頁：平台側申請步驟、對著截圖逐欄位講解管道卡片（channel card）、配完後的驗證流程和故障排查：</p>
+<ul>
+<li><img src="../assets/channel-icons/weixin.svg" /> <a href="../partners/weixin.html">WeChat</a> —— 個人微信掃描 QR Code 登入和長輪詢（long-poll）設定</li>
+<li><img src="../assets/channel-icons/wecom.svg" /> <a href="../partners/wecom.html">WeCom</a> —— 企業微信 AI Bot 設定</li>
+<li><img src="../assets/channel-icons/qq.svg" /> <a href="../partners/qq.html">QQ / NapCat</a> —— 官方 QQ bot 和個人 QQ bridge 兩條路徑</li>
+<li><img src="../assets/channel-icons/telegram.svg" /> <a href="../partners/telegram.html">Telegram</a> —— BotFather 註冊、Bot API 輪詢、串流回復</li>
+<li><img src="../assets/channel-icons/discord.svg" /> <a href="../partners/discord.html">Discord</a> —— Developer Portal 應用、intents、Gateway WebSocket</li>
+<li><img src="../assets/channel-icons/slack.svg" /> <a href="../partners/slack.html">Slack</a> —— Socket Mode 應用（bot + app 雙 token）</li>
+<li><img src="../assets/channel-icons/feishu.svg" /> <a href="../partners/feishu.html">Feishu / Lark</a> —— 開放平台應用和 CardKit 串流卡片</li>
+<li><img src="../assets/channel-icons/dingtalk.svg" /> <a href="../partners/dingtalk.html">DingTalk</a> —— Stream Mode 企業機器人</li>
+<li><img src="../assets/channel-icons/matrix.svg" /> <a href="../partners/matrix.html">Matrix</a> —— homeserver 憑證和可選 E2EE</li>
+<li><img src="../assets/channel-icons/zulip.svg" /> <a href="../partners/zulip.html">Zulip</a> —— bot 帳號和 stream 訂閱</li>
+<li><img src="../assets/channel-icons/mattermost.svg" /> <a href="../partners/mattermost.html">Mattermost</a> —— 自託管伺服器，bot token 走原生 v4 API</li>
+<li><img src="../assets/channel-icons/whatsapp.svg" /> <a href="../partners/whatsapp.html">WhatsApp</a> —— bridge 執行環境設定</li>
+<li><img src="../assets/channel-icons/email.svg" /> <a href="../partners/email.html">Email</a> —— IMAP 收件輪詢和 SMTP 回信</li>
+<li><img src="../assets/channel-icons/mochat.svg" /> <a href="../partners/mochat.html">Mochat</a> —— Socket.IO 客服面板</li>
+<li><img src="../assets/channel-icons/msteams.svg" /> <a href="../partners/msteams.html">Microsoft Teams</a> —— Bot Framework webhook 監聽</li>
+</ul>
+<p>部署過程遇到問題，歡迎在留言區留言，把報錯的完整日誌貼出來，我看到會回覆。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../partners/index.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">概覽</p></a>
+<a class="next" href="../partners/weixin.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">個人微信</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>零度版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件零度版改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>
