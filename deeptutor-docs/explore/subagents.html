@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Code 聊過的歷史也能接著聊？DeepTutor 9 種智慧代理即時諮詢，無需重複設定！ · DeepTutor 改寫版</title>
+<meta name="description" content="我的智慧代理——在一輪聊天裡諮詢九種本機 agent harness 或某個夥伴，並把 Claude Code / Codex 對話匯入為有名字、可續聊的智慧代理。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="Claude Code 聊過的歷史也能接著聊？DeepTutor 9 種智慧代理即時諮詢，無需重複設定！ · DeepTutor 改寫版">
+<meta property="og:site_name" content="DeepTutor 改寫版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>改寫版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html" aria-current="page">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">探索 DeepTutor<span aria-hidden="true"> · </span>我的智慧代理</p>
+      <h1 class="doc-title">Claude Code 聊過的歷史也能接著聊？DeepTutor 9 種智慧代理即時諮詢，無需重複設定！</h1>
+      <p class="doc-lede">我的智慧代理——在一輪聊天裡諮詢九種本機 agent harness 或某個夥伴，並把 Claude Code / Codex 對話匯入為有名字、可續聊的智慧代理。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#它是什麼">它是什麼</a>
+</li>
+<li class="d2"><a href="#在哪裡找到">在哪裡找到</a>
+</li>
+<li class="d2"><a href="#連線的智慧代理諮詢一個活的智慧代理">連線的智慧代理：諮詢一個活的智慧代理</a>
+</li>
+<li class="d2"><a href="#在聊天裡諮詢">在聊天裡諮詢</a>
+</li>
+<li class="d2"><a href="#一次即時諮詢長什麼樣">一次即時諮詢長什麼樣</a>
+</li>
+<li class="d2"><a href="#匯入的對話來自你歷史記錄的智慧代理">匯入的對話：來自你歷史記錄的智慧代理</a>
+</li>
+<li class="d2"><a href="#兩者的區別">兩者的區別</a>
+</li>
+<li class="d2"><a href="#想繼續深挖">想繼續深挖</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/explore/subagents/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/explore/subagents/</a></p> <p>你在 Claude Code 裡跟 AI 磨了半天的專案背景，一換工具全部清零，只能從頭再講一遍。這種事，你遇到過沒有？</p>
+<p>相信不少朋友和我一樣，手裡的 Claude Code、Codex 都攢下了大堆歷史對話，扔了可惜，翻起來又麻煩。</p>
+<p>前幾天我把 DeepTutor 的「我的智慧代理」（My Agents）功能完整玩了一遍：9 種本機智慧代理執行框架（agent harness）可以即時接入諮詢，Claude Code / Codex 的歷史對話還能匯入成有名字、可續聊的智慧代理。</p>
+<p>但是這兩件事很多人一看頁面就搞混了，它們是完全不同的兩種玩法。下面拆開講。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="它是什麼">它是什麼</h2>
+<p><strong>My Agents</strong>（我的智慧代理）把其他智慧代理變成 DeepTutor 的上下文。</p>
+<p>它做兩件不同的事：讓你在一輪聊天裡<strong>即時諮詢一個活的智慧代理</strong>（本機 9 種受支援的 harness 之一，或你的某個夥伴），以及把 <strong>Claude Code / Codex 歷史對話匯入</strong>為有名字、可搜尋、可續聊的智慧代理。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="在哪裡找到">在哪裡找到</h2>
+<p>點選左側欄的 <strong>My Agents</strong>（我的智慧代理）。</p>
+<p>在聊天裡你也有兩條捷徑觸達活的智慧代理：輸入框工具欄上的 <strong>Agent 膠囊</strong>（機器人圖示），或在訊息框裡輸入 <strong><code>@</code></strong>。</p>
+<figure>
+<img src="../assets/screenshots/guide/myagents/00-overview.png" alt="我的智慧代理頁面：上方是 Connected agents，下方是 Imported conversations" />
+<figcaption aria-hidden="true">我的智慧代理頁面：上方是 Connected agents，下方是 Imported conversations</figcaption>
+</figure>
+<p>頁面分為兩節，正好對應這兩個概念。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="連線的智慧代理諮詢一個活的智慧代理">連線的智慧代理：諮詢一個活的智慧代理</h2>
+<p><strong>連線的智慧代理</strong>（connected agent）是 DeepTutor 能即時對話的真實智慧代理。</p>
+<p>點選 <strong>Connect agent</strong>，從下面幾種裡選一個：</p>
+<ul>
+<li>本機的一個 agent harness—— <strong>Claude Code</strong> 、 <strong>Codex</strong> 、 <strong>Antigravity CLI</strong> 、 <strong>Kimi CLI</strong> 、 <strong>opencode</strong> 、 <strong>MiMo Code</strong> 、 <strong>Hermes Agent</strong> 、 <strong>OpenClaw</strong> 或 <strong>DeepSeek Harness</strong> ，或</li>
+<li>你的某個 <strong>夥伴</strong>（Partner）。</li>
+</ul>
+<p>諮詢一個連線的智慧代理時，DeepTutor 不是把對話記錄黏進來，它真的<em>執行</em>那個智慧代理並把它的工作串流回傳。</p>
+<p>在底層，連線的智慧代理是第三類上下文來源，擁有一項獨有能力：聊天迴圈裡的 <code>consult_subagent</code> 工具會多輪驅動該智慧代理，並在活動面板裡即時展示它的完整執行過程。</p>
+<h2 id="在聊天裡諮詢">在聊天裡諮詢</h2>
+<p>用 <strong>Agent 膠囊</strong>選中智慧代理，然後設定 <strong>Max rounds DeepTutor may ask</strong>（DeepTutor 最多可追問的輪數），也就是這次諮詢裡來回輪次的上限。</p>
+<figure>
+<img src="../assets/screenshots/guide/home/03-use-subagent.png" alt="Agent 膠囊：選擇一個連線的智慧代理，並設定最大諮詢輪數" />
+<figcaption aria-hidden="true">Agent 膠囊：選擇一個連線的智慧代理，並設定最大諮詢輪數</figcaption>
+</figure>
+<p>輸入 <strong><code>@</code></strong> 可篩選同一列表；選擇會持續到清除或替換。</p>
+<figure>
+<img src="../assets/screenshots/guide/home/03-another-use-subagent.png" alt="輸入 @ 彈出「Talk to an agent」就地選擇" />
+<figcaption aria-hidden="true">輸入 @ 彈出「Talk to an agent」就地選擇</figcaption>
+</figure>
+<h2 id="一次即時諮詢長什麼樣">一次即時諮詢長什麼樣</h2>
+<p>諮詢一個 <strong>Claude Code</strong> 智慧代理時，它會在自己的工作目錄裡執行：讀取檔案、grep、對著真實儲存庫推理。</p>
+<p>它的工具呼叫會串流進入活動面板，同時 DeepTutor 把結論收攏進你的答覆。</p>
+<p>諮詢一個<strong>夥伴</strong>時，DeepTutor 把問題送進那個夥伴自己的會話，於是夥伴會用它的靈魂（soul）、它的資料庫、它私有的記憶工具（<code>partner_search</code>、<code>partner_read</code>）以及技能（<code>read_skill</code>）來作答。</p>
+<p>一個聊天執行緒會綁定到一個夥伴會話，因此追問會延續同一段對話。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="匯入的對話來自你歷史記錄的智慧代理">匯入的對話：來自你歷史記錄的智慧代理</h2>
+<p>頁面的下半部分會匯入你已有的 <strong>Claude Code 與 Codex 對話</strong>，並把每個來源呈現為一個<strong>有名字的智慧代理</strong>，可搜尋、可開啟、可繼續聊，或在聊天裡引用。</p>
+<p>點選 <strong>Add agent</strong> 匯入歷史。</p>
+<p>先起名字，再選擇範圍：<strong>Claude Code 按專案 / 工作目錄</strong>，<strong>Codex 按日曆日期</strong>。</p>
+<p>之後重新整理會重新同步同一範圍，並拉進其中的新對話。</p>
+<p>這種選擇是刻意為之：你能精確決定終端機歷史裡哪些片段成為 DeepTutor 上下文。</p>
+<figure>
+<img src="../assets/screenshots/guide/myagents/01-sync-selective-chat-history-from-claude-code-or-codex.png" alt="Add agent 流程：給智慧代理命名並選擇匯入範圍" />
+<figcaption aria-hidden="true">Add agent 流程：給智慧代理命名並選擇匯入範圍</figcaption>
+</figure>
+<p>匯入的智慧代理會顯示來源、對話數量與上次同步時間。</p>
+<p>在這裡你可以：</p>
+<p><strong>開啟一段對話</strong>，在 DeepTutor 裡繼續聊。</p>
+<p><strong>重新整理</strong>某個智慧代理，拉進所選日期或專案範圍內的新對話。</p>
+<p>在任意一輪聊天裡，透過 <strong><code>+</code> → My Agents</strong> <strong>引用</strong>一段匯入的對話：DeepTutor 會把它當作第三方對話記錄來讀（它仍是「他們的」對話，DeepTutor 不會以第一人稱代入）。</p>
+<p>即時諮詢加歷史匯入，兩條路一起用，過去的對話隨叫隨到，是真的爽歪歪。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="兩者的區別">兩者的區別</h2>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th>連線的智慧代理</th>
+<th>匯入的對話</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是什麼</td>
+<td>DeepTutor 即時執行並對話的活智慧代理</td>
+<td>作為命名智慧代理引入的只讀歷史</td>
+</tr>
+<tr>
+<td>來源</td>
+<td>九種本機 harness 之一（Claude Code / Codex / Antigravity / Kimi / opencode / MiMo / Hermes / OpenClaw / DeepSeek Harness），或某個夥伴</td>
+<td>過去的 Claude Code / Codex 會話</td>
+</tr>
+<tr>
+<td>在聊天裡</td>
+<td>用 Agent 膠囊或 @ 選擇；執行即時串流，選擇會持續</td>
+<td>用 + → My Agents 引用，或開啟續聊</td>
+</tr>
+<tr>
+<td>新鮮度</td>
+<td>即時，每次諮詢都是</td>
+<td>快照；用 Refresh 重新同步所選日期或專案</td>
+</tr>
+</tbody>
+</table></div>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="想繼續深挖">想繼續深挖</h2>
+<ul>
+<li><a href="../explore/chat-workspace.html">主頁</a> ——在這裡諮詢與引用智慧代理</li>
+<li><a href="../explore/partners.html">夥伴</a> ——把一個夥伴連線成可諮詢的智慧代理</li>
+<li><a href="../explore/memory.html">記憶</a> ——匯入的上下文如何與 DeepTutor 自己的聲音保持區隔</li>
+</ul>
+<p>匯入或連線智慧代理時遇到問題，歡迎在留言區留言，把報錯的完整日誌貼出來，我看到會回覆。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../explore/book.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">書籍</p></a>
+<a class="next" href="../explore/co-writer.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">智慧寫作</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>改寫版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

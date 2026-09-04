@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepTutor 接入 Matrix 教學！任意 homeserver 都能連，端對端加密可選，2 套安裝套件千萬別裝錯！ · DeepTutor 改寫版</title>
+<meta name="description" content="為 Partner 設定 Matrix channel——任意 homeserver、long-poll sync、可選端對端加密。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="DeepTutor 接入 Matrix 教學！任意 homeserver 都能連，端對端加密可選，2 套安裝套件千萬別裝錯！ · DeepTutor 改寫版">
+<meta property="og:site_name" content="DeepTutor 改寫版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>改寫版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html" aria-current="page">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">夥伴與管道<span aria-hidden="true"> · </span>Matrix</p>
+      <h1 class="doc-title">DeepTutor 接入 Matrix 教學！任意 homeserver 都能連，端對端加密可選，2 套安裝套件千萬別裝錯！</h1>
+      <p class="doc-lede">為 Partner 設定 Matrix channel——任意 homeserver、long-poll sync、可選端對端加密。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#一安裝依賴">一、安裝依賴</a>
+</li>
+<li class="d2"><a href="#二建立-bot-帳號並獲取-access-token">二、建立 bot 帳號並獲取 access token</a>
+</li>
+<li class="d2"><a href="#三設定管道卡片channel-card">三、設定管道卡片（channel card）</a>
+</li>
+<li class="d2"><a href="#四儲存之後">四、儲存之後</a>
+</li>
+<li class="d2"><a href="#如何確認健康">如何確認健康</a>
+</li>
+<li class="d2"><a href="#常見問題">常見問題</a>
+<ul>
+<li class="d3"><a href="#bot-進了加密房間但從不回覆">bot 進了加密房間但從不回覆</a></li>
+<li class="d3"><a href="#m_unknown_token">M_UNKNOWN_TOKEN</a></li>
+<li class="d3"><a href="#第一次-sync-特別慢">第一次 sync 特別慢</a></li>
+<li class="d3"><a href="#bot-不理我的邀請">bot 不理我的邀請</a></li>
+</ul>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/partners/matrix/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/partners/matrix/</a></p> <p>喜歡去中心化聊天方案的朋友看過來，DeepTutor 對 Matrix 的支援相當完整。</p>
+<p><code>matrix</code> 管道透過標準 client-server API 把 AI 學習夥伴（Partner）接入去中心化的 Matrix 房間。任何 homeserver（Matrix 伺服器）都行（matrix.org，或自建的 Synapse / Conduit / Dendrite），端對端加密（E2EE）是可選項，多數安裝不必為 libolm 依賴買單，這點很省心。</p>
+<figure>
+<img src="../assets/screenshots/partners-channel-matrix.png" alt="Matrix 管道設定" />
+<figcaption aria-hidden="true">Matrix 管道設定</figcaption>
+</figure>
+<p>Partner 執行起來之後，先看卡片的即時狀態：它會在查日誌前區分同步迴圈（sync loop）已連線、缺少 Matrix 依賴或設定不完整這幾種情況。</p>
+<h2 id="一安裝依賴">一、安裝依賴</h2>
+<p>但是問題來了：Matrix <strong>不在</strong> Partners 可選元件（extras）裡，它自帶兩個獨立的 extras，千萬別裝錯：</p>
+<div class="codeblock" data-lang="bash"><pre><code><span class="c"># plain Matrix (unencrypted rooms)
+</span>pip install -e <span class="s">".[matrix]"</span>
+
+<span class="c"># Matrix including end-to-end encrypted rooms
+</span>pip install -e <span class="s">".[matrix-e2e]"</span></code></pre></div>
+<ul>
+<li><code>[matrix]</code> 安裝 <code>matrix-nio</code> 、 <code>mistune</code> 和 <code>nh3</code> 。直聊和未加密房間用這個就夠了。</li>
+<li><code>[matrix-e2e]</code> 額外加上 <code>matrix-nio[e2e]</code> ，它會拉取 <code>python-olm</code>，而後者需要先裝好原生的 <strong>libolm</strong> 庫：</li>
+</ul>
+<div class="codeblock" data-lang="bash"><pre><code><span class="c"># macOS
+</span>brew install libolm
+
+<span class="c"># Debian / Ubuntu
+</span>sudo apt-get install libolm-dev</code></pre></div>
+<p>Docker（容器部署工具）/CI 等沒有原始碼 checkout（原始碼目錄）的場景，同樣的依賴集合也同步列在 <code>requirements/matrix.txt</code> 和 <code>requirements/matrix-e2e.txt</code>。</p>
+<p>完全不裝 extras 的話，管道會在 import 時直接報 <code>Matrix dependencies not installed</code>。</p>
+<h2 id="二建立-bot-帳號並獲取-access-token">二、建立 bot 帳號並獲取 access token</h2>
+<p>Partner 需要一個自己的 Matrix 帳號，任何 homeserver 都行，測試用 matrix.org 就可以。</p>
+<ol type="1">
+<li>建立帳號：Element web app -&gt; 你的 homeserver -&gt; Create Account（自建 Synapse 也可以用 <code>register_new_matrix_user</code> ）。</li>
+<li>獲取存取權杖（access token），兩種方式任選：
+<ul>
+<li><strong>Element</strong> ：用 bot 帳號登入， <strong>Settings -&gt; Help &amp; About -&gt; Advanced -&gt; Access Token</strong> ，展開並複製。</li>
+<li><strong>REST API</strong> ：直接用命令列呼叫登入 API：</li>
+</ul></li>
+</ol>
+<div class="codeblock" data-lang="bash"><pre><code>curl -X POST https://matrix.org/_matrix/client/r0/login <span class="s">\
+</span>  -H <span class="s">"Content-Type: application/json"</span> <span class="s">\
+</span>  -d <span class="s">'{"type": "m.login.password", "user": "my-bot", "password": "your-password"}'</span>
+# the response contains <span class="s">"access_token"</span>: <span class="s">"syt_..."</span></code></pre></div>
+<h2 id="三設定管道卡片channel-card">三、設定管道卡片（channel card）</h2>
+<p>開啟 <strong>Partners -&gt; 你的 partner -&gt; Channels -&gt; Matrix</strong>。</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>欄位</th>
+<th>怎麼填</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Send Progress</td>
+<td>測試時建議開啟。長任務會把過程解說（narration）發到房間裡。</td>
+</tr>
+<tr>
+<td>Send Tool Hints</td>
+<td>除錯時建議開啟；不想讓使用者看到一行工具呼叫就關掉。</td>
+</tr>
+<tr>
+<td>Enabled</td>
+<td>準備啟動管道時再開啟。</td>
+</tr>
+<tr>
+<td>Homeserver</td>
+<td>預設 <a href="https://matrix.org" target="_blank" rel="noopener" class="uri">https://matrix.org</a> 。自建就填自己伺服器的 URL。</td>
+</tr>
+<tr>
+<td>Access Token</td>
+<td>從 Element 或 login API 拿到的 token。以 secret 方式儲存。</td>
+</tr>
+<tr>
+<td>User Id</td>
+<td>bot 的完整 Matrix id，如 <span class="citation" data-cites="my-bot:matrix.org">@my-bot:matrix.org</span> 。也用於識別 @ 提及。</td>
+</tr>
+<tr>
+<td>Device Id</td>
+<td>可選但建議填：隨便選一個穩定的字串並保持不變。留空的話，重新啟動可能會重放最近的訊息。</td>
+</tr>
+<tr>
+<td>E2Ee Enabled</td>
+<td>裝好 [matrix-e2e] extra 和 libolm 之後再開啟。沒裝的話 bot 解不開加密房間。</td>
+</tr>
+<tr>
+<td>Sync Stop Grace Seconds</td>
+<td>預設 2 。關停時給進行中的 sync 多少秒收尾。基本不用改。</td>
+</tr>
+<tr>
+<td>Max Media Bytes</td>
+<td>預設 20971520 （20 MB）。附件上傳/下載的大小上限。</td>
+</tr>
+<tr>
+<td>Allow From</td>
+<td>一行一個 Matrix user id，如 <span class="citation" data-cites="frank:matrix.org">@frank:matrix.org</span> 。測試可填 * 表示開放。空列表拒絕所有人——包括房間邀請。</td>
+</tr>
+<tr>
+<td>Group Policy</td>
+<td>多人房間的策略： open （預設）回覆所有訊息， mention 只在 bot 被 @ 時回覆， allowlist（白名單） 只回復下面列出的房間。1:1 直聊總是會回覆。</td>
+</tr>
+<tr>
+<td>Group Allow From</td>
+<td>房間 id（ !abc123:matrix.org ），一行一個。只在 allowlist 策略下生效。</td>
+</tr>
+<tr>
+<td>Allow Room Mentions</td>
+<td>在 mention 策略下， <span class="citation" data-cites="room">@room</span> 群發提醒算不算提及 bot。預設關閉。</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="四儲存之後">四、儲存之後</h2>
+<ol type="1">
+<li>點 <strong>Save</strong> ，開啟 <strong>Enabled</strong> ，再儲存一次。</li>
+<li>啟動 partner：從網頁介面，或 <code>deeptutor partner start &lt;partner-id&gt;</code> 。已在執行就重新啟動。</li>
+<li>在任意 Matrix 使用者端邀請 bot： <code>/invite @my-bot:matrix.org</code> 。bot 只接受能通過 <strong>Allow From</strong> 的人發出的邀請，列表為空時它永遠不會進房。</li>
+<li>在房間裡發一條短訊息，看回復。</li>
+<li>跑通之後，把 <strong>Allow From</strong> 裡的 <code>*</code> 換成真實 user id。</li>
+</ol>
+<p>回覆裡的 Markdown 會渲染成 Matrix HTML，所以表格和程式碼塊在 Element 等使用者端裡都能正常顯示。</p>
+<h2 id="如何確認健康">如何確認健康</h2>
+<p>健康的 Matrix 管道通常有三個跡象：</p>
+<ul>
+<li>日誌顯示 sync loop 在跑，沒有反覆出現的 sync 錯誤；</li>
+<li>允許的傳送者發出邀請後，bot 幾秒內就進房；</li>
+<li>在房間裡發一條短訊息，Partner 能正常回復。</li>
+</ul>
+<p>注意隱私邊界：E2EE 保護的是 Matrix 使用者端到 bot 之間的傳輸，訊息正文仍然會以明文到達你設定的大語言模型（LLM）服務商。在意這一點的話，給這個管道配本機模型。</p>
+<h2 id="常見問題">常見問題</h2>
+<h3 id="bot-進了加密房間但從不回覆">bot 進了加密房間但從不回覆</h3>
+<p><strong>E2Ee Enabled</strong> 開了但沒裝 <code>[matrix-e2e]</code> extra（或 libolm），或者房間加密了它卻是關的。先裝 libolm，再 <code>pip install -e ".[matrix-e2e]"</code>，開啟開關，重新啟動 partner。</p>
+<h3 id="m_unknown_token">M_UNKNOWN_TOKEN</h3>
+<p>access token 失效了，通常是 bot 在別的使用者端被登出，或伺服器端重置。透過 Element 或 login API 重新拿一個 token，更新到卡片上。</p>
+<h3 id="第一次-sync-特別慢">第一次 sync 特別慢</h3>
+<p>歷史很長的帳號初次 sync 批次很大；這是正常的，每個 device 只會發生一次。設定一個穩定的 <strong>Device Id</strong>，之後重新啟動就能增量續傳，不用從頭來過。</p>
+<h3 id="bot-不理我的邀請">bot 不理我的邀請</h3>
+<p>邀請人必須能通過 <strong>Allow From</strong>。把你自己的 Matrix user id 加進去（測試期間也可以用 <code>*</code>），儲存後重新邀請。</p>
+<p>實際效果還會受到模型、提示詞以及具體使用場景的影響，建議大家結合自己的需求實際體驗評估。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../partners/dingtalk.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">釘釘</p></a>
+<a class="next" href="../partners/zulip.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">Zulip</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>改寫版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

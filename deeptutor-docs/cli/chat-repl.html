@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>15 個斜線命令玩轉 DeepTutor！11 種 AI 能力隨切隨用，終端機黨直呼真香！ · DeepTutor 改寫版</title>
+<meta name="description" content="一個長時間執行的終端機 chat 會話，內嵌 /slash 命令用於切換 capability、tool、KB 等。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="15 個斜線命令玩轉 DeepTutor！11 種 AI 能力隨切隨用，終端機黨直呼真香！ · DeepTutor 改寫版">
+<meta property="og:site_name" content="DeepTutor 改寫版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>改寫版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html" aria-current="page">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">DeepTutor CLI<span aria-hidden="true"> · </span>互動式 REPL</p>
+      <h1 class="doc-title">15 個斜線命令玩轉 DeepTutor！11 種 AI 能力隨切隨用，終端機黨直呼真香！</h1>
+      <p class="doc-lede">一個長時間執行的終端機 chat 會話，內嵌 /slash 命令用於切換 capability、tool、KB 等。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#啟動">啟動</a>
+</li>
+<li class="d2"><a href="#repl-長什麼樣">REPL 長什麼樣</a>
+</li>
+<li class="d2"><a href="#一個典型會話">一個典型會話</a>
+</li>
+<li class="d2"><a href="#所有斜線命令">所有斜線命令</a>
+<ul>
+<li class="d3"><a href="#會話管理">會話管理</a></li>
+<li class="d3"><a href="#能力切換">能力切換</a></li>
+<li class="d3"><a href="#工具">工具</a></li>
+<li class="d3"><a href="#知識庫">知識庫</a></li>
+<li class="d3"><a href="#歷史會話引用">歷史會話引用</a></li>
+<li class="d3"><a href="#筆記本引用">筆記本引用</a></li>
+<li class="d3"><a href="#設定覆蓋">設定覆蓋</a></li>
+<li class="d3"><a href="#檢視工具結果">檢視工具結果</a></li>
+<li class="d3"><a href="#refs">/refs</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#repl-裡的串流渲染怎麼工作">REPL 裡的串流渲染怎麼工作</a>
+</li>
+<li class="d2"><a href="#小撇步">小撇步</a>
+<ul>
+<li class="d3"><a href="#多行輸入">多行輸入</a></li>
+<li class="d3"><a href="#會話中途切能力">會話中途切能力</a></li>
+<li class="d3"><a href="#匯出會話日誌">匯出會話日誌</a></li>
+<li class="d3"><a href="#從-repl-到筆記本">從 REPL 到筆記本</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#另見">另見</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/cli/chat-repl/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/cli/chat-repl/</a></p> <p>不少朋友裝好 DeepTutor 之後，只會用 <code>deeptutor run</code> 一條條發命令，跑完就退出，總覺得少了點意思。</p>
+<p>其實官方還準備了一個更順手的入口：<code>deeptutor chat</code>。</p>
+<p>一條命令就能進入互動式對話環境（REPL），特別適合<strong>探索性工作</strong>、<strong>多輪除錯</strong>以及<strong>手動驅動 DeepTutor</strong> 的場景，裡面內嵌了 15 個斜線命令，11 種能力（capability）隨切隨用，用起來是真的香。</p>
+<p>更有意思的是，這個環境裡連設定都能熱切換：工具、知識庫、語言、出題數量，全部當場改當場生效。</p>
+<p>下面我們就從啟動方式開始，把這套互動式玩法一次講透。</p>
+<h2 id="啟動">啟動</h2>
+<div class="codeblock" data-lang="bash"><pre><code><span class="c"># 默认 —— chat capability，无 KB，无额外 tool
+</span>deeptutor chat
+
+<span class="c"># 预挂载一个 KB，并预开一个用户可切换的 tool
+</span>deeptutor chat --kb physics --tool reason
+
+<span class="c"># 以特定 capability 启动（比如固定用 Deep Solve）
+</span>deeptutor chat --capability deep_solve
+
+<span class="c"># 续上一个旧 session
+</span>deeptutor chat --session sess_abc123
+
+<span class="c"># 通过 flag 传偏好（和 run 一样）
+</span>deeptutor chat --language zh --kb papers --history-ref sess_old_xyz</code></pre></div>
+<h2 id="repl-長什麼樣">REPL 長什麼樣</h2>
+<div class="codeblock" data-lang="text"><pre><code>┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ DeepTutor CLI                                                      ┃
+┃ Type a message to chat. Ctrl-C interrupts a running turn. Commands:┃
+┃   /quit  /session  /status  /new  /clear                          ┃
+┃   /regenerate (alias /retry) — re-run the last user message       ┃
+┃   /tool on|off &lt;name&gt;                                             ┃
+┃   /cap &lt;name&gt;                                                     ┃
+┃   /kb &lt;name&gt;|none                                                 ┃
+┃   /history add &lt;id&gt; | /history clear                              ┃
+┃   /notebook add &lt;ref&gt; | /notebook clear                           ┃
+┃   /show last|&lt;n&gt; — expand a tool result or captured thinking      ┃
+┃   /refs  /config show|set|clear                                   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[dim]session=(new) capability=chat tools=[] kb=[] history=[] notebook_refs=[] language=en config={}[/]
+You&gt; _</code></pre></div>
+<p>底部那行灰色狀態列，顯示的就是下一輪迴合（turn）會帶過去的所有東西：會話（session）ID、能力、工具、掛載的知識庫（KB）、歷史引用、筆記本（notebook）引用、語言和設定。</p>
+<h2 id="一個典型會話">一個典型會話</h2>
+<p>先看一段真實互動，感受一下節奏：</p>
+<div class="codeblock" data-lang="text"><pre><code>You&gt; 什么是链式法则？
+
+  ✻ thinking…
+**链式法则** 说的是：对一个复合函数 `f(g(x))` 求导时，你需要把……相乘
+
+[dim]session=sess_abc123 turn=turn_xyz789 capability=chat[/]
+
+You&gt; /tool on reason
+[dim]session=sess_abc123 capability=chat tools=[reason] kb=[] ...[/]
+
+You&gt; /kb math
+[dim]session=sess_abc123 capability=chat tools=[reason] kb=[math] ...[/]
+
+You&gt; 用教材第 3 章的一个例题讲讲
+
+  ✻ thinking…
+  ● rag(query=chain rule worked example, kb_name=math)
+  │ Example: differentiate sin(x²) using the chain rule...
+  └ #1 rag — +3 more lines
+
+  ✻ thinking…
+教材第 3 章里的例子：
+
+设 `y = sin(x²)`。令 `u = x²`……
+
+You&gt; /quit
+$</code></pre></div>
+<h2 id="所有斜線命令">所有斜線命令</h2>
+<h3 id="會話管理">會話管理</h3>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/quit</td>
+<td>退出 REPL</td>
+</tr>
+<tr>
+<td>/session</td>
+<td>列印當前 session id</td>
+</tr>
+<tr>
+<td>/status</td>
+<td>列印當前整個回合狀態——capability、tool、知識庫、語言、config</td>
+</tr>
+<tr>
+<td>/new （或 /clear ）</td>
+<td>開一個新 session，清掉當前 id</td>
+</tr>
+<tr>
+<td>/regenerate （或 /retry ）</td>
+<td>用 capability 預設值重跑最後一條 user 訊息；不會轉發當前 /config 覆蓋</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="能力切換">能力切換</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/cap <name></td>
+<td>切到另一個 capability</td>
+</tr>
+</tbody>
+</table></div>
+<p>合法名稱：<code>chat</code>、<code>ask_questions</code>、<code>deep_solve</code>、<code>deep_question</code>、<code>deep_research</code>、<code>visualize</code>、<code>math_animator</code>、<code>mastery_path</code>、<code>immersive_reading</code>、<code>course_study</code>、<code>immersive_watching</code>。</p>
+<p>命令列別名也認，<code>ask</code>、<code>solve</code>、<code>quiz</code>、<code>research</code>、<code>viz</code>、<code>animate</code>、<code>mastery</code>、<code>reading</code> / <code>read</code>、<code>course</code>、<code>watching</code> / <code>watch</code>。</p>
+<p>要注意的是，<code>immersive_reading</code> 在命令列上跑的是沒有閱讀器的那套迴圈：命令列既沒有可捲動的視口，也沒有可操作的選區，所以這個模式請在網頁介面用（見<a href="../explore/reading.html">沉浸式閱讀</a>）。</p>
+<div class="codeblock" data-lang="text"><pre><code>You&gt; /cap deep_solve
+[dim]capability=deep_solve ...[/]
+You&gt; 求 d/dx [sin(x²)]</code></pre></div>
+<h3 id="工具">工具</h3>
+<div class="codeblock" data-lang="text"><pre><code>/tool on &lt;name&gt;     # 下一轮开启某个 tool
+/tool off &lt;name&gt;    # 关掉</code></pre></div>
+<p>當前合法的開關項與網頁介面完全相同：<code>brainstorm</code>、<code>web_search</code>、<code>paper_search</code>、<code>reason</code>、<code>geogebra_analysis</code>，以及配好生成模型後的 <code>imagegen</code> / <code>videogen</code>。</p>
+<p>而 <code>rag</code>、<code>code_execution</code>、<code>read_memory</code>、<code>web_fetch</code>、<code>write_note</code>、<code>cron</code> 這類上下文門控工具，不能用 <code>/tool</code> 強開，只會在條件滿足時自動掛載。</p>
+<h3 id="知識庫">知識庫</h3>
+<div class="codeblock" data-lang="text"><pre><code>/kb &lt;name&gt;          # 挂载一个 KB（替换当前挂载）
+/kb none            # 卸载</code></pre></div>
+<h3 id="歷史會話引用">歷史會話引用</h3>
+<p>告訴模型有哪些歷史會話應該當作上下文，不用複製貼上：</p>
+<div class="codeblock" data-lang="text"><pre><code>/history add sess_prior_xyz
+/history clear</code></pre></div>
+<p>這是搭建跨會話上下文的方式，做「接著上次的研究繼續」這類回合非常合適。</p>
+<h3 id="筆記本引用">筆記本引用</h3>
+<p>從你的筆記本裡帶入特定記錄：</p>
+<div class="codeblock" data-lang="text"><pre><code>/notebook add my-notes:rec_abc123,rec_def456
+/notebook clear</code></pre></div>
+<h3 id="設定覆蓋">設定覆蓋</h3>
+<p>對後續回合生效的按能力維度的設定：</p>
+<div class="codeblock" data-lang="text"><pre><code>/config show                       # 打印当前 config
+/config set num_questions 5
+/config set difficulty=hard
+/config set difficulty hard
+/config clear                      # 重置为默认值</code></pre></div>
+<p>舉個例子，以 <code>--capability deep_question</code> 啟動：</p>
+<div class="codeblock" data-lang="text"><pre><code>You&gt; /config set num_questions 8
+You&gt; /config set question_types '["short_answer","mcq"]'
+You&gt; 出几道关于线性回归的题</code></pre></div>
+<h3 id="檢視工具結果">檢視工具結果</h3>
+<p>工具結果會截斷為前 10 行、每行 240 字元；思考過程摺疊成提示。兩者共用 <code>/show</code> 序號：</p>
+<div class="codeblock" data-lang="text"><pre><code>/show last          # 最后一条 tool 结果或 thinking 块
+/show 3             # 本 session 的第 3 个捕获块</code></pre></div>
+<p>兩類合計最多快取 32 條。</p>
+<h3 id="refs">/refs</h3>
+<p>列印下一輪迴合會帶過去的所有內容：</p>
+<div class="codeblock" data-lang="text"><pre><code>You&gt; /refs
+[bold]Current state:[/]
+  session     sess_abc123
+  capability  chat
+  tools       [rag, reason]
+  kb          [physics, math]
+  history     [sess_old_xyz]
+  notebooks   [my-notes:rec_abc123]
+  language    en
+  config      {"difficulty": "hard", "num_questions": 5}</code></pre></div>
+<h2 id="repl-裡的串流渲染怎麼工作">REPL 裡的串流渲染怎麼工作</h2>
+<p>每一輪迴合按階段（stage）渲染，你會按順序看到：</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>標記</th>
+<th>含義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>▶ <stage></td>
+<td>非 chat stage 開始；chat 隱藏 responding</td>
+</tr>
+<tr>
+<td>✻ thinking…</td>
+<td>推理已捕獲，可用 /show 檢視</td>
+</tr>
+<tr>
+<td>● <tool>(...)</td>
+<td>正在呼叫某個 tool</td>
+</tr>
+<tr>
+<td>│ <line></td>
+<td>一行 tool 輸出</td>
+</tr>
+<tr>
+<td>└ #N <tool> — +M more lines; run /show N to expand</td>
+<td>tool 結果被截斷</td>
+</tr>
+<tr>
+<td>普通文字</td>
+<td>渲染後的最終 markdown 回覆</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>ask_user</code> 會彈卡片；用 <code>answer&gt;</code> 回覆繼續，Ctrl-C 中止。</p>
+<h2 id="小撇步">小撇步</h2>
+<h3 id="多行輸入">多行輸入</h3>
+<p>要發多行訊息（程式碼片段、長提示詞），每行末尾加一個反斜線 <code>\</code> 再按 Enter：</p>
+<div class="codeblock" data-lang="text"><pre><code>You&gt; Please review this Python code:\
+def fib(n):\
+    if n &lt; 2: return n\
+    return fib(n-1) + fib(n-2)</code></pre></div>
+<h3 id="會話中途切能力">會話中途切能力</h3>
+<p>一個會話內可以自由切換能力，DeepTutor 會保留對話上下文。</p>
+<p>一種常見打法：</p>
+<div class="codeblock" data-lang="text"><pre><code>You&gt; /cap deep_research
+You&gt; /config set mode=report
+You&gt; /config set depth=standard
+You&gt; 调研一下 2024–2026 年关于 RAG 的论文
+[一个很长的研究 turn]
+
+You&gt; /config clear
+You&gt; /cap chat
+You&gt; 现在写一个 3 段总结，目标读者是非技术背景的人
+
+You&gt; /cap deep_question
+You&gt; /config set num_questions 5
+You&gt; 基于这些论文出几道测验题</code></pre></div>
+<p>三個回合共享上下文；切換到不相容的能力結構（schema）前，先清空設定。</p>
+<h3 id="匯出會話日誌">匯出會話日誌</h3>
+<p>會話存在共享的會話資料庫裡，想匯出一份乾淨的 markdown 文字稿：</p>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor session show sess_abc123 --format json | <span class="s">\
+</span>  jq -r <span class="s">'.messages[] | "**" + .role + "**: " + .content + "\n"'</span> &gt; transcript.md</code></pre></div>
+<h3 id="從-repl-到筆記本">從 REPL 到筆記本</h3>
+<p>某一輪覺得特別滿意？存進筆記本：</p>
+<div class="codeblock" data-lang="bash"><pre><code><span class="c"># REPL 里
+</span>You&gt; /quit
+
+<span class="c"># 然后在 shell 里把 assistant 最后一条消息抓出来
+</span>deeptutor session show sess_abc123 --format json | <span class="s">\
+</span>  jq -r <span class="s">'.messages[-1].content'</span> &gt; my-answer.md
+
+deeptutor notebook add-md my-notes my-answer.md --title <span class="s">"Chain rule explanation"</span></code></pre></div>
+<h2 id="另見">另見</h2>
+<ul>
+<li><a href="../cli/commands.html"><strong>命令參考</strong></a> —— <code>run</code>、<code>kb</code>、<code>partner</code> 等完整參考</li>
+<li><a href="../cli/agent-handoff.html"><strong>代理交接</strong></a> —— 讓 Agent 替你來做這些</li>
+</ul>
+<p>實際效果還會受到模型、提示詞以及具體使用場景的影響，建議大家結合自己的需求實際體驗評估。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../cli/commands.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">命令參考</p></a>
+<a class="next" href="../cli/agent-handoff.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">代理交接</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>改寫版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

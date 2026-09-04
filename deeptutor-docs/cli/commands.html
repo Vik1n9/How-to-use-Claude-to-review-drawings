@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>從出題到管記憶全靠它！DeepTutor 命令列工具 15 個命令完整參考，附 doctor 六項健檢詳解！ · DeepTutor 改寫版</title>
+<meta name="description" content="每個 deeptutor 命令的 flag、輸出 schema、範例。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="從出題到管記憶全靠它！DeepTutor 命令列工具 15 個命令完整參考，附 doctor 六項健檢詳解！ · DeepTutor 改寫版">
+<meta property="og:site_name" content="DeepTutor 改寫版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>改寫版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html" aria-current="page">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">DeepTutor CLI<span aria-hidden="true"> · </span>命令參考</p>
+      <h1 class="doc-title">從出題到管記憶全靠它！DeepTutor 命令列工具 15 個命令完整參考，附 doctor 六項健檢詳解！</h1>
+      <p class="doc-lede">每個 deeptutor 命令的 flag、輸出 schema、範例。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#deeptutor-run-單次能力執行">deeptutor run —— 單次能力執行</a>
+<ul>
+<li class="d3"><a href="#引數flag">引數（Flag）</a></li>
+<li class="d3"><a href="#範例">範例</a></li>
+<li class="d3"><a href="#輸出---format-rich-預設">輸出 —— --format rich （預設）</a></li>
+<li class="d3"><a href="#輸出---format-json">輸出 —— --format json</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#deeptutor-chat-互動式對話環境">deeptutor chat —— 互動式對話環境</a>
+</li>
+<li class="d2"><a href="#deeptutor-init-引導式初始化精靈">deeptutor init —— 引導式初始化精靈</a>
+</li>
+<li class="d2"><a href="#deeptutor-doctor-這個工作區能跑起來嗎">deeptutor doctor —— 這個工作區能跑起來嗎？</a>
+</li>
+<li class="d2"><a href="#deeptutor-start-deeptutor-serve">deeptutor start / deeptutor serve</a>
+</li>
+<li class="d2"><a href="#deeptutor-kb-知識庫管理">deeptutor kb —— 知識庫管理</a>
+<ul>
+<li class="d3"><a href="#kb-list">kb list</a></li>
+<li class="d3"><a href="#kb-info">kb info</a></li>
+<li class="d3"><a href="#kb-create">kb create</a></li>
+<li class="d3"><a href="#kb-add">kb add</a></li>
+<li class="d3"><a href="#kb-delete">kb delete</a></li>
+<li class="d3"><a href="#kb-set-default">kb set-default</a></li>
+<li class="d3"><a href="#kb-search">kb search</a></li>
+<li class="d3"><a href="#kb-add-github-source">kb add-github-source</a></li>
+<li class="d3"><a href="#kb-remove-github-source">kb remove-github-source</a></li>
+<li class="d3"><a href="#kb-add-web-source">kb add-web-source</a></li>
+<li class="d3"><a href="#kb-remove-web-source">kb remove-web-source</a></li>
+<li class="d3"><a href="#kb-list-sources">kb list-sources</a></li>
+<li class="d3"><a href="#kb-sync">kb sync</a></li>
+<li class="d3"><a href="#重新索引">重新索引</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#deeptutor-skill-技能庫與-hub">deeptutor skill —— 技能庫與 Hub</a>
+<ul>
+<li class="d3"><a href="#發布你自己的技能">發布你自己的技能</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#deeptutor-session-會話檢視">deeptutor session —— 會話檢視</a>
+<ul>
+<li class="d3"><a href="#session-list">session list</a></li>
+<li class="d3"><a href="#session-show">session show</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#deeptutor-notebook-筆記本記錄">deeptutor notebook —— 筆記本記錄</a>
+</li>
+<li class="d2"><a href="#deeptutor-memory-三層記憶">deeptutor memory —— 三層記憶</a>
+<ul>
+<li class="d3"><a href="#memory-show-target">memory show [target]</a></li>
+<li class="d3"><a href="#memory-clear-target">memory clear [target]</a></li>
+<li class="d3"><a href="#強制觸發一次整理">強制觸發一次整理</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#deeptutor-partner-學習夥伴生命週期">deeptutor partner —— 學習夥伴生命週期</a>
+</li>
+<li class="d2"><a href="#deeptutor-config-show">deeptutor config show</a>
+</li>
+<li class="d2"><a href="#deeptutor-plugin-註冊表檢視">deeptutor plugin —— 註冊表檢視</a>
+</li>
+<li class="d2"><a href="#deeptutor-provider-認證流程">deeptutor provider —— 認證流程</a>
+</li>
+<li class="d2"><a href="#deeptutor-book-knowledge-books引導式學習">deeptutor book —— Knowledge Books（引導式學習）</a>
+</li>
+<li class="d2"><a href="#常見輸出-schema">常見輸出 schema</a>
+<ul>
+<li class="d3"><a href="#turnrequest-run-內部傳送的物件">TurnRequest（ run 內部傳送的物件）</a></li>
+<li class="d3"><a href="#流事件型別">流事件型別</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#另見">另見</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/cli/commands/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/cli/commands/</a></p> <p>把 DeepTutor 裝好之後，你平時打交道最多的，就是它的命令列工具（CLI）：<code>deeptutor</code>。</p>
+<p>這一頁就是官方的完整命令參考：15 個子命令、每個引數（flag）的型別和預設值、輸出格式、現成範例，全部一次列全。</p>
+<p>這套命令能幹的事情比你想的多：出題、深度解題、做研究報告、管理知識庫、維護三層記憶、建立學習夥伴（Partner）……日常學習自動化的活，基本都能交給它，本機真能跑出一條完整的學習流。</p>
+<p>數字先給大家劃個重點：光知識庫 <code>kb</code> 一個命令就帶 13 個子命令；<code>doctor</code> 一條命令做 6 項健檢；記憶分 L1、L2、L3 三層；後端跑在 8001 連接埠、前端跑在 3782 連接埠。</p>
+<p>很多人看到這裡，基本就放棄了：這麼多命令，誰記得住啊。</p>
+<p>別慌，命令不用背，用到哪查到哪就行。下面按官方文件的順序逐個過一遍，命令和引數名我一個字元都沒動，互動式對話環境（REPL）的用法和智慧代理（Agent）自動化分別見文末連結。</p>
+<h2 id="deeptutor-run-單次能力執行">deeptutor run —— 單次能力執行</h2>
+<p>執行一次能力（capability）回合（turn）然後退出。這是智慧代理和腳本最基礎的「做事」命令。</p>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor run &lt;capability&gt; <span class="s">"&lt;message&gt;"</span> [options]</code></pre></div>
+<p>內建能力：<code>chat</code>、<code>ask_questions</code>、<code>deep_solve</code>、<code>deep_question</code>、<code>deep_research</code>、<code>visualize</code>、<code>math_animator</code>、<code>mastery_path</code>、<code>immersive_reading</code>、<code>course_study</code>（別名 <code>course</code>）、<code>immersive_watching</code>（別名 <code>watching</code>、<code>watch</code>）。</p>
+<h3 id="引數flag">引數（Flag）</h3>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Flag</th>
+<th>型別</th>
+<th>預設值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>--session <id></td>
+<td>string</td>
+<td>(新增)</td>
+<td>續上一個已有會話</td>
+</tr>
+<tr>
+<td>-t / --tool <name></td>
+<td>可重複</td>
+<td>[]</td>
+<td>僅使用者 toggle； rag / code_execution 忽略</td>
+</tr>
+<tr>
+<td>--kb <name></td>
+<td>可重複</td>
+<td>[]</td>
+<td>掛載一個知識庫</td>
+</tr>
+<tr>
+<td>--notebook-ref &lt;id[:record,...]&gt;</td>
+<td>可重複</td>
+<td>[]</td>
+<td>掛載 notebook 記錄</td>
+</tr>
+<tr>
+<td>--history-ref <session_id></td>
+<td>可重複</td>
+<td>[]</td>
+<td>引用一個歷史會話</td>
+</tr>
+<tr>
+<td>-l / --language <code></td>
+<td>string</td>
+<td>en</td>
+<td>回覆語言</td>
+</tr>
+<tr>
+<td>--config &lt;key=value&gt;</td>
+<td>可重複</td>
+<td>[]</td>
+<td>單個 capability 的 config 覆蓋</td>
+</tr>
+<tr>
+<td>--config-json <json></td>
+<td>string</td>
+<td>——</td>
+<td>以 JSON 形式提供 base config；後續 --config key=value 會覆蓋同名 key</td>
+</tr>
+<tr>
+<td>-f / --format <value></td>
+<td>string</td>
+<td>rich</td>
+<td>僅精確 json 輸出 NDJSON；其餘走 rich</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="範例">範例</h3>
+<div class="codeblock" data-lang="bash"><pre><code><span class="c"># 简单 chat turn
+</span>deeptutor run chat <span class="s">"用大白话解释量子纠缠"</span>
+
+<span class="c"># Deep Solve，带 reasoning + 针对某个 KB 自动挂载的 RAG
+</span>deeptutor run deep_solve <span class="s">"求 d/dx [sin(x²)]"</span> --tool reason --kb math
+
+<span class="c"># 生成 5 道测验题
+</span>deeptutor run deep_question <span class="s">"线性代数的特征向量"</span> <span class="s">\
+</span>  --config num_questions=<span class="m">5</span> --config difficulty=hard
+
+<span class="c"># Deep Research，JSON 流
+</span>deeptutor run deep_research <span class="s">"检索增强生成最近有什么新进展？"</span> <span class="s">\
+</span>  --tool web_search --kb papers <span class="s">\
+</span>  --config mode=report --config depth=standard <span class="s">\
+</span>  --format json
+
+<span class="c"># 续上一个 session
+</span>deeptutor run chat <span class="s">"接着刚才的继续"</span> --session sess_abc123</code></pre></div>
+<h3 id="輸出---format-rich-預設">輸出 —— --format rich （預設）</h3>
+<p>Markdown 富文字。Deep Solve 僅 <code>responding</code>，chat 隱藏橫幅：</p>
+<div class="codeblock" data-lang="text"><pre><code>  ✻ thinking…
+  ● rag(query=chain rule, kb_name=math)
+  │ Chain rule: d/dx[f(g(x))] = f'(g(x)) · g'(x)
+  └ #1 rag — +5 more lines; run /show 1 to expand
+
+  ✻ thinking…
+
+The derivative of sin(x²) is:
+
+**2x · cos(x²)**
+
+[dim]session=sess_abc123 turn=turn_xyz789 capability=deep_solve rounds=2 tools=1[/]</code></pre></div>
+<h3 id="輸出---format-json">輸出 —— --format json</h3>
+<p>每行一個 JSON 物件（即 NDJSON，每行一條 JSON 記錄的格式），方便透過管線交給其他工具：</p>
+<div class="codeblock" data-lang="text"><pre><code>{"type": "stage_start", "stage": "responding"}
+{"type": "tool_call", "content": "rag", "metadata": {"args": {"query": "chain rule", "kb_name": "math"}}}
+{"type": "tool_result", "content": "Chain rule: ...", "metadata": {"tool": "rag"}}
+{"type": "content", "content": "The derivative of sin(x²) is **2x · cos(x²)**", "metadata": {"call_id": "round-2", "trace_kind": "llm_chunk"}}
+{"type": "progress", "content": "", "metadata": {"call_id": "round-2", "trace_kind": "call_status", "call_state": "complete", "call_role": "finish"}}
+{"type": "stage_end", "stage": "responding"}
+{"type": "result", "metadata": {"response": "The derivative of sin(x²) is **2x · cos(x²)**"}}
+{"type": "done", "session_id": "sess_abc123", "turn_id": "turn_xyz789", "metadata": {"status": "completed"}}</code></pre></div>
+<p>事件型別：<code>stage_start</code>、<code>stage_end</code>、<code>thinking</code>、<code>observation</code>、<code>content</code>、<code>tool_call</code>、<code>tool_result</code>、<code>progress</code>、<code>sources</code>、<code>result</code>、<code>error</code>、<code>session</code>、<code>session_meta</code>、<code>done</code>、<code>wait_for_input</code>。</p>
+<h2 id="deeptutor-chat-互動式對話環境">deeptutor chat —— 互動式對話環境</h2>
+<p>進入一個互動式 chat 會話，用 <code>/slash</code> 命令在會話內做設定。</p>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor chat [options]</code></pre></div>
+<p>flag 和 <code>run</code> 裡塑形回合的那一組一樣：<code>--session</code>、<code>--tool / -t</code>、<code>--capability / -c</code>、<code>--kb</code>、<code>--notebook-ref</code>、<code>--history-ref</code>、<code>--language / -l</code>、<code>--config</code>、<code>--config-json</code>。完整說明見 <a href="../cli/chat-repl.html"><strong>互動式 REPL</strong></a>。</p>
+<h2 id="deeptutor-init-引導式初始化精靈">deeptutor init —— 引導式初始化精靈</h2>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor init                <span class="c"># 完整配置（询问端口 + LLM + embedding + 搜索）
+</span>deeptutor init --cli          <span class="c"># 仅 CLI（跳过端口问题）
+</span>deeptutor init --home /path   # 使用非默认工作区</code></pre></div>
+<p>完整流程見 <a href="../get-started/index.html"><strong>Get Started</strong></a>。</p>
+<h2 id="deeptutor-doctor-這個工作區能跑起來嗎">deeptutor doctor —— 這個工作區能跑起來嗎？</h2>
+<p>在你去翻症狀之前，它會先回答一個問題：DeepTutor 在這裡能不能開一輪會話？所有判斷都讀本機設定，因此預設這次執行完全不聯網。</p>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor doctor                  <span class="c"># 只读本地配置
+</span>deeptutor doctor --online         <span class="c"># 额外向 provider 发一个很小的请求
+</span>deeptutor doctor --format json    # 同一份报告，机器可读（--format / -f）</code></pre></div>
+<p>一共六項檢查。其中四項始終是<strong>必需項</strong>：<code>LLM configuration</code>（模型設定）、<code>LLM credentials</code>（模型金鑰）、<code>LLM endpoint</code>（模型 API 位址）和 <code>Runtime storage</code>（資料根目錄可寫）。<code>RAG prerequisites</code>（檢索增強生成的前置條件）是可選項，失敗報 <code>WARN</code>。<code>Provider response</code> 跳過時是可選項；真正執行 <code>--online</code> 探測後就是必需項，失敗報 <code>FAIL</code> 並以退出碼 1 結束。</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>狀態</th>
+<th>含義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PASS</td>
+<td>該項通過。</td>
+</tr>
+<tr>
+<td>FAIL</td>
+<td>必需項失敗——啟動前先修掉。</td>
+</tr>
+<tr>
+<td>WARN</td>
+<td>可選項失敗；它覆蓋的那個功能不可用。</td>
+</tr>
+<tr>
+<td>SKIP</td>
+<td>沒什麼可查的（沒有設定知識庫，或沒加 --online ）。</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>任一必需項失敗時退出碼為 1</strong>，所以 <code>deeptutor doctor</code> 可以直接當作容器入口或者持續整合（CI）步驟裡的門禁。<code>--format json</code> 輸出 <code>{"ok", "online", "checks": [{"key", "label", "status", "detail", "required"}]}</code>，讀 <code>ok</code> 就好，不要去解析那張表。</p>
+<h2 id="deeptutor-start-deeptutor-serve">deeptutor start / deeptutor serve</h2>
+<div class="codeblock" data-lang="bash"><pre><code><span class="c"># 同时启动后端 + 前端（阻塞；Ctrl+C 同时停掉）
+</span>deeptutor start
+deeptutor start --home /path
+deeptutor start --dev                   <span class="c"># 前端热更新（HMR），而非生产构建
+</span>
+<span class="c"># 仅后端
+</span>deeptutor serve --host <span class="m">0</span>.0.0.0 --port <span class="m">8001</span>
+deeptutor serve --reload                # 文件变动时热重载（仅开发用）</code></pre></div>
+<h2 id="deeptutor-kb-知識庫管理">deeptutor kb —— 知識庫管理</h2>
+<h3 id="kb-list">kb list</h3>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor kb list                <span class="c"># Rich 表格
+</span>deeptutor kb list --format json    # --format / -f</code></pre></div>
+<p>JSON 輸出：</p>
+<div class="codeblock" data-lang="json"><pre><code>[
+  {
+    <span class="nt">"name"</span>: <span class="s">"physics"</span>,
+    <span class="nt">"status"</span>: <span class="s">"ready"</span>,
+    <span class="nt">"documents"</span>: <span class="m">12</span>,
+    <span class="nt">"rag_provider"</span>: <span class="s">"llamaindex"</span>,
+    <span class="nt">"is_default"</span>: <span class="k">true</span>
+  },
+  {
+    <span class="nt">"name"</span>: <span class="s">"math"</span>,
+    <span class="nt">"status"</span>: <span class="s">"indexing"</span>,
+    <span class="nt">"documents"</span>: <span class="m">4</span>,
+    <span class="nt">"rag_provider"</span>: <span class="s">"llamaindex"</span>,
+    <span class="nt">"is_default"</span>: <span class="k">false</span>
+  }
+]</code></pre></div>
+<h3 id="kb-info">kb info <name></h3>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor kb info physics</code></pre></div>
+<p>回傳這個知識庫的中繼資料、文件列表、統計資訊和索引狀態。</p>
+<h3 id="kb-create">kb create <name></h3>
+<div class="codeblock" data-lang="bash"><pre><code><span class="c"># 单个文档
+</span>deeptutor kb create physics --doc chapter1.pdf       <span class="c"># --doc / -d
+</span>
+<span class="c"># 多个文档
+</span>deeptutor kb create physics --doc chapter1.pdf --doc chapter2.pdf --doc exercises.docx
+
+<span class="c"># 整个目录
+</span>deeptutor kb create textbooks --docs-dir ./my-pdfs</code></pre></div>
+<p>支援文字、PDF、Office 與 EPUB；圖片要求向量化模型（Embedding）和大語言模型（LLM）都支援多模態。</p>
+<h3 id="kb-add">kb add <name></h3>
+<p>往已有知識庫裡增量新增文件：</p>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor kb add physics -d chapter3.pdf
+deeptutor kb add physics --docs-dir ./supplements</code></pre></div>
+<h3 id="kb-delete">kb delete <name></h3>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor kb delete physics              <span class="c"># 要求确认
+</span>deeptutor kb delete physics --force      # 跳过确认（--force / -f）</code></pre></div>
+<h3 id="kb-set-default">kb set-default <name></h3>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor kb set-default physics</code></pre></div>
+<p>這會標記工作區的預設知識庫。命令列互動環境仍然從「無知識庫」開始，只傳送 <code>--kb</code> 或 <code>/kb</code> 選中的那個。</p>
+<h3 id="kb-search">kb search <name> <query></h3>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor kb search physics <span class="s">"什么是角动量？"</span>
+deeptutor kb search physics <span class="s">"..."</span> --mode hybrid --format json  # --format / -f</code></pre></div>
+<p><code>--mode</code> 取決於引擎：LlamaIndex 忽略該引數；LightRAG=<code>naive|local|global|hybrid|mix</code>（預設 <code>hybrid</code>）；GraphRAG=<code>local|global|drift|basic</code>（預設 <code>local</code>）。</p>
+<h3 id="kb-add-github-source">kb add-github-source <name></h3>
+<p>把儲存庫中的 Markdown 登記為可追蹤來源：</p>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor kb add-github-source physics --repo owner/repo <span class="s">\
+</span>  --branch main --path docs/ --glob <span class="s">'*.md'</span></code></pre></div>
+<p><code>--repo / -r</code> 必填；<code>--branch / -b</code> 預設 <code>main</code>，<code>--path / -p</code> 預設儲存庫根目錄，<code>--glob / -g</code> 預設 <code>*.md</code>。</p>
+<h3 id="kb-remove-github-source">kb remove-github-source <name></h3>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor kb remove-github-source physics --source-id &lt;id&gt;</code></pre></div>
+<p><code>--source-id / -s</code> 指定已登記的來源。</p>
+<h3 id="kb-add-web-source">kb add-web-source <name></h3>
+<p>登記一次有界的文件站點抓取：</p>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor kb add-web-source physics --url https://docs.example.com <span class="s">\
+</span>  --max-depth <span class="m">3</span> --max-pages <span class="m">200</span></code></pre></div>
+<p><code>--url / -u</code> 必填；抓取深度預設 <code>3</code>，頁面預算預設 <code>200</code>。</p>
+<h3 id="kb-remove-web-source">kb remove-web-source <name></h3>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor kb remove-web-source physics --source-id &lt;id&gt;  # --source-id / -s</code></pre></div>
+<h3 id="kb-list-sources">kb list-sources <name></h3>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor kb list-sources physics</code></pre></div>
+<p>列出已登記的 GitHub（程式碼託管平台）與 Web 來源、最近狀態，以及已同步的檔案/頁面數。</p>
+<h3 id="kb-sync">kb sync <name></h3>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor kb sync physics</code></pre></div>
+<p>立即同步所有已啟用的 GitHub 與 Web 來源，顯示各來源狀態及可用的變更計數。</p>
+<h3 id="重新索引">重新索引</h3>
+<p>重新索引沒有命令列入口，要從<strong>網頁介面</strong>（Knowledge → 選知識庫 → <strong>Index versions</strong> 標籤頁 → <strong>Re-index now</strong>）觸發。換了向量化模型之後，通常就需要這一步。</p>
+<h2 id="deeptutor-skill-技能庫與-hub">deeptutor skill —— 技能庫與 Hub</h2>
+<p><code>deeptutor skills</code> 是 <code>deeptutor skill</code> 的頂層別名。DeepTutor 已原生內建 <strong>EduHub</strong>（其開放技能儲存庫），無需任何設定：裸 slug 或 <code>eduhub:</code> 字首都會解析到它（<code>clawhub:</code> 同樣內建）。</p>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor skill list                              <span class="c"># 本地技能列表，含 hub 来源信息
+</span>deeptutor skill search <span class="s">"苏格拉底"</span> --hub eduhub --limit <span class="m">10</span>
+deeptutor skill install eduhub:socratic-tutor     <span class="c"># 校验 → 下载 → 注册
+</span>deeptutor skill install socratic-tutor@1.2.0      <span class="c"># 裸 slug 默认 eduhub；@ 钉住版本
+</span>deeptutor skill install clawhub:gh-release-notes  <span class="c"># 其他 hub 通过前缀解析
+</span>deeptutor skill remove socratic-tutor</code></pre></div>
+<p>不是 DeepTutor 使用者？EduHub 是一個獨立、相容 ClawHub 的註冊表，任意支援技能的智慧代理（Claude Code、Codex……）都能透過 <code>eduhub</code> 命令列使用：<code>npx eduhub skills install socratic-tutor</code>。</p>
+<p>技能儲存庫（hub）的引用格式為 <code>&lt;hub&gt;:&lt;slug&gt;[@version]</code>，也支援帶 owner 的 <code>&lt;hub&gt;:&lt;owner&gt;/&lt;slug&gt;[@version]</code>。</p>
+<p>所有安裝都要過同一道匯入門：先查儲存庫的安全裁定（被標記的包，除非顯式傳 <code>--allow-unverified</code>，否則拒裝）、壓縮包帶 zip-slip / zip-bomb 防護解壓、支援檔案過文字/腳本副檔名白名單（二進位檔案永遠進不了工作區）、檔案頭部 frontmatter 中繼資料裡的 <code>always:</code> 會被剝掉，下載來的包不可能把自己注入每條系統提示詞（system prompt）。來源資訊（儲存庫、版本、裁定）記錄在技能旁邊的 <code>.hub-lock.json</code> 裡。</p>
+<p><code>install</code> 的引數：<code>--name</code> 換個本機名字安裝，<code>--force</code> 覆蓋同名技能，<code>--allow-unverified</code> 無視可疑裁定繼續裝。</p>
+<h3 id="發布你自己的技能">發布你自己的技能</h3>
+<p>同一套命令列也是儲存庫的創作端。<code>login</code> 開啟瀏覽器完成授權並把權杖存在本機；<code>publish</code> 上傳一個技能目錄；<code>update</code> 是後續維護的迴圈。</p>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor skill login --no-browser                 <span class="c"># 只打印授权链接，不自动打开浏览器
+</span>deeptutor skill publish ./my-skill --version <span class="m">1</span>.1.0 --token <span class="s">"</span>$TOKEN<span class="s">"</span> --yes
+deeptutor skill update ./my-skill                  <span class="c"># 目录可选；发布或回退
+</span>deeptutor skill logout</code></pre></div>
+<p>這四個命令都接受 <code>--hub &lt;name&gt;</code> 指定預設之外的儲存庫。<code>publish</code> 還接受 <code>--slug</code>、<code>--track</code>、<code>--token</code>、<code>--yes / -y</code>；<code>update [directory]</code> 接受 <code>--token</code>，適合不想把登入態存在本機的場合。</p>
+<p>額外的註冊表，或者覆蓋某個內建項（例如把 <code>eduhub</code> 指向自建映像檔），在 <code>settings/skill_hubs.json</code> 裡宣告：<code>type: "clawhub"</code> 指向任意相容的 HTTP API，<code>type: "command"</code> 包一個把包下載到 <code>{dest}</code> 的命令列工具，<code>"default"</code> 決定裸 slug 使用哪個儲存庫。</p>
+<p>多使用者部署裡，這套主機命令列操作的是管理員工作區：裝好的技能在 grant 分配之前對其他使用者不可見。相比之下，已登入使用者在網頁端點 <strong>Install</strong> 會寫入呼叫者自己的私有技能庫；管理員分配的技能仍按 grant 限定且只讀。</p>
+<h2 id="deeptutor-session-會話檢視">deeptutor session —— 會話檢視</h2>
+<h3 id="session-list">session list</h3>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor session list --limit <span class="m">20</span></code></pre></div>
+<h3 id="session-show">session show <id></h3>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor session show sess_abc123                 <span class="c"># Rich
+</span>deeptutor session show sess_abc123 --format json   # 完整 JSON</code></pre></div>
+<p>JSON 輸出（截斷版）：</p>
+<div class="codeblock" data-lang="json"><pre><code>{
+  <span class="nt">"id"</span>: <span class="s">"sess_abc123"</span>,
+  <span class="nt">"title"</span>: <span class="s">"Chain rule explanation"</span>,
+  <span class="nt">"capability"</span>: <span class="s">"chat"</span>,
+  <span class="nt">"status"</span>: <span class="s">"completed"</span>,
+  <span class="nt">"messages"</span>: [
+    {<span class="nt">"role"</span>: <span class="s">"user"</span>, <span class="nt">"content"</span>: <span class="s">"..."</span>},
+    {<span class="nt">"role"</span>: <span class="s">"assistant"</span>, <span class="nt">"content"</span>: <span class="s">"..."</span>}
+  ],
+  <span class="nt">"preferences"</span>: {
+    <span class="nt">"tools"</span>: [<span class="s">"rag"</span>, <span class="s">"reason"</span>],
+    <span class="nt">"knowledge_bases"</span>: [<span class="s">"math"</span>],
+    <span class="nt">"language"</span>: <span class="s">"en"</span>
+  },
+  <span class="nt">"created_at"</span>: <span class="s">"2026-05-21T14:23:01Z"</span>,
+  <span class="nt">"updated_at"</span>: <span class="s">"2026-05-21T14:24:38Z"</span>
+}</code></pre></div>
+### session open <id> / session delete <id> / session rename <id> --title
+<title>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor session open sess_abc123                    <span class="c"># 在 REPL 里续上
+</span>deeptutor session rename sess_abc123 --title <span class="s">"Calculus review"</span>
+deeptutor session delete sess_abc123</code></pre></div>
+<h2 id="deeptutor-notebook-筆記本記錄">deeptutor notebook —— 筆記本記錄</h2>
+<div class="codeblock" data-lang="bash"><pre><code><span class="c"># 创建 notebook
+</span>deeptutor notebook create research-notes --description <span class="s">"Daily reading log"</span>
+
+<span class="c"># 添加 markdown 记录
+</span>deeptutor notebook add-md research-notes paper-summary.md <span class="s">\
+</span>  --title <span class="s">"Attention is all you need"</span> --type research
+
+<span class="c"># 替换某条记录的内容
+</span>deeptutor notebook replace-md research-notes rec_abc123 updated-summary.md
+
+<span class="c"># 删除一条记录
+</span>deeptutor notebook remove-record research-notes rec_abc123
+
+<span class="c"># 查看
+</span>deeptutor notebook list
+deeptutor notebook show research-notes --format json</code></pre></div>
+<p><code>show --format</code> 可取 <code>rich|json</code>；型別：<code>chat</code>、<code>question</code>、<code>research</code>、<code>solve</code>、<code>co_writer</code>、<code>tutorbot</code>、<code>reading</code>。</p>
+<h2 id="deeptutor-memory-三層記憶">deeptutor memory —— 三層記憶</h2>
+<p>DeepTutor 把使用者記憶按三層存（深入說明見 <a href="../explore/memory.html"><strong>Memory</strong></a>）：</p>
+<ul>
+<li><strong>L1</strong> —— 每個入口（surface，比如 chat、notebook、quiz 等）的原始事件軌跡</li>
+<li><strong>L2</strong> —— 每個入口整理過的 markdown 摘要</li>
+<li><strong>L3</strong> —— 跨入口的整體畫像（recent、profile、scope、preferences）</li>
+</ul>
+<h3 id="memory-show-target">memory show [target]</h3>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor memory show                <span class="c"># 默认：L3 拼接
+</span>deeptutor memory show L3
+deeptutor memory show L2             <span class="c"># 列出所有 L2 surface
+</span>deeptutor memory show profile        <span class="c"># 某个具体的 L3 doc
+</span>deeptutor memory show chat           # 某个具体的 L2 surface doc</code></pre></div>
+<h3 id="memory-clear-target">memory clear [target]</h3>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor memory clear all --force         <span class="c"># --force / -f；⚠️ 清空 L1+L2+L3
+</span>deeptutor memory clear trace               <span class="c"># 仅 L1
+</span>deeptutor memory clear chat                # 仅 chat surface 的 L1 轨迹</code></pre></div>
+<h3 id="強制觸發一次整理">強制觸發一次整理</h3>
+<p>手動整理沒有命令列入口，從網頁介面的 <strong>Memory Workbench</strong>（<code>/memory</code> → <strong>Run consolidator</strong>）觸發，或者透過 HTTP API：</p>
+<div class="codeblock" data-lang="bash"><pre><code>curl -X POST http://localhost:8001/api/v1/memory/runs/start</code></pre></div>
+<h2 id="deeptutor-partner-學習夥伴生命週期">deeptutor partner —— 學習夥伴生命週期</h2>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor partner list
+
+deeptutor partner create math-tutor <span class="s">\
+</span>  -n <span class="s">"Math Mentor"</span> <span class="s">\
+</span>  -s <span class="s">"Socratic tutor specializing in algebra and calculus"</span> <span class="s">\
+</span>  -m gpt-4o
+
+deeptutor partner stop math-tutor
+deeptutor partner start math-tutor</code></pre></div>
+<p>子命令：<code>list</code>、<code>create</code>、<code>start</code>、<code>stop</code>。<code>create</code> 會寫入學習夥伴設定，並嘗試啟動它。</p>
+<p>網頁介面是設定管道（channel）結構、資源、工具和金鑰的推薦入口；命令列適合列表、建立、啟動和停止。</p>
+<p>學習夥伴執行在 <code>data/partners/&lt;partner_id&gt;/workspace/</code> 作用域裡。管道接入說明見 <a href="../partners/index.html"><strong>Partners 夥伴與管道</strong></a>。</p>
+<h2 id="deeptutor-config-show">deeptutor config show</h2>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor config show</code></pre></div>
+<p>範例輸出：</p>
+<div class="codeblock" data-lang="json"><pre><code>{
+  <span class="nt">"ports"</span>: {
+    <span class="nt">"backend"</span>: <span class="m">8001</span>,
+    <span class="nt">"frontend"</span>: <span class="m">3782</span>
+  },
+  <span class="nt">"llm"</span>: {
+    <span class="nt">"binding_hint"</span>: <span class="s">"openai"</span>,
+    <span class="nt">"provider"</span>: <span class="s">"openai"</span>,
+    <span class="nt">"provider_mode"</span>: <span class="s">"standard"</span>,
+    <span class="nt">"model"</span>: <span class="s">"gpt-4o"</span>,
+    <span class="nt">"base_url"</span>: <span class="s">"https://api.openai.com/v1"</span>,
+    <span class="nt">"api_version"</span>: <span class="k">null</span>,
+    <span class="nt">"extra_headers"</span>: {},
+    <span class="nt">"api_key"</span>: <span class="s">"***"</span>
+  },
+  <span class="nt">"embedding"</span>: {
+    <span class="nt">"status"</span>: <span class="s">"configured"</span>,
+    <span class="nt">"binding_hint"</span>: <span class="s">"openai"</span>,
+    <span class="nt">"provider"</span>: <span class="s">"openai"</span>,
+    <span class="nt">"provider_mode"</span>: <span class="s">"standard"</span>,
+    <span class="nt">"model"</span>: <span class="s">"text-embedding-3-large"</span>,
+    <span class="nt">"base_url"</span>: <span class="s">"https://api.openai.com/v1/embeddings"</span>,
+    <span class="nt">"api_version"</span>: <span class="k">null</span>,
+    <span class="nt">"extra_headers"</span>: {},
+    <span class="nt">"dimension"</span>: <span class="m">3072</span>,
+    <span class="nt">"api_key"</span>: <span class="s">"***"</span>
+  },
+  <span class="nt">"search"</span>: {
+    <span class="nt">"provider"</span>: <span class="s">"tavily"</span>,
+    <span class="nt">"requested_provider"</span>: <span class="s">"tavily"</span>,
+    <span class="nt">"status"</span>: <span class="s">"ok"</span>,
+    <span class="nt">"fallback_reason"</span>: <span class="k">null</span>,
+    <span class="nt">"base_url"</span>: <span class="s">""</span>,
+    <span class="nt">"proxy"</span>: <span class="k">null</span>,
+    <span class="nt">"api_key"</span>: <span class="s">"***"</span>
+  },
+  <span class="nt">"language"</span>: <span class="s">"en"</span>,
+  <span class="nt">"tools"</span>: [<span class="s">"rag"</span>, <span class="s">"web_search"</span>, <span class="s">"code_execution"</span>, <span class="s">"reason"</span>]
+}</code></pre></div>
+<p>API 金鑰（API key）會遮罩顯示；<code>extra_headers</code> 原樣輸出，裡面可能含憑據，注意保管。</p>
+<h2 id="deeptutor-plugin-註冊表檢視">deeptutor plugin —— 註冊表檢視</h2>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor plugin list                  <span class="c"># 所有 capability + tool
+</span>deeptutor plugin info deep_solve       <span class="c"># 单个 capability
+</span>deeptutor plugin info rag              # 单个 tool</code></pre></div>
+<p><code>plugin info &lt;capability&gt;</code> 回傳：</p>
+<div class="codeblock" data-lang="json"><pre><code>{
+  <span class="nt">"name"</span>: <span class="s">"deep_solve"</span>,
+  <span class="nt">"description"</span>: <span class="s">"Multi-step problem solving driven by the chat agent loop."</span>,
+  <span class="nt">"cli_aliases"</span>: [<span class="s">"solve"</span>],
+  <span class="nt">"stages"</span>: [<span class="s">"responding"</span>],
+  <span class="nt">"tools_used"</span>: [<span class="s">"solve_plan"</span>, <span class="s">"solve_finish_step"</span>, <span class="s">"solve_replan"</span>, <span class="s">"rag"</span>, <span class="s">"code_execution"</span>, <span class="s">"geogebra_analysis"</span>, <span class="s">"reason"</span>],
+  <span class="nt">"config_defaults"</span>: {},
+  <span class="nt">"availability"</span>: {
+    <span class="nt">"available"</span>: <span class="k">true</span>,
+    <span class="nt">"install_hint"</span>: <span class="s">""</span>
+  }
+}</code></pre></div>
+<h2 id="deeptutor-provider-認證流程">deeptutor provider —— 認證流程</h2>
+<p>對於走 OAuth（開放授權登入）或特殊權杖流程的服務商（Provider）：</p>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor provider login openai-codex       <span class="c"># 浏览器 OAuth，用你自己的 ChatGPT 套餐
+</span>deeptutor provider login github-copilot     <span class="c"># GitHub 认证校验
+</span>deeptutor provider login codebuddy          # 别名：codebuddy-code、workbuddy</code></pre></div>
+<h2 id="deeptutor-book-knowledge-books引導式學習">deeptutor book —— Knowledge Books（引導式學習）</h2>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor book list
+
+<span class="c"># 给一本 book 做健康检查（KB 漂移 + log 过期检测）
+</span>deeptutor book health book_abc123
+
+<span class="c"># 重新快照 fingerprint，消除 "stale page" 警告
+</span>deeptutor book refresh-fingerprints book_abc123</code></pre></div>
+<p>Book 是 <strong>Guided Learning</strong> 學習路徑的儲存層。詳見 <a href="../explore/book.html"><strong>互動式書本</strong></a>。</p>
+<h2 id="常見輸出-schema">常見輸出 schema</h2>
+<h3 id="turnrequest-run-內部傳送的物件">TurnRequest（ run 內部傳送的物件）</h3>
+<div class="codeblock" data-lang="python"><pre><code><span class="nd">@dataclass</span>(slots=<span class="k">True</span>)
+<span class="k">class</span> <span class="nc">TurnRequest</span>:
+    content: <span class="nb">str</span>
+    capability: <span class="nb">str</span> = <span class="s">"chat"</span>
+    session_id: <span class="nb">str</span> | <span class="k">None</span> = <span class="k">None</span>
+    tools: <span class="nb">list</span>[<span class="nb">str</span>] = field(default_factory=<span class="nb">list</span>)
+    knowledge_bases: <span class="nb">list</span>[<span class="nb">str</span>] = field(default_factory=<span class="nb">list</span>)
+    language: <span class="nb">str</span> = <span class="s">"en"</span>
+    config: <span class="nb">dict</span>[<span class="nb">str</span>, Any] = field(default_factory=<span class="nb">dict</span>)
+    notebook_references: <span class="nb">list</span>[<span class="nb">dict</span>[<span class="nb">str</span>, Any]] = field(default_factory=<span class="nb">list</span>)
+    history_references: <span class="nb">list</span>[<span class="nb">str</span>] = field(default_factory=<span class="nb">list</span>)
+    partner_group_references: <span class="nb">list</span>[<span class="nb">dict</span>[<span class="nb">str</span>, <span class="nb">str</span>]] = field(default_factory=<span class="nb">list</span>)
+    attachments: <span class="nb">list</span>[<span class="nb">dict</span>[<span class="nb">str</span>, Any]] = field(default_factory=<span class="nb">list</span>)
+    skills: <span class="nb">list</span>[<span class="nb">str</span>] = field(default_factory=<span class="nb">list</span>)</code></pre></div>
+<h3 id="流事件型別">流事件型別</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>觸發時機</th>
+<th>欄位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stage_start</td>
+<td>stage 開始</td>
+<td>stage 、 metadata</td>
+</tr>
+<tr>
+<td>stage_end</td>
+<td>stage 結束</td>
+<td>stage</td>
+</tr>
+<tr>
+<td>content</td>
+<td>內容</td>
+<td>content</td>
+</tr>
+<tr>
+<td>thinking</td>
+<td>推理</td>
+<td>content</td>
+</tr>
+<tr>
+<td>observation</td>
+<td>observation</td>
+<td>content</td>
+</tr>
+<tr>
+<td>progress</td>
+<td>狀態</td>
+<td>content</td>
+</tr>
+<tr>
+<td>tool_call</td>
+<td>呼叫</td>
+<td>content 、 metadata.args</td>
+</tr>
+<tr>
+<td>tool_result</td>
+<td>回傳</td>
+<td>content 、 metadata.tool</td>
+</tr>
+<tr>
+<td>sources</td>
+<td>來源</td>
+<td>metadata.sources</td>
+</tr>
+<tr>
+<td>result</td>
+<td>結果</td>
+<td>metadata</td>
+</tr>
+<tr>
+<td>error</td>
+<td>出錯</td>
+<td>content</td>
+</tr>
+<tr>
+<td>session</td>
+<td>身份</td>
+<td>metadata</td>
+</tr>
+<tr>
+<td>session_meta</td>
+<td>中繼資料更新</td>
+<td>metadata</td>
+</tr>
+<tr>
+<td>done</td>
+<td>完成</td>
+<td>頂層 id、 metadata.status</td>
+</tr>
+<tr>
+<td>wait_for_input</td>
+<td>輸入暫停</td>
+<td>content</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="另見">另見</h2>
+<ul>
+<li><a href="../cli/chat-repl.html"><strong>互動式 REPL</strong></a> —— 日常使用 <code>deeptutor chat</code></li>
+<li><a href="../cli/agent-handoff.html"><strong>代理交接</strong></a> —— 讓 Claude Code / Codex 來驅動命令列工具</li>
+<li><a href="../cli/server-api.html"><strong>伺服器端 API</strong></a> —— <code>deeptutor serve</code> 暴露的 HTTP / WebSocket 表面</li>
+</ul>
+<p>部署過程遇到問題，歡迎在留言區留言，把報錯的完整日誌貼出來，我看到會回覆。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../cli/index.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">概覽</p></a>
+<a class="next" href="../cli/chat-repl.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">互動式 REPL</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>改寫版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

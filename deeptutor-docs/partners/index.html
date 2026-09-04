@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepTutor 學習夥伴太香了！16 個聊天管道隨便接，個人微信掃描 QR Code 登入，還能拉一群 AI 開圓桌！ · DeepTutor 改寫版</title>
+<meta name="description" content="DeepTutor Partners 的維運文件：管道設定、工作區佈局和 IM 投遞行為。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="DeepTutor 學習夥伴太香了！16 個聊天管道隨便接，個人微信掃描 QR Code 登入，還能拉一群 AI 開圓桌！ · DeepTutor 改寫版">
+<meta property="og:site_name" content="DeepTutor 改寫版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>改寫版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html" aria-current="page">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">夥伴與管道<span aria-hidden="true"> · </span>概覽</p>
+      <h1 class="doc-title">DeepTutor 學習夥伴太香了！16 個聊天管道隨便接，個人微信掃描 QR Code 登入，還能拉一群 AI 開圓桌！</h1>
+      <p class="doc-lede">DeepTutor Partners 的維運文件：管道設定、工作區佈局和 IM 投遞行為。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#和舊-tutorbot-的區別">和舊 TutorBot 的區別</a>
+</li>
+<li class="d2"><a href="#所有權分配與私有會話">所有權、分配與私有會話</a>
+</li>
+<li class="d2"><a href="#推薦設定流程">推薦設定流程</a>
+</li>
+<li class="d2"><a href="#partner-groups夥伴群組">Partner Groups（夥伴群組）</a>
+</li>
+<li class="d2"><a href="#管道入口">管道入口</a>
+</li>
+<li class="d2"><a href="#執行環境狀態">執行環境狀態</a>
+</li>
+<li class="d2"><a href="#對話命令">對話命令</a>
+</li>
+<li class="d2"><a href="#網頁介面還是命令列工具">網頁介面還是命令列工具</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/partners/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/partners/</a></p> <p>最近後台問得最多的問題之一：能不能把 AI 學習助理直接拉進微信、QQ 裡，讓它 24 小時線上陪學？</p>
+<p>DeepTutor 的學習夥伴（Partner）就是幹這個的。它同時活在網頁介面和外部聊天應用裡，個人微信掃描 QR Code 登入就能用，Telegram 拿個 token 就能跑，總共 16 個管道隨便挑。</p>
+<p>但是問題來了。管道這麼多怎麼選？設定流程怎麼走？多個人共用同一個夥伴，聊天記錄會不會互相看到？</p>
+<p>這一頁就是官方的維運指南，接下來會依序談訊息流轉、新舊方案區別、設定流程和全部管道入口。</p>
+<p>Partners 是可以同時存在於網頁介面和外部即時通訊（IM）應用裡的持久 DeepTutor 夥伴。它不是第二套 bot engine。每條入站訊息都會變成一個作用域在該 Partner 下的普通 chat-agent turn：</p>
+<div class="codeblock" data-lang="text"><pre><code>IM / Web message -&gt; PartnerRunner -&gt; ChatOrchestrator -&gt; AgenticChatPipeline -&gt; tools -&gt; reply</code></pre></div>
+<p>就是沒有另起爐灶：你在網頁裡怎麼聊，在微信裡就怎麼聊，背後是同一套管線，真能跑。</p>
+<figure>
+<img src="../assets/screenshots/guide/partners/00-partners-overview.png" alt="夥伴頁面——帶已連線管道的夥伴卡片" />
+<figcaption aria-hidden="true">夥伴頁面——帶已連線管道的夥伴卡片</figcaption>
+</figure>
+<p>本頁是維運指南。想了解夥伴<em>是什麼</em>（它的靈魂、資料庫、記憶與網頁 Chat 檢視），見<a href="../explore/partners.html">探索 → 夥伴</a>。夥伴也可以在一輪普通聊天裡透過<a href="../explore/subagents.html">我的智慧代理</a>被諮詢。</p>
+<h2 id="和舊-tutorbot-的區別">和舊 TutorBot 的區別</h2>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>舊 TutorBot</th>
+<th>新 Partner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>獨立 bot engine，工作區在 data/tutorbot/<id>/</td>
+<td>複用 Chat loop，作用域在 data/partners/<id>/workspace/</td>
+</tr>
+<tr>
+<td>deeptutor bot ... 命令</td>
+<td>deeptutor partner list/create/start/stop</td>
+</tr>
+<tr>
+<td>手寫 bot YAML 裡的 channels</td>
+<td>Partners UI 中按 schema 渲染的 channel cards</td>
+</tr>
+<tr>
+<td>bot skills / memory 獨立處理</td>
+<td>分配的 KB、skills、notebooks、tools、memory 像普通 chat context 一樣掛載</td>
+</tr>
+</tbody>
+</table></div>
+<p>如果你當初也用過舊的 TutorBot，那這波升級可以說是脫胎換骨：不用再手寫 bot YAML，所有東西都在介面裡點兩下就能配好。</p>
+<p>舊 <code>/tutorbot/*</code> 文件地址會重新導向到對應的 <code>/partners/*</code> 頁面，已有外鏈和書籤仍可繼續使用。</p>
+<h2 id="所有權分配與私有會話">所有權、分配與私有會話</h2>
+<p>任何已認證使用者都可以建立 Partner，並自動成為其所有者。所有者和管理員可以管理它的靈魂設定、資料庫、管道、模型、生命週期與刪除操作。管理員還可以把 Partner 分配給其他使用者；被分配的使用者可以與它對話，但只能看到身份卡片，看不到設定和憑據。</p>
+<p>Partner 的設定與複製進來的資料庫是共享的，關係狀態則彼此隔離。每個已認證的非管理員使用者都在 <code>users/&lt;user_id&gt;/</code> 下擁有自己的會話檔案和關係記憶。與該使用者互動時，Partner 還可以讀取這個使用者自己的共享記憶；新學到的偏好只寫入這段私有的夥伴—使用者關係記憶。因此，兩個人使用同一個 Partner 時不會看到彼此的會話或已學習偏好。</p>
+<p>管理員會話和未歸屬到帳號的管道訊息則相容性地使用 Partner 頂層的會話與記憶作用域。</p>
+<p>隱私這塊的設計相當到位：兩個人用同一個夥伴也不會串台，這點必須按讚。</p>
+<h2 id="推薦設定流程">推薦設定流程</h2>
+<ol type="1">
+<li>在 <strong>Partners -&gt; New partner</strong> 建立 Partner。</li>
+<li>啟用任何 channel 前，先填好 <strong>Identity</strong> 和 <strong>Soul</strong> 。第一條 IM 回覆就會使用這個 soul。</li>
+<li>在 <strong>Mind</strong> 裡選擇模型；測試階段先少開可選工具。</li>
+<li>在 <strong>Library</strong> 裡先分配一個小 KB 或 skill。資源會複製進 Partner workspace。</li>
+<li>在 <strong>Channels</strong> 裡先只啟用一個 channel，並從本機/私有測試開始。</li>
+<li>除錯時保留 <code>send_progress</code> 和 <code>send_tool_hints</code> ，生產環境再按需要關閉。</li>
+<li>對真實使用者開放前，把 <code>allow_from: ["*"]</code> 換成明確 sender ids。</li>
+</ol>
+<figure>
+<img src="../assets/screenshots/guide/partners/02-im-config-for-each-partner.png" alt="夥伴的 Channels 標籤頁——左側選 IM 應用，右側設定" />
+<figcaption aria-hidden="true">夥伴的 Channels 標籤頁——左側選 IM 應用，右側設定</figcaption>
+</figure>
+<h2 id="partner-groups夥伴群組">Partner Groups（夥伴群組）</h2>
+<p>Partners 頁面還支援一等公民的 <strong>Partner Groups（夥伴群組）</strong>。從兩個或更多 Partner 組建群組，選擇成員、討論模式和共享記憶模式，就能在同一場討論中保留每個 Partner 各自的角色與推理方式。</p>
+<p>每個群組都有獨立的會話與持久歷史。一輪訊息可以發給全部成員，也可以只指定部分成員；每個成員的回覆佔據獨立 seat。某個 seat 失敗時，可以只重試這一席，而不用讓已經答完的 Partner 全部重跑。</p>
+<p>簡單說，就是拉一群 AI 開圓桌：每個席次獨立發言，誰翻車了還能單獨重試，不用全員重來，這玩法確實有點上頭。</p>
+<h2 id="管道入口">管道入口</h2>
+<p>16 個管道全在這張表裡。我個人建議新手從 Telegram 起步，最省事；國內朋友直接看微信和 QQ 那幾行。</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Channel</th>
+<th>適用場景</th>
+<th>頁面</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WeChat ( weixin )</td>
+<td>個人微信，掃描 QR Code 登入，HTTP long-poll</td>
+<td>WeChat</td>
+</tr>
+<tr>
+<td>WeCom ( wecom )</td>
+<td>企業微信 / WeChat Work AI Bot 平台</td>
+<td>WeCom</td>
+</tr>
+<tr>
+<td>QQ ( qq )</td>
+<td>騰訊官方 QQ Bot，botpy SDK</td>
+<td>QQ / NapCat</td>
+</tr>
+<tr>
+<td>NapCat ( napcat )</td>
+<td>個人 QQ，透過 OneBot v11 / NapCat 接入</td>
+<td>QQ / NapCat</td>
+</tr>
+<tr>
+<td>Telegram ( telegram )</td>
+<td>上手最快——BotFather 拿 token，無需對外 IP</td>
+<td>Telegram</td>
+</tr>
+<tr>
+<td>Discord ( discord )</td>
+<td>Discord server 和 DM，Gateway WebSocket</td>
+<td>Discord</td>
+</tr>
+<tr>
+<td>Slack ( slack )</td>
+<td>Slack team，Socket Mode，討論串回覆</td>
+<td>Slack</td>
+</tr>
+<tr>
+<td>Feishu ( feishu )</td>
+<td>飛書 / Lark，CardKit 串流卡片</td>
+<td>Feishu</td>
+</tr>
+<tr>
+<td>DingTalk ( dingtalk )</td>
+<td>釘釘企業機器人，Stream Mode</td>
+<td>DingTalk</td>
+</tr>
+<tr>
+<td>Matrix ( matrix )</td>
+<td>去中心化房間，可選 E2EE</td>
+<td>Matrix</td>
+</tr>
+<tr>
+<td>Zulip ( zulip )</td>
+<td>stream + topic 結構化團隊聊天</td>
+<td>Zulip</td>
+</tr>
+<tr>
+<td>Mattermost ( mattermost )</td>
+<td>自託管 Mattermost，原生 v4 WebSocket</td>
+<td>Mattermost</td>
+</tr>
+<tr>
+<td>WhatsApp ( whatsapp )</td>
+<td>透過 bridge 執行環境接 WhatsApp</td>
+<td>WhatsApp</td>
+</tr>
+<tr>
+<td>Email ( email )</td>
+<td>IMAP/SMTP 非同步收發件箱工作流</td>
+<td>Email</td>
+</tr>
+<tr>
+<td>Mochat ( mochat )</td>
+<td>客服式聊天面板</td>
+<td>Mochat</td>
+</tr>
+<tr>
+<td>Microsoft Teams ( msteams )</td>
+<td>Teams，Bot Framework webhook 監聽</td>
+<td>Microsoft Teams</td>
+</tr>
+</tbody>
+</table></div>
+<p>各管道的連線模型、必填欄位和投遞開關對照，請看 <a href="../partners/channels.html">管道矩陣</a>。</p>
+<h2 id="執行環境狀態">執行環境狀態</h2>
+<div class="codeblock" data-lang="text"><pre><code>data/partners/&lt;partner_id&gt;/
+├── config.yaml                  # Partner identity, model, channels, tools
+├── sessions/                    # 共享/未归属账号的会话
+│   ├── &lt;session_key&gt;.jsonl      # 每个会话一个 append-only 文件
+│   └── _index.json              # 需要时创建的归档元数据
+├── channels/
+│   └── &lt;channel&gt;/...            # QR token、cursor、conversation ref
+├── users/&lt;user_id&gt;/             # 已认证用户的私有关系状态
+│   ├── sessions/&lt;session_key&gt;.jsonl
+│   └── workspace/memory/
+└── workspace/
+    ├── knowledge_bases/         # 复制过来的 assigned KBs
+    └── user/
+        ├── workspace/SOUL.md
+        ├── workspace/skills/&lt;name&gt;/SKILL.md
+        ├── workspace/notebook/
+        └── workspace/memory/</code></pre></div>
+<p>分配資源會複製進 Partner 工作區，這是刻意設計：即使原使用者工作區後續變化，夥伴仍保留一份穩定的資料庫。</p>
+<h2 id="對話命令">對話命令</h2>
+<p>所有 Partner 對話介面共用一組簡短的斜線命令：</p>
+<ul>
+<li><code>/help</code> —— 檢視可用命令。</li>
+<li><code>/new</code> —— 封存當前會話並新開一段； <code>/branch</code> 會封存當前會話，再從其副本繼續。</li>
+<li><code>/sessions</code> —— 列出會話 id； <code>/resume &lt;session-id&gt;</code> 還原已封存會話， <code>/delete &lt;session-id&gt;</code> 永久刪除會話。</li>
+<li><code>/status</code> —— 檢視 Partner、會話、模型與工具狀態； <code>/history [n]</code> 檢視最近訊息。</li>
+<li><code>/tool [on|off &lt;name&gt;|reset]</code> —— 檢視或調整 Partner 已啟用的工具。</li>
+<li><code>/link &lt;code&gt;</code> —— 在外部 IM 私聊裡，把該聊天帳號關聯到在 Web 應用中生成此 code 的已登入 DeepTutor 使用者。</li>
+</ul>
+<h2 id="網頁介面還是命令列工具">網頁介面還是命令列工具</h2>
+<p>設定管道推薦用網頁介面，因為它會從 <code>/api/v1/partners/channels/schema</code> 渲染即時 schema，並自動對 secret 欄位遮罩顯示。命令列工具更適合生命週期檢查：</p>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor partner list
+deeptutor partner start math-tutor
+deeptutor partner stop math-tutor</code></pre></div>
+<p>部署過程遇到問題，歡迎在留言區留言，把報錯的完整日誌貼出來，我看到會回覆。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../ecosystem/eduhub.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">EduHub</p></a>
+<a class="next" href="../partners/channels.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">管道矩陣</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>改寫版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepTutor 生態擴充全攻略！5 條路徑不寫一行核心程式碼，Skill、MCP、RAG 分頭說明，附入口指南！ · DeepTutor 改寫版</title>
+<meta name="description" content="透過 RAG 整合、可複用 Skill、遠端 MCP 服務、沙箱化 CLI App 與 EduHub 擴充 DeepTutor。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="DeepTutor 生態擴充全攻略！5 條路徑不寫一行核心程式碼，Skill、MCP、RAG 分頭說明，附入口指南！ · DeepTutor 改寫版">
+<meta property="og:site_name" content="DeepTutor 改寫版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>改寫版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html" aria-current="page">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">DeepTutor 生態<span aria-hidden="true"> · </span>生態概覽</p>
+      <h1 class="doc-title">DeepTutor 生態擴充全攻略！5 條路徑不寫一行核心程式碼，Skill、MCP、RAG 分頭說明，附入口指南！</h1>
+      <p class="doc-lede">透過 RAG 整合、可複用 Skill、遠端 MCP 服務、沙箱化 CLI App 與 EduHub 擴充 DeepTutor。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#五條擴充路徑">五條擴充路徑</a>
+</li>
+<li class="d2"><a href="#它們在產品裡的位置">它們在產品裡的位置</a>
+</li>
+<li class="d2"><a href="#下一步">下一步</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/ecosystem/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/ecosystem/</a></p> <p>裝好 DeepTutor 之後，很多朋友的第一個問題就是：內建功能夠不夠用？想接自己的檢索源、想加自訂工具，要不要去動原始碼？</p>
+<p>答案是：完全不用改一行核心程式碼。</p>
+<p>DeepTutor 準備了 5 條擴充路徑：Skill 手冊、MCP（模型上下文協定）服務、命令列應用、RAG（檢索增強生成）整合和 EduHub 社群市場，想加什麼行為、接什麼工具，都有現成的口子。</p>
+<p>但是問題來了。這 5 條路徑各自管什麼、裝在哪、由誰來管，如果不先搞清楚，很容易裝了一堆東西卻不知道去哪裡啟用。</p>
+<p>接下來就把這 5 條擴充路徑逐一走過，順便告訴你它們都藏在產品的哪個角落。</p>
+<figure>
+<img src="../assets/screenshots/guide/ecosystem/OVERVIEW.png" alt="學習空間裡的 Skill、MCP 服務與 CLI App 入口" />
+<figcaption aria-hidden="true">學習空間裡的 Skill、MCP 服務與 CLI App 入口</figcaption>
+</figure>
+<h2 id="五條擴充路徑">五條擴充路徑</h2>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>擴充</th>
+<th>增加什麼</th>
+<th>由誰管理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Skill</td>
+<td>模型在需要某套流程時讀取的 SKILL.md 手冊</td>
+<td>內建、本機、ClawHub 或 EduHub</td>
+</tr>
+<tr>
+<td>MCP 服務</td>
+<td>託管或部署級 MCP 伺服器暴露的工具</td>
+<td>遠端服務按帳號；部署註冊表由管理員管理</td>
+</tr>
+<tr>
+<td>CLI App</td>
+<td>安裝在伺服器、以沙箱工具形式進入對話的命令列程式</td>
+<td>管理員安裝和授權；獲准帳號執行</td>
+</tr>
+<tr>
+<td>RAG 整合</td>
+<td>知識庫背後的本機、智慧代理式、遠端或即時資料庫檢索</td>
+<td>部署設定 + 每個 KB 的選擇</td>
+</tr>
+<tr>
+<td>EduHub</td>
+<td>面向 Skill 的社群發現、版本、匯入與發布</td>
+<td>社群作者發布；使用者審閱並匯入</td>
+</tr>
+</tbody>
+</table></div>
+<p>每條路徑的信任邊界不同。RAG 整合負責檢索，Skill 是指令，MCP 服務是遠端工具邊界，CLI App 則是在主機安裝的程式碼；EduHub 分發 Skill，但不成為它的執行環境。因此 DeepTutor 為各條路徑分別設計設定、安裝、憑據、沙箱與授權模型。</p>
+<p>我給大家翻譯一下：能檢索的歸 RAG，下指令的歸 Skill，連遠端服務的歸 MCP，裝在本機的歸 CLI App，EduHub 只負責分發不負責執行，各管各的，井水不犯河水。</p>
+<h2 id="它們在產品裡的位置">它們在產品裡的位置</h2>
+<p>知識引擎從<strong>知識中心</strong>選擇；Skill、MCP 服務和 CLI App 從<strong>學習空間</strong>管理，EduHub 則嵌在 Skill 匯入器裡。啟用後，工具透過與內建工具相同的發現流程進入主頁智慧代理。</p>
+<p>對經常折騰 AI 工具的朋友來說，這套設計可以說非常香：擴充裝得再多，入口永遠只有那幾個，不會裝著裝著就找不到北。</p>
+<h2 id="下一步">下一步</h2>
+<p>檢索本身是擴充點時，先看 <a href="../ecosystem/rag-integration.html">RAG 整合</a>；要教模型一套可複用流程時看 <a href="../ecosystem/skills.html">Skill 擴充</a>，連線帳號型線上服務時看 <a href="../ecosystem/mcp.html">MCP 擴充</a>，需要真實命令列程式時看 <a href="../ecosystem/cli-apps.html">CLI-App 擴充</a>。發現或發布社群 Skill 則進入 <a href="../ecosystem/eduhub.html">EduHub</a>。</p>
+<p>實際效果還會受到模型、提示詞以及具體使用場景的影響，建議大家結合自己的需求實際體驗評估。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../explore/settings.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">設定</p></a>
+<a class="next" href="../ecosystem/skills.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">Skill 擴充</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>改寫版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

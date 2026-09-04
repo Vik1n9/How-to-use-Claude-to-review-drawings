@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepTutor 接入 Mochat 教學！斷線自動退回 HTTP 輪詢，2 分鐘訊息緩衝防連珠炮，AI 客服這樣接！ · DeepTutor 改寫版</title>
+<meta name="description" content="透過 Socket.IO（自動退回 HTTP 輪詢）把 Partner 接入 Mochat 客服面板。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="DeepTutor 接入 Mochat 教學！斷線自動退回 HTTP 輪詢，2 分鐘訊息緩衝防連珠炮，AI 客服這樣接！ · DeepTutor 改寫版">
+<meta property="og:site_name" content="DeepTutor 改寫版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>改寫版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html" aria-current="page">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">夥伴與管道<span aria-hidden="true"> · </span>Mochat</p>
+      <h1 class="doc-title">DeepTutor 接入 Mochat 教學！斷線自動退回 HTTP 輪詢，2 分鐘訊息緩衝防連珠炮，AI 客服這樣接！</h1>
+      <p class="doc-lede">透過 Socket.IO（自動退回 HTTP 輪詢）把 Partner 接入 Mochat 客服面板。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#一安裝依賴">一、安裝依賴</a>
+</li>
+<li class="d2"><a href="#二獲取-claw-token">二、獲取 Claw Token</a>
+</li>
+<li class="d2"><a href="#三設定管道卡片channel-card">三、設定管道卡片（channel card）</a>
+<ul>
+<li class="d3"><a href="#進階欄位">進階欄位</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#四儲存之後">四、儲存之後</a>
+</li>
+<li class="d2"><a href="#如何確認健康">如何確認健康</a>
+</li>
+<li class="d2"><a href="#常見問題">常見問題</a>
+<ul>
+<li class="d3"><a href="#socket.io-一直重連或根本連不上">Socket.IO 一直重連或根本連不上</a></li>
+<li class="d3"><a href="#管道一啟動就退出">管道一啟動就退出</a></li>
+<li class="d3"><a href="#訂閱失敗-token-失效">訂閱失敗 / token 失效</a></li>
+<li class="d3"><a href="#連上了但收不到訊息">連上了但收不到訊息</a></li>
+</ul>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/partners/mochat/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/partners/mochat/</a></p> <p>想把 DeepTutor 的 AI 學習夥伴（Partner）嵌進客服面板裡做事？Mochat 這條管道就是幹這個的。</p>
+<p><code>mochat</code> 管道把 Partner 接到 Mochat，一個客服式的聊天面板。它透過 <strong>Socket.IO</strong>（即時雙向通訊框架）和你的 Mochat 例項通訊，socket 連不上時自動退回到 HTTP 輪詢（polling），所以在挑剔的代理後面也能繼續工作。</p>
+<p>這個管道適合想把 Partner 嵌進客服元件的場景，個人聊天軟體請走別的管道，穩到不行。</p>
+<figure>
+<img src="../assets/screenshots/partners-channel-mochat.png" alt="Mochat 管道設定" />
+<figcaption aria-hidden="true">Mochat 管道設定</figcaption>
+</figure>
+<p>Partner 執行起來之後，先看卡片即時狀態：它會顯示 Socket.IO 已連線或監聽器已啟動；只有失敗時才用日誌檢視傳輸細節。</p>
+<h2 id="一安裝依賴">一、安裝依賴</h2>
+<p>Mochat 支援包含在 Partners 可選元件（extras）裡，會帶上 <code>python-socketio</code> 和 <code>msgpack</code>。</p>
+<p>沒有 <code>python-socketio</code> 時，管道仍可在輪詢模式下工作，這點設計得挺香：</p>
+<div class="codeblock" data-lang="bash"><pre><code>pip install -e <span class="s">".[partners]"</span>
+<span class="c"># 或发布包支持 extras 时：
+</span>pip install <span class="s">"deeptutor[partners]"</span></code></pre></div>
+<h2 id="二獲取-claw-token">二、獲取 Claw Token</h2>
+<p>在 Mochat 管理後台建立一個 bot 帳號，複製它的 <strong>Claw Token</strong>。</p>
+<p>但是問題來了：沒有它管道會拒絕啟動（日誌裡是 <code>Mochat claw_token not configured</code>）。</p>
+<h2 id="三設定管道卡片channel-card">三、設定管道卡片（channel card）</h2>
+<p>開啟 <strong>Partners -&gt; 你的 partner -&gt; Channels -&gt; Mochat</strong>。</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>欄位</th>
+<th>怎麼填</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Send Progress</td>
+<td>測試時建議開啟。長任務會把過程解說（narration）發出去。</td>
+</tr>
+<tr>
+<td>Send Tool Hints</td>
+<td>除錯時建議開啟；不想讓使用者看到一行工具呼叫就關掉。</td>
+</tr>
+<tr>
+<td>Enabled</td>
+<td>準備啟動管道時再開啟。</td>
+</tr>
+<tr>
+<td>Base Url</td>
+<td>你的 Mochat 例項。預設 <a href="https://mochat.io" target="_blank" rel="noopener" class="uri">https://mochat.io</a> 。</td>
+</tr>
+<tr>
+<td>Socket Url</td>
+<td>可選的獨立 Socket.IO 端點。留空表示用 Base Url 。</td>
+</tr>
+<tr>
+<td>Socket Path</td>
+<td>Socket.IO 掛載路徑。預設 /socket.io 。</td>
+</tr>
+<tr>
+<td>Socket Disable Msgpack</td>
+<td>預設關閉（可用時優先 msgpack）。伺服器端沒有 msgpack 解析器時開啟，強制走 JSON。</td>
+</tr>
+<tr>
+<td>Socket Reconnect Delay Ms</td>
+<td>初始重連延遲。預設 1000 。</td>
+</tr>
+<tr>
+<td>Socket Max Reconnect Delay Ms</td>
+<td>重連退避上限。預設 10000 。</td>
+</tr>
+<tr>
+<td>Socket Connect Timeout Ms</td>
+<td>連線逾時。預設 10000 。</td>
+</tr>
+<tr>
+<td>Refresh Interval Ms</td>
+<td>管道重新整理會話（session）/面板（panel）目錄的頻率。預設 30000 。</td>
+</tr>
+<tr>
+<td>Watch Timeout Ms</td>
+<td>HTTP 退回模式下的長輪詢（long-poll）逾時。預設 25000 。</td>
+</tr>
+<tr>
+<td>Claw Token</td>
+<td>必填。Mochat 管理後台拿到的 bot token。</td>
+</tr>
+<tr>
+<td>Sessions</td>
+<td>要監聽的 session id，一行一個。 * 表示自動發現並訂閱新 session。</td>
+</tr>
+<tr>
+<td>Panels</td>
+<td>要監聽的 panel id，一行一個。 * 表示自動發現 panel。兩個列表都留空時管道什麼都不監聽。</td>
+</tr>
+<tr>
+<td>Allow From</td>
+<td>一行一個值。測試可填 * 表示開放，或填具體的 Mochat user id。空列表拒絕訪問。</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="進階欄位">進階欄位</h3>
+<p>這些用來調重試和群行為；首次部署用預設值就好。</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>欄位</th>
+<th>怎麼填</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Watch Limit</td>
+<td>單次輪詢最多拉取的事件數。預設 100 。</td>
+</tr>
+<tr>
+<td>Retry Delay Ms</td>
+<td>HTTP 重試失敗之間的延遲。預設 500 。</td>
+</tr>
+<tr>
+<td>Max Retry Attempts</td>
+<td>Socket.IO 重連次數上限。 0 表示一直重連；這個欄位不會限制 HTTP 退回迴圈。</td>
+</tr>
+<tr>
+<td>Agent User Id</td>
+<td>bot 自己的 Mochat user id。用於忽略 bot 自己的訊息和識別 @ 提及。</td>
+</tr>
+<tr>
+<td>Mention</td>
+<td>require_in_groups —— 群 session 裡必須被 @ 才回復。</td>
+</tr>
+<tr>
+<td>Groups</td>
+<td>按 group id 的逐群覆蓋： {"<group-id>": {"require_mention": true}} 。</td>
+</tr>
+<tr>
+<td>Reply Delay Mode</td>
+<td>non-mention （預設）會緩衝沒有提及 bot 的 panel 訊息；填其他值則關閉緩衝。</td>
+</tr>
+<tr>
+<td>Reply Delay Ms</td>
+<td>緩衝視窗。預設 120000 （2 分鐘）。</td>
+</tr>
+</tbody>
+</table></div>
+<p>預設的 reply-delay 模式下，連珠炮式的 panel 訊息會合併成一個 Partner 回合：每來一條新訊息計時器就重置，而直接 @ bot 會讓緩衝立刻被處理。</p>
+<h2 id="四儲存之後">四、儲存之後</h2>
+<ol type="1">
+<li>開啟 <strong>Enabled</strong> 、填好 <strong>Claw Token</strong> ，儲存卡片。</li>
+<li>從網頁介面或命令列啟動（或重新啟動）partner。</li>
+<li>看日誌：socket 連線成功，或輪詢退回警告，兩種都能正常工作。</li>
+<li>在被監聽的 session 或 panel 裡發一條短訊息。</li>
+<li>在日誌裡看到真實 user id 之後，把 <strong>Allow From</strong> 裡的 <code>*</code> 換成明確的值。</li>
+</ol>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor partner start &lt;partner-id&gt;</code></pre></div>
+<h2 id="如何確認健康">如何確認健康</h2>
+<p>健康的 Mochat 管道通常有三個跡象：</p>
+<ul>
+<li>日誌顯示 Socket.IO 連線成功（或明確的輪詢退回，而不是認證錯誤）；</li>
+<li><code>data/partners/&lt;partner-id&gt;/channels/mochat/session_cursors.json</code> 在持續寫入，這是監聽位點；</li>
+<li>允許的使用者發一條短訊息後，Partner 能正常回復。</li>
+</ul>
+<p>Docker（容器部署工具）部署要持久化 <code>data/partners/</code>，讓 cursor 在重新啟動後還在。</p>
+<h2 id="常見問題">常見問題</h2>
+<h3 id="socket.io-一直重連或根本連不上">Socket.IO 一直重連或根本連不上</h3>
+<p>對照你的 Mochat 部署檢查 <strong>Socket Url</strong> / <strong>Socket Path</strong>。伺服器端不支援 msgpack 就開啟 <strong>Socket Disable Msgpack</strong>。也可以乾脆不管它：管道會自己退回到 HTTP 輪詢，用一點延遲換穩定。</p>
+<h3 id="管道一啟動就退出">管道一啟動就退出</h3>
+<p>日誌裡是 <code>Mochat claw_token not configured</code>。填好 <strong>Claw Token</strong>，重新啟動 partner。</p>
+<h3 id="訂閱失敗-token-失效">訂閱失敗 / token 失效</h3>
+<p><code>Mochat subscribePanels failed</code> 之類的日誌通常意味著 Claw Token 無效、過期，或 bot 沒在 Mochat 管理後台通過審批。重新生成 token，更新卡片，重新啟動。</p>
+<h3 id="連上了但收不到訊息">連上了但收不到訊息</h3>
+<p>確認 <strong>Sessions</strong> 或 <strong>Panels</strong> 確實填了內容（或 <code>*</code>），並且傳送者能通過 <strong>Allow From</strong>。群 session 還要看是否設定了 mention 要求。</p>
+<p>部署過程遇到問題，歡迎在留言區留言，把報錯的完整日誌貼出來，我看到會回覆。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../partners/email.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">郵件</p></a>
+<a class="next" href="../partners/msteams.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">Microsoft Teams</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>改寫版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>
