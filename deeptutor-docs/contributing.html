@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepTutor 參與貢獻手把手教學！6 步跑通開發環境，PR 千萬別提 main，附提交規範速查！ · DeepTutor 改寫版</title>
+<meta name="description" content="如何為 DeepTutor 貢獻程式碼、文件或修復 bug —— 分支策略、環境搭建、PR 檢查清單。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="DeepTutor 參與貢獻手把手教學！6 步跑通開發環境，PR 千萬別提 main，附提交規範速查！ · DeepTutor 改寫版">
+<meta property="og:site_name" content="DeepTutor 改寫版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="assets/brand/logo.png">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">
+      <img class="brand-logo" src="assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>改寫版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="assets/search-index.json" data-root=""
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="index.html">文件主頁</a>
+<a class="side-item" href="contributing.html" aria-current="page">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="get-started/index.html">概覽</a>
+<a class="side-item" href="get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="explore/partners.html">夥伴</a>
+<a class="side-item" href="explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="explore/book.html">書籍</a>
+<a class="side-item" href="explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="explore/knowledge.html">知識空間</a>
+<a class="side-item" href="explore/space.html">學習空間</a>
+<a class="side-item" href="explore/memory.html">記憶</a>
+<a class="side-item" href="explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="partners/index.html">概覽</a>
+<a class="side-item" href="partners/channels.html">管道矩陣</a>
+<a class="side-item" href="partners/weixin.html">個人微信</a>
+<a class="side-item" href="partners/wecom.html">企業微信</a>
+<a class="side-item" href="partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="partners/telegram.html">Telegram</a>
+<a class="side-item" href="partners/discord.html">Discord</a>
+<a class="side-item" href="partners/slack.html">Slack</a>
+<a class="side-item" href="partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="partners/matrix.html">Matrix</a>
+<a class="side-item" href="partners/zulip.html">Zulip</a>
+<a class="side-item" href="partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="partners/email.html">郵件</a>
+<a class="side-item" href="partners/mochat.html">Mochat</a>
+<a class="side-item" href="partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="cli/index.html">概覽</a>
+<a class="side-item" href="cli/commands.html">命令參考</a>
+<a class="side-item" href="cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">總覽<span aria-hidden="true"> · </span>參與貢獻</p>
+      <h1 class="doc-title">DeepTutor 參與貢獻手把手教學！6 步跑通開發環境，PR 千萬別提 main，附提交規範速查！</h1>
+      <p class="doc-lede">如何為 DeepTutor 貢獻程式碼、文件或修復 bug —— 分支策略、環境搭建、PR 檢查清單。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#路線圖">路線圖</a>
+</li>
+<li class="d2"><a href="#pr-應該提到哪個分支">PR 應該提到哪個分支</a>
+</li>
+<li class="d2"><a href="#快速上手">快速上手</a>
+</li>
+<li class="d2"><a href="#編碼規範">編碼規範</a>
+</li>
+<li class="d2"><a href="#commit-message-格式">Commit message 格式</a>
+</li>
+<li class="d2"><a href="#評審會看什麼">評審會看什麼</a>
+</li>
+<li class="d2"><a href="#尋求幫助">尋求幫助</a>
+</li>
+<li class="d2"><a href="#參考">參考</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/contributing/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/contributing/</a></p> <p>DeepTutor 玩得多了，總有朋友手癢想給這個開源專案遞點程式碼，或者順手修個 bug。</p>
+<p>正好，官方文件裡有一頁專門講怎麼參與貢獻，我把要點全部搬過來了：路線圖在哪看、程式碼該提到哪個分支、環境怎麼搭、提交訊息怎麼寫，一條不落。</p>
+<p>先提醒一個最容易踩的坑：這個專案用的是多分支模型，<strong>不要把 PR（合併請求）提到 <code>main</code></strong>，預設目標是 <code>dev</code> 分支，拿不準就提 dev。</p>
+<p>但是問題來了。給開源專案貢獻程式碼和自己閉門寫專案不太一樣，編碼規範、提交格式、評審標準全是硬性檢查，亂來的話 PR 很容易被卡住。</p>
+<p>下面這份指南照著走，基本一次過。</p>
+<h2 id="路線圖">路線圖</h2>
+<p>DeepTutor 的公開路線圖維護在 <a href="https://github.com/HKUDS/DeepTutor/issues/498" target="_blank" rel="noopener"><code>HKUDS/DeepTutor#498</code></a>。你可以在那裡檢視計畫中的工作、表達優先順序、或在開始較大的貢獻前提出新方向。</p>
+<h2 id="pr-應該提到哪個分支">PR 應該提到哪個分支</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>分支</th>
+<th>適合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dev</td>
+<td>預設目標 —— 新功能、重構、bug 修復、API / 設定改動</td>
+</tr>
+<tr>
+<td>multi-user</td>
+<td>僅限多租戶 / session 隔離 / 共享工作區相關工作</td>
+</tr>
+</tbody>
+</table></div>
+<p>拿不準就提到 <code>dev</code>。</p>
+<h2 id="快速上手">快速上手</h2>
+<div class="codeblock" data-lang="bash"><pre><code><span class="c"># 1. Fork + clone，先与目标分支同步
+</span>git checkout dev &amp;&amp; git pull origin dev
+
+<span class="c"># 2. 拉新分支
+</span>git checkout -b feature/your-feature-name
+
+<span class="c"># 3. 编辑模式安装全套
+</span>pip install -e <span class="s">".[all]"</span>
+
+<span class="c"># 4. 配置 pre-commit（每台机器一次）
+</span>pip install pre-commit
+pre-commit install
+
+<span class="c"># 5. 改完跑一遍校验
+</span>pre-commit run --all-files
+
+# <span class="m">6</span>. 把 PR 提到 dev（或 multi-user）</code></pre></div>
+<p>可以從 <a href="https://github.com/HKUDS/DeepTutor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22" target="_blank" rel="noopener"><code>good first issue</code></a> 標籤找入手點。開工前先在 issue 下留言，避免重複勞動。</p>
+<h2 id="編碼規範">編碼規範</h2>
+<p>CI 會強制檢查；<code>pre-commit run --all-files</code> 在本機能查出大部分問題。</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>範疇</th>
+<th>規則</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td>所有函式簽章加 type hint；遵循 PEP 8（Ruff 強制）；用 f-string；保持函式小而專一</td>
+</tr>
+<tr>
+<td>Docstring</td>
+<td>新模組 / 類 / public 函式使用 Google 風格 docstring</td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td>嚴禁提交；每個 PR 上 detect-secrets 都會跑</td>
+</tr>
+<tr>
+<td>Subprocess</td>
+<td>永遠用 shell=False</td>
+</tr>
+<tr>
+<td>路徑</td>
+<td>pathlib.Path 優於字串串接</td>
+</tr>
+</tbody>
+</table></div>
+<p>底層工具鏈：<strong>Ruff</strong>（lint + format）、<strong>Prettier</strong>（前端 / 設定）、<strong>detect-secrets</strong>、<strong>pip-audit</strong>、<strong>Bandit</strong>、<strong>MyPy</strong>、<strong>Interrogate</strong>。</p>
+<p>這套檢查說實話相當嚴格，但也正因為管得嚴，主儲存庫才能一直保持得這麼幹淨，對認真貢獻的朋友來說反而是件香事。</p>
+<h2 id="commit-message-格式">Commit message 格式</h2>
+<div class="codeblock" data-lang="plaintext"><pre><code>&lt;type&gt;: &lt;short description&gt;
+
+[optional body]</code></pre></div>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>feat</td>
+<td>新功能（MINOR 版本跳一格）</td>
+</tr>
+<tr>
+<td>fix</td>
+<td>bug 修復（PATCH 版本跳一格）</td>
+</tr>
+<tr>
+<td>docs</td>
+<td>僅文件</td>
+</tr>
+<tr>
+<td>style</td>
+<td>僅格式化</td>
+</tr>
+<tr>
+<td>refactor</td>
+<td>重構，無行為變化</td>
+</tr>
+<tr>
+<td>test</td>
+<td>增 / 改測試</td>
+</tr>
+<tr>
+<td>chore</td>
+<td>建置 / 工具鏈 / 依賴</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="評審會看什麼">評審會看什麼</h2>
+<ul>
+<li><strong>正確性</strong> —— 是否真的解決了問題？是否引入迴歸？</li>
+<li><strong>範圍</strong> —— 小而聚焦的 PR 比龐大雜燴 PR 合得快；拿不準就拆。</li>
+<li><strong>測試</strong> —— 新行為要有對應覆蓋；bug 修復儘量帶回歸測試。</li>
+<li><strong>文件</strong> —— 影響使用者的改動要同步更新 <code>site/src/content/docs/</code> 下的相關頁面。</li>
+</ul>
+<h2 id="尋求幫助">尋求幫助</h2>
+<ul>
+<li><a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a> —— 提問最快的地方</li>
+<li><a href="https://github.com/HKUDS/DeepTutor/discussions" target="_blank" rel="noopener">GitHub Discussions</a> —— 長篇問答</li>
+<li><a href="https://github.com/HKUDS/DeepTutor/issues/78" target="_blank" rel="noopener">微信社群</a> —— 中文貢獻者群</li>
+<li><a href="https://github.com/HKUDS/DeepTutor/issues" target="_blank" rel="noopener">Issues</a> —— bug 反饋與功能建議</li>
+</ul>
+<h2 id="參考">參考</h2>
+<ul>
+<li><a href="https://github.com/HKUDS/DeepTutor/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener"><code>CONTRIBUTING.md</code></a> —— 完整文件（分支策略、安全實踐、維護者）</li>
+</ul>
+<p>提交過程中遇到問題，歡迎在留言區留言，把報錯的完整日誌貼出來，我看到會回覆。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="index.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">文件主頁</p></a>
+<a class="next" href="get-started/index.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">概覽</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>改寫版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="assets/app.js" defer></script>
+</body>
+</html>

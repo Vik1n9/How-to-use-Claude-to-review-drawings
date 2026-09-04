@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 讀文件還能定位到原頁？DeepTutor 沉浸式閱讀實測：7 個閱讀工具+5 色高亮，200 MB 大文件照樣讀！ · DeepTutor 改寫版</title>
+<meta name="description" content="在對話旁邊讀文件——核實過的引用會跳到你看到的頁、章、投影片或小節 locator，顯式導航可高亮引文，PDF 高亮還能匯出為真正的註解。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="AI 讀文件還能定位到原頁？DeepTutor 沉浸式閱讀實測：7 個閱讀工具+5 色高亮，200 MB 大文件照樣讀！ · DeepTutor 改寫版">
+<meta property="og:site_name" content="DeepTutor 改寫版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>改寫版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html" aria-current="page">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">探索 DeepTutor<span aria-hidden="true"> · </span>沉浸式閱讀</p>
+      <h1 class="doc-title">AI 讀文件還能定位到原頁？DeepTutor 沉浸式閱讀實測：7 個閱讀工具+5 色高亮，200 MB 大文件照樣讀！</h1>
+      <p class="doc-lede">在對話旁邊讀文件——核實過的引用會跳到你看到的頁、章、投影片或小節 locator，顯式導航可高亮引文，PDF 高亮還能匯出為真正的註解。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#沉浸式閱讀是什麼">沉浸式閱讀是什麼</a>
+</li>
+<li class="d2"><a href="#在哪裡開啟">在哪裡開啟</a>
+</li>
+<li class="d2"><a href="#和助手一起讀">和助手一起讀</a>
+</li>
+<li class="d2"><a href="#邊讀邊標">邊讀邊標</a>
+</li>
+<li class="d2"><a href="#把標記帶走">把標記帶走</a>
+</li>
+<li class="d2"><a href="#它在-deeptutor-裡的位置">它在 DeepTutor 裡的位置</a>
+</li>
+<li class="d2"><a href="#命令列也能跑">命令列也能跑</a>
+</li>
+<li class="d2"><a href="#想繼續深挖">想繼續深挖</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/explore/reading/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/explore/reading/</a></p> <p>讓 AI 總結一份幾百頁的 PDF，它說得頭頭是道，你追一句「這在第幾頁」，它就開始顧左右而言他。這種尷尬，你遇到過沒有？</p>
+<p>最近我在啃文獻，順手把 DeepTutor 的沉浸式閱讀功能完整用了一遍。</p>
+<p>先報幾個硬數字：支援 PDF、EPUB、Word、表格、投影片、Markdown、文字與 HTML 檔案，音訊影片也行，YouTube、Bilibili 連結也能直接讀，單個文件上限 200 MB；助手內建 7 個閱讀工具；高亮標記有 5 種顏色、2 種視覺樣式。</p>
+<p>那它憑什麼敢說回答「有依據」？引用真能跳回原文嗎？下面逐個拆。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="沉浸式閱讀是什麼">沉浸式閱讀是什麼</h2>
+<p>沉浸式閱讀把文件和對話並排放在一起。</p>
+<p>助手讀的<strong>就是你看到的那些單元</strong>：PDF 實體頁、EPUB 章節、投影片或抽取出來的小節，所以回答可以帶上來源定位符（locator）。</p>
+<p>即使 <code>N</code> 代表章、投影片或小節，統一引用格式仍寫作 <code>[p.N]</code>。</p>
+<p>只有與本回合閱讀工具結果核實一致的 locator 才會變成連結，不受支援的標記仍是普通文字；點選後會在需要時切換素材並跳到該 locator。高亮引文則是獨立的 <code>reader_goto</code> 操作。</p>
+<p>它是一種能力，不是另一個應用：Chat 能做的事，在閱讀回合裡一樣能做。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="在哪裡開啟">在哪裡開啟</h2>
+<p>開啟左側欄的 <strong>Immersive Reading</strong>（或訪問 <code>/reading</code>）。</p>
+<p>先展示<strong>合集</strong>資料庫；開啟合集，當前素材就在閱讀助手旁展開。</p>
+<figure>
+<img src="../assets/screenshots/guide/reading/01-open-a-document.png" alt="沉浸式閱讀的合集與可複用素材庫" />
+<figcaption aria-hidden="true">沉浸式閱讀的合集與可複用素材庫</figcaption>
+</figure>
+<p>閱讀助手是為閱讀組裝的 Home（主頁）聊天介面：它直接複用訊息列表、輸入框、Activity 抽屜和對話大綱，不再維護獨立聊天實現。只有當前素材、選區、關聯對話與頁面提示留在 Reading。</p>
+<p>用 <strong>New collection</strong> 一次加入一份或多份素材，也可重開已有合集。</p>
+<p>素材顯示為標籤頁；切換時閱讀器與助手的當前來源一起切換，還能留在合集內繼續新增。</p>
+<p>素材按使用者存放並以內容定址，所以再次加入同一來源時可以複用一份抽取結果，你之前做的標記也都還在。</p>
+<p>網頁連結會被清理成已儲存的快照，而不是直接渲染第三方即時頁面。</p>
+<p>重新抓取會保留不可變的舊版本（revision）；捕獲的圖片則透過驗證並檢驗 MIME（文件類型標記）的 asset 路由提供。即使來源網站之後改變，舊引用仍然可以複核。</p>
+<p>支援的格式和上限，直接看這張表：</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>支援格式</td>
+<td>PDF、EPUB、Word、表格、投影片、Markdown、文字與 HTML 檔案；音訊和影片檔案；以及網頁、YouTube 或 Bilibili 連結——不含獨立圖片</td>
+</tr>
+<tr>
+<td>體積上限</td>
+<td>單個文件 200 MB</td>
+</tr>
+<tr>
+<td>原樣來源檢視</td>
+<td>PDF 與 EPUB 保留來源檢視；音訊影片使用播放器；其餘格式使用可重排的抽取文字</td>
+</tr>
+<tr>
+<td>不接受</td>
+<td>純圖片的掃描件。它會被明確拒絕並說明原因，而不是開啟成一個空白閱讀器——請先做 OCR（光學字元識別），或者用帶 OCR 的解析引擎把它建進知識庫。</td>
+</tr>
+</tbody>
+</table></div>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="和助手一起讀">和助手一起讀</h2>
+<p>文件開啟之後就可以直接問。</p>
+<p>閱讀器與對話之間的分隔條可以拖曳，讀的時候把頁面放大，跟它較勁的時候把對話放大。</p>
+<figure>
+<img src="../assets/screenshots/guide/reading/00-overview.png" alt="在沉浸式閱讀合集裡開啟 Transformer 維基百科文章，並與溯源閱讀助手並排顯示" />
+<figcaption aria-hidden="true">在沉浸式閱讀合集裡開啟 Transformer 維基百科文章，並與溯源閱讀助手並排顯示</figcaption>
+</figure>
+<p>有三件事讓回答是「有依據」而不只是「有底氣」：</p>
+<p><strong>助手用和你一樣的方式給文件編址。</strong> PDF 保留實體頁，EPUB 保留書脊與章節來源，簡報保留投影片，抽取格式則使用小節。每個單元都有一個 locator，每個工具都接收或回傳它，只有 PDF locator 是字面頁碼，其餘格式使用各自的來源位置。</p>
+<p><strong>閱讀回合保留完整的對話能力面。</strong> 聯網搜尋、程式碼執行、你的其他知識庫都還在；那七個閱讀工具是<strong>加</strong>上去的，不是替換掉的。把論文的說法和網上的說法對照一遍，是一個回合的事，不是兩個。</p>
+<p><strong>有沒有依據，不取決於模型願不願意去讀。</strong> 在大語言模型（LLM）開跑之前，DeepTutor 先拿你自己的問題在開啟的文件裡搜一遍，把命中的幾段直接交給這一回合。弱一些的模型在原生工具呼叫下常常一次讀取工具都不調；這樣它至少從對的來源單元開始。</p>
+<p>這個前置檢索是一次普通搜尋，不是第二輪 LLM，它不額外花 Token（模型計數的文字單位），也不會推遲第一個字，而且因為它是確定性的，可以被測試而不是靠取樣碰運氣。</p>
+<p>更有意思的是，這套閱讀能力配了一整套專用工具，個個都能點名：</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>工具</th>
+<th>用來做什麼</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reading_list_tabs</td>
+<td>列出當前合集裡的素材，並標明當前標籤頁及每個來源的處理狀態。</td>
+</tr>
+<tr>
+<td>reading_switch_tab</td>
+<td>在助手讀取或比較另一份來源前，切換當前素材標籤頁。</td>
+</tr>
+<tr>
+<td>material_outline</td>
+<td>按格式編址的文件大綱，包含 PDF 書籤與 EPUB 導航或書脊標題。</td>
+</tr>
+<tr>
+<td>search_material</td>
+<td>在開啟的這份文件裡做全文檢索。每條命中天然帶著自己的 locator。</td>
+</tr>
+<tr>
+<td>read_material</td>
+<td>按 locator 完整讀取指定的若干單元。</td>
+</tr>
+<tr>
+<td>reader_goto</td>
+<td>把 你的 閱讀器滾到某個 locator，並在那裡高亮一段引文。</td>
+</tr>
+<tr>
+<td>reader_annotate</td>
+<td>以助手身份在驗證過的段落上留下高亮或註解。</td>
+</tr>
+</tbody>
+</table></div>
+<p>檢索按由廉到貴分層，並會報告是哪一層命中的，好讓模型分得清逐字命中和寬鬆命中：先 <code>exact</code>，再 <code>normalised</code>（壓掉空白、忽略標點差異，所以從 PDF 裡複製出來的引文即便原文在中間換了行也能對上），最後是詞項重合度排序，避免一句自然語言提問什麼都搜不到。</p>
+<p>大綱按結構跳轉，把你儲存的書籤列在文件大綱上方，並記住上次的 locator 或 EPUB 位置。</p>
+<p>上一項/下一項控制元件會顯示即將進入的準確單元；抽取文字則在持久化字型與配色控制旁顯示當前字號比例和行寬。Reading 擴充只接收驗證過的可見文字或選區，受限地回傳結構化結果。</p>
+<p>注意：即便引文沒法在那個 locator 上被核實，<code>reader_goto</code> 也照樣會滾過去：用中文問一篇英文論文時，模型給出的引文是翻譯過的，永遠對不上，這時候拒絕捲動只會讓閱讀器徹底失效。註解則保持嚴格：只有引文確實在那兒，標記才會被寫上去。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="邊讀邊標">邊讀邊標</h2>
+<p>選中一段就能高亮或加下劃線，並可把註解附在這段引文上。</p>
+<p>標記有五種顏色和兩種視覺樣式；閱讀器與對話之間的列表會按 locator（頁、章、投影片或小節）索引全部標記。</p>
+<p>選中一段的同時，它也成了你下一條訊息的物件，所以「解釋一下這個」指的就是<strong>這個</strong>，不必再把原文複述一遍。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="把標記帶走">把標記帶走</h2>
+<p>從閱讀器工具欄匯出：</p>
+<p><strong>帶註解的 PDF</strong> ——在原檔案裡寫入<strong>真正的</strong> PDF 註解。它在預覽、Acrobat 或 Chrome 裡開啟時高亮都在，所以你的閱讀成果離開 DeepTutor 之後依然成立。適用於保留了原始位元組的檔案，目前也就是 PDF。</p>
+<p><strong>Markdown</strong> ——按 locator 順序列出所有標記，每條帶上它的引文和註解。所有格式都能用，也正是你真正想黏進自己筆記裡的東西。</p>
+<p>劃的重點直接變成標準 PDF 註解，走到哪都能用，這個匯出我是真覺得太狂了。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="它在-deeptutor-裡的位置">它在 DeepTutor 裡的位置</h2>
+<p><strong>閱讀素材不是知識庫。</strong> 它不切塊、不做向量、不建索引。一份文件也就幾百個單元檔案，線性掃一遍是毫秒級的，而且每條命中都保留精確的來源 locator，向量庫做不到這點。</p>
+<p><strong>該用知識庫的時候</strong>：你想讓一個問題橫跨很多文件，或者想讓這些材料對書本、協同寫作和夥伴都保持可用。<strong>該用沉浸式閱讀的時候</strong>：你正在讀<strong>這一份</strong>文件，並希望當前頁、章、投影片或小節保持準確，PDF 還會保留真實實體頁碼。</p>
+<p><strong>閱讀對話歸屬於它所在的工作區。</strong> 它們在左側欄按工作區分組；重新開啟時會回到 <code>/reading/&lt;workspaceId&gt;/sessions/&lt;sessionId&gt;</code>，讓閱讀器、當前素材、大綱與引用繼續跟著對話，而不是落到 Home 後丟掉這些上下文。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="命令列也能跑">命令列也能跑</h2>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor run immersive_reading <span class="s">"Summarise the method section"</span></code></pre></div>
+<p>這個模式在命令列工具（CLI）上也能用（別名 <code>reading</code> 和 <code>read</code>），但閱讀器是一個網頁介面，CLI 回合既沒有可捲動的視口，也沒有可操作的選區。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="想繼續深挖">想繼續深挖</h2>
+<ul>
+<li><a href="../explore/chat-workspace.html">主頁</a> ——這個能力所執行的迴圈</li>
+<li><a href="../explore/knowledge.html">知識中心</a> ——建一整個語料庫的索引，而不是讀一份文件</li>
+<li><a href="../explore/space.html">學習空間</a> ——把讀到的東西存進筆記本</li>
+<li><a href="../cli/server-api.html#沉浸式閱讀">伺服器端 API</a> —— <code>/api/reading</code> API</li>
+</ul>
+<p>實際效果還會受到模型、提示詞以及具體閱讀場景的影響，建議大家結合自己的需求實際體驗評估。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../explore/mastery-path.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">精通之路</p></a>
+<a class="next" href="../explore/book.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">書籍</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>改寫版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

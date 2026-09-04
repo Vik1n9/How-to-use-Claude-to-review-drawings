@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一個輸入框藏著 25 個工具？DeepTutor 主頁全體驗，4 種主模式隨便切，越用越香！ · DeepTutor 改寫版</title>
+<meta name="description" content="DeepTutor 的預設智慧代理迴圈——能力、黏性上下文、一次性引用、工具、活動面板，以及驅動這一切的模型。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="一個輸入框藏著 25 個工具？DeepTutor 主頁全體驗，4 種主模式隨便切，越用越香！ · DeepTutor 改寫版">
+<meta property="og:site_name" content="DeepTutor 改寫版">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="icon" type="image/png" href="../assets/brand/logo.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <img class="brand-logo" src="../assets/brand/logo.png" alt="">
+      <span class="brand-name">DeepTutor <em>改寫版</em></span>
+      <span class="brand-tag">繁體中文文件</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="search-trigger" id="searchTrigger" type="button"
+              data-index="../assets/search-index.json" data-root="../"
+              aria-label="搜尋文件（Ctrl K）"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="st-label">搜尋</span><kbd>Ctrl K</kbd></button>
+      <a class="topbar-link" href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+      <a class="topbar-link" href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="文件導覽">
+    <nav class="side-nav">
+<div class="side-group"><p class="side-group-label">總覽</p><a class="side-item" href="../index.html">文件主頁</a>
+<a class="side-item" href="../contributing.html">參與貢獻</a></div>
+<div class="side-group"><p class="side-group-label">快速上手</p><a class="side-item" href="../get-started/index.html">概覽</a>
+<a class="side-item" href="../get-started/pypi.html">1 · PyPI 安裝</a>
+<a class="side-item" href="../get-started/from-source.html">2 · 源碼安裝</a>
+<a class="side-item" href="../get-started/docker.html">3 · Docker</a>
+<a class="side-item" href="../get-started/cli-only.html">4 · 純 CLI 安裝</a>
+<a class="side-item" href="../get-started/multi-user.html">多使用者部署</a>
+<a class="side-item" href="../get-started/providers.html">模型與搜尋提供商</a>
+<a class="side-item" href="../get-started/troubleshooting.html">故障排查</a></div>
+<div class="side-group"><p class="side-group-label">探索 DeepTutor</p><a class="side-item" href="../explore/chat-workspace.html" aria-current="page">主頁</a>
+<a class="side-item" href="../explore/partners.html">夥伴</a>
+<a class="side-item" href="../explore/mastery-path.html">精通之路</a>
+<a class="side-item" href="../explore/reading.html">沉浸式閱讀</a>
+<a class="side-item" href="../explore/book.html">書籍</a>
+<a class="side-item" href="../explore/subagents.html">我的智慧代理</a>
+<a class="side-item" href="../explore/co-writer.html">智慧寫作</a>
+<a class="side-item" href="../explore/knowledge.html">知識空間</a>
+<a class="side-item" href="../explore/space.html">學習空間</a>
+<a class="side-item" href="../explore/memory.html">記憶</a>
+<a class="side-item" href="../explore/settings.html">設定</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor 生態</p><a class="side-item" href="../ecosystem/index.html">生態概覽</a>
+<a class="side-item" href="../ecosystem/skills.html">Skill 擴充</a>
+<a class="side-item" href="../ecosystem/mcp.html">MCP 擴充</a>
+<a class="side-item" href="../ecosystem/cli-apps.html">CLI-App 擴充</a>
+<a class="side-item" href="../ecosystem/rag-integration.html">RAG 整合</a>
+<a class="side-item" href="../ecosystem/eduhub.html">EduHub</a></div>
+<div class="side-group"><p class="side-group-label">夥伴與管道</p><a class="side-item" href="../partners/index.html">概覽</a>
+<a class="side-item" href="../partners/channels.html">管道矩陣</a>
+<a class="side-item" href="../partners/weixin.html">個人微信</a>
+<a class="side-item" href="../partners/wecom.html">企業微信</a>
+<a class="side-item" href="../partners/qq.html">QQ / NapCat</a>
+<a class="side-item" href="../partners/telegram.html">Telegram</a>
+<a class="side-item" href="../partners/discord.html">Discord</a>
+<a class="side-item" href="../partners/slack.html">Slack</a>
+<a class="side-item" href="../partners/feishu.html">飛書 / Lark</a>
+<a class="side-item" href="../partners/dingtalk.html">釘釘</a>
+<a class="side-item" href="../partners/matrix.html">Matrix</a>
+<a class="side-item" href="../partners/zulip.html">Zulip</a>
+<a class="side-item" href="../partners/mattermost.html">Mattermost</a>
+<a class="side-item" href="../partners/whatsapp.html">WhatsApp</a>
+<a class="side-item" href="../partners/email.html">郵件</a>
+<a class="side-item" href="../partners/mochat.html">Mochat</a>
+<a class="side-item" href="../partners/msteams.html">Microsoft Teams</a></div>
+<div class="side-group"><p class="side-group-label">DeepTutor CLI</p><a class="side-item" href="../cli/index.html">概覽</a>
+<a class="side-item" href="../cli/commands.html">命令參考</a>
+<a class="side-item" href="../cli/chat-repl.html">互動式 REPL</a>
+<a class="side-item" href="../cli/agent-handoff.html">代理交接</a>
+<a class="side-item" href="../cli/python-sdk.html">Python SDK</a>
+<a class="side-item" href="../cli/server-api.html">伺服器端 API</a></div>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <article class="doc">
+      <p class="eyebrow">探索 DeepTutor<span aria-hidden="true"> · </span>主頁</p>
+      <h1 class="doc-title">一個輸入框藏著 25 個工具？DeepTutor 主頁全體驗，4 種主模式隨便切，越用越香！</h1>
+      <p class="doc-lede">DeepTutor 的預設智慧代理迴圈——能力、黏性上下文、一次性引用、工具、活動面板，以及驅動這一切的模型。</p>
+      
+      <nav class="toc" aria-label="本頁內容"><p class="toc-label">本頁內容</p><ul>
+<li class="d2"><a href="#主頁是什麼">主頁是什麼</a>
+</li>
+<li class="d2"><a href="#它在哪裡">它在哪裡</a>
+</li>
+<li class="d2"><a href="#介面三塊各管一攤">介面三塊，各管一攤</a>
+</li>
+<li class="d2"><a href="#起始建議空白框不尷尬">起始建議：空白框不尷尬</a>
+</li>
+<li class="d2"><a href="#智慧代理迴圈它是怎麼想的">智慧代理迴圈：它是怎麼「想」的</a>
+</li>
+<li class="d2"><a href="#選擇一種能力">選擇一種能力</a>
+<ul>
+<li class="d3"><a href="#little-tutor追問一段選區">Little Tutor——追問一段選區</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#黏性上下文-vs.-一次性引用">黏性上下文 vs. 一次性引用</a>
+<ul>
+<li class="d3"><a href="#知識庫把答案錨定到你的資料">知識庫——把答案錨定到你的資料</a></li>
+<li class="d3"><a href="#人設設定語氣與立場">人設——設定語氣與立場</a></li>
+<li class="d3"><a href="#模型逐輪切換">模型——逐輪切換</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#活動面板全程可稽核">活動面板：全程可稽核</a>
+</li>
+<li class="d2"><a href="#知道視窗有多滿">知道視窗有多滿</a>
+</li>
+<li class="d2"><a href="#工具也包括生成">工具——也包括生成</a>
+<ul>
+<li class="d3"><a href="#把事情排到以後做">把事情排到以後做</a></li>
+</ul>
+</li>
+<li class="d2"><a href="#設定聊天能用到的東西">設定聊天能用到的東西</a>
+</li>
+<li class="d2"><a href="#在手機上">在手機上</a>
+</li>
+<li class="d2"><a href="#實用範例">實用範例</a>
+</li>
+<li class="d2"><a href="#相關閱讀">相關閱讀</a>
+</li>
+</ul></nav>
+      <p class="source-note">原文連結：<a href="https://docs.deeptutor.info/zh-cn/explore/chat-workspace/" target="_blank" rel="noopener" class="uri">https://docs.deeptutor.info/zh-cn/explore/chat-workspace/</a></p> <p>一個聊天輸入框，到底能塞進多少東西？</p>
+<p>最近我把 DeepTutor 的主頁（Home）整個摸了一遍，越摸越覺得這玩意設計得講究。</p>
+<p>先報數字：輸入框左下角有 4 種主模式一鍵切換，工具面板裡躺著 25 個內建工具：5 個由你手動開關、20 個按需自動掛載，還沒算各能力追加的那批。</p>
+<p>但是問題來了，功能堆這麼多，普通人上手指不指得住？</p>
+<p>接下來我們就按介面、上下文、工具、設定一條線拆開講，看完你就知道這個主頁到底該怎麼玩。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="主頁是什麼">主頁是什麼</h2>
+<p>主頁是 DeepTutor 的核心。它是<strong>預設的智慧代理迴圈</strong>（agent loop），遠不止一個普通輸入框：呼叫工具、閱讀你的資料、檢索知識庫、記筆記、生成圖片、諮詢其他智慧代理、在需要時反問你、切換到更深的能力，這一切都在同一個對話裡完成。</p>
+<h2 id="它在哪裡">它在哪裡</h2>
+<p>點選左側欄的 <strong>Home</strong>（首頁）。每一段新對話都從這裡開始。</p>
+<figure>
+<img src="../assets/screenshots/guide/home/00-overview.png" alt="聊天首頁：左側導航欄、問候語，以及帶能力選擇器與上下文工具欄的輸入框" />
+<figcaption aria-hidden="true">聊天首頁：左側導航欄、問候語，以及帶能力選擇器與上下文工具欄的輸入框</figcaption>
+</figure>
+<h2 id="介面三塊各管一攤">介面三塊，各管一攤</h2>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>區域</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左側欄</td>
+<td>主要介面入口——Home、Partners（夥伴）、My Agents（我的智慧代理）、Co-Writer、Book、Mastery Path、Immersive Reading、Learning Space（學習空間）； Recents 列出可續聊的會話；底部固定 Memory（記憶）/ Knowledge Center（知識中心）/ Settings（設定）。功能行可拖曳排序或移進 More ，Recents 裡的對話也能拖曳排序。</td>
+</tr>
+<tr>
+<td>輸入框</td>
+<td>訊息框。 左下角 決定這一輪是哪種「能力」，並用 + 加入一次性上下文； 右下角 提供連線智慧代理、知識庫、人設與模型選擇器。麥克風只轉寫當前訊息。</td>
+</tr>
+<tr>
+<td>活動面板 （右上角切換）</td>
+<td>當前會話用到的工具呼叫、引用、生成的檔案、附件與預覽，並能快速開啟一個 URL 或本機檔案。</td>
+</tr>
+</tbody>
+</table></div>
+<p>啟用身份認證後，已登入使用者還會在側欄看到 <strong>My profile</strong>。這裡顯示不可編輯的使用者名、角色與加入日期；你可以上傳頭像，或選擇圖示和顏色，也可以退出登入。</p>
+<p>對話上方的右上角圖示分別用於：<strong>把某一輪收藏進筆記本</strong>、<strong>把整段會話匯出為 Markdown</strong>、<strong>展開/收起活動面板</strong>。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="起始建議空白框不尷尬">起始建議：空白框不尷尬</h2>
+<p>空白的輸入框是個糟糕的提示詞。</p>
+<p>在它下方，DeepTutor 會給出三行取自你自己歷史的建議（L3 記憶綜合，加上你在各個介面上最近的若干次活動），每一行都重在往前推進，不在回顧舊事。<strong>換一批</strong>會重新抽。</p>
+<p><strong>Settings → Chat → Starting points</strong> 決定餵給它們多少歷史：把活動條數調高，建議的取材面更廣；調低，則更貼近你剛才在做的事。</p>
+<figure>
+<img src="../assets/screenshots/guide/settings/03-starting-points.png" alt="Settings → Chat → Starting points：多少條近期活動參與塑造輸入框下面那三行" />
+<figcaption aria-hidden="true">Settings → Chat → Starting points：多少條近期活動參與塑造輸入框下面那三行</figcaption>
+</figure>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="智慧代理迴圈它是怎麼想的">智慧代理迴圈：它是怎麼「想」的</h2>
+<p>DeepTutor 聊天執行的是單一智慧代理迴圈，因此一條訊息在你看到答覆前，內部可能要走好幾輪：</p>
+<p>1、模型讀取你的訊息與已掛載的上下文，然後直接作答，或規劃一次工具呼叫。</p>
+<p>2、若需要工具，DeepTutor 派發工具並把觀測結果追加進來（可在活動面板裡即時看到）。</p>
+<p>3、模型帶著更充分的證據繼續：閱讀資料、檢索知識庫、執行程式碼、抓取網頁。</p>
+<p>4、一條不再呼叫工具的最終訊息，結束這一輪。</p>
+<p><code>ask_user</code> 很特殊：與其瞎猜，智慧代理可以<strong>暫停這一輪</strong>，向你提出結構化的澄清問題，待你回答後再繼續。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="選擇一種能力">選擇一種能力</h2>
+<p>輸入框左下角的選擇器（預設顯示 <strong>Chat</strong>）決定由哪種 capability（能力）處理這一輪。各能力共享編排與會話上下文；有些複用 Chat 迴圈，有些執行專用處理管線（pipeline）。</p>
+<p>Home 中有四種主模式一鍵可達：<strong>Chat</strong>、<strong>Ask Questions</strong>、<strong>Quiz</strong> 與 <strong>Visualize</strong>；<strong>Immersive Watching</strong>、<strong>Research</strong> 和 <strong>Solve</strong> 收在 <em>More Capabilities</em> 彈出層裡。<strong>Mastery Path</strong> 與 <strong>Immersive Reading</strong> 是左側欄裡的獨立工作區，不再是 Home 模式。這個分組只關乎呈現，並不代表各模式如何執行。</p>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>能力</th>
+<th>適用於</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chat</td>
+<td>可用任意工具的靈活對話——開放式問答、輕量工具使用，日常預設。</td>
+</tr>
+<tr>
+<td>Ask Questions</td>
+<td>先用一張結合上下文的提問卡補齊資訊，再依據你的回答完成原請求。</td>
+</tr>
+<tr>
+<td>Quiz</td>
+<td>自動驗證的出題：練習題、模擬題、從你的資料出題。</td>
+</tr>
+<tr>
+<td>Visualize</td>
+<td>圖表、示意圖、可互動 HTML、SVG、Mermaid 與 Manim，由可擴充的 visualizer 目錄選擇。</td>
+</tr>
+<tr>
+<td>Immersive Watching</td>
+<td>帶同步播放器、字幕線索、時間戳依據和進度儲存的 YouTube 學習。</td>
+</tr>
+<tr>
+<td>Research （在 More Capabilities 下）</td>
+<td>全面的多智慧代理研究：子話題分解、RAG / 網路 / arXiv 檢索、帶引用的報告。</td>
+</tr>
+<tr>
+<td>Solve （在 More Capabilities 下）</td>
+<td>多步推理與解題，帶驗證和完整解答過程。</td>
+</tr>
+</tbody>
+</table></div>
+<figure>
+<img src="../assets/screenshots/guide/home/01-capabilities.png" alt="Home 能力選擇器：四種主模式，Immersive Watching 收在 More Capabilities 中" />
+<figcaption aria-hidden="true">Home 能力選擇器：四種主模式，Immersive Watching 收在 More Capabilities 中</figcaption>
+</figure>
+<p><strong>Immersive Watching</strong> 接受普通 watch、Shorts、Live、Embed 與 <code>youtu.be</code> 連結。影片會在 Chat 旁開啟，字幕證據綁定到時間戳，<strong>Explain here</strong> 可把當前 cue（字幕片段）變成有依據的問題；沒有字幕時仍可播放。原生 YouTube 使用隱私增強播放器，也可在設定裡切到自託管 Invidious，且不會重建材料或清空進度。</p>
+<figure>
+<img src="../assets/screenshots/guide/home/12-immersive-watching.png" alt="沉浸式觀看：左側輸入 YouTube 連結，右側是帶時間戳依據的導師" />
+<figcaption aria-hidden="true">沉浸式觀看：左側輸入 YouTube 連結，右側是帶時間戳依據的導師</figcaption>
+</figure>
+<p><strong>Visualize</strong> 的渲染模式現在來自目錄。SVG、Mermaid、Chart.js、可互動 HTML、Manim 動畫與分鏡是核心型別；GeoGebra 是可選的內建安裝項。你也能匯入包含 <code>visualizer.json</code> 與瀏覽器資產的 ZIP；匯入的 renderer 在沙箱 iframe 中執行，不含後端 Python，並可按使用者啟用、停用或移除。</p>
+<figure>
+<img src="../assets/screenshots/guide/home/13-visualizer-types.png" alt="Visualize 設定：渲染模式、可選 GeoGebra 安裝與 visualizer ZIP 匯入" />
+<figcaption aria-hidden="true">Visualize 設定：渲染模式、可選 GeoGebra 安裝與 visualizer ZIP 匯入</figcaption>
+</figure>
+<h3 id="little-tutor追問一段選區">Little Tutor——追問一段選區</h3>
+<p>選中對話中的文字並開啟 <strong>Little Tutor</strong>，即可啟動一條獨立、以來源內容為依據的側欄執行緒。它巢狀在來源對話下，繼承所屬課程，並使用自己的聚焦上下文而不載入全域記憶或通用工具，因此精讀追問不會打斷主執行緒。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="黏性上下文-vs.-一次性引用">黏性上下文 vs. 一次性引用</h2>
+<p>DeepTutor 把上下文分成兩類，輸入框也把它們放在兩個不同的位置，這是這一頁最關鍵的一個概念。</p>
+<p><strong>黏性會話上下文</strong>會跨輪持續生效，直到你手動更改：能力、工作區或課程綁定、工具、<strong>知識庫</strong>、<strong>人設</strong>、<strong>模型</strong>以及 Reading / Mastery 狀態。右側提供相關選擇器；透過 Agent 膠囊或 <code>@</code> 選中的智慧代理會留在本會話裡，而麥克風只填入當前草稿。</p>
+<p><strong>一次性引用</strong>藏在左側的 <strong><code>+</code> 按鈕</strong>後面，只把某個具體資產拉進<em>當前這一輪</em>。</p>
+<figure>
+<img src="../assets/screenshots/guide/home/02-add-contexts.png" alt="+ 選單：Attach files、Chat History、My Agents、Books、Reading、Notebooks、Question Bank、Memory" />
+<figcaption aria-hidden="true">+ 選單：Attach files、Chat History、My Agents、Books、Reading、Notebooks、Question Bank、Memory</figcaption>
+</figure>
+<div class="tablewrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>+ 引用</th>
+<th>拉進什麼</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Attach files</td>
+<td>一份 PDF、圖片、Office 文件、Markdown 或資料檔案，交給智慧代理閱讀。</td>
+</tr>
+<tr>
+<td>Chat History</td>
+<td>把過去的某段會話作為背景資料。</td>
+</tr>
+<tr>
+<td>My Agents</td>
+<td>一份匯入的 Claude Code / Codex 對話記錄供探查——見 我的智慧代理 。</td>
+</tr>
+<tr>
+<td>Books / Reading / Notebooks / Question Bank</td>
+<td>一本已編譯的書、一個閱讀片段、一個已儲存的筆記本，或 學習空間 裡的練習材料。</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>某一份具體的記憶文件——當你希望智慧代理依據一條你指得出來的事實工作，而不是依據召回碰巧撈上來的東西。</td>
+</tr>
+</tbody>
+</table></div>
+<p>在主 Chat 輸入框裡鍵入 <strong><code>@</code></strong>，會篩選與 Agent 膠囊相同的連線智慧代理列表，並把選中項保留在本會話中。沒有即時智慧代理選擇器的跟進介面，則繼續用 <code>@</code> 開啟 Space 引用選單。</p>
+<h3 id="知識庫把答案錨定到你的資料">知識庫——把答案錨定到你的資料</h3>
+<p><strong>資料庫圖示</strong>開啟知識庫選擇器。選中一個或多個知識庫後，它們會在整個會話裡保持掛載；每當問題需要依據時，智慧代理就會從中檢索。</p>
+<p>具體怎麼檢索，取決於這個庫綁定的引擎。回答讓你意外的時候，這個區別很值得知道。</p>
+<p>大多數庫（LlamaIndex、GraphRAG、LightRAG、連結的現成索引、遠端 LightRAG Server、騰訊 IMA 庫）由 <code>rag</code> 工具服務。</p>
+<p><strong>PageIndex OSS</strong> 與 <strong>PageIndex Cloud</strong> 不是：它們的檢索本身就是智慧代理式的（agentic），閱讀迴圈會遍歷本機或託管文件樹，因此這些庫被有意排除在 <code>rag</code> 列表之外。</p>
+<p><strong>Obsidian</strong> 庫壓根沒有索引，會被路由給 Obsidian 能力，由它直接瀏覽即時檔案；<strong>MarginNote 4</strong> 庫是同一種形態，由它自己的一組工具來走。</p>
+<figure>
+<img src="../assets/screenshots/guide/home/04-attatch-knowledge-base.png" alt="從輸入框工具欄掛載知識庫" />
+<figcaption aria-hidden="true">從輸入框工具欄掛載知識庫</figcaption>
+</figure>
+<h3 id="人設設定語氣與立場">人設——設定語氣與立場</h3>
+<p><strong>人物圖示</strong>用於選擇人設。<code>Default</code> 是樸素的助手；內建的 <strong>peer</strong>（同伴）、<strong>research-assistant</strong>（研究助理）、<strong>teacher</strong>（老師）等會改變語氣與教學風格。人設在<a href="../explore/space.html">學習空間</a>中管理，並可被夥伴複用。</p>
+<figure>
+<img src="../assets/screenshots/guide/home/05-customize-persona.png" alt="人設選擇器：Default、peer、research-assistant、teacher" />
+<figcaption aria-hidden="true">人設選擇器：Default、peer、research-assistant、teacher</figcaption>
+</figure>
+<h3 id="模型逐輪切換">模型——逐輪切換</h3>
+<p><strong>模型膠囊</strong>決定這一輪用哪個模型。你在設定裡配好的每個模型都會列在這裡，並標註提供商與上下文視窗，預設模型有標記。處理大文件時切到長上下文模型，閒聊時切到更便宜更快的模型，會話中途即可切換，不丟上下文。</p>
+<figure>
+<img src="../assets/screenshots/guide/home/06-switch-model.png" alt="帶提供商名稱與上下文視窗的模型切換器" />
+<figcaption aria-hidden="true">帶提供商名稱與上下文視窗的模型切換器</figcaption>
+</figure>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="活動面板全程可稽核">活動面板：全程可稽核</h2>
+<p>右上角的面板切換按鈕會開啟 <strong>Activity</strong>（活動）：當前會話用過的工具、引用與檔案的即時記錄，生成的檔案排在你上傳的之上，外加一個 <strong>Open</strong> 框，可把 URL 或本機檔案拉進應用內的檢視器。</p>
+<figure>
+<img src="../assets/screenshots/guide/home/07-side-bar-for-various-activities.png" alt="活動面板：會話活動 + 開啟 URL / 本機檔案" />
+<figcaption aria-hidden="true">活動面板：會話活動 + 開啟 URL / 本機檔案</figcaption>
+</figure>
+<p>一輪進行時，每次工具呼叫都會摺疊成一個緊湊的標題（例如 <code>Done · 21s</code>），展開即可檢視輸入與輸出，對話保持清爽，完整軌跡依然可稽核。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="知道視窗有多滿">知道視窗有多滿</h2>
+<p>輸入框上有一個膠囊，報告這一輪實際佔用了模型上下文視窗的多少、以及是什麼在佔：提示詞塊、工具 schema（工具的結構定義）、訊息列表。它是從已經拼裝好的提示詞上量出來的，不是事後重新推算的，所以這個讀數不可能和真正發出去的內容對不上。點開看明細，再決定要不要換一個長上下文模型，或者乾脆開一段新會話。</p>
+<p>長對話還會在正文左側空白處長出一條刻度軌，你每問一次就多一格，用來在歷史裡跳來跳去而不必捲動。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="工具也包括生成">工具——也包括生成</h2>
+<p>工具分兩類，區別在於由誰來決定。</p>
+<p><strong>由你決定</strong>的是 <strong>Settings → Chat → Tools</strong> 裡那些體驗增強工具：<code>brainstorm</code>、<code>web_search</code>、<code>paper_search</code>、<code>reason</code> 與 <code>geogebra_analysis</code>；配好相應的生成模型後，還會有 <code>imagegen</code> 與 <code>videogen</code>。</p>
+<p><strong>由上下文決定</strong>的是其餘那些：它們在有用時自動掛載，從輸入框的角度看是常開的——<code>rag</code>、<code>kb_files</code>、<code>read_source</code>、<code>read_memory</code>、<code>write_memory</code>、<code>read_skill</code>、<code>list_notebook</code>、<code>write_note</code>、<code>question_bank</code>、<code>web_fetch</code>、<code>github</code>、<code>ask_user</code>、<code>load_tools</code>、<code>cron</code>、<code>mastery_topics</code>、<code>mastery_sessions</code>、<code>mastery_open_session</code>、<code>mastery_new_session</code>，以及兩條程式碼路徑 <code>code_execution</code> 與 <code>exec</code>（沙箱 shell）。能力還會在此之上追加自己的：七個閱讀工具、精通之路的教學工具、<code>consult_subagent</code> 等等。（夥伴是例外：可以逐個禁掉某個自動掛載的工具——見<a href="../explore/partners.html">夥伴</a>。）</p>
+<h3 id="把事情排到以後做">把事情排到以後做</h3>
+<p><code>cron</code> 讓一個回合可以把活兒排期而不是當場幹完：<strong>在</strong>某個時刻、<strong>每隔</strong> N 秒，或者按一條帶時區的 <strong>cron 表示式</strong>。任務到點時，它的訊息會作為一條新指令<strong>在同一段對話裡</strong>執行，回覆也落在這裡，所以「工作日每天早上九點就這一章考我」是一句話，而不是一個設定頁面。同一個工具還能列出本對話的任務、取消其中一個。對夥伴而言，到點的任務會順著它所連線的 IM 管道發回去。</p>
+<p>在設定裡配好一個<strong>圖像生成</strong>（或影片生成）模型，它也會變成聊天工具：用自然語言提出需求，智慧代理便會呼叫它，並把結果行內預覽、附上可下載的檔案。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="設定聊天能用到的東西">設定聊天能用到的東西</h2>
+<p>輸入框工具欄裡的一切，最終都對應到 <strong>Settings</strong>（設定）裡的設定。</p>
+<p><strong>Settings → Models</strong> 是模型所在之處：LLM、Task Models、Embedding、Search、文字轉語音（TTS）、語音轉文字（STT）、圖像生成與影片生成。<strong>Task Models</strong> 負責會話標題與 Home 輸入框下的起始建議；TTS 驅動朗讀，STT 驅動麥克風，圖像/影片模型則成為聊天工具。</p>
+<figure>
+<img src="../assets/screenshots/guide/home/10-configure-models.png" alt="Settings → Models：LLM、Task Models、Embedding、Search、TTS、STT、Image Generation、Video Generation" />
+<figcaption aria-hidden="true">Settings → Models：LLM、Task Models、Embedding、Search、TTS、STT、Image Generation、Video Generation</figcaption>
+</figure>
+<p><strong>Settings → Chat</strong> 下面有五樣東西：<strong>Video Learning</strong>（YouTube / Invidious 播放與字幕設定）、<strong>Tools</strong>、<strong>Capabilities</strong>（各能力的 LLM 參數與執行環境旋鈕）、<strong>Starting points</strong>，以及 <strong>Attachments</strong>（上傳上限與文字提取預算）。MCP（模型上下文協定）服務不再在這裡設定，它和 CLI App 一起歸到學習空間，詳見 <a href="../ecosystem/index.html">DeepTutor 生態</a>。</p>
+<figure>
+<img src="../assets/screenshots/guide/home/11-configure-and-explore-tools.png" alt="Settings → Chat：Video Learning、Tools、Capabilities、Starting points、Attachments" />
+<figcaption aria-hidden="true">Settings → Chat：Video Learning、Tools、Capabilities、Starting points、Attachments</figcaption>
+</figure>
+<p>完整的控制面板見<a href="../explore/settings.html">設定</a>。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="在手機上">在手機上</h2>
+<p>窄於平板寬度時，工作區會收成單欄加一個抽屜式側邊欄，於是同一段對話在手機上是能用的，而不是把一個三欄桌面佈局渲染到視口之外。</p>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="實用範例">實用範例</h2>
+<div class="codeblock" data-lang="text"><pre><code>挂载一个知识库 + 提问：「讲讲第 4 章，并就我薄弱的点考我。」</code></pre></div>
+<div class="codeblock" data-lang="text"><pre><code>附加一份 PDF + 提问：「抽取其中的假设，并把最终摘要存进我的笔记本。」</code></pre></div>
+<div class="codeblock" data-lang="bash"><pre><code>deeptutor run chat <span class="s">"讲讲傅里叶变换"</span> --tool rag --kb signals
+deeptutor chat --capability deep_research --kb papers</code></pre></div>
+<div class="gap" aria-hidden="true"></div>
+<h2 id="相關閱讀">相關閱讀</h2>
+<ul>
+<li><a href="../explore/reading.html">沉浸式閱讀</a> ——同一個迴圈，旁邊開著一份文件</li>
+<li><a href="../ecosystem/index.html">DeepTutor 生態</a> ——智慧代理可呼叫的 Skill、MCP 服務與 CLI App</li>
+<li><a href="../explore/partners.html">夥伴</a> ——同一個迴圈，執行在 IM 夥伴裡</li>
+<li><a href="../explore/subagents.html">我的智慧代理</a> ——在一輪聊天裡諮詢 Claude Code、Codex 或某個夥伴</li>
+<li><a href="../explore/knowledge.html">知識中心</a> ——建置你在這裡掛載的 RAG 庫</li>
+<li><a href="../explore/memory.html">記憶</a> ——迴圈讀寫的個人化記憶</li>
+<li><a href="../explore/settings.html">設定</a> ——模型、工具、能力與執行環境控制</li>
+</ul>
+<div class="gap" aria-hidden="true"></div>
+<p>上手把玩幾輪就知道了，這套黏性上下文加一次性引用的組合是真能打，越用越真香。實際效果還會受到模型、提示詞以及具體使用場景的影響，建議大家結合自己的需求實際體驗評估。</p>
+
+    </article>
+    <nav class="pager" aria-label="上下頁"><a class="prev" href="../get-started/troubleshooting.html"><p class="pager-eyebrow">上一頁</p><p class="pager-title">故障排查</p></a>
+<a class="next" href="../explore/partners.html"><p class="pager-eyebrow">下一頁</p><p class="pager-title">夥伴</p></a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/brand/logo.png" alt="">
+      <div>
+        <p class="footer-name">DeepTutor <em>改寫版</em></p>
+        <p class="footer-tagline">開源、agent-native 的個人化學習助手——四種安裝、十六個管道、三層記憶，一套共享執行環境串起全部。</p>
+        <p class="footer-ethos">把同一套對話迴圈，帶到你學習的每個角落。</p>
+      </div>
+    </div>
+    <div class="footer-colophon">
+      <div class="footer-links">
+        <a href="../index.html">文件主頁</a>
+        <a href="https://docs.deeptutor.info/zh-cn/" target="_blank" rel="noopener">原文站</a>
+        <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/eRsjPgMU4t" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer-legal">本站依官方中文文件改寫重排（繁體中文．台灣用語），僅供學習交流；上游專案由香港大學數據智能實驗室（HKUDS）以 Apache 2.0 開源。</p>
+    </div>
+  </div>
+</footer>
+<div class="search-layer" id="searchLayer" hidden>
+  <div class="search-backdrop" data-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜尋文件">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" placeholder="搜尋 50 篇文件…" autocomplete="off">
+      <button class="search-close" type="button" data-close>Esc</button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <div class="search-hint">↑↓ 選擇 · Enter 開啟 · Esc 關閉</div>
+  </div>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

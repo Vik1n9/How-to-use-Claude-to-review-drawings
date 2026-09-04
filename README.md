@@ -9,7 +9,7 @@
 
 ## 指南列表
 
-| # | 指南 | 一句話介紹 | 線上閱讀 |
+| # | 指南 | 內容重點 | 線上閱讀 |
 |---|------|-----------|---------|
 | 1 | **美股第一課先學翻譯** | 用複委託當翻譯機，把台股的顏色、單位、煞車與時間換軌成美股規則 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/us-stocks-guide.html) |
 | 2 | **審圖總被退件？消防製圖人員的術前檢查** | 用 Codex 替每個案件建立病歷夾、工作守則、日誌與本機版本，AI 初審與人工複核分工把關 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/guide.html) |
@@ -20,6 +20,7 @@
 | 7 | **2026 大阪五天自由行指南** | 6 位成人以心齋橋為基地，分成總覽、Day 1/3/4/5 深度頁與既有 Day 2 USJ 指南，整理神社、市場、道頓堀、勝尾寺、箕面瀑布、臨空城 Outlet、分團與餐廳候選 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/osaka-2026-trip-guide.html) |
 | 8 | **蒼天堀夜行（大阪隱藏版私人行程）** | 獨立於主行程之外，以《人中之龍》大阪篇氛圍填補 10/5・10/7・10/8 晚餐後到午夜的空檔，逐站附真實店家、地址與營業時間查核 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/osaka-2026-yakuza-nights.html) |
 | 9 | **AI 家教為何教不會？港大 DeepTutor** | 論文科普改寫：給 AI 一本會長大的病歷本，270 場模擬家教課的實驗結果 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/deeptutor-guide.html) |
+| 10 | **DeepTutor 繁體中文文件站** | 依官方文件站架構重排的 50 頁改寫版：四種安裝方式、16 個聊天管道、CLI 命令參考與生態擴充，附側欄導覽與全站搜尋 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/deeptutor-docs/) |
 
 ## 設計系統
 
@@ -31,6 +32,8 @@ Kami 設計系統的規格與模板內建在本倉庫：
 採用 Kami 的六份指南（樣式內嵌於各自檔案，不依賴外部 CSS，可單獨分享與列印）：`us-stocks-guide.html`、`guide.html`、`making-of.html`、`pcshop-ai-build-guide.html`、`beauty-manual-ai-guide.html`、`deeptutor-guide.html`。
 
 美股頁的五個互動元件（複利試算、漲跌色對照、交割時間軸、碎股試算、停損模擬）與製作幕後／PCShop 的前後對照切換都保留，改用 Kami 的色票與版面重新設計。
+
+`deeptutor-docs/` 是唯一的多頁文件站：沿用 Kami 的色票與襯線層級，但改用外部共用樣式（`assets/styles.css`）與側欄／搜尋腳本（`assets/app.js`），無法單檔分享。
 
 **例外**：大阪旅遊系列（`osaka-2026-*.html` 與 `usj-vip-guide.html`）是自成一格的暖紙質旅遊手冊設計，維持原樣、不套用 Kami 規格。
 
@@ -48,6 +51,7 @@ Kami 設計系統的規格與模板內建在本倉庫：
 | `pcshop-ai-build-guide.html` | PCShop 相容性過濾筆記：規格標籤、約束規則與手機優先版面（Kami 版面） |
 | `beauty-manual-ai-guide.html` | 美容儀器說明書三段 AI 接力筆記：翻譯、複驗校稿、排版與 QA 驗收（Kami 版面） |
 | `deeptutor-guide.html` | 港大 DeepTutor 論文科普改寫：AI 家教的個人化記憶架構（Kami 版面） |
+| `deeptutor-docs/` | DeepTutor 繁體中文文件站（50 頁改寫版）：`index.html` 為首頁，`get-started/`、`explore/`、`ecosystem/`、`partners/`、`cli/` 為五個章節目錄，`assets/` 收共用樣式、搜尋索引與截圖 |
 | `usj-vip-guide.html` | USJ 10/6 票券安心選購工具，整理 6 位成人最該先看的組合、活動查核與購票入園流程；同時作為大阪五天自由行的 Day 2 頁 |
 | `osaka-2026-trip-guide.html` | 2026/10/05-10/09 大阪五天自由行總覽入口，連到 Day 1/3/4/5 深度頁與既有 Day 2 USJ 指南 |
 | `osaka-2026-day1.html`, `osaka-2026-day3.html`, `osaka-2026-day4.html`, `osaka-2026-day5.html` | 大阪五天自由行每日深度頁，分別整理當天景點介紹、交通、餐廳、分團、注意事項與備案 |
