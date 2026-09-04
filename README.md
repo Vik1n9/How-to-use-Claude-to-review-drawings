@@ -11,11 +11,11 @@
 
 | # | 指南 | 一句話介紹 | 線上閱讀 |
 |---|------|-----------|---------|
-| 1 | **從零開始前進美股** | 台灣投資人用複委託買美股的入門手冊 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/us-stocks-guide.html) |
-| 2 | **Codex 輔助審圖工作流** | 消防製圖人員用 Codex Windows App 建立案件管理、日誌、版本與 AI 輔助初審流程 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/guide.html) |
-| 3 | **製作幕後：用 AI 打造一頁式指南** | 從建倉、發想計畫、調用技能外掛、來回修正到推上 GitHub 的完整流程 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/making-of.html) |
-| 4 | **PCShop 專案製作流程** | 電腦組裝估價系統的製作筆記：從痛點、規格、過濾、版面到上線 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/pcshop-ai-build-guide.html) |
-| 5 | **美容儀器說明書 AI 協作工作流** | 簡體說明書 PDF 的三段 AI 接力：翻譯、複驗校稿、排版輸出 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/beauty-manual-ai-guide.html) |
+| 1 | **美股第一課先學翻譯** | 用複委託當翻譯機，把台股的顏色、單位、煞車與時間換軌成美股規則 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/us-stocks-guide.html) |
+| 2 | **審圖總被退件？消防製圖人員的術前檢查** | 用 Codex 替每個案件建立病歷夾、工作守則、日誌與本機版本，AI 初審與人工複核分工把關 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/guide.html) |
+| 3 | **用 AI 從零到上線** | 9 份指南背後的 103 個 commits：計畫模式、誠實的工具揭露、可驗證的修正循環與推上 GitHub Pages | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/making-of.html) |
+| 4 | **組電腦最貴的不是顯卡，是選錯** | 把師傅腦中的「配伍禁忌」表搬進資料欄位：規格標籤、四條約束規則、手機優先版面與前後台分流 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/pcshop-ai-build-guide.html) |
+| 5 | **簡體說明書看不懂？** | 19 頁簡體 PDF 到 28 頁繁中 A4 手冊的三段 AI 接力：翻譯、複驗校稿、排版輸出 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/beauty-manual-ai-guide.html) |
 | 6 | **USJ 10/6 票券安心選購工具** | 6 位成人從一日通、團體 VIP、Express、私人 VIP 中選出最穩組合，附購票與入園檢查清單 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/usj-vip-guide.html) |
 | 7 | **2026 大阪五天自由行指南** | 6 位成人以心齋橋為基地，分成總覽、Day 1/3/4/5 深度頁與既有 Day 2 USJ 指南，整理神社、市場、道頓堀、勝尾寺、箕面瀑布、臨空城 Outlet、分團與餐廳候選 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/osaka-2026-trip-guide.html) |
 | 8 | **蒼天堀夜行（大阪隱藏版私人行程）** | 獨立於主行程之外，以《人中之龍》大阪篇氛圍填補 10/5・10/7・10/8 晚餐後到午夜的空檔，逐站附真實店家、地址與營業時間查核 | [開啟](https://vik1n9.github.io/One-Page-Beginners-Guide/osaka-2026-yakuza-nights.html) |
@@ -42,11 +42,11 @@ Kami 設計系統的規格與模板內建在本倉庫：
 |------|------|
 | `PRODUCT.md` | 本站產品定位與後續改版必讀規則 |
 | `DESIGN.md` | 本站 Kami 視覺規格：色票、字級、元件、互動元件原則與例外頁面 |
-| `us-stocks-guide.html` | 美股複委託入門互動式教學頁面（Kami 版面，含五個互動試算元件） |
-| `guide.html` | 消防審圖 Codex GUI 工作流教學頁面：案件資料夾、AGENTS.md、工作日誌、本機 Git 與人工複核（Kami 版面） |
-| `making-of.html` | 製作幕後：用 AI 打造一頁式指南並推上 GitHub 的流程教學（Kami 版面） |
-| `pcshop-ai-build-guide.html` | PCShop 專案製作筆記（Kami 版面） |
-| `beauty-manual-ai-guide.html` | 美容儀器說明書 AI 協作工作流筆記（Kami 版面） |
+| `us-stocks-guide.html` | 美股複委託換軌指南：四步把台股習慣翻譯成美股規則（Kami 版面，含五個互動試算元件） |
+| `guide.html` | 消防審圖「術前檢查」工作流：案件病歷夾、AGENTS.md 守則、工作日誌、本機 Git 與人工複核（Kami 版面） |
+| `making-of.html` | 製作幕後：103 個 commits 背後的生產系統，從計畫模式到推上 GitHub Pages（Kami 版面） |
+| `pcshop-ai-build-guide.html` | PCShop 相容性過濾筆記：規格標籤、約束規則與手機優先版面（Kami 版面） |
+| `beauty-manual-ai-guide.html` | 美容儀器說明書三段 AI 接力筆記：翻譯、複驗校稿、排版與 QA 驗收（Kami 版面） |
 | `deeptutor-guide.html` | 港大 DeepTutor 論文科普改寫：AI 家教的個人化記憶架構（Kami 版面） |
 | `usj-vip-guide.html` | USJ 10/6 票券安心選購工具，整理 6 位成人最該先看的組合、活動查核與購票入園流程；同時作為大阪五天自由行的 Day 2 頁 |
 | `osaka-2026-trip-guide.html` | 2026/10/05-10/09 大阪五天自由行總覽入口，連到 Day 1/3/4/5 深度頁與既有 Day 2 USJ 指南 |

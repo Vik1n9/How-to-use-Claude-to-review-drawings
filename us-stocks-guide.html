@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <!-- ==================================================================
      LONG DOCUMENT · parchment design system · zh-TW
-     從零開始前進美股：複委託入門手冊
+     美股第一課先學翻譯：用複委託把台股習慣換軌成美股規則
      ================================================================== -->
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<title>從零開始前進美股：台灣投資人的複委託入門手冊</title>
-<meta name="description" content="台灣投資人用複委託買美股的入門手冊：台美股差異、扣款與交割、換匯、碎股、稅務、成本與停損。">
-<meta name="keywords" content="美股, 複委託, 碎股, 停損單, T+1 交割, 股息預扣">
+<title>美股第一課先學翻譯：用複委託把台股習慣換軌成美股規則</title>
+<meta name="description" content="台股直覺帶進美股，第一天就會失靈。用複委託當翻譯機，把顏色、漲跌幅、單位、交割、稅務與停損一次換軌。">
+<meta name="keywords" content="美股, 複委託, 定期定額, 碎股, 停損單, T+1 交割, 股息預扣, 稅務">
 <meta name="generator" content="Kami">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -44,7 +44,7 @@
     }
 
     @bottom-center {
-      content: counter(page) "  ·  從零開始前進美股";
+      content: counter(page) "  ·  美股第一課先學翻譯";
       font-family: "Iansui", "TsangerJinKai02", "Source Han Serif SC",
                    "Noto Serif CJK SC", "Songti TC", "Songti SC", Georgia, serif;
       font-size: 9pt;
@@ -608,6 +608,42 @@
     .readout { grid-template-columns: minmax(0, 1fr); }
   }
 
+  /* ========== FIGURE / QUOTE / PULL ========== */
+  figure { margin: 14pt 0; break-inside: avoid; }
+  figure > figcaption {
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: var(--stone);
+    text-align: center;
+    margin-top: 6pt;
+    line-height: 1.45;
+  }
+  .prompt > figcaption { text-align: left; margin-top: 0; }
+  blockquote {
+    margin: 14pt 0;
+    padding: 0 18pt;
+    font-size: 12.5pt;
+    line-height: 1.5;
+    color: var(--olive);
+    break-inside: avoid;
+  }
+  blockquote .cite {
+    display: block;
+    font-size: 9pt;
+    color: var(--stone);
+    margin-top: 5pt;
+  }
+  .pull {
+    font-size: 15pt;
+    line-height: 1.4;
+    color: var(--brand);
+    margin: 18pt 0;
+  }
+  .diagram-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .diagram { width: 100%; height: auto; display: block; }
+  @media screen and (max-width: 640px) { .diagram { min-width: 440px; } }
+  @media print { .diagram { min-width: 0; } }
+
   /* ========== CHAPTER BREAK ========== */
   .chapter { break-before: page; }
 
@@ -644,9 +680,9 @@
 <!-- ═════════════ COVER ═════════════ -->
 <section class="cover">
   <div>
-    <div class="cover-eyebrow">US Equities · 複委託入門手冊</div>
-    <div class="cover-title">從零開始<br>前進美股</div>
-    <div class="cover-sub">台灣投資人用複委託買美股：先把台股直覺翻譯成美股規則，再把扣款、交割、換匯、稅務與停損一次搞懂。</div>
+    <div class="cover-eyebrow">US Equities · 台股習慣換軌美股規則</div>
+    <div class="cover-title">美股第一課<br>先學翻譯</div>
+    <div class="cover-sub">我們如何用複委託，把台股的顏色、單位、煞車與時間，一次換軌成美股規則——翻譯錯，就按錯鍵。</div>
   </div>
   <div class="cover-meta">
     <strong>教育與資訊參考，不構成投資建議</strong><br>
@@ -658,28 +694,254 @@
 <!-- ═════════════ TOC ═════════════ -->
 <section class="toc">
   <h2>目錄</h2>
-  <div class="toc-item"><span class="toc-num">01</span><a class="toc-title" href="#不是去玩美股-是成為全球經濟的股東">不是去「玩美股」，是成為全球經濟的股東</a></div>
-  <div class="toc-item"><span class="toc-num">02</span><a class="toc-title" href="#先把習慣翻譯成規則-才不會把台股直覺帶進美股">先把習慣翻譯成規則，才不會把台股直覺帶進美股</a></div>
-  <div class="toc-item"><span class="toc-num">03</span><a class="toc-title" href="#用台幣帳戶買美股-把海外交易變回熟悉的流程">用台幣帳戶買美股，把海外交易變回熟悉的流程</a></div>
-  <div class="toc-item"><span class="toc-num">04</span><a class="toc-title" href="#降低稅損控制風險-比選到飆股更實際">降低稅損、控制風險，比選到飆股更實際</a></div>
-  <div class="toc-item"><span class="toc-num">05</span><a class="toc-title" href="#新手最常問的五個問題">新手最常問的五個問題</a></div>
-  <div class="toc-item"><span class="toc-num">06</span><a class="toc-title" href="#建立你的美股系統">建立你的美股系統，從三個步驟開始</a></div>
+  <div class="toc-item"><span class="toc-num">01</span><a class="toc-title" href="#台股直覺帶進美股為何首日就失靈">台股直覺帶進美股，為何首日就失靈？</a></div>
+  <div class="toc-item"><span class="toc-num">02</span><a class="toc-title" href="#複委託是翻回中文的翻譯機">複委託是翻回中文的翻譯機</a></div>
+  <div class="toc-item"><span class="toc-num">03</span><a class="toc-title" href="#記住綠漲紅跌四步換軌怎麼走">記住「綠漲紅跌」，四步換軌怎麼走？</a></div>
+  <div class="toc-item"><span class="toc-num">04</span><a class="toc-title" href="#每月三千也能湊滿波克夏一股嗎">每月 NT$3,000 也能湊滿波克夏一股嗎？</a></div>
+  <div class="toc-item"><span class="toc-num">05</span><a class="toc-title" href="#三個動作組成可執行的系統">三個動作，組成可執行的系統</a></div>
 </section>
 
 <!-- ═════════════ Chapter 01 ═════════════ -->
-<section class="chapter" id="不是去玩美股-是成為全球經濟的股東">
-  <div class="chapter-num">01 · Why · 為什麼投資美股</div>
-  <h1>不是去「玩美股」，是成為全球經濟的股東。</h1>
+<section class="chapter" id="台股直覺帶進美股為何首日就失靈">
+  <div class="chapter-num">01 · Translation · 換軌前的第一個故障</div>
+  <h1>台股直覺帶進美股，為何首日就失靈？</h1>
 
-  <p class="lead">全球市值最大的企業，多數在美國掛牌：蘋果、微軟、輝達、Google、麥當勞、Nike。買進美股，等於讓資產跟著全球科技、醫療、金融與消費一起成長，而不只押注台灣一地。</p>
+  <p class="lead">半夜打開美股 App，我們看到一片綠油油卻直覺想賣出。因為台股是紅漲綠跌，舊系統判讀新市場，進而把上漲的蘋果（Apple Inc.，簡稱 AAPL）誤判為下跌。</p>
+
+  <p>更麻煩的是台股有 10% 漲跌停幫忙踩煞車，而美股無漲跌幅限制且單日重挫 30% 也曾發生。若把舊煞車習慣帶進新軌道，進而讓無停損的部位在一夜間出現巨大缺口。</p>
+
+  <p class="pull">翻譯錯，就按錯鍵。</p>
+
+  <p>換軌需要一台翻譯機，因為台美股看似都是買股票，實際卻是方向盤相反的系統。透過顏色與漲跌幅與單位的全面換軌，即可避免用舊地圖開新路。</p>
 
   <div class="callout">
-    <strong class="hl" style="font-size:15pt">47.4%</strong> 的全球股市市值集中在美國。只看台股，等於忽略了世界的另一半。
+    全球股市 <strong class="hl" style="font-size:15pt">47.4%</strong> 市值集中在美國，只看台股等於只讀半本地圖。因為蘋果與微軟等龍頭多數在美國掛牌，持有美股跟著科技與消費成長，即不把命運押在單一市場。
   </div>
+
+  <figure>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>項目</th><th>台股習慣</th><th>美股規則</th></tr></thead>
+        <tbody>
+          <tr><td>漲跌顏色</td><td>紅漲綠跌</td><td>綠漲紅跌（相反！）</td></tr>
+          <tr><td>漲跌幅限制</td><td>10% 漲跌停</td><td>無限制，單日跌 30% 也曾發生</td></tr>
+          <tr><td>交易單位</td><td>1 張 = 1,000 股</td><td>1 股即可成交，複委託多可買碎股</td></tr>
+          <tr><td>交易時間（台灣時間）</td><td>09:00–13:30</td><td>夏令 21:30–04:00／冬令 22:30–05:00</td></tr>
+          <tr><td>交割制度</td><td>T+2 撥券</td><td>T+1 交割（2024/05/28 起）</td></tr>
+          <tr><td>配息稅務</td><td>併入綜合所得</td><td>股息預扣 30%（非居民）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figcaption>台美股規則對照翻譯機：左欄是舊直覺，右欄是新軌道，六個欄位要一次換掉。</figcaption>
+  </figure>
+</section>
+
+<!-- ═════════════ Chapter 02 ═════════════ -->
+<section class="chapter" id="複委託是翻回中文的翻譯機">
+  <div class="chapter-num">02 · Sub-brokerage · 官方翻譯機</div>
+  <h1>複委託是翻回中文的翻譯機。</h1>
+
+  <p class="lead">投資人可把複委託（Sub-brokerage）理解為官方翻譯機。因為委託富邦或永豐等國內券商代為下單到美國，熟悉的台幣帳戶完成扣款與查詢，即省下自開海外帳戶的繁瑣流程。</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">翻譯機只換軌，不改寫法規</div>
+    因為股息同樣預扣 30% 且交割遵循美國 T+1 制度，認清便利不等於免稅，即可避免誤以為手續簡化等於規則消失。
+  </div>
+
+  <h2 id="小資族先上車的三種樣貌">小資族先上車的三種樣貌</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>樣貌</th><th>為什麼可以先上車</th><th>換到的好處</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="tag">其一</span>每月只能投入數千元的小資族</td>
+          <td>複委託支援「碎股」與「定期定額」，零點幾股讓每分錢全數進場。</td>
+          <td>不必湊足一整股的門票。</td>
+        </tr>
+        <tr>
+          <td><span class="tag">其二</span>想用台幣統一管理資金的忙碌族</td>
+          <td>下單可選台幣扣款並由券商自動換匯，省下維護外幣帳戶的心力。</td>
+          <td>把跨境交易簡化為日常操作。</td>
+        </tr>
+        <tr>
+          <td><span class="tag">其三</span>只想長期持有的穩健族</td>
+          <td>複委託一般不支援當沖，把目標設為數年以上的佈局。</td>
+          <td>讓紀律取代盯盤成為引擎。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="note">能不能買碎股、能不能設停損、能不能當日換股，各券商規定不同，開戶前先逐項問清楚，不要假設「都支援」。</p>
+</section>
+
+<!-- ═════════════ Chapter 03 ═════════════ -->
+<section class="chapter" id="記住綠漲紅跌四步換軌怎麼走">
+  <div class="chapter-num">03 · Four Steps · 四步換軌</div>
+  <h1>記住「綠漲紅跌」，四步換軌怎麼走？</h1>
+
+  <p class="lead">換軌可拆成四個 STEP，因為每一步對應舊直覺最易故障的位置。依序完成習慣翻譯與帳戶設定與時間軸理解與稅務停損佈置，即讓首次操作走在正確軌道上。</p>
+
+  <h2 id="step1-習慣翻譯">STEP 1　習慣翻譯：顏色與漲跌幅與單位與時間一次切換</h2>
+
+  <p>眼睛要先重新校準，因為美股綠漲紅跌，而特斯拉下跌會顯示紅色負 1.8%。先在小額或模擬環境練習，即可避免把上漲誤賣的失誤。</p>
+
+  <div class="panel">
+    <div class="seg" role="group" aria-label="切換市場規則">
+      <button type="button" id="mTw" aria-pressed="false">台股規則</button>
+      <button type="button" id="mUs" aria-pressed="true">美股規則</button>
+    </div>
+    <p class="panel-note" id="flipCap">目前顯示 <strong>美股規則</strong>：<strong>綠色代表上漲</strong>、紅色代表下跌，和台股相反。</p>
+    <div class="flip-cards" data-market="us" id="colorDemo">
+      <div class="tick rise">
+        <div class="sym">AAPL · 蘋果</div>
+        <div class="pct">▲ +2.4%</div>
+        <div class="st">今天上漲</div>
+      </div>
+      <div class="tick fall">
+        <div class="sym">TSLA · 特斯拉</div>
+        <div class="pct">▼ -1.8%</div>
+        <div class="st">今天下跌</div>
+      </div>
+    </div>
+  </div>
+
+  <p>安全氣囊觀念也要換掉，因為台股 10% 就強制停住，而美股大跌 30% 也不會攔車。買進後立刻設定「停損單」的習慣，即可在反轉時保住重新上車的本金。</p>
+
+  <p>單位與時間也要同步換軌，因為台股一張代表 1,000 股，而美股 1 股就能成交。記住夏令 21:30 至 04:00 與冬令 22:30 至 05:00 的窗口，即用預約單讓白天設定在夜間送出。</p>
+
+  <h2 id="step2-帳戶與扣款">STEP 2　帳戶與扣款：台幣交割與外幣交割選一條軌道</h2>
+
+  <p>投資人要先決定錢從哪條軌道出發，因為台幣交割代表只存新台幣並由券商自動換匯。省去挑換匯時機的心力，即讓定期定額變成最省事的預設選項。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>軌道</th><th>做法</th><th>取捨</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag">台幣交割</span>存台幣，券商自動換匯</td><td>只存新台幣，下單時選「台幣扣款」，券商依當下公告匯率自動換匯。</td><td>最省事，最適合定期定額，不必盯匯率。</td></tr>
+        <tr><td><span class="tag">外幣交割</span>先換好美元再扣款</td><td>先自行換好美元存入，再以美元扣款。</td><td>好處是可自挑換匯時點，代價是多管一個帳戶。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>賣出後的回家路線也要先想清楚，因為台幣交割自動換回台幣，而外幣交割把美元留在帳上。多數券商事後可變更，所以不必第一次就糾結到無法下單。</p>
+
+  <h2 id="step3-交割時間軸">STEP 3　交割時間軸：T+1 之後為何還要再等一下</h2>
+
+  <p>美股的時間翻譯要先讀懂，因為美國自 2024 年 5 月 28 日起實施 T+1 交割。台灣券商轉為可動用往往再多一至兩個工作日，記住成交不等於現金可用的原則，即可避免誤判資金調度。</p>
+
+  <div class="panel">
+    <p class="panel-note">點時間軸上的每一站看細節。重點：賣股不會馬上有錢可用。</p>
+    <div class="tl">
+      <div class="track">
+        <div class="fill" id="tlFill"></div>
+        <div class="nodes">
+          <div class="node active" data-step="0"></div>
+          <div class="node" data-step="1"></div>
+          <div class="node" data-step="2"></div>
+        </div>
+      </div>
+      <div class="labels">
+        <div class="lb"><div class="d">T 日</div><div class="t">交易日</div></div>
+        <div class="lb"><div class="d">T+1 日</div><div class="t">美國端交割</div></div>
+        <div class="lb"><div class="d">T+2 日</div><div class="t">台灣端可動用</div></div>
+      </div>
+    </div>
+    <div class="tl-detail">
+      <div class="dk" id="tlKey">T 日 · 交易日</div>
+      <div class="dv" id="tlVal">你在美股盤中賣出股票，成交。這天還拿不到可動用的現金。</div>
+    </div>
+    <p class="footnote-box">因為中間牽涉保管與換匯與入帳作業，下單前確認額度，即可避免連續交易時資金卡住。</p>
+  </div>
+
+  <p>匯率焦慮也在這步翻譯掉，因為定期定額長期投入會自然平均買入與換匯成本。把心力放在持續扣款，即讓時間成為隊友。</p>
+
+  <h2 id="step4-稅務與停損">STEP 4　稅務與停損：30% 預扣與 US$60,000 門檻先記牢</h2>
+
+  <p>稅務要先翻成白話，因為美國對非居民股息直接預扣 30% 並由券商處理。理解拿到手已是稅後金額，即把重心從高配息轉向成長。</p>
+
+  <figure>
+    <div class="bars">
+      <div class="bar"><div class="bl">配息總額 US$100</div><div class="bt"><span class="bf" style="width:100%"></span></div></div>
+      <div class="bar"><div class="bl">美國預扣 30%</div><div class="bt"><span class="bf" style="width:30%"></span></div></div>
+      <div class="bar"><div class="bl">實際入帳 US$70</div><div class="bt"><span class="bf" style="width:70%"></span></div></div>
+    </div>
+    <figcaption>非居民股息預扣示意：券商自動扣繳，帳上看到的已是稅後金額。</figcaption>
+  </figure>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>門檻</th><th>要記住的事</th></tr></thead>
+      <tbody>
+        <tr><td><strong>30%</strong> 股息預扣</td><td>配息時券商自動預扣，你拿到的就是稅後金額，不必為了美股股息自己向美國報稅。</td></tr>
+        <tr><td><strong>海外所得</strong>與最低稅負</td><td>台灣端海外所得到一定金額才計入基本所得額，多數小資族不會觸及最低稅負門檻。因為金額較大時應諮詢會計師，不自己亂猜細節，即可避免補稅與罰款。</td></tr>
+        <tr><td><strong>US$60,000</strong> 遺產稅門檻</td><td>資產變大還有 US$60,000 門檻，因為美國境內資產含美股超標可能須申報 <code>Form 706-NA</code>。理解複委託只簡化操作而不免除申報，規模擴大時即求助專業。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>停損是這步的保命翻譯，因為 100 美元買進並設 10% 停損時觸發價即 90 美元。跌破紀律線即自動賣出，即守住沒有漲跌停保護的本金。</p>
+
+  <div class="panel">
+    <div class="sl-grid">
+      <div>
+        <div class="panel-title">停損單示意</div>
+        <p class="panel-note">買進後設定一個停損價，股價觸及就自動以市價賣出。拖動看看不同停損幅度的觸發價。</p>
+        <div class="ctrl">
+          <div class="lab"><span>停損幅度</span><span class="val" id="slPctLab">10%</span></div>
+          <input id="slPct" max="25" min="3" step="1" type="range" value="10">
+        </div>
+        <div class="sl-readout">
+          <div class="ro"><div class="k">買進價</div><div class="v">$100</div></div>
+          <div class="ro trig"><div class="k">停損觸發價</div><div class="v" id="slTrig">$90</div></div>
+        </div>
+      </div>
+      <div>
+        <svg aria-hidden="true" id="slSvg" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto" viewBox="0 0 360 200"></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ Chapter 04 ═════════════ -->
+<section class="chapter" id="每月三千也能湊滿波克夏一股嗎">
+  <div class="chapter-num">04 · Math · 直接算一筆帳</div>
+  <h1>每月 NT$3,000 也能湊滿波克夏一股嗎？</h1>
+
+  <p class="lead">這裡直接算一筆帳，因為每月 NT$3,000 以匯率 31.6 換算約 US$95。波克夏海瑟威 B 股（Berkshire Hathaway Class B，簡稱 BRK.B）一股約 US$487 且不配息，碎股每次買約 0.195 股，即大約 5 個月湊滿一整股。</p>
+
+  <div class="panel">
+    <div class="panel-title">碎股試算器</div>
+    <p class="panel-note">同樣邏輯放在標準普爾 500（S&amp;P 500）的交易所買賣基金（ETF，Exchange-Traded Fund）更輕鬆。切換標的，看每月投入能買到多少。</p>
+
+    <div class="ctrl">
+      <div class="lab"><span>每月投入</span><span class="val" id="fracAmtLab">NT$ 3,000</span></div>
+      <input id="fracAmt" max="30000" min="300" step="300" type="range" value="3000">
+    </div>
+
+    <div class="pickrow" id="fracPick">
+      <button type="button" aria-pressed="true" data-price="487" data-tk="BRKB">BRK.B 波克夏<span class="pp">US$487 · 不配息</span></button>
+      <button type="button" aria-pressed="false" data-price="685" data-tk="VOO">VOO 標普500<span class="pp">US$685 · 內扣 0.03%</span></button>
+      <button type="button" aria-pressed="false" data-price="294" data-tk="QQQM">QQQM 那斯達克100<span class="pp">US$294 · 內扣 0.15%</span></button>
+    </div>
+
+    <div class="frac-hero">
+      <div class="small">每月 <span id="fracTwd">NT$3,000</span> ≈ <span id="fracUsd">US$95</span>（匯率約 31.6）可買</div>
+      <div class="big" id="fracShares">約 0.195 股</div>
+      <div class="sub" id="fracMonths">大約 <strong>5</strong> 個月，可以湊滿 1 股 BRK.B。</div>
+    </div>
+
+    <p class="footnote-box">因為 VOO 約 US$685 且內扣僅 0.03% 而殖利率約 1.1%，那斯達克 100（Nasdaq-100）的 QQQM 約 US$294 且內扣 0.15%，低股息結構降低預扣衝擊，即讓複利跑在更乾淨的跑道上。股價與匯率每天變動，此處為示意。</p>
+  </div>
+
+  <h2 id="時間複利比選股更值得翻譯">時間複利比選股更值得翻譯</h2>
+
+  <p>因為標準普爾 500 長期年化約 7% 至 10%。每月 NT$5,000 持續 20 年代表本金 NT$1,200,000，在 8% 假設下期末約 NT$2,945,000，72 法則以 72 除以 8 得到約 9.0 年翻一倍，即理解持續投入本身即是策略。</p>
 
   <div class="panel">
     <div class="panel-title">時間是你最強的工具</div>
-    <p class="panel-note">拖動看看定期定額的複利效果。標普 500 長期年化約 7%～10%（含波動，過去績效不代表未來）。</p>
+    <p class="panel-note">拖動看看定期定額的複利效果。含波動，過去績效不代表未來。</p>
 
     <div class="ctrl">
       <div class="lab"><span>每月投入</span><span class="val" id="cmpAmtLab">NT$ 5,000</span></div>
@@ -703,160 +965,11 @@
 
     <div class="footnote-box"><strong>72 法則</strong>：用 72 ÷ 年化報酬率，約略得到資產翻倍年數。以目前 <span id="r72rate">8</span>%，約 <strong id="r72">9.0</strong> 年翻一倍。</div>
   </div>
-</section>
 
-<!-- ═════════════ Chapter 02 ═════════════ -->
-<section class="chapter" id="先把習慣翻譯成規則-才不會把台股直覺帶進美股">
-  <div class="chapter-num">02 · Differences · 台美股大不同</div>
-  <h1>先把習慣翻譯成規則，才不會把台股直覺帶進美股。</h1>
+  <h2 id="成本不能只看單一費率">成本不能只看單一費率</h2>
 
-  <p class="lead">顏色、漲跌幅、交易單位、交易時間與交割週期，是第一天就要記住的差異。其中最容易讓人按錯鍵的，是顏色。</p>
+  <p>因為小額常被低消與換匯價差侵蝕。定期定額例如富邦買進 0.1% 且 2025 年 11 月 1 日至 2026 年 12 月 31 日期間無低消，小額用定期定額的組合，即把錢花在刀口上。</p>
 
-  <div class="panel">
-    <div class="seg" role="group" aria-label="切換市場規則">
-      <button type="button" id="mTw" aria-pressed="false">台股規則</button>
-      <button type="button" id="mUs" aria-pressed="true">美股規則</button>
-    </div>
-    <p class="panel-note" id="flipCap">目前顯示 <strong>美股規則</strong>：<strong>綠色代表上漲</strong>、紅色代表下跌，和台股相反。</p>
-    <div class="flip-cards" data-market="us" id="colorDemo">
-      <div class="tick rise">
-        <div class="sym">AAPL · 蘋果</div>
-        <div class="pct">▲ +2.4%</div>
-        <div class="st">今天上漲</div>
-      </div>
-      <div class="tick fall">
-        <div class="sym">TSLA · 特斯拉</div>
-        <div class="pct">▼ -1.8%</div>
-        <div class="st">今天下跌</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>項目</th><th>台股習慣</th><th>美股規則</th></tr></thead>
-      <tbody>
-        <tr><td>漲跌顏色</td><td>紅漲綠跌</td><td>綠漲紅跌（相反！）</td></tr>
-        <tr><td>漲跌幅限制</td><td>10% 漲跌停</td><td>無限制，單日跌 30% 也可能</td></tr>
-        <tr><td>交易單位</td><td>1 張 = 1,000 股</td><td>1 股即可，複委託多可買碎股</td></tr>
-        <tr><td>交易時間（台灣時間）</td><td>09:00–13:30</td><td>夏令 21:30–04:00／冬令 22:30–05:00</td></tr>
-        <tr><td>交割制度</td><td>T+2 撥券</td><td>T+1 交割（2024/05/28 起）</td></tr>
-        <tr><td>配息稅務</td><td>併入綜合所得</td><td>股息預扣 30%（非居民）</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="takeaway">
-    <div class="takeaway-label">兩個一定要先記住的提醒</div>
-    <ul>
-      <li>「綠漲紅跌」是新手最常按錯鍵的地方。先在小額或模擬環境練習，確認方向再加碼。</li>
-      <li>美股沒有漲跌幅限制，跌起來不會自動停。所以下一段的「停損單」，是必學的保命技能。</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ═════════════ Chapter 03 ═════════════ -->
-<section class="chapter" id="用台幣帳戶買美股-把海外交易變回熟悉的流程">
-  <div class="chapter-num">03 · Sub-brokerage · 複委託完全解析</div>
-  <h1>用台幣帳戶買美股，把海外交易變回熟悉的流程。</h1>
-
-  <p class="lead">複委託，就是委託國內券商（富邦、永豐、國泰等）幫你下單到美國。你不必自己開海外券商、不必自己換匯匯出，用原本的台幣帳戶就能管理。</p>
-
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>面向</th><th>說明</th></tr></thead>
-      <tbody>
-        <tr><td>適合誰</td><td>小資族、想用台幣統一管理、不想處理複雜跨境金流、希望流程單純的人。每月定期定額尤其適合。</td></tr>
-        <tr><td>要先弄清楚的事（誠實版）</td><td>複委託一樣會被預扣 30% 股息稅。能不能買碎股、能不能設停損、能不能當日換股，<strong>各券商規定不同</strong>，開戶前先逐項問清楚，不要假設「都支援」。</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2 id="扣款用台幣還是美元">扣款用台幣，還是美元？</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>方式</th><th>做法</th><th>取捨</th></tr></thead>
-      <tbody>
-        <tr><td><span class="tag">台幣交割</span>存台幣，券商自動換匯</td><td>你只存新台幣，下單時選「台幣扣款」，券商依當下公告匯率自動換匯。</td><td>最省事，最適合定期定額，不必盯匯率。</td></tr>
-        <tr><td><span class="tag">外幣交割</span>自己換好美元再扣款</td><td>先自行換好美元存入，再以美元扣款。</td><td>好處是可以自己挑換匯時機；代價是要多管一個外幣帳戶。</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2 id="賣掉美股後錢什麼時候回來">賣掉美股後，錢什麼時候回來？</h2>
-  <div class="panel">
-    <p class="panel-note">點時間軸上的每一站看細節。重點：賣股不會馬上有錢可用。</p>
-    <div class="tl">
-      <div class="track">
-        <div class="fill" id="tlFill"></div>
-        <div class="nodes">
-          <div class="node active" data-step="0"></div>
-          <div class="node" data-step="1"></div>
-          <div class="node" data-step="2"></div>
-        </div>
-      </div>
-      <div class="labels">
-        <div class="lb"><div class="d">T 日</div><div class="t">交易日</div></div>
-        <div class="lb"><div class="d">T+1 日</div><div class="t">隔一個工作日</div></div>
-        <div class="lb"><div class="d">T+2 日</div><div class="t">款項可動用</div></div>
-      </div>
-    </div>
-    <div class="tl-detail">
-      <div class="dk" id="tlKey">T 日 · 交易日</div>
-      <div class="dv" id="tlVal">你在美股盤中賣出股票，成交。這天還拿不到可動用的現金。</div>
-    </div>
-    <p class="footnote-box">美股本身是 T+1（2024/05/28 起）。但台灣券商把款項入帳、轉成可動用或可提領的時間，可能再多一兩個工作日，依券商而定。想當日賣 A 買 B，要先確認是否有足夠額度或圈存。</p>
-  </div>
-
-  <h2 id="換匯怎麼設定要賭匯率低點嗎">換匯怎麼設定？要賭匯率低點嗎？</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>問題</th><th>做法</th></tr></thead>
-      <tbody>
-        <tr><td>領回台幣 vs 留著美元</td><td>選「台幣交割」，賣股後券商自動換回台幣入帳（會有匯差）；選「外幣交割」，款項留美元，下次可直接再投入。多數券商可事後變更。</td></tr>
-        <tr><td>不必賭匯率</td><td>定期定額長期下來會自然平均成本（含匯率），不需要押在某個低點。把心力放在「持續投入」，比猜匯率更重要。</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2 id="每月只想投一點點買得起嗎">每月只想投一點點，買得起嗎？</h2>
-  <div class="panel">
-    <div class="panel-title">碎股試算器</div>
-    <p class="panel-note">BRK.B 一股要 US$487？沒關係。複委託的定期定額支援碎股，買「零點幾股」一樣享有漲跌權益，資金 100% 投入。</p>
-
-    <div class="ctrl">
-      <div class="lab"><span>每月投入</span><span class="val" id="fracAmtLab">NT$ 3,000</span></div>
-      <input id="fracAmt" max="30000" min="300" step="300" type="range" value="3000">
-    </div>
-
-    <div class="pickrow" id="fracPick">
-      <button type="button" aria-pressed="true" data-price="487" data-tk="BRKB">BRK.B 波克夏<span class="pp">US$487 · 不配息</span></button>
-      <button type="button" aria-pressed="false" data-price="685" data-tk="VOO">VOO 標普500<span class="pp">US$685 · 殖利率約 1.1%</span></button>
-      <button type="button" aria-pressed="false" data-price="294" data-tk="QQQM">QQQM 那斯達克100<span class="pp">US$294 · 殖利率約 0.5%</span></button>
-    </div>
-
-    <div class="frac-hero">
-      <div class="small">每月 <span id="fracTwd">NT$3,000</span> ≈ <span id="fracUsd">US$95</span>（匯率約 31.6）可買</div>
-      <div class="big" id="fracShares">約 0.195 股</div>
-      <div class="sub" id="fracMonths">大約 <strong>5</strong> 個月，可以湊滿 1 股 BRK.B。</div>
-    </div>
-
-    <p class="footnote-box">股價與匯率每天變動，此處為示意，實際以下單當下為準。</p>
-  </div>
-
-  <h2 id="稅務怎麼辦要自己報稅嗎">稅務怎麼辦？要自己報稅嗎？</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>項目</th><th>說明</th></tr></thead>
-      <tbody>
-        <tr><td><strong>30%</strong> 股息預扣，券商自動處理</td><td>配息時券商會自動預扣 30%，你拿到的就是稅後金額，不必為了美股股息自己向美國報稅。台灣人此稅通常無法退。</td></tr>
-        <tr><td><strong>海外</strong>所得與最低稅負</td><td>台灣的海外所得要到一定金額才會計入基本所得額（最低稅負），多數小資族不會觸及。金額較大或不確定時，請洽會計師，別自己亂猜。</td></tr>
-        <tr><td><strong>遺產</strong>稅：金額變大時要留意</td><td>美國境內資產（含美股）若超過 US$60,000，繼承時可能須申報 <code>Form 706-NA</code>。複委託能簡化操作，但不會讓這件事消失，資產變大時務必諮詢專業人士。</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2 id="成本不只手續費">成本不只手續費</h2>
   <div class="panel">
     <p class="panel-note">比較券商時，別只看一個漂亮的費率。真正影響小額投資的，常是低消與匯差。（下列為相對示意，非實際比例）</p>
     <div class="bars">
@@ -866,97 +979,53 @@
       <div class="bar"><div class="bl">美國規費 SEC・TAF</div><div class="bt"><span class="bf" style="width:22%"></span></div></div>
       <div class="bar"><div class="bl">ETF 內扣費用</div><div class="bt"><span class="bf" style="width:40%"></span></div></div>
     </div>
-    <div class="footnote-box"><strong>小額原則</strong>：每月金額不大，就用定期定額（常免低消，例如富邦定期定額最低 US$10／NT$300，買進 0.1% 優惠，2025/11/01–2026/12/31 無低消）；單筆金額較大，再去比成交價、匯率與委託彈性。費率與優惠會變動，下單前以券商公告為準。</div>
+    <div class="footnote-box">費率與優惠會變動，下單前以券商公告為準。</div>
   </div>
-</section>
 
-<!-- ═════════════ Chapter 04 ═════════════ -->
-<section class="chapter" id="降低稅損控制風險-比選到飆股更實際">
-  <div class="chapter-num">04 · Strategy · 新手策略與風險控制</div>
-  <h1>降低稅損、控制風險，比選到飆股更實際。</h1>
+  <h2 id="配置上讓成長型資產擔任主引擎">配置上，讓成長型資產擔任主引擎</h2>
 
   <p class="badge-warn">⚠ 教育示例，非投資建議</p>
-
-  <p class="lead" id="一個節稅成長思路">原則：避開高配息（減少 30% 股息稅損），把重心放在股價成長。以下標的僅為說明此思路的示例，不是推薦。</p>
 
   <div class="table-wrap">
     <table>
       <thead><tr><th>角色</th><th>比重</th><th>標的</th><th>說明</th></tr></thead>
       <tbody>
-        <tr><td>核心</td><td>60%</td><td>BRK.B</td><td>波克夏海瑟威 B 股，不配息，等於 0 股息稅成本。長期由波克夏團隊操盤，風格穩健。</td></tr>
-        <tr><td>輔助</td><td>30%</td><td>VOO / QQQM</td><td>低股息的大盤型 ETF。VOO 內扣 0.03%、殖利率約 1.1%；QQQM 內扣 0.15%、殖利率約 0.5%，稅務影響小。</td></tr>
-        <tr><td>現金 / 避險</td><td>10%</td><td>美元定存 / 短債</td><td>美元定存或短期公債（如 SHV）。債息一樣預扣，主要功能是保值與保留銀彈，不是賺利差。</td></tr>
+        <tr><td>核心</td><td>60%</td><td>BRK.B</td><td>不配息，等於 0 股息稅成本，作不配息核心。</td></tr>
+        <tr><td>輔助</td><td>30%</td><td>VOO / QQQM</td><td>低股息的大盤型 ETF，稅務影響小。</td></tr>
+        <tr><td>銀彈</td><td>10%</td><td>美元定存 / 短債（如 SHV）</td><td>主要功能是保值與保留銀彈，不是賺利差。</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="callout">
-    <strong>較不偏好</strong>：高股息 ETF（如 SCHD）、REITs。配息率高，但對非居民被預扣 30% 後只剩約 7 成，稅後不划算。同樣的錢，成長型更能讓複利發揮。
+    因為高股息 ETF 例如 SCHD 與不動產投資信託（REITs，Real Estate Investment Trusts）會被預扣三成，讓成長型資產擔任主引擎，即減少稅務對複利的消耗。
   </div>
 
-  <h2 id="因為美股沒有漲跌幅停損單是保命符">因為美股沒有漲跌幅，停損單是保命符</h2>
-  <div class="panel">
-    <div class="sl-grid">
-      <div>
-        <div class="panel-title">停損單示意</div>
-        <p class="panel-note">買進後設定一個停損價，股價觸及就自動以市價賣出，避免一次大跌套牢。拖動看看不同停損幅度的觸發價。</p>
-        <div class="ctrl">
-          <div class="lab"><span>停損幅度</span><span class="val" id="slPctLab">10%</span></div>
-          <input id="slPct" max="25" min="3" step="1" type="range" value="10">
-        </div>
-        <div class="sl-readout">
-          <div class="ro"><div class="k">買進價</div><div class="v">$100</div></div>
-          <div class="ro trig"><div class="k">停損觸發價</div><div class="v" id="slTrig">$90</div></div>
-        </div>
-      </div>
-      <div>
-        <svg aria-hidden="true" id="slSvg" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto" viewBox="0 0 360 200"></svg>
-      </div>
-    </div>
-  </div>
-
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>風險</th><th>怎麼看待</th></tr></thead>
-      <tbody>
-        <tr><td>匯率風險</td><td>台幣升值時，同樣的美股換回台幣會變少。這是持有外幣資產的自然成本，長期定期定額可把它平滑掉，不必過度擔心。</td></tr>
-        <tr><td>過去績效 ≠ 未來</td><td>所有歷史報酬都不保證未來。把策略建立在「分散、低成本、長期、有停損」上，而不是建立在某一檔的故事上。</td></tr>
-      </tbody>
-    </table>
+  <div class="takeaway">
+    <div class="takeaway-label">擔心券商倒閉？</div>
+    投資人若擔心券商倒閉，美股登記在美國保管機構而與券商資產分離。因為美國投資人保護公司（SIPC，Securities Investor Protection Corporation）提供上限 US$500,000 含現金 US$250,000 的保障，保障範圍只涵蓋短缺，虧損不在保障內，把心力放回紀律即可。
   </div>
 </section>
 
 <!-- ═════════════ Chapter 05 ═════════════ -->
-<section class="chapter" id="新手最常問的五個問題">
-  <div class="chapter-num">05 · FAQ · 常見問題</div>
-  <h1>新手最常問的五個問題</h1>
+<section class="chapter" id="三個動作組成可執行的系統">
+  <div class="chapter-num">05 · Start · 開始行動</div>
+  <h1>三個動作，組成可執行的系統。</h1>
 
-  <p class="lead">開戶前後最常被問到的五題，一次講清楚。</p>
-
-  <details open><summary>Q1　複委託手續費會不會很貴？</summary><div><p>定期定額常有優惠（例如富邦買進 0.1%、無低消）；單筆買賣則有低消（約 US$20～30）。所以小額交易建議用定期定額。費率會變動，請以券商最新公告為準。</p></div></details>
-  <details><summary>Q2　可以當沖美股嗎？</summary><div><p>複委託一般不支援當沖，交割制度也限制當日反覆交易。建議以長期持有為主。各券商規定不同，想做特定操作前先確認。</p></div></details>
-  <details><summary>Q3　下單時間有限制嗎？</summary><div><p>多數券商可在美股開盤時段（台灣晚上）下單，通常也支援預約單，讓你白天先設定、晚上自動送出。</p></div></details>
-  <details><summary>Q4　我需要每天盯盤嗎？</summary><div><p>不用。設定好定期定額加上停損單之後，每月看一次、做必要調整即可。紀律比盯盤重要。</p></div></details>
-  <details><summary>Q5　如果券商倒閉，我的美股還在嗎？</summary><div><p>美股登記在美國保管機構，與券商自有資產分離。美國有 SIPC 保障（上限 US$500,000，含現金 US$250,000），保的是保管短缺，不是市場下跌造成的虧損。</p></div></details>
-</section>
-
-<!-- ═════════════ Chapter 06 ═════════════ -->
-<section class="chapter" id="建立你的美股系統">
-  <div class="chapter-num">06 · Start · 開始行動</div>
-  <h1>建立你的美股系統，從三個步驟開始。</h1>
-
-  <p class="lead">把前面五章收斂成可以今天就做的三個動作。</p>
+  <p class="lead">我們不必先成高手才能出發。因為開戶開通複委託並選定幣別，發薪後自動扣款買進核心標的，再設定 10% 至 15% 停損，三個動作即組成可執行的系統。</p>
 
   <ol>
-    <li><strong>開戶</strong>——找一家手續費友善的券商（富邦、永豐、國泰等），開通複委託功能，並設定好台幣或外幣交割。</li>
-    <li><strong>設定</strong>——每月發薪後固定扣款，自動買進你的核心標的（例如大盤型 ETF）。讓投資變成不需要意志力的習慣。</li>
-    <li><strong>保護</strong>——替持股設定停損（例如 10%～15%，可隨獲利上移）。因為美股沒有漲跌幅，這一步不能省。</li>
+    <li><strong>開戶</strong>——找一家手續費友善的券商（富邦、永豐、國泰等），開通複委託功能，並選定台幣或外幣交割。</li>
+    <li><strong>扣款</strong>——每月發薪後固定扣款，自動買進核心標的。讓投資變成不需要意志力的習慣。</li>
+    <li><strong>保護</strong>——替持股設定 10%～15% 停損，可隨獲利上移。因為美股沒有漲跌幅，這一步不能省。</li>
   </ol>
 
   <blockquote>
     「不用成為選股高手，只要成為紀律的執行者。」
     <span class="cite">— 本手冊的一句話總結</span>
   </blockquote>
+
+  <p class="note">延伸閱讀：<a href="https://www.pansci.asia/archives/sub-brokerage">複委託定期定額怎麼開始</a></p>
 
   <h2>免責聲明</h2>
   <p>本內容僅供教育與資訊參考，<strong>不構成任何投資、稅務或法律建議</strong>。文中所有標的（BRK.B、VOO、QQQM、SHV、SCHD 等）僅為說明示例，並非推薦。投資有賺有賠，過去績效不代表未來表現。費率、稅率、交易規則與行情可能隨時變動，請以主管機關與券商最新公告為準；重大決策請先諮詢合格專業人士。</p>
