@@ -1,7 +1,7 @@
 ---
 version: alpha
-name: One-Page Beginners Guide Mission Manual System
-source: /Users/vikinglu/Downloads/DESIGN-spacex.md adapted for this repository
+name: One-Page Beginners Guide Kami Document System
+source: .claude/skills/kami/references/design.md
 register: brand
 ---
 
@@ -9,79 +9,71 @@ register: brand
 
 ## Design Intent
 
-This project uses a mission-oriented black-and-white exhibition language inspired by aerospace campaign sites, adapted for Traditional Chinese long-form instructional guides. The goal is not to clone a space brand. The goal is to make each guide feel like a precise mission manual: cinematic first viewport, fixed overlay navigation, high-contrast industrial typography, minimal chrome, and scroll motion that clarifies progress.
+本專案的指南採用 **Kami 文件設計系統**：暖色 parchment 紙底、單一 ink-blue 強調色、serif 主導的層級，讀起來像一份排版講究的印刷文件，而不是一個網站頁面。目標是讓長篇教學在螢幕上好讀、在列印／存 PDF 時同樣成立。
+
+規格來源是本倉庫內建的 Kami 技能：`.claude/skills/kami/references/design.md`（色票、字級、元件、減法規則）與 `.claude/skills/kami/assets/templates/long-doc.html`（長文模板）。修改視覺前請先讀該兩份檔案。
 
 ## Non-Negotiables
 
-- Do not use SpaceX names, logos, rockets, Mars landscapes, launch imagery, or trademarked assets.
-- Keep the site static: HTML, CSS, JavaScript, GitHub Pages.
-- `PRODUCT.md` and `DESIGN.md` are required reading before future visual or animation changes.
-- Content is the product. Motion must never hide, delay, or replace readable article content.
-- Prefer black, white, near-black, and gray hairlines. Do not introduce decorative accent colors.
+- 每份指南是**自包含單檔 HTML**：CSS 內嵌於該檔案的 `<style>`，不依賴外部樣式表，可單獨分享、列印、搬移。
+- 保持靜態：HTML、CSS、JavaScript、GitHub Pages，無建置流程。
+- `PRODUCT.md` 與 `DESIGN.md` 是後續改版前的必讀。
+- 內容是產品。互動元件與樣式都不得延遲或遮擋內容。
+- 只用一個彩色強調色（ink-blue），其餘為暖灰階。
 
 ## Colors
 
 ```css
---canvas: #000000;
---canvas-soft: #080808;
---surface: #0d0d0f;
---surface-2: #151517;
---ink: #ffffff;
---ink-soft: #f0f0f2;
---muted: #a8a8ad;
---muted-2: #6e6e76;
---hairline: #3a3a3f;
---hairline-soft: rgba(255,255,255,.14);
---light: #ffffff;
---light-ink: #000000;
+--parchment: #f5f4ed;   /* 頁面底色，永遠不用純白 */
+--ivory:     #faf9f5;   /* 安靜的填色：callout、prompt、表面 */
+--inline-code-bg: #f0eee6;
+--near-black:#141413;   /* 內文 */
+--dark-warm: #3d3d3a;   /* 次級標題、導言 */
+--olive:     #504e49;   /* 引文、說明 */
+--stone:     #6b6a64;   /* 註解、圖說、頁碼 */
+--brand:     #1B365D;   /* 唯一強調色，佔版面 ≤5% */
+--border:    #e8e6dc;
+--border-soft:#e5e3d8;
+--tag-bg:    #E4ECF5;   /* tag 用實色，不用 rgba */
 ```
 
-Black and white do the brand work. Generated cinematic imagery may contribute grayscale depth, but UI chrome should not add colored glows, gradients, or decorative accents.
+暖灰階只能是帶黃褐調的暖灰，禁止冷調藍灰。
 
 ## Typography
 
-- Latin/UI chrome: `D-DIN`, `Arial Narrow`, `Arial`, `Verdana`, sans-serif fallback.
-- Traditional Chinese content: `Noto Sans TC`, `PingFang TC`, `Microsoft JhengHei`, system sans-serif.
-- Display headings use heavy condensed rhythm, uppercase for Latin fragments, tight line-height, positive tracking.
-- Chinese headings should preserve readability: use weight and scale instead of forcing Latin-style uppercase behavior.
-- No serif display pairing and no mono-as-decoration. Code blocks may use system mono only because they contain code/prompt text.
+- 一頁只用一種 serif：`--serif: "Iansui", "TsangerJinKai02", "Source Han Serif SC", …, Georgia, serif`；`--sans` 直接等於 `--serif`。
+- 繁中預設字體為 **Iansui（芫荽）**，本機未安裝時退到 CDN 的 TsangerJinKai02，再退到思源宋體系列。
+- serif 字重只用 400 與 500，不用合成粗體，不用斜體。
+- 字級（印刷 pt 基準）：封面標題 36pt／H1 22pt／H2 16pt／H3 13pt／內文 10.5pt／圖說與註解 9pt。
+- 中文內文 `letter-spacing: 0.3pt`、`line-height: 1.55`。
 
 ## Layout
 
-- Every page opens with a near full-viewport hero over a generated black-and-white mission-control background.
-- Top navigation is fixed/overlay style: black transparent surface, white text, minimal borders.
-- The main article uses a mission layout: sticky chapter rail on desktop, single readable column on mobile.
-- Content modules use small radii, hairline borders, and flat surfaces. Avoid soft shadows, glassmorphism, nested cards, and bento grids.
-- Tables, code blocks, details/FAQ, and callouts must remain highly readable on mobile.
+- 版面依 Kami long-doc：`.cover`（封面）→ `.toc`（目錄）→ 多個 `.chapter`。
+- 每個 `.chapter` 以 `.chapter-num` eyebrow 開場，接 `h1`，再接 `.lead` 導言。
+- 螢幕上以 `max-width: 210mm` 模擬 A4 置中；**必須另補 640px 以下的手機斷點**（Kami 原生模板沒有響應式規則，直接套用會讓手機左右各留 22mm）。
+- `@page` 印刷規則保留：A4、頁碼、`string-set` 跑馬頁首，讓瀏覽器列印／存 PDF 仍成立。
 
 ## Components
 
-### Mission Hero
-Full-bleed dark hero with a short label, one large H1, one lead paragraph, one ghost outlined CTA, and a compact guide telemetry strip. The CTA is a ghost pill. Do not place two competing CTAs in the hero.
-
-### Overlay Nav
-Fixed at top with wordmark and five guide links. On mobile the links scroll horizontally instead of becoming a dense menu.
-
-### Chapter Rail
-Desktop-only sticky rail generated from page headings. It provides progress orientation, not decoration. The active state is a white hairline/text shift, not a colored badge.
-
-### Article Modules
-Use flat panels only when they group real content: code/prompt blocks, tables, callouts, FAQ/details, workflow steps. Default long-form text should remain open and unboxed.
-
-### Motion
-Use GSAP core and ScrollTrigger:
-
-- Hero load: timeline for label, H1 lines, lead, CTA, telemetry.
-- Content reveal: `ScrollTrigger.batch()` for headings and major modules.
-- Progress: top scroll bar and chapter rail fill/scrub.
-- Parallax: subtle transform on hero media only.
-- Reduced motion: no large transforms, no scrub/parallax, immediate content visibility.
+- `.site-nav`：站內導覽列，parchment 底、hairline 底線、ink-blue 連結，`@media print` 隱藏。這是 Kami 原生沒有、本站自行新增的元件。
+- `.exec-summary`：首章的執行摘要框。
+- `.callout`：ivory 填色說明框。`.takeaway`：章節結論框，配 `.takeaway-label`。
+- `.prompt`：prompt／程式碼區塊，`figcaption` 在上、`pre` 在下、右上角 `.copy-button` 複製鈕（列印時隱藏）。
+- `table`：表頭 0.6pt hairline、列間 0.25pt，表頭不填色；外層包 `.table-wrap` 以支援窄螢幕橫向捲動。
+- `.tag`：實色 `--tag-bg` 背景的小標籤。`.hl`：ink-blue 行內強調。
+- `figure` + `figcaption`：圖表與圖說，圖說置中 9pt stone。
 
 ## Do Not
 
-- Do not add purple gradients, beige paper backgrounds, decorative orbs, glow blobs, glass cards, or icon grids.
-- Do not use gradient text.
-- Do not pair 1px borders with large soft card shadows.
-- Do not repeat tiny eyebrow labels above every section.
-- Do not convert long article sections into repeated equal cards.
-- Do not make animations a gate for content visibility.
+- 不要純白背景、不要冷調灰。
+- 不要 rgba 半透明填色的 tag（列印會出現雙重矩形）。
+- 不要用 `::before` 假造項目符號，用原生 list marker。
+- 不要在同一個元件上疊加品牌色線＋填色＋圓角＋外框。
+- 不要用裝飾性短線、eyebrow 裝飾 tick、標題側邊線製造層級——層級來自字級、留白、對齊。
+- 不要捲動進場動效或任何會讓內容延後可見的機制。
+
+## 尚未轉換與例外
+
+- **大阪旅遊系列**（`osaka-2026-trip-guide.html`、`osaka-2026-day1/3/4/5.html`、`osaka-2026-yakuza-nights.html`、`usj-vip-guide.html`）是自成一格的暖紙質旅遊手冊設計，各自內嵌樣式，**不在本規格範圍內**，也不要用本規格去改它們。
+- 轉換進行中：`guide.html`、`making-of.html`、`pcshop-ai-build-guide.html`、`us-stocks-guide.html` 仍使用舊的黑白 Mission Manual 系統（`assets/tokens.css`、`assets/style.css`、`assets/deck.js`）。四頁全部轉為 Kami 後，那三個共用檔即可刪除。
