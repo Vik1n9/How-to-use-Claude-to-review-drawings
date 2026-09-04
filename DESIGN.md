@@ -73,7 +73,19 @@ register: brand
 - 不要用裝飾性短線、eyebrow 裝飾 tick、標題側邊線製造層級——層級來自字級、留白、對齊。
 - 不要捲動進場動效或任何會讓內容延後可見的機制。
 
-## 尚未轉換與例外
+## 適用範圍與例外
 
-- **大阪旅遊系列**（`osaka-2026-trip-guide.html`、`osaka-2026-day1/3/4/5.html`、`osaka-2026-yakuza-nights.html`、`usj-vip-guide.html`）是自成一格的暖紙質旅遊手冊設計，各自內嵌樣式，**不在本規格範圍內**，也不要用本規格去改它們。
-- 轉換進行中：`guide.html`、`making-of.html`、`pcshop-ai-build-guide.html`、`us-stocks-guide.html` 仍使用舊的黑白 Mission Manual 系統（`assets/tokens.css`、`assets/style.css`、`assets/deck.js`）。四頁全部轉為 Kami 後，那三個共用檔即可刪除。
+本規格適用於以下六份指南，全部已轉為 Kami：`us-stocks-guide.html`、`guide.html`、`making-of.html`、`pcshop-ai-build-guide.html`、`beauty-manual-ai-guide.html`、`deeptutor-guide.html`。
+
+**例外**：大阪旅遊系列（`osaka-2026-trip-guide.html`、`osaka-2026-day1/3/4/5.html`、`osaka-2026-yakuza-nights.html`、`usj-vip-guide.html`）是自成一格的暖紙質旅遊手冊設計，各自內嵌樣式，**不在本規格範圍內**，也不要用本規格去改它們。
+
+舊的黑白 Mission Manual 系統（`assets/tokens.css`、`assets/style.css`、`assets/deck.js`）已隨轉換完成刪除，需要時可從 git 歷史取回。
+
+## 互動元件
+
+Kami 文件模板本身沒有互動元件規範。本站保留的互動（美股頁的複利試算、漲跌色對照、交割時間軸、碎股試算、停損模擬；製作幕後與 PCShop 的前後對照切換）以下列原則納入 Kami：
+
+- 面板用 `.panel`（ivory 底、無外框），滑桿 `accent-color` 用 ink-blue。
+- SVG 圖表只用 ink-blue（線）＋暖灰（輔助線）＋白底，不引入新色階。
+- 兩個語意性例外：漲跌顏色對照必須維持綠／紅（那是內容本身，不是裝飾）；停損觸發線用 Kami 已註冊的 `--breaking` 暖褐色系表示風險。
+- 互動只增強理解，不得成為讀到內容的前提；列印時切換鈕隱藏、預設展開。

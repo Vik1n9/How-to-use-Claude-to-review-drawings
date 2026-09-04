@@ -1,119 +1,614 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<!-- ==================================================================
+     LONG DOCUMENT · parchment design system · zh-TW
+     消防製圖人員的 Codex GUI 輔助審圖工作流手冊
+     ================================================================== -->
+<html lang="zh-TW">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="消防專業人員用 Codex Windows App 建立案件資料夾、工作日誌、本機 Git 版本與 AI 輔助初審流程的入門工作流手冊。" name="description"/>
+<meta charset="UTF-8">
 <title>消防製圖人員的 Codex GUI 輔助審圖工作流手冊</title>
-<link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
-<link href="favicon.ico" rel="alternate icon"/>
-<link href="assets/tokens.css" rel="stylesheet"/>
-<link href="assets/style.css" rel="stylesheet"/>
+<meta name="description" content="消防專業人員用 Codex Windows App 建立案件資料夾、工作日誌、本機 Git 版本與 AI 輔助初審流程的入門工作流手冊。">
+<meta name="keywords" content="Codex, 消防審圖, AI 輔助初審, AGENTS.md, 工作日誌, Git">
+<meta name="generator" content="Kami">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="alternate icon" href="favicon.ico">
+<style>
+  /* Regular weight */
+  @font-face {
+    font-family: "TsangerJinKai02";
+    src: url("https://cdn.jsdelivr.net/gh/tw93/Kami@main/assets/fonts/TsangerJinKai02-W04.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  /* Bold weight - W05 for all bold variants */
+  @font-face {
+    font-family: "TsangerJinKai02";
+    src: url("https://cdn.jsdelivr.net/gh/tw93/Kami@main/assets/fonts/TsangerJinKai02-W05.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @page {
+    size: A4;
+    margin: 20mm 22mm 22mm 22mm;
+    background: #f5f4ed;
+
+    @top-right {
+      content: string(section-title);
+      font-family: "Iansui", "TsangerJinKai02", "Source Han Serif SC",
+                   "Noto Serif CJK SC", "Songti TC", "Songti SC", Georgia, serif;
+      font-size: 8pt;
+      color: #6b6a64;
+    }
+
+    @bottom-center {
+      content: counter(page) "  ·  Codex 輔助審圖工作流";
+      font-family: "Iansui", "TsangerJinKai02", "Source Han Serif SC",
+                   "Noto Serif CJK SC", "Songti TC", "Songti SC", Georgia, serif;
+      font-size: 9pt;
+      color: #6b6a64;
+    }
+  }
+
+  @page:first {
+    @top-right { content: ""; }
+    @bottom-center { content: ""; }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --parchment: #f5f4ed;
+    --ivory:     #faf9f5;
+    --inline-code-bg: #f0eee6;
+    --near-black:#141413;
+    --dark-warm: #3d3d3a;
+    --olive:     #504e49;
+    --stone:     #6b6a64;
+    --brand:     #1B365D;
+    --border:    #e8e6dc;
+    --border-soft:#e5e3d8;
+    --tag-bg:    #E4ECF5;
+    --serif: "Iansui", "TsangerJinKai02", "Source Han Serif SC", "Source Han Serif CN", "Noto Serif CJK SC", "Noto Serif SC", "Songti TC", "Songti SC", "STSong", Georgia, serif;
+    --sans: var(--serif);
+
+    --rhythm-module:  14pt;
+    --rhythm-section: 18pt;
+  }
+
+  html, body { background: var(--parchment); }
+
+  @media screen {
+    body { max-width: 210mm; margin: 0 auto; padding: 20mm 22mm 22mm 22mm; }
+  }
+
+  body {
+    color: var(--near-black);
+    font-family: var(--serif);
+    font-size: 10.5pt;
+    line-height: 1.55;
+    letter-spacing: 0.3pt;
+    widows: 3;
+    orphans: 3;
+  }
+
+  .sans {
+    font-family: var(--sans);
+  }
+
+  /* ========== SITE NAV（螢幕限定，列印時隱藏） ========== */
+  .site-nav {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10pt 18pt;
+    flex-wrap: wrap;
+    padding-bottom: 8pt;
+    border-bottom: 0.6pt solid var(--border);
+    font-size: 9pt;
+    letter-spacing: 0.3pt;
+  }
+  .site-nav-brand { color: var(--brand); font-weight: 500; }
+  .site-nav-links { display: flex; flex-wrap: wrap; gap: 6pt 14pt; }
+  .site-nav-links a { color: var(--stone); text-decoration: none; }
+  .site-nav-links a:hover { color: var(--brand); }
+  .site-nav-links a[aria-current="page"] { color: var(--near-black); }
+  @media print { .site-nav { display: none; } }
+
+  /* ========== COVER ========== */
+  .cover {
+    min-height: 240mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40mm 0 0 0;
+    break-after: page;
+  }
+  .cover-eyebrow {
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--brand);
+    letter-spacing: 1.5pt;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 18pt;
+  }
+  .cover-title {
+    font-size: 36pt;
+    font-weight: 500;
+    color: var(--near-black);
+    line-height: 1.15;
+    letter-spacing: 0.3pt;
+    margin-bottom: 16pt;
+  }
+  .cover-sub {
+    font-family: var(--sans);
+    font-size: 14pt;
+    color: var(--olive);
+    line-height: 1.5;
+    max-width: 85%;
+    margin-bottom: 30pt;
+  }
+  .cover-meta {
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--stone);
+    line-height: 1.5;
+  }
+  .cover-meta strong {
+    color: var(--dark-warm);
+    font-weight: 500;
+  }
+
+  /* ========== TOC ========== */
+  .toc { break-after: page; }
+  .toc h2 {
+    font-size: 22pt;
+    font-weight: 500;
+    margin-bottom: var(--rhythm-module);
+  }
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6pt 0;
+    border-bottom: 0.3pt dotted var(--border);
+    font-size: 11pt;
+  }
+  .toc-item:last-of-type { border-bottom: none; }
+  .toc-num {
+    color: var(--brand);
+    font-weight: 500;
+    min-width: 30pt;
+  }
+  .toc-title {
+    flex: 1;
+    color: var(--near-black);
+    padding-left: 6pt;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 12pt;
+  }
+  .toc-title[href]::after {
+    content: target-counter(attr(href), page);
+    color: var(--stone);
+    font-variant-numeric: tabular-nums;
+    margin-left: auto;
+  }
+
+  /* ========== HEADINGS ========== */
+  h1 {
+    font-size: 22pt;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0 0 10pt 0;
+    color: var(--near-black);
+    break-after: avoid;
+    string-set: section-title content();
+  }
+
+  h2 {
+    font-size: 16pt;
+    font-weight: 500;
+    line-height: 1.25;
+    margin: 24pt 0 8pt 0;
+    color: var(--near-black);
+    break-after: avoid;
+  }
+
+  h3 {
+    font-size: 13pt;
+    font-weight: 500;
+    line-height: 1.3;
+    margin: 18pt 0 6pt 0;
+    color: var(--dark-warm);
+    break-after: avoid;
+  }
+
+  h4 {
+    font-size: 11pt;
+    font-weight: 500;
+    line-height: 1.35;
+    margin: 14pt 0 5pt 0;
+    color: var(--olive);
+    break-after: avoid;
+  }
+
+  .chapter-num {
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--brand);
+    letter-spacing: 1pt;
+    text-transform: uppercase;
+    margin-bottom: 6pt;
+  }
+
+  /* ========== PARAGRAPHS ========== */
+  p {
+    margin: 0 0 10pt 0;
+    line-height: 1.55;
+    color: var(--near-black);
+    widows: 2;
+    orphans: 2;
+  }
+
+  .lead {
+    font-size: 12pt;
+    line-height: 1.55;
+    color: var(--dark-warm);
+    margin-bottom: var(--rhythm-module);
+  }
+
+  .hl { color: var(--brand); font-weight: 500; }
+  strong { font-weight: 500; }
+
+  .note {
+    font-size: 9pt;
+    color: var(--stone);
+    margin-bottom: var(--rhythm-module);
+  }
+
+  a { color: var(--brand); }
+
+  /* ========== LISTS ========== */
+  ul, ol {
+    margin: 6pt 0 10pt 0;
+    padding-left: 20pt;
+    line-height: 1.55;
+  }
+  ul li::marker { color: var(--brand); }
+  ol li::marker { color: var(--brand); font-weight: 500; }
+
+  /* ========== CODE / PROMPT ========== */
+  code {
+    font-family: "JetBrains Mono", "SF Mono", Consolas,
+                 "Iansui", "TsangerJinKai02", "Source Han Serif SC",
+                 "Noto Serif CJK SC", "Songti SC", monospace;
+    font-size: 9pt;
+    background: var(--inline-code-bg);
+    padding: 1pt 4pt;
+    border-radius: 2pt;
+    color: var(--dark-warm);
+  }
+  pre {
+    font-family: "JetBrains Mono", "SF Mono", Consolas,
+                 "Iansui", "TsangerJinKai02", "Source Han Serif SC",
+                 "Noto Serif CJK SC", "Songti SC", monospace;
+    font-size: 9pt;
+    line-height: 1.5;
+    background: var(--ivory);
+    border-radius: 4pt;
+    padding: 10pt 14pt;
+    margin: 0;
+    white-space: pre-wrap;
+    color: var(--near-black);
+    break-inside: avoid;
+  }
+  pre code { background: transparent; padding: 0; font-size: inherit; }
+
+  .prompt {
+    position: relative;
+    margin: 12pt 0;
+    break-inside: avoid;
+  }
+  .prompt figcaption {
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: var(--stone);
+    text-align: left;
+    margin: 0 0 4pt 0;
+    padding-right: 52pt;
+  }
+  .copy-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-family: var(--sans);
+    font-size: 8.5pt;
+    color: var(--brand);
+    background: var(--ivory);
+    border: 0.5pt solid var(--border);
+    border-radius: 3pt;
+    padding: 2pt 8pt;
+    cursor: pointer;
+  }
+  .copy-button:hover { background: var(--tag-bg); }
+  @media print { .copy-button { display: none; } }
+
+  /* ========== TABLE ========== */
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 12pt 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+    break-inside: avoid;
+  }
+  table th {
+    text-align: left;
+    font-weight: 500;
+    color: var(--dark-warm);
+    padding: 6pt 8pt;
+    border-bottom: 0.6pt solid var(--border);
+    background: transparent;
+  }
+  table td {
+    padding: 5pt 8pt;
+    border-bottom: 0.25pt solid var(--border);
+    vertical-align: top;
+  }
+
+  /* ========== CALLOUT ========== */
+  .callout {
+    background: var(--ivory);
+    padding: 10pt 14pt;
+    border-radius: 3pt;
+    margin: 12pt 0;
+    line-height: 1.55;
+    break-inside: avoid;
+  }
+
+  .takeaway {
+    background: var(--ivory);
+    border-radius: 4pt;
+    padding: 10pt 14pt;
+    margin: 14pt 0;
+    break-inside: avoid;
+  }
+  .takeaway-label {
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: var(--brand);
+    letter-spacing: 0.5pt;
+    text-transform: uppercase;
+    margin-bottom: 4pt;
+  }
+
+  /* ========== TAG ========== */
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--brand);
+    font-family: var(--sans);
+    font-size: 9pt;
+    font-weight: 500;
+    padding: 1pt 6pt;
+    border-radius: 3pt;
+    margin-right: 4pt;
+  }
+
+  /* ========== EXECUTIVE SUMMARY ========== */
+  .exec-summary {
+    background: var(--ivory);
+    border-radius: 6pt;
+    padding: 16pt 20pt;
+    margin: 14pt 0;
+    break-inside: avoid;
+  }
+  .exec-summary h2 {
+    margin-top: 0;
+    font-size: 13pt;
+  }
+
+  /* ========== FAQ / DETAILS ========== */
+  details {
+    border-bottom: 0.25pt solid var(--border);
+    padding: 7pt 0;
+    break-inside: avoid;
+  }
+  details summary {
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--dark-warm);
+    list-style: none;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before {
+    content: "＋";
+    color: var(--brand);
+    margin-right: 6pt;
+  }
+  details[open] summary::before { content: "－"; }
+  details > div { margin-top: 6pt; }
+  @media print { details > div { display: block !important; } }
+
+  /* ========== CHAPTER BREAK ========== */
+  .chapter { break-before: page; }
+
+  /* ========== 手機（Kami 版面預設模擬 A4，需另補窄螢幕規則） ========== */
+  @media screen and (max-width: 640px) {
+    body { padding: 16px 18px 32px; font-size: 11pt; }
+    .cover { min-height: auto; padding-top: 14mm; }
+    .cover-title { font-size: 26pt; }
+    .cover-sub { font-size: 12pt; max-width: 100%; }
+    .cover-eyebrow { margin-bottom: 12pt; }
+    h1 { font-size: 19pt; }
+    h2 { font-size: 14pt; }
+    .lead { font-size: 11.5pt; }
+    .table-wrap table { min-width: 480px; }
+  }
+</style>
 </head>
 <body>
-<div aria-hidden="true" class="progress" id="progress"></div>
-<header aria-label="全站導覽" class="site-header">
-<div aria-label="One-Page Beginners Guide" class="brand"><span aria-hidden="true" class="brand-mark"></span><span>One-Page Beginners Guide</span></div>
-<nav aria-label="指南列表" class="site-nav"><a class="nav-link" href="us-stocks-guide.html">美股入門</a><a class="nav-link" href="guide.html">AI 審圖</a><a class="nav-link" href="making-of.html">製作幕後</a><a class="nav-link" href="pcshop-ai-build-guide.html">PCShop</a><a class="nav-link" href="beauty-manual-ai-guide.html">美容說明書</a><a class="nav-link" href="deeptutor-guide.html">DeepTutor</a><a class="nav-link" href="usj-vip-guide.html">USJ VIP</a></nav>
-</header>
-<section class="mission-hero" id="top">
-<div aria-hidden="true" class="hero-media" data-hero-media=""></div>
-<div class="hero-inner">
-<p class="mission-kicker">GUIDE 02 / FIRE REVIEW AI</p>
-<h1><span class="line">Codex 輔助審圖工作流</span></h1>
-<p class="hero-lead">給第一次接觸 AI 工具的消防專業人員：用 Windows 圖形介面建立案件資料夾、讓 Codex 協助初審、同步留下工作日誌與本機版本紀錄。</p>
-<a class="btn" href="#重要聲明">進入流程</a>
-<div aria-label="指南摘要" class="hero-telemetry"><span>GUI 優先</span><span>案件資料夾</span><span>工作日誌</span><span>人工複核</span></div>
-</div>
-<div aria-hidden="true" class="scrollcue">Scroll</div>
+
+<!-- ═════════════ SITE NAV ═════════════ -->
+<nav class="site-nav" aria-label="全站導覽">
+  <span class="site-nav-brand">One-Page Beginners Guide</span>
+  <span class="site-nav-links">
+    <a href="us-stocks-guide.html">美股入門</a>
+    <a href="guide.html" aria-current="page">AI 審圖</a>
+    <a href="making-of.html">製作幕後</a>
+    <a href="pcshop-ai-build-guide.html">PCShop</a>
+    <a href="beauty-manual-ai-guide.html">美容說明書</a>
+    <a href="deeptutor-guide.html">DeepTutor</a>
+    <a href="usj-vip-guide.html">USJ VIP</a>
+  </span>
+</nav>
+
+<!-- ═════════════ COVER ═════════════ -->
+<section class="cover">
+  <div>
+    <div class="cover-eyebrow">Fire Review AI · 審圖工作流手冊</div>
+    <div class="cover-title">Codex 輔助審圖工作流</div>
+    <div class="cover-sub">給第一次接觸 AI 工具的消防專業人員：用 Windows 圖形介面建立案件資料夾、讓 Codex 協助初審、同步留下工作日誌與本機版本紀錄。</div>
+  </div>
+  <div class="cover-meta">
+    <strong>GUI 優先 · 案件資料夾 · 工作日誌 · 人工複核</strong><br>
+    指南 02 · One-Page Beginners Guide<br>
+    本手冊所稱「審圖」為 AI 輔助初步檢查，不等同正式審查或簽證
+  </div>
 </section>
-<main class="mission-layout">
-<aside aria-label="章節導覽" class="chapter-rail">
-<div class="chapter-title">Mission Index</div>
-<div aria-hidden="true" class="chapter-progress"><span></span></div>
-<ol class="chapter-list">
-<li><a class="chapter-link" href="#重要聲明">重要聲明</a></li>
-<li><a class="chapter-link" href="#整體流程一覽">整體流程一覽</a></li>
-<li><a class="chapter-link" href="#第一章認識-codex-gui-工作方式">第一章：認識 Codex GUI</a></li>
-<li><a class="chapter-link" href="#第二章建立案件資料管理架構">第二章：案件資料管理</a></li>
-<li><a class="chapter-link" href="#第三章建立-codex-工作設定">第三章：Codex 工作設定</a></li>
-<li><a class="chapter-link" href="#第四章建立版本與日誌習慣">第四章：版本與日誌</a></li>
-<li><a class="chapter-link" href="#第五章審圖實戰工作流">第五章：審圖實戰</a></li>
-<li><a class="chapter-link" href="#第六章人工複核與交付">第六章：人工複核</a></li>
-<li><a class="chapter-link" href="#第七章常見問題">第七章：常見問題</a></li>
-<li><a class="chapter-link" href="#審圖工作流程總結">流程總結</a></li>
-</ol>
-</aside>
-<article class="guide-article" id="guide-content">
-<main>
-<article class="content-shell">
-<div class="content">
-<h1 data-reveal="mask" id="消防製圖人員的-codex-gui-輔助審圖工作流手冊">消防製圖人員的 Codex GUI 輔助審圖工作流手冊</h1>
 
-<h2 data-reveal="mask" id="重要聲明">重要聲明</h2>
-<p data-d="1" data-reveal="">本手冊中的 AI 工具只能作為輔助初審工具，最終判斷仍需由具備資格與責任的消防設備師或相關專業人員確認。Codex 可以協助整理圖面、建立索引、讀取可見資訊、產出草稿與日誌，但法規條文、距離計算、設備配置意見，都必須回到原圖、正式法規與專業判斷進行人工複核。本手冊所稱「審圖」是指「AI 輔助初步檢查」，不等同於正式審查、簽證或任何法定審核程序。</p>
-<aside class="callout" data-reveal=""><span class="label">使用原則</span>新手不要先學一堆指令。先學會把案件資料整理好、用 Codex App 打開正確資料夾、看懂它改了什麼、留下日誌與版本，才是能長期使用的工作流。</aside>
+<!-- ═════════════ TOC ═════════════ -->
+<section class="toc">
+  <h2>目錄</h2>
+  <div class="toc-item"><span class="toc-num">01</span><a class="toc-title" href="#重要聲明">重要聲明</a></div>
+  <div class="toc-item"><span class="toc-num">02</span><a class="toc-title" href="#整體流程一覽">整體流程一覽</a></div>
+  <div class="toc-item"><span class="toc-num">03</span><a class="toc-title" href="#第一章認識-codex-gui-工作方式">第一章：認識 Codex GUI 工作方式</a></div>
+  <div class="toc-item"><span class="toc-num">04</span><a class="toc-title" href="#第二章建立案件資料管理架構">第二章：建立案件資料管理架構</a></div>
+  <div class="toc-item"><span class="toc-num">05</span><a class="toc-title" href="#第三章建立-codex-工作設定">第三章：建立 Codex 工作設定</a></div>
+  <div class="toc-item"><span class="toc-num">06</span><a class="toc-title" href="#第四章建立版本與日誌習慣">第四章：建立版本與日誌習慣</a></div>
+  <div class="toc-item"><span class="toc-num">07</span><a class="toc-title" href="#第五章審圖實戰工作流">第五章：審圖實戰工作流</a></div>
+  <div class="toc-item"><span class="toc-num">08</span><a class="toc-title" href="#第六章人工複核與交付">第六章：人工複核與交付</a></div>
+  <div class="toc-item"><span class="toc-num">09</span><a class="toc-title" href="#第七章常見問題">第七章：常見問題</a></div>
+  <div class="toc-item"><span class="toc-num">10</span><a class="toc-title" href="#審圖工作流程總結">審圖工作流程總結</a></div>
+</section>
 
-<h2 data-reveal="mask" id="整體流程一覽">整體流程一覽</h2>
-<div class="table-wrap" data-d="1" data-reveal=""><table><thead><tr><th>階段</th><th>你要做的事</th><th>Codex 協助的事</th><th>產出</th></tr></thead><tbody>
-<tr><td data-label="階段">1. 工具準備</td><td data-label="你要做的事">安裝 Codex Windows App，登入 OpenAI / ChatGPT 帳號</td><td data-label="Codex 協助的事">提供 GUI 對話、檔案預覽、差異審閱與 Git 功能</td><td data-label="產出">可開啟本機案件資料夾</td></tr>
-<tr><td data-label="階段">2. 案件開案</td><td data-label="你要做的事">用檔案總管建立總資料夾與單案資料夾</td><td data-label="Codex 協助的事">檢查資料夾是否完整、補齊模板檔</td><td data-label="產出"><code>案件說明.md</code>、<code>AGENTS.md</code>、<code>案件進度.md</code></td></tr>
-<tr><td data-label="階段">3. 版本與日誌</td><td data-label="你要做的事">每完成一段工作就要求建立版本存檔</td><td data-label="Codex 協助的事">初始化本機 Git、顯示變更、提交版本、更新工作日誌</td><td data-label="產出">可回查的版本與每日誌</td></tr>
-<tr><td data-label="階段">4. 輔助初審</td><td data-label="你要做的事">提供圖面、確認圖層、查證法規、決定正式意見</td><td data-label="Codex 協助的事">建立索引、分析可見圖面、整理疑點、輸出草稿</td><td data-label="產出">AI 輔助審查意見草稿</td></tr>
-</tbody></table></div>
+<!-- ═════════════ Chapter 01 ═════════════ -->
+<section class="chapter" id="重要聲明">
+  <div class="chapter-num">01 · Scope · 重要聲明</div>
+  <h1>重要聲明</h1>
 
-<h2 data-reveal="mask" id="第一章認識-codex-gui-工作方式">第一章：認識 Codex GUI 工作方式</h2>
-<p data-reveal="">Codex 是 OpenAI 的 AI 工作代理。對新手來說，建議優先使用 Windows App：它可以用圖形介面開啟專案資料夾、在同一個視窗裡和 Codex 對話、檢查它產生或修改的檔案，並透過內建 Git 功能留下版本紀錄。</p>
+  <p class="lead">本手冊中的 AI 工具只能作為輔助初審工具，最終判斷仍需由具備資格與責任的消防設備師或相關專業人員確認。Codex 可以協助整理圖面、建立索引、讀取可見資訊、產出草稿與日誌，但法規條文、距離計算、設備配置意見，都必須回到原圖、正式法規與專業判斷進行人工複核。本手冊所稱「審圖」是指「AI 輔助初步檢查」，不等同於正式審查、簽證或任何法定審核程序。</p>
 
-<h3 data-reveal="" id="step-1安裝-codex-windows-app">Step 1：安裝 Codex Windows App</h3>
-<p data-reveal="">操作方式盡量用圖形介面完成：</p>
-<ul data-reveal="">
-<li>1. 打開瀏覽器，前往 OpenAI Codex 官方頁面或 Microsoft Store 的 Codex App 頁面。</li>
-<li>2. 點擊 Windows 版本下載或安裝按鈕。</li>
-<li>3. 安裝完成後，從 Windows 開始功能表搜尋「Codex」並開啟。</li>
-<li>4. 依畫面提示登入你的 OpenAI / ChatGPT 帳號。</li>
-</ul>
-<p data-reveal=""><strong>確認成功：</strong>畫面出現 Codex App 主視窗，可以新增或開啟專案，並看到對話輸入區。</p>
+  <div class="takeaway">
+    <div class="takeaway-label">使用原則</div>
+    新手不要先學一堆指令。先學會把案件資料整理好、用 Codex App 打開正確資料夾、看懂它改了什麼、留下日誌與版本，才是能長期使用的工作流。
+  </div>
+</section>
 
-<h3 data-reveal="" id="step-2先理解-codex-不是正式審查者">Step 2：先理解 Codex 不是正式審查者</h3>
-<div class="grid-3" data-reveal="">
-<div class="card"><h4>Codex 擅長</h4><p>整理大量檔案、建立索引、比對文字、產生表格、協助寫日誌與草稿。</p></div>
-<div class="card"><h4>你必須決定</h4><p>圖面版本是否正確、設備圖例是否對應、法規條文是否適用、正式缺失是否成立。</p></div>
-<div class="card"><h4>禁止交給 AI 決定</h4><p>正式審查結論、簽證責任、法律效果、未查證的條號與無圖面依據的推定。</p></div>
-</div>
+<!-- ═════════════ Chapter 02 ═════════════ -->
+<section class="chapter" id="整體流程一覽">
+  <div class="chapter-num">02 · Overview · 整體流程一覽</div>
+  <h1>整體流程一覽</h1>
 
-<h3 data-reveal="" id="step-3用-codex-app-開啟資料夾">Step 3：用 Codex App 開啟資料夾</h3>
-<p data-reveal="">每次工作都要讓 Codex 站在正確的案件資料夾裡。不要把整個 C 槽或雜亂的下載資料夾交給 Codex。</p>
-<ul data-reveal="">
-<li>1. 在 Codex App 首頁選擇「Add project」、「Open folder」或類似的開啟資料夾按鈕。</li>
-<li>2. 選擇本案資料夾，例如 <code>C:\消防審圖案件\2026-0615_忠孝案_辦公室</code>。</li>
-<li>3. 新開一個 Local thread。新手先使用 Local，不要一開始就使用多個背景工作。</li>
-<li>4. 保持預設沙盒與審核權限；若 Codex 要修改或執行動作，先看清楚它要做什麼再核准。</li>
-</ul>
+  <p class="lead">四個階段各自要做什麼、Codex 幫得上什麼、留下什麼產出。</p>
 
-<div class="loop" aria-label="Codex GUI 工作循環" data-reveal="">
-<b>開啟資料夾</b><span>→</span><b>輸入 Prompt</b><span>→</span><b>審閱變更</b><span>→</span><b>人工確認</b><span>→</span><b>輸出報告／日誌</b>
-</div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>階段</th><th>你要做的事</th><th>Codex 協助的事</th><th>產出</th></tr></thead>
+      <tbody>
+        <tr><td>1. 工具準備</td><td>安裝 Codex Windows App，登入 OpenAI / ChatGPT 帳號</td><td>提供 GUI 對話、檔案預覽、差異審閱與 Git 功能</td><td>可開啟本機案件資料夾</td></tr>
+        <tr><td>2. 案件開案</td><td>用檔案總管建立總資料夾與單案資料夾</td><td>檢查資料夾是否完整、補齊模板檔</td><td><code>案件說明.md</code>、<code>AGENTS.md</code>、<code>案件進度.md</code></td></tr>
+        <tr><td>3. 版本與日誌</td><td>每完成一段工作就要求建立版本存檔</td><td>初始化本機 Git、顯示變更、提交版本、更新工作日誌</td><td>可回查的版本與每日誌</td></tr>
+        <tr><td>4. 輔助初審</td><td>提供圖面、確認圖層、查證法規、決定正式意見</td><td>建立索引、分析可見圖面、整理疑點、輸出草稿</td><td>AI 輔助審查意見草稿</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-<h2 data-reveal="mask" id="第二章建立案件資料管理架構">第二章：建立案件資料管理架構</h2>
-<p data-reveal="">審圖工作流最重要的不是第一句 Prompt，而是資料夾。資料夾整理得好，Codex 才知道哪裡是圖面、哪裡是法規、哪裡放報告、哪裡記錄進度。</p>
+<!-- ═════════════ Chapter 03 ═════════════ -->
+<section class="chapter" id="第一章認識-codex-gui-工作方式">
+  <div class="chapter-num">03 · Setup · 認識 Codex GUI</div>
+  <h1>第一章：認識 Codex GUI 工作方式</h1>
 
-<h3 data-reveal="" id="step-4建立總資料夾">Step 4：建立總資料夾</h3>
-<p data-reveal="">用 Windows 檔案總管建立固定位置：</p>
-<figure class="code-card" data-reveal=""><figcaption>總資料夾位置</figcaption><pre><code>C:\消防審圖案件\</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p data-reveal="">所有案件都放在這個總資料夾底下。不要把案件散在桌面、下載、Line 暫存或不同硬碟裡。</p>
+  <p class="lead">Codex 是 OpenAI 的 AI 工作代理。對新手來說，建議優先使用 Windows App：它可以用圖形介面開啟專案資料夾、在同一個視窗裡和 Codex 對話、檢查它產生或修改的檔案，並透過內建 Git 功能留下版本紀錄。</p>
 
-<h3 data-reveal="" id="step-5建立單案資料夾命名規則">Step 5：建立單案資料夾命名規則</h3>
-<p data-reveal="">每個案件用同一種命名格式，日後搜尋與排序會清楚很多。</p>
-<figure class="code-card" data-reveal=""><figcaption>單案資料夾命名</figcaption><pre><code>YYYY-MMDD_案件名稱_場所用途
+  <h2 id="step-1安裝-codex-windows-app">Step 1：安裝 Codex Windows App</h2>
+  <p>操作方式盡量用圖形介面完成：</p>
+  <ol>
+    <li>打開瀏覽器，前往 OpenAI Codex 官方頁面或 Microsoft Store 的 Codex App 頁面。</li>
+    <li>點擊 Windows 版本下載或安裝按鈕。</li>
+    <li>安裝完成後，從 Windows 開始功能表搜尋「Codex」並開啟。</li>
+    <li>依畫面提示登入你的 OpenAI / ChatGPT 帳號。</li>
+  </ol>
+  <p><strong>確認成功：</strong>畫面出現 Codex App 主視窗，可以新增或開啟專案，並看到對話輸入區。</p>
+
+  <h2 id="step-2先理解-codex-不是正式審查者">Step 2：先理解 Codex 不是正式審查者</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>分工</th><th>內容</th></tr></thead>
+      <tbody>
+        <tr><td>Codex 擅長</td><td>整理大量檔案、建立索引、比對文字、產生表格、協助寫日誌與草稿。</td></tr>
+        <tr><td>你必須決定</td><td>圖面版本是否正確、設備圖例是否對應、法規條文是否適用、正式缺失是否成立。</td></tr>
+        <tr><td>禁止交給 AI 決定</td><td>正式審查結論、簽證責任、法律效果、未查證的條號與無圖面依據的推定。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="step-3用-codex-app-開啟資料夾">Step 3：用 Codex App 開啟資料夾</h2>
+  <p>每次工作都要讓 Codex 站在正確的案件資料夾裡。不要把整個 C 槽或雜亂的下載資料夾交給 Codex。</p>
+  <ol>
+    <li>在 Codex App 首頁選擇「Add project」、「Open folder」或類似的開啟資料夾按鈕。</li>
+    <li>選擇本案資料夾，例如 <code>C:\消防審圖案件\2026-0615_忠孝案_辦公室</code>。</li>
+    <li>新開一個 Local thread。新手先使用 Local，不要一開始就使用多個背景工作。</li>
+    <li>保持預設沙盒與審核權限；若 Codex 要修改或執行動作，先看清楚它要做什麼再核准。</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Codex GUI 工作循環：</strong>開啟資料夾 → 輸入 Prompt → 審閱變更 → 人工確認 → 輸出報告／日誌
+  </div>
+</section>
+
+<!-- ═════════════ Chapter 04 ═════════════ -->
+<section class="chapter" id="第二章建立案件資料管理架構">
+  <div class="chapter-num">04 · Structure · 案件資料管理</div>
+  <h1>第二章：建立案件資料管理架構</h1>
+
+  <p class="lead">審圖工作流最重要的不是第一句 Prompt，而是資料夾。資料夾整理得好，Codex 才知道哪裡是圖面、哪裡是法規、哪裡放報告、哪裡記錄進度。</p>
+
+  <h2 id="step-4建立總資料夾">Step 4：建立總資料夾</h2>
+  <p>用 Windows 檔案總管建立固定位置：</p>
+  <figure class="prompt">
+    <figcaption>總資料夾位置</figcaption>
+    <pre><code>C:\消防審圖案件\</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
+  <p>所有案件都放在這個總資料夾底下。不要把案件散在桌面、下載、Line 暫存或不同硬碟裡。</p>
+
+  <h2 id="step-5建立單案資料夾命名規則">Step 5：建立單案資料夾命名規則</h2>
+  <p>每個案件用同一種命名格式，日後搜尋與排序會清楚很多。</p>
+  <figure class="prompt">
+    <figcaption>單案資料夾命名</figcaption>
+    <pre><code>YYYY-MMDD_案件名稱_場所用途
 
 範例：
 2026-0615_忠孝案_辦公室
 2026-0710_中山案_地下停車場
-2026-0822_信義案_百貨商場</code></pre><button class="copy-button" type="button">Copy</button></figure>
+2026-0822_信義案_百貨商場</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
 
-<h3 data-reveal="" id="step-6建立每案固定結構">Step 6：建立每案固定結構</h3>
-<figure class="code-card" data-reveal=""><figcaption>案件資料夾模板</figcaption><pre><code>C:\消防審圖案件\
+  <h2 id="step-6建立每案固定結構">Step 6：建立每案固定結構</h2>
+  <figure class="prompt">
+    <figcaption>案件資料夾模板</figcaption>
+    <pre><code>C:\消防審圖案件\
   2026-0615_案件名稱_場所用途\
     01_圖面輸入\
     02_法規參考\
@@ -122,25 +617,39 @@
     05_工作日誌\
     AGENTS.md
     案件說明.md
-    案件進度.md</code></pre><button class="copy-button" type="button">Copy</button></figure>
+    案件進度.md</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
 
-<div class="grid-3" data-reveal="">
-<div class="card"><h4>C:\消防審圖案件</h4><p>總資料夾。只放審圖案件，不放雜項下載。</p></div>
-<div class="card"><h4>2026-0615_案件名稱_場所用途</h4><p>單案資料夾。Codex 每次只開啟這一層。</p></div>
-<div class="card"><h4>固定子資料夾</h4><p>輸入、參考、暫存、輸出、日誌各有位置，避免報告與原圖混在一起。</p></div>
-</div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>層級</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td><code>C:\消防審圖案件</code></td><td>總資料夾。只放審圖案件，不放雜項下載。</td></tr>
+        <tr><td><code>2026-0615_案件名稱_場所用途</code></td><td>單案資料夾。Codex 每次只開啟這一層。</td></tr>
+        <tr><td>固定子資料夾</td><td>輸入、參考、暫存、輸出、日誌各有位置，避免報告與原圖混在一起。</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-<div class="table-wrap" data-reveal=""><table><thead><tr><th>項目</th><th>放什麼</th><th>注意事項</th></tr></thead><tbody>
-<tr><td data-label="項目"><code>01_圖面輸入</code></td><td data-label="放什麼">PDF、DXF、DWG 轉檔、PNG/JPG 截圖、局部放大圖</td><td data-label="注意事項">保留原始檔名，若有版次請不要刪掉版次資訊</td></tr>
-<tr><td data-label="項目"><code>02_法規參考</code></td><td data-label="放什麼">本案適用法規、內部審圖規則、常見缺失清單</td><td data-label="注意事項">只放你願意讓 Codex 參考的資料；過期法規要標註</td></tr>
-<tr><td data-label="項目"><code>03_AI分析暫存</code></td><td data-label="放什麼">Codex 產出的中間表格、座標整理、轉檔結果、臨時分析</td><td data-label="注意事項">暫存不等於正式成果，交付前要重新確認</td></tr>
-<tr><td data-label="項目"><code>04_審查報告輸出</code></td><td data-label="放什麼">AI 輔助審查意見草稿、人工修正版、最終附件</td><td data-label="注意事項">草稿檔名要清楚標示「AI輔助」與日期</td></tr>
-<tr><td data-label="項目"><code>05_工作日誌</code></td><td data-label="放什麼">每日工作紀錄、人工決策、待確認事項、會議或電話補充</td><td data-label="注意事項">每天一檔，日後回查最快</td></tr>
-</tbody></table></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>項目</th><th>放什麼</th><th>注意事項</th></tr></thead>
+      <tbody>
+        <tr><td><code>01_圖面輸入</code></td><td>PDF、DXF、DWG 轉檔、PNG/JPG 截圖、局部放大圖</td><td>保留原始檔名，若有版次請不要刪掉版次資訊</td></tr>
+        <tr><td><code>02_法規參考</code></td><td>本案適用法規、內部審圖規則、常見缺失清單</td><td>只放你願意讓 Codex 參考的資料；過期法規要標註</td></tr>
+        <tr><td><code>03_AI分析暫存</code></td><td>Codex 產出的中間表格、座標整理、轉檔結果、臨時分析</td><td>暫存不等於正式成果，交付前要重新確認</td></tr>
+        <tr><td><code>04_審查報告輸出</code></td><td>AI 輔助審查意見草稿、人工修正版、最終附件</td><td>草稿檔名要清楚標示「AI輔助」與日期</td></tr>
+        <tr><td><code>05_工作日誌</code></td><td>每日工作紀錄、人工決策、待確認事項、會議或電話補充</td><td>每天一檔，日後回查最快</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-<h3 data-reveal="" id="step-7建立案件說明">Step 7：建立案件說明</h3>
-<p data-reveal="">用記事本新增 <code>案件說明.md</code>，這是 Codex 理解本案背景的第一份文件。</p>
-<figure class="code-card" data-reveal=""><figcaption>案件說明.md 範本</figcaption><pre><code># 案件說明
+  <h2 id="step-7建立案件說明">Step 7：建立案件說明</h2>
+  <p>用記事本新增 <code>案件說明.md</code>，這是 Codex 理解本案背景的第一份文件。</p>
+  <figure class="prompt">
+    <figcaption>案件說明.md 範本</figcaption>
+    <pre><code># 案件說明
 
 ## 基本資料
 - 案件名稱：（填寫）
@@ -158,14 +667,23 @@
 
 ## 人工已確認事項
 - （例如：撒水頭圖塊為 SP）
-- （例如：本案圖面單位為 mm）</code></pre><button class="copy-button" type="button">Copy</button></figure>
+- （例如：本案圖面單位為 mm）</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
+</section>
 
-<h2 data-reveal="mask" id="第三章建立-codex-工作設定">第三章：建立 Codex 工作設定</h2>
-<p data-reveal="">Codex 會讀取專案資料夾中的 <code>AGENTS.md</code>，把它當成這個案件的工作規則。你可以把它想成「交代給 Codex 的審圖工作守則」。</p>
+<!-- ═════════════ Chapter 05 ═════════════ -->
+<section class="chapter" id="第三章建立-codex-工作設定">
+  <div class="chapter-num">05 · Config · Codex 工作設定</div>
+  <h1>第三章：建立 Codex 工作設定</h1>
 
-<h3 data-reveal="" id="step-8建立-agents-md">Step 8：建立 AGENTS.md</h3>
-<p data-reveal="">用記事本新增 <code>AGENTS.md</code>，存到單案資料夾最上層。注意副檔名是 <code>.md</code>，不是 <code>.txt</code>。</p>
-<figure class="code-card" data-reveal=""><figcaption>AGENTS.md 範本</figcaption><pre><code># 消防圖面輔助初審工作設定
+  <p class="lead">Codex 會讀取專案資料夾中的 <code>AGENTS.md</code>，把它當成這個案件的工作規則。你可以把它想成「交代給 Codex 的審圖工作守則」。</p>
+
+  <h2 id="step-8建立-agents-md">Step 8：建立 AGENTS.md</h2>
+  <p>用記事本新增 <code>AGENTS.md</code>，存到單案資料夾最上層。注意副檔名是 <code>.md</code>，不是 <code>.txt</code>。</p>
+  <figure class="prompt">
+    <figcaption>AGENTS.md 範本</figcaption>
+    <pre><code># 消防圖面輔助初審工作設定
 
 ## 角色
 - 你是協助消防專業人員整理圖面、建立索引、找出疑點、產生審查意見草稿的 AI 助手。
@@ -199,26 +717,39 @@
 ## 限制
 - AI 結果僅供輔助初審。
 - 不得將 AI 結果視為正式審查、簽證或法定審核。
-- 不得捏造法規條文、圖面尺寸、設備數量或人工未確認事項。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+- 不得捏造法規條文、圖面尺寸、設備數量或人工未確認事項。</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
 
-<h3 data-reveal="" id="step-9確認-codex-讀到設定">Step 9：確認 Codex 讀到設定</h3>
-<p data-reveal="">在 Codex App 開啟本案資料夾後，貼上這段提示詞。這一步只確認環境，不做審圖。</p>
-<figure class="code-card" data-reveal=""><figcaption>Prompt：確認工作設定</figcaption><pre><code>請先讀取目前案件資料夾的檔案與資料夾結構，確認你是否看到 AGENTS.md、案件說明.md、案件進度.md、01_圖面輸入、02_法規參考、03_AI分析暫存、04_審查報告輸出、05_工作日誌。
+  <h2 id="step-9確認-codex-讀到設定">Step 9：確認 Codex 讀到設定</h2>
+  <p>在 Codex App 開啟本案資料夾後，貼上這段提示詞。這一步只確認環境，不做審圖。</p>
+  <figure class="prompt">
+    <figcaption>Prompt：確認工作設定</figcaption>
+    <pre><code>請先讀取目前案件資料夾的檔案與資料夾結構，確認你是否看到 AGENTS.md、案件說明.md、案件進度.md、01_圖面輸入、02_法規參考、03_AI分析暫存、04_審查報告輸出、05_工作日誌。
 
 請用繁體中文回覆：
 1. 你看到的資料夾與檔案。
 2. 你從 AGENTS.md 理解到的工作規則。
 3. 目前缺少哪些必要資料。
 
-先不要審圖，也不要修改任何檔案。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p data-reveal=""><strong>為什麼這樣問：</strong>先確認 Codex 站在正確資料夾，也確認它理解「不確定就需確認」「每次要更新日誌」「不得直接下正式結論」這些底線。</p>
+先不要審圖，也不要修改任何檔案。</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
+  <p><strong>為什麼這樣問：</strong>先確認 Codex 站在正確資料夾，也確認它理解「不確定就需確認」「每次要更新日誌」「不得直接下正式結論」這些底線。</p>
+</section>
 
-<h2 data-reveal="mask" id="第四章建立版本與日誌習慣">第四章：建立版本與日誌習慣</h2>
-<p data-reveal="">審圖不是一次問完就結束。你需要知道每一天做了什麼、AI 改了什麼、人工確認了什麼、下一步卡在哪裡。這一章建立兩個習慣：本機 Git 版本存檔，以及工作日誌。</p>
+<!-- ═════════════ Chapter 06 ═════════════ -->
+<section class="chapter" id="第四章建立版本與日誌習慣">
+  <div class="chapter-num">06 · Versioning · 版本與日誌</div>
+  <h1>第四章：建立版本與日誌習慣</h1>
 
-<h3 data-reveal="" id="step-10建立案件進度總覽">Step 10：建立案件進度總覽</h3>
-<p data-reveal="">在單案資料夾建立 <code>案件進度.md</code>，它是整個案件的狀態總表。</p>
-<figure class="code-card" data-reveal=""><figcaption>案件進度.md 範本</figcaption><pre><code># 案件進度
+  <p class="lead">審圖不是一次問完就結束。你需要知道每一天做了什麼、AI 改了什麼、人工確認了什麼、下一步卡在哪裡。這一章建立兩個習慣：本機 Git 版本存檔，以及工作日誌。</p>
+
+  <h2 id="step-10建立案件進度總覽">Step 10：建立案件進度總覽</h2>
+  <p>在單案資料夾建立 <code>案件進度.md</code>，它是整個案件的狀態總表。</p>
+  <figure class="prompt">
+    <figcaption>案件進度.md 範本</figcaption>
+    <pre><code># 案件進度
 
 ## 目前狀態
 - 案件名稱：
@@ -241,11 +772,15 @@
 - （列出圖面、法規、單位、設備圖例、人工決策等待確認事項）
 
 ## 重要人工決策
-- （記錄由人決定的事項，不讓 AI 自行定案）</code></pre><button class="copy-button" type="button">Copy</button></figure>
+- （記錄由人決定的事項，不讓 AI 自行定案）</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
 
-<h3 data-reveal="" id="step-11建立每日工作日誌">Step 11：建立每日工作日誌</h3>
-<p data-reveal="">每日誌放在 <code>05_工作日誌</code>，檔名用日期開頭。Codex 每次完成一段工作後都要更新。</p>
-<figure class="code-card" data-reveal=""><figcaption>每日工作日誌範本</figcaption><pre><code># 2026-06-15 工作日誌
+  <h2 id="step-11建立每日工作日誌">Step 11：建立每日工作日誌</h2>
+  <p>每日誌放在 <code>05_工作日誌</code>，檔名用日期開頭。Codex 每次完成一段工作後都要更新。</p>
+  <figure class="prompt">
+    <figcaption>每日工作日誌範本</figcaption>
+    <pre><code># 2026-06-15 工作日誌
 
 ## 本日工作摘要
 -
@@ -266,11 +801,15 @@
 -
 
 ## 下一步
--</code></pre><button class="copy-button" type="button">Copy</button></figure>
+-</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
 
-<h3 data-reveal="" id="step-12用-codex-建立本機-git-版本">Step 12：用 Codex 建立本機 Git 版本</h3>
-<p data-reveal="">Git 是版本存檔系統。你不需要一開始就學會指令，只要先建立習慣：每完成一個階段，就請 Codex 幫你建立一個本機版本，並在 Codex 的 review pane 檢查有哪些變更。</p>
-<figure class="code-card" data-reveal=""><figcaption>Prompt：請 Codex 建立第一個版本</figcaption><pre><code>請協助我把這個案件資料夾建立成本機 Git 版本管理。
+  <h2 id="step-12用-codex-建立本機-git-版本">Step 12：用 Codex 建立本機 Git 版本</h2>
+  <p>Git 是版本存檔系統。你不需要一開始就學會指令，只要先建立習慣：每完成一個階段，就請 Codex 幫你建立一個本機版本，並在 Codex 的 review pane 檢查有哪些變更。</p>
+  <figure class="prompt">
+    <figcaption>Prompt：請 Codex 建立第一個版本</figcaption>
+    <pre><code>請協助我把這個案件資料夾建立成本機 Git 版本管理。
 
 請先檢查目前是否已經是 Git repository。
 如果還不是，請建立本機 Git repository。
@@ -278,27 +817,45 @@
 如果只有案件模板、AGENTS.md、案件說明.md、案件進度.md、工作日誌等開案資料，請建立第一次版本存檔，版本訊息使用：
 初始化案件資料夾與 Codex 審圖工作流
 
-完成後請更新案件進度.md 與今天的工作日誌。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p data-reveal=""><strong>為什麼這樣問：</strong>你不需要直接打指令，但要要求 Codex 先檢查、摘要、再建立版本。這樣每次存檔前你都知道它準備保存哪些變更。</p>
+完成後請更新案件進度.md 與今天的工作日誌。</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
+  <p><strong>為什麼這樣問：</strong>你不需要直接打指令，但要要求 Codex 先檢查、摘要、再建立版本。這樣每次存檔前你都知道它準備保存哪些變更。</p>
 
-<figure class="code-card" data-reveal=""><figcaption>Codex 可能會執行的版本指令（不用手打）</figcaption><pre><code>git init
+  <figure class="prompt">
+    <figcaption>Codex 可能會執行的版本指令（不用手打）</figcaption>
+    <pre><code>git init
 git status
 git add .
 git commit -m "初始化案件資料夾與 Codex 審圖工作流"
-git log --oneline</code></pre><button class="copy-button" type="button">Copy</button></figure>
+git log --oneline</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
 
-<div class="timeline" aria-label="Git 與工作日誌時間線" data-reveal="">
-<div class="timeitem"><div class="mark">01</div><div class="body"><h4>開案版本</h4><p>建立資料夾、案件說明、AGENTS.md、案件進度與第一篇日誌。</p></div></div>
-<div class="timeitem"><div class="mark">02</div><div class="body"><h4>索引版本</h4><p>完成檔案索引與缺資料清單，日誌記錄輸入檔案。</p></div></div>
-<div class="timeitem"><div class="mark">03</div><div class="body"><h4>分析版本</h4><p>完成 PDF / 圖片 / DXF 初步分析，人工確認圖層與單位。</p></div></div>
-<div class="timeitem"><div class="mark">04</div><div class="body"><h4>報告版本</h4><p>輸出審查意見草稿，日誌記錄待人工複核事項。</p></div></div>
-</div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>版本</th><th>階段</th><th>內容</th></tr></thead>
+      <tbody>
+        <tr><td>01</td><td>開案版本</td><td>建立資料夾、案件說明、AGENTS.md、案件進度與第一篇日誌。</td></tr>
+        <tr><td>02</td><td>索引版本</td><td>完成檔案索引與缺資料清單，日誌記錄輸入檔案。</td></tr>
+        <tr><td>03</td><td>分析版本</td><td>完成 PDF / 圖片 / DXF 初步分析，人工確認圖層與單位。</td></tr>
+        <tr><td>04</td><td>報告版本</td><td>輸出審查意見草稿，日誌記錄待人工複核事項。</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-<h2 data-reveal="mask" id="第五章審圖實戰工作流">第五章：審圖實戰工作流</h2>
-<p data-reveal="">這一章的 Prompt 可以直接貼到 Codex App。每段 Prompt 都要求 Codex 更新案件進度與每日誌，讓案件不只產出報告，也留下可追溯紀錄。</p>
+<!-- ═════════════ Chapter 07 ═════════════ -->
+<section class="chapter" id="第五章審圖實戰工作流">
+  <div class="chapter-num">07 · Workflow · 審圖實戰</div>
+  <h1>第五章：審圖實戰工作流</h1>
 
-<h3 data-reveal="" id="step-13建立檔案索引">Step 13：建立檔案索引</h3>
-<figure class="code-card" data-reveal=""><figcaption>Prompt：建立案件檔案索引</figcaption><pre><code>請讀取目前案件資料夾，包含 AGENTS.md、案件說明.md、案件進度.md、01_圖面輸入、02_法規參考。
+  <p class="lead">這一章的 Prompt 可以直接貼到 Codex App。每段 Prompt 都要求 Codex 更新案件進度與每日誌，讓案件不只產出報告，也留下可追溯紀錄。</p>
+
+  <h2 id="step-13建立檔案索引">Step 13：建立檔案索引</h2>
+  <figure class="prompt">
+    <figcaption>Prompt：建立案件檔案索引</figcaption>
+    <pre><code>請讀取目前案件資料夾，包含 AGENTS.md、案件說明.md、案件進度.md、01_圖面輸入、02_法規參考。
 
 請建立本案檔案索引，輸出表格欄位：
 1. 檔名
@@ -307,11 +864,15 @@ git log --oneline</code></pre><button class="copy-button" type="button">Copy</bu
 4. 可能用途
 5. 需要人工確認的地方
 
-請先不要產生審查結論。完成後請更新 案件進度.md 與今天的工作日誌，記錄本次建立了檔案索引，以及目前缺少或需確認的資料。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p data-reveal=""><strong>目的：</strong>先確認有哪些資料，不要讓 AI 還沒弄清楚圖面版本、格式、單位就開始判斷。</p>
+請先不要產生審查結論。完成後請更新 案件進度.md 與今天的工作日誌，記錄本次建立了檔案索引，以及目前缺少或需確認的資料。</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
+  <p><strong>目的：</strong>先確認有哪些資料，不要讓 AI 還沒弄清楚圖面版本、格式、單位就開始判斷。</p>
 
-<h3 data-reveal="" id="step-14pdf-圖片初審">Step 14：PDF / 圖片初審</h3>
-<figure class="code-card" data-reveal=""><figcaption>Prompt：PDF 與截圖初審</figcaption><pre><code>請先閱讀 01_圖面輸入 中的 PDF 與圖片截圖。
+  <h2 id="step-14pdf-圖片初審">Step 14：PDF / 圖片初審</h2>
+  <figure class="prompt">
+    <figcaption>Prompt：PDF 與截圖初審</figcaption>
+    <pre><code>請先閱讀 01_圖面輸入 中的 PDF 與圖片截圖。
 
 請只根據可見內容進行消防圖面輔助初審，不要猜測看不清楚的部分。
 
@@ -323,12 +884,19 @@ git log --oneline</code></pre><button class="copy-button" type="button">Copy</bu
 5. 下一步建議檢查項目
 
 請不要在這一步做精確距離判斷，除非圖面上已清楚標示尺寸。
-完成後請更新 案件進度.md 與今天的工作日誌。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p data-reveal=""><strong>目的：</strong>PDF 與截圖適合建立空間理解，但不一定適合精準量測。先看懂圖面，再決定要補哪些局部圖或 DXF 分析。</p>
+完成後請更新 案件進度.md 與今天的工作日誌。</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
+  <p><strong>目的：</strong>PDF 與截圖適合建立空間理解，但不一定適合精準量測。先看懂圖面，再決定要補哪些局部圖或 DXF 分析。</p>
 
-<h3 data-reveal="" id="step-15dxf-圖層與座標分析">Step 15：DXF 圖層與座標分析</h3>
-<aside class="callout" data-reveal=""><span class="label">人工守門點</span>圖層與圖塊對應一定要由人確認。Codex 可以推測「SP 可能是撒水頭」，但不能把推測直接當成正式設備辨識。</aside>
-<figure class="code-card" data-reveal=""><figcaption>Prompt：DXF 圖層與圖塊辨識</figcaption><pre><code>請讀取 01_圖面輸入 中的 DXF 檔案。
+  <h2 id="step-15dxf-圖層與座標分析">Step 15：DXF 圖層與座標分析</h2>
+  <div class="takeaway">
+    <div class="takeaway-label">人工守門點</div>
+    圖層與圖塊對應一定要由人確認。Codex 可以推測「SP 可能是撒水頭」，但不能把推測直接當成正式設備辨識。
+  </div>
+  <figure class="prompt">
+    <figcaption>Prompt：DXF 圖層與圖塊辨識</figcaption>
+    <pre><code>請讀取 01_圖面輸入 中的 DXF 檔案。
 
 請先列出：
 1. 圖層名稱
@@ -339,11 +907,15 @@ git log --oneline</code></pre><button class="copy-button" type="button">Copy</bu
 
 請先不要做距離計算，也不要下正式結論。
 請整理一份「需要人工確認的圖層對應清單」。
-完成後請更新 案件進度.md 與今天的工作日誌。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p data-reveal=""><strong>目的：</strong>先讓 Codex 把可能的圖層與圖塊列出來，再由消防專業人員確認。這一步可以避免後面用錯圖塊做距離計算。</p>
+完成後請更新 案件進度.md 與今天的工作日誌。</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
+  <p><strong>目的：</strong>先讓 Codex 把可能的圖層與圖塊列出來，再由消防專業人員確認。這一步可以避免後面用錯圖塊做距離計算。</p>
 
-<h3 data-reveal="" id="step-16人工確認後再計算">Step 16：人工確認後再計算</h3>
-<figure class="code-card" data-reveal=""><figcaption>Prompt：距離或數量檢查</figcaption><pre><code>我已人工確認以下圖層／圖塊對應：
+  <h2 id="step-16人工確認後再計算">Step 16：人工確認後再計算</h2>
+  <figure class="prompt">
+    <figcaption>Prompt：距離或數量檢查</figcaption>
+    <pre><code>我已人工確認以下圖層／圖塊對應：
 - （填寫：例如 SP = 撒水頭）
 - （填寫：例如 FD = 火警探測器）
 
@@ -361,11 +933,15 @@ git log --oneline</code></pre><button class="copy-button" type="button">Copy</bu
 7. 建議人工複核方式
 
 若單位、座標或圖層有任何疑問，請停止計算並列入需確認。
-完成後請更新 案件進度.md 與今天的工作日誌。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p data-reveal=""><strong>目的：</strong>這段 Prompt 把「人工確認」放在最前面，避免 AI 自己認定設備圖塊。計算結果仍要抽樣手算或用熟悉的 CAD 工具交叉確認。</p>
+完成後請更新 案件進度.md 與今天的工作日誌。</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
+  <p><strong>目的：</strong>這段 Prompt 把「人工確認」放在最前面，避免 AI 自己認定設備圖塊。計算結果仍要抽樣手算或用熟悉的 CAD 工具交叉確認。</p>
 
-<h3 data-reveal="" id="step-17法規對照">Step 17：法規對照</h3>
-<figure class="code-card" data-reveal=""><figcaption>Prompt：法規對照</figcaption><pre><code>請根據 02_法規參考 中的資料，對照目前圖面分析結果進行法規對照。
+  <h2 id="step-17法規對照">Step 17：法規對照</h2>
+  <figure class="prompt">
+    <figcaption>Prompt：法規對照</figcaption>
+    <pre><code>請根據 02_法規參考 中的資料，對照目前圖面分析結果進行法規對照。
 
 請不要引用你無法確認來源的條文。
 若參考資料不足以判斷，請明確列出需要人工查證的條文名稱、問題與建議查證方向。
@@ -379,11 +955,15 @@ git log --oneline</code></pre><button class="copy-button" type="button">Copy</bu
 - 建議處理
 - 人工複核重點
 
-完成後請更新 案件進度.md 與今天的工作日誌。</code></pre><button class="copy-button" type="button">Copy</button></figure>
-<p data-reveal=""><strong>目的：</strong>Codex 只能對照你提供的資料。正式條文仍要由人回到官方法規、主管機關解釋或內部審查標準確認。</p>
+完成後請更新 案件進度.md 與今天的工作日誌。</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
+  <p><strong>目的：</strong>Codex 只能對照你提供的資料。正式條文仍要由人回到官方法規、主管機關解釋或內部審查標準確認。</p>
 
-<h3 data-reveal="" id="step-18輸出審查意見草稿">Step 18：輸出審查意見草稿</h3>
-<figure class="code-card" data-reveal=""><figcaption>Prompt：輸出 AI 輔助審查意見草稿</figcaption><pre><code>請將目前審圖結果整理成 AI 輔助審查意見草稿，儲存到 04_審查報告輸出。
+  <h2 id="step-18輸出審查意見草稿">Step 18：輸出審查意見草稿</h2>
+  <figure class="prompt">
+    <figcaption>Prompt：輸出 AI 輔助審查意見草稿</figcaption>
+    <pre><code>請將目前審圖結果整理成 AI 輔助審查意見草稿，儲存到 04_審查報告輸出。
 
 檔名格式：
 YYYY-MM-DD_案件名稱_AI輔助審查意見草稿.md
@@ -401,28 +981,44 @@ YYYY-MM-DD_案件名稱_AI輔助審查意見草稿.md
 10. 人工複核清單
 
 請同時更新 案件進度.md 與今天的工作日誌，並請建立一個本機版本存檔。版本訊息建議為：
-輸出 AI 輔助審查意見草稿</code></pre><button class="copy-button" type="button">Copy</button></figure>
+輸出 AI 輔助審查意見草稿</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
+</section>
 
-<h2 data-reveal="mask" id="第六章人工複核與交付">第六章：人工複核與交付</h2>
-<h3 data-reveal="" id="看懂三種狀態">看懂三種狀態</h3>
-<div class="table-wrap" data-reveal=""><table><thead><tr><th>標籤</th><th>意思</th><th>你應該怎麼做</th></tr></thead><tbody>
-<tr><td data-label="標籤">符合</td><td data-label="意思">Codex 根據可見圖面與參考資料，判斷此項目看起來符合</td><td data-label="你應該怎麼做">仍需人工複核，確認圖面版本、設備對應與標準都正確</td></tr>
-<tr><td data-label="標籤">不符合</td><td data-label="意思">Codex 發現明顯疑點，判斷可能不符合</td><td data-label="你應該怎麼做">優先查證圖面依據，不要未確認就列為正式缺失</td></tr>
-<tr><td data-label="標籤">需確認</td><td data-label="意思">現有資料不足，或 AI 無法可靠判斷</td><td data-label="你應該怎麼做">列入追蹤清單，補圖、查法規或由專業人員決定</td></tr>
-</tbody></table></div>
+<!-- ═════════════ Chapter 08 ═════════════ -->
+<section class="chapter" id="第六章人工複核與交付">
+  <div class="chapter-num">08 · Review · 人工複核與交付</div>
+  <h1>第六章：人工複核與交付</h1>
 
-<h3 data-reveal="" id="人工複核清單">人工複核清單</h3>
-<div class="grid-2" data-reveal="">
-<div class="check"><span class="box">1</span><span>確認 Codex 讀取的是正確版本圖面，不是舊版、截圖草稿或錯案資料。</span></div>
-<div class="check"><span class="box">2</span><span>確認 DXF 單位、比例與座標倍率，必要時抽樣手算一到兩組距離。</span></div>
-<div class="check"><span class="box">3</span><span>確認設備圖塊辨識正確，尤其是撒水頭、探測器、消防栓、揚聲器與圖例對應。</span></div>
-<div class="check"><span class="box">4</span><span>逐條查證報告中引用的法規來源、條號與適用條件。</span></div>
-<div class="check"><span class="box">5</span><span>確認「不符合」都有明確圖面依據，不是 AI 的猜測或過度延伸。</span></div>
-<div class="check"><span class="box">6</span><span>確認「需確認」全部進入案件進度與日誌，不要在正式交付前遺漏。</span></div>
-</div>
+  <p class="lead">Codex 輸出的每個項目都帶一個狀態標籤，三種狀態各自對應不同的人工動作。</p>
 
-<h3 data-reveal="" id="交付前版本存檔">交付前版本存檔</h3>
-<figure class="code-card" data-reveal=""><figcaption>Prompt：交付前整理</figcaption><pre><code>請協助我進行交付前整理。
+  <h2 id="看懂三種狀態">看懂三種狀態</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>標籤</th><th>意思</th><th>你應該怎麼做</th></tr></thead>
+      <tbody>
+        <tr><td>符合</td><td>Codex 根據可見圖面與參考資料，判斷此項目看起來符合</td><td>仍需人工複核，確認圖面版本、設備對應與標準都正確</td></tr>
+        <tr><td>不符合</td><td>Codex 發現明顯疑點，判斷可能不符合</td><td>優先查證圖面依據，不要未確認就列為正式缺失</td></tr>
+        <tr><td>需確認</td><td>現有資料不足，或 AI 無法可靠判斷</td><td>列入追蹤清單，補圖、查法規或由專業人員決定</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="人工複核清單">人工複核清單</h2>
+  <ol>
+    <li>確認 Codex 讀取的是正確版本圖面，不是舊版、截圖草稿或錯案資料。</li>
+    <li>確認 DXF 單位、比例與座標倍率，必要時抽樣手算一到兩組距離。</li>
+    <li>確認設備圖塊辨識正確，尤其是撒水頭、探測器、消防栓、揚聲器與圖例對應。</li>
+    <li>逐條查證報告中引用的法規來源、條號與適用條件。</li>
+    <li>確認「不符合」都有明確圖面依據，不是 AI 的猜測或過度延伸。</li>
+    <li>確認「需確認」全部進入案件進度與日誌，不要在正式交付前遺漏。</li>
+  </ol>
+
+  <h2 id="交付前版本存檔">交付前版本存檔</h2>
+  <figure class="prompt">
+    <figcaption>Prompt：交付前整理</figcaption>
+    <pre><code>請協助我進行交付前整理。
 
 請檢查：
 1. 案件進度.md 是否更新到最新狀態。
@@ -432,19 +1028,36 @@ YYYY-MM-DD_案件名稱_AI輔助審查意見草稿.md
 
 請先用新手看得懂的方式摘要目前變更。
 如果我確認後，請建立本機版本存檔，版本訊息使用：
-完成 AI 輔助審查草稿與交付前整理</code></pre><button class="copy-button" type="button">Copy</button></figure>
+完成 AI 輔助審查草稿與交付前整理</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
+</section>
 
-<h2 data-reveal="mask" id="第七章常見問題">第七章：常見問題</h2>
-<details class="faq" data-reveal=""><summary>問題一：Codex 找不到我的圖面檔案</summary><div class="ans"><p>先確認你在 Codex App 開啟的是單案資料夾，不是總資料夾、桌面或下載資料夾。再用檔案總管確認圖面是否放在 <code>01_圖面輸入</code>。必要時請 Codex 重新列出資料夾結構，不要直接重問審圖問題。</p></div></details>
-<details class="faq" data-reveal=""><summary>問題二：Codex 沒有照 AGENTS.md 的規則做</summary><div class="ans"><p>請先確認 <code>AGENTS.md</code> 放在單案資料夾最上層，而且不是 <code>AGENTS.md.txt</code>。若剛修改過設定，重新開啟該案件資料夾或新開 thread，並要求 Codex 先摘要它讀到的工作規則。</p></div></details>
-<details class="faq" data-reveal=""><summary>問題三：PDF 或截圖看不清楚</summary><div class="ans"><p>不要要求 Codex 猜。請把該區域從 CAD 或 PDF 放大截圖，放到 <code>01_圖面輸入</code>，檔名加上樓層與區域，例如 <code>3F_東側撒水頭局部放大.png</code>，再請 Codex 只針對補圖重新檢查。</p></div></details>
-<details class="faq" data-reveal=""><summary>問題四：DXF 距離計算看起來不對</summary><div class="ans"><p>最常見原因是單位、比例或圖層對應錯誤。先在 <code>案件說明.md</code> 確認單位，再請 Codex 說明它使用的單位、圖層、公式與代入值。人工抽樣用 CAD 或手算比對，確認倍率正確後再繼續。</p></div></details>
-<details class="faq" data-reveal=""><summary>問題五：Codex 要修改或建立很多檔案，我該怎麼辦？</summary><div class="ans"><p>不要盲目核准。先要求 Codex 說明它準備修改哪些檔案、為什麼要修改、修改後會產生什麼。使用 review pane 檢查變更；只接受和本次工作相關的檔案。若不確定，請它先不要修改，只輸出計畫。</p></div></details>
-<details class="faq" data-reveal=""><summary>問題六：我需要學會所有 Git 指令嗎？</summary><div class="ans"><p>不需要。新手先學會三件事：請 Codex 建立版本、看懂變更摘要、在重要階段存檔。指令可以當作背景知識，真正操作由 Codex App 與 review pane 協助完成。</p></div></details>
+<!-- ═════════════ Chapter 09 ═════════════ -->
+<section class="chapter" id="第七章常見問題">
+  <div class="chapter-num">09 · FAQ · 常見問題</div>
+  <h1>第七章：常見問題</h1>
 
-<h2 data-reveal="mask" id="審圖工作流程總結">審圖工作流程總結</h2>
-<p data-reveal="">每次開始新案件，可以直接照這份清單執行。這份總結刻意寫成操作順序，不需要重新閱讀整份教學也能使用。</p>
-<figure class="code-card" data-reveal=""><figcaption>每次審圖參照清單</figcaption><pre><code># Codex 輔助消防審圖工作流程
+  <p class="lead">新手最常卡住的六件事，以及對應的處理方式。</p>
+
+  <details><summary>問題一：Codex 找不到我的圖面檔案</summary><div><p>先確認你在 Codex App 開啟的是單案資料夾，不是總資料夾、桌面或下載資料夾。再用檔案總管確認圖面是否放在 <code>01_圖面輸入</code>。必要時請 Codex 重新列出資料夾結構，不要直接重問審圖問題。</p></div></details>
+  <details><summary>問題二：Codex 沒有照 AGENTS.md 的規則做</summary><div><p>請先確認 <code>AGENTS.md</code> 放在單案資料夾最上層，而且不是 <code>AGENTS.md.txt</code>。若剛修改過設定，重新開啟該案件資料夾或新開 thread，並要求 Codex 先摘要它讀到的工作規則。</p></div></details>
+  <details><summary>問題三：PDF 或截圖看不清楚</summary><div><p>不要要求 Codex 猜。請把該區域從 CAD 或 PDF 放大截圖，放到 <code>01_圖面輸入</code>，檔名加上樓層與區域，例如 <code>3F_東側撒水頭局部放大.png</code>，再請 Codex 只針對補圖重新檢查。</p></div></details>
+  <details><summary>問題四：DXF 距離計算看起來不對</summary><div><p>最常見原因是單位、比例或圖層對應錯誤。先在 <code>案件說明.md</code> 確認單位，再請 Codex 說明它使用的單位、圖層、公式與代入值。人工抽樣用 CAD 或手算比對，確認倍率正確後再繼續。</p></div></details>
+  <details><summary>問題五：Codex 要修改或建立很多檔案，我該怎麼辦？</summary><div><p>不要盲目核准。先要求 Codex 說明它準備修改哪些檔案、為什麼要修改、修改後會產生什麼。使用 review pane 檢查變更；只接受和本次工作相關的檔案。若不確定，請它先不要修改，只輸出計畫。</p></div></details>
+  <details><summary>問題六：我需要學會所有 Git 指令嗎？</summary><div><p>不需要。新手先學會三件事：請 Codex 建立版本、看懂變更摘要、在重要階段存檔。指令可以當作背景知識，真正操作由 Codex App 與 review pane 協助完成。</p></div></details>
+</section>
+
+<!-- ═════════════ Chapter 10 ═════════════ -->
+<section class="chapter" id="審圖工作流程總結">
+  <div class="chapter-num">10 · Checklist · 流程總結</div>
+  <h1>審圖工作流程總結</h1>
+
+  <p class="lead">每次開始新案件，可以直接照這份清單執行。這份總結刻意寫成操作順序，不需要重新閱讀整份教學也能使用。</p>
+
+  <figure class="prompt">
+    <figcaption>每次審圖參照清單</figcaption>
+    <pre><code># Codex 輔助消防審圖工作流程
 
 ## A. 開案
 1. 在 C:\消防審圖案件\ 建立單案資料夾。
@@ -491,17 +1104,30 @@ YYYY-MM-DD_案件名稱_AI輔助審查意見草稿.md
 3. 檢查報告語氣，不得寫成 AI 已完成正式審查。
 4. 更新案件進度與每日工作日誌。
 5. 建立報告階段版本存檔。
-6. 由具備資格的人員確認正式審查意見。</code></pre><button class="copy-button" type="button">Copy</button></figure>
+6. 由具備資格的人員確認正式審查意見。</code></pre>
+    <button class="copy-button" type="button">複製</button>
+  </figure>
 
-<aside class="callout" data-reveal=""><span class="label">最後提醒</span>可重複的工作流比一次漂亮的 AI 回答更重要。每個案件都用同一套資料夾、同一份 AGENTS.md、同一個日誌規則、同一個版本節奏，日後才查得到進度、判斷依據與人工決策。</aside>
-</div>
-</article>
-</main>
-<footer class="footer" data-reveal="">Codex 輔助初審結果僅供內部檢查與討論，正式判斷仍需人工複核。本手冊適用對象為消防設備製圖與審圖相關人員。</footer>
-</article>
-</main>
-<script defer="" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script defer="" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script defer="" src="assets/deck.js"></script>
+  <div class="callout">
+    <strong>最後提醒：</strong>可重複的工作流比一次漂亮的 AI 回答更重要。每個案件都用同一套資料夾、同一份 AGENTS.md、同一個日誌規則、同一個版本節奏，日後才查得到進度、判斷依據與人工決策。
+  </div>
+
+  <p class="note">Codex 輔助初審結果僅供內部檢查與討論，正式判斷仍需人工複核。本手冊適用對象為消防設備製圖與審圖相關人員。</p>
+</section>
+
+<script>
+  document.querySelectorAll('.copy-button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var code = btn.parentElement.querySelector('code');
+      if (!code || !navigator.clipboard) return;
+      navigator.clipboard.writeText(code.innerText).then(function () {
+        var original = btn.textContent;
+        btn.textContent = '已複製';
+        setTimeout(function () { btn.textContent = original; }, 1600);
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
