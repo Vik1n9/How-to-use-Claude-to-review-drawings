@@ -501,7 +501,6 @@
   }
   .diagram-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .diagram { width: 100%; height: auto; display: block; }
-  @media screen and (max-width: 640px) { .diagram { min-width: 440px; } }
   @media print { .diagram { min-width: 0; } }
 
   /* ========== CHAPTER BREAK ========== */
@@ -517,7 +516,30 @@
     h1 { font-size: 19pt; }
     h2 { font-size: 14pt; }
     .lead { font-size: 11.5pt; }
-    .table-wrap table { min-width: 480px; }
+    /* 表格改為堆疊式：每列自成一組，欄名由 data-label 帶出，手機不需橫拖 */
+    .table-wrap { overflow-x: visible; }
+    .table-wrap table,
+    .table-wrap tbody,
+    .table-wrap tr,
+    .table-wrap td { display: block; width: 100%; }
+    .table-wrap thead { display: none; }
+    .table-wrap tr {
+      padding: 8pt 0;
+      border-bottom: 0.6pt solid var(--border);
+    }
+    .table-wrap tbody tr:last-child { border-bottom: none; }
+    .table-wrap td {
+      border: 0;
+      padding: 2pt 0;
+    }
+    .table-wrap td[data-label]::before {
+      content: attr(data-label);
+      display: block;
+      font-family: var(--sans);
+      font-size: 8.5pt;
+      color: var(--stone);
+      letter-spacing: 0.2pt;
+    }
   }
 </style>
 </head>
@@ -801,6 +823,19 @@
 </section>
 
 <script>
+  /* 手機版表格：把表頭寫進每個儲存格的 data-label，配合 CSS 改為堆疊顯示 */
+  document.querySelectorAll('.table-wrap table').forEach(function (table) {
+    var heads = Array.prototype.map.call(table.querySelectorAll('thead th'), function (th) {
+      return th.textContent.trim();
+    });
+    if (!heads.length) return;
+    Array.prototype.forEach.call(table.querySelectorAll('tbody tr'), function (tr) {
+      Array.prototype.forEach.call(tr.children, function (cell, i) {
+        if (heads[i]) cell.setAttribute('data-label', heads[i]);
+      });
+    });
+  });
+
   document.querySelectorAll('.copy-button').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var code = btn.parentElement.querySelector('code');

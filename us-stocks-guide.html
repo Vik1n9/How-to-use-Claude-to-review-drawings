@@ -657,7 +657,30 @@
     h1 { font-size: 19pt; }
     h2 { font-size: 14pt; }
     .lead { font-size: 11.5pt; }
-    .table-wrap table { min-width: 480px; }
+    /* 表格改為堆疊式：每列自成一組，欄名由 data-label 帶出，手機不需橫拖 */
+    .table-wrap { overflow-x: visible; }
+    .table-wrap table,
+    .table-wrap tbody,
+    .table-wrap tr,
+    .table-wrap td { display: block; width: 100%; }
+    .table-wrap thead { display: none; }
+    .table-wrap tr {
+      padding: 8pt 0;
+      border-bottom: 0.6pt solid var(--border);
+    }
+    .table-wrap tbody tr:last-child { border-bottom: none; }
+    .table-wrap td {
+      border: 0;
+      padding: 2pt 0;
+    }
+    .table-wrap td[data-label]::before {
+      content: attr(data-label);
+      display: block;
+      font-family: var(--sans);
+      font-size: 8.5pt;
+      color: var(--stone);
+      letter-spacing: 0.2pt;
+    }
   }
 </style>
 </head>
@@ -960,10 +983,12 @@
 
     <div class="readout">
       <div class="cell"><div class="rk">累積投入本金</div><div class="rv" id="cmpPrin">NT$ 1,200,000</div></div>
+      <div class="cell"><div class="rk">複利賺到的部分</div><div class="rv" id="cmpGain">NT$ 1,745,000</div></div>
       <div class="cell hi"><div class="rk">期末總值</div><div class="rv" id="cmpFv">NT$ 2,945,000</div></div>
     </div>
 
-    <div class="footnote-box"><strong>72 法則</strong>：用 72 ÷ 年化報酬率，約略得到資產翻倍年數。以目前 <span id="r72rate">8</span>%，約 <strong id="r72">9.0</strong> 年翻一倍。</div>
+    <div class="footnote-box"><strong>72 法則</strong>：用 72 ÷ 年化報酬率，約略得到<strong>單筆投入</strong>翻倍所需的年數。以目前 <span id="r72rate">8</span>%，一筆錢放著約 <strong id="r72">9.0</strong> 年翻一倍。<br>
+    定期定額不會照這個數字翻倍：每一筆投入放的時間長度都不同，最後一筆才剛投進去，平均只放了大約一半的年數。上面的期末總值是逐月以複利累計（月利率＝年化 ÷ 12）算出來的，同一筆總額若在第一天就一次投入，會成長到 <strong id="cmpLump">NT$ 0</strong>。</div>
   </div>
 
   <h2 id="成本不能只看單一費率">成本不能只看單一費率</h2>
@@ -1037,6 +1062,19 @@
 </section>
 
 <script>
+  /* 手機版表格：把表頭寫進每個儲存格的 data-label，配合 CSS 改為堆疊顯示 */
+  document.querySelectorAll('.table-wrap table').forEach(function (table) {
+    var heads = Array.prototype.map.call(table.querySelectorAll('thead th'), function (th) {
+      return th.textContent.trim();
+    });
+    if (!heads.length) return;
+    Array.prototype.forEach.call(table.querySelectorAll('tbody tr'), function (tr) {
+      Array.prototype.forEach.call(tr.children, function (cell, i) {
+        if (heads[i]) cell.setAttribute('data-label', heads[i]);
+      });
+    });
+  });
+
 (function () {
   "use strict";
   var fmtNT = function (n) { return 'NT$ ' + Math.round(n).toLocaleString('en-US'); };
@@ -1056,7 +1094,10 @@
       var fv = r > 0 ? m * ((Math.pow(1 + r, n) - 1) / r) : m * n;
       var prin = m * n;
       document.getElementById('cmpPrin').textContent = fmtNT(prin);
+      document.getElementById('cmpGain').textContent = fmtNT(fv - prin);
       document.getElementById('cmpFv').textContent = fmtNT(fv);
+      // 對照組：同樣的總額若在第一天一次投入，放滿全期的複利結果
+      document.getElementById('cmpLump').textContent = fmtNT(prin * Math.pow(1 + rate / 100, y));
       document.getElementById('r72rate').textContent = rate;
       document.getElementById('r72').textContent = (72 / rate).toFixed(1);
       var W = 400, H = 130, pad = 4, pts = [], pps = [], maxV = fv;
