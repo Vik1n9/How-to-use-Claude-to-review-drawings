@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<!-- ==================================================================
+     LONG DOCUMENT · parchment design system · zh-TW
+     DeepTutor 論文科普改寫
+     ================================================================== -->
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>AI 家教為何教不會？港大 DeepTutor：給 AI 一本會長大的病歷本</title>
+<meta name="author" content="語料訓練改寫">
+<meta name="description" content="港大 DeepTutor 用 270 場模擬家教課證明：給 AI 一本會長大的病歷本，整體教學品質從 3.53 提升到 3.91，解題能力平均進步 29.4%。">
+<meta name="keywords" content="AI 家教, DeepTutor, 個人化學習, 知識圖譜, 軌跡森林, AI 代理人">
+<meta name="generator" content="Kami">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="alternate icon" href="favicon.ico">
+<style>
+  /* Regular weight */
+  @font-face {
+    font-family: "TsangerJinKai02";
+    src: url("https://cdn.jsdelivr.net/gh/tw93/Kami@main/assets/fonts/TsangerJinKai02-W04.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  /* Bold weight - W05 for all bold variants */
+  @font-face {
+    font-family: "TsangerJinKai02";
+    src: url("https://cdn.jsdelivr.net/gh/tw93/Kami@main/assets/fonts/TsangerJinKai02-W05.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @page {
+    size: A4;
+    margin: 20mm 22mm 22mm 22mm;
+    background: #f5f4ed;
+
+    @top-right {
+      content: string(section-title);
+      font-family: "Iansui", "TsangerJinKai02", "Source Han Serif SC",
+                   "Noto Serif CJK SC", "Songti TC", "Songti SC", Georgia, serif;
+      font-size: 8pt;
+      color: #6b6a64;
+    }
+
+    @bottom-center {
+      content: counter(page) "  ·  AI 家教為何教不會？";
+      font-family: "Iansui", "TsangerJinKai02", "Source Han Serif SC",
+                   "Noto Serif CJK SC", "Songti TC", "Songti SC", Georgia, serif;
+      font-size: 9pt;
+      color: #6b6a64;
+    }
+  }
+
+  @page:first {
+    @top-right { content: ""; }
+    @bottom-center { content: ""; }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --parchment: #f5f4ed;
+    --ivory:     #faf9f5;
+    --near-black:#141413;
+    --dark-warm: #3d3d3a;
+    --olive:     #504e49;
+    --stone:     #6b6a64;
+    --brand:     #1B365D;
+    --border:    #e8e6dc;
+    --border-soft:#e5e3d8;
+    --tag-bg:    #E4ECF5;
+    --serif: "Iansui", "TsangerJinKai02", "Source Han Serif SC", "Source Han Serif CN", "Noto Serif CJK SC", "Noto Serif SC", "Songti TC", "Songti SC", "STSong", Georgia, serif;
+    --sans: var(--serif);
+
+    --rhythm-module:  14pt;
+    --rhythm-section: 18pt;
+  }
+
+  html, body { background: var(--parchment); }
+
+  @media screen {
+    body { max-width: 210mm; margin: 0 auto; padding: 20mm 22mm 22mm 22mm; }
+  }
+
+  body {
+    color: var(--near-black);
+    font-family: var(--serif);
+    font-size: 10.5pt;
+    line-height: 1.55;
+    letter-spacing: 0.3pt;
+    widows: 3;
+    orphans: 3;
+  }
+
+  .sans {
+    font-family: var(--sans);
+  }
+
+  /* ========== SITE NAV（螢幕限定，列印時隱藏） ========== */
+  .site-nav {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10pt 18pt;
+    flex-wrap: wrap;
+    padding-bottom: 8pt;
+    border-bottom: 0.6pt solid var(--border);
+    font-size: 9pt;
+    letter-spacing: 0.3pt;
+  }
+  .site-nav-brand { color: var(--brand); font-weight: 500; }
+  .site-nav-links { display: flex; flex-wrap: wrap; gap: 6pt 14pt; }
+  .site-nav-links a { color: var(--stone); text-decoration: none; }
+  .site-nav-links a:hover { color: var(--brand); }
+  .site-nav-links a[aria-current="page"] { color: var(--near-black); }
+  @media print { .site-nav { display: none; } }
+
+  /* ========== COVER ========== */
+  .cover {
+    min-height: 240mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40mm 0 0 0;
+    break-after: page;
+  }
+  .cover-eyebrow {
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--brand);
+    letter-spacing: 1.5pt;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 18pt;
+  }
+  .cover-title {
+    font-size: 36pt;
+    font-weight: 500;
+    color: var(--near-black);
+    line-height: 1.15;
+    letter-spacing: 0.3pt;
+    margin-bottom: 16pt;
+  }
+  .cover-sub {
+    font-family: var(--sans);
+    font-size: 14pt;
+    color: var(--olive);
+    line-height: 1.5;
+    max-width: 85%;
+    margin-bottom: 30pt;
+  }
+  .cover-meta {
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--stone);
+    line-height: 1.5;
+  }
+  .cover-meta strong {
+    color: var(--dark-warm);
+    font-weight: 500;
+  }
+
+  /* ========== TOC ========== */
+  .toc { break-after: page; }
+  .toc h2 {
+    font-size: 22pt;
+    font-weight: 500;
+    margin-bottom: var(--rhythm-module);
+  }
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6pt 0;
+    border-bottom: 0.3pt dotted var(--border);
+    font-size: 11pt;
+  }
+  .toc-item:last-of-type { border-bottom: none; }
+  .toc-num {
+    color: var(--brand);
+    font-weight: 500;
+    min-width: 30pt;
+  }
+  .toc-title {
+    flex: 1;
+    color: var(--near-black);
+    padding-left: 6pt;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 12pt;
+  }
+  .toc-title[href]::after {
+    content: target-counter(attr(href), page);
+    color: var(--stone);
+    font-variant-numeric: tabular-nums;
+    margin-left: auto;
+  }
+
+  /* ========== HEADINGS ========== */
+  h1 {
+    font-size: 22pt;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0 0 10pt 0;
+    color: var(--near-black);
+    break-after: avoid;
+    string-set: section-title content();
+  }
+
+  .running-title { string-set: section-title content(); }
+
+  h2 {
+    font-size: 16pt;
+    font-weight: 500;
+    line-height: 1.25;
+    margin: 24pt 0 8pt 0;
+    color: var(--near-black);
+    break-after: avoid;
+  }
+
+  h3 {
+    font-size: 13pt;
+    font-weight: 500;
+    line-height: 1.3;
+    margin: 18pt 0 6pt 0;
+    color: var(--dark-warm);
+    break-after: avoid;
+  }
+
+  .chapter-num {
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--brand);
+    letter-spacing: 1pt;
+    text-transform: uppercase;
+    margin-bottom: 6pt;
+  }
+
+  /* ========== PARAGRAPHS ========== */
+  p {
+    margin: 0 0 10pt 0;
+    line-height: 1.55;
+    color: var(--near-black);
+    widows: 2;
+    orphans: 2;
+  }
+
+  .lead {
+    font-size: 12pt;
+    line-height: 1.55;
+    color: var(--dark-warm);
+    margin-bottom: var(--rhythm-module);
+  }
+
+  .hl { color: var(--brand); font-weight: 500; }
+  strong { font-weight: 500; }
+
+  .note {
+    font-size: 9pt;
+    color: var(--stone);
+    margin-bottom: var(--rhythm-module);
+  }
+
+  /* ========== LISTS ========== */
+  ul, ol {
+    margin: 6pt 0 10pt 0;
+    padding-left: 20pt;
+    line-height: 1.55;
+  }
+  ul li::marker { color: var(--brand); }
+  ol li::marker { color: var(--brand); font-weight: 500; }
+
+  /* ========== QUOTE ========== */
+  blockquote, .quote {
+    margin: 12pt 16pt;
+    padding: 4pt 0;
+    color: var(--olive);
+    line-height: 1.55;
+    break-inside: avoid;
+  }
+  blockquote .cite, .quote .cite {
+    display: block;
+    font-size: 9pt;
+    color: var(--stone);
+    margin-top: 4pt;
+  }
+
+  /* ========== CODE ========== */
+  code {
+    font-family: "JetBrains Mono", "SF Mono", Consolas,
+                 "Iansui", "TsangerJinKai02", "Source Han Serif SC",
+                 "Noto Serif CJK SC", "Songti SC", monospace;
+    font-size: 9pt;
+    background: var(--ivory);
+    padding: 1pt 4pt;
+    border-radius: 2pt;
+    color: var(--dark-warm);
+  }
+  pre {
+    font-family: "JetBrains Mono", "SF Mono", Consolas,
+                 "Iansui", "TsangerJinKai02", "Source Han Serif SC",
+                 "Noto Serif CJK SC", "Songti SC", monospace;
+    font-size: 9pt;
+    line-height: 1.5;
+    background: var(--ivory);
+    border-radius: 4pt;
+    padding: 10pt 14pt;
+    margin: 10pt 0;
+    white-space: pre-wrap;
+    color: var(--near-black);
+    break-inside: avoid;
+  }
+  pre code { background: transparent; padding: 0; font-size: inherit; }
+
+  /* ========== TABLE ========== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+    margin: 12pt 0;
+    break-inside: avoid;
+  }
+  table th {
+    text-align: left;
+    font-weight: 500;
+    color: var(--dark-warm);
+    padding: 6pt 8pt;
+    border-bottom: 0.6pt solid var(--border);
+    background: transparent;
+  }
+  table td {
+    padding: 5pt 8pt;
+    border-bottom: 0.25pt solid var(--border);
+    vertical-align: top;
+  }
+
+  /* ========== CALLOUT ========== */
+  .callout {
+    background: var(--ivory);
+    padding: 10pt 14pt;
+    border-radius: 3pt;
+    margin: 12pt 0;
+    line-height: 1.55;
+    break-inside: avoid;
+  }
+
+  .takeaway {
+    background: var(--ivory);
+    border-radius: 4pt;
+    padding: 10pt 14pt;
+    margin: 14pt 0;
+    break-inside: avoid;
+  }
+  .takeaway-label {
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: var(--brand);
+    letter-spacing: 0.5pt;
+    text-transform: uppercase;
+    margin-bottom: 4pt;
+  }
+
+  /* ========== TAG ========== */
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--brand);
+    font-family: var(--sans);
+    font-size: 9pt;
+    font-weight: 500;
+    padding: 1pt 6pt;
+    border-radius: 3pt;
+    margin-right: 4pt;
+  }
+
+  /* ========== FIGURE ========== */
+  figure {
+    margin: 14pt 0;
+    break-inside: avoid;
+  }
+  figure img {
+    max-width: 100%;
+    border-radius: 4pt;
+  }
+  figure svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 78%;
+    height: auto;
+  }
+  figcaption {
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: var(--stone);
+    margin-top: 6pt;
+    text-align: center;
+  }
+
+  /* ========== EXECUTIVE SUMMARY ========== */
+  .exec-summary {
+    background: var(--ivory);
+    border-radius: 6pt;
+    padding: 16pt 20pt;
+    margin: 14pt 0;
+    break-inside: avoid;
+  }
+  .exec-summary h2 {
+    margin-top: 0;
+    font-size: 13pt;
+  }
+
+  /* ========== CHAPTER BREAK ========== */
+  .chapter { break-before: page; }
+
+  /* ========== 手機（Kami 版面預設模擬 A4，需另補窄螢幕規則） ========== */
+  @media screen and (max-width: 640px) {
+    body { padding: 16px 18px 32px; font-size: 11pt; }
+    .cover { min-height: auto; padding-top: 14mm; }
+    .cover-title { font-size: 26pt; }
+    .cover-sub { font-size: 12pt; max-width: 100%; }
+    .cover-eyebrow { margin-bottom: 12pt; }
+    h1 { font-size: 19pt; }
+    h2 { font-size: 14pt; }
+    .lead { font-size: 11.5pt; }
+    figure svg { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═════════════ SITE NAV ═════════════ -->
+<nav class="site-nav" aria-label="全站導覽">
+  <span class="site-nav-brand">One-Page Beginners Guide</span>
+  <span class="site-nav-links">
+    <a href="us-stocks-guide.html">美股入門</a>
+    <a href="guide.html">AI 審圖</a>
+    <a href="making-of.html">製作幕後</a>
+    <a href="pcshop-ai-build-guide.html">PCShop</a>
+    <a href="beauty-manual-ai-guide.html">美容說明書</a>
+    <a href="deeptutor-guide.html" aria-current="page">DeepTutor</a>
+    <a href="usj-vip-guide.html">USJ VIP</a>
+  </span>
+</nav>
+
+<!-- ═════════════ COVER ═════════════ -->
+<section class="cover">
+  <div>
+    <div class="cover-eyebrow">Paper Explainer · 論文科普改寫</div>
+    <div class="cover-title">AI 家教為何教不會？<br>港大 DeepTutor：給 AI 一本會長大的病歷本</div>
+    <div class="cover-sub">港大 DeepTutor 用 270 場模擬家教課證明：讓 AI 記住學生上次錯在哪裡，整體教學品質提升 10.8%，連 AI 自己的解題能力都跟著變強。</div>
+  </div>
+  <div class="cover-meta">
+    <strong>語料訓練改寫（依 PanSci Promo Writing-DNA 復刻）</strong><br>
+    2026.07 · 原文刊於 arXiv:2604.26962v3<br>
+    原論文團隊：Bingxi Zhao 等 · 香港大學
+  </div>
+</section>
+
+<!-- ═════════════ TOC ═════════════ -->
+<section class="toc">
+  <h2>目錄</h2>
+  <div class="toc-item">
+    <span class="toc-num">01</span>
+    <a class="toc-title" href="#ch-executive-summary">執行摘要</a>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">02</span>
+    <a class="toc-title" href="#ch-background">會背整座圖書館，為什麼教不會一個人？</a>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">03</span>
+    <a class="toc-title" href="#ch-benchmark">270 場家教課，考的是「會不會教」</a>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">04</span>
+    <a class="toc-title" href="#ch-architecture">「軌跡森林」：一本自己會長大的病歷本</a>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">05</span>
+    <a class="toc-title" href="#ch-method">為什麼好老師都先問，不急著答？</a>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">06</span>
+    <a class="toc-title" href="#ch-loop">教完考、考完再教，迴路怎麼收斂？</a>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">07</span>
+    <a class="toc-title" href="#ch-appendix">附錄</a>
+  </div>
+  <figure>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" style="max-width:100%">
+      <style>
+        text { font-family: "Iansui", "TsangerJinKai02", "Songti TC", "Source Han Serif SC", Charter, Georgia, serif; }
+        .m { font-family: "JetBrains Mono", "SF Mono", Consolas, "Iansui", "Songti TC", monospace; }
+      </style>
+      <defs>
+        <pattern id="dots1" width="22" height="22" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="0.9" fill="#E3E2DC"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="#f5f4ed"/>
+      <rect width="100%" height="100%" fill="url(#dots1)" opacity="0.55"/>
+
+      <text x="80" y="38" fill="#1B365D" font-size="13" font-weight="600" letter-spacing="3" class="m">FIGURE  1</text>
+      <text x="212" y="38" fill="#504e49" font-size="13" letter-spacing="3" class="m">病歷本式的家教迴路</text>
+      <line x1="80" y1="52" x2="920" y2="52" stroke="#1B365D" stroke-width="0.8"/>
+
+      <!-- 學生問題 → AI 家教 -->
+      <line x1="220" y1="152" x2="340" y2="152" stroke="#504e49" stroke-width="1.2"/>
+      <path d="M 332 148 L 340 152 L 332 156" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- AI 家教 → 個人化解釋 -->
+      <line x1="500" y1="152" x2="740" y2="152" stroke="#504e49" stroke-width="1.2"/>
+      <path d="M 732 148 L 740 152 L 732 156" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- AI 家教 ↕ 病歷本 -->
+      <line x1="420" y1="184" x2="420" y2="280" stroke="#1B365D" stroke-width="1.2"/>
+      <path d="M 416 272 L 420 280 L 424 272" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M 416 192 L 420 184 L 424 192" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round"/>
+      <text x="440" y="236" fill="#504e49" font-size="14">查閱／更新</text>
+      <!-- 互動結束 → 追加軌跡樹（虛線迴路） -->
+      <path d="M 820 184 L 820 312 L 500 312" fill="none" stroke="#504e49" stroke-width="1.2" stroke-dasharray="6 4"/>
+      <path d="M 508 308 L 500 312 L 508 316" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round"/>
+      <text x="660" y="296" fill="#6b6a64" font-size="14" text-anchor="middle">每輪互動結束，追加一棵軌跡樹</text>
+
+      <!-- 學生的問題 -->
+      <rect x="60" y="120" width="160" height="64" rx="6" fill="#E9E8E1" stroke="#6b6a64" stroke-width="1"/>
+      <text x="140" y="144" fill="#6b6a64" font-size="14" letter-spacing="2" text-anchor="middle" class="m">STUDENT</text>
+      <text x="140" y="170" fill="#141413" font-size="22" text-anchor="middle">學生的問題</text>
+      <!-- AI 家教 -->
+      <rect x="340" y="120" width="160" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1"/>
+      <text x="420" y="144" fill="#6b6a64" font-size="14" letter-spacing="2" text-anchor="middle" class="m">TUTOR</text>
+      <text x="420" y="170" fill="#141413" font-size="22" text-anchor="middle">AI 家教</text>
+      <!-- 個人化解釋 -->
+      <rect x="740" y="120" width="160" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1"/>
+      <text x="820" y="144" fill="#6b6a64" font-size="14" letter-spacing="2" text-anchor="middle" class="m">OUTPUT</text>
+      <text x="820" y="170" fill="#141413" font-size="22" text-anchor="middle">個人化解釋</text>
+      <!-- 會長大的病歷本（焦點） -->
+      <rect x="340" y="280" width="160" height="64" rx="6" fill="#EEF2F7" stroke="#1B365D" stroke-width="1.2"/>
+      <text x="420" y="304" fill="#1B365D" font-size="14" letter-spacing="2" text-anchor="middle" class="m">TRACE FOREST</text>
+      <text x="420" y="330" fill="#141413" font-size="22" text-anchor="middle">會長大的病歷本</text>
+    </svg>
+    <figcaption>圖 1：AI 家教先查閱「會長大的病歷本」再回答，每一輪互動結束，都往森林裡追加一棵軌跡樹。</figcaption>
+  </figure>
+</section>
+
+<!-- ═════════════ Chapter 01：執行摘要 ═════════════ -->
+<section class="chapter" id="ch-executive-summary">
+  <div class="chapter-num">01 · Summary · 執行摘要</div>
+  <h1>執行摘要</h1>
+
+  <p class="note">本文為 arXiv 論文之科普改寫，非原論文作者發表，文中數據均引自原文。</p>
+
+  <p class="lead">
+    多數人都有過這樣的經驗：拿一道數學題去問 AI，它條理分明地講完一輪，我們點頭說懂了，換個數字再算一次，錯的還是同一個地方。它沒有察覺，於是又從頭講了一遍，用的還是上次那套說法。這是現在 AI 家教共通的缺陷，<span class="hl">它缺的是記憶</span>。它就像一位沒有病歷本的醫生，每次看診都把我們當成「初診」，問一樣的問題、開一樣的藥，即使我們上個月才因為同樣的毛病來過。
+  </p>
+
+  <p>那麼只要讓 AI 記得學生上次錯在哪裡，教學效果就會不同嗎？香港大學團隊在 2026 年 7 月公開的 DeepTutor，用 <span class="hl">270 場模擬家教課</span>給出了肯定的答案。在他們自建的考場上，DeepTutor 的整體教學品質從基線的 3.53 分拉到 <span class="hl">3.91 分，提升 10.8%</span>。研究團隊還把它負責解題的那一段單獨拆出來，拿去考 GPQA-Diamond 這類博士級難題，<span class="hl">五種骨幹模型平均進步 29.4%</span>。一個為了「教人」而設計的架構，怎麼會讓 AI 連自己解題都變強了？</p>
+
+
+  <h2>核心 Takeaways</h2>
+  <ul>
+    <li>自建考場 TutorBench 上，整體教學品質 <span class="hl">3.53 → 3.91</span>，五大領域之間只差 0.16 分。</li>
+    <li>解題段單獨考 GPQA-Diamond，五種骨幹模型平均進步 <span class="hl">29.4%</span>；為「教人」設計的架構反哺了「解題」。</li>
+    <li>45 場人類盲測與 AI 評審偏好高度相關（r=0.82、p=0.0038），個人化不是評審的自我感覺。</li>
+    <li>消融實驗：拿掉知識接地掉接地性，拿掉個人記憶掉個人化，兩半缺一不可。</li>
+    <li>短板講得直白：練習側接地性只有 2.96 分，讓每句解釋追回來源證據還有一段路。</li>
+  </ul>
+
+  <div class="takeaway">
+    <div class="takeaway-label">本文回答的問題</div>
+    AI 家教為什麼記不住學生？DeepTutor 的「病歷本」裡究竟存了什麼？記住學生之後，教學與出題的迴路如何彼此餵養？
+  </div>
+</section>
+
+<!-- ═════════════ Chapter 02：背景 ═════════════ -->
+<section class="chapter" id="ch-background">
+  <div class="chapter-num">02 · Background · 背景</div>
+  <h1>會背整座圖書館，為什麼教不會一個人？</h1>
+
+  <p class="lead">現有 AI 家教的兩條主流路線，把知識壓在參數裡的 LLM 與回答前先翻資料庫的 RAG，都答得出問題，卻都認不出眼前這位學生。根本原因是一份細粒度、會演化的學習者模型始終缺席。</p>
+
+  <h2>兩條路線，同一個毛病</h2>
+  <p>目前的 AI 家教主流有兩條路線，一條是大型語言模型（Large Language Models，簡稱 LLM），它把知識壓在預訓練的參數裡；另一條是檢索增強生成（Retrieval-Augmented Generation，簡稱 RAG），它在回答前先去翻資料庫。</p>
+  <p>前者像是背完整座圖書館的「資優生」，問什麼都答得出來，卻只會照著課本唸，不會分辨眼前坐的是誰。後者是個會查書的「助教」，我們問什麼它就翻到哪一頁、貼一段給我們，看起來每句話都有依據，卻仍然不懂得引導學生自己想。</p>
+  <p>負責出題的那一群 AI 也有同樣的毛病。現有的題目生成方法多半由老師預設的目標驅動，例如「出五題微積分」，生成過程不會去看學生最近的輔導軌跡，於是它不曉得這個學生上次是把連鎖律（Chain Rule）用錯，還是三角函數根本背錯。這就像復健師不去翻上一次的評估紀錄，一律開同一份訓練菜單。</p>
+
+  <h2>任務局部：用完即丟的診斷</h2>
+  <p>論文把這個現象稱為「任務局部（task-local）」：輔導時診斷出來的弱點，用完就丟，不會影響下一題出什麼；學生在練習題上的表現，也不會回頭修正未來的解釋。研究團隊指出，根本原因在於這些系統缺少一份細粒度、會演化的學習者模型，它們頂多追蹤一張粗略的技能清單，而<span class="hl">清單只記得學生會不會，記不得學生是怎麼錯的</span>。</p>
+</section>
+
+<!-- ═════════════ Chapter 03：考場與結果 ═════════════ -->
+<section class="chapter" id="ch-benchmark">
+  <div class="chapter-num">03 · Benchmark · 考場</div>
+  <h1>270 場家教課，考的是「會不會教」</h1>
+
+  <p class="lead">要證明「記得學生」真的有用，得先有一個能量測它的考場。過去的教育基準多半站在老師的視角，測的是 AI 有沒有遵守教學原則、答案對不對，把學生當成一般接收者。於是團隊自己蓋了一個，叫做 TutorBench。</p>
+
+  <h2>考場規格：從 30 個知識庫到 270 個任務</h2>
+  <p>這個考場的規格相當講究。它先把大學教科書與研究論文索引成 <span class="hl">30 個知識庫</span>（Knowledge Base，簡稱 KB），五大領域從人文、科學一路涵蓋到工程與商業，再加上前沿研究。每個知識庫實例化 3 種學習者檔案，初階、中階與高階只是起點，還要往下接地到教育背景、學習目的，以及每個主題究竟是「熟知」、「半知」還是「未知」。</p>
+  <p>最後得到 <span class="hl">90 個學生檔案</span>，每個檔案保留 3 個互動任務，總共 <span class="hl">270 個任務</span>。每一筆任務還藏著 3 個接地缺口，分別是迷思概念、不完整理解與缺失知識，每一個都錨定到具體的來源頁面，並且附上這個缺口在對話中會如何表現。正確答案只留給評分用，不會交給受測的家教系統。</p>
+
+  <figure>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" style="max-width:100%">
+      <style>
+        text { font-family: "Iansui", "TsangerJinKai02", "Songti TC", "Source Han Serif SC", Charter, Georgia, serif; }
+        .m { font-family: "JetBrains Mono", "SF Mono", Consolas, "Iansui", "Songti TC", monospace; }
+      </style>
+      <defs>
+        <pattern id="dots2" width="22" height="22" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="0.9" fill="#E3E2DC"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="#f5f4ed"/>
+      <rect width="100%" height="100%" fill="url(#dots2)" opacity="0.55"/>
+
+      <text x="80" y="38" fill="#1B365D" font-size="13" font-weight="600" letter-spacing="3" class="m">FIGURE  2</text>
+      <text x="212" y="38" fill="#504e49" font-size="13" letter-spacing="3" class="m">TutorBench 建構流程</text>
+      <line x1="80" y1="52" x2="920" y2="52" stroke="#1B365D" stroke-width="0.8"/>
+
+      <!-- 主流程箭頭 -->
+      <line x1="188" y1="192" x2="236" y2="192" stroke="#504e49" stroke-width="1.2"/>
+      <path d="M 228 188 L 236 192 L 228 196" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round"/>
+      <text x="212" y="176" fill="#6b6a64" font-size="13" text-anchor="middle">索引</text>
+      <line x1="380" y1="192" x2="428" y2="192" stroke="#504e49" stroke-width="1.2"/>
+      <path d="M 420 188 L 428 192 L 420 196" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round"/>
+      <text x="404" y="176" fill="#6b6a64" font-size="13" text-anchor="middle">×3 檔案</text>
+      <line x1="572" y1="192" x2="620" y2="192" stroke="#1B365D" stroke-width="1.2"/>
+      <path d="M 612 188 L 620 192 L 612 196" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round"/>
+      <text x="596" y="176" fill="#1B365D" font-size="13" text-anchor="middle">×3 任務</text>
+      <!-- 270 任務 → 接地缺口帶 -->
+      <line x1="692" y1="224" x2="692" y2="300" stroke="#1B365D" stroke-width="1.2"/>
+      <path d="M 688 292 L 692 300 L 696 292" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round"/>
+
+      <!-- 教科書與論文 -->
+      <rect x="44" y="160" width="144" height="64" rx="6" fill="#E9E8E1" stroke="#6b6a64" stroke-width="1"/>
+      <text x="116" y="184" fill="#6b6a64" font-size="14" letter-spacing="2" text-anchor="middle" class="m">SOURCE</text>
+      <text x="116" y="210" fill="#141413" font-size="20" text-anchor="middle">教科書與論文</text>
+      <!-- 30 個知識庫 -->
+      <rect x="236" y="160" width="144" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1"/>
+      <text x="308" y="184" fill="#6b6a64" font-size="14" letter-spacing="2" text-anchor="middle" class="m">KB ×30</text>
+      <text x="308" y="210" fill="#141413" font-size="20" text-anchor="middle">知識庫</text>
+      <!-- 90 個學生檔案 -->
+      <rect x="428" y="160" width="144" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1"/>
+      <text x="500" y="184" fill="#6b6a64" font-size="14" letter-spacing="2" text-anchor="middle" class="m">PROFILES ×90</text>
+      <text x="500" y="210" fill="#141413" font-size="20" text-anchor="middle">學生檔案</text>
+      <!-- 270 個任務（焦點） -->
+      <rect x="620" y="160" width="144" height="64" rx="6" fill="#EEF2F7" stroke="#1B365D" stroke-width="1.2"/>
+      <text x="692" y="184" fill="#1B365D" font-size="14" letter-spacing="2" text-anchor="middle" class="m">TASKS ×270</text>
+      <text x="692" y="210" fill="#141413" font-size="20" text-anchor="middle">互動任務</text>
+
+      <!-- 接地缺口帶 -->
+      <rect x="428" y="300" width="336" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1"/>
+      <text x="596" y="324" fill="#6b6a64" font-size="14" text-anchor="middle">每個任務預埋 3 個接地缺口</text>
+      <line x1="540" y1="332" x2="540" y2="356" stroke="#e8e6dc" stroke-width="0.8"/>
+      <line x1="652" y1="332" x2="652" y2="356" stroke="#e8e6dc" stroke-width="0.8"/>
+      <text x="484" y="352" fill="#141413" font-size="16" text-anchor="middle">迷思概念</text>
+      <text x="596" y="352" fill="#141413" font-size="16" text-anchor="middle">不完整理解</text>
+      <text x="708" y="352" fill="#141413" font-size="16" text-anchor="middle">缺失知識</text>
+
+      <!-- 評測帶 -->
+      <rect x="44" y="420" width="912" height="48" rx="6" fill="#EEEDE6" stroke="#B2B1AC" stroke-width="1"/>
+      <text x="500" y="448" fill="#504e49" font-size="14" text-anchor="middle">評測：Gemini-3-Flash 驅動學生模擬器 · Claude Sonnet 4.6 任評審 · 每份逐字稿三次評分取平均</text>
+    </svg>
+    <figcaption>圖 2：30 個知識庫經兩輪 ×3 擴展長成 270 個任務，每個任務都埋有錨定來源頁面的接地缺口。</figcaption>
+  </figure>
+
+  <h2>評測方式</h2>
+  <p>評測方式同樣講究，團隊用 Gemini-3-Flash 驅動學生模擬器與所有家教骨幹，讓 AI 扮演學生跟 AI 家教走完整輪多輪對話，再由 Claude Sonnet 4.6 擔任評審，每份對話逐字稿打三次分取平均，藉此壓低評分的不穩定。</p>
+
+  <h2>結果：個人化指標全面領先</h2>
+  <p>結果是 DeepTutor 在個人化相關指標上全面領先，整體品質 <span class="hl">3.91 分對上基線 3.53 分</span>，個人化從 4.24 拉到 4.59，生動性從 3.89 拉到 4.81。更值得注意的是穩定度，整體品質在五個領域之間只差 <span class="hl">0.16 分</span>，代表這套系統在理工與人文領域都一樣撐得住。</p>
+
+  <figure>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" style="max-width:100%">
+      <style>
+        text { font-family: "Iansui", "TsangerJinKai02", "Songti TC", "Source Han Serif SC", Charter, Georgia, serif; }
+        .m { font-family: "JetBrains Mono", "SF Mono", Consolas, "Iansui", "Songti TC", monospace; }
+      </style>
+      <defs>
+        <pattern id="dots3" width="22" height="22" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="0.9" fill="#E3E2DC"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="#f5f4ed"/>
+      <rect width="100%" height="100%" fill="url(#dots3)" opacity="0.55"/>
+
+      <text x="80" y="38" fill="#1B365D" font-size="13" font-weight="600" letter-spacing="3" class="m">FIGURE  3</text>
+      <text x="212" y="38" fill="#504e49" font-size="13" letter-spacing="3" class="m">TutorBench 三項指標對比</text>
+      <line x1="80" y1="52" x2="920" y2="52" stroke="#1B365D" stroke-width="0.8"/>
+
+      <!-- 圖例 -->
+      <rect x="700" y="72" width="12" height="12" fill="#EAE9E2" stroke="#504e49" stroke-width="0.8"/>
+      <text x="718" y="82" fill="#504e49" font-size="13">基線</text>
+      <rect x="788" y="72" width="12" height="12" fill="#1B365D"/>
+      <text x="806" y="82" fill="#504e49" font-size="13">DeepTutor</text>
+
+      <!-- 網格 -->
+      <line x1="140" y1="100" x2="900" y2="100" stroke="#e8e6dc" stroke-width="0.8"/>
+      <line x1="140" y1="148" x2="900" y2="148" stroke="#e8e6dc" stroke-width="0.8"/>
+      <line x1="140" y1="196" x2="900" y2="196" stroke="#e8e6dc" stroke-width="0.8"/>
+      <line x1="140" y1="244" x2="900" y2="244" stroke="#e8e6dc" stroke-width="0.8"/>
+      <line x1="140" y1="292" x2="900" y2="292" stroke="#e8e6dc" stroke-width="0.8"/>
+      <text x="124" y="104" fill="#6b6a64" font-size="12" text-anchor="end" class="m">5</text>
+      <text x="124" y="152" fill="#6b6a64" font-size="12" text-anchor="end" class="m">4</text>
+      <text x="124" y="200" fill="#6b6a64" font-size="12" text-anchor="end" class="m">3</text>
+      <text x="124" y="248" fill="#6b6a64" font-size="12" text-anchor="end" class="m">2</text>
+      <text x="124" y="296" fill="#6b6a64" font-size="12" text-anchor="end" class="m">1</text>
+      <line x1="140" y1="340" x2="900" y2="340" stroke="#141413" stroke-width="0.8"/>
+
+      <!-- 整體品質 3.53 / 3.91 -->
+      <rect x="238" y="170" width="56" height="170" fill="#EAE9E2" stroke="#504e49" stroke-width="0.8"/>
+      <text x="266" y="158" fill="#6b6a64" font-size="13" text-anchor="middle" class="m">3.53</text>
+      <rect x="306" y="152" width="56" height="188" fill="#1B365D"/>
+      <text x="334" y="140" fill="#1B365D" font-size="13" text-anchor="middle" class="m">3.91</text>
+      <text x="300" y="368" fill="#141413" font-size="16" text-anchor="middle">整體品質</text>
+      <!-- 個人化 4.24 / 4.59 -->
+      <rect x="458" y="136" width="56" height="204" fill="#EAE9E2" stroke="#504e49" stroke-width="0.8"/>
+      <text x="486" y="124" fill="#6b6a64" font-size="13" text-anchor="middle" class="m">4.24</text>
+      <rect x="526" y="120" width="56" height="220" fill="#1B365D"/>
+      <text x="554" y="108" fill="#1B365D" font-size="13" text-anchor="middle" class="m">4.59</text>
+      <text x="520" y="368" fill="#141413" font-size="16" text-anchor="middle">個人化</text>
+      <!-- 生動性 3.89 / 4.81 -->
+      <rect x="678" y="153" width="56" height="187" fill="#EAE9E2" stroke="#504e49" stroke-width="0.8"/>
+      <text x="706" y="141" fill="#6b6a64" font-size="13" text-anchor="middle" class="m">3.89</text>
+      <rect x="746" y="109" width="56" height="231" fill="#1B365D"/>
+      <text x="774" y="97" fill="#1B365D" font-size="13" text-anchor="middle" class="m">4.81</text>
+      <text x="740" y="368" fill="#141413" font-size="16" text-anchor="middle">生動性</text>
+
+      <text x="80" y="404" fill="#6b6a64" font-size="13">另測解題段：GPQA-Diamond 博士級難題 · 五種骨幹模型平均 +29.4%</text>
+    </svg>
+    <figcaption>圖 3：DeepTutor 在整體品質、個人化與生動性三項指標全面高於基線，其中生動性提升幅度最大（3.89 → 4.81）。</figcaption>
+  </figure>
+
+  <h2>人類盲測：評審排序跟人類接近</h2>
+  <p>團隊另外找了真人來盲測，從每個領域抽 9 場、共 <span class="hl">45 場會話</span>，讓評分者在匿名狀態下比較 DeepTutor 與基線的輸出。人類與 AI 評審把最大的偏好份額都給了 DeepTutor，兩者在十項指標的勝率上高度相關，皮爾森相關係數 <span class="hl">r=0.82、p=0.0038</span>。這組數字說明 AI 評審的排序跟人類接近。</p>
+</section>
+
+<!-- ═════════════ Chapter 04：架構 ═════════════ -->
+<section class="chapter" id="ch-architecture">
+  <div class="chapter-num">04 · Architecture · 架構</div>
+  <h1>「軌跡森林」：一本自己會長大的病歷本</h1>
+
+  <p class="lead">那麼 DeepTutor 究竟多了什麼？答案是「混合個人化引擎」，它由兩半組成，一半是「課本」，一半是「病歷本」。「課本」管知識從哪裡來，「病歷本」管學生走到哪裡了。</p>
+
+  <h2>課本：靜態知識接地</h2>
+  <p>課本這半叫做靜態知識接地（Static Knowledge Grounding，簡稱 SKG）。系統把教科書與論文切成一塊塊原子內容單元，再建立兩種互補索引，知識圖譜（Knowledge Graph，簡稱 KG）負責記住單元之間的關係，稠密編碼器負責記住語義。查詢時兩路並行再融合，確保 AI 說的每句話都能追回書頁。</p>
+
+  <h2>病歷本：動態個人記憶</h2>
+  <p>病歷本這半才是關鍵，它叫動態個人記憶（Dynamic Personal Memory，簡稱 DPM），核心是一座「軌跡森林（Trace Forest）」。學生每問一次，系統就種下一棵樹，樹分三層：第一層存這次會話的輸入與整體摘要，第二層記錄它如何把問題拆解成規劃單元，第三層保留最細的執行紀錄，包含用過哪些工具、驗證結果如何。</p>
+
+
+  <figure>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" style="max-width:100%">
+      <style>
+        text { font-family: "Iansui", "TsangerJinKai02", "Songti TC", "Source Han Serif SC", Charter, Georgia, serif; }
+        .m { font-family: "JetBrains Mono", "SF Mono", Consolas, "Iansui", "Songti TC", monospace; }
+      </style>
+      <defs>
+        <pattern id="dots4" width="22" height="22" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="0.9" fill="#E3E2DC"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="#f5f4ed"/>
+      <rect width="100%" height="100%" fill="url(#dots4)" opacity="0.55"/>
+
+      <text x="80" y="38" fill="#1B365D" font-size="13" font-weight="600" letter-spacing="3" class="m">FIGURE  4</text>
+      <text x="212" y="38" fill="#504e49" font-size="13" letter-spacing="3" class="m">軌跡森林與三份檔案</text>
+      <line x1="80" y1="52" x2="920" y2="52" stroke="#1B365D" stroke-width="0.8"/>
+
+      <text x="60" y="96" fill="#6b6a64" font-size="13" letter-spacing="2" class="m">TRACE FOREST · 每次互動種一棵樹</text>
+      <text x="620" y="96" fill="#6b6a64" font-size="13" letter-spacing="2" class="m">PERSONAL FILES</text>
+
+      <!-- 層間箭頭 -->
+      <line x1="140" y1="184" x2="140" y2="208" stroke="#504e49" stroke-width="1.2"/>
+      <path d="M 136 200 L 140 208 L 144 200" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="140" y1="272" x2="140" y2="296" stroke="#504e49" stroke-width="1.2"/>
+      <path d="M 136 288 L 140 296 L 144 288" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round"/>
+
+      <!-- 森林 → 記憶代理（肘形線） -->
+      <path d="M 220 152 L 300 152 L 300 224 L 380 224" fill="none" stroke="#504e49" stroke-width="1.2"/>
+      <path d="M 372 220 L 380 224 L 372 228" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="220" y1="240" x2="380" y2="240" stroke="#504e49" stroke-width="1.2"/>
+      <path d="M 372 236 L 380 240 L 372 244" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M 220 328 L 300 328 L 300 256 L 380 256" fill="none" stroke="#504e49" stroke-width="1.2"/>
+      <path d="M 372 252 L 380 256 L 372 260" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round"/>
+
+      <!-- 記憶代理 → 三份檔案 -->
+      <path d="M 540 224 L 580 224 L 580 152 L 620 152" fill="none" stroke="#1B365D" stroke-width="1.2"/>
+      <path d="M 612 148 L 620 152 L 612 156" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="540" y1="240" x2="620" y2="240" stroke="#1B365D" stroke-width="1.2"/>
+      <path d="M 612 236 L 620 240 L 612 244" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M 540 256 L 580 256 L 580 328 L 620 328" fill="none" stroke="#1B365D" stroke-width="1.2"/>
+      <path d="M 612 324 L 620 328 L 612 332" fill="none" stroke="#1B365D" stroke-width="1.5" stroke-linecap="round"/>
+
+      <!-- 檔案 → 分發帶 -->
+      <line x1="700" y1="360" x2="700" y2="440" stroke="#504e49" stroke-width="1.2"/>
+      <path d="M 696 432 L 700 440 L 704 432" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round"/>
+
+      <!-- 三層樹 -->
+      <rect x="60" y="120" width="160" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1"/>
+      <text x="140" y="144" fill="#6b6a64" font-size="14" letter-spacing="2" text-anchor="middle" class="m">L1 · 會話</text>
+      <text x="140" y="170" fill="#141413" font-size="18" text-anchor="middle">輸入與整體摘要</text>
+      <rect x="60" y="208" width="160" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1"/>
+      <text x="140" y="232" fill="#6b6a64" font-size="14" letter-spacing="2" text-anchor="middle" class="m">L2 · 規劃</text>
+      <text x="140" y="258" fill="#141413" font-size="18" text-anchor="middle">子目標拆解紀錄</text>
+      <rect x="60" y="296" width="160" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1"/>
+      <text x="140" y="320" fill="#6b6a64" font-size="14" letter-spacing="2" text-anchor="middle" class="m">L3 · 執行</text>
+      <text x="140" y="346" fill="#141413" font-size="18" text-anchor="middle">工具調用與驗證</text>
+
+      <!-- 記憶代理 -->
+      <rect x="380" y="208" width="160" height="64" rx="6" fill="#EAE9E2" stroke="#504e49" stroke-width="1"/>
+      <text x="460" y="232" fill="#141413" font-size="20" text-anchor="middle">三個記憶代理</text>
+      <text x="460" y="256" fill="#504e49" font-size="14" text-anchor="middle">檢索 · 比對 · 更新</text>
+
+      <!-- 三份檔案（焦點） -->
+      <rect x="620" y="120" width="160" height="64" rx="6" fill="#EEF2F7" stroke="#1B365D" stroke-width="1.2"/>
+      <text x="700" y="144" fill="#1B365D" font-size="14" letter-spacing="2" text-anchor="middle" class="m">Ds</text>
+      <text x="700" y="170" fill="#141413" font-size="18" text-anchor="middle">學過主題與趨勢</text>
+      <rect x="620" y="208" width="160" height="64" rx="6" fill="#EEF2F7" stroke="#1B365D" stroke-width="1.2"/>
+      <text x="700" y="232" fill="#1B365D" font-size="14" letter-spacing="2" text-anchor="middle" class="m">Dw</text>
+      <text x="700" y="258" fill="#141413" font-size="18" text-anchor="middle">混淆與錯答模式</text>
+      <rect x="620" y="296" width="160" height="64" rx="6" fill="#EEF2F7" stroke="#1B365D" stroke-width="1.2"/>
+      <text x="700" y="320" fill="#1B365D" font-size="14" letter-spacing="2" text-anchor="middle" class="m">Dr</text>
+      <text x="700" y="346" fill="#141413" font-size="18" text-anchor="middle">教學自我反思</text>
+
+      <!-- 分發帶 -->
+      <rect x="60" y="440" width="864" height="64" rx="6" fill="#faf9f5" stroke="#141413" stroke-width="1"/>
+      <line x1="348" y1="452" x2="348" y2="492" stroke="#e8e6dc" stroke-width="0.8"/>
+      <line x1="636" y1="452" x2="636" y2="492" stroke="#e8e6dc" stroke-width="0.8"/>
+      <text x="204" y="480" fill="#141413" font-size="18" text-anchor="middle">規劃器 · 收 Ds + Dw</text>
+      <text x="492" y="480" fill="#141413" font-size="18" text-anchor="middle">寫作者 · 收 Dr</text>
+      <text x="780" y="480" fill="#141413" font-size="18" text-anchor="middle">出題代理 · 收 Dw + 歷史出題</text>
+    </svg>
+    <figcaption>圖 4：三層軌跡樹是原始證據，記憶代理把它蒸餾成 Ds、Dw、Dr 三份檔案，再分角色側寫給規劃器、寫作者與出題代理。</figcaption>
+  </figure>
+  <p>系統透過 TraceToolkit 把森林變成可以程式化操作的對象，三個專門的記憶代理會主動檢索相關的歷史會話、比對跨會話的模式，然後更新三份檔案。「Ds」總結學過的主題與表現趨勢，「Dw」維護有證據支撐的混淆與錯答模式，「Dr」則記錄教學上的自我反思。個人化因此接地在可觀察的軌跡證據上。</p>
+
+  <h2>三份檔案，分角色側寫</h2>
+  <p>這三份檔案不會整包塞給每個角色。規劃器拿到的是 Ds 加 Dw，寫作者拿到的是 Dr，出題代理拿到的是 Dw 加上歷史出題模式。<span class="hl">同一位學生走進來，系統內部每個環節看到的側寫都不一樣。</span></p>
+</section>
+
+<!-- ═════════════ Chapter 05：教法 ═════════════ -->
+<section id="ch-method">
+  <div class="chapter-num">05 · Method · 教法</div>
+  <h1>為什麼好老師都先問，不急著答？</h1>
+
+  <p class="lead">有了病歷本，教法也得跟著改。DeepTutor 把好老師的順序拆成三個階段，先調查、再引導、最後寫作。之所以拆开，是因為過去的做法把規劃、檢索與寫作塞進同一個推理迴路，徹底調查與個人化呈現會搶同一個上下文窗口。</p>
+
+  <h2>階段一：個人化調查</h2>
+  <p>第一階段的「個人化調查」不急著解題，規劃器先把問題拆成元問題，跨知識庫與軌跡森林蒐集證據，再產出一份輔導計畫。這一步的價值在於子目標的精確度，它給的是「複習三角函數中的連鎖律」這種可以直接下手的指令。</p>
+
+  <h2>階段二：逐步引導解題</h2>
+  <p>第二階段的「逐步引導解題」一個子目標一個子目標地推進，並用兩種機制對付膨脹的推理脈絡：「自我筆記（self-notes）」把每一步的結果蒸餾成簡短收穫，階層壓縮則把已完成的子目標總結成緊湊摘要。如果計畫走不通，重規劃會修訂剩下的子目標，同時保留已做完的工作。</p>
+
+  <h2>階段三：基於證據的迭代寫作</h2>
+  <p>第三階段是「基於證據的迭代寫作」。寫作者從草稿裡抽出結構化證據，經過多輪精煉再調和彼此衝突的發現。個人化上下文會把解釋的深度與語氣推向學習者的「近側發展區間」，<span class="hl">新手拿到鷹架式的逐步推導，高手拿到聚焦關鍵洞見的簡潔總結</span>，每個接地的事實主張都附上可追溯的引用。</p>
+
+  <h2>出題：結構分離的第二意見</h2>
+  <p>出題則拆成另外兩個階段。想法代理先結合過去的錯誤與難度趨勢產出候選題目池，再按清晰度與多樣性修剪；接著生成器產出題目、答案與解釋，交給一個結構上分離的驗證器覆核，計算題還要丟進沙盒真的執行一次。<span class="hl">驗證器與生成器不共享推理鏈</span>，等於找另一位沒參與診斷的醫師開「第二意見」，藉此壓低自我確認偏誤。</p>
+</section>
+
+<!-- ═════════════ Chapter 06：閉環 ═════════════ -->
+<section class="chapter" id="ch-loop">
+  <div class="chapter-num">06 · Feedback Loop · 閉環</div>
+  <h1>教完考、考完再教，迴路怎麼收斂？</h1>
+
+  <p class="lead">真正讓這套系統站得住的，是它把兩條管線接成了一個閉環。每次互動結束，管線會往森林追加一棵新的軌跡樹，三個記憶代理平行更新檔案，修訂後的結果立刻影響下一次會話。</p>
+
+  <h2>雙向迴路</h2>
+  <p>這個迴路是雙向的，輔導時診斷出來的弱點會傳進 Dw，直接決定下一次生成什麼題目；學生在這些題目上的表現，又回頭精煉 Ds 與 Dr，改善未來的解釋。因為每個代理都能查詢森林，回饋不會停在檔案摘要那一層，還能下探到任何一次歷史互動的細粒度先例。</p>
+
+  <h2>消融實驗：兩半缺一不可</h2>
+  <p>消融實驗把兩半的分工說得很清楚，拿掉靜態知識接地，掉最多的是接地性；拿掉動態個人記憶，掉最多的是個人化與適用性。<span class="hl">前者錨定「該說什麼」，後者形塑「如何適應」</span>，少一半都不完整。</p>
+
+  <h2>誠實的邊界</h2>
+  <p>論文也很誠實地畫了一條線。第三節談的七項延伸，從幫學生查資料寫報告的深度研究，到會在通訊軟體主動提醒的多通道代理，全部共用同一個個人化基座；但團隊明講這些屬於架構展示，定量評估的核心仍是前面那 270 個任務。短板也講得直白，練習側的接地性只有 <span class="hl">2.96 分</span>，代表出對題目相對容易，要讓每一句解釋都精準追回來源證據，還有一段路。</p>
+  <p>於是這篇論文的世界觀很好懂，學習是一條可以持續調參的路徑，而好的科學就是可以量產的好教學。跑出一次漂亮的實驗是從 0 到 1，能穩定記住 90 個學生、教完 270 份考卷，還能換到五種骨幹模型都有效，才是從 1 到 100。</p>
+  <p>回到最開始那個問題。AI 家教教不會人，缺的是那本會長大的病歷本。下次再拿題目去問 AI 的時候，或許值得留意的是，<span class="hl">它記不記得我們上一次錯在哪裡</span>。</p>
+</section>
+
+<!-- ═════════════ Chapter 07：附錄 ═════════════ -->
+<section class="chapter" id="ch-appendix">
+  <div class="chapter-num">07 · Appendix · 附錄</div>
+  <h1>附錄</h1>
+
+  <h2>A. 參考資料</h2>
+  <ul>
+    <li>Zhao, B., Zhang, J., Ren, X., Guo, Z., Chu, T., Ma, Y., &amp; Huang, C. <em>DeepTutor: Towards Agentic Personalized Tutoring</em>. arXiv:2604.26962v3，香港大學，2026-07-09</li>
+    <li>論文連結：https://arxiv.org/html/2604.26962v3</li>
+    <li>開源專案：https://github.com/HKUDS/DeepTutor（授權 CC BY 4.0）</li>
+  </ul>
+
+  <h2>B. 術語表</h2>
+  <p><strong>LLM（大型語言模型）</strong>：把知識壓在預訓練參數裡的路線，答得出問題，卻認不出學生。</p>
+  <p><strong>RAG（檢索增強生成）</strong>：回答前先翻資料庫的路線，每句話有依據，仍不懂得引導。</p>
+  <p><strong>任務局部（task-local）</strong>：診斷出的弱點用完就丟，不會影響下一題或未來的解釋。</p>
+  <p><strong>SKG（靜態知識接地）</strong>：原子內容單元加上知識圖譜與稠密編碼雙索引，讓每句話追回書頁。</p>
+  <p><strong>DPM（動態個人記憶）</strong>：以軌跡森林為核心的學生記憶體，每次互動追加一棵三層樹。</p>
+  <p><strong>Ds／Dw／Dr</strong>：記憶代理維護的三份檔案：學過的主題與趨勢、混淆與錯答模式、教學自我反思。</p>
+  <p><strong>近側發展區間</strong>：學生跳一跳構得著的難度帶，個人化解釋把深度與語氣推向這裡。</p>
+
+  <h2>C. 聲明</h2>
+  <p>本文為 arXiv 論文之中文科普改寫，供語料訓練研究使用。數據與框架描述均引自原論文，解讀責任在改寫者。原文授權 CC BY 4.0。</p>
+</section>
+
+</body>
+</html>

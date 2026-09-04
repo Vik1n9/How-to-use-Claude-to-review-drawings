@@ -14,20 +14,20 @@ One-Page Beginners Guide 把複雜流程整理成可直接閱讀、操作、複�
 
 ## Brand Personality
 
-Austere, procedural, mission-ready. 視覺語氣像一份任務手冊：黑白、克制、工程感強，讓內容有展演張力，但不犧牲長時間閱讀的清楚度。
+Considered, editorial, print-minded. 視覺語氣像一份排版講究的印刷文件：暖色紙底、單一墨藍強調、serif 主導，克制而安靜，讓長篇內容在螢幕與紙上都好讀。
 
 ## Anti-references
 
-不要做成 SaaS landing page、彩色漸層 AI 工具頁、玻璃擬態卡片牆、重複 icon card grid、紫色科技模板、米色雜誌風，或直接仿冒任何航太品牌。不得使用 SpaceX 名稱、商標、火箭或火星圖像資產。
+不要做成 SaaS landing page、彩色漸層 AI 工具頁、玻璃擬態卡片牆、重複 icon card grid、紫色科技模板，或直接仿冒任何品牌。不要多彩強調色——只有一個墨藍。
 
 ## Design Principles
 
-1. Mission first: 每頁第一屏像任務開場，快速交代主題、讀者、可完成的事情。
-2. Reading remains primary: 動效與展演只服務導覽、節奏與注意力，不遮擋、不延遲內容。
-3. One system, five manuals: 五頁保留各自內容，但共享導覽、字體、黑白色階、CTA、章節 rail 與動效語言。
+1. Document first: 每頁以封面與目錄開場，快速交代主題、讀者、可完成的事情。
+2. Reading remains primary: 版面只服務閱讀節奏與查找，不遮擋、不延遲內容。
+3. One system, many documents: 各頁保留各自內容，但共享 Kami 的導覽、字體、色票與元件語彙；大阪旅遊系列是自成一格的例外。
 4. Rules live in the repo: 後續改版必須先讀 `PRODUCT.md` 與 `DESIGN.md`，再修改頁面。
 5. Human verification is visible: 涉及投資、法規、合規、AI 產出時，保留人工複核與限制說明。
 
 ## Accessibility & Inclusion
 
-目標為 WCAG AA。深色背景文字需維持高對比，互動元素需有鍵盤焦點。所有 GSAP 動效必須尊重 `prefers-reduced-motion: reduce`，在減少動態時內容仍立即可見且可完整閱讀。繁體中文排版需避免過度 uppercase 化造成辨識負擔。
+目標為 WCAG AA。暖色紙底上的文字需維持高對比，互動元素需有鍵盤焦點。內容不得依賴動效才可見。繁體中文排版需避免過度 uppercase 化造成辨識負擔。
