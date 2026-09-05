@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>終端函數 — Omarchy 手冊（繁體中文）</title>
+<meta name="description" content="Omarchy 內建一組 shell 函數，用來簡化日常任務，把參數繁瑣的呼叫包裝起來。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="終端函數 — Omarchy 手冊（繁體中文）">
+<meta property="og:site_name" content="Omarchy 手冊（繁體中文）">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://vik1n9.github.io/One-Page-Beginners-Guide/omarchy-docs/shell-functions.html">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<div class="frame">
+<aside class="sidebar">
+<a class="wordmark" href="index.html">Omarchy Manual</a>
+<p class="wordmark-sub">繁體中文譯本</p>
+<nav class="toc-nav" aria-label="章節目錄">
+<ol>
+<li><a href="index.html"><span class="n">01</span>歡迎使用 Omarchy！</a></li>
+<li><a href="getting-started.html"><span class="n">02</span>開始使用</a></li>
+<li><a href="coming-from-mac-or-windows.html"><span class="n">03</span>從 Mac 或 Windows 過來</a></li>
+<li><a href="navigation.html"><span class="n">04</span>導覽</a></li>
+<li><a href="the-top-bar.html"><span class="n">05</span>頂列</a></li>
+<li><a href="themes.html"><span class="n">06</span>主題</a></li>
+<li><a href="hotkeys.html"><span class="n">07</span>快捷鍵</a></li>
+<li><a href="unified-clipboard-history.html"><span class="n">08</span>統一剪貼簿與歷史紀錄</a></li>
+<li><a href="reminders.html"><span class="n">09</span>提醒事項</a></li>
+<li><a href="notices.html"><span class="n">10</span>通知</a></li>
+<li><a href="text-extraction-dictation.html"><span class="n">11</span>文字擷取與聽寫</a></li>
+<li><a href="screenshots-recording.html"><span class="n">12</span>螢幕截圖與錄影</a></li>
+<li><a href="toggles-idle-screensaver.html"><span class="n">13</span>開關、閒置與螢幕保護程式</a></li>
+<li><a href="omarchy-cli.html"><span class="n">14</span>Omarchy 命令列介面</a></li>
+<li><a href="terminal.html"><span class="n">15</span>終端機</a></li>
+<li><a href="neovim.html"><span class="n">16</span>Neovim</a></li>
+<li><a href="ai.html"><span class="n">17</span>人工智慧</a></li>
+<li><a href="development-tools.html"><span class="n">18</span>開發工具</a></li>
+<li><a href="shell-tools.html"><span class="n">19</span>終端工具</a></li>
+<li aria-current="page"><a href="shell-functions.html"><span class="n">20</span>終端函數</a></li>
+<li><a href="tuis.html"><span class="n">21</span>文字介面程式</a></li>
+<li><a href="guis.html"><span class="n">22</span>圖形應用程式</a></li>
+<li><a href="browsers.html"><span class="n">23</span>瀏覽器</a></li>
+<li><a href="commercial-apps-services.html"><span class="n">24</span>商業應用與服務</a></li>
+<li><a href="web-apps.html"><span class="n">25</span>網頁應用程式</a></li>
+<li><a href="gaming.html"><span class="n">26</span>遊戲</a></li>
+<li><a href="filling-out-pdfs.html"><span class="n">27</span>填寫 PDF 表單</a></li>
+<li><a href="windows-vm.html"><span class="n">28</span>Windows 虛擬機</a></li>
+<li><a href="other-packages.html"><span class="n">29</span>安裝其他套件</a></li>
+<li><a href="updates.html"><span class="n">30</span>系統更新</a></li>
+<li><a href="dotfiles.html"><span class="n">31</span>點檔設定</a></li>
+<li><a href="shell-plugins.html"><span class="n">32</span>殼層外掛</a></li>
+<li><a href="monitors.html"><span class="n">33</span>螢幕設定</a></li>
+<li><a href="keyboard-mouse-trackpad.html"><span class="n">34</span>鍵盤、滑鼠、觸控板</a></li>
+<li><a href="networking.html"><span class="n">35</span>網路設定</a></li>
+<li><a href="system-sleep.html"><span class="n">36</span>系統睡眠</a></li>
+<li><a href="hardware-authentication.html"><span class="n">37</span>硬體驗證</a></li>
+<li><a href="fonts.html"><span class="n">38</span>字型</a></li>
+<li><a href="backgrounds.html"><span class="n">39</span>桌布</a></li>
+<li><a href="prompt.html"><span class="n">40</span>提示符</a></li>
+<li><a href="branding.html"><span class="n">41</span>品牌識別</a></li>
+<li><a href="common-tweaks.html"><span class="n">42</span>常用微調</a></li>
+<li><a href="making-your-own-theme.html"><span class="n">43</span>自製主題</a></li>
+<li><a href="mac-support.html"><span class="n">44</span>Mac 支援</a></li>
+<li><a href="troubleshooting.html"><span class="n">45</span>疑難排解</a></li>
+<li><a href="faq.html"><span class="n">46</span>常見問題</a></li>
+<li><a href="system-snapshots.html"><span class="n">47</span>系統快照</a></li>
+<li><a href="security.html"><span class="n">48</span>安全性</a></li>
+<li><a href="omarchy-on.html"><span class="n">49</span>Omarchy on…</a></li>
+<li><a href="dual-boot-install.html"><span class="n">50</span>雙系統安裝</a></li>
+<li><a href="unattended-installs.html"><span class="n">51</span>無人值守安裝</a></li>
+</ol>
+</nav>
+<p class="colophon">非官方翻譯 · 原著 <a href="https://omarchy.org/manual/">omarchy.org/manual</a></p>
+</aside>
+<main class="prose" id="main">
+<div class="eyebrow"><span>第 20 章 · 共 51 章</span><a class="src-link" href="https://omarchy.org/manual/shell-functions/">原文 ↗</a></div><nav class="onpage" aria-label="本頁章節"><p class="onpage-label">本頁章節</p><ul><li><a href="#sec-1">壓縮 Compression</a></li><li><a href="#sec-4">磁碟 Drives</a></li><li><a href="#sec-7">開發版面 Dev layouts</a></li><li><a href="#sec-14">Git 工作樹 Git worktrees</a></li><li><a href="#sec-17">Rsync 監看 Rsync watchers</a></li><li><a href="#sec-21">SSH 連接埠轉發 SSH Portforwarding</a></li><li><a href="#sec-27">SSH 斷線重連 SSH reconnection</a></li></ul></nav><article><h1>終端函數</h1>
+<p>Omarchy 內建一組 shell 函數，用來簡化日常任務，把參數繁瑣的呼叫包裝起來。</p>
+<h2 id="sec-1">壓縮 Compression</h2>
+<p><code>compress [file/dir]</code>：把檔案或目錄打包成 <code>tar.gz</code>。</p>
+<p><code>decompress [file.tar.gz]</code>：解開 <code>tar.gz</code> 檔案。</p>
+<h2 id="sec-4">磁碟 Drives</h2>
+<p><code>iso2sd [image.iso]</code>：以互動式挑選磁碟，把指定的 iso 檔寫成 SD 卡開機碟。</p>
+<p><code>format-drive [device] [name]</code>：把整顆磁碟格式化為單一 <code>exFAT</code> 分割區（Windows 與 macOS 皆可讀寫）。不帶參數執行可查看可用磁碟。請小心使用！</p>
+<h2 id="sec-7">開發版面 Dev layouts</h2>
+<p>為 <code>tmux</code> 準備的瞬間多窗格開發版面：</p>
+<p><code>tdl [ai]</code>：建立 Tmux Dev Layout，包含編輯器、AI 助理與終端機。使用助理別名，例如 <code>tdl c</code> 代表 opencode，<code>tdl cx</code> 代表 Claude Code，也可以傳入兩個助理同時執行，例如 <code>tdl c cx</code>。</p>
+<p><code>tds</code>：建立 Tmux Dev Square，包含編輯器、diff 監看（透過 <code>hunk diff --watch</code>）、終端機與 opencode。</p>
+<p><code>tdlm [ai]</code>：為目前目錄下的每個子目錄各開一個 <code>tdl</code> 視窗。</p>
+<p><code>tsl [count] [command]</code>：以網格平鋪開啟一群窗格，全部執行相同指令（適合用來指揮 AI 助理大軍）。</p>
+<p>同樣的版面在 Herdr 中也有對應版本：<code>hdl</code>、<code>hds</code>、<code>hdlm</code> 與 <code>hsl</code>。</p>
+<h2 id="sec-14">Git 工作樹 Git worktrees</h2>
+<p><code>ga [branch]</code>：在目前倉庫旁邊新建 worktree 與分支，並跳進去。</p>
+<p><code>gd</code>：刪除目前所在的 worktree 與其分支（會先要求確認）。</p>
+<h2 id="sec-17">Rsync 監看 Rsync watchers</h2>
+<p><code>rsw [source] [destination]</code>：啟動背景監看，任何檔案變動就把 source 同步到 destination。destination 可以是遠端主機，例如 <code>rsw ~/Work/app nyc-dev:Work/app</code>。</p>
+<p><code>lsw</code>：列出所有作用中的監看。</p>
+<p><code>dsw</code>：停止所有監看。</p>
+<h2 id="sec-21">SSH 連接埠轉發 SSH Portforwarding</h2>
+<p>適合在本機開發、同時享有遠端主機 <code>localhost</code> 安全上下文權限的情境。</p>
+<p><code>fip</code>：透過 SSH 把遠端主機的一個或多個連接埠轉發到本機。</p>
+<p><code>dip</code>：中斷一個或多個已轉發的連接埠。</p>
+<p><code>lip</code>：列出所有作用中的 SSH 連接埠轉發。</p>
+<p>例如你在 <code>nyc-dev</code> 這台機器上的 <code>3000</code> 埠起了開發伺服器，執行 <code>fip nyc-dev 3000</code> 即可轉發，讓 <code>localhost:3000</code> 實際連到 <code>nyc-dev:3000</code>，而且不需要 SSL 憑證就能建立測試 WebSocket 所需的安全上下文。</p>
+<h2 id="sec-27">SSH 斷線重連 SSH reconnection</h2>
+<p><code>ssh</code> 本身被包裝成函數：當遠端 <code>tmux</code>、Herdr 或編輯器佔住終端機而連線中斷時，它會清理終端機狀態；互動式連線斷掉後會自動重連（按下 <code>Ctrl-C</code> 可停止重試迴圈）。</p>
+<hr></article><nav class="pager" aria-label="章節切換"><a class="pg-prev" href="shell-tools.html"><span class="pg-label">上一章</span><span class="pg-title">終端工具</span></a><a class="pg-next" href="tuis.html"><span class="pg-label">下一章</span><span class="pg-title">文字介面程式</span></a></nav><footer class="chapter-source"><p>原文：<a href="https://omarchy.org/manual/shell-functions/">https://omarchy.org/manual/shell-functions/</a></p></footer>
+
+</main>
+</div>
+</body>
+</html>

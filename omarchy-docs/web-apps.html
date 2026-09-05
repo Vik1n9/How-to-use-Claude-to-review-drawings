@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>網頁應用程式 — Omarchy 手冊（繁體中文）</title>
+<meta name="description" content="你可以用 Omarchy 選單（Super + Space）的 Install &amp;gt; Web App 新增自己的網頁應用程式。它會問你應用程式名稱、應用程式 URL，以及圖示 URL（若無法透過 favicon 取得）。許多熱門網頁應用程式的高品質 PNG 圖示可在 Dash">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="網頁應用程式 — Omarchy 手冊（繁體中文）">
+<meta property="og:site_name" content="Omarchy 手冊（繁體中文）">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://vik1n9.github.io/One-Page-Beginners-Guide/omarchy-docs/web-apps.html">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<div class="frame">
+<aside class="sidebar">
+<a class="wordmark" href="index.html">Omarchy Manual</a>
+<p class="wordmark-sub">繁體中文譯本</p>
+<nav class="toc-nav" aria-label="章節目錄">
+<ol>
+<li><a href="index.html"><span class="n">01</span>歡迎使用 Omarchy！</a></li>
+<li><a href="getting-started.html"><span class="n">02</span>開始使用</a></li>
+<li><a href="coming-from-mac-or-windows.html"><span class="n">03</span>從 Mac 或 Windows 過來</a></li>
+<li><a href="navigation.html"><span class="n">04</span>導覽</a></li>
+<li><a href="the-top-bar.html"><span class="n">05</span>頂列</a></li>
+<li><a href="themes.html"><span class="n">06</span>主題</a></li>
+<li><a href="hotkeys.html"><span class="n">07</span>快捷鍵</a></li>
+<li><a href="unified-clipboard-history.html"><span class="n">08</span>統一剪貼簿與歷史紀錄</a></li>
+<li><a href="reminders.html"><span class="n">09</span>提醒事項</a></li>
+<li><a href="notices.html"><span class="n">10</span>通知</a></li>
+<li><a href="text-extraction-dictation.html"><span class="n">11</span>文字擷取與聽寫</a></li>
+<li><a href="screenshots-recording.html"><span class="n">12</span>螢幕截圖與錄影</a></li>
+<li><a href="toggles-idle-screensaver.html"><span class="n">13</span>開關、閒置與螢幕保護程式</a></li>
+<li><a href="omarchy-cli.html"><span class="n">14</span>Omarchy 命令列介面</a></li>
+<li><a href="terminal.html"><span class="n">15</span>終端機</a></li>
+<li><a href="neovim.html"><span class="n">16</span>Neovim</a></li>
+<li><a href="ai.html"><span class="n">17</span>人工智慧</a></li>
+<li><a href="development-tools.html"><span class="n">18</span>開發工具</a></li>
+<li><a href="shell-tools.html"><span class="n">19</span>終端工具</a></li>
+<li><a href="shell-functions.html"><span class="n">20</span>終端函數</a></li>
+<li><a href="tuis.html"><span class="n">21</span>文字介面程式</a></li>
+<li><a href="guis.html"><span class="n">22</span>圖形應用程式</a></li>
+<li><a href="browsers.html"><span class="n">23</span>瀏覽器</a></li>
+<li><a href="commercial-apps-services.html"><span class="n">24</span>商業應用與服務</a></li>
+<li aria-current="page"><a href="web-apps.html"><span class="n">25</span>網頁應用程式</a></li>
+<li><a href="gaming.html"><span class="n">26</span>遊戲</a></li>
+<li><a href="filling-out-pdfs.html"><span class="n">27</span>填寫 PDF 表單</a></li>
+<li><a href="windows-vm.html"><span class="n">28</span>Windows 虛擬機</a></li>
+<li><a href="other-packages.html"><span class="n">29</span>安裝其他套件</a></li>
+<li><a href="updates.html"><span class="n">30</span>系統更新</a></li>
+<li><a href="dotfiles.html"><span class="n">31</span>點檔設定</a></li>
+<li><a href="shell-plugins.html"><span class="n">32</span>殼層外掛</a></li>
+<li><a href="monitors.html"><span class="n">33</span>螢幕設定</a></li>
+<li><a href="keyboard-mouse-trackpad.html"><span class="n">34</span>鍵盤、滑鼠、觸控板</a></li>
+<li><a href="networking.html"><span class="n">35</span>網路設定</a></li>
+<li><a href="system-sleep.html"><span class="n">36</span>系統睡眠</a></li>
+<li><a href="hardware-authentication.html"><span class="n">37</span>硬體驗證</a></li>
+<li><a href="fonts.html"><span class="n">38</span>字型</a></li>
+<li><a href="backgrounds.html"><span class="n">39</span>桌布</a></li>
+<li><a href="prompt.html"><span class="n">40</span>提示符</a></li>
+<li><a href="branding.html"><span class="n">41</span>品牌識別</a></li>
+<li><a href="common-tweaks.html"><span class="n">42</span>常用微調</a></li>
+<li><a href="making-your-own-theme.html"><span class="n">43</span>自製主題</a></li>
+<li><a href="mac-support.html"><span class="n">44</span>Mac 支援</a></li>
+<li><a href="troubleshooting.html"><span class="n">45</span>疑難排解</a></li>
+<li><a href="faq.html"><span class="n">46</span>常見問題</a></li>
+<li><a href="system-snapshots.html"><span class="n">47</span>系統快照</a></li>
+<li><a href="security.html"><span class="n">48</span>安全性</a></li>
+<li><a href="omarchy-on.html"><span class="n">49</span>Omarchy on…</a></li>
+<li><a href="dual-boot-install.html"><span class="n">50</span>雙系統安裝</a></li>
+<li><a href="unattended-installs.html"><span class="n">51</span>無人值守安裝</a></li>
+</ol>
+</nav>
+<p class="colophon">非官方翻譯 · 原著 <a href="https://omarchy.org/manual/">omarchy.org/manual</a></p>
+</aside>
+<main class="prose" id="main">
+<div class="eyebrow"><span>第 25 章 · 共 51 章</span><a class="src-link" href="https://omarchy.org/manual/web-apps/">原文 ↗</a></div><nav class="onpage" aria-label="本頁章節"><p class="onpage-label">本頁章節</p><ul><li><a href="#sec-7">HEY</a></li><li><a href="#sec-10">Basecamp</a></li><li><a href="#sec-13">ChatGPT</a></li><li><a href="#sec-16">Grok</a></li><li><a href="#sec-19">WhatsApp</a></li><li><a href="#sec-22">Google apps</a></li><li><a href="#sec-25">X</a></li><li><a href="#sec-28">YouTube</a></li><li><a href="#sec-31">Zoom</a></li><li><a href="#sec-34">Discord</a></li></ul></nav><article><h1>網頁應用程式</h1>
+<p>你可以用 Omarchy 選單（<code>Super + Space</code>）的 Install &gt; Web App 新增自己的網頁應用程式。它會問你應用程式名稱、應用程式 URL，以及圖示 URL（若無法透過 favicon 取得）。許多熱門網頁應用程式的高品質 PNG 圖示可在 Dashboard Icons 找到。</p>
+<p>之後即可透過應用程式啟動器（<code>Super + Space</code>）開啟，使用漂亮的無框網頁應用程式視窗。</p>
+<p>若要移除網頁應用程式，到 Omarchy 選單的 Remove &gt; Web App 即可。</p>
+<p>建議先用一般瀏覽器登入所有帳號，再使用網頁應用程式捷徑。輕量外框跟 1password 處得不好，所以直接先登入最省事。</p>
+<p>所有這類網頁應用程式的快捷鍵都可以在 <code>~/.config/hypr/bindings.lua</code> 修改。</p>
+<p>在網頁應用程式中，可用 <code>Shift + Alt + L</code> 把目前網址複製到剪貼簿。</p>
+<p>預設 Omarchy 已內建一系列應用程式：</p>
+<h2 id="sec-7">HEY</h2>
+<p>HEY 是電子郵件與行事曆服務，適合受夠 Gmail、Outlook 或 Apple Mail 的人。它出自 Omarchy 發源地 37signals。</p>
+<p>以 <code>Super + Shift + E</code> 啟動 HEY Email，以 <code>Super + Shift + Alt + E</code> 直接寫新郵件，以 <code>Super + Shift + C</code> 啟動 HEY Calendar。</p>
+<h2 id="sec-10">Basecamp</h2>
+<p>Basecamp 是專案管理服務，幫助小團隊跑得更快、產出更多。不必再東拼西湊 Trello、Slack、Asana、Notion，有了 Basecamp 全部都在同一處。它出自 Omarchy 發源地 37signals。</p>
+<p>以應用程式啟動器（<code>Super + Space</code>）啟動 Basecamp。</p>
+<h2 id="sec-13">ChatGPT</h2>
+<p>ChatGPT 是全球最受歡迎的 AI 聊天機器人。</p>
+<p>以 <code>Super + Shift + A</code> 啟動 ChatGPT。</p>
+<h2 id="sec-16">Grok</h2>
+<p>Grok 是 xAI 的聊天機器人。</p>
+<p>以 <code>Super + Shift + Alt + A</code> 啟動 Grok。</p>
+<h2 id="sec-19">WhatsApp</h2>
+<p>WhatsApp 是全球最受歡迎的通訊服務之一，網頁版在 Linux 上是很好的選擇。</p>
+<p>以 <code>Super + Shift + Alt + G</code> 啟動 WhatsApp。</p>
+<h2 id="sec-22">Google apps</h2>
+<p>Google Messages、Google Photos、Google Maps 與 Google Contacts 也都內建為網頁應用程式。</p>
+<p>以 <code>Super + Shift + Ctrl + G</code> 啟動 Google Messages，以 <code>Super + Shift + P</code> 啟動 Google Photos，以 <code>Super + Shift + S</code> 啟動 Google Maps。Google Contacts 可透過應用程式啟動器（<code>Super + Space</code>）開啟。</p>
+<h2 id="sec-25">X</h2>
+<p>X 是新聞爆發的地方。</p>
+<p>以 <code>Super + Shift + X</code> 啟動 X，以 <code>Super + Shift + Alt + X</code> 直接寫新貼文。</p>
+<h2 id="sec-28">YouTube</h2>
+<p>YouTube 是全球最受歡迎的影音平台。</p>
+<p>以 <code>Super + Shift + Y</code> 啟動 YouTube。</p>
+<h2 id="sec-31">Zoom</h2>
+<p>Zoom 是美國最受歡迎的視訊會議系統，全球連線品質優秀。免付費帳號可開 40 分鐘會議。Omarchy 包裝的是 Zoom 的網頁客戶端，Zoom 會議連結會直接用它開啟。</p>
+<p>以應用程式啟動器（<code>Super + Space</code>）啟動 Zoom。</p>
+<h2 id="sec-34">Discord</h2>
+<p>Discord 是多數遊戲與開源社群的聚集地，Omarchy 自己的社群也在上面。</p>
+<p>以應用程式啟動器（<code>Super + Space</code>）啟動 Discord。</p>
+<hr></article><nav class="pager" aria-label="章節切換"><a class="pg-prev" href="commercial-apps-services.html"><span class="pg-label">上一章</span><span class="pg-title">商業應用與服務</span></a><a class="pg-next" href="gaming.html"><span class="pg-label">下一章</span><span class="pg-title">遊戲</span></a></nav><footer class="chapter-source"><p>原文：<a href="https://omarchy.org/manual/web-apps/">https://omarchy.org/manual/web-apps/</a></p></footer>
+
+</main>
+</div>
+</body>
+</html>

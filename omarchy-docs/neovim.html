@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neovim — Omarchy 手冊（繁體中文）</title>
+<meta name="description" content="Neovim 是由 Bill Joy 在 1976 年打造的 vi 編輯器的現代實作。它是模式化編輯器（modal editor），插入模式與指令模式分離，只要學會極深指令集中的一小部分，就能獲得超能力，但學習曲線也相當陡峭。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="Neovim — Omarchy 手冊（繁體中文）">
+<meta property="og:site_name" content="Omarchy 手冊（繁體中文）">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://vik1n9.github.io/One-Page-Beginners-Guide/omarchy-docs/neovim.html">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<div class="frame">
+<aside class="sidebar">
+<a class="wordmark" href="index.html">Omarchy Manual</a>
+<p class="wordmark-sub">繁體中文譯本</p>
+<nav class="toc-nav" aria-label="章節目錄">
+<ol>
+<li><a href="index.html"><span class="n">01</span>歡迎使用 Omarchy！</a></li>
+<li><a href="getting-started.html"><span class="n">02</span>開始使用</a></li>
+<li><a href="coming-from-mac-or-windows.html"><span class="n">03</span>從 Mac 或 Windows 過來</a></li>
+<li><a href="navigation.html"><span class="n">04</span>導覽</a></li>
+<li><a href="the-top-bar.html"><span class="n">05</span>頂列</a></li>
+<li><a href="themes.html"><span class="n">06</span>主題</a></li>
+<li><a href="hotkeys.html"><span class="n">07</span>快捷鍵</a></li>
+<li><a href="unified-clipboard-history.html"><span class="n">08</span>統一剪貼簿與歷史紀錄</a></li>
+<li><a href="reminders.html"><span class="n">09</span>提醒事項</a></li>
+<li><a href="notices.html"><span class="n">10</span>通知</a></li>
+<li><a href="text-extraction-dictation.html"><span class="n">11</span>文字擷取與聽寫</a></li>
+<li><a href="screenshots-recording.html"><span class="n">12</span>螢幕截圖與錄影</a></li>
+<li><a href="toggles-idle-screensaver.html"><span class="n">13</span>開關、閒置與螢幕保護程式</a></li>
+<li><a href="omarchy-cli.html"><span class="n">14</span>Omarchy 命令列介面</a></li>
+<li><a href="terminal.html"><span class="n">15</span>終端機</a></li>
+<li aria-current="page"><a href="neovim.html"><span class="n">16</span>Neovim</a></li>
+<li><a href="ai.html"><span class="n">17</span>人工智慧</a></li>
+<li><a href="development-tools.html"><span class="n">18</span>開發工具</a></li>
+<li><a href="shell-tools.html"><span class="n">19</span>終端工具</a></li>
+<li><a href="shell-functions.html"><span class="n">20</span>終端函數</a></li>
+<li><a href="tuis.html"><span class="n">21</span>文字介面程式</a></li>
+<li><a href="guis.html"><span class="n">22</span>圖形應用程式</a></li>
+<li><a href="browsers.html"><span class="n">23</span>瀏覽器</a></li>
+<li><a href="commercial-apps-services.html"><span class="n">24</span>商業應用與服務</a></li>
+<li><a href="web-apps.html"><span class="n">25</span>網頁應用程式</a></li>
+<li><a href="gaming.html"><span class="n">26</span>遊戲</a></li>
+<li><a href="filling-out-pdfs.html"><span class="n">27</span>填寫 PDF 表單</a></li>
+<li><a href="windows-vm.html"><span class="n">28</span>Windows 虛擬機</a></li>
+<li><a href="other-packages.html"><span class="n">29</span>安裝其他套件</a></li>
+<li><a href="updates.html"><span class="n">30</span>系統更新</a></li>
+<li><a href="dotfiles.html"><span class="n">31</span>點檔設定</a></li>
+<li><a href="shell-plugins.html"><span class="n">32</span>殼層外掛</a></li>
+<li><a href="monitors.html"><span class="n">33</span>螢幕設定</a></li>
+<li><a href="keyboard-mouse-trackpad.html"><span class="n">34</span>鍵盤、滑鼠、觸控板</a></li>
+<li><a href="networking.html"><span class="n">35</span>網路設定</a></li>
+<li><a href="system-sleep.html"><span class="n">36</span>系統睡眠</a></li>
+<li><a href="hardware-authentication.html"><span class="n">37</span>硬體驗證</a></li>
+<li><a href="fonts.html"><span class="n">38</span>字型</a></li>
+<li><a href="backgrounds.html"><span class="n">39</span>桌布</a></li>
+<li><a href="prompt.html"><span class="n">40</span>提示符</a></li>
+<li><a href="branding.html"><span class="n">41</span>品牌識別</a></li>
+<li><a href="common-tweaks.html"><span class="n">42</span>常用微調</a></li>
+<li><a href="making-your-own-theme.html"><span class="n">43</span>自製主題</a></li>
+<li><a href="mac-support.html"><span class="n">44</span>Mac 支援</a></li>
+<li><a href="troubleshooting.html"><span class="n">45</span>疑難排解</a></li>
+<li><a href="faq.html"><span class="n">46</span>常見問題</a></li>
+<li><a href="system-snapshots.html"><span class="n">47</span>系統快照</a></li>
+<li><a href="security.html"><span class="n">48</span>安全性</a></li>
+<li><a href="omarchy-on.html"><span class="n">49</span>Omarchy on…</a></li>
+<li><a href="dual-boot-install.html"><span class="n">50</span>雙系統安裝</a></li>
+<li><a href="unattended-installs.html"><span class="n">51</span>無人值守安裝</a></li>
+</ol>
+</nav>
+<p class="colophon">非官方翻譯 · 原著 <a href="https://omarchy.org/manual/">omarchy.org/manual</a></p>
+</aside>
+<main class="prose" id="main">
+<div class="eyebrow"><span>第 16 章 · 共 51 章</span><a class="src-link" href="https://omarchy.org/manual/neovim/">原文 ↗</a></div><nav class="onpage" aria-label="本頁章節"><p class="onpage-label">本頁章節</p><ul><li><a href="#sec-4">LazyVim 基礎（LazyVim Basics）</a></li><li><a href="#sec-11">啟動 Neovim（Starting Neovim）</a></li><li><a href="#sec-13">用 Neovim 編輯 sudo 檔案（Using Neovim for sudo edits）</a></li></ul></nav><article><h1>Neovim</h1>
+<p>Neovim 是由 Bill Joy 在 1976 年打造的 vi 編輯器的現代實作。它是模式化編輯器（modal editor），插入模式與指令模式分離，只要學會極深指令集中的一小部分，就能獲得超能力，但學習曲線也相當陡峭。</p>
+<p>如果你完全沒接觸過 vim 風格編輯，建議先看 ThePrimeagen 在 YouTube 上的 Vim As Your Editor 系列學基礎。要有心理準備：相較於主流編輯器，vim 需要更久才能達到基本熟練，但一旦練成，回報也更大。</p>
+<p>Neovim 基本上可無限設定。如果你真的想從零打造，可以看 Typecraft 從零設定 Neovim 的課程，ThePrimeagen 也有一套。</p>
+<p>但 Omarchy 直接出貨一套完整調校好的 Neovim 設定——omarchy-nvim 套件——開箱即展示各種可能性的精華，你一行設定都不用寫。它基於 LazyVim，也就是一套 Neovim 外掛與設定發行版，非常好用。</p>
+<h2 id="sec-4">LazyVim 基礎（LazyVim Basics）</h2>
+<p>如前所述，這篇短文不會教你 vim，但可以帶你認識 LazyVim 基礎與操作方式。</p>
+<p>首先，Neovim 有前置鍵（leader key）的概念，也就是所有指令的入口。LazyVim 把它設為空白鍵（Space），按下去等一秒，就會看到一堆選項與行內說明。</p>
+<p>以下是我常用的基本指令：</p>
+<ul><li><code>Space Space</code>：模糊搜尋目前目錄下任意檔案。</li><li><code>Space S G</code>：用 grep 搜尋所有檔案並預覽。</li><li><code>Space E</code>：開關檔案樹。</li><li><code>Ctrl + W W</code>：在檔案樹與編輯器之間跳換。</li><li><code>Shift + H</code>：在已開啟的分頁（vim 稱為緩衝區，buffer）間向左移動。</li><li><code>Shift + L</code>：在已開啟的分頁間向右移動。</li><li><code>Space B D</code>：關閉分頁。</li><li><code>Space B O</code>：關閉目前分頁以外的所有分頁。</li><li><code>Space G G</code>：從目前目錄在浮動窗格啟動 LazyGit。</li><li><code>Space U W</code>：切換自動換行（soft wrap）。</li><li>在檔案樹中（<code>Space E</code> 顯示，<code>Ctrl + W W</code> 跳過去），按 <code>a</code> 新增檔案，按 <code>A</code> 新增目錄，在樹中按 <code>?</code> 查看所有指令。</li></ul>
+<p>若想學基本 vim 語言，我寫過三段式語法與連招技巧。</p>
+<p>所有可用指令可見 LazyVim Keymaps 頁面。</p>
+<h2 id="sec-11">啟動 Neovim（Starting Neovim）</h2>
+<p>可用 <code>Super + Shift + N</code> 啟動 Neovim（此綁定會啟動你的預設編輯器，開箱即 Neovim），但通常從終端機操作更順手：先切到工作目錄再輸入 <code>n</code>。<code>n</code> 是 <code>nvim</code> 的別名，預設以目前目錄開啟，可用 <code>n myfile.txt</code> 開啟單一檔案。</p>
+<h2 id="sec-13">用 Neovim 編輯 sudo 檔案（Using Neovim for sudo edits）</h2>
+<p>若需以超級使用者身分編輯檔案，可用保留全部外掛設定的 neovim 執行，例如：</p>
+<pre><code>sudoedit /etc/sudoers.d/00-sudo-only-file</code></pre>
+<hr></article><nav class="pager" aria-label="章節切換"><a class="pg-prev" href="terminal.html"><span class="pg-label">上一章</span><span class="pg-title">終端機</span></a><a class="pg-next" href="ai.html"><span class="pg-label">下一章</span><span class="pg-title">人工智慧</span></a></nav><footer class="chapter-source"><p>原文：<a href="https://omarchy.org/manual/neovim/">https://omarchy.org/manual/neovim/</a></p></footer>
+
+</main>
+</div>
+</body>
+</html>

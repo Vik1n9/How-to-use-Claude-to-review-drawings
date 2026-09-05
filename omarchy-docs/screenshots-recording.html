@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>螢幕截圖與錄影 — Omarchy 手冊（繁體中文）</title>
+<meta name="description" content="螢幕上能抓的東西全掛在 Print Screen 鍵上。單按是拍照，加上修飾鍵則是錄影、取色或擷取區域內文字。若鍵盤根本沒有 Print Screen 鍵，Super + Ctrl + C 會以選單形式開啟同一套功能。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="螢幕截圖與錄影 — Omarchy 手冊（繁體中文）">
+<meta property="og:site_name" content="Omarchy 手冊（繁體中文）">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://vik1n9.github.io/One-Page-Beginners-Guide/omarchy-docs/screenshots-recording.html">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<div class="frame">
+<aside class="sidebar">
+<a class="wordmark" href="index.html">Omarchy Manual</a>
+<p class="wordmark-sub">繁體中文譯本</p>
+<nav class="toc-nav" aria-label="章節目錄">
+<ol>
+<li><a href="index.html"><span class="n">01</span>歡迎使用 Omarchy！</a></li>
+<li><a href="getting-started.html"><span class="n">02</span>開始使用</a></li>
+<li><a href="coming-from-mac-or-windows.html"><span class="n">03</span>從 Mac 或 Windows 過來</a></li>
+<li><a href="navigation.html"><span class="n">04</span>導覽</a></li>
+<li><a href="the-top-bar.html"><span class="n">05</span>頂列</a></li>
+<li><a href="themes.html"><span class="n">06</span>主題</a></li>
+<li><a href="hotkeys.html"><span class="n">07</span>快捷鍵</a></li>
+<li><a href="unified-clipboard-history.html"><span class="n">08</span>統一剪貼簿與歷史紀錄</a></li>
+<li><a href="reminders.html"><span class="n">09</span>提醒事項</a></li>
+<li><a href="notices.html"><span class="n">10</span>通知</a></li>
+<li><a href="text-extraction-dictation.html"><span class="n">11</span>文字擷取與聽寫</a></li>
+<li aria-current="page"><a href="screenshots-recording.html"><span class="n">12</span>螢幕截圖與錄影</a></li>
+<li><a href="toggles-idle-screensaver.html"><span class="n">13</span>開關、閒置與螢幕保護程式</a></li>
+<li><a href="omarchy-cli.html"><span class="n">14</span>Omarchy 命令列介面</a></li>
+<li><a href="terminal.html"><span class="n">15</span>終端機</a></li>
+<li><a href="neovim.html"><span class="n">16</span>Neovim</a></li>
+<li><a href="ai.html"><span class="n">17</span>人工智慧</a></li>
+<li><a href="development-tools.html"><span class="n">18</span>開發工具</a></li>
+<li><a href="shell-tools.html"><span class="n">19</span>終端工具</a></li>
+<li><a href="shell-functions.html"><span class="n">20</span>終端函數</a></li>
+<li><a href="tuis.html"><span class="n">21</span>文字介面程式</a></li>
+<li><a href="guis.html"><span class="n">22</span>圖形應用程式</a></li>
+<li><a href="browsers.html"><span class="n">23</span>瀏覽器</a></li>
+<li><a href="commercial-apps-services.html"><span class="n">24</span>商業應用與服務</a></li>
+<li><a href="web-apps.html"><span class="n">25</span>網頁應用程式</a></li>
+<li><a href="gaming.html"><span class="n">26</span>遊戲</a></li>
+<li><a href="filling-out-pdfs.html"><span class="n">27</span>填寫 PDF 表單</a></li>
+<li><a href="windows-vm.html"><span class="n">28</span>Windows 虛擬機</a></li>
+<li><a href="other-packages.html"><span class="n">29</span>安裝其他套件</a></li>
+<li><a href="updates.html"><span class="n">30</span>系統更新</a></li>
+<li><a href="dotfiles.html"><span class="n">31</span>點檔設定</a></li>
+<li><a href="shell-plugins.html"><span class="n">32</span>殼層外掛</a></li>
+<li><a href="monitors.html"><span class="n">33</span>螢幕設定</a></li>
+<li><a href="keyboard-mouse-trackpad.html"><span class="n">34</span>鍵盤、滑鼠、觸控板</a></li>
+<li><a href="networking.html"><span class="n">35</span>網路設定</a></li>
+<li><a href="system-sleep.html"><span class="n">36</span>系統睡眠</a></li>
+<li><a href="hardware-authentication.html"><span class="n">37</span>硬體驗證</a></li>
+<li><a href="fonts.html"><span class="n">38</span>字型</a></li>
+<li><a href="backgrounds.html"><span class="n">39</span>桌布</a></li>
+<li><a href="prompt.html"><span class="n">40</span>提示符</a></li>
+<li><a href="branding.html"><span class="n">41</span>品牌識別</a></li>
+<li><a href="common-tweaks.html"><span class="n">42</span>常用微調</a></li>
+<li><a href="making-your-own-theme.html"><span class="n">43</span>自製主題</a></li>
+<li><a href="mac-support.html"><span class="n">44</span>Mac 支援</a></li>
+<li><a href="troubleshooting.html"><span class="n">45</span>疑難排解</a></li>
+<li><a href="faq.html"><span class="n">46</span>常見問題</a></li>
+<li><a href="system-snapshots.html"><span class="n">47</span>系統快照</a></li>
+<li><a href="security.html"><span class="n">48</span>安全性</a></li>
+<li><a href="omarchy-on.html"><span class="n">49</span>Omarchy on…</a></li>
+<li><a href="dual-boot-install.html"><span class="n">50</span>雙系統安裝</a></li>
+<li><a href="unattended-installs.html"><span class="n">51</span>無人值守安裝</a></li>
+</ol>
+</nav>
+<p class="colophon">非官方翻譯 · 原著 <a href="https://omarchy.org/manual/">omarchy.org/manual</a></p>
+</aside>
+<main class="prose" id="main">
+<div class="eyebrow"><span>第 12 章 · 共 51 章</span><a class="src-link" href="https://omarchy.org/manual/screenshots-recording/">原文 ↗</a></div><nav class="onpage" aria-label="本頁章節"><p class="onpage-label">本頁章節</p><ul><li><a href="#sec-2">螢幕截圖（Screenshots）</a></li><li><a href="#sec-7">用鍵盤操作選擇器（Driving the picker from the keyboard）</a></li><li><a href="#sec-11">螢幕錄影（Screen recording）</a></li><li><a href="#sec-16">Webcam 子母畫面（The webcam overlay）</a></li><li><a href="#sec-21">文字、二維碼與顏色（Text, QR codes, and colours）</a></li><li><a href="#sec-25">分享前的轉檔（Transcoding before you share）</a></li><li><a href="#sec-29">傳到別處（Sending it somewhere）</a></li></ul></nav><article><h1>螢幕截圖與錄影</h1>
+<p>螢幕上能抓的東西全掛在 Print Screen 鍵上。單按是拍照，加上修飾鍵則是錄影、取色或擷取區域內文字。若鍵盤根本沒有 Print Screen 鍵，<code>Super + Ctrl + C</code> 會以選單形式開啟同一套功能。</p>
+<table><thead><tr><th>快捷鍵</th><th>功能</th></tr></thead><tbody><tr><td><code>Print Screen</code></td><td>螢幕截圖（Screenshot）</td></tr><tr><td><code>Alt + Print Screen</code></td><td>螢幕錄影（Screenrecord，或停止錄影中者）</td></tr><tr><td><code>Super + Print Screen</code></td><td>取色器（Colour picker）</td></tr><tr><td><code>Super + Ctrl + Print Screen</code></td><td>從區域擷取文字</td></tr><tr><td><code>Super + Ctrl + C</code></td><td>擷取選單（Capture menu）</td></tr><tr><td><code>Super + Ctrl + .</code></td><td>轉檔圖片或影片</td></tr></tbody></table>
+<h2 id="sec-2">螢幕截圖（Screenshots）</h2>
+<p>按下 Print Screen 後螢幕會凍結，取景時畫面不會在你手下亂跑。拖曳方框自由框選，或點一下，截圖會自動貼合你點到的矩形——點到視窗就貼視窗，點到頂欄或空隙就抓整台螢幕。反悔了？再按一次 Print Screen 關掉選擇器。</p>
+<p>結果一次去兩個地方：<code>~/Pictures</code> 目錄下的 PNG 檔，以及剪貼簿，所以你能用 <code>Super + V</code> 直接貼進聊天視窗。通知會帶縮圖彈出，點它（或按 <code>Super + Alt + ,</code> 叫出最新通知），截圖會在 Tensaku（標註編輯器）中開啟，送出前可在上面畫箭頭與方框。</p>
+<p>檔案預設落在 <code>~/Pictures</code>，命名如 <code>screenshot-2026-08-13_14-22-05.png</code>。若想收進專屬資料夾，設定 <code>OMARCHY_SCREENSHOT_DIR</code> 即可（session 環境變數放哪裡見 FAQ）。目錄不存在時 Omarchy 會幫你建好，編輯器也可用 <code>OMARCHY_SCREENSHOT_EDITOR</code> 更換。</p>
+<p>從終端機可用 <code>omarchy screenshot</code> 拍同樣的截圖，也可更明確指定：<code>omarchy capture screenshot region</code> 只自由框選，<code>windows</code> 貼合視窗與螢幕矩形，<code>fullscreen</code> 跳過選擇器直接抓聚焦的螢幕。第二個參數 <code>copy</code> 只送剪貼簿，<code>save</code> 只存檔。</p>
+<h2 id="sec-7">用鍵盤操作選擇器（Driving the picker from the keyboard）</h2>
+<p>選擇器開啟時，你完全可以不用滑鼠：</p>
+<table><thead><tr><th>按鍵</th><th>功能</th></tr></thead><tbody><tr><td><code>Return</code></td><td>擷取反白的視窗</td></tr><tr><td><code>Ctrl + Return</code></td><td>擷取整個螢幕</td></tr><tr><td><code>Tab</code> / <code>Ctrl + Tab</code></td><td>反白下一個 / 上一個視窗</td></tr><tr><td>方向鍵</td><td>反白該方向的視窗</td></tr></tbody></table>
+<p>方向鍵與 Tab 會把游標帶到選中的視窗，反白跟著走，所見即所得。這些綁定只在選擇器開啟時存在，不會跟你自己的設定衝突。</p>
+<h2 id="sec-11">螢幕錄影（Screen recording）</h2>
+<p><code>Alt + Print Screen</code> 會開啟 Trigger &gt; Capture &gt; Screenrecord，先問你要什麼音軌：無音訊、桌面音、桌面加麥克風、桌面加麥克風加 webcam。最後一項只在你真的接了相機時出現。選完後得到跟截圖一樣的選擇器：拖曳區域，或點視窗、點螢幕。</p>
+<p>錄影跑在 gpu-screen-recorder 上，以 60fps 在顯示卡（Graphics Processing Unit，簡稱 GPU）上編碼，非不得已才退回中央處理器（Central Processing Unit，簡稱 CPU）。成品是 <code>~/Videos</code> 下的 MP4，命名如 <code>screenrecording-2026-08-13_14-22-05.mp4</code>。用 <code>OMARCHY_SCREENRECORD_DIR</code> 可改位置，但注意：跟截圖目錄不同，這個目錄必須事先存在，否則錄影拒絕啟動。</p>
+<p>錄影時頂欄會出現小指示燈，點它即停止。也可再按一次 <code>Alt + Print Screen</code> 停止，或到 Trigger &gt; Capture &gt; Screenrecord 下的 Stop Screenrecording（只在錄影中出現）停止。</p>
+<p>停止前會做一點整理：剪掉第一幀，有音訊則正規化到 -14 LUFS，並把開頭 PipeWire 擷取的爆音靜音。接著通知帶著錄影縮圖彈出，點它即以 mpv 播放。</p>
+<h2 id="sec-16">Webcam 子母畫面（The webcam overlay）</h2>
+<p>用 webcam 錄影時，相機會以釘住的裁切直式小窗出現在錄影畫面的右下角。若擋住需要的東西，可即時調整大小：</p>
+<table><thead><tr><th>快捷鍵</th><th>功能</th></tr></thead><tbody><tr><td><code>Super + Alt + [</code></td><td>webcam 子母畫面縮小</td></tr><tr><td><code>Super + Alt + ]</code></td><td>webcam 子母畫面放大</td></tr></tbody></table>
+<p>共三段：小、中、大，快捷鍵逐段切換，預設為中。三段與錄影成比例，不論錄 1080p 螢幕或 6K 螢幕，相機佔畫面比例相同。若錄的是區域而非整台螢幕，子母畫面會錨定在該區域角落而非螢幕角落，保證留在鏡頭內。</p>
+<p>也可用 <code>omarchy-capture-webcam-resize small</code> 直接指定，或 <code>reset</code> 回到中。</p>
+<h2 id="sec-21">文字、二維碼與顏色（Text, QR codes, and colours）</h2>
+<p><code>Super + Ctrl + Print Screen</code> 框選區域並以光學字元辨識（OCR）送到剪貼簿，詳見文字擷取與聽寫。</p>
+<p>Trigger &gt; Capture &gt; QR Code 對二維碼（QR code）做同樣的事。框選含碼區域，解碼值即送剪貼簿。它只找 QR code——濃密的螢幕內容很容易被誤判成條碼。注意：解碼值只去剪貼簿，不印出、不進通知，並標記為敏感，不留在剪貼簿歷史。二維碼常帶機密——例如雙重驗證（Two-Factor Authentication，簡稱 2FA）設定的 <code>otpauth://</code> 網址——你不會想讓它留在紀錄裡，貼上照常可用。</p>
+<p><code>Super + Print Screen</code>（或 Trigger &gt; Capture &gt; Color）把游標變成滴管，點螢幕任意處，顏色即上剪貼簿。再按一次快捷鍵可不取色退出。</p>
+<h2 id="sec-25">分享前的轉檔（Transcoding before you share）</h2>
+<p>4K 螢幕錄影或手機直出的 HEIC 常常太大，無法直接傳送。<code>Super + Ctrl + .</code>（或 Trigger &gt; Transcode）可解。它會在 <code>~/Pictures</code> 與 <code>~/Videos</code> 上開模糊檔案選擇器，再問你要的格式與尺寸。</p>
+<p>圖片轉 jpg 或 png，分高、中、低三檔，寬度上限分別為 3160、2160、1080 像素。影片轉 mp4 或動態 gif，分 4k、1080p、720p 三檔。轉好的檔寫在原檔隔壁，檔名帶解析度，如 <code>demo-1080p.mp4</code>，路徑以檔案網址（file URI）形式複製到剪貼簿，可直接貼進支援檔案拖放的應用。</p>
+<p>終端機也行，若你早知道要什麼：<code>omarchy transcode ~/Videos/demo.mov mp4 1080p</code>。另有 <code>omarchy transcode ascii</code> 把圖片轉 ASCII 藝術——那招多半是拿來做品牌的。</p>
+<h2 id="sec-29">傳到別處（Sending it somewhere）</h2>
+<p>檔到手後，<code>Super + Ctrl + S</code> 開啟分享（Share）選單，透過 LocalSend 送到同網域的其他裝置，詳見圖形應用（GUIs）。</p>
+<hr></article><nav class="pager" aria-label="章節切換"><a class="pg-prev" href="text-extraction-dictation.html"><span class="pg-label">上一章</span><span class="pg-title">文字擷取與聽寫</span></a><a class="pg-next" href="toggles-idle-screensaver.html"><span class="pg-label">下一章</span><span class="pg-title">開關、閒置與螢幕保護程式</span></a></nav><footer class="chapter-source"><p>原文：<a href="https://omarchy.org/manual/screenshots-recording/">https://omarchy.org/manual/screenshots-recording/</a></p></footer>
+
+</main>
+</div>
+</body>
+</html>

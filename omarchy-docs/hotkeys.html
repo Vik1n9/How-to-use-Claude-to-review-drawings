@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>快捷鍵 — Omarchy 手冊（繁體中文）</title>
+<meta name="description" content="所有主要鍵盤綁定可用 Super + K 查看（Tmux 綁定用 Super + Alt + K，Herdr 綁定用 Super + Ctrl + K）。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="快捷鍵 — Omarchy 手冊（繁體中文）">
+<meta property="og:site_name" content="Omarchy 手冊（繁體中文）">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://vik1n9.github.io/One-Page-Beginners-Guide/omarchy-docs/hotkeys.html">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<div class="frame">
+<aside class="sidebar">
+<a class="wordmark" href="index.html">Omarchy Manual</a>
+<p class="wordmark-sub">繁體中文譯本</p>
+<nav class="toc-nav" aria-label="章節目錄">
+<ol>
+<li><a href="index.html"><span class="n">01</span>歡迎使用 Omarchy！</a></li>
+<li><a href="getting-started.html"><span class="n">02</span>開始使用</a></li>
+<li><a href="coming-from-mac-or-windows.html"><span class="n">03</span>從 Mac 或 Windows 過來</a></li>
+<li><a href="navigation.html"><span class="n">04</span>導覽</a></li>
+<li><a href="the-top-bar.html"><span class="n">05</span>頂列</a></li>
+<li><a href="themes.html"><span class="n">06</span>主題</a></li>
+<li aria-current="page"><a href="hotkeys.html"><span class="n">07</span>快捷鍵</a></li>
+<li><a href="unified-clipboard-history.html"><span class="n">08</span>統一剪貼簿與歷史紀錄</a></li>
+<li><a href="reminders.html"><span class="n">09</span>提醒事項</a></li>
+<li><a href="notices.html"><span class="n">10</span>通知</a></li>
+<li><a href="text-extraction-dictation.html"><span class="n">11</span>文字擷取與聽寫</a></li>
+<li><a href="screenshots-recording.html"><span class="n">12</span>螢幕截圖與錄影</a></li>
+<li><a href="toggles-idle-screensaver.html"><span class="n">13</span>開關、閒置與螢幕保護程式</a></li>
+<li><a href="omarchy-cli.html"><span class="n">14</span>Omarchy 命令列介面</a></li>
+<li><a href="terminal.html"><span class="n">15</span>終端機</a></li>
+<li><a href="neovim.html"><span class="n">16</span>Neovim</a></li>
+<li><a href="ai.html"><span class="n">17</span>人工智慧</a></li>
+<li><a href="development-tools.html"><span class="n">18</span>開發工具</a></li>
+<li><a href="shell-tools.html"><span class="n">19</span>終端工具</a></li>
+<li><a href="shell-functions.html"><span class="n">20</span>終端函數</a></li>
+<li><a href="tuis.html"><span class="n">21</span>文字介面程式</a></li>
+<li><a href="guis.html"><span class="n">22</span>圖形應用程式</a></li>
+<li><a href="browsers.html"><span class="n">23</span>瀏覽器</a></li>
+<li><a href="commercial-apps-services.html"><span class="n">24</span>商業應用與服務</a></li>
+<li><a href="web-apps.html"><span class="n">25</span>網頁應用程式</a></li>
+<li><a href="gaming.html"><span class="n">26</span>遊戲</a></li>
+<li><a href="filling-out-pdfs.html"><span class="n">27</span>填寫 PDF 表單</a></li>
+<li><a href="windows-vm.html"><span class="n">28</span>Windows 虛擬機</a></li>
+<li><a href="other-packages.html"><span class="n">29</span>安裝其他套件</a></li>
+<li><a href="updates.html"><span class="n">30</span>系統更新</a></li>
+<li><a href="dotfiles.html"><span class="n">31</span>點檔設定</a></li>
+<li><a href="shell-plugins.html"><span class="n">32</span>殼層外掛</a></li>
+<li><a href="monitors.html"><span class="n">33</span>螢幕設定</a></li>
+<li><a href="keyboard-mouse-trackpad.html"><span class="n">34</span>鍵盤、滑鼠、觸控板</a></li>
+<li><a href="networking.html"><span class="n">35</span>網路設定</a></li>
+<li><a href="system-sleep.html"><span class="n">36</span>系統睡眠</a></li>
+<li><a href="hardware-authentication.html"><span class="n">37</span>硬體驗證</a></li>
+<li><a href="fonts.html"><span class="n">38</span>字型</a></li>
+<li><a href="backgrounds.html"><span class="n">39</span>桌布</a></li>
+<li><a href="prompt.html"><span class="n">40</span>提示符</a></li>
+<li><a href="branding.html"><span class="n">41</span>品牌識別</a></li>
+<li><a href="common-tweaks.html"><span class="n">42</span>常用微調</a></li>
+<li><a href="making-your-own-theme.html"><span class="n">43</span>自製主題</a></li>
+<li><a href="mac-support.html"><span class="n">44</span>Mac 支援</a></li>
+<li><a href="troubleshooting.html"><span class="n">45</span>疑難排解</a></li>
+<li><a href="faq.html"><span class="n">46</span>常見問題</a></li>
+<li><a href="system-snapshots.html"><span class="n">47</span>系統快照</a></li>
+<li><a href="security.html"><span class="n">48</span>安全性</a></li>
+<li><a href="omarchy-on.html"><span class="n">49</span>Omarchy on…</a></li>
+<li><a href="dual-boot-install.html"><span class="n">50</span>雙系統安裝</a></li>
+<li><a href="unattended-installs.html"><span class="n">51</span>無人值守安裝</a></li>
+</ol>
+</nav>
+<p class="colophon">非官方翻譯 · 原著 <a href="https://omarchy.org/manual/">omarchy.org/manual</a></p>
+</aside>
+<main class="prose" id="main">
+<div class="eyebrow"><span>第 7 章 · 共 51 章</span><a class="src-link" href="https://omarchy.org/manual/hotkeys/">原文 ↗</a></div><nav class="onpage" aria-label="本頁章節"><p class="onpage-label">本頁章節</p><ul><li><a href="#sec-1">導覽</a></li><li><a href="#sec-3">系統控制</a></li><li><a href="#sec-5">微調</a></li><li><a href="#sec-7">啟動應用</a></li><li><a href="#sec-10">統一剪貼簿</a></li><li><a href="#sec-13">截圖錄影</a></li><li><a href="#sec-16">通知</a></li><li><a href="#sec-18">外觀</a></li><li><a href="#sec-21">開關</a></li><li><a href="#sec-23">提醒事項</a></li><li><a href="#sec-25">報時</a></li><li><a href="#sec-27">Tmux</a></li><li><a href="#sec-35">Ghostty 終端機</a></li><li><a href="#sec-37">檔案管理員</a></li><li><a href="#sec-39">Neovim（含 lazyvim）</a></li><li><a href="#sec-42">快捷表情</a></li><li><a href="#sec-44">快捷補完</a></li></ul></nav><article><h1>快捷鍵</h1>
+<p>所有主要鍵盤綁定可用 Super + K 查看（Tmux 綁定用 Super + Alt + K，Herdr 綁定用 Super + Ctrl + K）。</p>
+<h2 id="sec-1">導覽</h2>
+<table><thead><tr><th>快捷鍵</th><th>功能</th></tr></thead><tbody><tr><td>Super + Space</td><td>Omarchy menu（應用與一切）</td></tr><tr><td>Super + Alt + Space</td><td>應用選單</td></tr><tr><td>Super + Escape</td><td>系統選單（休眠、重啟等）</td></tr><tr><td>Super + Ctrl + L</td><td>鎖定電腦</td></tr><tr><td>Super + W 或 Super + Q</td><td>關閉視窗</td></tr><tr><td>Ctrl + Alt + Del</td><td>關閉所有視窗</td></tr><tr><td>Super + T</td><td>切換視窗平鋪 / 浮動</td></tr><tr><td>Super + J</td><td>切換視窗排列（橫 / 豎）</td></tr><tr><td>Super + O</td><td>切換視窗彈出為黏貼浮動</td></tr><tr><td>Super + L</td><td>切換 dwindle 與捲動佈局</td></tr><tr><td>Super + P</td><td>切換 pseudo 視窗風格（自然 v 拉伸）</td></tr><tr><td>Super + F</td><td>全螢幕</td></tr><tr><td>Super + Alt + F</td><td>全寬</td></tr><tr><td>Super + Ctrl + F</td><td>視窗內全螢幕</td></tr><tr><td>Super + 1/2/3/4</td><td>跳到指定工作區</td></tr><tr><td>Super + Tab</td><td>下一個工作區</td></tr><tr><td>Super + Shift + Tab</td><td>上一個工作區</td></tr><tr><td>Super + Ctrl + Tab</td><td>回到前一個工作區</td></tr><tr><td>Super + Shift + 1/2/3/4</td><td>把視窗搬到工作區</td></tr><tr><td>Super + Shift + Alt + 1/2/3/4</td><td>把視窗搬到工作區但人不跟過去</td></tr><tr><td>Super + S / Super + Grave</td><td>切換速查工作區</td></tr><tr><td>Super + Alt + S / Super + Shift + Grave</td><td>把視窗搬到速查工作區</td></tr><tr><td>Super + Shift + Alt + 方向鍵</td><td>把工作區搬到指定方向的螢幕</td></tr><tr><td>Super + 方向鍵</td><td>聚焦指定方向的視窗</td></tr><tr><td>Super + Shift + 方向鍵</td><td>與指定方向的視窗交換</td></tr><tr><td>Super + Minus</td><td>視窗往左擴張</td></tr><tr><td>Super + Equal</td><td>視窗往左收縮</td></tr><tr><td>Super + Shift + Minus</td><td>視窗往上收縮</td></tr><tr><td>Super + Shift + Equal</td><td>視窗往下擴張</td></tr><tr><td>Super + Alt + Minus/Equal</td><td>同上縮放，小步</td></tr><tr><td>Super + Ctrl + Minus/Equal</td><td>同上縮放，大步</td></tr><tr><td>Super + Alt + Home</td><td>記住視窗寬度</td></tr><tr><td>Super + Home</td><td>恢復記住的視窗寬度</td></tr><tr><td>Super + 滑鼠左鍵</td><td>拖動視窗</td></tr><tr><td>Super + 滑鼠右鍵</td><td>縮放視窗</td></tr><tr><td>Super + 滾輪</td><td>捲動切換工作區</td></tr><tr><td>Super + G</td><td>切換視窗群組</td></tr><tr><td>Super + Alt + G</td><td>把視窗移出群組</td></tr><tr><td>Super + Alt + Tab</td><td>群組內視窗正向循環</td></tr><tr><td>Super + Alt + Shift + Tab</td><td>群組內視窗反向循環</td></tr><tr><td>Super + Alt + 1/2/3/4/5</td><td>直達群組內指定視窗</td></tr><tr><td>Super + Alt + 方向鍵</td><td>把視窗搬進指定方向的群組</td></tr><tr><td>Super + Ctrl + 左/右</td><td>平鋪群組內左右移動</td></tr><tr><td>Super + Ctrl + Z</td><td>螢幕放大（多按多放）</td></tr><tr><td>Super + Ctrl + Alt + Z</td><td>螢幕縮放全復原</td></tr><tr><td>Super + /</td><td>螢幕縮放下一檔</td></tr><tr><td>Super + Alt + /</td><td>螢幕縮放上一檔</td></tr><tr><td>Alt + Tab</td><td>同工作區視窗正向循環</td></tr><tr><td>Alt + Shift + Tab</td><td>同工作區視窗反向循環</td></tr><tr><td>Ctrl + Alt + Tab</td><td>正向循環聚焦各螢幕</td></tr><tr><td>Ctrl + Alt + Shift + Tab</td><td>反向循環聚焦各螢幕</td></tr></tbody></table>
+<h2 id="sec-3">系統控制</h2>
+<table><thead><tr><th>快捷鍵</th><th>功能</th></tr></thead><tbody><tr><td>Super + Ctrl + A</td><td>音訊面板</td></tr><tr><td>Super + Ctrl + B</td><td>藍牙面板</td></tr><tr><td>Super + Ctrl + W</td><td>Wi-Fi / 網路面板</td></tr><tr><td>Super + Ctrl + D</td><td>顯示面板</td></tr><tr><td>Super + Ctrl + P</td><td>電源面板</td></tr><tr><td>Super + Ctrl + Alt + D</td><td>日曆面板</td></tr><tr><td>Super + Ctrl + 1-9</td><td>按位置切換頂列面板</td></tr><tr><td>Super + Ctrl + S</td><td>分享選單（經 LocalSend）</td></tr><tr><td>Super + Ctrl + T</td><td>活動監控（btop）</td></tr><tr><td>Super + Ctrl + C</td><td>截圖錄影面板</td></tr><tr><td>Super + Ctrl + O</td><td>開關選單</td></tr><tr><td>Super + Ctrl + H</td><td>硬體選單</td></tr><tr><td>Super + Ctrl + Q</td><td>計算機</td></tr><tr><td>Super + Ctrl + E</td><td>表情符號選擇器</td></tr><tr><td>Super + Ctrl + .</td><td>媒體轉碼</td></tr><tr><td>Super + Shift + Ctrl + A</td><td>選 AI 代理</td></tr></tbody></table>
+<h2 id="sec-5">微調</h2>
+<table><thead><tr><th>快捷鍵</th><th>功能</th></tr></thead><tbody><tr><td>Shift + 螢幕亮度 up</td><td>螢幕最亮</td></tr><tr><td>Shift + 螢幕亮度 down</td><td>螢幕最暗</td></tr><tr><td>Alt + 螢幕亮度 up/down</td><td>1% 精細亮度</td></tr><tr><td>Alt + 音量 up/down</td><td>1% 精細音量</td></tr><tr><td>鍵盤亮度 up/down</td><td>鍵盤背光增減</td></tr><tr><td>鍵盤背光鍵</td><td>循環鍵盤背光段位</td></tr><tr><td>Alt + Play</td><td>下一首</td></tr><tr><td>Alt + Shift + Play</td><td>上一首</td></tr></tbody></table>
+<h2 id="sec-7">啟動應用</h2>
+<table><thead><tr><th>快捷鍵</th><th>功能</th></tr></thead><tbody><tr><td>Super + Return</td><td>終端機</td></tr><tr><td>Super + Alt + Return</td><td>Tmux 終端機</td></tr><tr><td>Super + Ctrl + Return</td><td>Herdr（agent 管理員）</td></tr><tr><td>Super + Shift + Return</td><td>瀏覽器</td></tr><tr><td>Super + Shift + Alt + B</td><td>瀏覽器（隱私 / 無痕）</td></tr><tr><td>Super + Shift + F</td><td>檔案管理員</td></tr><tr><td>Super + Shift + Alt + F</td><td>以終端機當下目錄開檔管</td></tr><tr><td>Super + Shift + M</td><td>音樂（Spotify）</td></tr><tr><td>Super + Shift + Alt + M</td><td>音樂（cliamp）</td></tr><tr><td>Super + Shift + /</td><td>密碼管理員（1password）</td></tr><tr><td>Super + Shift + N</td><td>編輯器（Neovim）</td></tr><tr><td>Super + Shift + C</td><td>日曆（HEY）</td></tr><tr><td>Super + Shift + E</td><td>郵件（HEY）</td></tr><tr><td>Super + Shift + Alt + E</td><td>新郵件（HEY）</td></tr><tr><td>Super + Shift + A</td><td>AI（ChatGPT）</td></tr><tr><td>Super + Shift + Alt + A</td><td>AI（Grok）</td></tr><tr><td>Super + Shift + G</td><td>通訊（Signal）</td></tr><tr><td>Super + Shift + P</td><td>Google Photos</td></tr><tr><td>Super + Shift + S</td><td>Google Maps</td></tr><tr><td>Super + Shift + Alt + G</td><td>通訊（WhatsApp）</td></tr><tr><td>Super + Shift + Ctrl + G</td><td>通訊（Google）</td></tr><tr><td>Super + Shift + D</td><td>Docker（LazyDocker）</td></tr><tr><td>Super + Shift + O</td><td>Obsidian</td></tr><tr><td>Super + Shift + W</td><td>寫作（Omawrite）</td></tr><tr><td>Super + Shift + X</td><td>X</td></tr><tr><td>Super + Shift + Alt + X</td><td>X 發文</td></tr><tr><td>Super + Shift + Y</td><td>YouTube</td></tr></tbody></table>
+<p>在 ~/.config/hypr/bindings.lua 增改綁定。</p>
+<h2 id="sec-10">統一剪貼簿</h2>
+<table><thead><tr><th>快捷鍵</th><th>功能</th></tr></thead><tbody><tr><td>Super + C</td><td>複製</td></tr><tr><td>Super + X</td><td>剪下（終端機除外）</td></tr><tr><td>Super + V</td><td>貼上</td></tr><tr><td>Super + Ctrl + V</td><td>剪貼簿管理員</td></tr></tbody></table>
+<p>一般 Linux 上，終端機裡要用 Ctrl + Shift + C/V 複製貼上，其他地方用 Ctrl + C/V。Omarchy 的統一剪貼簿快捷鍵到處通用。</p>
+<h2 id="sec-13">截圖錄影</h2>
+<table><thead><tr><th>快捷鍵</th><th>功能</th></tr></thead><tbody><tr><td>Super + Ctrl + C</td><td>截圖選單（無 PrintScr 鍵盤用）</td></tr><tr><td>Print Screen</td><td>螢幕截圖</td></tr><tr><td>Alt + Print Screen</td><td>螢幕錄影</td></tr><tr><td>Super + Print Screen</td><td>取色器</td></tr><tr><td>Super + Ctrl + Print Screen</td><td>文字擷取到剪貼簿</td></tr><tr><td>Super + Alt + [</td><td>錄影時 webcam 子母畫面縮小</td></tr><tr><td>Super + Alt + ]</td><td>錄影時 webcam 子母畫面放大</td></tr><tr><td>Alt + Shift + L</td><td>從網頁應用或 Chromium 複製目前 URL</td></tr><tr><td>Alt + Shift + D</td><td>下載目前頁面影片到 ~/Videos</td></tr><tr><td>Super + Ctrl + X</td><td>開始 / 停止聽寫（需 Install &gt; AI &gt; Dictation）</td></tr><tr><td>F9</td><td>按住說話聽寫（需 Install &gt; AI &gt; Dictation）</td></tr></tbody></table>
+<p>錄影快捷鍵先問要用哪組音源，再開始錄，再按一次停止，細節見 screenshots and recording。所有截圖選項也可在 Omarchy menu（Super + Space）的 Trigger &gt; Capture 找到。</p>
+<h2 id="sec-16">通知</h2>
+<table><thead><tr><th>快捷鍵</th><th>功能</th></tr></thead><tbody><tr><td>Super + ,</td><td>關掉最新通知</td></tr><tr><td>Super + Shift + ,</td><td>關掉所有通知</td></tr><tr><td>Super + Ctrl + ,</td><td>切換通知靜音</td></tr><tr><td>Super + Alt + ,</td><td>叫回最新通知</td></tr><tr><td>Super + Shift + Alt + ,</td><td>開通知歷史</td></tr></tbody></table>
+<h2 id="sec-18">外觀</h2>
+<table><thead><tr><th>快捷鍵</th><th>功能</th></tr></thead><tbody><tr><td>Super + Ctrl + Shift + Space</td><td>換主題</td></tr><tr><td>Super + Ctrl + Space</td><td>換主題背景</td></tr><tr><td>Super + Backspace</td><td>切換視窗透明</td></tr><tr><td>Super + Ctrl + Backspace</td><td>切換單視窗正方形長寬</td></tr></tbody></table>
+<p>額外背景圖在 ~/.config/omarchy/backgrounds/&lt;theme name&gt;，也可在 Omarchy menu 的 Install &gt; Style &gt; Background 取得。所有外觀選項也可在 Omarchy menu（Super + Space）的 Style 找到。</p>
+<h2 id="sec-21">開關</h2>
+<table><thead><tr><th>快捷鍵</th><th>功能</th></tr></thead><tbody><tr><td>Super + Ctrl + I</td><td>切換閒置上鎖</td></tr><tr><td>Super + Ctrl + N</td><td>切換夜燈色溫</td></tr><tr><td>Super + Ctrl + Delete</td><td>切換筆電螢幕開關</td></tr><tr><td>Super + Ctrl + Alt + Delete</td><td>切換筆電螢幕鏡像</td></tr><tr><td>Super + Shift + Space</td><td>切換頂列</td></tr><tr><td>Shift + Mute</td><td>切到下一個音訊輸出</td></tr><tr><td>Shift + Play</td><td>切到下一個媒體來源</td></tr><tr><td>Super + Shift + Backspace</td><td>切換視窗間隙</td></tr></tbody></table>
+<h2 id="sec-23">提醒事項</h2>
+<table><thead><tr><th>快捷鍵</th><th>功能</th></tr></thead><tbody><tr><td>Super + Ctrl + R</td><td>設提醒</td></tr><tr><td>Super + Ctrl + Alt + R</td><td>看所有提醒</td></tr><tr><td>Super + Ctrl + Shift + R</td><td>清除所有提醒</td></tr></tbody></table>
+<h2 id="sec-25">報時</h2>
+<table><thead><tr><th>快捷鍵</th><th>功能</th></tr></thead><tbody><tr><td>Super + Ctrl + Alt + T</td><td>用通知顯示時間</td></tr><tr><td>Super + Ctrl + Alt + B</td><td>用通知顯示電量</td></tr><tr><td>Super + Ctrl + Alt + W</td><td>切換天氣通知</td></tr></tbody></table>
+<h2 id="sec-27">Tmux</h2>
+<p>前綴鍵是 Ctrl + Space（Ctrl + B 也行），綁定在 ~/.config/tmux/tmux.conf 改。</p>
+<p>窗格：Prefix + v 左右分、Prefix + h 上下分、Prefix + x 殺窗格、Prefix + z 全螢幕縮放、Alt + Enter 直接上下分（免前綴）、Alt + Shift + Enter 直接左右分（免前綴）、Alt + Escape 直接殺窗格（免前綴）、Ctrl + Alt + 方向鍵移動、Ctrl + Alt + Shift + 方向鍵縮放。</p>
+<p>視窗：Prefix + c 新視窗、Prefix + k 殺視窗、Prefix + r 改名、Alt + 1-9 直達、Alt + 左/右方向鍵移動、Alt + Shift + 左/右方向鍵搬視窗。</p>
+<p>工作階段：Prefix + C 新建、Prefix + K 砍掉、Prefix + R 改名、Prefix + N 下一個、Prefix + P 上一個、Alt + 上/下方向鍵移動、Prefix + s 列出、Prefix + d  detach。</p>
+<p>複製模式（vi 風）：Prefix + [ 進入、v 開始選取、y 複製選取。</p>
+<p>一般：Prefix + q 重載設定、Prefix + ? 顯示 Tmux 綁定、Prefix + : 命令提示。</p>
+<p>Tmux 版面函式（須在 Tmux 工作階段內執行）：tdl &lt;ai&gt; [&lt;second_ai&gt;] 建編輯器加 AI 加終端機的開發版面、tdlm &lt;ai&gt; [&lt;second_ai&gt;] 按子目錄建開發版面、tsl &lt;count&gt; &lt;command&gt; 建多窗格 swarm 版面。</p>
+<h2 id="sec-35">Ghostty 終端機</h2>
+<p>Ghostty 終端機經 Omarchy menu 的 Install &gt; Terminal 安裝。Ctrl + Shift + E 下方新分割、Ctrl + Shift + O 右方新分割、Ctrl + Alt + 方向鍵在分割間移動、Super + Ctrl + Shift + 方向鍵以 10 行為單位縮放、Super + Ctrl + Shift + Alt + 方向鍵以 100 行為單位縮放、Ctrl + Shift + T 新分頁、Ctrl + Shift + 方向鍵在分頁間移動、Alt + 數字直達分頁、Shift + Pg Up/Down 捲歷史、Ctrl + 滑鼠左鍵在瀏覽器開連結。</p>
+<h2 id="sec-37">檔案管理員</h2>
+<p>Ctrl + L 前往路徑、Space 預覽檔案（方向鍵導覽）、Backspace 回上一層。</p>
+<h2 id="sec-39">Neovim（含 lazyvim）</h2>
+<p>導覽：Space 顯示指令選項、Space Space 模糊搜尋開檔、Space E 開關側欄、Space G G 版控、Space S G 搜檔案內容、Ctrl + W W 在側欄與編輯器間跳、Ctrl + 左/右方向鍵調側欄寬、Shift + H 左邊檔案分頁、Shift + L 右邊檔案分頁、Space B D 關檔案分頁。</p>
+<p>側欄內：A 在父目錄加新檔、Shift + A 在父目錄加新子目錄、D 刪標示檔或目錄、M 搬標示檔或目錄、R 改名、? 顯示所有指令說明。所有 Neovim 快捷鍵見 LazyVim 設定。</p>
+<h2 id="sec-42">快捷表情</h2>
+<p>Super + Ctrl + E 叫出完整表情選擇器，選了就上剪貼簿；另有 CapsLock M 系列速打，例如 CapsLock M S 微笑、CapsLock M C 大哭、CapsLock M L 愛心眼、CapsLock M V 勝利、CapsLock M H 紅心、CapsLock M Y 讚、CapsLock M N 倒讚、CapsLock M F 中指、CapsLock M W 祈願、CapsLock M R 搖滾、CapsLock M K 飛吻、CapsLock M E 白眼、CapsLock M I 眨眼、CapsLock M P 合掌、CapsLock M D 流口水、CapsLock M M 錢、CapsLock M X 慶祝、CapsLock M 1 一百分、CapsLock M T 乾杯、CapsLock M O OK、CapsLock M G 揮手、CapsLock M A 肌肉、CapsLock M B 震驚。</p>
+<h2 id="sec-44">快捷補完</h2>
+<p>CapsLock Space Space 補 —（mdash）、CapsLock Space N 補你的名字（安裝時輸入的）、CapsLock Space E 補你的 email（安裝時輸入的）。自加更多就改 ~/.XCompose，改完在終端機跑 omarchy-restart-xcompose 生效。</p>
+<hr></article><nav class="pager" aria-label="章節切換"><a class="pg-prev" href="themes.html"><span class="pg-label">上一章</span><span class="pg-title">主題</span></a><a class="pg-next" href="unified-clipboard-history.html"><span class="pg-label">下一章</span><span class="pg-title">統一剪貼簿與歷史紀錄</span></a></nav><footer class="chapter-source"><p>原文：<a href="https://omarchy.org/manual/hotkeys/">https://omarchy.org/manual/hotkeys/</a></p></footer>
+
+</main>
+</div>
+</body>
+</html>

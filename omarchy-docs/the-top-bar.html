@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>頂列 — Omarchy 手冊（繁體中文）</title>
+<meta name="description" content="螢幕頂端那條就是 Omarchy bar。它不是外掛的狀態列，而是 Omarchy shell 的一部分；Omarchy shell 是單一常駐的 Quickshell 行程，選單、通知、OSD 彈窗與鎖定畫面都由它繪製。所以它和一切主題完美搭配，面板一點即開，不必再生一個應用。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="頂列 — Omarchy 手冊（繁體中文）">
+<meta property="og:site_name" content="Omarchy 手冊（繁體中文）">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://vik1n9.github.io/One-Page-Beginners-Guide/omarchy-docs/the-top-bar.html">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<div class="frame">
+<aside class="sidebar">
+<a class="wordmark" href="index.html">Omarchy Manual</a>
+<p class="wordmark-sub">繁體中文譯本</p>
+<nav class="toc-nav" aria-label="章節目錄">
+<ol>
+<li><a href="index.html"><span class="n">01</span>歡迎使用 Omarchy！</a></li>
+<li><a href="getting-started.html"><span class="n">02</span>開始使用</a></li>
+<li><a href="coming-from-mac-or-windows.html"><span class="n">03</span>從 Mac 或 Windows 過來</a></li>
+<li><a href="navigation.html"><span class="n">04</span>導覽</a></li>
+<li aria-current="page"><a href="the-top-bar.html"><span class="n">05</span>頂列</a></li>
+<li><a href="themes.html"><span class="n">06</span>主題</a></li>
+<li><a href="hotkeys.html"><span class="n">07</span>快捷鍵</a></li>
+<li><a href="unified-clipboard-history.html"><span class="n">08</span>統一剪貼簿與歷史紀錄</a></li>
+<li><a href="reminders.html"><span class="n">09</span>提醒事項</a></li>
+<li><a href="notices.html"><span class="n">10</span>通知</a></li>
+<li><a href="text-extraction-dictation.html"><span class="n">11</span>文字擷取與聽寫</a></li>
+<li><a href="screenshots-recording.html"><span class="n">12</span>螢幕截圖與錄影</a></li>
+<li><a href="toggles-idle-screensaver.html"><span class="n">13</span>開關、閒置與螢幕保護程式</a></li>
+<li><a href="omarchy-cli.html"><span class="n">14</span>Omarchy 命令列介面</a></li>
+<li><a href="terminal.html"><span class="n">15</span>終端機</a></li>
+<li><a href="neovim.html"><span class="n">16</span>Neovim</a></li>
+<li><a href="ai.html"><span class="n">17</span>人工智慧</a></li>
+<li><a href="development-tools.html"><span class="n">18</span>開發工具</a></li>
+<li><a href="shell-tools.html"><span class="n">19</span>終端工具</a></li>
+<li><a href="shell-functions.html"><span class="n">20</span>終端函數</a></li>
+<li><a href="tuis.html"><span class="n">21</span>文字介面程式</a></li>
+<li><a href="guis.html"><span class="n">22</span>圖形應用程式</a></li>
+<li><a href="browsers.html"><span class="n">23</span>瀏覽器</a></li>
+<li><a href="commercial-apps-services.html"><span class="n">24</span>商業應用與服務</a></li>
+<li><a href="web-apps.html"><span class="n">25</span>網頁應用程式</a></li>
+<li><a href="gaming.html"><span class="n">26</span>遊戲</a></li>
+<li><a href="filling-out-pdfs.html"><span class="n">27</span>填寫 PDF 表單</a></li>
+<li><a href="windows-vm.html"><span class="n">28</span>Windows 虛擬機</a></li>
+<li><a href="other-packages.html"><span class="n">29</span>安裝其他套件</a></li>
+<li><a href="updates.html"><span class="n">30</span>系統更新</a></li>
+<li><a href="dotfiles.html"><span class="n">31</span>點檔設定</a></li>
+<li><a href="shell-plugins.html"><span class="n">32</span>殼層外掛</a></li>
+<li><a href="monitors.html"><span class="n">33</span>螢幕設定</a></li>
+<li><a href="keyboard-mouse-trackpad.html"><span class="n">34</span>鍵盤、滑鼠、觸控板</a></li>
+<li><a href="networking.html"><span class="n">35</span>網路設定</a></li>
+<li><a href="system-sleep.html"><span class="n">36</span>系統睡眠</a></li>
+<li><a href="hardware-authentication.html"><span class="n">37</span>硬體驗證</a></li>
+<li><a href="fonts.html"><span class="n">38</span>字型</a></li>
+<li><a href="backgrounds.html"><span class="n">39</span>桌布</a></li>
+<li><a href="prompt.html"><span class="n">40</span>提示符</a></li>
+<li><a href="branding.html"><span class="n">41</span>品牌識別</a></li>
+<li><a href="common-tweaks.html"><span class="n">42</span>常用微調</a></li>
+<li><a href="making-your-own-theme.html"><span class="n">43</span>自製主題</a></li>
+<li><a href="mac-support.html"><span class="n">44</span>Mac 支援</a></li>
+<li><a href="troubleshooting.html"><span class="n">45</span>疑難排解</a></li>
+<li><a href="faq.html"><span class="n">46</span>常見問題</a></li>
+<li><a href="system-snapshots.html"><span class="n">47</span>系統快照</a></li>
+<li><a href="security.html"><span class="n">48</span>安全性</a></li>
+<li><a href="omarchy-on.html"><span class="n">49</span>Omarchy on…</a></li>
+<li><a href="dual-boot-install.html"><span class="n">50</span>雙系統安裝</a></li>
+<li><a href="unattended-installs.html"><span class="n">51</span>無人值守安裝</a></li>
+</ol>
+</nav>
+<p class="colophon">非官方翻譯 · 原著 <a href="https://omarchy.org/manual/">omarchy.org/manual</a></p>
+</aside>
+<main class="prose" id="main">
+<div class="eyebrow"><span>第 5 章 · 共 51 章</span><a class="src-link" href="https://omarchy.org/manual/the-top-bar/">原文 ↗</a></div><nav class="onpage" aria-label="本頁章節"><p class="onpage-label">本頁章節</p><ul><li><a href="#sec-2">預設有什麼</a></li><li><a href="#sec-5">點來點去</a></li><li><a href="#sec-9">面板</a></li><li><a href="#sec-15">Tailscale 與 Dropbox</a></li><li><a href="#sec-20">指示器</a></li><li><a href="#sec-23">重新排列頂列</a></li><li><a href="#sec-31">隱藏頂列</a></li><li><a href="#sec-33">設定檔</a></li></ul></nav><article><h1>頂列</h1>
+<p>螢幕頂端那條就是 Omarchy bar。它不是外掛的狀態列，而是 Omarchy shell 的一部分；Omarchy shell 是單一常駐的 Quickshell 行程，選單、通知、OSD 彈窗與鎖定畫面都由它繪製。所以它和一切主題完美搭配，面板一點即開，不必再生一個應用。</p>
+<p>它也是桌面上永遠在場的唯一一塊，值得認識那些小圖示在幹嘛。</p>
+<h2 id="sec-2">預設有什麼</h2>
+<p>頂列分三區：左邊是 Omarchy logo（選單啟動器）與工作區指示器；中央是狀態指示器、時鐘、鍵盤配置、天氣與 Omarchy 更新徽章；右邊是系統匣、agents、藍牙、網路、音訊、顯示與電源。</p>
+<p>其中幾個有事才現身：鍵盤配置只在你設了超過一種配置時出現；更新徽章只在有 Omarchy 更新等著時出現；agents 圖示在 Omarchy 首次在機器上發現 AI 程式使用時出現（見 AI）。</p>
+<h2 id="sec-5">點來點去</h2>
+<p>幾乎每個小工具的左鍵、右鍵與中鍵都有事做，幾個還吃滾輪。大家最常錯過的就是這點：右鍵與中鍵藏了好東西。</p>
+<table><thead><tr><th>小工具</th><th>左鍵</th><th>右鍵</th><th>中鍵 / 滾輪</th></tr></thead><tbody><tr><td>Menu</td><td>Omarchy menu</td><td>開新終端機</td><td>無</td></tr><tr><td>Workspaces</td><td>聚焦該工作區</td><td>無</td><td>無</td></tr><tr><td>Clock</td><td>日曆彈窗</td><td>切換標籤格式</td><td>中鍵：時區選擇器</td></tr><tr><td>Weather</td><td>預報彈窗</td><td>整份天氣發成通知</td><td>中鍵：重新整理</td></tr><tr><td>Audio</td><td>音訊面板</td><td>靜音</td><td>中鍵：面板，滾輪：音量</td></tr><tr><td>Microphone</td><td>麥克風靜音</td><td>無</td><td>中鍵：音訊面板，滾輪：輸入音量</td></tr><tr><td>Network</td><td>網路面板</td><td>無</td><td>無</td></tr><tr><td>Bluetooth</td><td>藍牙面板</td><td>開關電台</td><td>無</td></tr><tr><td>Display</td><td>顯示面板</td><td>無</td><td>滾輪：亮度</td></tr><tr><td>Power</td><td>電源面板</td><td>切換電池百分比顯示</td><td>無</td></tr><tr><td>Media</td><td>播放 / 暫停</td><td>封面彈窗</td><td>中鍵：下一首，滾輪：上下首</td></tr><tr><td>Agents</td><td>Agents 面板</td><td>啟動你的 agent</td><td>中鍵：下一個訂閱</td></tr><tr><td>Tray</td><td>懸停展開抽屜</td><td>在 chevron 上按右鍵管理</td><td>無</td></tr><tr><td>Omarchy update</td><td>執行更新</td><td>無</td><td>無</td></tr></tbody></table>
+<p>上表並非全都開箱即有：媒體小工具（MPRIS 現正播放，捲動曲名與藝人）與麥克風小工具內建但預設關閉，想要就按下述方式加回來。</p>
+<h2 id="sec-9">面板</h2>
+<p>點頂列圖示開啟的是面板，是有滑桿、清單與鍵盤導覽的正經彈窗，不是工具提示。每個面板也都有快捷鍵，16 像素的小圖示不必用瞄的：</p>
+<table><thead><tr><th>快捷鍵</th><th>面板</th></tr></thead><tbody><tr><td>Super + Ctrl + A</td><td>Audio</td></tr><tr><td>Super + Ctrl + W</td><td>Network</td></tr><tr><td>Super + Ctrl + B</td><td>Bluetooth</td></tr><tr><td>Super + Ctrl + D</td><td>Display</td></tr><tr><td>Super + Ctrl + P</td><td>Power</td></tr><tr><td>Super + Ctrl + Alt + D</td><td>Calendar</td></tr><tr><td>Super + Ctrl + 1-9</td><td>按右區順序切換第 n 個面板</td></tr></tbody></table>
+<p>面板不是唯讀的，它們是辦事的地方：Audio 有主音量滑桿、輸出裝置選擇與逐應用混音，可單獨轉小某個瀏覽器分頁而不動其他；Network 掃 Wi-Fi、顯示訊號強度、連線，還能選 DNS 供應商；Bluetooth 列出裝置並連線斷線，顯示電量；Power 顯示電池狀態、切換電源設定（電池與插電分開記憶），並印一些系統資訊；Display 有亮度滑桿、文字大小、螢幕縮放預設，多螢幕時還有逐螢幕控制， deeper 見 monitors；Clock 開月曆格，附 ISO 週數與月份步進。</p>
+<p>每個面板都吃鍵盤也吃滑鼠：方向鍵移動，Return 啟用，Tab 跳到隔壁面板，Escape 關閉。</p>
+<p>Super + Ctrl + 1-9 按右區由左往右數面板，tray 沒有面板所以跳過，數字與你手指的圖示對得上。</p>
+<h2 id="sec-15">Tailscale 與 Dropbox</h2>
+<p>另外兩個小工具在你從 Install &gt; Service 裝了對應服務後才會出現在頂列，值得認識，因為它們不只回報狀態。</p>
+<p>Tailscale 面板可連線斷線 tailnet、切換帳號與選出口節點（自己的機器與 Mullvad 區域都會列在清單）。它還能瀏覽你的機器：選定一台後按 s 經 Taildrop 傳檔給它，這是把檔案搬到手機或另一台筆電最快的方式；c 複製機器 IP，n 複製名稱，d 複製完整 DNS 名。每台機器列上也有傳送鈕，愛點就點。終端機同等功能是 omarchy tailscale send &lt;machine&gt; [file...]。</p>
+<p>Dropbox 面板處理登入、顯示已用儲存空間，並列出最近同步的檔案。</p>
+<p>移除任一服務，該小工具就從頂列下架。</p>
+<h2 id="sec-20">指示器</h2>
+<p>中央那小簇是指示器小工具，是你開了的模式的狀態圖示：勿擾、夜燈、待辦提醒、錄影中、保持清醒與聽寫。模式啟用時亮起，平時讓路，把滑鼠懸在頂列中央可偷看未啟用的。點指示器就切換該模式。</p>
+<p>想讓它們永遠可見，把該小工具的 alwaysShow 設 true。只在乎其中幾個，就在 items 列出來，例如 ["Dnd", "Reminder", "NightLight"]。指示器小工具可以放多個，不同區顯示不同子集也行。</p>
+<h2 id="sec-23">重新排列頂列</h2>
+<p>頂列自己會動，不必開設定檔搬東西。</p>
+<p>抓住頂列中央附近的空白處往別的螢幕邊拖，頂列就搬過去，上下左右都行，每個小工具都會適應（直式頂列退回精簡純圖示）。按住不放也能開始拖。在同一塊空白連點左鍵兩下切換透明。拖任一小工具可換順序或丟到別區。</p>
+<p>愛用選單也行，Style &gt; Menu Bar 有位置與透明度。</p>
+<p>同樣的事都有指令，dotfiles 派最愛：</p>
+<pre><code>omarchy bar position bottom
+omarchy bar transparent toggle
+omarchy bar move omarchy.clock --section center --index 0
+omarchy bar set omarchy.clock format "HH:mm"
+omarchy bar defaults          # back to the shipped layout</code></pre>
+<p>要整個加入或移除小工具，用 plugin 指令。omarchy plugin list 印出 shell 認得的每個小工具與 id，然後：</p>
+<pre><code>omarchy plugin enable omarchy.media --section center
+omarchy plugin disable omarchy.weather</code></pre>
+<h2 id="sec-31">隱藏頂列</h2>
+<p>Super + Shift + Space 把頂列關掉再打開，不殺 shell，面板與快捷鍵照常運作，只是像素還你。選單的 Trigger &gt; Toggle &gt; Menu Bar 也有。</p>
+<h2 id="sec-33">設定檔</h2>
+<p>全部存在 ~/.config/omarchy/shell.json 的 bar 鍵下，精簡版如下：</p>
+<pre><code>{
+"version": 1,
+"bar": {
+"position": "top",
+"transparent": false,
+"centerAnchor": "omarchy.clock",
+"layout": {
+"left": [{ "id": "omarchy.menu" }, { "id": "omarchy.workspaces" }],
+"center": [{ "id": "omarchy.clock", "format": "HH:mm" }],
+"right": [{ "id": "omarchy.audio" }, { "id": "omarchy.power" }]
+}
+}
+}</code></pre>
+<p>每個小工具是三個 layout 陣列之一的一筆，設定就寫在該筆上，沒有獨立設定檔，也沒有 config 子物件。時鐘的 format、formatAlt（右鍵循環切換）與 verticalFormat，都直接住在 { "id": "omarchy.clock" } 上。</p>
+<p>centerAnchor 指定中央區唯一釘在螢幕正中央的小工具，左右為它讓路，時鐘才能在天氣與更新徽章來去之間永居正中。設空字串則中央清單只當整組置中。</p>
+<p>一條值得內化的規則：一旦有了自己的 shell.json，它就是正典。客製前 shell 讀的是 Omarchy 預設檔；你一拖小工具、一跑 omarchy bar 或一手改檔，擁有權就歸你，不再深層合併，未來 Omarchy 新版預設小工具不會自動出現在你的頂列。omarchy bar defaults 隨時把出廠佈局叫回來。</p>
+<p>同一檔案頂層、bar 鍵之外，還住著閒置計時：idle.screensaver 與 idle.lock，都是從閒置起算的秒數。預設螢幕保護 150 秒上，鎖定 300 秒上。</p>
+<hr></article><nav class="pager" aria-label="章節切換"><a class="pg-prev" href="navigation.html"><span class="pg-label">上一章</span><span class="pg-title">導覽</span></a><a class="pg-next" href="themes.html"><span class="pg-label">下一章</span><span class="pg-title">主題</span></a></nav><footer class="chapter-source"><p>原文：<a href="https://omarchy.org/manual/the-top-bar/">https://omarchy.org/manual/the-top-bar/</a></p></footer>
+
+</main>
+</div>
+</body>
+</html>

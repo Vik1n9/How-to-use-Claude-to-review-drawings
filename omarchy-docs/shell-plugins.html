@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>殼層外掛 — Omarchy 手冊（繁體中文）</title>
+<meta name="description" content="Omarchy 桌面是以一個長期存活的 Quickshell 行程執行的，名稱叫做 omarchy-shell，螢幕上幾乎所有東西都是它裡面的外掛。狀態列是外掛，從狀態列垂下來的面板是外掛，表情符號挑選器與剪貼簿管理員這類全螢幕浮層是外掛，Omarchy 選單本身、鎖定畫面、po">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="殼層外掛 — Omarchy 手冊（繁體中文）">
+<meta property="og:site_name" content="Omarchy 手冊（繁體中文）">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://vik1n9.github.io/One-Page-Beginners-Guide/omarchy-docs/shell-plugins.html">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<div class="frame">
+<aside class="sidebar">
+<a class="wordmark" href="index.html">Omarchy Manual</a>
+<p class="wordmark-sub">繁體中文譯本</p>
+<nav class="toc-nav" aria-label="章節目錄">
+<ol>
+<li><a href="index.html"><span class="n">01</span>歡迎使用 Omarchy！</a></li>
+<li><a href="getting-started.html"><span class="n">02</span>開始使用</a></li>
+<li><a href="coming-from-mac-or-windows.html"><span class="n">03</span>從 Mac 或 Windows 過來</a></li>
+<li><a href="navigation.html"><span class="n">04</span>導覽</a></li>
+<li><a href="the-top-bar.html"><span class="n">05</span>頂列</a></li>
+<li><a href="themes.html"><span class="n">06</span>主題</a></li>
+<li><a href="hotkeys.html"><span class="n">07</span>快捷鍵</a></li>
+<li><a href="unified-clipboard-history.html"><span class="n">08</span>統一剪貼簿與歷史紀錄</a></li>
+<li><a href="reminders.html"><span class="n">09</span>提醒事項</a></li>
+<li><a href="notices.html"><span class="n">10</span>通知</a></li>
+<li><a href="text-extraction-dictation.html"><span class="n">11</span>文字擷取與聽寫</a></li>
+<li><a href="screenshots-recording.html"><span class="n">12</span>螢幕截圖與錄影</a></li>
+<li><a href="toggles-idle-screensaver.html"><span class="n">13</span>開關、閒置與螢幕保護程式</a></li>
+<li><a href="omarchy-cli.html"><span class="n">14</span>Omarchy 命令列介面</a></li>
+<li><a href="terminal.html"><span class="n">15</span>終端機</a></li>
+<li><a href="neovim.html"><span class="n">16</span>Neovim</a></li>
+<li><a href="ai.html"><span class="n">17</span>人工智慧</a></li>
+<li><a href="development-tools.html"><span class="n">18</span>開發工具</a></li>
+<li><a href="shell-tools.html"><span class="n">19</span>終端工具</a></li>
+<li><a href="shell-functions.html"><span class="n">20</span>終端函數</a></li>
+<li><a href="tuis.html"><span class="n">21</span>文字介面程式</a></li>
+<li><a href="guis.html"><span class="n">22</span>圖形應用程式</a></li>
+<li><a href="browsers.html"><span class="n">23</span>瀏覽器</a></li>
+<li><a href="commercial-apps-services.html"><span class="n">24</span>商業應用與服務</a></li>
+<li><a href="web-apps.html"><span class="n">25</span>網頁應用程式</a></li>
+<li><a href="gaming.html"><span class="n">26</span>遊戲</a></li>
+<li><a href="filling-out-pdfs.html"><span class="n">27</span>填寫 PDF 表單</a></li>
+<li><a href="windows-vm.html"><span class="n">28</span>Windows 虛擬機</a></li>
+<li><a href="other-packages.html"><span class="n">29</span>安裝其他套件</a></li>
+<li><a href="updates.html"><span class="n">30</span>系統更新</a></li>
+<li><a href="dotfiles.html"><span class="n">31</span>點檔設定</a></li>
+<li aria-current="page"><a href="shell-plugins.html"><span class="n">32</span>殼層外掛</a></li>
+<li><a href="monitors.html"><span class="n">33</span>螢幕設定</a></li>
+<li><a href="keyboard-mouse-trackpad.html"><span class="n">34</span>鍵盤、滑鼠、觸控板</a></li>
+<li><a href="networking.html"><span class="n">35</span>網路設定</a></li>
+<li><a href="system-sleep.html"><span class="n">36</span>系統睡眠</a></li>
+<li><a href="hardware-authentication.html"><span class="n">37</span>硬體驗證</a></li>
+<li><a href="fonts.html"><span class="n">38</span>字型</a></li>
+<li><a href="backgrounds.html"><span class="n">39</span>桌布</a></li>
+<li><a href="prompt.html"><span class="n">40</span>提示符</a></li>
+<li><a href="branding.html"><span class="n">41</span>品牌識別</a></li>
+<li><a href="common-tweaks.html"><span class="n">42</span>常用微調</a></li>
+<li><a href="making-your-own-theme.html"><span class="n">43</span>自製主題</a></li>
+<li><a href="mac-support.html"><span class="n">44</span>Mac 支援</a></li>
+<li><a href="troubleshooting.html"><span class="n">45</span>疑難排解</a></li>
+<li><a href="faq.html"><span class="n">46</span>常見問題</a></li>
+<li><a href="system-snapshots.html"><span class="n">47</span>系統快照</a></li>
+<li><a href="security.html"><span class="n">48</span>安全性</a></li>
+<li><a href="omarchy-on.html"><span class="n">49</span>Omarchy on…</a></li>
+<li><a href="dual-boot-install.html"><span class="n">50</span>雙系統安裝</a></li>
+<li><a href="unattended-installs.html"><span class="n">51</span>無人值守安裝</a></li>
+</ol>
+</nav>
+<p class="colophon">非官方翻譯 · 原著 <a href="https://omarchy.org/manual/">omarchy.org/manual</a></p>
+</aside>
+<main class="prose" id="main">
+<div class="eyebrow"><span>第 32 章 · 共 51 章</span><a class="src-link" href="https://omarchy.org/manual/shell-plugins/">原文 ↗</a></div><nav class="onpage" aria-label="本頁章節"><p class="onpage-label">本頁章節</p><ul><li><a href="#sec-3">查看手上有的外掛</a></li><li><a href="#sec-7">開關外掛</a></li><li><a href="#sec-12">從 git 新增外掛</a></li><li><a href="#sec-22">複製內建外掛來改</a></li><li><a href="#sec-28">自己寫一個</a></li><li><a href="#sec-36">分享給全世界</a></li></ul></nav><article><h1>殼層外掛</h1>
+<p>Omarchy 桌面是以一個長期存活的 Quickshell 行程執行的，名稱叫做 omarchy-shell，螢幕上幾乎所有東西都是它裡面的外掛。狀態列是外掛，從狀態列垂下來的面板是外掛，表情符號挑選器與剪貼簿管理員這類全螢幕浮層是外掛，Omarchy 選單本身、鎖定畫面、polkit 授權對話框是外掛，連監看電池與深夜暖屏的無介面服務也是外掛。</p>
+<p>這不只是實作細節。它代表你可以關掉桌面的零件、換掉它們，或自己寫一個，全程不必碰 Omarchy 的原始碼一行。</p>
+<p>官方第一方外掛隨 Omarchy 出貨，住在 $OMARCHY_PATH/shell/plugins/。你自己加的，不論是實驗作品或從 GitHub 撿來的，都住在 ~/.config/omarchy/plugins/。兩者在啟動時以相同方式被發現，差別只在放在磁碟的哪裡。</p>
+<h2 id="sec-3">查看手上有的外掛</h2>
+<p>omarchy plugin list</p>
+<p>這會印出每個被發現的外掛，包含 id、是否啟用、第一方或第三方、種類（kind）與顯示名稱。餵給其他程式時可以加上 --json。</p>
+<p>外掛 id 帶有命名空間。內建一律以 omarchy. 開頭，例如 omarchy.clock、omarchy.network、omarchy.notifications，這個命名空間是保留的，第三方外掛永遠不能占用。</p>
+<h2 id="sec-7">開關外掛</h2>
+<p>omarchy plugin enable omarchy.tailscale omarchy plugin disable omarchy.weather</p>
+<p>或用選單：Setup &gt; Plugins 裡有 Enable、Disable、Add、Clone、Remove，每個動作只列出對該動作有意義的外掛供你挑。</p>
+<p>啟用狀態存在 ~/.config/omarchy/shell.json，兩種外掛的規則略有不同。第三方外掛在該檔案出現其 id 才算啟用，不論是狀態列版面項目、plugins[] 裡的項目或 bar.id。第一方外掛裡非狀態列小工具則相反：預設全開，只有列進 disabledPlugins[] 才關掉。</p>
+<p>完整的狀態列（bar）外掛沒有關閉狀態。狀態列永遠恰好有一個，所以你要換掉它，只能啟用另一個。狀態列小工具的擺放另見狀態列說明。</p>
+<h2 id="sec-12">從 git 新增外掛</h2>
+<p>第三方外掛就是一個根目錄帶有 manifest.json 的 git 倉庫。</p>
+<p>omarchy plugin add <a href="https://github.com/acme/omarchy-weather.git">https://github.com/acme/omarchy-weather.git</a> --enable</p>
+<p>動手前，它會明白告訴你：外掛是以任意、無沙盒的程式碼，跑在你長期存活的殼層行程裡，並顯示網址請你確認。請認真看待。外掛不是設定檔，它是跟著你的工作階段一直跑的程式，權限等同你的使用者帳號。只加你願意執行的倉庫，啟用前先讀過程式碼。</p>
+<p>接著它會把倉庫複製到暫存目錄，驗證 manifest，若已有外掛占用相同 id 就拒絕安裝，再搬進 ~/.config/omarchy/plugins/&lt;id&gt;/。沒加 --enable 時它會問你要不要現在啟用，你可以先說不要，讀完程式碼再說。它絕不會執行外掛裡的任何東西，不跑安裝鉤子，也不會要求 sudo，只複製檔案、檢查 manifest，再透過 IPC 翻一個開關。</p>
+<p>更新就是對同一份 checkout 做 fast-forward pull：</p>
+<p>omarchy plugin update acme.weather omarchy plugin update</p>
+<p>不給 id 就更新全部由 git 管理的外掛。套用前會先給你看 diff，若你有它無法 fast-forward 越過的本機修改就拒絕更新，新版驗證失敗則 rollback。</p>
+<p>omarchy plugin remove acme.weather</p>
+<p>移除會先停用外掛。如果是 git checkout 就刪除（原始倉庫還在上游），如果是 symlink 就解除連結。手工建的、沒有 git 倉庫的外掛資料夾，會被搬到外掛目錄內的時間戳備份，而不是直接刪除。</p>
+<h2 id="sec-22">複製內建外掛來改</h2>
+<p>這是我最喜歡的部分。想改內建小工具的行為，不要去編 $OMARCHY_PATH 底下的檔案，那些屬於套件，下次更新會被覆寫。把它複製出來：</p>
+<p>omarchy plugin clone omarchy.clock</p>
+<p>這會把整個外掛複製到 ~/.config/omarchy/plugins/dhh.clock（用你的使用者名稱，不是我的），重新命名為「My Clock」，啟用它，並把殼層從內建版切到你的複製品，原本狀態列小工具的位置與設定會保留。加上 --edit 會立刻用 $EDITOR 打開新目錄，選單裡的 Setup &gt; Plugins &gt; Clone Plugin 做的就是這件事。</p>
+<p>使用者名稱前綴讓複製品的 id 屬於你，分享出去不會跟別人的撞到。對原本內建 id 的呼叫會被轉送到你的複製品，所以原本參照 omarchy.clock 的地方都不用改。玩壞了就用 omarchy plugin remove dhh.clock 把內建版換回來。</p>
+<p>~/.config/omarchy/plugins/ 底下任何檔案一存檔，外掛程式碼就會自動重載，所以你可以開著編輯器，看著修改即時生效。</p>
+<h2 id="sec-28">自己寫一個</h2>
+<p>外掛就是一個帶有 manifest.json 與若干 QML 的目錄。manifest 宣告 schemaVersion: 1、id、name、version、一個或多個 kind，以及 entryPoints 物件，為每種 kind 指向 QML 檔：</p>
+<p>種類是什麼bar-widget 現行狀態列可放入分區的元件panel 常駐或召喚的浮動視窗overlay 全螢幕浮層menu 召喚出的選單介面service 無介面的常駐單例bar 取代內建的完整狀態列</p>
+<p>一個外掛可以同時宣告多種 kind，比方說媒體外掛同時是 service 與 bar-widget。狀態列小工具會多一個 barWidget 區塊，包含顯示名稱、分類、可選的 defaultSection，以及 allowMultiple（說明狀態列上放多個合不合理）。多數小工具設為 false，間隔器與指示器設為 true。</p>
+<p>發布前先檢查：</p>
+<p>omarchy plugin validate ./my-plugin</p>
+<p>這會跑跟殼層載入時相同的檢查：schema 版本、必填欄位、id 未占用保留空間、進入點是安全且確實存在的相對路徑、每種宣告的 kind 都有進入點、資料夾裡沒有 symlink。</p>
+<p>完整說明以原始碼為準：Omarchy 倉庫的 shell/README.md 講 manifest 結構、殼層 IPC 契約與 shell.json 的確切形狀，shell/plugins/README.md 列出每個第一方外掛的 id、kind 與進入點。</p>
+<h2 id="sec-36">分享給全世界</h2>
+<p>做出喜歡的東西後，把它放進公開 git 倉庫，發布機制就是這麼簡單，任何人對你的網址跑 omarchy plugin add，幾秒鐘就能跑起來。</p>
+<p>想讓大家找得到，就去 omarchyplugins.com 登錄。那是 Omarchy 殼層外掛的社群目錄，動手寫之前先去逛逛，看看想做的東西是不是已經有人寫好了！</p>
+<hr></article><nav class="pager" aria-label="章節切換"><a class="pg-prev" href="dotfiles.html"><span class="pg-label">上一章</span><span class="pg-title">點檔設定</span></a><a class="pg-next" href="monitors.html"><span class="pg-label">下一章</span><span class="pg-title">螢幕設定</span></a></nav><footer class="chapter-source"><p>原文：<a href="https://omarchy.org/manual/shell-plugins/">https://omarchy.org/manual/shell-plugins/</a></p></footer>
+
+</main>
+</div>
+</body>
+</html>

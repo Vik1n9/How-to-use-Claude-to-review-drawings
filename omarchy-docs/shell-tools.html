@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>終端工具 — Omarchy 手冊（繁體中文）</title>
+<meta name="description" content="除了標準 Linux 工具之外，Omarchy 還內建了一批強化版終端工具。以下是重點工具。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="終端工具 — Omarchy 手冊（繁體中文）">
+<meta property="og:site_name" content="Omarchy 手冊（繁體中文）">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://vik1n9.github.io/One-Page-Beginners-Guide/omarchy-docs/shell-tools.html">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<div class="frame">
+<aside class="sidebar">
+<a class="wordmark" href="index.html">Omarchy Manual</a>
+<p class="wordmark-sub">繁體中文譯本</p>
+<nav class="toc-nav" aria-label="章節目錄">
+<ol>
+<li><a href="index.html"><span class="n">01</span>歡迎使用 Omarchy！</a></li>
+<li><a href="getting-started.html"><span class="n">02</span>開始使用</a></li>
+<li><a href="coming-from-mac-or-windows.html"><span class="n">03</span>從 Mac 或 Windows 過來</a></li>
+<li><a href="navigation.html"><span class="n">04</span>導覽</a></li>
+<li><a href="the-top-bar.html"><span class="n">05</span>頂列</a></li>
+<li><a href="themes.html"><span class="n">06</span>主題</a></li>
+<li><a href="hotkeys.html"><span class="n">07</span>快捷鍵</a></li>
+<li><a href="unified-clipboard-history.html"><span class="n">08</span>統一剪貼簿與歷史紀錄</a></li>
+<li><a href="reminders.html"><span class="n">09</span>提醒事項</a></li>
+<li><a href="notices.html"><span class="n">10</span>通知</a></li>
+<li><a href="text-extraction-dictation.html"><span class="n">11</span>文字擷取與聽寫</a></li>
+<li><a href="screenshots-recording.html"><span class="n">12</span>螢幕截圖與錄影</a></li>
+<li><a href="toggles-idle-screensaver.html"><span class="n">13</span>開關、閒置與螢幕保護程式</a></li>
+<li><a href="omarchy-cli.html"><span class="n">14</span>Omarchy 命令列介面</a></li>
+<li><a href="terminal.html"><span class="n">15</span>終端機</a></li>
+<li><a href="neovim.html"><span class="n">16</span>Neovim</a></li>
+<li><a href="ai.html"><span class="n">17</span>人工智慧</a></li>
+<li><a href="development-tools.html"><span class="n">18</span>開發工具</a></li>
+<li aria-current="page"><a href="shell-tools.html"><span class="n">19</span>終端工具</a></li>
+<li><a href="shell-functions.html"><span class="n">20</span>終端函數</a></li>
+<li><a href="tuis.html"><span class="n">21</span>文字介面程式</a></li>
+<li><a href="guis.html"><span class="n">22</span>圖形應用程式</a></li>
+<li><a href="browsers.html"><span class="n">23</span>瀏覽器</a></li>
+<li><a href="commercial-apps-services.html"><span class="n">24</span>商業應用與服務</a></li>
+<li><a href="web-apps.html"><span class="n">25</span>網頁應用程式</a></li>
+<li><a href="gaming.html"><span class="n">26</span>遊戲</a></li>
+<li><a href="filling-out-pdfs.html"><span class="n">27</span>填寫 PDF 表單</a></li>
+<li><a href="windows-vm.html"><span class="n">28</span>Windows 虛擬機</a></li>
+<li><a href="other-packages.html"><span class="n">29</span>安裝其他套件</a></li>
+<li><a href="updates.html"><span class="n">30</span>系統更新</a></li>
+<li><a href="dotfiles.html"><span class="n">31</span>點檔設定</a></li>
+<li><a href="shell-plugins.html"><span class="n">32</span>殼層外掛</a></li>
+<li><a href="monitors.html"><span class="n">33</span>螢幕設定</a></li>
+<li><a href="keyboard-mouse-trackpad.html"><span class="n">34</span>鍵盤、滑鼠、觸控板</a></li>
+<li><a href="networking.html"><span class="n">35</span>網路設定</a></li>
+<li><a href="system-sleep.html"><span class="n">36</span>系統睡眠</a></li>
+<li><a href="hardware-authentication.html"><span class="n">37</span>硬體驗證</a></li>
+<li><a href="fonts.html"><span class="n">38</span>字型</a></li>
+<li><a href="backgrounds.html"><span class="n">39</span>桌布</a></li>
+<li><a href="prompt.html"><span class="n">40</span>提示符</a></li>
+<li><a href="branding.html"><span class="n">41</span>品牌識別</a></li>
+<li><a href="common-tweaks.html"><span class="n">42</span>常用微調</a></li>
+<li><a href="making-your-own-theme.html"><span class="n">43</span>自製主題</a></li>
+<li><a href="mac-support.html"><span class="n">44</span>Mac 支援</a></li>
+<li><a href="troubleshooting.html"><span class="n">45</span>疑難排解</a></li>
+<li><a href="faq.html"><span class="n">46</span>常見問題</a></li>
+<li><a href="system-snapshots.html"><span class="n">47</span>系統快照</a></li>
+<li><a href="security.html"><span class="n">48</span>安全性</a></li>
+<li><a href="omarchy-on.html"><span class="n">49</span>Omarchy on…</a></li>
+<li><a href="dual-boot-install.html"><span class="n">50</span>雙系統安裝</a></li>
+<li><a href="unattended-installs.html"><span class="n">51</span>無人值守安裝</a></li>
+</ol>
+</nav>
+<p class="colophon">非官方翻譯 · 原著 <a href="https://omarchy.org/manual/">omarchy.org/manual</a></p>
+</aside>
+<main class="prose" id="main">
+<div class="eyebrow"><span>第 19 章 · 共 51 章</span><a class="src-link" href="https://omarchy.org/manual/shell-tools/">原文 ↗</a></div><nav class="onpage" aria-label="本頁章節"><p class="onpage-label">本頁章節</p><ul><li><a href="#sec-1">fzf</a></li><li><a href="#sec-6">Zoxide</a></li><li><a href="#sec-9">ripgrep</a></li><li><a href="#sec-13">eza</a></li><li><a href="#sec-16">fd</a></li><li><a href="#sec-19">bat</a></li><li><a href="#sec-22">tldr</a></li><li><a href="#sec-24">yt-dlp</a></li><li><a href="#sec-27">try</a></li></ul></nav><article><h1>終端工具</h1>
+<p>除了標準 Linux 工具之外，Omarchy 還內建了一批強化版終端工具。以下是重點工具。</p>
+<h2 id="sec-1">fzf</h2>
+<p><code>fzf</code> 透過 <code>ff</code> 別名提供檔案模糊搜尋。進入任意目錄後輸入 <code>ff</code>，即可用模糊比對找到該目錄樹下的任何檔案，右側會即時顯示檔案預覽。</p>
+<p>你也可以使用 <code>Ctrl + R</code>，用 <code>fzf</code> 對指令歷史紀錄做模糊搜尋。</p>
+<p>在 Neovim 中輸入 <code>Space Space</code> 時，背後使用的也是這個工具。</p>
+<p>完整手冊請見 <code>man fzf</code>。</p>
+<h2 id="sec-6">Zoxide</h2>
+<p><code>Zoxide</code> 是 <code>cd</code> 的替代品。它會記住你去過的目錄，方便下次快速跳轉。例如你曾經執行過 <code>cd ~/.config/omarchy</code>，下次只要執行 <code>cd omarchy</code>（甚至 <code>cd oma</code>），<code>Zoxide</code> 就會直接帶你過去。</p>
+<p>完整手冊請見 <code>man zoxide</code>。</p>
+<h2 id="sec-9">ripgrep</h2>
+<p><code>ripgrep</code> 使用 <code>rg &lt;pattern&gt; &lt;path&gt;</code> 搜尋檔案內容，例如 <code>rg Controller app/</code> 可以在 <code>app</code> 目錄中找出所有提及 <code>Controller</code> 的地方。</p>
+<p>在 Neovim 中輸入 <code>Space S G</code> 時，背後使用的也是這個工具。</p>
+<p>完整手冊請見 <code>man rg</code>。</p>
+<h2 id="sec-13">eza</h2>
+<p><code>eza</code> 是 <code>ls</code> 的替代品，提供資訊更豐富、帶顏色與圖示的目錄列表。預設已將 <code>eza</code> 設為 <code>ls</code> 的別名。你也可以使用 <code>lt</code> 取得兩層深度的巢狀列表，<code>lsa</code> 列出包含隱藏檔的內容，<code>lta</code> 則是含隱藏檔的巢狀列表。</p>
+<p>完整手冊請見 <code>man eza</code>。</p>
+<h2 id="sec-16">fd</h2>
+<p><code>fd</code> 是更好用的 <code>find</code> 替代品。使用 <code>fd person.rb</code> 可在目前目錄樹尋找名為 <code>person.rb</code> 的檔案；<code>fd person.rb /</code> 會搜尋整個檔案系統；<code>fd person.rb / -H</code> 則會搜尋整個檔案系統並包含隱藏目錄。</p>
+<p>完整手冊請見 <code>man fd</code>。</p>
+<h2 id="sec-19">bat</h2>
+<p><code>bat</code> 是帶語法高亮、行號與分頁功能的 <code>cat</code>。執行 <code>bat somefile.rb</code> 就能體會為何用過就回不去。它也在背後默默幫你工作：彩色的 man page 以及 <code>ff</code> 中的預覽，都是由它渲染的。</p>
+<p>完整手冊請見 <code>man bat</code>。</p>
+<h2 id="sec-22">tldr</h2>
+<p><code>tldr</code> 是冗長 man page 的解藥。那些手冊往往先塞三屏歷史才給一個範例，而 <code>tldr tar</code> 直接給你真正常用的幾種寫法。</p>
+<h2 id="sec-24">yt-dlp</h2>
+<p><code>yt-dlp</code> 可以從 YouTube 以及數百個其他網站下載影片。<code>yt-dlp &lt;url&gt;</code> 會以最佳畫質下載到目前目錄。</p>
+<p>完整手冊請見 <code>man yt-dlp</code>。</p>
+<h2 id="sec-27">try</h2>
+<p><code>try</code> 用日期戳記目錄管理程式設計實驗。所有實驗都放在 <code>~/Work/tries</code>，透過 <code>try</code> 存取。</p>
+<hr></article><nav class="pager" aria-label="章節切換"><a class="pg-prev" href="development-tools.html"><span class="pg-label">上一章</span><span class="pg-title">開發工具</span></a><a class="pg-next" href="shell-functions.html"><span class="pg-label">下一章</span><span class="pg-title">終端函數</span></a></nav><footer class="chapter-source"><p>原文：<a href="https://omarchy.org/manual/shell-tools/">https://omarchy.org/manual/shell-tools/</a></p></footer>
+
+</main>
+</div>
+</body>
+</html>

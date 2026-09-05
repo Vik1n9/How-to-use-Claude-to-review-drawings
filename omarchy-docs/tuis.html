@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>文字介面程式 — Omarchy 手冊（繁體中文）</title>
+<meta name="description" content="Lazygit 是類似 GitHub Desktop 的替代方案，差別在它跑在終端機裡面。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="文字介面程式 — Omarchy 手冊（繁體中文）">
+<meta property="og:site_name" content="Omarchy 手冊（繁體中文）">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://vik1n9.github.io/One-Page-Beginners-Guide/omarchy-docs/tuis.html">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<div class="frame">
+<aside class="sidebar">
+<a class="wordmark" href="index.html">Omarchy Manual</a>
+<p class="wordmark-sub">繁體中文譯本</p>
+<nav class="toc-nav" aria-label="章節目錄">
+<ol>
+<li><a href="index.html"><span class="n">01</span>歡迎使用 Omarchy！</a></li>
+<li><a href="getting-started.html"><span class="n">02</span>開始使用</a></li>
+<li><a href="coming-from-mac-or-windows.html"><span class="n">03</span>從 Mac 或 Windows 過來</a></li>
+<li><a href="navigation.html"><span class="n">04</span>導覽</a></li>
+<li><a href="the-top-bar.html"><span class="n">05</span>頂列</a></li>
+<li><a href="themes.html"><span class="n">06</span>主題</a></li>
+<li><a href="hotkeys.html"><span class="n">07</span>快捷鍵</a></li>
+<li><a href="unified-clipboard-history.html"><span class="n">08</span>統一剪貼簿與歷史紀錄</a></li>
+<li><a href="reminders.html"><span class="n">09</span>提醒事項</a></li>
+<li><a href="notices.html"><span class="n">10</span>通知</a></li>
+<li><a href="text-extraction-dictation.html"><span class="n">11</span>文字擷取與聽寫</a></li>
+<li><a href="screenshots-recording.html"><span class="n">12</span>螢幕截圖與錄影</a></li>
+<li><a href="toggles-idle-screensaver.html"><span class="n">13</span>開關、閒置與螢幕保護程式</a></li>
+<li><a href="omarchy-cli.html"><span class="n">14</span>Omarchy 命令列介面</a></li>
+<li><a href="terminal.html"><span class="n">15</span>終端機</a></li>
+<li><a href="neovim.html"><span class="n">16</span>Neovim</a></li>
+<li><a href="ai.html"><span class="n">17</span>人工智慧</a></li>
+<li><a href="development-tools.html"><span class="n">18</span>開發工具</a></li>
+<li><a href="shell-tools.html"><span class="n">19</span>終端工具</a></li>
+<li><a href="shell-functions.html"><span class="n">20</span>終端函數</a></li>
+<li aria-current="page"><a href="tuis.html"><span class="n">21</span>文字介面程式</a></li>
+<li><a href="guis.html"><span class="n">22</span>圖形應用程式</a></li>
+<li><a href="browsers.html"><span class="n">23</span>瀏覽器</a></li>
+<li><a href="commercial-apps-services.html"><span class="n">24</span>商業應用與服務</a></li>
+<li><a href="web-apps.html"><span class="n">25</span>網頁應用程式</a></li>
+<li><a href="gaming.html"><span class="n">26</span>遊戲</a></li>
+<li><a href="filling-out-pdfs.html"><span class="n">27</span>填寫 PDF 表單</a></li>
+<li><a href="windows-vm.html"><span class="n">28</span>Windows 虛擬機</a></li>
+<li><a href="other-packages.html"><span class="n">29</span>安裝其他套件</a></li>
+<li><a href="updates.html"><span class="n">30</span>系統更新</a></li>
+<li><a href="dotfiles.html"><span class="n">31</span>點檔設定</a></li>
+<li><a href="shell-plugins.html"><span class="n">32</span>殼層外掛</a></li>
+<li><a href="monitors.html"><span class="n">33</span>螢幕設定</a></li>
+<li><a href="keyboard-mouse-trackpad.html"><span class="n">34</span>鍵盤、滑鼠、觸控板</a></li>
+<li><a href="networking.html"><span class="n">35</span>網路設定</a></li>
+<li><a href="system-sleep.html"><span class="n">36</span>系統睡眠</a></li>
+<li><a href="hardware-authentication.html"><span class="n">37</span>硬體驗證</a></li>
+<li><a href="fonts.html"><span class="n">38</span>字型</a></li>
+<li><a href="backgrounds.html"><span class="n">39</span>桌布</a></li>
+<li><a href="prompt.html"><span class="n">40</span>提示符</a></li>
+<li><a href="branding.html"><span class="n">41</span>品牌識別</a></li>
+<li><a href="common-tweaks.html"><span class="n">42</span>常用微調</a></li>
+<li><a href="making-your-own-theme.html"><span class="n">43</span>自製主題</a></li>
+<li><a href="mac-support.html"><span class="n">44</span>Mac 支援</a></li>
+<li><a href="troubleshooting.html"><span class="n">45</span>疑難排解</a></li>
+<li><a href="faq.html"><span class="n">46</span>常見問題</a></li>
+<li><a href="system-snapshots.html"><span class="n">47</span>系統快照</a></li>
+<li><a href="security.html"><span class="n">48</span>安全性</a></li>
+<li><a href="omarchy-on.html"><span class="n">49</span>Omarchy on…</a></li>
+<li><a href="dual-boot-install.html"><span class="n">50</span>雙系統安裝</a></li>
+<li><a href="unattended-installs.html"><span class="n">51</span>無人值守安裝</a></li>
+</ol>
+</nav>
+<p class="colophon">非官方翻譯 · 原著 <a href="https://omarchy.org/manual/">omarchy.org/manual</a></p>
+</aside>
+<main class="prose" id="main">
+<div class="eyebrow"><span>第 21 章 · 共 51 章</span><a class="src-link" href="https://omarchy.org/manual/tuis/">原文 ↗</a></div><nav class="onpage" aria-label="本頁章節"><p class="onpage-label">本頁章節</p><ul><li><a href="#sec-0">Lazygit</a></li><li><a href="#sec-4">Lazydocker</a></li><li><a href="#sec-8">Btop</a></li><li><a href="#sec-11">Herdr</a></li><li><a href="#sec-14">Fastfetch</a></li><li><a href="#sec-17">Disk Usage</a></li><li><a href="#sec-19">Cliamp</a></li><li><a href="#sec-21">那 Wi-Fi 跟藍牙呢？ What about Wi-Fi and Bluetooth?</a></li><li><a href="#sec-23">加入自己的 TUI Adding your own</a></li></ul></nav><article><h1>文字介面程式</h1>
+<h2 id="sec-0">Lazygit</h2>
+<p><code>Lazygit</code> 是類似 GitHub Desktop 的替代方案，差別在它跑在終端機裡面。</p>
+<p>進入任何受 git 管理的目錄並執行 <code>lazygit</code> 即可直接啟動，也可以在 Neovim 中以 <code>Space G G</code> 啟動。</p>
+<p>用 <code>Tab</code> 在不同面板之間切換。在 Files 面板中，用 <code>Space</code> 選取要暫存的檔案，再按 <code>c</code> 建立新的 commit。用 <code>?</code> 可以查看所有可用指令。</p>
+<h2 id="sec-4">Lazydocker</h2>
+<p><code>Lazydocker</code> 與 Lazygit 出於同樣的精神，提供管理容器與映像檔的終端機介面。</p>
+<p>以 <code>Super + Shift + D</code> 啟動。</p>
+<p>用 <code>s</code> 停止容器，用 <code>r</code> 啟動或重啟。用 <code>?</code> 查看所有指令。</p>
+<h2 id="sec-8">Btop</h2>
+<p><code>Btop</code> 是漂亮的資源管理員，顯示記憶體、CPU、磁碟與網路用量，也列出所有作用中的處理程序並加以管理。</p>
+<p>Omarchy 稱它為 Activity，按 <code>Super + Ctrl + T</code> 啟動。它會以浮動視窗開啟，可用 <code>Super + T</code> 將其平鋪。</p>
+<h2 id="sec-11">Herdr</h2>
+<p><code>Herdr</code> 是終端機工作區管理員，提供工作區、分頁與窗格，全部跑在可 detach、稍後再接回來的持久連線中。</p>
+<p>以 <code>Super + Ctrl + Return</code> 啟動（或接回既有連線）。Omarchy 內建的 Herdr 設定鏡像了它的 Tmux 設定，所以前綴鍵同樣是 <code>Ctrl + Space</code>。以 <code>Super + Ctrl + K</code> 瀏覽全部快捷鍵。</p>
+<h2 id="sec-14">Fastfetch</h2>
+<p><code>Fastfetch</code> 顯示系統資訊，例如核心版本、開機時間、主題、CPU、記憶體等。它是熱門的 <code>neofetch</code> 工具的後繼者。</p>
+<p>Omarchy 把它包裝成 Omarchy 選單（<code>Super + Space</code>）中的 About。</p>
+<h2 id="sec-17">Disk Usage</h2>
+<p>當磁碟塞滿卻不知道誰吃掉空間時，從應用程式啟動器（<code>Super + Space</code>）開啟 Disk Usage。它是以互動模式指向整個檔案系統的 <code>dua</code>，可以逐層走進占用空間的目錄，預設由大到小排序，並直接在裡面刪除。</p>
+<h2 id="sec-19">Cliamp</h2>
+<p><code>Cliamp</code> 是致敬 Winamp 2.x 的復古終端機音樂播放器，內建 lo-fi 節拍電台。以 <code>Super + Shift + Alt + M</code> 啟動，或從 Omarchy 選單的 Apps 下開啟。按 <code>?</code> 查看完整快捷鍵列表。</p>
+<h2 id="sec-21">那 Wi-Fi 跟藍牙呢？ What about Wi-Fi and Bluetooth?</h2>
+<p>Wi-Fi 與藍牙沒有對應的 TUI，這些工作屬於 Omarchy shell。點頂欄的 Wi-Fi 圖示（或按 <code>Super + Ctrl + W</code>）查看網路並連線，點藍牙圖示（或按 <code>Super + Ctrl + B</code>）配對並連接裝置。完整說明請見 networking。</p>
+<h2 id="sec-23">加入自己的 TUI Adding your own</h2>
+<p>任何終端機程式都能享有完整應用程式待遇。到 Omarchy 選單（<code>Super + Space</code>）的 Install &gt; TUI，給它一個名稱、啟動指令、視窗樣式與圖示，它就會像其他應用程式一樣出現在啟動器中。之後可到 Remove &gt; TUI 將其移除。</p>
+<hr></article><nav class="pager" aria-label="章節切換"><a class="pg-prev" href="shell-functions.html"><span class="pg-label">上一章</span><span class="pg-title">終端函數</span></a><a class="pg-next" href="guis.html"><span class="pg-label">下一章</span><span class="pg-title">圖形應用程式</span></a></nav><footer class="chapter-source"><p>原文：<a href="https://omarchy.org/manual/tuis/">https://omarchy.org/manual/tuis/</a></p></footer>
+
+</main>
+</div>
+</body>
+</html>

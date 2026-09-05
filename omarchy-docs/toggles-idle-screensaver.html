@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>開關、閒置與螢幕保護程式 — Omarchy 手冊（繁體中文）</title>
+<meta name="description" content="每天切換的很多東西並不是設定，而是開一小時、關一小時的模式：深夜工作的夜燈（night light）、簡報中的勿擾（do not disturb）、看片時的保持清醒（stay awake）。Omarchy 稱之為開關（toggle），用法全都一樣——一個快捷鍵、一個選單項目、一道">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="開關、閒置與螢幕保護程式 — Omarchy 手冊（繁體中文）">
+<meta property="og:site_name" content="Omarchy 手冊（繁體中文）">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://vik1n9.github.io/One-Page-Beginners-Guide/omarchy-docs/toggles-idle-screensaver.html">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<div class="frame">
+<aside class="sidebar">
+<a class="wordmark" href="index.html">Omarchy Manual</a>
+<p class="wordmark-sub">繁體中文譯本</p>
+<nav class="toc-nav" aria-label="章節目錄">
+<ol>
+<li><a href="index.html"><span class="n">01</span>歡迎使用 Omarchy！</a></li>
+<li><a href="getting-started.html"><span class="n">02</span>開始使用</a></li>
+<li><a href="coming-from-mac-or-windows.html"><span class="n">03</span>從 Mac 或 Windows 過來</a></li>
+<li><a href="navigation.html"><span class="n">04</span>導覽</a></li>
+<li><a href="the-top-bar.html"><span class="n">05</span>頂列</a></li>
+<li><a href="themes.html"><span class="n">06</span>主題</a></li>
+<li><a href="hotkeys.html"><span class="n">07</span>快捷鍵</a></li>
+<li><a href="unified-clipboard-history.html"><span class="n">08</span>統一剪貼簿與歷史紀錄</a></li>
+<li><a href="reminders.html"><span class="n">09</span>提醒事項</a></li>
+<li><a href="notices.html"><span class="n">10</span>通知</a></li>
+<li><a href="text-extraction-dictation.html"><span class="n">11</span>文字擷取與聽寫</a></li>
+<li><a href="screenshots-recording.html"><span class="n">12</span>螢幕截圖與錄影</a></li>
+<li aria-current="page"><a href="toggles-idle-screensaver.html"><span class="n">13</span>開關、閒置與螢幕保護程式</a></li>
+<li><a href="omarchy-cli.html"><span class="n">14</span>Omarchy 命令列介面</a></li>
+<li><a href="terminal.html"><span class="n">15</span>終端機</a></li>
+<li><a href="neovim.html"><span class="n">16</span>Neovim</a></li>
+<li><a href="ai.html"><span class="n">17</span>人工智慧</a></li>
+<li><a href="development-tools.html"><span class="n">18</span>開發工具</a></li>
+<li><a href="shell-tools.html"><span class="n">19</span>終端工具</a></li>
+<li><a href="shell-functions.html"><span class="n">20</span>終端函數</a></li>
+<li><a href="tuis.html"><span class="n">21</span>文字介面程式</a></li>
+<li><a href="guis.html"><span class="n">22</span>圖形應用程式</a></li>
+<li><a href="browsers.html"><span class="n">23</span>瀏覽器</a></li>
+<li><a href="commercial-apps-services.html"><span class="n">24</span>商業應用與服務</a></li>
+<li><a href="web-apps.html"><span class="n">25</span>網頁應用程式</a></li>
+<li><a href="gaming.html"><span class="n">26</span>遊戲</a></li>
+<li><a href="filling-out-pdfs.html"><span class="n">27</span>填寫 PDF 表單</a></li>
+<li><a href="windows-vm.html"><span class="n">28</span>Windows 虛擬機</a></li>
+<li><a href="other-packages.html"><span class="n">29</span>安裝其他套件</a></li>
+<li><a href="updates.html"><span class="n">30</span>系統更新</a></li>
+<li><a href="dotfiles.html"><span class="n">31</span>點檔設定</a></li>
+<li><a href="shell-plugins.html"><span class="n">32</span>殼層外掛</a></li>
+<li><a href="monitors.html"><span class="n">33</span>螢幕設定</a></li>
+<li><a href="keyboard-mouse-trackpad.html"><span class="n">34</span>鍵盤、滑鼠、觸控板</a></li>
+<li><a href="networking.html"><span class="n">35</span>網路設定</a></li>
+<li><a href="system-sleep.html"><span class="n">36</span>系統睡眠</a></li>
+<li><a href="hardware-authentication.html"><span class="n">37</span>硬體驗證</a></li>
+<li><a href="fonts.html"><span class="n">38</span>字型</a></li>
+<li><a href="backgrounds.html"><span class="n">39</span>桌布</a></li>
+<li><a href="prompt.html"><span class="n">40</span>提示符</a></li>
+<li><a href="branding.html"><span class="n">41</span>品牌識別</a></li>
+<li><a href="common-tweaks.html"><span class="n">42</span>常用微調</a></li>
+<li><a href="making-your-own-theme.html"><span class="n">43</span>自製主題</a></li>
+<li><a href="mac-support.html"><span class="n">44</span>Mac 支援</a></li>
+<li><a href="troubleshooting.html"><span class="n">45</span>疑難排解</a></li>
+<li><a href="faq.html"><span class="n">46</span>常見問題</a></li>
+<li><a href="system-snapshots.html"><span class="n">47</span>系統快照</a></li>
+<li><a href="security.html"><span class="n">48</span>安全性</a></li>
+<li><a href="omarchy-on.html"><span class="n">49</span>Omarchy on…</a></li>
+<li><a href="dual-boot-install.html"><span class="n">50</span>雙系統安裝</a></li>
+<li><a href="unattended-installs.html"><span class="n">51</span>無人值守安裝</a></li>
+</ol>
+</nav>
+<p class="colophon">非官方翻譯 · 原著 <a href="https://omarchy.org/manual/">omarchy.org/manual</a></p>
+</aside>
+<main class="prose" id="main">
+<div class="eyebrow"><span>第 13 章 · 共 51 章</span><a class="src-link" href="https://omarchy.org/manual/toggles-idle-screensaver/">原文 ↗</a></div><nav class="onpage" aria-label="本頁章節"><p class="onpage-label">本頁章節</p><ul><li><a href="#sec-1">開關選單（The toggle menu）</a></li><li><a href="#sec-10">頂欄指示燈（Indicators in the bar）</a></li><li><a href="#sec-13">夜燈（Night light）</a></li><li><a href="#sec-18">勿擾（Do not disturb）</a></li><li><a href="#sec-22">閒置（Idle）</a></li><li><a href="#sec-29">螢幕保護程式（The screensaver）</a></li><li><a href="#sec-34">鎖定畫面（The lock screen）</a></li></ul></nav><article><h1>開關、閒置與螢幕保護程式</h1>
+<p>每天切換的很多東西並不是設定，而是開一小時、關一小時的模式：深夜工作的夜燈（night light）、簡報中的勿擾（do not disturb）、看片時的保持清醒（stay awake）。Omarchy 稱之為開關（toggle），用法全都一樣——一個快捷鍵、一個選單項目、一道指令，打到同一個開關上。</p>
+<h2 id="sec-1">開關選單（The toggle menu）</h2>
+<p><code>Super + Ctrl + O</code> 直接開啟 Trigger &gt; Toggle，或從 Omarchy 選單（<code>Super + Space</code>）走過去。清單裡每項都是開關，不必管狀態存在哪裡，翻就對了。</p>
+<p>終端機裡同一套開關是 <code>omarchy toggle &lt;thing&gt;</code>，單獨執行 <code>omarchy toggle</code> 可看全部分組。</p>
+<table><thead><tr><th>開關</th><th>快捷鍵</th><th>指令</th></tr></thead><tbody><tr><td>夜燈（Night light）</td><td><code>Super + Ctrl + N</code></td><td><code>omarchy toggle nightlight</code></td></tr><tr><td>靜音通知（Silence notifications）</td><td><code>Super + Ctrl + ,</code></td><td><code>omarchy toggle notification silencing</code></td></tr><tr><td>保持清醒（Stay awake，不閒置鎖定）</td><td><code>Super + Ctrl + I</code></td><td><code>omarchy toggle idle</code></td></tr><tr><td>當機擷取（Crash capture）</td><td>—</td><td><code>omarchy toggle crash-capture</code></td></tr><tr><td>螢幕保護程式（Screensaver）</td><td>—</td><td><code>omarchy toggle screensaver</code></td></tr><tr><td>選單列（Menu bar）</td><td><code>Super + Shift + Space</code></td><td><code>omarchy toggle bar</code></td></tr><tr><td>觸控板（Touchpad）</td><td><code>XF86TouchpadToggle</code></td><td><code>omarchy toggle touchpad</code></td></tr><tr><td>觸控螢幕（Touchscreen）</td><td>—</td><td><code>omarchy toggle touchscreen</code></td></tr><tr><td>暫停（Suspend）</td><td>—</td><td><code>omarchy toggle suspend</code></td></tr><tr><td>混合顯示卡（Hybrid GPU）</td><td>—</td><td><code>omarchy toggle hybrid gpu</code></td></tr></tbody></table>
+<p>觸控板、觸控螢幕與混合顯示卡開關放在 Trigger &gt; Hardware（<code>Super + Ctrl + H</code>）下而非 Toggle 下，因為只在你真有該硬體時出現。觸控板與觸控螢幕開關在 Hyprland 重新載入後依然有效——被停用的裝置名稱會存進小狀態檔，Hyprland 啟動時讀檔再停用一次。</p>
+<p>Toggle 選單還帶幾個不是 <code>omarchy toggle</code> 指令、但行為相同的項目：頂欄電池百分比、workspace 版面（<code>Super + L</code>）、視窗間隙（<code>Super + Shift + Backspace</code>）與單視窗正方形比例（<code>Super + Ctrl + Backspace</code>）。</p>
+<p>多數開關只是一個放在 <code>~/.local/state/omarchy/toggles/</code> 下的旗標檔。若想在腳本中分支判斷，用 <code>omarchy-toggle-enabled</code> 拿 exit code，不必自己找檔：</p>
+<pre><code>omarchy-toggle-enabled screensaver-off &amp;&amp; echo "screensaver is off"</code></pre>
+<p>旗標以關閉狀態命名——<code>screensaver-off</code>、<code>suspend-off</code>、<code>bar-off</code>——檔案存在即代表該功能停用。</p>
+<h2 id="sec-10">頂欄指示燈（Indicators in the bar）</h2>
+<p>模式開啟時，頂欄中央時鐘旁會出現小圖示，那就是指示燈（indicators）小工具，承載聽寫、螢幕錄影、待辦提醒、夜燈、勿擾與保持清醒。</p>
+<p>未啟用的指示燈預設隱藏。把滑鼠移到附近會以半透明淡入，可直接點開，不必背快捷鍵；已啟用的點一下即關掉。若想全部常駐，把 <code>~/.config/omarchy/shell.json</code> 中 <code>omarchy.indicators</code> 項的 <code>alwaysShow</code> 設為 <code>true</code> 即可，頂欄小工具怎麼設定見頂欄（the top bar）。</p>
+<h2 id="sec-13">夜燈（Night light）</h2>
+<p><code>Super + Ctrl + N</code> 把螢幕暖到 4000K，再按一次回到 6500K。背後由 hyprsunset 驅動，開關會在它尚未執行時幫你啟動。</p>
+<p>預設 hyprsunset 對螢幕什麼都不做。<code>~/.config/hypr/hyprsunset.conf</code> 出貨時是 identity 設定檔， display 在你要求變暖前原封不動。若想按時鐘自動切換，換成時間設定檔：</p>
+<pre><code>profile {
+time = 20:00
+temperature = 4000
+}</code></pre>
+<p>再到 <code>~/.config/hypr/autostart.lua</code> 加一行 <code>o.launch_on_start("hyprsunset")</code>，讓它登入即啟動。開關用的 4000K／6500K 配對是固定的，想要別的色溫請改設定檔。</p>
+<h2 id="sec-18">勿擾（Do not disturb）</h2>
+<p><code>Super + Ctrl + ,</code> 靜音通知。開啟期間不彈 toast，頂欄掛著划掉的鈴鐺，提醒你桌面為何安靜。</p>
+<p>但什麼都不會丟。被靜音的通知會直接寫進通知歷史，正好是你回來後想補看的紀錄。用 <code>Super + Shift + Alt + ,</code> 開啟，通知的其餘故事見通知（notices）。</p>
+<p>兩種訊息照樣穿透：Omarchy 對你剛做之事的確認 toast（「Theme changed」、「Screenshot saved」），以及從命令列發出的重大警報。把什麼都標成重大、硬要插隊的聊天應用不算。</p>
+<h2 id="sec-22">閒置（Idle）</h2>
+<p>Omarchy shell 有閒置行為，時間是 <code>~/.config/omarchy/shell.json</code> 頂層 <code>idle</code> 區塊：</p>
+<pre><code>{
+"version": 1,
+"idle": {
+"screensaver": 150,
+"lock": 300
+}
+}</code></pre>
+<p>兩個數字都是從你進入閒置起算的秒數，而非彼此相加。因此預設是閒置兩分半進螢幕保護程式，五分鐘進鎖定畫面，不論螢幕保護程式有沒有跑過。存檔後 shell 即時套用新時間。</p>
+<p>若在鎖定死線前關掉螢幕保護程式，視為活動，待定的鎖定即取消，不會因看一眼機器就被鎖在門外。</p>
+<p>想徹底不因閒置鎖定，用 <code>Super + Ctrl + I</code> 或 <code>omarchy toggle idle</code> 開啟保持清醒（stay awake），頂欄出現咖啡杯圖示。長簡報或想盯著跑的建置前先敲下去，結束再敲回來。<code>omarchy toggle idle status</code> 會以 JSON 印出目前狀態，方便腳本取用。</p>
+<p>這裡管的是鎖定與螢幕保護程式，不是電源。暫停與休眠是另一套，見系統睡眠（system sleep）。</p>
+<h2 id="sec-29">螢幕保護程式（The screensaver）</h2>
+<p>Omarchy 的螢幕保護程式是跑過隨機文字特效的 ASCII 藝術，每台螢幕各一具。任意按鍵或滑鼠移動即退出。</p>
+<p>可從 System &gt; Screensaver（<code>Super + Esc</code>）隨叫隨到，即使閒置螢保已關也會強制升起。預設沒有綁快捷鍵。</p>
+<p><code>omarchy toggle screensaver</code> 關的是閒置版，若想從工作直達鎖定就關掉它。它需要一個懂得設定的終端機——Alacritty、Foot、Ghostty 或 Kitty——若預設終端機不是這幾套，它會直說。</p>
+<p>它畫的標誌可以換，到 Style &gt; Screensaver 上傳 png 或 svg，Omarchy 會轉成 ASCII，詳見品牌（branding）。</p>
+<h2 id="sec-34">鎖定畫面（The lock screen）</h2>
+<p><code>Super + Ctrl + L</code> 鎖機，跑 Omarchy shell 的鎖定畫面：清空顯示、把鍵盤配置重置回第一套（以免用錯字母表輸密碼），若 1Password 在跑，出門前一併上鎖。</p>
+<p>鎖定畫面收密碼，設好指紋後也收指紋，認證的其他招式見硬體認證（hardware authentication）。</p>
+<hr></article><nav class="pager" aria-label="章節切換"><a class="pg-prev" href="screenshots-recording.html"><span class="pg-label">上一章</span><span class="pg-title">螢幕截圖與錄影</span></a><a class="pg-next" href="omarchy-cli.html"><span class="pg-label">下一章</span><span class="pg-title">Omarchy 命令列介面</span></a></nav><footer class="chapter-source"><p>原文：<a href="https://omarchy.org/manual/toggles-idle-screensaver/">https://omarchy.org/manual/toggles-idle-screensaver/</a></p></footer>
+
+</main>
+</div>
+</body>
+</html>

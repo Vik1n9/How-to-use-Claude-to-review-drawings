@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>無人值守安裝 — Omarchy 手冊（繁體中文）</title>
+<meta name="description" content="Omarchy ISO 可在無人鍵盤前時自行安裝。若安裝程式發現第二顆標記為 cidata 的磁碟帶有設定檔，即複製出來、略過設定精靈，裝完自行重開機。無需特製 ISO 或額外開機選單；沒接該磁碟則一切如常，進入一般精靈。">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="無人值守安裝 — Omarchy 手冊（繁體中文）">
+<meta property="og:site_name" content="Omarchy 手冊（繁體中文）">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://vik1n9.github.io/One-Page-Beginners-Guide/omarchy-docs/unattended-installs.html">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<div class="frame">
+<aside class="sidebar">
+<a class="wordmark" href="index.html">Omarchy Manual</a>
+<p class="wordmark-sub">繁體中文譯本</p>
+<nav class="toc-nav" aria-label="章節目錄">
+<ol>
+<li><a href="index.html"><span class="n">01</span>歡迎使用 Omarchy！</a></li>
+<li><a href="getting-started.html"><span class="n">02</span>開始使用</a></li>
+<li><a href="coming-from-mac-or-windows.html"><span class="n">03</span>從 Mac 或 Windows 過來</a></li>
+<li><a href="navigation.html"><span class="n">04</span>導覽</a></li>
+<li><a href="the-top-bar.html"><span class="n">05</span>頂列</a></li>
+<li><a href="themes.html"><span class="n">06</span>主題</a></li>
+<li><a href="hotkeys.html"><span class="n">07</span>快捷鍵</a></li>
+<li><a href="unified-clipboard-history.html"><span class="n">08</span>統一剪貼簿與歷史紀錄</a></li>
+<li><a href="reminders.html"><span class="n">09</span>提醒事項</a></li>
+<li><a href="notices.html"><span class="n">10</span>通知</a></li>
+<li><a href="text-extraction-dictation.html"><span class="n">11</span>文字擷取與聽寫</a></li>
+<li><a href="screenshots-recording.html"><span class="n">12</span>螢幕截圖與錄影</a></li>
+<li><a href="toggles-idle-screensaver.html"><span class="n">13</span>開關、閒置與螢幕保護程式</a></li>
+<li><a href="omarchy-cli.html"><span class="n">14</span>Omarchy 命令列介面</a></li>
+<li><a href="terminal.html"><span class="n">15</span>終端機</a></li>
+<li><a href="neovim.html"><span class="n">16</span>Neovim</a></li>
+<li><a href="ai.html"><span class="n">17</span>人工智慧</a></li>
+<li><a href="development-tools.html"><span class="n">18</span>開發工具</a></li>
+<li><a href="shell-tools.html"><span class="n">19</span>終端工具</a></li>
+<li><a href="shell-functions.html"><span class="n">20</span>終端函數</a></li>
+<li><a href="tuis.html"><span class="n">21</span>文字介面程式</a></li>
+<li><a href="guis.html"><span class="n">22</span>圖形應用程式</a></li>
+<li><a href="browsers.html"><span class="n">23</span>瀏覽器</a></li>
+<li><a href="commercial-apps-services.html"><span class="n">24</span>商業應用與服務</a></li>
+<li><a href="web-apps.html"><span class="n">25</span>網頁應用程式</a></li>
+<li><a href="gaming.html"><span class="n">26</span>遊戲</a></li>
+<li><a href="filling-out-pdfs.html"><span class="n">27</span>填寫 PDF 表單</a></li>
+<li><a href="windows-vm.html"><span class="n">28</span>Windows 虛擬機</a></li>
+<li><a href="other-packages.html"><span class="n">29</span>安裝其他套件</a></li>
+<li><a href="updates.html"><span class="n">30</span>系統更新</a></li>
+<li><a href="dotfiles.html"><span class="n">31</span>點檔設定</a></li>
+<li><a href="shell-plugins.html"><span class="n">32</span>殼層外掛</a></li>
+<li><a href="monitors.html"><span class="n">33</span>螢幕設定</a></li>
+<li><a href="keyboard-mouse-trackpad.html"><span class="n">34</span>鍵盤、滑鼠、觸控板</a></li>
+<li><a href="networking.html"><span class="n">35</span>網路設定</a></li>
+<li><a href="system-sleep.html"><span class="n">36</span>系統睡眠</a></li>
+<li><a href="hardware-authentication.html"><span class="n">37</span>硬體驗證</a></li>
+<li><a href="fonts.html"><span class="n">38</span>字型</a></li>
+<li><a href="backgrounds.html"><span class="n">39</span>桌布</a></li>
+<li><a href="prompt.html"><span class="n">40</span>提示符</a></li>
+<li><a href="branding.html"><span class="n">41</span>品牌識別</a></li>
+<li><a href="common-tweaks.html"><span class="n">42</span>常用微調</a></li>
+<li><a href="making-your-own-theme.html"><span class="n">43</span>自製主題</a></li>
+<li><a href="mac-support.html"><span class="n">44</span>Mac 支援</a></li>
+<li><a href="troubleshooting.html"><span class="n">45</span>疑難排解</a></li>
+<li><a href="faq.html"><span class="n">46</span>常見問題</a></li>
+<li><a href="system-snapshots.html"><span class="n">47</span>系統快照</a></li>
+<li><a href="security.html"><span class="n">48</span>安全性</a></li>
+<li><a href="omarchy-on.html"><span class="n">49</span>Omarchy on…</a></li>
+<li><a href="dual-boot-install.html"><span class="n">50</span>雙系統安裝</a></li>
+<li aria-current="page"><a href="unattended-installs.html"><span class="n">51</span>無人值守安裝</a></li>
+</ol>
+</nav>
+<p class="colophon">非官方翻譯 · 原著 <a href="https://omarchy.org/manual/">omarchy.org/manual</a></p>
+</aside>
+<main class="prose" id="main">
+<div class="eyebrow"><span>第 51 章 · 共 51 章</span><a class="src-link" href="https://omarchy.org/manual/unattended-installs/">原文 ↗</a></div><nav class="onpage" aria-label="本頁章節"><p class="onpage-label">本頁章節</p><ul><li><a href="#sec-2">The configuration files</a></li><li><a href="#sec-7">SSH access</a></li><li><a href="#sec-10">Building the cidata drive</a></li><li><a href="#sec-16">Two caveats</a></li></ul></nav><article><h1>無人值守安裝</h1>
+<p>Omarchy ISO 可在無人鍵盤前時自行安裝。若安裝程式發現第二顆標記為 cidata 的磁碟帶有設定檔，即複製出來、略過設定精靈，裝完自行重開機。無需特製 ISO 或額外開機選單；沒接該磁碟則一切如常，進入一般精靈。</p>
+<p>這讓 Omarchy 很適合作為拋棄式開發環境的基底映像：在 Proxmox 或用 Packer 建 VM，開機，走開，SSH 進去。cidata 即 cloud-init NoCloud 標籤，主流虛擬化工具皆知如何掛載。</p>
+<h2 id="sec-2">The configuration files</h2>
+<p>檔案即安裝精靈所寫內容，最簡單的起手式是先跑一次互動安裝（例如 VM 內），再把 /root 所寫複製出來：</p>
+<p>File / Required / Purpose user_configuration.json / Yes / Disk, hostname, timezone, keyboard user_credentials.json / Yes / Username and password hash user_full_name.txt / No / Git full name user_email_address.txt / No / Git email user_encrypt_installation.txt / No / true when the configuration carries a disk_encryption block authorized_keys / No / SSH public keys, one per line tailscale_authkey / No / Tailscale auth key for joining your tailnet on first boot</p>
+<p>用 openssl passwd -6 "yourpassword" 產生 user_credentials.json 所需 password hash。</p>
+<p>也可用空檔 defer-provisioning 取代 user_credentials.json，效果等同互動觸發的 prepare-for-another-owner 安裝：機器裝好不帶個人資料，首位開機者自選鍵盤並建帳號。適合 imaging rigs，磁碟不該帶任何人憑證。</p>
+<h2 id="sec-7">SSH access</h2>
+<p>若有 authorized_keys，安裝會設為該使用者的 ~/.ssh/authorized_keys，啟用 sshd 並開防火牆。因 Omarchy 預設 openssh 服務停用、port 關閉，無人值守機器否則無法連入。安裝僅加入你的 keys，不放寬 SSH daemon 其他驗證設定。</p>
+<p>若有 tailscale_authkey，機器首開即加入你的 tailnet：Tailscale 由 ISO 內建套件安裝，防火牆放行 tailnet interface，背景工作待有網路即執行加入並重試至成功。請用可重複使用、預授權的 key，一份映像可供多機。</p>
+<h2 id="sec-10">Building the cidata drive</h2>
+<p>任何標籤正確的 filesystem 皆可，最簡單是小 ISO：</p>
+<p>mkdir cidata cp user_configuration.json user_credentials.json authorized_keys cidata/ genisoimage -output cidata.iso -volid cidata -joliet -rock cidata/</p>
+<p>再與 Omarchy ISO 一併掛給 VM，完整 Proxmox 範例：</p>
+<p>qm create 101 --name my-omarchy \ --bios ovmf --machine q35 --cpu host --cores 4 --memory 8192 \ --ostype l26 --scsihw virtio-scsi-single \ --efidisk0 local-lvm:0,efitype=4m,pre-enrolled-keys=0 \ --scsi0 local-lvm:40,discard=on,iothread=1 \ --net0 virtio,bridge=vmbr0 --vga virtio --serial0 socket \ --ide2 local:iso/omarchy.iso,media=cdrom \ --ide3 local:iso/cidata.iso,media=cdrom \ --boot order='scsi0;ide2'</p>
+<p>開機順序刻意磁碟在前：首次開機空碟會落到 ISO，之後即從碟上系統開機。</p>
+<h2 id="sec-16">Two caveats</h2>
+<p>加密的無人值守安裝並非全無人：首次開機仍需有人輸入 LUKS passphrase。且 user_configuration.json 內的 disk_encryption block 以明文攜帶 passphrase，故由加密安裝產生的 cidata drive 視同機密保管。</p>
+<hr></article><nav class="pager" aria-label="章節切換"><a class="pg-prev" href="dual-boot-install.html"><span class="pg-label">上一章</span><span class="pg-title">雙系統安裝</span></a></nav><footer class="chapter-source"><p>原文：<a href="https://omarchy.org/manual/unattended-installs/">https://omarchy.org/manual/unattended-installs/</a></p></footer>
+
+</main>
+</div>
+</body>
+</html>

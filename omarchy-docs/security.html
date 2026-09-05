@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>安全性 — Omarchy 手冊（繁體中文）</title>
+<meta name="description" content="Omarchy 極度重視安全。這是一套能拿來做 Real Work in the Real World 的作業系統，弄丟筆電也不該演變成安全事故。我們的做法如下：">
+<meta name="generator" content="Kami">
+<meta property="og:title" content="安全性 — Omarchy 手冊（繁體中文）">
+<meta property="og:site_name" content="Omarchy 手冊（繁體中文）">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://vik1n9.github.io/One-Page-Beginners-Guide/omarchy-docs/security.html">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<div class="frame">
+<aside class="sidebar">
+<a class="wordmark" href="index.html">Omarchy Manual</a>
+<p class="wordmark-sub">繁體中文譯本</p>
+<nav class="toc-nav" aria-label="章節目錄">
+<ol>
+<li><a href="index.html"><span class="n">01</span>歡迎使用 Omarchy！</a></li>
+<li><a href="getting-started.html"><span class="n">02</span>開始使用</a></li>
+<li><a href="coming-from-mac-or-windows.html"><span class="n">03</span>從 Mac 或 Windows 過來</a></li>
+<li><a href="navigation.html"><span class="n">04</span>導覽</a></li>
+<li><a href="the-top-bar.html"><span class="n">05</span>頂列</a></li>
+<li><a href="themes.html"><span class="n">06</span>主題</a></li>
+<li><a href="hotkeys.html"><span class="n">07</span>快捷鍵</a></li>
+<li><a href="unified-clipboard-history.html"><span class="n">08</span>統一剪貼簿與歷史紀錄</a></li>
+<li><a href="reminders.html"><span class="n">09</span>提醒事項</a></li>
+<li><a href="notices.html"><span class="n">10</span>通知</a></li>
+<li><a href="text-extraction-dictation.html"><span class="n">11</span>文字擷取與聽寫</a></li>
+<li><a href="screenshots-recording.html"><span class="n">12</span>螢幕截圖與錄影</a></li>
+<li><a href="toggles-idle-screensaver.html"><span class="n">13</span>開關、閒置與螢幕保護程式</a></li>
+<li><a href="omarchy-cli.html"><span class="n">14</span>Omarchy 命令列介面</a></li>
+<li><a href="terminal.html"><span class="n">15</span>終端機</a></li>
+<li><a href="neovim.html"><span class="n">16</span>Neovim</a></li>
+<li><a href="ai.html"><span class="n">17</span>人工智慧</a></li>
+<li><a href="development-tools.html"><span class="n">18</span>開發工具</a></li>
+<li><a href="shell-tools.html"><span class="n">19</span>終端工具</a></li>
+<li><a href="shell-functions.html"><span class="n">20</span>終端函數</a></li>
+<li><a href="tuis.html"><span class="n">21</span>文字介面程式</a></li>
+<li><a href="guis.html"><span class="n">22</span>圖形應用程式</a></li>
+<li><a href="browsers.html"><span class="n">23</span>瀏覽器</a></li>
+<li><a href="commercial-apps-services.html"><span class="n">24</span>商業應用與服務</a></li>
+<li><a href="web-apps.html"><span class="n">25</span>網頁應用程式</a></li>
+<li><a href="gaming.html"><span class="n">26</span>遊戲</a></li>
+<li><a href="filling-out-pdfs.html"><span class="n">27</span>填寫 PDF 表單</a></li>
+<li><a href="windows-vm.html"><span class="n">28</span>Windows 虛擬機</a></li>
+<li><a href="other-packages.html"><span class="n">29</span>安裝其他套件</a></li>
+<li><a href="updates.html"><span class="n">30</span>系統更新</a></li>
+<li><a href="dotfiles.html"><span class="n">31</span>點檔設定</a></li>
+<li><a href="shell-plugins.html"><span class="n">32</span>殼層外掛</a></li>
+<li><a href="monitors.html"><span class="n">33</span>螢幕設定</a></li>
+<li><a href="keyboard-mouse-trackpad.html"><span class="n">34</span>鍵盤、滑鼠、觸控板</a></li>
+<li><a href="networking.html"><span class="n">35</span>網路設定</a></li>
+<li><a href="system-sleep.html"><span class="n">36</span>系統睡眠</a></li>
+<li><a href="hardware-authentication.html"><span class="n">37</span>硬體驗證</a></li>
+<li><a href="fonts.html"><span class="n">38</span>字型</a></li>
+<li><a href="backgrounds.html"><span class="n">39</span>桌布</a></li>
+<li><a href="prompt.html"><span class="n">40</span>提示符</a></li>
+<li><a href="branding.html"><span class="n">41</span>品牌識別</a></li>
+<li><a href="common-tweaks.html"><span class="n">42</span>常用微調</a></li>
+<li><a href="making-your-own-theme.html"><span class="n">43</span>自製主題</a></li>
+<li><a href="mac-support.html"><span class="n">44</span>Mac 支援</a></li>
+<li><a href="troubleshooting.html"><span class="n">45</span>疑難排解</a></li>
+<li><a href="faq.html"><span class="n">46</span>常見問題</a></li>
+<li><a href="system-snapshots.html"><span class="n">47</span>系統快照</a></li>
+<li aria-current="page"><a href="security.html"><span class="n">48</span>安全性</a></li>
+<li><a href="omarchy-on.html"><span class="n">49</span>Omarchy on…</a></li>
+<li><a href="dual-boot-install.html"><span class="n">50</span>雙系統安裝</a></li>
+<li><a href="unattended-installs.html"><span class="n">51</span>無人值守安裝</a></li>
+</ol>
+</nav>
+<p class="colophon">非官方翻譯 · 原著 <a href="https://omarchy.org/manual/">omarchy.org/manual</a></p>
+</aside>
+<main class="prose" id="main">
+<div class="eyebrow"><span>第 48 章 · 共 51 章</span><a class="src-link" href="https://omarchy.org/manual/security/">原文 ↗</a></div><nav class="onpage" aria-label="本頁章節"><p class="onpage-label">本頁章節</p><ul><li><a href="#sec-6">變更密碼</a></li><li><a href="#sec-8">移交已用過的機器</a></li><li><a href="#sec-11">Passwordless sudo</a></li><li><a href="#sec-14">Signing Keys</a></li></ul></nav><article><h1>安全性</h1>
+<p>Omarchy 極度重視安全。這是一套能拿來做 Real Work in the Real World 的作業系統，弄丟筆電也不該演變成安全事故。我們的做法如下：</p>
+<p>Full-disk encryption is mandatory：保護實體資料最重要的步驟。若電腦遺失或被竊，資料以標準 LUKS（Linux Unified Key Setup）完整加密。</p>
+<p>Firewall is enabled by default：預設阻擋所有傳入流量，僅 LocalSend 的 port 53317 除外。連 ssh 預設也是關的，需經 Setup &gt; Security &gt; SSHD 開啟，設定會開啟 port 22（具 brute force rate limiting）。我們甚至用 ufw-docker setup 鎖住 Docker 存取，避免容器意外暴露於外界。</p>
+<p>Arch always have the latest updates：Omarchy 底層的 Arch 是 rolling distribution，任何套件的安全漏洞一旦修補，即可透過 omarchy-update 取得。你永遠跑在最新、最安全的版本上。</p>
+<p>Omarchy maintains its own packages and mirror：Omarchy 預設僅依賴 Arch 自家 core/extra/multilib repositories 與 Omarchy Package Repository。可從 AUR 直接安裝軟體，但基礎安裝不含，僅少數選用安裝（如第三方瀏覽器）會從 AUR 拉取。</p>
+<p>Cloudflare protects us from DDoS：所有 Omarchy 發布基礎設施，含 ISOs、Omarchy packages、Arch mirror，皆受 Cloudflare 的 DDoS shield 與 CDN 保護，可用性極佳。</p>
+<h2 id="sec-6">變更密碼</h2>
+<p>加密安裝有兩組密碼：開機解鎖磁碟者，以及登入與 sudo 者。兩者皆可在 Omarchy 選單的 Update &gt; Password 下變更，Drive Encryption 管前者，User 管後者。變更磁碟密碼會先要求輸入舊密碼，請備妥。</p>
+<h2 id="sec-8">移交已用過的機器</h2>
+<p>若要把機器交給他人，無需重裝。在 Omarchy 選單執行 Setup &gt; Reset Computer，輸入 reset 確認後重開機。該動作清除所有使用者帳號與 /home 內一切，丟掉安裝後所做的套件與系統變更，並清除機器識別：網路連線、host keys 等。重開後回到首次開機的設定精靈，新主人可輸入自己的名稱、密碼與加密密碼。</p>
+<p>其原理是還原安裝程式建立的 baseline snapshot，故僅適用於由 Omarchy ISO 安裝的機器。未加密磁碟上的 reset 只是刪除而非安全抹除，若資料敏感請改用全新安裝。</p>
+<h2 id="sec-11">Passwordless sudo</h2>
+<p>有時你會想讓 sudo 別再詢問，最常見的是 AI agent 要長時間做系統工作時。Setup &gt; Security &gt; Passwordless Sudo 可關閉詢問 15 分鐘，時間到自動恢復。提前結束可在時限內再執行一次，或用 omarchy-sudo-passwordless 30 自訂分鐘數。</p>
+<p>請清醒看待此選項：開啟期間，以你的使用者身分跑的任何東西都能免詢問取得 root。這正是目的，也是全部風險。</p>
+<h2 id="sec-14">Signing Keys</h2>
+<p>所有 ISO signatures 與 Omarchy repo package 的公鑰為 40DFB630FF42BCFFB047046CF0134EE680CAC571（至 openpgp.org 驗證）。omarchy/omarchy-keyring 套件亦內含此金鑰，後續更新會自動沿用。</p>
+<p>任何 ISO release 的簽名檔即 URL 加 .sig，例如 <a href="https://iso.omarchy.org/omarchy-x.x.x.iso.sig">https://iso.omarchy.org/omarchy-x.x.x.iso.sig</a>。</p>
+<hr></article><nav class="pager" aria-label="章節切換"><a class="pg-prev" href="system-snapshots.html"><span class="pg-label">上一章</span><span class="pg-title">系統快照</span></a><a class="pg-next" href="omarchy-on.html"><span class="pg-label">下一章</span><span class="pg-title">Omarchy on…</span></a></nav><footer class="chapter-source"><p>原文：<a href="https://omarchy.org/manual/security/">https://omarchy.org/manual/security/</a></p></footer>
+
+</main>
+</div>
+</body>
+</html>
